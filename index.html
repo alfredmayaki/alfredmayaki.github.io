@@ -48,6 +48,7 @@
 <body>
   <header>
   <h1>Alfred Anate Bodurin Mayaki</h1>
+  <span id="typed-text"></span>
   <strong><p>Labour Economist | Independent Researcher | Founder & Editor at IBR Group International</p></strong>
   <button onclick="window.location='https://alfredmayaki.github.io/'" aria-label="English version" style="padding: 10px 20px; background-color: #444; color: #fff; border: none; border-radius: 5px; cursor: pointer;">
       ENG
@@ -160,6 +161,22 @@
 <script>
   particlesJS.load('particles-js', 'particles.json', function() {
     console.log('callback - particles.js config loaded');
+  });
+</script>
+<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    new Typed('#typed-text', {
+      strings: [
+        "Économiste du Travail",
+        "Chercheur Indépendant",
+        "Fondateur & Rédacteur en Chef chez IBR Group International"
+      ],
+      typeSpeed: 50,
+      backSpeed: 30,
+      backDelay: 1500,
+      loop: true
+    });
   });
 </script>
 </body>
