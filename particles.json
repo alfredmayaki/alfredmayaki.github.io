@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>Particles.js</title>
+</head>
+<body>
+    <script>
+particlesJS('particles-js', {
+  "particles": {
+    "number": { "value": 60 },
+    "color": { "value": "#f3f3f3" },
+    "shape": { "type": "circle" },
+    "opacity": { "value": 0.5 },
+    "size": { "value": 3 },
+    "move": { "enable": true, "speed": 2 }
+  }
+});
+</script>
+</body>
+</html>
