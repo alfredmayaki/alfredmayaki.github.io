@@ -126,6 +126,9 @@
     <button onclick="window.location='https://alfredmayaki.github.io/index_jp.html'" aria-label="ロシア語版" style="padding: 10px 20px; background-color: #ffffff; color: #ac0000; border: #000000; border-radius: 10px; cursor: pointer;">
       JP
     </button>
+    <button onclick="window.location='https://alfredmayaki.github.io/index_he.html'" aria-label="גרסה בעברית" style="padding: 10px 20px; background-color: #ffffff; color: #0b037e; border: #000; border-radius: 10px; cursor: pointer;">
+      עברית
+    </button>
   </br>
     </header>
   <div class="contact-info">
@@ -165,7 +168,7 @@
     <div class="section-content">
       <li>
         <strong>(Candidat Potentiel) Doctorat en Management - 2030</strong>, École de Commerce de Birkbeck, Université de Birkbeck
-      <p><strong><a href="https://www.open.edu/openlearn/profiles/zt476627/my-ou-life">Master en Gestion des Ressources Humaines - 2026</a></strong>, École de Commerce de l'Université Ouverte</p>
+      <p><strong>Master en Gestion des Ressources Humaines - 2026</strong>, École de Commerce de l'Université Ouverte</p>
       <p><strong>Master en Économie Financière et Commerciale - 2013</strong>, Département d'Économie, Université d'Essex</p>
       <p><strong>Licence en Gestion d'Entreprise - 2010</strong>, École de Commerce d'Essex, Université d'Essex</p>
     </li>
@@ -247,7 +250,14 @@
       backDelay: 1500,
       loop: true
     });
+  let count = localStorage.getItem('view_count_en') || 0;
+    count++;
+    localStorage.setItem('view_count_en', count);
+    document.getElementById('view-count').textContent = count;
   });
 </script>
+<p style="text-align:center; color:#979797; margin-top:24px;">
+  Pages vues: <span id="view-count">0</span>
+</p>
 </body>
 </html>

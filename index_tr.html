@@ -126,6 +126,9 @@
     <button onclick="window.location='https://alfredmayaki.github.io/index_jp.html'" aria-label="ロシア語版" style="padding: 10px 20px; background-color: #ffffff; color: #ac0000; border: #000000; border-radius: 10px; cursor: pointer;">
       JP
     </button>
+    <button onclick="window.location='https://alfredmayaki.github.io/index_he.html'" aria-label="גרסה בעברית" style="padding: 10px 20px; background-color: #ffffff; color: #0b037e; border: #000; border-radius: 10px; cursor: pointer;">
+      עברית
+    </button>
   </br>
     </header>
   <div class="contact-info">
@@ -165,7 +168,7 @@
     <div class="section-content">
       <li>
         <strong>(Potansiyel Aday) Doktora Yönetim - 2030</strong>, Birkbeck İşletme Okulu, Birkbeck Üniversitesi
-      <p><strong><a href="https://www.open.edu/openlearn/profiles/zt476627/my-ou-life">İnsan Kaynakları Yönetimi Yüksek Lisansı - 2026</a></strong>, Açık Üniversite İşletme Okulu</p>
+      <p><strong>İnsan Kaynakları Yönetimi Yüksek Lisansı - 2026</a></strong>, Açık Üniversite İşletme Okulu</p>
       <p><strong>Finans ve Ticaret Ekonomisi Yüksek Lisansı - 2013</strong>, Ekonomi Bölümü, Essex Üniversitesi</p>
       <p><strong>İşletme Lisansı - 2010</strong>, Essex İşletme Okulu, Essex Üniversitesi</p>
     </li>
@@ -247,7 +250,14 @@
       backDelay: 1500,
       loop: true
     });
+    let count = localStorage.getItem('view_count_en') || 0;
+    count++;
+    localStorage.setItem('view_count_en', count);
+    document.getElementById('view-count').textContent = count;
   });
 </script>
+<p style="text-align:center; color:#979797; margin-top:24px;">
+  Sayfa görüntülemeleri: <span id="view-count">0</span>
+</p>
 </body>
 </html>

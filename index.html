@@ -126,6 +126,9 @@
     <button onclick="window.location='https://alfredmayaki.github.io/index_jp.html'" aria-label="ロシア語版" style="padding: 10px 20px; background-color: #ffffff; color: #ac0000; border: #000000; border-radius: 10px; cursor: pointer;">
       JP
     </button>
+    <button onclick="window.location='https://alfredmayaki.github.io/index_he.html'" aria-label="גרסה בעברית" style="padding: 10px 20px; background-color: #ffffff; color: #0b037e; border: #000; border-radius: 10px; cursor: pointer;">
+      עברית
+    </button>
   </br>
     </header>
   <div class="contact-info">
@@ -165,7 +168,7 @@
     <div class="section-content">
       <li>
         <strong>(Prospective Applicant) PhD in Management - 2030</strong>, Birkbeck Business School, Birkbeck University
-      <p><strong><a href="https://www.open.edu/openlearn/profiles/zt476627/my-ou-life">Masters in Human Resource Management - 2026</a></strong>, Open University Business School, Open University</p>
+      <p><strong>Masters in Human Resource Management - 2026</a></strong>, Open University Business School, Open University</p>
 	<p><strong>Masters in Financial and Business Economics - 2013</strong>, Department of Economics, University of Essex</p>
       <p><strong>Bachelors in Business Management - 2010</strong>, Essex Business School, University of Essex</p>
     </li>
@@ -248,7 +251,14 @@
       backDelay: 1500,
       loop: true
     });
+    let count = localStorage.getItem('view_count_en') || 0;
+    count++;
+    localStorage.setItem('view_count_en', count);
+    document.getElementById('view-count').textContent = count;
   });
 </script>
+<p style="text-align:center; color:#979797; margin-top:24px;">
+  Page views: <span id="view-count">0</span>
+</p>
 </body>
 </html>

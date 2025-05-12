@@ -125,6 +125,9 @@
     <button onclick="window.location='https://alfredmayaki.github.io/index_jp.html'" aria-label="ロシア語版" style="padding: 10px 20px; background-color: #ffffff; color: #ac0000; border: #000000; border-radius: 10px; cursor: pointer;">
       JP
     </button>
+    <button onclick="window.location='https://alfredmayaki.github.io/index_he.html'" aria-label="גרסה בעברית" style="padding: 10px 20px; background-color: #ffffff; color: #0b037e; border: #000; border-radius: 10px; cursor: pointer;">
+      עברית
+    </button>
   </header>
   <div class="contact-info">
     <div class="section">
@@ -162,7 +165,7 @@
       <div class="section-content">
         <li>
           <strong>(متقدم محتمل) دكتوراه في الإدارة - 2030</strong>، كلية بيركبيك للأعمال، جامعة بيركبيك
-          <p><strong><a href="https://www.open.edu/openlearn/profiles/zt476627/my-ou-life">ماجستير في إدارة الموارد البشرية - 2026</a></strong>، كلية إدارة الأعمال بالجامعة المفتوحة</p>
+          <p><strong>2026 - كلية إدارة الأعمال بالجامعة المفتوحة</p><strong>
           <p><strong>ماجستير في الاقتصاد المالي وإدارة الأعمال - 2013</strong>، قسم الاقتصاد، جامعة إسكس</p>
           <p><strong>بكالوريوس في إدارة الأعمال - 2010</strong>، كلية إسكس للأعمال، جامعة إسكس</p>
         </li>
@@ -243,8 +246,15 @@
           backDelay: 1500,
           loop: true
         });
-      });
+      let count = localStorage.getItem('view_count_en') || 0;
+    count++;
+    localStorage.setItem('view_count_en', count);
+    document.getElementById('view-count').textContent = count;
+  });
     </script>
+    <p style="text-align:center; color:#979797; margin-top:24px;">
+  مشاهدات الصفحة: <span id="view-count">0</span>
+</p>
   </div>
   </div>
 </body>

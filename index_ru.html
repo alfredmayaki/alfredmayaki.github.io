@@ -121,6 +121,9 @@
     <button onclick="window.location='https://alfredmayaki.github.io/index_jp.html'" aria-label="ロシア語版" style="padding: 10px 20px; background-color: #ffffff; color: #ac0000; border: #000000; border-radius: 10px; cursor: pointer;">
       JP
     </button>
+    <button onclick="window.location='https://alfredmayaki.github.io/index_he.html'" aria-label="גרסה בעברית" style="padding: 10px 20px; background-color: #ffffff; color: #0b037e; border: #000; border-radius: 10px; cursor: pointer;">
+      עברית
+    </button>
   </br>
   </header>
   <div class="contact-info">
@@ -160,7 +163,7 @@
     <div class="section-content">
       <li>
         <strong>(Потенциальный кандидат) Доктор философии по менеджменту - 2030</strong>, Школа бизнеса Биркбека, Университет Биркбека
-        <p><strong><a href="https://www.open.edu/openlearn/profiles/zt476627/my-ou-life">Магистр управления человеческими ресурсами - 2026</a></strong>, Бизнес-школа Открытого университета</p>
+        <p><strong>Магистр управления человеческими ресурсами - 2026</a></strong>, Бизнес-школа Открытого университета</p>
         <p><strong>Магистр финансовой и торговой экономики - 2013</strong>, Экономический факультет, Университет Эссекса</p>
         <p><strong>Бакалавр делового администрирования - 2010</strong>, Бизнес-школа Эссекса, Университет Эссекса</p>
       </li>
@@ -243,7 +246,14 @@
       backDelay: 1500,
       loop: true
     });
+  let count = localStorage.getItem('view_count_en') || 0;
+    count++;
+    localStorage.setItem('view_count_en', count);
+    document.getElementById('view-count').textContent = count;
   });
 </script>
+<p style="text-align:center; color:#979797; margin-top:24px;">
+  Просмотры страниц: <span id="view-count">0</span>
+</p>
 </body>
 </html>
