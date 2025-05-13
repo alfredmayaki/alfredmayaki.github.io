@@ -238,14 +238,13 @@
       document.getElementById('last-updated').textContent = new Date(document.lastModified).toLocaleDateString();
     </script>
       </footer>
-  <div id="particles-js">
+  <div id="particles-js" style="position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:-1;"></div>
 <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
 <script>
   particlesJS.load('particles-js', 'particles.json', function() {
     console.log('callback - particles.js config loaded');
   });
 </script>
-  </div>
 <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
 <script>
   document.addEventListener('DOMContentLoaded', function() {
