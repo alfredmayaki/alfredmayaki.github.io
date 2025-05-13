@@ -1,9 +1,4 @@
-<!DOCTYPE javascript>
-// This file is a JSON configuration for particles.js, a JavaScript library for creating particle systems.
-// It defines the properties of the particles, including their number, color, shape, opacity, size, and movement.
-// The configuration is used to create a visually appealing background effect on a webpage.
-    <script>
-particlesJS('particles-js', {
+{
   "particles": {
     "number": { "value": 60 },
     "color": { "value": "#f3f3f3" },
@@ -12,7 +7,4 @@ particlesJS('particles-js', {
     "size": { "value": 3 },
     "move": { "enable": true, "speed": 2 }
   }
-});
-</script>
-// This script initializes the particles.js library with the specified configuration.
-// The particles will be rendered in an HTML element with the ID 'particles-js'.
+}
