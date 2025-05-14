@@ -27,7 +27,9 @@
       border: 3px solid #464242;
       border-radius: 18px; 
       box-shadow: 0 0 16px #a0a0a0;
+
     }
+
     h1, h2, h3 {
       color: #979797;
     }
@@ -51,14 +53,51 @@
     a:hover {
       text-decoration: underline;
     }
+    html {
+  background: #161616;
+}
+
+body {
+  background: #161616;
+  margin: auto;
+  padding: 2em;
+}
+  </style>
+  </head>
+  <head>
+  <style>
     .header-flex {
       display: flex;
       align-items: center;
       justify-content: space-between;
     }
     .profile-photo {
-      width: 160px;
-      height: 160px;
+      width: 250px;
+      height: 250px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 5px solid #838383;
+      margin-left: 32px;
+      background: #222;
+    }
+    @media (max-width: 600px) {
+      .header-flex {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+<head>
+  <style>
+    .header-flex {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .profile-photo {
+      width: 200px;
+      height: 200px;
       object-fit: cover;
       border-radius: 50%;
       border: 5px solid #838383;
@@ -95,95 +134,6 @@
       <img src="s200_alfred.mayaki.jpg" alt="Alfred Mayaki" class="profile-photo">
     </div>
   </header>
-  <div class="contact-info">
-    <div class="section">
-      <div id="particles-js" style="position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:-1;"></div>
-    </div>
-    <hr>
-    <p><i class="fas fa-map-marker-alt"></i> Londres, Reino Unido</p>
-    <h2>Perfil</h2>
-    <div class="section-content">
-      <p>Economista do trabalho e pesquisador independente especializado em política comercial, contratos institucionais e modelagem econômica aplicada. Autor de vários artigos de trabalho e notas de política no SSRN, com um boletim semanal sobre nomeações executivas nos setores de energia, infraestrutura e imóveis.</p>
-    </div>
-  </div>
-
-  <div class="section">
-    <h2>Experiência</h2>
-    <div class="section-content">
-      <div class="job">
-        <li>
-        <strong>Pesquisador — <a href="https://ssrn.com/author=6803126">Economia do Trabalho & Política Comercial</a></strong>
-        </li>
-        <span class="date">2023 – Presente</span>
-        <p>Desenvolvimento de modelos matemáticos originais que integram estabilidade de Pareto-Nash, salários rígidos e formação de coalizões bayesianas em contextos dinâmicos do mercado de trabalho. Aplicação de dados reais e funções de produção de economia aberta.</p>
-      </div>
-      <div class="job">
-        <li>
-        <strong>Fundador & Editor — <a href="https://www.ibrgroupintl.co.uk/welcome">IBR Group International Holdings Ltd</a></strong>
-        </li>
-        <span class="date">2015 – 2025</span>
-        <p>Publicação semanal de um boletim no Substack sobre mudanças de liderança, finanças corporativas e ESG nos setores globais de infraestrutura e energia.</p>
-      </div>
-            <div class="job">
-        <li>
-          <strong>Analista de Dados, Prime Brokerage — <a href="http://societegenerale.com/">Société Générale Newedge UK</a></strong>
-        </li>
-        <span class="date">2014 – 2015</span>
-        <p>Atuou na equipe de Prime Brokerage - Business Data, com foco em análise de dados e relatórios para clientes de fundos hedge. Desenvolveu ferramentas para medição de desempenho e avaliação de riscos.</p>
-      </div>
-    </div>
-  </div>
-
-  <div class="section">
-    <h2>Educação</h2>
-    <div class="section-content">
-      <li>
-        <strong>(Candidato Potencial) Doutorado em Gestão - 2030</strong>, Escola de Negócios de Birkbeck, Universidade de Birkbeck
-      <p><strong>Mestrado em Gestão de Recursos Humanos - 2026</a></strong>, Escola de Negócios da Open University</p>
-      <p><strong>Mestrado em Economia Financeira e Comercial - 2013</strong>, Departamento de Economia, Universidade de Essex</p>
-      <p><strong>Bacharelado em Administração de Empresas - 2010</strong>, Escola de Negócios de Essex, Universidade de Essex</p>
-    </li>
-    </div>
-  </div>
-
-  <div class="section">
-    <h2>Competências</h2>
-    <div class="section-content">
-      <ul>
-        <li>Análise Quantitativa & Modelagem: Efeitos Fixos, Jogos Bayesianos, DSGE, Desequilíbrios Comerciais</li>
-        <li>Programação: Python (Pandas, Statsmodels), Fortran (simulações econômicas), LaTeX</li>
-        <li>Dados: Understanding Society, NOMIS, Yahoo Finance, APIs PRNewswire</li>
-        <li>Publicação: Substack, SSRN, boletins web</li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="section">
-    <h2>Publicações</h2>
-    <div class="section-content">
-      <p><strong><a href="https://library-search.open.ac.uk/discovery/search?query=creator,exact,mayaki,%20alfred,AND&tab=Everything&search_scope=MyInst_and_CI&sortby=rank&vid=44OPN_INST:VU1&mode=advanced&offset=0">Alocações de Pareto-Nash sob Informação Incompleta</a></strong> (SSRN, 2025)</p>
-      <p><strong><a href="https://library-search.open.ac.uk/discovery/search?query=creator,exact,mayaki,%20alfred,AND&tab=Everything&search_scope=MyInst_and_CI&sortby=rank&vid=44OPN_INST:VU1&mode=advanced&offset=0">Estratégias de Reversão de Pareto-Nash</a></strong> (SSRN, 2024)</p>
-    </div>
-  </div>
-
-  <div class="section">
-    <h2>Projetos</h2>
-    <div class="section-content">
-      <div class="project">
-        <li>
-        <strong>Modelo de Simulação de Política Comercial</strong>
-        </li>
-        <p>Desenvolvimento de um modelo de simulação para analisar o impacto da política comercial na dinâmica do mercado de trabalho, utilizando dados reais e teoria econômica.</p>
-        <p>Desenho de um modelo dinâmico de tarifas de retaliação usando balanços comerciais históricos, índices de preços de aço/alumínio e participações do PIB. Simulação da estabilidade do crescimento com um modelo Cobb-Douglas.</p>
-      </div>
-      <div class="project">
-        <li>
-        <strong>Banco de Dados de Nomeações Executivas</strong>
-      </li>
-        <p>Compilação de mais de 500 comunicados de imprensa de empresas da BusinessWire, Yahoo Finance e PR Newswire para analisar as reações dos preços das ações às nomeações em nível de diretoria.</p>
-      </div>
-    </div>
-  </div>
 <hr>
   <footer>
     <p>Contato: <a href="mailto:alfred.mayaki@icloud.com">por e-mail</a>
