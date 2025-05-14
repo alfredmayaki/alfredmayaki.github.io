@@ -57,7 +57,6 @@
   </head>
   <head>
   <style>
-    /* ...existing styles... */
     .header-flex {
       display: flex;
       align-items: center;
@@ -272,6 +271,45 @@
     });
 
   });
+</script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  
+  if (!sessionStorage.getItem('lang_redirected')) {
+    fetch('https://ipapi.co/json/')
+      .then(response => response.json())
+      .then(data => {
+        
+        const countryMap = {
+          'FR': 'index_fr.html',
+          'DE': 'index_de.html',
+          'ES': 'index_es.html',
+          'HE': 'index_he.html',
+          'IT': 'index_it.html',
+          'JA': 'index_jp.html',
+          'AR': 'index_ksa.html',
+          'NL': 'index_nl.html',
+          'RU': 'index_ru.html',
+          'PT': 'index_pt.html',
+          'TR': 'index_tr.html',
+          
+        };
+      
+        let cc = (data.country_code || '').toUpperCase();
+        let langFile = countryMap[cc] || 'index.html'; // Default to English
+
+        
+        if (langFile !== window.location.pathname.replace(/^\//, '')) {
+          let msg = "We detected your country as " + (data.country_name || cc) +
+            ". Would you like to view the site in your local language?";
+          if (confirm(msg)) {
+            sessionStorage.setItem('lang_redirected', '1');
+            window.location = '/' + langFile;
+          }
+        }
+      });
+  }
+});
 </script>
 </body>
 </html>
