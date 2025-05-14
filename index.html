@@ -53,6 +53,26 @@
     a:hover {
       text-decoration: underline;
     }
+    html {
+  background: #161616;
+}
+
+body {
+  background: none;
+  margin: 0;
+  padding: 0;
+}
+
+.main-container {
+  background: rgba(22,22,22,0.7);
+  color: #979797;
+  max-width: 990px;
+  margin: 2em auto;
+  padding: 2em;
+  border: 3px solid #464242;
+  border-radius: 18px;
+  box-shadow: 0 0 16px #a0a0a0;
+}
   </style>
   </head>
   <head>
@@ -83,6 +103,7 @@
   </style>
 </head>
 <body>
+  <div class="main-container">
   <audio id="typing-audio" src="typing.mp3" autoplay loop preload="auto"></audio>
   <header>  
   <div class="header-flex">
@@ -272,5 +293,6 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 });
 </script>
+</div>
 </body>
 </html>
