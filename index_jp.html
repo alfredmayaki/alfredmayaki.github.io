@@ -27,7 +27,9 @@
       border: 3px solid #464242;
       border-radius: 18px; 
       box-shadow: 0 0 16px #a0a0a0;
+
     }
+
     h1, h2, h3 {
       color: #979797;
     }
@@ -51,14 +53,51 @@
     a:hover {
       text-decoration: underline;
     }
+    html {
+  background: #161616;
+}
+
+body {
+  background: #161616;
+  margin: auto;
+  padding: 2em;
+}
+  </style>
+  </head>
+  <head>
+  <style>
     .header-flex {
       display: flex;
       align-items: center;
       justify-content: space-between;
     }
     .profile-photo {
-      width: 160px;
-      height: 160px;
+      width: 250px;
+      height: 250px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 5px solid #838383;
+      margin-left: 32px;
+      background: #222;
+    }
+    @media (max-width: 600px) {
+      .header-flex {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+<head>
+  <style>
+    .header-flex {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .profile-photo {
+      width: 200px;
+      height: 200px;
       object-fit: cover;
       border-radius: 50%;
       border: 5px solid #838383;
@@ -93,98 +132,8 @@
       </div>
       <img src="s200_alfred.mayaki.jpg" alt="Alfred Mayaki" class="profile-photo">
     </div>
-    <hr>
+    
   </header>
-  <div class="contact-info">
-    <div class="section">
-      <div id="particles-js" style="position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:-1;"></div>
-    </div>
-    <hr>
-    <p><i class="fas fa-map-marker-alt"></i> ロンドン（イギリス）</p>
-    <h2>プロフィール</h2>
-    <div class="section-content">
-      <p>労働経済学者・独立系研究者。貿易政策、制度契約、応用経済モデリングを専門とする。複数のSSRNワーキングペーパーと政策ノートの著者であり、エネルギー・インフラ・不動産分野の役員人事を扱う週刊ニュースレターを発行。</p>
-    </div>
-  </div>
-
-  <div class="section">
-    <h2>経験</h2>
-    <div class="section-content">
-      <div class="job">
-        <li>
-        <strong>研究者 — <a href="https://ssrn.com/author=6803126">労働経済学・貿易政策</a></strong>
-        </li>
-        <span class="date">2023年～現在</span>
-        <p>パレート＝ナッシュ安定性、粘着賃金、ベイズ連立形成を組み込んだ独自の数理モデルを開発。実データとオープンエコノミー生産関数を応用。</p>
-      </div>
-      <div class="job">
-        <li>
-        <strong>創設者・編集者 — <a href="https://www.ibrgroupintl.co.uk/welcome">IBR Group International Holdings Ltd</a></strong>
-        </li>
-        <span class="date">2015年～2025</span>
-        <p>Substackで週刊ニュースレターを発行。リーダーシップ交代、企業財務、ESG、グローバルインフラ・エネルギー分野をカバー。</p>
-      </div>
-      <div class="job">
-        <li>
-          <strong>データアナリスト（プライム・ブローカレッジ）— <a href="http://societegenerale.com/">Société Générale Newedge UK</a></strong>
-        </li>
-        <span class="date">2014年～2015年</span>
-        <p>プライム・ブローカレッジのビジネスデータ部門で、ヘッジファンド顧客向けのデータ分析とレポート作成を担当。パフォーマンス測定とリスク評価のためのツールを開発。</p>
-      </div>
-    </div>
-  </div>
-
-  <div class="section">
-    <h2>学歴</h2>
-    <div class="section-content">
-      <li>
-        <strong>（志望）経営学博士号 - 2030年</strong>, バークベック・ビジネススクール、バークベック大学
-      <p><strong>人材マネジメント修士 - 2026年</strong>, オープンユニバーシティ・ビジネススクール</p>
-      <p><strong>金融・ビジネス経済学修士 - 2013年</strong>, エセックス大学経済学部</p>
-      <p><strong>経営学学士 - 2010年</strong>, エセックス・ビジネススクール、エセックス大学</p>
-      </li>
-    </div>
-  </div>
-
-  <div class="section">
-    <h2>スキル</h2>
-    <div class="section-content">
-      <ul>
-        <li>定量分析・モデリング：固定効果、ベイズゲーム、DSGE、貿易不均衡</li>
-        <li>プログラミング：Python（Pandas, Statsmodels）、Fortran（経済シミュレーション）、LaTeX</li>
-        <li>データ：Understanding Society、NOMIS、Yahoo Finance、PRNewswire API</li>
-        <li>出版：Substack、SSRN、ウェブニュースレター</li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="section">
-    <h2>出版物</h2>
-    <div class="section-content">
-      <p><strong><a href="https://library-search.open.ac.uk/discovery/search?query=creator,exact,mayaki,%20alfred,AND&tab=Everything&search_scope=MyInst_and_CI&sortby=rank&vid=44OPN_INST:VU1&mode=advanced&offset=0">不完全情報下のパレート＝ナッシュ配分</a></strong>（SSRN, 2025年）</p>
-      <p><strong><a href="https://library-search.open.ac.uk/discovery/search?query=creator,exact,mayaki,%20alfred,AND&tab=Everything&search_scope=MyInst_and_CI&sortby=rank&vid=44OPN_INST:VU1&mode=advanced&offset=0">パレート＝ナッシュ逆転戦略</a></strong>（SSRN, 2024年）</p>
-    </div>
-  </div>
-
-  <div class="section">
-    <h2>プロジェクト</h2>
-    <div class="section-content">
-      <div class="project">
-        <li>
-        <strong>貿易政策シミュレーションモデル</strong>
-        </li>
-        <p>貿易政策が労働市場ダイナミクスに与える影響を分析するシミュレーションモデルを開発。実データと経済理論を活用。</p>
-        <p>歴史的な貿易収支、鉄鋼・アルミ価格指数、GDPシェアを用いた動的報復関税モデルを設計。コブ＝ダグラス型で成長安定性をシミュレーション。</p>
-      </div>
-      <div class="project">
-        <li>
-        <strong>役員人事データセット</strong>
-      </li>
-        <p>BusinessWire、Yahoo Finance、PR Newswireの500件以上の企業プレスリリースを収集し、取締役レベルの人事に対する株価反応を分析。</p>
-      </div>
-    </div>
-  </div>
-<hr>
   <footer>
     <p>連絡先: <a href="mailto:alfred.mayaki@icloud.com">メールで</a>
     <p>&copy; 2025 アルフレッド・アナテ・ボドゥリン・マヤキ. All rights reserved.</p>
