@@ -27,7 +27,9 @@
       border: 3px solid #464242;
       border-radius: 18px; 
       box-shadow: 0 0 16px #a0a0a0;
+
     }
+
     h1, h2, h3 {
       color: #979797;
     }
@@ -51,7 +53,18 @@
     a:hover {
       text-decoration: underline;
     }
+    html {
+  background: #161616;
+}
+
+body {
+  background: #161616;
+  margin: auto;
+  padding: 2em;
+}
   </style>
+  </head>
+  <head>
   <style>
     .header-flex {
       display: flex;
@@ -59,8 +72,32 @@
       justify-content: space-between;
     }
     .profile-photo {
-      width: 160px;
-      height: 160px;
+      width: 250px;
+      height: 250px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 5px solid #838383;
+      margin-left: 32px;
+      background: #222;
+    }
+    @media (max-width: 600px) {
+      .header-flex {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+<head>
+  <style>
+    .header-flex {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .profile-photo {
+      width: 200px;
+      height: 200px;
       object-fit: cover;
       border-radius: 50%;
       border: 5px solid #838383;
@@ -98,96 +135,6 @@
     </div>
     <hr>
   </header>
-  <div class="contact-info">
-    <div class="section">
-      <div id="particles-js" style="position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:-1;"></div>
-    </div>
-    <hr>
-    <p><i class="fas fa-map-marker-alt"></i> Londen, Verenigd Koninkrijk</p>
-    <h2>Profiel</h2>
-    <div class="section-content">
-      <p>Arbeidseconoom en onafhankelijk onderzoeker, gespecialiseerd in handelsbeleid, institutionele contracten en toegepaste economische modellering. Auteur van meerdere SSRN-werkdocumenten en beleidsnotities, met een wekelijkse nieuwsbrief over benoemingen van leidinggevenden in de energie-, infrastructuur- en vastgoedsector.</p>
-    </div>
-  </div>
-
-  <div class="section">
-    <h2>Ervaring</h2>
-    <div class="section-content">
-      <div class="job">
-        <li>
-        <strong>Onderzoeker — <a href="https://ssrn.com/author=6803126">Arbeidseconomie & Handelsbeleid</a></strong>
-        </li>
-        <span class="date">2023 – heden</span>
-        <p>Ontwikkelde originele wiskundige modellen met Pareto-Nash-stabiliteit, stijve lonen en Bayesiaanse coalitievorming in dynamische arbeidsmarkten. Toegepast op echte paneldata en open economie productiefuncties.</p>
-      </div>
-      <div class="job">
-        <li>
-        <strong>Oprichter & Redacteur — <a href="https://www.ibrgroupintl.co.uk/welcome">IBR Group International Holdings Ltd</a></strong>
-        </li>
-        <span class="date">2015 – 2025</span>
-        <p>Publiceert een wekelijkse nieuwsbrief op Substack over leiderschapstransities, bedrijfsfinanciën en ESG in de wereldwijde infrastructuur- en energiesectoren.</p>
-      </div>
-      <div class="job">
-        <li>
-          <strong>Data-analist, Prime Brokerage — <a href="http://societegenerale.com/">Société Générale Newedge UK</a></strong>
-        </li>
-        <span class="date">2014 – 2015</span>
-        <p>Werkte op de Prime Brokerage - Business Data afdeling, gericht op data-analyse en rapportage voor hedgefonds-klanten. Ontwikkelde tools voor prestatiemeting en risicobeoordeling.</p>
-      </div>
-    </div>
-  </div>
-
-  <div class="section">
-    <h2>Opleiding</h2>
-    <div class="section-content">
-      <li>
-        <strong>(Potentiële Kandidaat) PhD in Management - 2030</strong>, Birkbeck Business School, Birkbeck University
-        <p><strong>Master Human Resource Management - 2026</a></strong>, Open University Business School, Open University</p>
-        <p><strong>Master in Financiële en Bedrijfseconomie - 2013</strong>, Afdeling Economie, Universiteit van Essex</p>
-        <p><strong>Bachelor in Bedrijfskunde - 2010</strong>, Essex Business School, Universiteit van Essex</p>
-      </li>
-    </div>
-  </div>
-
-  <div class="section">
-    <h2>Vaardigheden</h2>
-    <div class="section-content">
-      <ul>
-        <li>Kwantiatieve Analyse en Modellering: Fixed Effects, Bayesiaanse Spellen, DSGE, Handelsonevenwichtigheden</li>
-        <li>Programmeren: Python (Pandas, Statsmodels), Fortran (economische simulaties), LaTeX</li>
-        <li>Data: Understanding Society, NOMIS, Yahoo Finance, PRNewswire APIs</li>
-        <li>Publiceren: Substack, SSRN, webgebaseerde nieuwsbrieven</li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="section">
-    <h2>Publicaties</h2>
-    <div class="section-content">
-      <p><strong><a href="https://library-search.open.ac.uk/discovery/search?query=creator,exact,mayaki,%20alfred,AND&tab=Everything&search_scope=MyInst_and_CI&sortby=rank&vid=44OPN_INST:VU1&mode=advanced&offset=0">Pareto-Nash-toewijzingen onder Onvolledige Informatie</a></strong> (SSRN, 2025)</p>
-      <p><strong><a href="https://library-search.open.ac.uk/discovery/search?query=creator,exact,mayaki,%20alfred,AND&tab=Everything&search_scope=MyInst_and_CI&sortby=rank&vid=44OPN_INST:VU1&mode=advanced&offset=0">Pareto-Nash Reversiestrategieën</a></strong> (SSRN, 2024)</p>
-    </div>
-  </div>
-
-  <div class="section">
-    <h2>Projecten</h2>
-    <div class="section-content">
-      <div class="project">
-        <li>
-        <strong>Handelsbeleid Simulatiemodel</strong>
-        </li>
-        <p>Ontwikkelde een simulatiemodel om de impact van handelsbeleid op de dynamiek van de arbeidsmarkt te analyseren, met gebruik van echte data en economische theorie.</p>
-        <p>Ontworpen een dynamisch, vergeldend tariefmodel met historische handelsbalansen, staal/aluminium prijsindexen en BBP-aandelen. Groei stabiliteit gesimuleerd met een Cobb-Douglas raamwerk.</p>
-      </div>
-      <div class="project">
-        <li>
-        <strong>Dataset Bestuursbenoemingen</strong>
-      </li>
-        <p>Meer dan 500 persberichten van bedrijven verzameld van BusinessWire, Yahoo Finance en PR Newswire om koersreacties op bestuursbenoemingen te analyseren.</p>
-      </div>
-    </div>
-  </div>
-<hr>
   <footer>
     <p>Contact: <a href="mailto:alfred.mayaki@icloud.com">via e-mail</a></P>
       <P>Telefoon: <a href="tel:+447940916731">+44 7940 916731</a></p>
