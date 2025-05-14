@@ -20,15 +20,16 @@
       line-height: 1.6;
       font-size: 16px;
       text-decoration: none;
-      text-align: right;
-      direction: rtl;
+      text-align: left;
       max-width: 990px;
       margin: auto;
       padding: 2em;
       border: 3px solid #464242;
       border-radius: 18px; 
       box-shadow: 0 0 16px #a0a0a0;
+
     }
+
     h1, h2, h3 {
       color: #979797;
     }
@@ -36,14 +37,13 @@
       margin-bottom: 2em;
     }
     .contact-info, .section-content {
-      margin-right: 1em;
-      margin-left: 0;
+      margin-left: 1em;
     }
     .project, .job {
       margin-bottom: 1em;
     }
     .date {
-      float: left;
+      float: right;
       color: #07c520;
     }
     a {
@@ -53,15 +53,27 @@
     a:hover {
       text-decoration: underline;
     }
+    html {
+  background: #161616;
+}
+
+body {
+  background: #161616;
+  margin: auto;
+  padding: 2em;
+}
+  </style>
+  </head>
+  <head>
+  <style>
     .header-flex {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      flex-direction: row-reverse;
     }
     .profile-photo {
-        width: 160px;
-      height: 160px;
+      width: 250px;
+      height: 250px;
       object-fit: cover;
       border-radius: 50%;
       border: 5px solid #838383;
@@ -70,8 +82,32 @@
     }
     @media (max-width: 600px) {
       .header-flex {
-        flex-direction: column-reverse;
-        align-items: flex-end;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+<head>
+  <style>
+    .header-flex {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .profile-photo {
+      width: 200px;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 5px solid #838383;
+      margin-left: 32px;
+      background: #222;
+    }
+    @media (max-width: 600px) {
+      .header-flex {
+        flex-direction: column;
+        align-items: flex-start;
       }
       .profile-photo {
         margin: 16px 0 0 0;
@@ -102,91 +138,7 @@
     <div class="section">
       <div id="particles-js" style="position:fixed;top:0;right:0;width:100vw;height:100vh;z-index:-1;"></div>
     </div>
-    <hr>
     <p><i class="fas fa-map-marker-alt"></i> לונדון, בריטניה</p>
-    <h2>פרופיל</h2>
-    <div class="section-content">
-      <p>כלכלן עבודה וחוקר עצמאי, מתמחה במדיניות סחר, חוזים מוסדיים ומידול כלכלי יישומי. מחבר של מספר מאמרים וניירות מדיניות ב-SSRN, עם ניוזלטר שבועי על מינויים בכירים בתחומי האנרגיה, התשתיות והנדל"ן.</p>
-    </div>
-  </div>
-
-  <div class="section">
-    <h2>ניסיון</h2>
-    <div class="section-content">
-        <div class="job">
-        <li>
-        <strong>חוקר — <a href="https://ssrn.com/author=6803126">כלכלת עבודה ומדיניות סחר</a></strong>
-        </li>
-        <span class="date">2023 – הווה</span>
-        <p>פיתוח מודלים מתמטיים מקוריים המשלבים יציבות פארטו-נאש, שכר קשיח ויצירת קואליציות בייסיאניות בהקשרים דינמיים של שוק העבודה. יישום נתונים אמיתיים ופונקציות ייצור של כלכלה פתוחה.</p>
-      </div>
-      <div class="job">
-        <li>
-        <strong>מייסד ועורך — <a href="https://www.ibrgroupintl.co.uk/welcome">IBR Group International Holdings Ltd</a></strong>
-        </li>
-        <span class="date">2015 – 2025</span>
-        <p>פרסום ניוזלטר שבועי ב-Substack על חילופי הנהגה, מימון תאגידי ו-ESG בענפי התשתיות והאנרגיה הגלובליים.</p>
-      </div>
-      <div class="job">
-        <li>
-          <strong>אנליסט נתונים, Prime Brokerage — <a href="http://societegenerale.com/">Société Générale Newedge UK</a></strong>
-        </li>
-        <span class="date">2014 – 2015</span>
-        <p>עבד בצוות Prime Brokerage - Business Data, התמקד בניתוח נתונים ודיווח ללקוחות קרנות גידור. פיתח כלים למדידת ביצועים והערכת סיכונים.</p>
-      </div>
-    </div>
-  </div>
-
-  <div class="section">
-    <h2>השכלה</h2>
-    <div class="section-content">
-      <li>
-        <strong>(מועמד פוטנציאלי) דוקטורט בניהול - 2030</strong>, בית הספר לעסקים בירקבק, אוניברסיטת בירקבק
-      <p><strong>תואר שני בניהול משאבי אנוש - 2026</strong>, בית הספר לעסקים של האוניברסיטה הפתוחה</p>
-      <p><strong>תואר שני בכלכלה פיננסית ומסחרית - 2013</strong>, המחלקה לכלכלה, אוניברסיטת אסקס</p>
-      <p><strong>תואר ראשון במנהל עסקים - 2010</strong>, בית הספר לעסקים של אסקס, אוניברסיטת אסקס</p>
-      </li>
-    </div>
-  </div>
-
-  <div class="section">
-    <h2>כישורים</h2>
-    <div class="section-content">
-      <ul>
-        <li>ניתוח כמותי ומידול: אפקטים קבועים, משחקים בייסיאניים, DSGE, חוסר איזון מסחרי</li>
-        <li>תכנות: Python (Pandas, Statsmodels), Fortran (סימולציות כלכליות), LaTeX</li>
-        <li>נתונים: Understanding Society, NOMIS, Yahoo Finance, PRNewswire APIs</li>
-        <li>פרסום: Substack, SSRN, ניוזלטרים אינטרנטיים</li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="section">
-    <h2>פרסומים</h2>
-    <div class="section-content">
-      <p><strong><a href="https://library-search.open.ac.uk/discovery/search?query=creator,exact,mayaki,%20alfred,AND&tab=Everything&search_scope=MyInst_and_CI&sortby=rank&vid=44OPN_INST:VU1&mode=advanced&offset=0">הקצאות פארטו-נאש תחת מידע לא שלם</a></strong> (SSRN, 2025)</p>
-      <p><strong><a href="https://library-search.open.ac.uk/discovery/search?query=creator,exact,mayaki,%20alfred,AND&tab=Everything&search_scope=MyInst_and_CI&sortby=rank&vid=44OPN_INST:VU1&mode=advanced&offset=0">אסטרטגיות היפוך פארטו-נאש</a></strong> (SSRN, 2024)</p>
-    </div>
-  </div>
-
-  <div class="section">
-    <h2>פרויקטים</h2>
-    <div class="section-content">
-      <div class="project">
-        <li>
-        <strong>מודל סימולציה של מדיניות סחר</strong>
-        </li>
-        <p>פיתוח מודל סימולציה לניתוח השפעת מדיניות הסחר על דינמיקת שוק העבודה, תוך שימוש בנתונים אמיתיים ותיאוריה כלכלית.</p>
-        <p>עיצוב מודל דינמי של מכסים תגובתיים תוך שימוש במאזני סחר היסטוריים, מדדי מחירי פלדה/אלומיניום וחלקי תוצר. סימולציה של יציבות הצמיחה במסגרת Cobb-Douglas.</p>
-      </div>
-      <div class="project">
-        <li>
-        <strong>מאגר נתוני מינויים בכירים</strong>
-      </li>
-        <p>איסוף מעל 500 הודעות לעיתונות של חברות מ-BusinessWire, Yahoo Finance ו-PR Newswire לניתוח תגובות מחירי מניות למינויים בדרג הנהלה.</p>
-      </div>
-    </div>
-  </div>
 <hr>
   <footer>
     <p>יצירת קשר: <a href="mailto:alfred.mayaki@icloud.com">באימייל</a></p>
