@@ -14,21 +14,22 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/brands.min.css">
   <style>
     body {
-      font-family: 'Segoe UI', 'Cairo', sans-serif;
+      font-family: 'Segoe UI', sans-serif;
       background-color: #161616;
       color: #979797;
       line-height: 1.6;
       font-size: 16px;
       text-decoration: none;
-      text-align: right;
+      text-align: left;
       max-width: 990px;
       margin: auto;
       padding: 2em;
       border: 3px solid #464242;
       border-radius: 18px; 
       box-shadow: 0 0 16px #a0a0a0;
-      direction: rtl;
+
     }
+
     h1, h2, h3 {
       color: #979797;
     }
@@ -36,13 +37,13 @@
       margin-bottom: 2em;
     }
     .contact-info, .section-content {
-      margin-right: 1em;
+      margin-left: 1em;
     }
     .project, .job {
       margin-bottom: 1em;
     }
     .date {
-      float: left;
+      float: right;
       color: #07c520;
     }
     a {
@@ -52,19 +53,51 @@
     a:hover {
       text-decoration: underline;
     }
+    html {
+  background: #161616;
+}
+
+body {
+  background: #161616;
+  margin: auto;
+  padding: 2em;
+}
   </style>
-</head>
-<head>
+  </head>
+  <head>
   <style>
-    
     .header-flex {
       display: flex;
       align-items: center;
       justify-content: space-between;
     }
     .profile-photo {
-      width: 160px;
-      height: 160px;
+      width: 250px;
+      height: 250px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 5px solid #838383;
+      margin-left: 32px;
+      background: #222;
+    }
+    @media (max-width: 600px) {
+      .header-flex {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+<head>
+  <style>
+    .header-flex {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .profile-photo {
+      width: 200px;
+      height: 200px;
       object-fit: cover;
       border-radius: 50%;
       border: 5px solid #838383;
@@ -99,94 +132,6 @@
     <p><strong><p><a href="https://www.github.com/alfredmayaki/cv"><b>تحميل السيرة الذاتية الحديثة</b></a></p></strong></p>
   </header>
   <hr>
-  <div class="contact-info">
-    <div class="section">
-      <div id="particles-js" style="position:fixed;top:0;right:0;width:100vw;height:100vh;z-index:-1;"></div>
-      <hr>
-      <p><i class="fas fa-map-marker-alt"></i> لندن، المملكة المتحدة</p>
-      <h2>الملف الشخصي</h2>
-      <div class="section-content">
-        <p>اقتصادي عمل وباحث مستقل متخصص في سياسة التجارة والعقود المؤسسية والنمذجة الاقتصادية التطبيقية. مؤلف لعدة أوراق عمل وملاحظات سياسية منشورة على SSRN، وينشر نشرة أسبوعية تغطي التعيينات التنفيذية في قطاعات الطاقة والبنية التحتية والعقارات.</p>
-      </div>
-    </div>
-
-    <div class="section">
-      <h2>الخبرة</h2>
-      <div class="section-content">
-        <div class="job">
-          <li>
-            <strong>باحث — <a href="https://ssrn.com/author=6803126">اقتصاد العمل وسياسة التجارة</a></strong>
-          </li>
-          <span class="date">2023 – حتى الآن</span>
-          <p>تطوير نماذج رياضية أصلية تتضمن استقرار باريتو-ناش، الأجور الجامدة، وتشكيل التحالفات البايزية في سياقات سوق العمل الديناميكية. تطبيق بيانات حقيقية ودوال إنتاج الاقتصاد المفتوح.</p>
-        </div>
-        <div class="job">
-          <li>
-            <strong>مؤسس ورئيس تحرير — <a href="https://www.ibrgroupintl.co.uk/welcome">IBR Group International Holdings Ltd</a></strong>
-          </li>
-          <span class="date">2015 – 2025</span>
-          <p>نشر نشرة أسبوعية على Substack تغطي تغييرات القيادة والتمويل المؤسسي وESG في قطاعات البنية التحتية والطاقة العالمية.</p>
-        </div>
-                <div class="job">
-          <li>
-            <strong>محلل بيانات، Prime Brokerage — <a href="http://societegenerale.com/">Société Générale Newedge UK</a></strong>
-          </li>
-          <span class="date">2014 – 2015</span>
-          <p>عمل في قسم Prime Brokerage - Business Data، مع التركيز على تحليل البيانات والتقارير لعملاء صناديق التحوط. طور أدوات لقياس الأداء وتقييم المخاطر.</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="section">
-      <h2>التعليم</h2>
-      <div class="section-content">
-        <li>
-          <strong>(متقدم محتمل) دكتوراه في الإدارة - 2030</strong>، كلية بيركبيك للأعمال، جامعة بيركبيك
-          <p><strong>2026 - كلية إدارة الأعمال بالجامعة المفتوحة</p><strong>
-          <p><strong>ماجستير في الاقتصاد المالي وإدارة الأعمال - 2013</strong>، قسم الاقتصاد، جامعة إسكس</p>
-          <p><strong>بكالوريوس في إدارة الأعمال - 2010</strong>، كلية إسكس للأعمال، جامعة إسكس</p>
-        </li>
-      </div>
-    </div>
-
-    <div class="section">
-      <h2>المهارات</h2>
-      <div class="section-content">
-        <ul>
-          <li>التحليل الكمي والنمذجة: التأثيرات الثابتة، الألعاب البايزية، DSGE، اختلالات التجارة</li>
-          <li>البرمجة: بايثون (Pandas, Statsmodels)، فورتران (محاكاة اقتصادية)، LaTeX</li>
-          <li>البيانات: Understanding Society، NOMIS، Yahoo Finance، PRNewswire APIs</li>
-          <li>النشر: Substack، SSRN، النشرات الإخبارية عبر الويب</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="section">
-      <h2>المنشورات</h2>
-      <div class="section-content">
-        <p><strong><a href="https://library-search.open.ac.uk/discovery/search?query=creator,exact,mayaki,%20alfred,AND&tab=Everything&search_scope=MyInst_and_CI&sortby=rank&vid=44OPN_INST:VU1&mode=advanced&offset=0">توزيعات باريتو-ناش تحت معلومات غير كاملة</a></strong> (SSRN، 2025)</p>
-        <p><strong><a href="https://library-search.open.ac.uk/discovery/search?query=creator,exact,mayaki,%20alfred,AND&tab=Everything&search_scope=MyInst_and_CI&sortby=rank&vid=44OPN_INST:VU1&mode=advanced&offset=0">استراتيجيات العودة لباريتو-ناش</a></strong> (SSRN، 2024)</p>
-      </div>
-    </div>
-
-    <div class="section">
-      <h2>المشاريع</h2>
-      <div class="section-content">
-        <div class="project">
-          <li>
-            <strong>نموذج محاكاة سياسة التجارة</strong>
-          </li>
-          <p>تطوير نموذج محاكاة لتحليل تأثير سياسة التجارة على ديناميكيات سوق العمل باستخدام بيانات واقعية ونظرية اقتصادية.</p>
-        </div>
-        <div class="project">
-          <li>
-            <strong>قاعدة بيانات التعيينات التنفيذية</strong>
-          </li>
-          <p>تجميع أكثر من 500 بيان صحفي من شركات عبر BusinessWire وYahoo Finance وPR Newswire لتحليل ردود أفعال أسعار الأسهم على التعيينات على مستوى مجلس الإدارة.</p>
-        </div>
-      </div>
-    </div>
-    <hr>
     <footer>
       <p>للتواصل: <a href="mailto:alfred.mayaki@icloud.com">عبر البريد الإلكتروني</a></p>
       <p>&copy; 2025 ألفريد أناتي بودورين مايوكي. جميع الحقوق محفوظة.</p>
