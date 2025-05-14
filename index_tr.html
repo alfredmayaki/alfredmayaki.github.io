@@ -264,19 +264,8 @@
       backSpeed: 50,
       backDelay: 1500,
       loop: true
-    });
-    if (!localStorage.getItem('unique_site_hit')) {
-      let total = localStorage.getItem('unique_site_hits_total') || 0;
-      total++;
-      localStorage.setItem('unique_site_hits_total', total);
-      localStorage.setItem('unique_site_hit', '1');
-    }
-    let uniqueHits = localStorage.getItem('unique_site_hits_total') || 1;
-    document.getElementById('view-count').textContent = uniqueHits;
   });
+});
 </script>
-<p style="text-align:center; color:#979797; margin-top:24px;">
-  Sayfa görüntülemeleri: <span id="view-count">0</span>
-</p>
 </body>
 </html>
