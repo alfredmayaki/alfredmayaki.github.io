@@ -10,7 +10,7 @@
   ],
   "main": "index.html",
   "scripts": {
-    "start": "npx serve .",
+    "start": "npx serve -s .",
     "lint": "echo 'No linter configured.'"
   },
   "keywords": [
@@ -19,5 +19,19 @@
     "economics",
     "portfolio",
     "alfred mayaki"
+  ],
+  "env": {
+    "NODE_ENV": "production"
+  },
+  "formation": {
+    "web": {
+      "quantity": 1,
+      "size": "free"
+    }
+  },
+  "buildpacks": [
+    {
+      "url": "heroku/nodejs"
+    }
   ]
 }
