@@ -1,0 +1,14 @@
+{
+  "name": "alfredmayaki.github.io",
+  "version": "1.0.0",
+  "description": "Personal website for Alfred Anate Bodurin Mayaki, featuring multilingual support and analytics.",
+  "main": "index.html",
+  "scripts": {
+    "start": "serve -s ."
+  },
+  "author": "Alfred Anate Bodurin Mayaki",
+  "license": "MIT",
+  "dependencies": {
+    "serve": "^14.2.0"
+  }
+}
