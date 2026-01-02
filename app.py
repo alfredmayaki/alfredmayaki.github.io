@@ -1,4 +1,4 @@
-from flask import Flask, send_from_directory, redirect
+from flask import Flask, send_from_directory
 import os
 
 app = Flask(__name__, static_folder='.')
@@ -9,12 +9,12 @@ def landing():
 
 @app.route("/<path:filename>")
 def serve_file(filename):
+    # Security: prevent directory traversal
+    if '..' in filename or filename.startswith('/'):
+        return "Invalid path", 400
     return send_from_directory('.', filename)
 
-# Handle specific language routes
-@app.route("/index_<lang>.html")
-def language_page(lang):
-    return send_from_directory('.', f'index_{lang}.html')
-
 if __name__ == "__main__":
-    app.run(debug=True, port=5000)
+    # Use Heroku's PORT environment variable
+    port = int(os.environ.get('PORT', 5000))
+    app.run(host='0.0.0.0', port=port, debug=False)

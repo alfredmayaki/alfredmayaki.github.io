@@ -8,11 +8,7 @@
   "languages": [
     "en", "fr", "de", "es", "he", "it", "ja", "ar", "nl", "ru", "pt", "tr"
   ],
-  "main": "index.html",
-  "scripts": {
-    "start": "npx serve -s .",
-    "lint": "echo 'No linter configured.'"
-  },
+  "repository": "https://github.com/alfredmayaki/alfredmayaki.github.io",
   "keywords": [
     "personal website",
     "multilingual",
@@ -21,7 +17,10 @@
     "alfred mayaki"
   ],
   "env": {
-    "NODE_ENV": "production"
+    "PORT": {
+      "description": "Port for the application",
+      "value": "5000"
+    }
   },
   "formation": {
     "web": {
@@ -31,21 +30,7 @@
   },
   "buildpacks": [
     {
-      "url": "heroku/nodejs"
-    }
-  ],
-  "redirects": [
-    {
-      "source": ":path*",
-      "has": [
-        {
-          "type": "cookie",
-          "name": "language",
-          "value": "fr"
-        }
-      ],
-      "destination": "/fr/:path*",
-      "statusCode": 301
+      "url": "heroku/python"
     }
   ]
 }
