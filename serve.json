@@ -1,6 +1,7 @@
 {
   "public": ".",
   "cleanUrls": false,
+  "directoryListing": false,
   "trailingSlash": false,
   "redirects": [],
   "rewrites": [],
