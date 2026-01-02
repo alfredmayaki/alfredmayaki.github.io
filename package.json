@@ -4,7 +4,10 @@
   "description": "Personal website for Alfred Anate Bodurin Mayaki, featuring multilingual support and analytics.",
   "main": "index.html",
   "scripts": {
-    "start": "serve -s ."
+    "start": "serve -s . -l ${PORT:-5000}"
+  },
+  "engines": {
+    "node": "20.x"
   },
   "author": "Alfred Anate Bodurin Mayaki",
   "license": "GNU",
