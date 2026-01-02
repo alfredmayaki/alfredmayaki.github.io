@@ -1,14 +1,14 @@
 {
-  "name": "alfredmayaki.github.io",
+  "name": "alfredmayaki.me",
   "description": "Personal website for Alfred Anate Bodurin Mayaki, featuring multilingual support and analytics.",
   "version": "1.0.0",
   "author": "Alfred Anate Bodurin Mayaki",
-  "license": "MIT",
-  "homepage": "https://alfredmayaki.github.io/",
+  "license": "GNU",
+  "homepage": "https://www.alfredmayaki.me/",
   "languages": [
     "en", "fr", "de", "es", "he", "it", "ja", "ar", "nl", "ru", "pt", "tr"
   ],
-  "main": "index.html",
+  "main": "landing.html",
   "scripts": {
     "start": "npx serve -s .",
     "lint": "echo 'No linter configured.'"
@@ -32,6 +32,20 @@
   "buildpacks": [
     {
       "url": "heroku/nodejs"
+    }
+  ],
+  "redirects": [
+    {
+      "source": ":path*",
+      "has": [
+        {
+          "type": "cookie",
+          "name": "language",
+          "value": "fr"
+        }
+      ],
+      "destination": "/fr/:path*",
+      "statusCode": 301
     }
   ]
 }
