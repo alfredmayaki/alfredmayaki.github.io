@@ -8,7 +8,7 @@
   "languages": [
     "en", "fr", "de", "es", "he", "it", "ja", "ar", "nl", "ru", "pt", "tr"
   ],
-  "main": "landing.html",
+  "main": "index.html",
   "scripts": {
     "start": "npx serve -s .",
     "lint": "echo 'No linter configured.'"
