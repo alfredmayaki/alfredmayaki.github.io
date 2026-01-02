@@ -16,21 +16,9 @@
     "portfolio",
     "alfred mayaki"
   ],
-  "env": {
-    "PORT": {
-      "description": "Port for the application",
-      "value": "5000"
-    }
-  },
-  "formation": {
-    "web": {
-      "quantity": 1,
-      "size": "free"
-    }
-  },
   "buildpacks": [
     {
-      "url": "heroku/python"
+      "url": "heroku/nodejs"
     }
   ]
 }
