@@ -4,6 +4,19 @@
   <meta charset="UTF-8">
   <title>Alfred Mayaki — Welcome</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Alfred Anate Bodurin Mayaki - Labour Economist, Researcher, and Trade Policy Analyst. Personal website with multilingual support.">
+  <meta name="keywords" content="Alfred Mayaki, Labour Economist, Trade Policy, Multilingual, Portfolio">
+  <meta name="author" content="Alfred Anate Bodurin Mayaki">
+  
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-CNF86BSG95"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-CNF86BSG95');
+  </script>
+  
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
@@ -25,6 +38,12 @@
       border: 3px solid #464242;
       border-radius: 18px;
       box-shadow: 0 0 30px rgba(160, 160, 160, 0.3);
+      animation: fadeIn 0.5s ease-in;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
     
     .profile-photo {
@@ -68,6 +87,7 @@
       flex-direction: column;
       align-items: center;
       gap: 0.5em;
+      cursor: pointer;
     }
     
     .lang-btn:hover {
@@ -80,6 +100,18 @@
     .flag {
       font-size: 2em;
     }
+    
+    @media (max-width: 768px) {
+      .landing-container {
+        padding: 2em 1.5em;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+      .language-grid {
+        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+      }
+    }
   </style>
 </head>
 <body>
@@ -88,55 +120,55 @@
   <div class="landing-container">
     <img src="s200_alfred.mayaki.jpg" alt="Alfred Mayaki" class="profile-photo">
     <h1>Alfred Anate Bodurin Mayaki</h1>
-    <p class="tagline">Labour Economist • Researcher • Policy Analyst</p>
+    <p class="tagline">Labour Economist • Researcher • Trade Policy Analyst</p>
     <p>Select your preferred language / Choisissez votre langue</p>
     
     <div class="language-grid">
-      <a href="index_en.html" class="lang-btn">
+      <a href="index_en.html" class="lang-btn" data-lang="en">
         <span class="flag">🇬🇧</span>
         <span>English</span>
       </a>
-      <a href="index_fr.html" class="lang-btn">
+      <a href="index_fr.html" class="lang-btn" data-lang="fr">
         <span class="flag">🇫🇷</span>
         <span>Français</span>
       </a>
-      <a href="index_de.html" class="lang-btn">
+      <a href="index_de.html" class="lang-btn" data-lang="de">
         <span class="flag">🇩🇪</span>
         <span>Deutsch</span>
       </a>
-      <a href="index_es.html" class="lang-btn">
+      <a href="index_es.html" class="lang-btn" data-lang="es">
         <span class="flag">🇪🇸</span>
         <span>Español</span>
       </a>
-      <a href="index_he.html" class="lang-btn">
+      <a href="index_he.html" class="lang-btn" data-lang="he">
         <span class="flag">🇮🇱</span>
         <span>עברית</span>
       </a>
-      <a href="index_it.html" class="lang-btn">
+      <a href="index_it.html" class="lang-btn" data-lang="it">
         <span class="flag">🇮🇹</span>
         <span>Italiano</span>
       </a>
-      <a href="index_jp.html" class="lang-btn">
+      <a href="index_jp.html" class="lang-btn" data-lang="ja">
         <span class="flag">🇯🇵</span>
         <span>日本語</span>
       </a>
-      <a href="index_ksa.html" class="lang-btn">
+      <a href="index_ksa.html" class="lang-btn" data-lang="ar">
         <span class="flag">🇸🇦</span>
         <span>العربية</span>
       </a>
-      <a href="index_nl.html" class="lang-btn">
+      <a href="index_nl.html" class="lang-btn" data-lang="nl">
         <span class="flag">🇳🇱</span>
         <span>Nederlands</span>
       </a>
-      <a href="index_ru.html" class="lang-btn">
+      <a href="index_ru.html" class="lang-btn" data-lang="ru">
         <span class="flag">🇷🇺</span>
         <span>Русский</span>
       </a>
-      <a href="index_pt.html" class="lang-btn">
+      <a href="index_pt.html" class="lang-btn" data-lang="pt">
         <span class="flag">🇵🇹</span>
         <span>Português</span>
       </a>
-      <a href="index_tr.html" class="lang-btn">
+      <a href="index_tr.html" class="lang-btn" data-lang="tr">
         <span class="flag">🇹🇷</span>
         <span>Türkçe</span>
       </a>
@@ -145,7 +177,101 @@
   
   <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
   <script>
-    particlesJS.load('particles-js', 'particles.json');
+    particlesJS.load('particles-js', 'particles.json', function() {
+      console.log('Particles.js loaded');
+    });
+  </script>
+  
+  <script>
+    // Auto-redirect based on geolocation (only on first visit)
+    document.addEventListener('DOMContentLoaded', function() {
+      
+      // Check if user has already been redirected
+      if (sessionStorage.getItem('lang_redirected')) {
+        return;
+      }
+      
+      // Country to language mapping
+      const countryToLanguage = {
+        // English-speaking countries
+        'GB': 'index_en.html', 'US': 'index_en.html', 'CA': 'index_en.html', 
+        'AU': 'index_en.html', 'NZ': 'index_en.html', 'IE': 'index_en.html',
+        
+        // French-speaking countries
+        'FR': 'index_fr.html', 'BE': 'index_fr.html', 'CH': 'index_fr.html',
+        'LU': 'index_fr.html', 'MC': 'index_fr.html',
+        
+        // German-speaking countries
+        'DE': 'index_de.html', 'AT': 'index_de.html',
+        
+        // Spanish-speaking countries
+        'ES': 'index_es.html', 'MX': 'index_es.html', 'AR': 'index_es.html',
+        'CO': 'index_es.html', 'CL': 'index_es.html', 'PE': 'index_es.html',
+        'VE': 'index_es.html', 'EC': 'index_es.html', 'GT': 'index_es.html',
+        'CU': 'index_es.html', 'BO': 'index_es.html', 'DO': 'index_es.html',
+        'HN': 'index_es.html', 'PY': 'index_es.html', 'SV': 'index_es.html',
+        'NI': 'index_es.html', 'CR': 'index_es.html', 'PA': 'index_es.html',
+        'UY': 'index_es.html',
+        
+        // Hebrew
+        'IL': 'index_he.html',
+        
+        // Italian
+        'IT': 'index_it.html',
+        
+        // Japanese
+        'JP': 'index_jp.html',
+        
+        // Arabic-speaking countries
+        'SA': 'index_ksa.html', 'AE': 'index_ksa.html', 'EG': 'index_ksa.html',
+        'IQ': 'index_ksa.html', 'JO': 'index_ksa.html', 'KW': 'index_ksa.html',
+        'LB': 'index_ksa.html', 'OM': 'index_ksa.html', 'QA': 'index_ksa.html',
+        'SY': 'index_ksa.html', 'YE': 'index_ksa.html', 'BH': 'index_ksa.html',
+        
+        // Dutch
+        'NL': 'index_nl.html',
+        
+        // Russian-speaking countries
+        'RU': 'index_ru.html', 'BY': 'index_ru.html', 'KZ': 'index_ru.html',
+        'UA': 'index_ru.html',
+        
+        // Portuguese-speaking countries
+        'PT': 'index_pt.html', 'BR': 'index_pt.html', 'AO': 'index_pt.html',
+        'MZ': 'index_pt.html',
+        
+        // Turkish
+        'TR': 'index_tr.html'
+      };
+      
+      // Attempt geolocation redirect
+      fetch('https://ipapi.co/json/')
+        .then(response => response.json())
+        .then(data => {
+          const countryCode = (data.country_code || '').toUpperCase();
+          const suggestedPage = countryToLanguage[countryCode];
+          
+          if (suggestedPage && suggestedPage !== 'index_en.html') {
+            const countryName = data.country_name || countryCode;
+            const message = `We detected you're browsing from ${countryName}. Would you like to view the site in your local language?`;
+            
+            if (confirm(message)) {
+              sessionStorage.setItem('lang_redirected', '1');
+              window.location.href = suggestedPage;
+            }
+          }
+        })
+        .catch(error => {
+          console.log('Geolocation detection unavailable:', error);
+          // Silently fail - user can still manually select language
+        });
+    });
+    
+    // Save language preference when user manually selects
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+      btn.addEventListener('click', function() {
+        sessionStorage.setItem('lang_redirected', '1');
+      });
+    });
   </script>
 </body>
 </html>
