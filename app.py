@@ -1,29 +1,20 @@
-from flask import Flask, url_for
+from flask import Flask, send_from_directory, redirect
+import os
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder='.')
 
 @app.route("/")
 def landing():
-    return f"""
-    <!DOCTYPE html>
-    <html>
-    <head>
-      <title>Landing Page</title>
-      <style>
-        body {{ background: #161616; color: #fff; text-align: center; font-family: Arial, sans-serif; }}
-        a {{ color: #07c520; font-size: 1.5em; text-decoration: none; }}
-        a:hover {{ text-decoration: underline; }}
-      </style>
-    </head>
-    <body>
-      <h1>Welcome!</h1>
-      <p><a href="{url_for('static', filename='index.html')}">Go to Main Site</a></p>
-    </body>
-    </html>
-    """
+    return send_from_directory('.', 'index.html')
 
-# Serve index.html as a static file
-# Place index.html in a folder named 'static' in the same directory as this app.py
+@app.route("/<path:filename>")
+def serve_file(filename):
+    return send_from_directory('.', filename)
+
+# Handle specific language routes
+@app.route("/index_<lang>.html")
+def language_page(lang):
+    return send_from_directory('.', f'index_{lang}.html')
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=True, port=5000)

@@ -1,0 +1,10 @@
+app.py
+__pycache__/
+*.pyc
+venv/
+.env	
+# Option 1: Python simple server
+python -m http.server 8000
+
+# Option 2: Node.js serve
+npx serve .
