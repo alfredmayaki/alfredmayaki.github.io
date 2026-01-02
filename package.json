@@ -4,7 +4,7 @@
   "description": "Personal website for Alfred Anate Bodurin Mayaki, featuring multilingual support and analytics.",
   "main": "index.html",
   "scripts": {
-    "start": "serve -s . -l ${PORT:-5000}"
+    "start": "serve . -l ${PORT:-5000} --no-clipboard"
   },
   "engines": {
     "node": "20.x"
