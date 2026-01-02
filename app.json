@@ -1,10 +1,10 @@
 {
-  "name": "alfredmayaki.me",
+  "name": "alfredmayaki.github.io",
   "description": "Personal website for Alfred Anate Bodurin Mayaki, featuring multilingual support and analytics.",
   "version": "1.0.0",
   "author": "Alfred Anate Bodurin Mayaki",
   "license": "GNU",
-  "homepage": "https://www.alfredmayaki.me/",
+  "homepage": "https://www.alfredmayaki.github.io",
   "languages": [
     "en", "fr", "de", "es", "he", "it", "ja", "ar", "nl", "ru", "pt", "tr"
   ],
