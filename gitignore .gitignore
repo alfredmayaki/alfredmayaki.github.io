@@ -47,3 +47,6 @@ Thumbs.db
 
 # Local testing
 .env
+
+# DO NOT ignore HTML files - we need them!
+# !*.html
