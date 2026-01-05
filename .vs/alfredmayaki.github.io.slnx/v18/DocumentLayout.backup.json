@@ -28,7 +28,7 @@
               "RelativeDocumentMoniker": "index.html",
               "ToolTip": "C:\\Users\\44746\\AppData\\Local\\Microsoft\\WindowsApps\\wget\\repo\\alfredmayaki.github.io\\index.html",
               "RelativeToolTip": "index.html",
-              "ViewState": "AgIAAJwAAAAAAAAAAAAAAKcAAAAwAAAAAAAAAA==",
+              "ViewState": "AgIAAJ0AAAAAAAAAAAAAAKcAAABLAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
               "WhenOpened": "2026-01-03T08:04:04.809Z",
               "IsPinned": true,
@@ -42,18 +42,15 @@
               "RelativeDocumentMoniker": "index_en.html",
               "ToolTip": "C:\\Users\\44746\\AppData\\Local\\Microsoft\\WindowsApps\\wget\\repo\\alfredmayaki.github.io\\index_en.html",
               "RelativeToolTip": "index_en.html",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAG4AAAARAAAAAAAAAA==",
+              "ViewState": "AgIAAGwAAAAAAAAAAAAAAHMAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
               "WhenOpened": "2026-01-03T08:03:19.266Z",
-              "IsPinned": true
+              "IsPinned": true,
+              "EditorCaption": ""
             },
             {
               "$type": "Bookmark",
               "Name": "ST:128:0:{75188d03-9892-4ae2-abf1-207126247ce5}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
             }
           ]
         }
