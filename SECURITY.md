@@ -7,7 +7,7 @@ New releases are published daily and will be marked under a specific version as 
 | Version | Supported          |
 | ------- | ------------------ |
 | 3.0.x   | :white_check_mark: |
-| 2.0.x   | :white_check_mark: |
+| 2.5.x   | :white_check_mark: |
 | 2.0.x   | :white_check_mark: |
 | < 1.0   | :x:                |
 
