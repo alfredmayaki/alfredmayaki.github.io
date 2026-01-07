@@ -181,20 +181,39 @@
     async function loadPDFs() {
       const repoOwner = 'alfredmayaki';
       const repoName = 'alfredmayaki.github.io';
-      const treeApiUrl = `https://api.github.com/repos/${repoOwner}/${repoName}/git/trees/main?recursive=1`;
-      const rootContentsUrl = `https://api.github.com/repos/${repoOwner}/${repoName}/contents/`;
+
+      const repoApiUrl = `https://api.github.com/repos/${repoOwner}/${repoName}`;
       const container = document.getElementById('pdfContainer');
 
       try {
-        // 1) Try the tree API (recursive)
+        // 1) Get repo metadata to learn default branch (main/master/etc.)
+        const repoResponse = await fetch(repoApiUrl, {
+          headers: { 'Accept': 'application/vnd.github+json' }
+        });
+
+        if (!repoResponse.ok) {
+          const repoErrorText = await repoResponse.text();
+          throw new Error(`Repo lookup failed: ${repoResponse.status} (${repoErrorText})`);
+        }
+
+        const repoData = await repoResponse.json();
+        const branch = repoData.default_branch;
+
+        if (!branch) {
+          throw new Error('Repo lookup succeeded but default_branch was missing.');
+        }
+
+        // 2) Try tree API using the correct default branch
+        const treeApiUrl = `https://api.github.com/repos/${repoOwner}/${repoName}/git/trees/${branch}?recursive=1`;
         let response = await fetch(treeApiUrl, {
           headers: { 'Accept': 'application/vnd.github+json' }
         });
 
         if (!response.ok) {
-          // 2) Fallback: root-only listing (much less likely to rate-limit)
           const treeErrorText = await response.text();
 
+          // 3) Fallback to root contents on correct branch
+          const rootContentsUrl = `https://api.github.com/repos/${repoOwner}/${repoName}/contents/?ref=${encodeURIComponent(branch)}`;
           response = await fetch(rootContentsUrl, {
             headers: { 'Accept': 'application/vnd.github+json' }
           });
@@ -202,7 +221,7 @@
           if (!response.ok) {
             const rootErrorText = await response.text();
             throw new Error(
-              `GitHub API error.\nTree: ${response.status} (fallback skipped due to tree failure details: ${treeErrorText})\nRoot: ${response.status} (${rootErrorText})`
+              `GitHub API error.\nTree: ${response.status} (tree details: ${treeErrorText})\nRoot: ${response.status} (${rootErrorText})`
             );
           }
 
@@ -213,10 +232,7 @@
 
           const pdfFiles = rootItems
             .filter(i => i.type === 'file' && String(i.name || '').toLowerCase().endsWith('.pdf'))
-            .map(i => ({
-              path: i.path,
-              size: i.size
-            }));
+            .map(i => ({ path: i.path, size: i.size }));
 
           if (pdfFiles.length === 0) {
             container.innerHTML = '<div class="no-pdfs">No PDF files found in the repository root.</div>';
@@ -225,7 +241,7 @@
 
           const pdfCards = pdfFiles.map(file => {
             const fileName = file.path.split('/').pop();
-            const fileUrl = `https://raw.githubusercontent.com/${repoOwner}/${repoName}/main/${file.path}`;
+            const fileUrl = `https://raw.githubusercontent.com/${repoOwner}/${repoName}/${branch}/${file.path}`;
             const sizeKB = typeof file.size === 'number' ? Math.round(file.size / 1024) : '?';
 
             return `
@@ -246,7 +262,7 @@
         const data = await response.json();
 
         if (!data.tree || !Array.isArray(data.tree)) {
-          throw new Error(`Unexpected GitHub API response (missing tree).`);
+          throw new Error('Unexpected GitHub API response (missing tree).');
         }
 
         const pdfFiles = data.tree.filter(item =>
@@ -260,7 +276,7 @@
 
         const pdfCards = pdfFiles.map(file => {
           const fileName = file.path.split('/').pop();
-          const fileUrl = `https://raw.githubusercontent.com/${repoOwner}/${repoName}/main/${file.path}`;
+          const fileUrl = `https://raw.githubusercontent.com/${repoOwner}/${repoName}/${branch}/${file.path}`;
           const sizeKB = file.size ? Math.round(file.size / 1024) : '?';
 
           return `
