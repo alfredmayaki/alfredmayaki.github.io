@@ -181,18 +181,74 @@
     async function loadPDFs() {
       const repoOwner = 'alfredmayaki';
       const repoName = 'alfredmayaki.github.io';
-      const apiUrl = `https://api.github.com/repos/${repoOwner}/${repoName}/git/trees/main?recursive=1`;
+      const treeApiUrl = `https://api.github.com/repos/${repoOwner}/${repoName}/git/trees/main?recursive=1`;
+      const rootContentsUrl = `https://api.github.com/repos/${repoOwner}/${repoName}/contents/`;
       const container = document.getElementById('pdfContainer');
 
       try {
-        const response = await fetch(apiUrl);
-        const data = await response.json();
+        // 1) Try the tree API (recursive)
+        let response = await fetch(treeApiUrl, {
+          headers: { 'Accept': 'application/vnd.github+json' }
+        });
 
-        if (!data.tree) {
-          throw new Error('Unable to fetch repository structure');
+        if (!response.ok) {
+          // 2) Fallback: root-only listing (much less likely to rate-limit)
+          const treeErrorText = await response.text();
+
+          response = await fetch(rootContentsUrl, {
+            headers: { 'Accept': 'application/vnd.github+json' }
+          });
+
+          if (!response.ok) {
+            const rootErrorText = await response.text();
+            throw new Error(
+              `GitHub API error.\nTree: ${response.status} (fallback skipped due to tree failure details: ${treeErrorText})\nRoot: ${response.status} (${rootErrorText})`
+            );
+          }
+
+          const rootItems = await response.json();
+          if (!Array.isArray(rootItems)) {
+            throw new Error('Unexpected GitHub API response for root contents.');
+          }
+
+          const pdfFiles = rootItems
+            .filter(i => i.type === 'file' && String(i.name || '').toLowerCase().endsWith('.pdf'))
+            .map(i => ({
+              path: i.path,
+              size: i.size
+            }));
+
+          if (pdfFiles.length === 0) {
+            container.innerHTML = '<div class="no-pdfs">No PDF files found in the repository root.</div>';
+            return;
+          }
+
+          const pdfCards = pdfFiles.map(file => {
+            const fileName = file.path.split('/').pop();
+            const fileUrl = `https://raw.githubusercontent.com/${repoOwner}/${repoName}/main/${file.path}`;
+            const sizeKB = typeof file.size === 'number' ? Math.round(file.size / 1024) : '?';
+
+            return `
+              <a href="${fileUrl}" target="_blank" rel="noopener noreferrer" class="pdf-card" title="Open ${fileName}">
+                <svg class="pdf-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                  <path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20M10,19L12,15H9V10H15V15L13,19H10Z" />
+                </svg>
+                <div class="pdf-name">${fileName}</div>
+                <div class="pdf-size">${sizeKB} KB</div>
+              </a>
+            `;
+          }).join('');
+
+          container.innerHTML = `<div class="pdf-grid">${pdfCards}</div>`;
+          return;
         }
 
-        // Root reference: list PDFs from anywhere in the repo (ignore subfolder filtering)
+        const data = await response.json();
+
+        if (!data.tree || !Array.isArray(data.tree)) {
+          throw new Error(`Unexpected GitHub API response (missing tree).`);
+        }
+
         const pdfFiles = data.tree.filter(item =>
           item.type === 'blob' && item.path.toLowerCase().endsWith('.pdf')
         );
@@ -219,9 +275,9 @@
         }).join('');
 
         container.innerHTML = `<div class="pdf-grid">${pdfCards}</div>`;
-      } catch (error) {             
+      } catch (error) {
         console.error('Error loading PDFs:', error);
-        container.innerHTML = '<div class="no-pdfs">Error loading PDF files. Please try again later.</div>';
+        container.innerHTML = `<div class="no-pdfs">Error loading PDF files: ${String(error.message || error)}</div>`;
       }
     }
 
