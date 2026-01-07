@@ -186,17 +186,28 @@
     async function loadPDFs() {
       const container = document.getElementById('pdfContainer');
       const folderPath = document.getElementById('folderPath');
+
       folderPath.textContent = `${pagesBaseUrl}/ (repo: ${owner}/${repo}@${branch})`;
 
+      // If nothing updates within 10s, show a message.
+      const timeoutId = window.setTimeout(() => {
+        container.innerHTML = '<div class="no-pdfs">Still loading... Network request may be blocked. Open DevTools → Console/Network.</div>';
+      }, 10000);
+
       try {
+        console.log('[pdf-viewer] loading started');
+
         const apiUrl = `https://api.github.com/repos/${owner}/${repo}/contents/?ref=${encodeURIComponent(branch)}`;
-        const response = await fetch(apiUrl, { cache: 'no-store' });
+        const response = await fetch(apiUrl, {
+          cache: 'no-store',
+          headers: { 'Accept': 'application/vnd.github+json' }
+        });
 
         if (!response.ok) {
           const errorText = await response.text();
 
           if (response.status === 403) {
-            container.innerHTML = '<div class="no-pdfs">GitHub API request was blocked (likely rate limited). Please refresh later.</div>';
+            container.innerHTML = '<div class="no-pdfs">GitHub API request was blocked (403). You may be rate limited. Try again later.</div>';
             return;
           }
 
@@ -212,8 +223,7 @@
             x.type === 'file' &&
             typeof x.name === 'string' &&
             typeof x.download_url === 'string' &&
-            x.name.toLowerCase().endsWith('.pdf') &&
-            x.download_url.toLowerCase().endsWith('.pdf')
+            x.name.toLowerCase().endsWith('.pdf')
           )
           .map(x => ({
             path: x.name,
@@ -245,8 +255,10 @@
 
         container.innerHTML = `<div class="pdf-grid">${pdfCards}</div>`;
       } catch (error) {
-        console.error('Error loading PDFs:', error);
-        container.innerHTML = `<div class="no-pdfs">Error loading PDF files: ${String(error.message || error)}</div>`;
+        console.error('[pdf-viewer] Error loading PDFs:', error);
+        container.innerHTML = `<div class="no-pdfs">Error loading PDF files. Check DevTools. (${String(error.message || error)})</div>`;
+      } finally {
+        window.clearTimeout(timeoutId);
       }
     }
 
