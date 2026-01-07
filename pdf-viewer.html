@@ -116,6 +116,7 @@
       align-items: center;
       gap: 0.9em;
       min-width: 0;
+      flex: 1 1 auto;
     }
 
     .pdf-icon {
@@ -130,11 +131,16 @@
       fill: #fff;
     }
 
+    /* CHANGED: fixed-size column + explicit left alignment */
     .pdf-meta {
       min-width: 0;
-      display: flex;
-      flex-direction: column;
-      gap: 0.15em;
+      display: grid;
+      grid-template-columns: 1fr 90px;
+      column-gap: 1em;
+      align-items: baseline;
+      justify-items: start;
+      text-align: left;
+      width: 100%;
     }
 
     .pdf-name {
@@ -143,12 +149,21 @@
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
+      grid-column: 1;
+      justify-self: start;
+      text-align: left;
     }
 
+    /* CHANGED: hard-left align the size cell */
     .pdf-size {
       font-size: 0.8em;
       color: #979797;
       transition: color 0.25s ease;
+      grid-column: 2;
+      justify-self: start;
+      text-align: left;
+      white-space: nowrap;
+      width: 90px;
     }
 
     .pdf-list-item:hover .pdf-size {
@@ -198,6 +213,16 @@
 
       .open-link {
         text-align: center;
+      }
+
+      /* CHANGED: keep two columns on mobile so size doesn't look centered */
+      .pdf-meta {
+        grid-template-columns: 1fr 90px;
+        row-gap: 0;
+      }
+
+      .pdf-size {
+        width: 90px;
       }
     }
   </style>
