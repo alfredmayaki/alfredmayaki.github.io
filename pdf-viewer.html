@@ -179,107 +179,30 @@
 
   <script>
     async function loadPDFs() {
-      const repoOwner = 'alfredmayaki';
-      const repoName = 'alfredmayaki.github.io';
-
-      const repoApiUrl = `https://api.github.com/repos/${repoOwner}/${repoName}`;
       const container = document.getElementById('pdfContainer');
 
       try {
-        // 1) Get repo metadata to learn default branch (main/master/etc.)
-        const repoResponse = await fetch(repoApiUrl, {
-          headers: { 'Accept': 'application/vnd.github+json' }
-        });
-
-        if (!repoResponse.ok) {
-          const repoErrorText = await repoResponse.text();
-          throw new Error(`Repo lookup failed: ${repoResponse.status} (${repoErrorText})`);
-        }
-
-        const repoData = await repoResponse.json();
-        const branch = repoData.default_branch;
-
-        if (!branch) {
-          throw new Error('Repo lookup succeeded but default_branch was missing.');
-        }
-
-        // 2) Try tree API using the correct default branch
-        const treeApiUrl = `https://api.github.com/repos/${repoOwner}/${repoName}/git/trees/${branch}?recursive=1`;
-        let response = await fetch(treeApiUrl, {
-          headers: { 'Accept': 'application/vnd.github+json' }
-        });
+        // Example: https://your-worker.yourdomain.workers.dev/pdfs
+        const response = await fetch('https://YOUR_WORKER_DOMAIN/pdfs', { cache: 'no-store' });
 
         if (!response.ok) {
-          const treeErrorText = await response.text();
-
-          // 3) Fallback to root contents on correct branch
-          const rootContentsUrl = `https://api.github.com/repos/${repoOwner}/${repoName}/contents/?ref=${encodeURIComponent(branch)}`;
-          response = await fetch(rootContentsUrl, {
-            headers: { 'Accept': 'application/vnd.github+json' }
-          });
-
-          if (!response.ok) {
-            const rootErrorText = await response.text();
-            throw new Error(
-              `GitHub API error.\nTree: ${response.status} (tree details: ${treeErrorText})\nRoot: ${response.status} (${rootErrorText})`
-            );
-          }
-
-          const rootItems = await response.json();
-          if (!Array.isArray(rootItems)) {
-            throw new Error('Unexpected GitHub API response for root contents.');
-          }
-
-          const pdfFiles = rootItems
-            .filter(i => i.type === 'file' && String(i.name || '').toLowerCase().endsWith('.pdf'))
-            .map(i => ({ path: i.path, size: i.size }));
-
-          if (pdfFiles.length === 0) {
-            container.innerHTML = '<div class="no-pdfs">No PDF files found in the repository root.</div>';
-            return;
-          }
-
-          const pdfCards = pdfFiles.map(file => {
-            const fileName = file.path.split('/').pop();
-            const fileUrl = `https://raw.githubusercontent.com/${repoOwner}/${repoName}/${branch}/${file.path}`;
-            const sizeKB = typeof file.size === 'number' ? Math.round(file.size / 1024) : '?';
-
-            return `
-              <a href="${fileUrl}" target="_blank" rel="noopener noreferrer" class="pdf-card" title="Open ${fileName}">
-                <svg class="pdf-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                  <path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20M10,19L12,15H9V10H15V15L13,19H10Z" />
-                </svg>
-                <div class="pdf-name">${fileName}</div>
-                <div class="pdf-size">${sizeKB} KB</div>
-              </a>
-            `;
-          }).join('');
-
-          container.innerHTML = `<div class="pdf-grid">${pdfCards}</div>`;
-          return;
+          const errorText = await response.text();
+          throw new Error(`PDF API error: ${response.status} (${errorText})`);
         }
 
         const data = await response.json();
+        const pdfs = Array.isArray(data.pdfs) ? data.pdfs : [];
 
-        if (!data.tree || !Array.isArray(data.tree)) {
-          throw new Error('Unexpected GitHub API response (missing tree).');
-        }
-
-        const pdfFiles = data.tree.filter(item =>
-          item.type === 'blob' && item.path.toLowerCase().endsWith('.pdf')
-        );
-
-        if (pdfFiles.length === 0) {
+        if (pdfs.length === 0) {
           container.innerHTML = '<div class="no-pdfs">No PDF files found in the repository.</div>';
           return;
         }
 
-        const pdfCards = pdfFiles.map(file => {
-          const fileName = file.path.split('/').pop();
-          const fileUrl = `https://raw.githubusercontent.com/${repoOwner}/${repoName}/${branch}/${file.path}`;
-          const sizeKB = file.size ? Math.round(file.size / 1024) : '?';
+        const pdfCards = pdfs.map(file => {
+          const fileName = String(file.path || '').split('/').pop();
+          const fileUrl = file.url;
+          const sizeKB = typeof file.size === 'number' ? Math.round(file.size / 1024) : '?';
 
-          return `
             <a href="${fileUrl}" target="_blank" rel="noopener noreferrer" class="pdf-card" title="Open ${fileName}">
               <svg class="pdf-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
                 <path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20M10,19L12,15H9V10H15V15L13,19H10Z" />
