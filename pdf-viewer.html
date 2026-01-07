@@ -70,57 +70,6 @@
       box-shadow: 0 4px 12px rgba(61, 78, 233, 0.5);
     }
 
-    .pdf-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-      gap: 1.5em;
-      margin-top: 2em;
-    }
-
-    .pdf-card {
-      background: #2a2a2a;
-      border: 2px solid #464242;
-      border-radius: 10px;
-      padding: 1.5em;
-      transition: all 0.3s ease;
-      cursor: pointer;
-      text-decoration: none;
-      color: #fff;
-      display: block;
-    }
-
-    .pdf-card:hover {
-      background: #3d4ee9;
-      border-color: #3d4ee9;
-      transform: translateY(-5px);
-      box-shadow: 0 6px 20px rgba(61, 78, 233, 0.4);
-    }
-
-    .pdf-icon {
-      width: 60px;
-      height: 60px;
-      margin: 0 auto 1em;
-      fill: #979797;
-    }
-
-    .pdf-card:hover .pdf-icon {
-      fill: #fff;
-    }
-
-    .pdf-name {
-      text-align: center;
-      word-wrap: break-word;
-      font-size: 0.9em;
-      line-height: 1.4;
-    }
-
-    .pdf-size {
-      text-align: center;
-      margin-top: 0.5em;
-      font-size: 0.8em;
-      color: #979797;
-    }
-
     .loading {
       text-align: center;
       padding: 3em;
@@ -132,6 +81,95 @@
       text-align: center;
       padding: 3em;
       color: #979797;
+    }
+
+    .pdf-list {
+      list-style: none;
+      margin-top: 2em;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75em;
+    }
+
+    .pdf-list-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1em;
+      background: #2a2a2a;
+      border: 2px solid #464242;
+      border-radius: 10px;
+      padding: 1em 1.25em;
+      transition: all 0.25s ease;
+    }
+
+    .pdf-list-item:hover {
+      background: #3d4ee9;
+      border-color: #3d4ee9;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(61, 78, 233, 0.35);
+    }
+
+    .pdf-left {
+      display: flex;
+      align-items: center;
+      gap: 0.9em;
+      min-width: 0;
+    }
+
+    .pdf-icon {
+      width: 28px;
+      height: 28px;
+      flex: 0 0 auto;
+      fill: #979797;
+      transition: fill 0.25s ease;
+    }
+
+    .pdf-list-item:hover .pdf-icon {
+      fill: #fff;
+    }
+
+    .pdf-meta {
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.15em;
+    }
+
+    .pdf-name {
+      color: #fff;
+      font-size: 0.95em;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .pdf-size {
+      font-size: 0.8em;
+      color: #979797;
+      transition: color 0.25s ease;
+    }
+
+    .pdf-list-item:hover .pdf-size {
+      color: rgba(255, 255, 255, 0.85);
+    }
+
+    .open-link {
+      flex: 0 0 auto;
+      padding: 0.55em 0.9em;
+      border-radius: 8px;
+      border: 1px solid #464242;
+      background: transparent;
+      color: #fff;
+      text-decoration: none;
+      transition: all 0.25s ease;
+      white-space: nowrap;
+    }
+
+    .pdf-list-item:hover .open-link {
+      border-color: rgba(255, 255, 255, 0.45);
+      background: rgba(255, 255, 255, 0.12);
     }
 
     @media (max-width: 768px) {
@@ -153,9 +191,13 @@
         font-size: 1.5em;
       }
 
-      .pdf-grid {
-        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-        gap: 1em;
+      .pdf-list-item {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .open-link {
+        text-align: center;
       }
     }
   </style>
@@ -189,7 +231,6 @@
 
       folderPath.textContent = `${pagesBaseUrl}/ (repo: ${owner}/${repo}@${branch})`;
 
-      // If nothing updates within 10s, show a message.
       const timeoutId = window.setTimeout(() => {
         container.innerHTML = '<div class="no-pdfs">Still loading... Network request may be blocked. Open DevTools → Console/Network.</div>';
       }, 10000);
@@ -226,34 +267,37 @@
             x.name.toLowerCase().endsWith('.pdf')
           )
           .map(x => ({
-            path: x.name,
+            name: x.name,
             url: `${pagesBaseUrl}/${encodeURIComponent(x.name)}`,
             size: typeof x.size === 'number' ? x.size : null
           }))
-          .sort((a, b) => a.path.localeCompare(b.path));
+          .sort((a, b) => a.name.localeCompare(b.name));
 
         if (pdfs.length === 0) {
           container.innerHTML = '<div class="no-pdfs">No PDF files found in the repository root.</div>';
           return;
         }
 
-        const pdfCards = pdfs.map(file => {
-          const fileName = String(file.path || '').split('/').pop();
-          const fileUrl = file.url;
+        const listItems = pdfs.map(file => {
           const sizeKB = typeof file.size === 'number' ? Math.round(file.size / 1024) : '?';
 
           return `
-            <a href="${fileUrl}" target="_blank" rel="noopener noreferrer" class="pdf-card" title="Open ${fileName}">
-              <svg class="pdf-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                <path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20M10,19L12,15H9V10H15V15L13,19H10Z" />
-              </svg>
-              <div class="pdf-name">${fileName}</div>
-              <div class="pdf-size">${sizeKB} KB</div>
-            </a>
+            <li class="pdf-list-item">
+              <div class="pdf-left">
+                <svg class="pdf-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                  <path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20M10,19L12,15H9V10H15V15L13,19H10Z" />
+                </svg>
+                <div class="pdf-meta">
+                  <div class="pdf-name" title="${file.name}">${file.name}</div>
+                  <div class="pdf-size">${sizeKB} KB</div>
+                </div>
+              </div>
+              <a class="open-link" href="${file.url}" target="_blank" rel="noopener noreferrer">Open</a>
+            </li>
           `;
         }).join('');
 
-        container.innerHTML = `<div class="pdf-grid">${pdfCards}</div>`;
+        container.innerHTML = `<ul class="pdf-list">${listItems}</ul>`;
       } catch (error) {
         console.error('[pdf-viewer] Error loading PDFs:', error);
         container.innerHTML = `<div class="no-pdfs">Error loading PDF files. Check DevTools. (${String(error.message || error)})</div>`;
