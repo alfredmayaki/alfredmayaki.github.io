@@ -360,6 +360,32 @@
         grid-template-columns: repeat(2, 1fr);
       }
     }
+    .doc-btn-container {
+      margin-top: 0.75em;
+    }
+
+    .doc-btn {
+      display: inline-block;
+      padding: 0.8em 1.2em;
+      background: #3d4ee9;
+      border: 2px solid #3d4ee9;
+      border-radius: 25px;
+      color: #fff;
+      text-decoration: none;
+      font-size: 1em;
+      line-height: 1;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .doc-btn:hover,
+    .doc-btn:focus-visible {
+      background: #5563f0;
+      border-color: #5563f0;
+      box-shadow: 0 4px 12px rgba(61, 78, 233, 0.5);
+      transform: translateY(-2px);
+      outline: none;
+    }
   </style>
 </head>
 <body>
@@ -378,9 +404,9 @@
     <br><b><p class="tagline">Open University Business School, The Open University</p> 
     <p class="tagline">Royal Economic Society</p></b>
 
-    <a class="doc-btn" href="https://alfredmayaki.me/pdf-viewer/" target="_blank" rel="noopener noreferrer">
-      Find documents
-    </a>
+    <div class="doc-btn-container">
+      <a class="doc-btn" href="https://alfredmayaki.me/pdf-viewer/" target="_blank" rel="noopener noreferrer">Find documents</a>
+    </div>
     
     <!-- Search Bar -->
     <div class="search-container">
