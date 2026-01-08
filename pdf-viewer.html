@@ -48,6 +48,7 @@
       color: #3d4ee9;
       font-size: 1em;
       margin-top: 0.5em;
+      word-break: break-word;
     }
 
     .back-btn {
@@ -62,6 +63,7 @@
       display: inline-flex;
       align-items: center;
       gap: 0.5em;
+      white-space: nowrap;
     }
 
     .back-btn:hover {
@@ -131,7 +133,7 @@
       fill: #fff;
     }
 
-    /* CHANGED: fixed-size column + explicit left alignment */
+    /* Desktop/tablet: keep name + size as two columns */
     .pdf-meta {
       min-width: 0;
       display: grid;
@@ -154,7 +156,6 @@
       text-align: left;
     }
 
-    /* CHANGED: hard-left align the size cell */
     .pdf-size {
       font-size: 0.8em;
       color: #979797;
@@ -187,18 +188,19 @@
       background: rgba(255, 255, 255, 0.12);
     }
 
+    /* MOBILE: improve tap targets/stack layout, prevent overflow */
     @media (max-width: 768px) {
       body {
         padding: 1em;
       }
 
       .container {
-        padding: 1.5em;
+        padding: 1.25em;
       }
 
       .header {
         flex-direction: column;
-        gap: 1em;
+        gap: 0.75em;
         text-align: center;
       }
 
@@ -206,23 +208,48 @@
         font-size: 1.5em;
       }
 
+      .back-btn {
+        width: 100%;
+        justify-content: center;
+      }
+
+      .pdf-list {
+        margin-top: 1.25em;
+        gap: 0.6em;
+      }
+
       .pdf-list-item {
         flex-direction: column;
         align-items: stretch;
+        padding: 0.95em 1em;
       }
 
-      .open-link {
-        text-align: center;
+      .pdf-left {
+        align-items: flex-start;
       }
 
-      /* CHANGED: keep two columns on mobile so size doesn't look centered */
+      /* On small screens: stack file name and size to avoid "centered" look and truncation */
       .pdf-meta {
-        grid-template-columns: 1fr 90px;
-        row-gap: 0;
+        grid-template-columns: 1fr;
+        row-gap: 0.25em;
+      }
+
+      .pdf-name {
+        white-space: normal;
+        overflow: visible;
+        text-overflow: clip;
+        word-break: break-word;
       }
 
       .pdf-size {
-        width: 90px;
+        grid-column: 1;
+        width: auto;
+      }
+
+      .open-link {
+        width: 100%;
+        text-align: center;
+        padding: 0.8em 1em; /* larger tap target */
       }
     }
   </style>
