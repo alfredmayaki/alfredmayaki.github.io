@@ -277,8 +277,9 @@
       grid-template-columns: repeat(4, 1fr);
       gap: 0.8em;
       margin-top: 2em;
-      max-height: 550px;
-      overflow-y: auto;
+      /* CHANGED: remove internal scrolling */
+      max-height: none;
+      overflow-y: visible;
       padding: 1em;
       border-radius: 10px;
       background: rgba(42, 42, 42, 0.3);
