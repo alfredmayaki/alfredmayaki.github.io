@@ -7,7 +7,7 @@
   <meta name="description" content="Alfred Anate Bodurin Mayaki - Labour Economist, Public Policy Researcher, and Human Resource Business Partner. Personal website with multilingual support.">
   <meta name="keywords" content="Alfred Mayaki, Labour Economist, Human Resource Management, Multilingual, Portfolio">
   <meta name="author" content="Alfred Anate Bodurin Mayaki">
-  
+
   <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-CNF86BSG95"></script>
   <script>
@@ -16,7 +16,7 @@
     gtag('js', new Date());
     gtag('config', 'G-CNF86BSG95');
   </script>
-  
+
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
@@ -29,7 +29,7 @@
       justify-content: center;
       min-height: 100vh;
     }
-    
+
     .landing-container {
       text-align: center;
       max-width: 800px;
@@ -40,12 +40,12 @@
       box-shadow: 0 0 30px rgba(160, 160, 160, 0.3);
       animation: fadeIn 0.5s ease-in;
     }
-    
+
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(20px); }
       to { opacity: 1; transform: translateY(0); }
     }
-    
+
     .profile-photo {
       width: 180px;
       height: 180px;
@@ -54,26 +54,26 @@
       margin-bottom: 2em;
       object-fit: cover;
     }
-    
+
     h1 {
       color: #fff;
       font-size: 2.5em;
       margin-bottom: 0.3em;
     }
-    
+
     .tagline {
       font-size: 1.2em;
       color: #979797;
       margin-bottom: 2em;
     }
-    
+
     /* Search/Chatbot Styles */
     .search-container {
       position: relative;
       margin: 2em auto;
-      max-width: 600px;         
+      max-width: 600px;
     }
-    
+
     .search-bar {
       width: 100%;
       padding: 1em 3.5em 1em 1.2em;
@@ -86,16 +86,16 @@
       transition: all 0.5s ease;
       box-sizing: border-box;
     }
-    
+
     .search-bar:focus {
       border-color: #3d4ee9;
       box-shadow: 0 0 15px rgba(61, 78, 233, 0.4);
     }
-    
+
     .search-bar::placeholder {
       color: #979797;
     }
-    
+
     .search-btn {
       position: absolute;
       right: 8px;
@@ -105,198 +105,23 @@
       border: none;
       border-radius: 50%;
       width: 40px;
-      height: 40%;
+      height: 40px;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
       transition: all 0.3s ease;
     }
-    
+
     .search-btn:hover {
       background: #5563f0;
       box-shadow: 0 4px 12px rgba(61, 78, 233, 0.5);
     }
-    
+
     .search-btn svg {
       width: 20px;
       height: 20px;
       fill: #fff;
-    }
-
-    /* Dropdown language selector */
-    .language-select {
-      margin-top: 1.25em;
-      width: 100%;
-      max-width: 520px;
-      padding: 0.9em 1em;
-      background: #2a2a2a;
-      border: 2px solid #464242;
-      border-radius: 12px;
-      color: #fff;
-      font-size: 1em;
-      outline: none;
-      box-sizing: border-box;
-      transition: all 0.3s ease;
-    }
-
-    .language-select:focus {
-      border-color: #3d4ee9;
-      box-shadow: 0 0 15px rgba(61, 78, 233, 0.4);
-    }
-
-    .language-hint {
-      margin-top: 0.75em;
-      font-size: 0.95em;
-      color: #979797;
-    }
-    
-    /* Chatbot Popup */
-    .chatbot-popup {
-      display: none;
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      width: 350px;
-      max-height: 500px;
-      background: #161616;
-      border: 2px solid #464242;
-      border-radius: 15px;
-      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
-      z-index: 1000;
-      flex-direction: column;
-      animation: slideUp 0.3s ease-out;
-    }
-    
-    @keyframes slideUp {
-      from { transform: translateY(20px); opacity: 0; }
-      to { transform: translateY(0); opacity: 1; }
-    }
-    
-    .chatbot-popup.active {
-      display: flex;
-    }
-    
-    .chatbot-header {
-      background: #3d4ee9;
-      padding: 1em;
-      border-radius: 13px 13px 0 0;
-      color: #fff;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    
-    .chatbot-header h3 {
-      margin: 0;
-      font-size: 1.1em;
-    }
-    
-    .close-chat {
-      background: transparent;
-      border: none;
-      color: #fff;
-      font-size: 1.5em;
-      cursor: pointer;
-      line-height: 1;
-      padding: 0;
-      width: 30px;
-      height: 30px;
-    }
-    
-    .chatbot-messages {
-      flex: 1;
-      padding: 1em;
-      overflow-y: auto;
-      max-height: 350px;
-    }
-    
-    .chatbot-messages::-webkit-scrollbar {
-      width: 6px;
-    }
-    
-    .chatbot-messages::-webkit-scrollbar-track {
-      background: #2a2a2a;
-    }
-    
-    .chatbot-messages::-webkit-scrollbar-thumb {
-      background: #464242;
-      border-radius: 3px;
-    }
-    
-    .message {
-      margin-bottom: 1em;
-      animation: messageSlide 0.3s ease-out;
-    }
-    
-    @keyframes messageSlide {
-      from { opacity: 0; transform: translateX(-10px); }
-      to { opacity: 1; transform: translateX(0); }
-    }
-    
-    .message.bot {
-      text-align: left;
-    }
-    
-    .message.user {
-      text-align: right;
-    }
-    
-    .message.user .message-bubble {
-      background: #3d4ee9;
-    }
-    
-    .message-bubble {
-      display: inline-block;
-      padding: 0.8em 1em;
-      background: #2a2a2a;
-      border-radius: 15px;
-      color: #fff;
-      max-width: 80%;
-      word-wrap: break-word;
-    }
-    
-    .quick-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5em;
-      margin-top: 0.5em;
-    }
-    
-    .quick-action-btn {
-      padding: 0.5em 1em;
-      background: #2a2a2a;
-      border: 1px solid #464242;
-      border-radius: 20px;
-      color: #fff;
-      font-size: 0.85em;
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
-    
-    .quick-action-btn:hover {
-      background: #3d4ee9;
-      border-color: #3d4ee9;
-    }
-    
-    .chatbot-input-area {
-      padding: 1em;
-      border-top: 1px solid #464242;
-    }
-    
-    .chatbot-input {
-      width: 100%;
-      padding: 0.8em;
-      background: #2a2a2a;
-      border: 1px solid #464242;
-      border-radius: 20px;
-      color: #fff;
-      outline: none;
-      box-sizing: border-box;
-    }
-    
-    .chatbot-input:focus {
-      border-color: #3d4ee9;
     }
 
     .doc-btn-container {
@@ -326,6 +151,186 @@
       outline: none;
     }
 
+    /* Language Dropdown */
+    .language-select-wrap {
+      margin-top: 1.25em;
+      display: flex;
+      justify-content: center;
+    }
+
+    .language-select {
+      width: 100%;
+      max-width: 520px;
+      padding: 0.9em 1em;
+      background: #2a2a2a;
+      border: 2px solid #464242;
+      border-radius: 12px;
+      color: #fff;
+      font-size: 1em;
+      outline: none;
+      box-sizing: border-box;
+      transition: all 0.3s ease;
+    }
+
+    .language-select:focus {
+      border-color: #3d4ee9;
+      box-shadow: 0 0 15px rgba(61, 78, 233, 0.4);
+    }
+
+    .language-hint {
+      margin-top: 0.75em;
+      font-size: 0.95em;
+      color: #979797;
+    }
+
+    /* Chatbot Popup */
+    .chatbot-popup {
+      display: none;
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 350px;
+      max-height: 500px;
+      background: #161616;
+      border: 2px solid #464242;
+      border-radius: 15px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+      z-index: 1000;
+      flex-direction: column;
+      animation: slideUp 0.3s ease-out;
+    }
+
+    @keyframes slideUp {
+      from { transform: translateY(20px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    .chatbot-popup.active {
+      display: flex;
+    }
+
+    .chatbot-header {
+      background: #3d4ee9;
+      padding: 1em;
+      border-radius: 13px 13px 0 0;
+      color: #fff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .chatbot-header h3 {
+      margin: 0;
+      font-size: 1.1em;
+    }
+
+    .close-chat {
+      background: transparent;
+      border: none;
+      color: #fff;
+      font-size: 1.5em;
+      cursor: pointer;
+      line-height: 1;
+      padding: 0;
+      width: 30px;
+      height: 30px;
+    }
+
+    .chatbot-messages {
+      flex: 1;
+      padding: 1em;
+      overflow-y: auto;
+      max-height: 350px;
+    }
+
+    .chatbot-messages::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    .chatbot-messages::-webkit-scrollbar-track {
+      background: #2a2a2a;
+    }
+
+    .chatbot-messages::-webkit-scrollbar-thumb {
+      background: #464242;
+      border-radius: 3px;
+    }
+
+    .message {
+      margin-bottom: 1em;
+      animation: messageSlide 0.3s ease-out;
+    }
+
+    @keyframes messageSlide {
+      from { opacity: 0; transform: translateX(-10px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+
+    .message.bot {
+      text-align: left;
+    }
+
+    .message.user {
+      text-align: right;
+    }
+
+    .message.user .message-bubble {
+      background: #3d4ee9;
+    }
+
+    .message-bubble {
+      display: inline-block;
+      padding: 0.8em 1em;
+      background: #2a2a2a;
+      border-radius: 15px;
+      color: #fff;
+      max-width: 80%;
+      word-wrap: break-word;
+    }
+
+    .quick-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5em;
+      margin-top: 0.5em;
+    }
+
+    .quick-action-btn {
+      padding: 0.5em 1em;
+      background: #2a2a2a;
+      border: 1px solid #464242;
+      border-radius: 20px;
+      color: #fff;
+      font-size: 0.85em;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .quick-action-btn:hover {
+      background: #3d4ee9;
+      border-color: #3d4ee9;
+    }
+
+    .chatbot-input-area {
+      padding: 1em;
+      border-top: 1px solid #464242;
+    }
+
+    .chatbot-input {
+      width: 100%;
+      padding: 0.8em;
+      background: #2a2a2a;
+      border: 1px solid #464242;
+      border-radius: 20px;
+      color: #fff;
+      outline: none;
+      box-sizing: border-box;
+    }
+
+    .chatbot-input:focus {
+      border-color: #3d4ee9;
+    }
+
     @media (max-width: 768px) {
       .landing-container {
         padding: 2em 1.5em;
@@ -343,7 +348,7 @@
 </head>
 <body>
   <div id="particles-js" style="position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:-1;"></div>
-  
+
   <div class="landing-container">
     <img src="s200_alfred.mayaki.jpg" alt="Alfred Mayaki" class="profile-photo">
     <h1>
@@ -354,6 +359,7 @@
         </span>
       </span>
     </h1>
+
     <br><b><p class="tagline">The Open University</p></b>
 
     <div class="doc-btn-container">
@@ -369,33 +375,35 @@
         </svg>
       </button>
     </div>
-    
+
     <!-- Language Selection Dropdown -->
     <br><p>Choose Your Language</p>
 
-    <select id="languageSelect" class="language-select" aria-label="Choose Your Language">
-      <option value="">Select a language…</option>
-      <option value="index_en.html">🇬🇧 English</option>
-      <option value="index_ch.html">🇨🇳 中文（语言）</option>
-      <option value="index_cy.html">🇬🇧 Cymraeg</option>
-      <option value="index_fr.html">🇫🇷 Français</option>
-      <option value="index_de.html">🇩🇪 Deutsch</option>
-      <option value="index_es.html">🇪🇸 Español</option>
-      <option value="index_he.html">🇮🇱 עברית</option>
-      <option value="index_it.html">🇮🇹 Italiano</option>
-      <option value="index_jp.html">🇯🇵 日本語</option>
-      <option value="index_ksa.html">🇸🇦 العربية</option>
-      <option value="index_nl.html">🇳🇱 Nederlands</option>
-      <option value="index_ru.html">🇷🇺 Русский</option>
-      <option value="index_pt.html">🇵🇹 Português</option>
-      <option value="index_sw.html">🇸🇪 Svenska</option>
-      <option value="index_tr.html">🇹🇷 Türkçe</option>
-      <option value="index_yb.html">🇳🇬 Yorùbá</option>
-    </select>
+    <div class="language-select-wrap">
+      <select id="languageSelect" class="language-select" aria-label="Choose Your Language">
+        <option value="">Select a language…</option>
+        <option value="index_en.html">🇬🇧 English</option>
+        <option value="index_ch.html">🇨🇳 中文（语言）</option>
+        <option value="index_cy.html">🇬🇧 Cymraeg</option>
+        <option value="index_fr.html">🇫🇷 Français</option>
+        <option value="index_de.html">🇩🇪 Deutsch</option>
+        <option value="index_es.html">🇪🇸 Español</option>
+        <option value="index_he.html">🇮🇱 עברית</option>
+        <option value="index_it.html">🇮🇹 Italiano</option>
+        <option value="index_jp.html">🇯🇵 日本語</option>
+        <option value="index_ksa.html">🇸🇦 العربية</option>
+        <option value="index_nl.html">🇳🇱 Nederlands</option>
+        <option value="index_ru.html">🇷🇺 Русский</option>
+        <option value="index_pt.html">🇵🇹 Português</option>
+        <option value="index_sw.html">🇸🇪 Svenska</option>
+        <option value="index_tr.html">🇹🇷 Türkçe</option>
+        <option value="index_yb.html">🇳🇬 Yorùbá</option>
+      </select>
+    </div>
 
     <div class="language-hint">Selecting a language will open the corresponding page.</div>
   </div>
-  
+
   <!-- Chatbot Popup -->
   <div class="chatbot-popup" id="chatbotPopup">
     <div class="chatbot-header">
@@ -418,14 +426,14 @@
       <input type="text" class="chatbot-input" id="chatbotInput" placeholder="Type your message...">
     </div>
   </div>
-  
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
   <script>
     particlesJS.load('particles-js', 'particles.json', function() {
       console.log('Particles.js loaded');
     });
   </script>
-  
+
   <script>
     // Dropdown navigation
     const languageSelect = document.getElementById('languageSelect');
@@ -446,8 +454,7 @@
     const chatbotMessages = document.getElementById('chatbotMessages');
     const chatbotInput = document.getElementById('chatbotInput');
     const closeChat = document.getElementById('closeChat');
-    
-    // Knowledge base for chatbot responses
+
     const knowledgeBase = {
       research: {
         keywords: ['research', 'work', 'study', 'economics', 'labour', 'policy'],
@@ -455,43 +462,40 @@
       },
       contact: {
         keywords: ['contact', 'email', 'reach', 'connect', 'get in touch'],
-        response: "You can find Alfred's contact information and professional profiles on any of the language-specific pages. Simply select your preferred language to access the full site with contact details."
+        response: "You can find Alfred's contact information and professional profiles on any of the language-specific pages. Select your preferred language from the dropdown to access the full site."
       },
       languages: {
         keywords: ['language', 'translate', 'version', 'español', 'français', 'deutsch'],
-        response: "The site is available in 15 languages. Use the language dropdown to choose your preferred language."
+        response: "Use the language dropdown to choose your preferred language."
       },
       education: {
         keywords: ['education', 'school', 'university', 'degree', 'qualification'],
         response: "Alfred is associated with the Open University Business School, The Open University, and is a member of the Royal Economic Society. For detailed educational background, please visit the full site in your preferred language."
       }
     };
-    
-    // Open chatbot on search
+
     searchBtn.addEventListener('click', openChatbot);
     searchInput.addEventListener('keypress', function(e) {
       if (e.key === 'Enter') {
         openChatbot();
       }
     });
-    
+
     function openChatbot() {
       const query = searchInput.value.trim();
       chatbotPopup.classList.add('active');
-      
+
       if (query) {
         addUserMessage(query);
         processQuery(query);
         searchInput.value = '';
       }
     }
-    
-    // Close chatbot
+
     closeChat.addEventListener('click', function() {
       chatbotPopup.classList.remove('active');
     });
-    
-    // Handle chatbot input
+
     chatbotInput.addEventListener('keypress', function(e) {
       if (e.key === 'Enter') {
         const message = chatbotInput.value.trim();
@@ -502,15 +506,14 @@
         }
       }
     });
-    
-    // Quick action buttons
+
     document.addEventListener('click', function(e) {
       if (e.target.classList.contains('quick-action-btn')) {
         const action = e.target.getAttribute('data-action');
         processQuery(action);
       }
     });
-    
+
     function addUserMessage(message) {
       const messageDiv = document.createElement('div');
       messageDiv.className = 'message user';
@@ -518,7 +521,7 @@
       chatbotMessages.appendChild(messageDiv);
       chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
     }
-    
+
     function addBotMessage(message) {
       const messageDiv = document.createElement('div');
       messageDiv.className = 'message bot';
@@ -526,34 +529,30 @@
       chatbotMessages.appendChild(messageDiv);
       chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
     }
-    
+
     function processQuery(query) {
-      const lowerQuery = query.toLowerCase();
+      const lowerQuery = String(query || '').toLowerCase();
       let response = null;
-      
-      // Search through knowledge base
-      for (const [key, data] of Object.entries(knowledgeBase)) {
+
+      for (const data of Object.values(knowledgeBase)) {
         if (data.keywords.some(keyword => lowerQuery.includes(keyword))) {
           response = data.response;
           break;
         }
       }
-      
+
       if (!response) {
         response = "I can help you with information about Alfred's research, contact details, or language selection. What would you like to know?";
       }
-      
+
       setTimeout(() => addBotMessage(response), 500);
     }
-    
-    // Auto-redirect based on geolocation (only on first visit)
+
     document.addEventListener('DOMContentLoaded', function() {
-      if (sessionStorage.getItem('lang_redirected')) {
-        return;
-      }
-      
+      if (sessionStorage.getItem('lang_redirected')) return;
+
       const countryToLanguage = {
-        'GB': 'index_en.html', 'US': 'index_en.html', 'CA': 'index_en.html', 
+        'GB': 'index_en.html', 'US': 'index_en.html', 'CA': 'index_en.html',
         'AU': 'index_en.html', 'NZ': 'index_en.html', 'IE': 'index_en.html',
         'FR': 'index_fr.html', 'BE': 'index_fr.html', 'CH': 'index_fr.html',
         'LU': 'index_fr.html', 'MC': 'index_fr.html',
@@ -582,17 +581,17 @@
         'TR': 'index_tr.html',
         'NG': 'index_yb.html'
       };
-      
+
       fetch('https://ipapi.co/json/')
         .then(response => response.json())
         .then(data => {
           const countryCode = (data.country_code || '').toUpperCase();
           const suggestedPage = countryToLanguage[countryCode];
-          
+
           if (suggestedPage && suggestedPage !== 'index_en.html') {
             const countryName = data.country_name || countryCode;
             const message = `We detected you're browsing from ${countryName}. Would you like to view the site in your local language?`;
-            
+
             if (confirm(message)) {
               sessionStorage.setItem('lang_redirected', '1');
               window.location.href = suggestedPage;
