@@ -17,3 +17,9 @@ _site/
 # Details at https://github.com/github/pages-gem/issues/768
 Gemfile.lock
 *.vsidx
+.vs/alfredmayaki.github.io/CopilotIndices/18.3.277.3498/CodeChunks.db
+.vs/alfredmayaki.github.io/CopilotIndices/18.3.277.3498/CodeChunks.db-wal
+.vs/alfredmayaki.github.io/CopilotIndices/18.3.277.3498/SemanticSymbols.db
+.vs/alfredmayaki.github.io/CopilotIndices/18.3.277.3498/SemanticSymbols.db-wal
+.vs/slnx.sqlite
+*.db-wal
