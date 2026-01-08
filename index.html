@@ -67,6 +67,26 @@
       margin-bottom: 2em;
     }
 
+    /* NEW: Music fallback button */
+    .music-btn {
+      display: none;
+      margin: 1em auto 0;
+      padding: 0.7em 1.1em;
+      background: #2a2a2a;
+      border: 2px solid #464242;
+      border-radius: 999px;
+      color: #fff;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .music-btn:hover {
+      background: #3d4ee9;
+      border-color: #3d4ee9;
+      box-shadow: 0 4px 12px rgba(61, 78, 233, 0.4);
+      transform: translateY(-2px);
+    }
+
     /* Search/Chatbot Styles */
     .search-container {
       position: relative;
@@ -347,6 +367,9 @@
   </style>
 </head>
 <body>
+  <!-- NEW: Background music -->
+  <audio id="bgMusic" src="star-wars.mp3" preload="auto"></audio>
+
   <div id="particles-js" style="position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:-1;"></div>
 
   <div class="landing-container">
@@ -361,6 +384,9 @@
     </h1>
 
     <br><b><p class="tagline">The Open University</p></b>
+
+    <!-- NEW: only shown if autoplay is blocked -->
+    <button id="musicBtn" class="music-btn" type="button">Play music</button>
 
     <div class="doc-btn-container">
       <a class="doc-btn" href="https://alfredmayaki.me/pdf-viewer.html" target="_blank" rel="noopener noreferrer">Find documents</a>
@@ -603,6 +629,31 @@
         .catch(error => {
           console.log('Geolocation detection unavailable:', error);
         });
+    });
+
+    // NEW: Try to autoplay music; if blocked, show a play button
+    document.addEventListener('DOMContentLoaded', async function () {
+      const audio = document.getElementById('bgMusic');
+      const btn = document.getElementById('musicBtn');
+
+      if (!audio || !btn) return;
+
+      audio.loop = true;
+      audio.volume = 0.35;
+
+      try {
+        await audio.play();
+      } catch (e) {
+        btn.style.display = 'inline-block';
+        btn.addEventListener('click', async function () {
+          try {
+            await audio.play();
+            btn.style.display = 'none';
+          } catch {
+            // still blocked; do nothing
+          }
+        }, { once: false });
+      }
     });
   </script>
 </body>
