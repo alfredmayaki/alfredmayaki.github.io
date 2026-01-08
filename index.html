@@ -339,7 +339,9 @@
       }
       .language-grid {
         grid-template-columns: repeat(3, 1fr);
-        max-height: 300px;
+        /* keep it non-scrollable on mobile too */
+        max-height: none;
+        overflow-y: visible;
         gap: 0.6em;
       }
       .lang-btn {
@@ -361,6 +363,7 @@
         grid-template-columns: repeat(2, 1fr);
       }
     }
+
     .doc-btn-container {
       margin-top: 0.75em;
     }
@@ -402,6 +405,7 @@
         </span>
       </span>
     </h1>
+    <br><p>Open Access Economist, Labor Activist and HR Consultant</p></br>
     <br><b><p class="tagline">Open University Business School, The Open University</p> 
     <p class="tagline">Royal Economic Society</p></b>
 
