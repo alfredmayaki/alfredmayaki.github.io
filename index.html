@@ -425,6 +425,10 @@
         <span class="flag">🇬🇧</span>
         <span>English</span>
       </a>
+      <a href="index_ch.html" class="lang-btn" data-lang="zh">
+        <span class="flag">🇨🇳</span>
+        <span>中文（语言）</span>
+      </a>
       <a href="index_fr.html" class="lang-btn" data-lang="fr">
         <span class="flag">🇫🇷</span>
         <span>Français</span>
@@ -465,9 +469,17 @@
         <span class="flag">🇵🇹</span>
         <span>Português</span>
       </a>
+      <a href="index_sw.html" class="lang-btn" data-lang="sv">
+        <span class="flag">🇸🇪</span>
+        <span>Svenska</span>
+        </a>
       <a href="index_tr.html" class="lang-btn" data-lang="tr">
         <span class="flag">🇹🇷</span>
         <span>Türkçe</span>
+      </a>
+      <a href="index_yb.html" class="lang-btn" data-lang="yo">
+        <span class="flag">🇳🇬</span>
+        <span>Yorùbá</span>
       </a>
     </div>
   </div>
@@ -475,7 +487,7 @@
   <!-- Chatbot Popup -->
   <div class="chatbot-popup" id="chatbotPopup">
     <div class="chatbot-header">
-      <h3>💬 Ask Alfred</h3>
+      <h3>💬 Ask GPT 5.0 Web</h3>
       <button class="close-chat" id="closeChat">&times;</button>
     </div>
     <div class="chatbot-messages" id="chatbotMessages">
@@ -523,7 +535,7 @@
       },
       languages: {
         keywords: ['language', 'translate', 'version', 'español', 'français', 'deutsch'],
-        response: "The site is available in 12 languages: English, French, German, Spanish, Hebrew, Italian, Japanese, Arabic, Dutch, Russian, Portuguese, and Turkish. Select your preferred language from the grid below!"
+        response: "The site is available in 15 languages: English, Chinese, French, German, Spanish, Hebrew, Swedish, Italian, Japanese, Arabic, Dutch, Russian, Portuguese, Turkish, and Yoruba. Select your preferred language from the grid below!"
       },
       education: {
         keywords: ['education', 'school', 'university', 'degree', 'qualification'],
@@ -663,9 +675,15 @@
         
         // Italian
         'IT': 'index_it.html',
+
+        // Swedish
+        , 'SE': 'index_sw.html',  
         
         // Japanese
         'JP': 'index_jp.html',
+
+        // Chinese
+        'CN': 'index_cn.html', 'TW': 'index_cn.html', 'HK': 'index_cn.html',
         
         // Arabic-speaking countries
         'SA': 'index_ksa.html', 'AE': 'index_ksa.html', 'EG': 'index_ksa.html',
@@ -685,7 +703,10 @@
         'MZ': 'index_pt.html',
         
         // Turkish
-        'TR': 'index_tr.html'
+        'TR': 'index_tr.html',
+
+        // Yoruba-speaking regions of Nigeria
+        'NG': 'index_yb.html',
       };
       
       // Attempt geolocation redirect
