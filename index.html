@@ -359,7 +359,7 @@
   </script>
 
   <script>
-    // Chatbot (streaming via Cloudflare Worker SSE)
+  (function () {
     const searchInput = document.getElementById('searchInput');
     const searchBtn = document.getElementById('searchBtn');
     const chatbotPopup = document.getElementById('chatbotPopup');
@@ -367,7 +367,10 @@
     const chatbotInput = document.getElementById('chatbotInput');
     const closeChat = document.getElementById('closeChat');
 
-    // IMPORTANT: replace this with your deployed Worker URL
+    if (!searchInput || !searchBtn || !chatbotPopup || !chatbotMessages || !chatbotInput || !closeChat) {
+      return;
+    }
+
     const chatApiUrl = '/chat';
 
     searchBtn.addEventListener('click', openChatbot);
@@ -501,6 +504,7 @@
         bubble.textContent += `\n\nStream error: ${String(e.message || e)}`;
       }
     }
-  </script>
+  })();
+</script>
 </body>
 </html>
