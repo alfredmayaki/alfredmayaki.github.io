@@ -136,11 +136,14 @@ body {
       document.getElementById('last-updated').textContent = new Date(document.lastModified).toLocaleDateString();
 
       (function () {
-        const repoUrl = (document.querySelector('meta[name="github-repo"]')?.content)
-          || (document.querySelector('link[rel="canonical"]')?.href
-            ? `https://github.com/${location.hostname.split('.')[0]}/${location.hostname}`
-            : null)
-          || `https://github.com/${location.hostname.split('.')[0]}/${location.hostname}`;
+        const hostname = String(location.hostname || '').toLowerCase();
+        const isGithubPagesHost = hostname.endsWith('.github.io');
+
+        // Prefer deriving from the GitHub Pages host (username.github.io) so this never uses a custom domain.
+        // Repo for user/organization pages is typically: https://github.com/<owner>/<owner>.github.io
+        const repoUrl = isGithubPagesHost
+          ? `https://github.com/${hostname.split('.')[0]}/${hostname}/tree/main`
+          : 'https://github.com/';
 
         const repoLink = document.getElementById('repo-link');
         if (repoLink) repoLink.href = repoUrl;
