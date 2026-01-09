@@ -131,9 +131,20 @@ body {
     <p>&copy; 2026 Alfred Anate Bodurin Mayaki. All rights reserved.</p>
     <a href="https://www.researchgate.net/profile/alfred-mayaki">ResearchGate</a> |
     <a href="https://www.linkedin.com/in/alfredmayaki/">LinkedIn</a>
-    <p>Last updated: <span id="last-updated"></span></p></footer>
+    <p>Last updated: <a id="repo-link" href="#" target="_blank" rel="noopener noreferrer"><span id="last-updated"></span></a></p></footer>
     <script>
       document.getElementById('last-updated').textContent = new Date(document.lastModified).toLocaleDateString();
+
+      (function () {
+        const repoUrl = (document.querySelector('meta[name="github-repo"]')?.content)
+          || (document.querySelector('link[rel="canonical"]')?.href
+            ? `https://github.com/${location.hostname.split('.')[0]}/${location.hostname}`
+            : null)
+          || `https://github.com/${location.hostname.split('.')[0]}/${location.hostname}`;
+
+        const repoLink = document.getElementById('repo-link');
+        if (repoLink) repoLink.href = repoUrl;
+      })();
     </script>
       </footer>
   <div id="particles-js" style="position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:-1;"></div>
