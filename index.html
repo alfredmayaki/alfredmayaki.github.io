@@ -139,6 +139,12 @@
       transition: all 0.3s ease;
     }
 
+    #searchBtn {
+      position: relative;
+      z-index: 5;
+      pointer-events: auto;
+    }
+
     .search-btn:hover {
       background: #5563f0;
       box-shadow: 0 4px 12px rgba(61, 78, 233, 0.5);
@@ -255,6 +261,10 @@
       color: #fff;
       outline: none;
       box-sizing: border-box;
+    }
+
+    #chatbotPopup {
+      z-index: 2147483647;
     }
   </style>
 </head>
@@ -511,6 +521,18 @@
       }
     }
   })();
-</script>
+  </script>
+
+  <script>
+  document.addEventListener('click', function (e) {
+    const btn = e.target.closest('#searchBtn');
+    if (!btn) return;
+
+    const popup = document.getElementById('chatbotPopup');
+    if (!popup) return;
+
+    popup.classList.add('active');
+  }, true);
+  </script>
 </body>
 </html>
