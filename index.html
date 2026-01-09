@@ -93,61 +93,57 @@
       transform: translateY(-2px);
     }
 
+    /* --- Search / Chat trigger --- */
     .search-container {
-      position: relative;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 10px;
+      align-items: center;
       margin: 2em auto;
-      max-width: 600px;
+      max-width: 620px;
       width: 100%;
     }
 
     .search-bar {
       width: 100%;
-      padding: 1em 3.5em 1em 1.2em;
+      padding: 0.95em 1.1em;
       background: #2a2a2a;
       border: 2px solid #464242;
-      border-radius: 25px;
+      border-radius: 14px;
       color: #fff;
       font-size: 1em;
       outline: none;
-      transition: all 0.5s ease;
       box-sizing: border-box;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
     }
 
     .search-bar:focus {
       border-color: #3d4ee9;
-      box-shadow: 0 0 15px rgba(61, 78, 233, 0.4);
-    }
-
-    .search-bar::placeholder {
-      color: #979797;
+      box-shadow: 0 0 0 4px rgba(61, 78, 233, 0.2);
     }
 
     .search-btn {
-      position: absolute;
-      right: 8px;
-      top: 50%;
-      transform: translateY(-50%);
+      width: 46px;
+      height: 46px;
+      border-radius: 14px;
       background: #3d4ee9;
-      border: none;
-      border-radius: 50%;
-      width: 40px;
-      height: 40px;
+      border: 2px solid #3d4ee9;
       cursor: pointer;
-      display: flex;
+      display: inline-flex;
       align-items: center;
       justify-content: center;
-      transition: all 0.3s ease;
-    }
-
-    #searchBtn {
-      position: relative;
-      z-index: 5;
-      pointer-events: auto;
+      transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
     }
 
     .search-btn:hover {
       background: #5563f0;
-      box-shadow: 0 4px 12px rgba(61, 78, 233, 0.5);
+      box-shadow: 0 6px 16px rgba(61, 78, 233, 0.35);
+      transform: translateY(-1px);
+    }
+
+    .search-btn:active {
+      transform: translateY(0);
+      box-shadow: none;
     }
 
     .search-btn svg {
@@ -156,115 +152,165 @@
       fill: #fff;
     }
 
-    .language-select-wrap {
-      margin-top: 1.25em;
-      display: flex;
-      justify-content: center;
-      width: 100%;
+    /* Remove old absolute positioning behavior */
+    #searchBtn {
+      position: static;
+      z-index: auto;
+      pointer-events: auto;
     }
 
-    .language-select {
-      width: 100%;
-      max-width: 520px;
-      padding: 0.9em 1em;
-      background: #2a2a2a;
-      border: 2px solid #464242;
-      border-radius: 12px;
-      color: #fff;
-      font-size: 1em;
-      outline: none;
-      box-sizing: border-box;
-      transition: all 0.3s ease;
-    }
-
-    .language-select:focus {
-      border-color: #3d4ee9;
-      box-shadow: 0 0 15px rgba(61, 78, 233, 0.4);
-    }
-
-    .language-hint {
-      margin-top: 0.75em;
-      font-size: 0.95em;
-      color: #979797;
-    }
-
+    /* --- Chatbot popup --- */
     .chatbot-popup {
       display: none;
       position: fixed;
-      bottom: 20px;
-      right: 20px;
-      width: 350px;
-      max-height: 500px;
+      right: 18px;
+      bottom: 18px;
+      width: min(420px, calc(100vw - 36px));
+      max-height: min(620px, calc(100vh - 36px));
       background: #161616;
-      border: 2px solid #464242;
-      border-radius: 15px;
-      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
-      z-index: 1000;
-      flex-direction: column;
-      animation: slideUp 0.3s ease-out;
-    }
+      border: 1px solid #464242;
+      border-radius: 16px;
+      box-shadow: 0 14px 40px rgba(0, 0, 0, 0.55);
+      z-index: 2147483647;
 
-    @keyframes slideUp {
-      from { transform: translateY(20px); opacity: 0; }
-      to { transform: translateY(0); opacity: 1; }
+      overflow: hidden;
     }
 
     .chatbot-popup.active {
       display: flex;
+      flex-direction: column;
     }
 
     .chatbot-header {
       background: #3d4ee9;
-      padding: 1em;
-      border-radius: 13px 13px 0 0;
+      padding: 0.9em 1em;
       color: #fff;
       display: flex;
-      justify-content: space-between;
       align-items: center;
+      justify-content: space-between;
     }
 
     .chatbot-header h3 {
       margin: 0;
-      font-size: 1.1em;
+      font-size: 1.05em;
+      font-weight: 600;
+      letter-spacing: 0.2px;
     }
 
     .close-chat {
       background: transparent;
       border: none;
       color: #fff;
-      font-size: 1.5em;
-      cursor: pointer;
+      width: 36px;
+      height: 36px;
+      font-size: 1.6em;
       line-height: 1;
-      padding: 0;
-      width: 30px;
-      height: 30px;
+      cursor: pointer;
+      border-radius: 10px;
+    }
+
+    .close-chat:hover {
+      background: rgba(255, 255, 255, 0.12);
     }
 
     .chatbot-messages {
       flex: 1;
       padding: 1em;
-      overflow-y: auto;
-      max-height: 350px;
+      overflow: auto;
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0));
+    }
+
+    .message {
+      display: flex;
+      margin: 0 0 10px 0;
+    }
+
+    .message.bot {
+      justify-content: flex-start;
+    }
+
+    .message.user {
+      justify-content: flex-end;
+    }
+
+    .message-bubble {
+      max-width: 82%;
+      padding: 0.75em 0.95em;
+      border-radius: 14px;
+      color: #fff;
+      background: #2a2a2a;
+      border: 1px solid rgba(255,255,255,0.06);
+      word-wrap: break-word;
+      white-space: pre-wrap;
+      line-height: 1.35;
+    }
+
+    .message.user .message-bubble {
+      background: #3d4ee9;
+      border-color: rgba(255,255,255,0.10);
     }
 
     .chatbot-input-area {
-      padding: 1em;
-      border-top: 1px solid #464242;
+      padding: 0.85em;
+      border-top: 1px solid #2a2a2a;
+      background: #141414;
     }
 
     .chatbot-input {
       width: 100%;
-      padding: 0.8em;
+      padding: 0.85em 1em;
       background: #2a2a2a;
       border: 1px solid #464242;
-      border-radius: 20px;
+      border-radius: 14px;
       color: #fff;
       outline: none;
       box-sizing: border-box;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
     }
 
-    #chatbotPopup {
-      z-index: 2147483647;
+    .chatbot-input:focus {
+      border-color: #3d4ee9;
+      box-shadow: 0 0 0 4px rgba(61, 78, 233, 0.18);
+    }
+
+    .quick-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .quick-action-btn {
+      padding: 0.45em 0.9em;
+      background: #2a2a2a;
+      border: 1px solid #464242;
+      border-radius: 999px;
+      color: #fff;
+      font-size: 0.9em;
+      cursor: pointer;
+    }
+
+    .quick-action-btn:hover {
+      background: #3d4ee9;
+      border-color: #3d4ee9;
+    }
+
+    @media (max-width: 480px) {
+      .search-container {
+        grid-template-columns: 1fr;
+      }
+
+      .search-btn {
+        width: 100%;
+        height: 46px;
+      }
+
+      .chatbot-popup {
+        right: 12px;
+        bottom: 12px;
+        width: calc(100vw - 24px);
+        max-height: calc(100vh - 24px);
+      }
     }
   </style>
 </head>
@@ -334,16 +380,6 @@
       <button class="close-chat" id="closeChat">&times;</button>
     </div>
     <div class="chatbot-messages" id="chatbotMessages">
-      <div class="message bot">
-        <div class="message-bubble">
-          Hello! I'm here to help you navigate this site. You can ask me about Alfred's work, research, or select a language below.
-        </div>
-        <div class="quick-actions">
-          <button class="quick-action-btn" data-action="research">Research Areas</button>
-          <button class="quick-action-btn" data-action="contact">Contact Info</button>
-          <button class="quick-action-btn" data-action="languages">Languages</button>
-        </div>
-      </div>
     </div>
     <div class="chatbot-input-area">
       <input type="text" class="chatbot-input" id="chatbotInput" placeholder="Type your message...">
