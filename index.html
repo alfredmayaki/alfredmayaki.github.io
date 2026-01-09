@@ -567,6 +567,7 @@
       chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
     }
 
+    /*  OLD processQuery function
     function processQuery(query) {
       const lowerQuery = String(query || '').toLowerCase();
       let response = null;
@@ -583,6 +584,83 @@
       }
 
       setTimeout(() => addBotMessage(response), 500);
+    }
+    */
+
+    // Set this to your Worker URL
+    const chatApiUrl = 'https://YOUR-WORKER-NAME.YOUR-SUBDOMAIN.workers.dev/chat';
+
+    async function processQuery(query) {
+      const text = String(query || '').trim();
+      if (!text) return;
+
+      // Create a bot message bubble we will stream into
+      const messageDiv = document.createElement('div');
+      messageDiv.className = 'message bot';
+      messageDiv.innerHTML = `<div class="message-bubble"></div>`;
+      chatbotMessages.appendChild(messageDiv);
+
+      const bubble = messageDiv.querySelector('.message-bubble');
+      bubble.textContent = '';
+
+      chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+
+      const response = await fetch(chatApiUrl, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ message: text, stream: true })
+      });
+
+      if (!response.ok || !response.body) {
+        const errText = await response.text().catch(() => '');
+        bubble.textContent = `Error: ${response.status} ${errText}`;
+        return;
+      }
+
+      const reader = response.body.getReader();
+      const decoder = new TextDecoder('utf-8');
+      let buffer = '';
+
+      while (true) {
+        const { value, done } = await reader.read();
+        if (done) break;
+
+        buffer += decoder.decode(value, { stream: true });
+
+        // SSE frames separated by a blank line
+        const frames = buffer.split('\n\n');
+        buffer = frames.pop() || '';
+
+        for (const frame of frames) {
+          for (const line of frame.split('\n')) {
+            if (!line.startsWith('data:')) continue;
+
+            const data = line.slice(5).trim();
+            if (!data) continue;
+
+            if (data === '[DONE]') {
+              return;
+            }
+
+            let evt;
+            try {
+              evt = JSON.parse(data);
+            } catch {
+              continue;
+            }
+
+            if (typeof evt.delta === 'string') {
+              bubble.textContent += evt.delta;
+              chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+            }
+
+            if (typeof evt.error === 'string') {
+              bubble.textContent += `\n\n${evt.error}`;
+              return;
+            }
+          }
+        }
+      }
     }
 
     document.addEventListener('DOMContentLoaded', function() {
