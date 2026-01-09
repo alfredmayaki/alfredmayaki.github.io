@@ -30,7 +30,6 @@ export default {
         ]
       });
 
-      // Workers AI responses are typically { response: "..."} or similar; be defensive
       const reply = String(result?.response || result?.output_text || result?.text || '').trim() || JSON.stringify(result);
       return json({ reply }, 200);
     }
@@ -56,7 +55,6 @@ export default {
           ]
         });
 
-        // Workers AI streaming returns an async iterator of chunks
         for await (const chunk of result) {
           const delta =
             (typeof chunk === 'string' ? chunk : null) ||
