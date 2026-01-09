@@ -484,153 +484,153 @@
   </script>
 
   <script>
-  // Chatbot (streaming via Cloudflare Worker SSE)
-  const searchInput = document.getElementById('searchInput');
-  const searchBtn = document.getElementById('searchBtn');
-  const chatbotPopup = document.getElementById('chatbotPopup');
-  const chatbotMessages = document.getElementById('chatbotMessages');
-  const chatbotInput = document.getElementById('chatbotInput');
-  const closeChat = document.getElementById('closeChat');
+    // Chatbot (streaming via Cloudflare Worker SSE)
+    const searchInput = document.getElementById('searchInput');
+    const searchBtn = document.getElementById('searchBtn');
+    const chatbotPopup = document.getElementById('chatbotPopup');
+    const chatbotMessages = document.getElementById('chatbotMessages');
+    const chatbotInput = document.getElementById('chatbotInput');
+    const closeChat = document.getElementById('closeChat');
 
-  // IMPORTANT: replace this with your deployed Worker URL
-  const chatApiUrl = 'https://YOUR-WORKER-NAME.YOUR-SUBDOMAIN.workers.dev/chat';
+    // IMPORTANT: replace this with your deployed Worker URL
+    const chatApiUrl = 'https://<your-worker-subdomain>.workers.dev/chat';
 
-  searchBtn.addEventListener('click', openChatbot);
-  searchInput.addEventListener('keypress', function (e) {
-    if (e.key === 'Enter') openChatbot();
-  });
+    searchBtn.addEventListener('click', openChatbot);
+    searchInput.addEventListener('keypress', function (e) {
+      if (e.key === 'Enter') openChatbot();
+    });
 
-  closeChat.addEventListener('click', function () {
-    chatbotPopup.classList.remove('active');
-  });
+    closeChat.addEventListener('click', function () {
+      chatbotPopup.classList.remove('active');
+    });
 
-  chatbotInput.addEventListener('keypress', function (e) {
-    if (e.key !== 'Enter') return;
+    chatbotInput.addEventListener('keypress', function (e) {
+      if (e.key !== 'Enter') return;
 
-    const message = chatbotInput.value.trim();
-    if (!message) return;
+      const message = chatbotInput.value.trim();
+      if (!message) return;
 
-    addUserMessage(message);
-    processQuery(message);
-    chatbotInput.value = '';
-  });
+      addUserMessage(message);
+      processQuery(message);
+      chatbotInput.value = '';
+    });
 
-  document.addEventListener('click', function (e) {
-    if (!e.target.classList.contains('quick-action-btn')) return;
+    document.addEventListener('click', function (e) {
+      if (!e.target.classList.contains('quick-action-btn')) return;
 
-    const action = e.target.getAttribute('data-action') || '';
-    addUserMessage(action);
-    processQuery(action);
-  });
+      const action = e.target.getAttribute('data-action') || '';
+      addUserMessage(action);
+      processQuery(action);
+    });
 
-  function openChatbot() {
-    const query = searchInput.value.trim();
-    chatbotPopup.classList.add('active');
+    function openChatbot() {
+      const query = searchInput.value.trim();
+      chatbotPopup.classList.add('active');
 
-    if (!query) return;
+      if (!query) return;
 
-    addUserMessage(query);
-    processQuery(query);
-    searchInput.value = '';
-  }
-
-  function addUserMessage(message) {
-    const messageDiv = document.createElement('div');
-    messageDiv.className = 'message user';
-    messageDiv.innerHTML = `<div class="message-bubble"></div>`;
-    messageDiv.querySelector('.message-bubble').textContent = message;
-    chatbotMessages.appendChild(messageDiv);
-    chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
-  }
-
-  function addBotBubble(initialText) {
-    const messageDiv = document.createElement('div');
-    messageDiv.className = 'message bot';
-    messageDiv.innerHTML = `<div class="message-bubble"></div>`;
-    const bubble = messageDiv.querySelector('.message-bubble');
-    bubble.textContent = initialText || '';
-    chatbotMessages.appendChild(messageDiv);
-    chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
-    return bubble;
-  }
-
-  async function processQuery(query) {
-    const text = String(query || '').trim();
-    if (!text) return;
-
-    if (chatApiUrl.includes('YOUR-WORKER-NAME')) {
-      addBotBubble('Chat backend is not configured. Set chatApiUrl to your deployed Worker URL.');
-      return;
+      addUserMessage(query);
+      processQuery(query);
+      searchInput.value = '';
     }
 
-    const bubble = addBotBubble('Thinking...');
-
-    let response;
-    try {
-      response = await fetch(chatApiUrl, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ message: text, stream: true })
-      });
-    } catch (e) {
-      bubble.textContent = `Network error: ${String(e.message || e)}`;
-      return;
+    function addUserMessage(message) {
+      const messageDiv = document.createElement('div');
+      messageDiv.className = 'message user';
+      messageDiv.innerHTML = `<div class="message-bubble"></div>`;
+      messageDiv.querySelector('.message-bubble').textContent = message;
+      chatbotMessages.appendChild(messageDiv);
+      chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
     }
 
-    if (!response.ok || !response.body) {
-      const errText = await response.text().catch(() => '');
-      bubble.textContent = `Server error: ${response.status} ${errText}`;
-      return;
+    function addBotBubble(initialText) {
+      const messageDiv = document.createElement('div');
+      messageDiv.className = 'message bot';
+      messageDiv.innerHTML = `<div class="message-bubble"></div>`;
+      const bubble = messageDiv.querySelector('.message-bubble');
+      bubble.textContent = initialText || '';
+      chatbotMessages.appendChild(messageDiv);
+      chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+      return bubble;
     }
 
-    bubble.textContent = '';
+    async function processQuery(query) {
+      const text = String(query || '').trim();
+      if (!text) return;
 
-    const reader = response.body.getReader();
-    const decoder = new TextDecoder('utf-8');
-    let buffer = '';
+      if (chatApiUrl.includes('YOUR-WORKER-NAME')) {
+        addBotBubble('Chat backend is not configured. Set chatApiUrl to your deployed Worker URL.');
+        return;
+      }
 
-    try {
-      while (true) {
-        const { value, done } = await reader.read();
-        if (done) break;
+      const bubble = addBotBubble('Thinking...');
 
-        buffer += decoder.decode(value, { stream: true });
+      let response;
+      try {
+        response = await fetch(chatApiUrl, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ message: text, stream: true })
+        });
+      } catch (e) {
+        bubble.textContent = `Network error: ${String(e.message || e)}`;
+        return;
+      }
 
-        const frames = buffer.split('\n\n');
-        buffer = frames.pop() || '';
+      if (!response.ok || !response.body) {
+        const errText = await response.text().catch(() => '');
+        bubble.textContent = `Server error: ${response.status} ${errText}`;
+        return;
+      }
 
-        for (const frame of frames) {
-          for (const line of frame.split('\n')) {
-            if (!line.startsWith('data:')) continue;
+      bubble.textContent = '';
 
-            const data = line.slice(5).trim();
-            if (!data) continue;
+      const reader = response.body.getReader();
+      const decoder = new TextDecoder('utf-8');
+      let buffer = '';
 
-            if (data === '[DONE]') return;
+      try {
+        while (true) {
+          const { value, done } = await reader.read();
+          if (done) break;
 
-            let evt;
-            try {
-              evt = JSON.parse(data);
-            } catch {
-              continue;
-            }
+          buffer += decoder.decode(value, { stream: true });
 
-            if (typeof evt.delta === 'string') {
-              bubble.textContent += evt.delta;
-              chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
-            }
+          const frames = buffer.split('\n\n');
+          buffer = frames.pop() || '';
 
-            if (typeof evt.error === 'string') {
-              bubble.textContent += `\n\n${evt.error}`;
-              return;
+          for (const frame of frames) {
+            for (const line of frame.split('\n')) {
+              if (!line.startsWith('data:')) continue;
+
+              const data = line.slice(5).trim();
+              if (!data) continue;
+
+              if (data === '[DONE]') return;
+
+              let evt;
+              try {
+                evt = JSON.parse(data);
+              } catch {
+                continue;
+              }
+
+              if (typeof evt.delta === 'string') {
+                bubble.textContent += evt.delta;
+                chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+              }
+
+              if (typeof evt.error === 'string') {
+                bubble.textContent += `\n\n${evt.error}`;
+                return;
+              }
             }
           }
         }
+      } catch (e) {
+        bubble.textContent += `\n\nStream error: ${String(e.message || e)}`;
       }
-    } catch (e) {
-      bubble.textContent += `\n\nStream error: ${String(e.message || e)}`;
     }
-  }
-</script>
+  </script>
 </body>
 </html>
