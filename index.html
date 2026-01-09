@@ -23,7 +23,7 @@
       background: url('/universe.png') center center / cover no-repeat fixed;
       color: #979797;
       margin: 0;
-      padding: 5px
+      padding: 5px;
       display: flex;
       align-items: stretch;
       justify-content: stretch;
@@ -353,7 +353,7 @@
       border-radius: 20px;
       color: #fff;
       outline: none;
-      box-sizing: border-box;un
+      box-sizing: border-box;
     }
 
     .chatbot-input:focus {
@@ -621,7 +621,7 @@
 
       fetch('https://ipapi.co/json/')
         .then(response => response.json())
-        .then data => {
+        .then((data) => {
           const countryCode = (data.country_code || '').toUpperCase();
           const suggestedPage = countryToLanguage[countryCode];
 
