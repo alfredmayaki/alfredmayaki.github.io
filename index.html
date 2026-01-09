@@ -371,7 +371,12 @@
       return;
     }
 
-    const chatApiUrl = 'https://shy-sea-600a.alfred-mayaki.workers.dev/chat';
+    const chatApiUrl = 'https://shy-sea-600a.alfred-mayaki.workers.dev/';
+
+    if (chatApiUrl.includes('<your-worker')) {
+      console.error('Chat backend URL not configured:', chatApiUrl);
+      return;
+    }
 
     searchBtn.addEventListener('click', openChatbot);
     searchInput.addEventListener('keypress', function (e) {
@@ -440,6 +445,7 @@
 
       let response;
       try {
+        console.log('Chat POST ->', chatApiUrl);
         response = await fetch(chatApiUrl, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
