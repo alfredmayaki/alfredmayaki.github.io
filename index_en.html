@@ -133,21 +133,17 @@ body {
     <a href="https://www.linkedin.com/in/alfredmayaki/">LinkedIn</a>
     <p>Last updated: <a id="repo-link" href="#" target="_blank" rel="noopener noreferrer"><span id="last-updated"></span></a></p></footer>
     <script>
-      document.getElementById('last-updated').textContent = new Date(document.lastModified).toLocaleDateString();
+      document.getElementById('last-updated').textContent =
+    new Date(document.lastModified).toLocaleDateString();
 
-      (function () {
-        const hostname = String(location.hostname || '').toLowerCase();
-        const isGithubPagesHost = hostname.endsWith('.github.io');
+  (function () {
+    const owner = 'alfredmayaki';
+    const repo = `${owner}.github.io`;
+    const repoUrl = `https://github.com/${owner}/${repo}/tree/main`;
 
-        // Prefer deriving from the GitHub Pages host (username.github.io) so this never uses a custom domain.
-        // Repo for user/organization pages is typically: https://github.com/<owner>/<owner>.github.io
-        const repoUrl = isGithubPagesHost
-          ? `https://github.com/${hostname.split('.')[0]}/${hostname}/tree/main`
-          : 'https://github.com/';
-
-        const repoLink = document.getElementById('repo-link');
-        if (repoLink) repoLink.href = repoUrl;
-      })();
+    const repoLink = document.getElementById('repo-link');
+    if (repoLink) repoLink.href = repoUrl;
+  })();
     </script>
       </footer>
   <div id="particles-js" style="position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:-1;"></div>
