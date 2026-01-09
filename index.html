@@ -14,7 +14,7 @@
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-    gtag('config', 'G-CNF86BSG95'); 
+    gtag('config', 'G-CNF86BSG95');
   </script>
 
   <style>
@@ -74,7 +74,6 @@
       margin-bottom: 2em;
     }
 
-    /* NEW: Music fallback button */
     .music-btn {
       display: none;
       margin: 1em auto 0;
@@ -94,7 +93,6 @@
       transform: translateY(-2px);
     }
 
-    /* Search/Chatbot Styles */
     .search-container {
       position: relative;
       margin: 2em auto;
@@ -152,34 +150,6 @@
       fill: #fff;
     }
 
-    .doc-btn-container {
-      margin-top: 0.75em;
-    }
-
-    .doc-btn {
-      display: inline-block;
-      padding: 0.8em 1.2em;
-      background: #3d4ee9;
-      border: 2px solid #3d4ee9;
-      border-radius: 25px;
-      color: #fff;
-      text-decoration: none;
-      font-size: 1em;
-      line-height: 1;
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
-
-    .doc-btn:hover,
-    .doc-btn:focus-visible {
-      background: #5563f0;
-      border-color: #5563f0;
-      box-shadow: 0 4px 12px rgba(61, 78, 233, 0.5);
-      transform: translateY(-2px);
-      outline: none;
-    }
-
-    /* Language Dropdown */
     .language-select-wrap {
       margin-top: 1.25em;
       display: flex;
@@ -212,7 +182,6 @@
       color: #979797;
     }
 
-    /* Chatbot Popup */
     .chatbot-popup {
       display: none;
       position: fixed;
@@ -272,74 +241,6 @@
       max-height: 350px;
     }
 
-    .chatbot-messages::-webkit-scrollbar {
-      width: 6px;
-    }
-
-    .chatbot-messages::-webkit-scrollbar-track {
-      background: #2a2a2a;
-    }
-
-    .chatbot-messages::-webkit-scrollbar-thumb {
-      background: #464242;
-      border-radius: 3px;
-    }
-
-    .message {
-      margin-bottom: 1em;
-      animation: messageSlide 0.3s ease-out;
-    }
-
-    @keyframes messageSlide {
-      from { opacity: 0; transform: translateX(-10px); }
-      to { opacity: 1; transform: translateX(0); }
-    }
-
-    .message.bot {
-      text-align: left;
-    }
-
-    .message.user {
-      text-align: right;
-    }
-
-    .message.user .message-bubble {
-      background: #3d4ee9;
-    }
-
-    .message-bubble {
-      display: inline-block;
-      padding: 0.8em 1em;
-      background: #2a2a2a;
-      border-radius: 15px;
-      color: #fff;
-      max-width: 80%;
-      word-wrap: break-word;
-    }
-
-    .quick-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5em;
-      margin-top: 0.5em;
-    }
-
-    .quick-action-btn {
-      padding: 0.5em 1em;
-      background: #2a2a2a;
-      border: 1px solid #464242;
-      border-radius: 20px;
-      color: #fff;
-      font-size: 0.85em;
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
-
-    .quick-action-btn:hover {
-      background: #3d4ee9;
-      border-color: #3d4ee9;
-    }
-
     .chatbot-input-area {
       padding: 1em;
       border-top: 1px solid #464242;
@@ -355,28 +256,9 @@
       outline: none;
       box-sizing: border-box;
     }
-
-    .chatbot-input:focus {
-      border-color: #3d4ee9;
-    }
-
-    @media (max-width: 768px) {
-      .landing-container {
-        padding: 2em 1.5em;
-      }
-      h1 {
-        font-size: 1.8em;
-      }
-      .chatbot-popup {
-        width: 90%;
-        right: 5%;
-        bottom: 10px;
-      }
-    }
   </style>
 </head>
 <body>
-  <!-- NEW: Background music -->
   <audio id="bgMusic" src="star-wars.mp3" preload="auto"></audio>
 
   <div id="particles-js" style="position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:-1;"></div>
@@ -391,19 +273,15 @@
         </span>
       </span>
     </h1>
-    
-   <!-- Tagline -->
 
     <br><b><p class="tagline">Welcome 👋🏿</p></b>
 
-    <!-- NEW: only shown if autoplay is blocked -->
     <button id="musicBtn" class="music-btn" type="button">Play music</button>
 
     <div class="doc-btn-container">
       <a class="doc-btn" href="https://alfredmayaki.me/pdf-viewer.html" target="_blank" rel="noopener noreferrer">Search Public GitHub Repository</a>
     </div>
 
-    <!-- Search Bar -->
     <div class="search-container">
       <input type="text" class="search-bar" id="searchInput" placeholder="Ask CoPilot...">
       <button class="search-btn" id="searchBtn" aria-label="Search">
@@ -413,7 +291,6 @@
       </button>
     </div>
 
-    <!-- Language Selection Dropdown -->
     <br><p>Select a world language 🌈</p>
 
     <div class="language-select-wrap">
@@ -441,7 +318,6 @@
     <div class="language-hint">Selecting a language will open the corresponding page.</div>
   </div>
 
-  <!-- Chatbot Popup -->
   <div class="chatbot-popup" id="chatbotPopup">
     <div class="chatbot-header">
       <h3>💬 Ask GPT 5.0 Web</h3>
@@ -472,7 +348,6 @@
   </script>
 
   <script>
-    // Dropdown navigation
     const languageSelect = document.getElementById('languageSelect');
     languageSelect.addEventListener('change', function () {
       const target = String(languageSelect.value || '').trim();
@@ -493,7 +368,7 @@
     const closeChat = document.getElementById('closeChat');
 
     // IMPORTANT: replace this with your deployed Worker URL
-    const chatApiUrl = 'https://<your-worker-subdomain>.workers.dev/chat';
+    const chatApiUrl = '/chat';
 
     searchBtn.addEventListener('click', openChatbot);
     searchInput.addEventListener('keypress', function (e) {
@@ -557,11 +432,6 @@
     async function processQuery(query) {
       const text = String(query || '').trim();
       if (!text) return;
-
-      if (chatApiUrl.includes('YOUR-WORKER-NAME')) {
-        addBotBubble('Chat backend is not configured. Set chatApiUrl to your deployed Worker URL.');
-        return;
-      }
 
       const bubble = addBotBubble('Thinking...');
 
