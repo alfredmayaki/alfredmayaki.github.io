@@ -484,122 +484,150 @@
   </script>
 
   <script>
-  // Chatbot (streaming via Cloudflare Worker SSE)
-  const searchInput = document.getElementById('searchInput');
-  const searchBtn = document.getElementById('searchBtn');
-  const chatbotPopup = document.getElementById('chatbotPopup');
-  const chatbotMessages = document.getElementById('chatbotMessages');
-  const chatbotInput = document.getElementById('chatbotInput');
-  const closeChat = document.getElementById('closeChat');
+    // Chatbot functionality
+    const searchInput = document.getElementById('searchInput');
+    const searchBtn = document.getElementById('searchBtn');
+    const chatbotPopup = document.getElementById('chatbotPopup');
+    const chatbotMessages = document.getElementById('chatbotMessages');
+    const chatbotInput = document.getElementById('chatbotInput');
+    const closeChat = document.getElementById('closeChat');
 
-  // TODO: Replace with your deployed Worker URL
-  const chatApiUrl = 'https://alfredmayaki.me';
+    const knowledgeBase = {
+      research: {
+        keywords: ['research', 'work', 'study', 'economics', 'labour', 'policy'],
+        response: "Alfred A. B.Mayaki specializes in Labour Economics and Public Policy Research. He's affiliated with the Open University Business School and is a member of the Royal Economic Society. His work focuses on human resource management and economic policy analysis."
+      },
+      contact: {
+        keywords: ['contact', 'email', 'reach', 'connect', 'get in touch'],
+        response: "You can find Alfred's contact information and professional profiles on any of the language-specific pages. Select your preferred language from the dropdown to access the full site."
+      },
+      languages: {
+        keywords: ['language', 'translate', 'version', 'español', 'français', 'deutsch'],
+        response: "Use the language dropdown to choose your preferred language."
+      },
+      education: {
+        keywords: ['education', 'school', 'university', 'degree', 'qualification'],
+        response: "Alfred is associated with the Open University Business School, The Open University, and is a member of the Royal Economic Society. For detailed educational background, please visit the full site in your preferred language."
+      }
+    };
 
-  searchBtn.addEventListener('click', openChatbot);
-  searchInput.addEventListener('keypress', function (e) {
-    if (e.key === 'Enter') openChatbot();
-  });
+    searchBtn.addEventListener('click', openChatbot);
+    searchInput.addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') {
+        openChatbot();
+      }
+    });
 
-  closeChat.addEventListener('click', function () {
-    chatbotPopup.classList.remove('active');
-  });
+    function openChatbot() {
+      const query = searchInput.value.trim();
+      chatbotPopup.classList.add('active');
 
-  chatbotInput.addEventListener('keypress', function (e) {
-    if (e.key === 'Enter') {
-      const message = chatbotInput.value.trim();
-      if (!message) return;
-
-      addUserMessage(message);
-      processQuery(message);
-      chatbotInput.value = '';
-    }
-  });
-
-  document.addEventListener('click', function (e) {
-    if (e.target.classList.contains('quick-action-btn')) {
-      const action = e.target.getAttribute('data-action');
-      addUserMessage(action);
-      processQuery(action);
-    }
-  });
-
-  function openChatbot() {
-    const query = searchInput.value.trim();
-    chatbotPopup.classList.add('active');
-
-    if (!query) return;
-
-    addUserMessage(query);
-    processQuery(query);
-    searchInput.value = '';
-  }
-
-  function addUserMessage(message) {
-    const messageDiv = document.createElement('div');
-    messageDiv.className = 'message user';
-    messageDiv.innerHTML = `<div class="message-bubble"></div>`;
-    messageDiv.querySelector('.message-bubble').textContent = message;
-    chatbotMessages.appendChild(messageDiv);
-    chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
-  }
-
-  function addBotMessage(initialText) {
-    const messageDiv = document.createElement('div');
-    messageDiv.className = 'message bot';
-    messageDiv.innerHTML = `<div class="message-bubble"></div>`;
-    const bubble = messageDiv.querySelector('.message-bubble');
-    bubble.textContent = initialText || '';
-    chatbotMessages.appendChild(messageDiv);
-    chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
-    return bubble;
-  }
-
-  async function processQuery(query) {
-    const text = String(query || '').trim();
-    if (!text) return;
-
-    // Prevent accidentally using a placeholder URL
-    if (chatApiUrl.includes('YOUR-WORKER-NAME')) {
-      addBotMessage('Chat is not configured yet. Set chatApiUrl to your deployed Worker URL.');
-      return;
+      if (query) {
+        addUserMessage(query);
+        processQuery(query);
+        searchInput.value = '';
+      }
     }
 
-    // Create bubble for streaming response
-    const bubble = addBotMessage('Thinking...');
+    closeChat.addEventListener('click', function() {
+      chatbotPopup.classList.remove('active');
+    });
 
-    let response;
-    try {
-      response = await fetch(chatApiUrl, {
+    chatbotInput.addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') {
+        const message = chatbotInput.value.trim();
+        if (message) {
+          addUserMessage(message);
+          processQuery(message);
+          chatbotInput.value = '';
+        }
+      }
+    });
+
+    document.addEventListener('click', function(e) {
+      if (e.target.classList.contains('quick-action-btn')) {
+        const action = e.target.getAttribute('data-action');
+        processQuery(action);
+      }
+    });
+
+    function addUserMessage(message) {
+      const messageDiv = document.createElement('div');
+      messageDiv.className = 'message user';
+      messageDiv.innerHTML = `<div class="message-bubble">${message}</div>`;
+      chatbotMessages.appendChild(messageDiv);
+      chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+    }
+
+    function addBotMessage(message) {
+      const messageDiv = document.createElement('div');
+      messageDiv.className = 'message bot';
+      messageDiv.innerHTML = `<div class="message-bubble">${message}</div>`;
+      chatbotMessages.appendChild(messageDiv);
+      chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+    }
+
+    /*  OLD processQuery function
+    function processQuery(query) {
+      const lowerQuery = String(query || '').toLowerCase();
+      let response = null;
+
+      for (const data of Object.values(knowledgeBase)) {
+        if (data.keywords.some(keyword => lowerQuery.includes(keyword))) {
+          response = data.response;
+          break;
+        }
+      }
+
+      if (!response) {
+        response = "I can help you with information about Alfred's research, contact details, or language selection. What would you like to know?";
+      }
+
+      setTimeout(() => addBotMessage(response), 500);
+    }
+    */
+
+    // Set this to your Worker URL
+    const chatApiUrl = 'https://YOUR-WORKER-NAME.YOUR-SUBDOMAIN.workers.dev/chat';
+
+    async function processQuery(query) {
+      const text = String(query || '').trim();
+      if (!text) return;
+
+      // Create a bot message bubble we will stream into
+      const messageDiv = document.createElement('div');
+      messageDiv.className = 'message bot';
+      messageDiv.innerHTML = `<div class="message-bubble"></div>`;
+      chatbotMessages.appendChild(messageDiv);
+
+      const bubble = messageDiv.querySelector('.message-bubble');
+      bubble.textContent = '';
+
+      chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+
+      const response = await fetch(chatApiUrl, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ message: text, stream: true })
       });
-    } catch (e) {
-      bubble.textContent = `Network error calling chat server: ${String(e.message || e)}`;
-      return;
-    }
 
-    if (!response.ok || !response.body) {
-      const errText = await response.text().catch(() => '');
-      bubble.textContent = `Chat server error: ${response.status} ${errText}`;
-      return;
-    }
+      if (!response.ok || !response.body) {
+        const errText = await response.text().catch(() => '');
+        bubble.textContent = `Error: ${response.status} ${errText}`;
+        return;
+      }
 
-    // Start streaming
-    bubble.textContent = '';
+      const reader = response.body.getReader();
+      const decoder = new TextDecoder('utf-8');
+      let buffer = '';
 
-    const reader = response.body.getReader();
-    const decoder = new TextDecoder('utf-8');
-    let buffer = '';
-
-    try {
       while (true) {
         const { value, done } = await reader.read();
         if (done) break;
 
         buffer += decoder.decode(value, { stream: true });
 
-        // SSE frames separated by blank line
+        // SSE frames separated by a blank line
         const frames = buffer.split('\n\n');
         buffer = frames.pop() || '';
 
@@ -610,7 +638,9 @@
             const data = line.slice(5).trim();
             if (!data) continue;
 
-            if (data === '[DONE]') return;
+            if (data === '[DONE]') {
+              return;
+            }
 
             let evt;
             try {
@@ -630,9 +660,9 @@
             }
           }
         }
+      } catch (e) {
+        bubble.textContent += `\n\nStream error: ${String(e.message || e)}`;
       }
-    } catch (e) {
-      bubble.textContent += `\n\nStream error: ${String(e.message || e)}`;
     }
   }
 </script>
