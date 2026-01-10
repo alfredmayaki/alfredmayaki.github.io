@@ -6,7 +6,7 @@ export default {
       return new Response(null, { headers: corsHeaders() });
     }
 
-    if (url.pathname !== '/') {
+    if (url.pathname !== '/chat') {
       return new Response('Not found', { status: 404, headers: corsHeaders() });
     }
 
