@@ -24,9 +24,26 @@ function getGeminiVersion(env) {
   return String(env?.GEMINI_API_VERSION || 'v1').trim() || 'v1';
 }
 
+function isPalmChatBisonModel(model) {
+  const normalized = String(model || '').trim();
+  return normalized === 'chat-bison-001' || normalized === 'models/chat-bison-001';
+}
+
+function normalizeModelName(model) {
+  const normalized = String(model || '').trim();
+  if (!normalized) return normalized;
+  return normalized.startsWith('models/') ? normalized.slice('models/'.length) : normalized;
+}
+
 function buildGeminiEndpoint(env, model, method) {
   const version = getGeminiVersion(env);
-  return `https://generativelanguage.googleapis.com/${version}/models/${model}:${method}?key=${encodeURIComponent(env.GEMINI_API_KEY)}`;
+  const normalizedModel = normalizeModelName(model);
+  return `https://generativelanguage.googleapis.com/${version}/models/${normalizedModel}:${method}?key=${encodeURIComponent(env.GEMINI_API_KEY)}`;
+}
+
+function buildPalmChatEndpoint(env, method) {
+  const model = 'chat-bison-001';
+  return `https://generativelanguage.googleapis.com/v1beta/models/${model}:${method}?key=${encodeURIComponent(env.GEMINI_API_KEY)}`;
 }
 
 function buildGeminiRequestInit(body, signal) {
@@ -34,12 +51,10 @@ function buildGeminiRequestInit(body, signal) {
     method: 'POST',
     headers: {
       'content-type': 'application/json',
-      // Helps reduce upstream bandwidth when supported.
       'accept-encoding': 'gzip, br'
     },
     body: JSON.stringify(body),
     signal,
-    // Makes behavior explicit; avoids any accidental caching.
     cf: { cacheTtl: 0 }
   };
 }
@@ -56,8 +71,34 @@ async function fetchWithTimeout(url, init, timeoutMs) {
   }
 }
 
+async function callPalmChatNonStreaming(env, message) {
+  const endpoint = buildPalmChatEndpoint(env, 'generateMessage');
+
+  const body = {
+    prompt: {
+      messages: [{ author: 'user', content: message }]
+    }
+  };
+
+  const resp = await fetchWithTimeout(endpoint, buildGeminiRequestInit(body), NON_STREAM_TIMEOUT_MS);
+
+  if (!resp.ok) {
+    const err = await resp.text().catch(() => '');
+    throw new Error(`PaLM error: ${resp.status} ${err}`);
+  }
+
+  const data = await resp.json();
+  const text = String(data?.candidates?.[0]?.content || '').trim();
+  return text || 'No response.';
+}
+
 async function callGeminiNonStreaming(env, message) {
   const model = getGeminiModel(env);
+
+  if (isPalmChatBisonModel(model)) {
+    return callPalmChatNonStreaming(env, message);
+  }
+
   const endpoint = buildGeminiEndpoint(env, model, 'generateContent');
 
   const body = {
@@ -99,6 +140,13 @@ function streamGeminiAsSse(env, message) {
   (async () => {
     try {
       const model = getGeminiModel(env);
+
+      if (isPalmChatBisonModel(model)) {
+        await writeEvent({ error: 'Streaming is not supported for chat-bison-001. Use stream=false.' });
+        await finish();
+        return;
+      }
+
       const endpoint = buildGeminiEndpoint(env, model, 'streamGenerateContent');
 
       const body = {
@@ -126,7 +174,6 @@ function streamGeminiAsSse(env, message) {
         const trimmed = line.trim();
         if (!trimmed) return;
 
-        // Gemini streams are commonly SSE-like: "data: {...}"
         const jsonText = trimmed.startsWith('data:') ? trimmed.slice(5).trim() : trimmed;
         if (!jsonText || jsonText === '[DONE]') return;
 
@@ -161,7 +208,6 @@ function streamGeminiAsSse(env, message) {
         }
       }
 
-      // Process leftover (no trailing newline)
       if (buffer.trim()) {
         await processLine(buffer);
       }
@@ -209,6 +255,11 @@ export default {
 
     if (!env.GEMINI_API_KEY) {
       return json({ reply: 'Server is missing GEMINI_API_KEY.' }, 500);
+    }
+
+    const model = getGeminiModel(env);
+    if (stream && isPalmChatBisonModel(model)) {
+      return json({ reply: 'Streaming is not supported for chat-bison-001. Set stream=false.' }, 400);
     }
 
     if (!stream) {

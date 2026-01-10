@@ -9,5 +9,5 @@ routes = [
 ]
 
 [vars]
-GEMINI_MODEL = "gemini-1.5-flash"
+GEMINI_MODEL = "chat-bison-001"
 GEMINI_API_VERSION = "v1"
