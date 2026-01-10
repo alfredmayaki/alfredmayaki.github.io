@@ -1,10 +1,11 @@
 name = "shy-sea-600a"
 main = "src/index.js"
-compatibility_date = "2026-01-09"
+compatibility_date = "2026-01-10"
 workers_dev = true
+
+routes = [
+  { pattern = "alfredmayaki.me/chat*", zone_name = "alfredmayaki.me" }
+]
 
 [vars]
 GEMINI_MODEL = "gemini-1.5-flash"
-
-# Optional: if you later bind a custom domain/route, add:
-# routes = ["https://example.com/chat*"]
