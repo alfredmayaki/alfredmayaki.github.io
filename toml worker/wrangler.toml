@@ -4,7 +4,7 @@ compatibility_date = "2026-01-10"
 workers_dev = true
 
 routes = [
-  { pattern = "alfredmayaki.me/chat*", zone_name = "alfredmayaki.me" }
+  { pattern = "/", zone_name = "alfredmayaki.me" }
 ]
 
 [vars]
