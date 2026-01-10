@@ -9,5 +9,5 @@ routes = [
 ]
 
 [vars]
-GEMINI_MODEL = "gemini-3-flash-preview"
-GEMINI_API_VERSION = "v1"
+GEMINI_MODEL = "gemini-2.5-flash"
+GEMINI_API_VERSION = "v2.63"
