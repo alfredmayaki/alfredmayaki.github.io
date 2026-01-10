@@ -1,0 +1,1490 @@
+{
+  "scraper": "IBRecruitment Scraper",
+  "base_url": "https://www.ibrecruitment.com/",
+  "scraped_at": "2026-01-10T20:40:48.172154",
+  "total_pages": 5,
+  "data": [
+    {
+      "url": "https://www.ibrecruitment.com/",
+      "timestamp": "2026-01-10T20:40:40.448239",
+      "title": "Impact in Business Recruitment Blog",
+      "content": {
+        "headings": [
+          {
+            "text": "Featured People Moves",
+            "html": null
+          },
+          {
+            "text": "Inside:Energy &Infrastructure News",
+            "html": null
+          },
+          {
+            "text": "Featured News",
+            "html": null
+          },
+          {
+            "text": "Impact in Business Recruitment Blog",
+            "html": null
+          },
+          {
+            "text": "People Moves: Edmond de Rothschild Asset Management appoints new Group Head of Private markets",
+            "html": null
+          },
+          {
+            "text": "People Moves: Mileway promotes Andrew Jones and Aymeric Canivenc to Co-Heads of Real Estate",
+            "html": null
+          },
+          {
+            "text": "People Moves: Investec's REALIS platform appoints Joe Armstrong as Head of Capital Raising",
+            "html": null
+          },
+          {
+            "text": "Insights: Asia Pacific leads global retail transformation with omnichannel innovation and Gen Z influence",
+            "html": null
+          },
+          {
+            "text": "News: Colliers named Best Real Estate Adviser in Asia Pacific and worldwide",
+            "html": null
+          },
+          {
+            "text": "News: Primark to open new retail store in Miami's Dolphin Mall",
+            "html": null
+          },
+          {
+            "text": "About The Blog",
+            "html": null
+          },
+          {
+            "text": "Media Centre",
+            "html": null
+          },
+          {
+            "text": "Useful Links",
+            "html": null
+          },
+          {
+            "text": "Follow me on all platforms",
+            "html": null
+          },
+          {
+            "text": "Thank you for visiting",
+            "html": null
+          },
+          {
+            "text": "Advanced settings",
+            "html": null
+          }
+        ],
+        "content": [
+          {
+            "text": "Europe (Press Release) --Edmond de Rothschild Asset Managementannounces the appointment ofAnne-Laurence Roucher, effective January 5th, as Group Head of Private Markets. Her mission, in this strategic new role for the firm, will be to oversee the investment strategy and operations of private equity, infrastructure private debt and real estate...",
+            "html": null
+          },
+          {
+            "text": "Amsterdam, Netherlands (Press Release) --Mileway, the leading pan-European last-mile logistics real estate company, has announced the appointment ofAndrew JonesandAymeric Canivencas Co-Heads of Real Estate, effective 1 January 2026. Their appointments follow the decision of Chief Real Estate Officer,Thomas ten Bokum, to step down at the end...",
+            "html": null
+          },
+          {
+            "text": "London, England (Press Release) --Investec Bank plc(Investec), a leading international financial services provider, has appointedJoe Armstrongas Head of Capital Raising for REALIS, its real estate equity platform, effective immediately. The appointment supports Investec’s plans to scale the strategy in response to increasing demand from private...",
+            "html": null
+          },
+          {
+            "text": "Asia Pacific (Press Release) --The Asia Pacific region is setting the pace for global retail growth and innovation, according to a new report from Colliers. TheGlobal Retail: 2025 Trends & 2026 Outlook Reporthas found that despite geopolitical uncertainty and tariff risks, the Asia Pacific region remains the global pacesetter for omnichannel,...",
+            "html": null
+          },
+          {
+            "text": "Asia Pacific (Press Release) --In a recent press release,Colliers(NASDAQ, TSX: CIGI), a global diversified professional services and investment management company, has been honored as the Asia Pacific and World's Best Real Estate Adviser by the esteemed Euromoney Global Real Estate Awards.",
+            "html": null
+          },
+          {
+            "text": "Miami, FL (PR Newswire) --Primark, the international retailer offering quality fashion at value prices, is excited to announce its last grand store opening of 2025 at Dolphin Mall in Miami, Florida. This highly anticipated event marks Primark's official entrance into the Miami retail market, further strengthening the brand's growing presence...",
+            "html": null
+          },
+          {
+            "text": "Powered ByGoogle News Initiative",
+            "html": null
+          },
+          {
+            "text": "•Subscribe•Register•Information Requests•Media Centre•Cookie Policy•Privacy Policy•Press Releases•Podcast•About Us•Contact Us•",
+            "html": null
+          },
+          {
+            "text": "You can customize your cookie preferences here. Enable or disable the following categories and save your selection.",
+            "html": null
+          },
+          {
+            "text": "People Moves: Edmond de Rothschild Asset Management appoints new Group Head of Private markets09/01/2026Europe (Press Release) --Edmond de Rothschild Asset Managementannounces the appointment ofAnne-Laurence Roucher, effective January 5th, as Group Head of Private Markets. Her mission, in this strategic new role for the firm, will be to oversee the investment strategy and operations of private equity, infrastructure private debt and real estate...",
+            "html": null
+          },
+          {
+            "text": "People Moves: Mileway promotes Andrew Jones and Aymeric Canivenc to Co-Heads of Real Estate17/12/2025Amsterdam, Netherlands (Press Release) --Mileway, the leading pan-European last-mile logistics real estate company, has announced the appointment ofAndrew JonesandAymeric Canivencas Co-Heads of Real Estate, effective 1 January 2026. Their appointments follow the decision of Chief Real Estate Officer,Thomas ten Bokum, to step down at the end...",
+            "html": null
+          },
+          {
+            "text": "People Moves: Investec's REALIS platform appoints Joe Armstrong as Head of Capital Raising09/12/2025London, England (Press Release) --Investec Bank plc(Investec), a leading international financial services provider, has appointedJoe Armstrongas Head of Capital Raising for REALIS, its real estate equity platform, effective immediately. The appointment supports Investec’s plans to scale the strategy in response to increasing demand from private...",
+            "html": null
+          },
+          {
+            "text": "Insights: Asia Pacific leads global retail transformation with omnichannel innovation and Gen Z influence03/12/2025Asia Pacific (Press Release) --The Asia Pacific region is setting the pace for global retail growth and innovation, according to a new report from Colliers. TheGlobal Retail: 2025 Trends & 2026 Outlook Reporthas found that despite geopolitical uncertainty and tariff risks, the Asia Pacific region remains the global pacesetter for omnichannel,...",
+            "html": null
+          },
+          {
+            "text": "News: Colliers named Best Real Estate Adviser in Asia Pacific and worldwide26/11/2025Asia Pacific (Press Release) --In a recent press release,Colliers(NASDAQ, TSX: CIGI), a global diversified professional services and investment management company, has been honored as the Asia Pacific and World's Best Real Estate Adviser by the esteemed Euromoney Global Real Estate Awards.",
+            "html": null
+          },
+          {
+            "text": "News: Primark to open new retail store in Miami's Dolphin Mall24/11/2025Miami, FL (PR Newswire) --Primark, the international retailer offering quality fashion at value prices, is excited to announce its last grand store opening of 2025 at Dolphin Mall in Miami, Florida. This highly anticipated event marks Primark's official entrance into the Miami retail market, further strengthening the brand's growing presence...",
+            "html": null
+          }
+        ],
+        "jobs": [],
+        "contact": [
+          {
+            "text": "About The BlogPress ReleasesMeet the EditorMentorship ProgrammeMedia CentreNews & InsightsThe Power Moves AwardExecutive AppointmentsUseful LinksICO Code of ConductThe Labour Economics BlogPhotoVogue by VogueFollow me on all platformsPowered ByGoogle News Initiative•Subscribe•Register•Information Requests•Media Centre•Cookie Policy•Privacy Policy•Press Releases•Podcast•About Us•Contact Us•Copyright © 2009-2025 All Rights Reserved • Alfred Anate Bodurin Mayaki - London, England 🇬🇧Cookies",
+            "html": null
+          }
+        ]
+      },
+      "links_found": [
+        "https://www.ibrecruitment.com/#",
+        "https://www.ibrecruitment.com/profile/",
+        "https://www.ibrecruitment.com/media/",
+        "https://www.ibrecruitment.com/hub/",
+        "https://www.ibrecruitment.com/releases/",
+        "https://www.ibrecruitment.com/news-insights/",
+        "https://www.ibrecruitment.com/blog/",
+        "https://www.ibrecruitment.com/exec-appointments/",
+        "https://www.ibrecruitment.com/index/",
+        "https://www.ibrecruitment.com/podcast/",
+        "https://www.ibrecruitment.com/the-list/",
+        "https://www.ibrecruitment.com/the-power-list-criteria/",
+        "https://www.ibrecruitment.com/the-list-2023/",
+        "https://www.ibrecruitment.com/the-list-2025/",
+        "https://www.ibrecruitment.com/editor/",
+        "https://www.ibrecruitment.com/anate/",
+        "https://www.ibrecruitment.com/comms/",
+        "https://www.ibrecruitment.com/foi/",
+        "https://www.ibrecruitment.com/contact/",
+        "https://www.ibrecruitment.com/#",
+        "https://www.ibrecruitment.com/#mediaArrow",
+        "https://www.ibrecruitment.com/l/people-moves-edmond-de-rothschild-asset-management-appoints-new-group-head-of-private-markets/",
+        "https://www.ibrecruitment.com/l/people-moves-edmond-de-rothschild-asset-management-appoints-new-group-head-of-private-markets/",
+        "https://www.ibrecruitment.com/l/people-moves-mileway-promotes-andrew-jones-and-aymeric-canivenc-to-co-heads-of-real-estate/",
+        "https://www.ibrecruitment.com/l/people-moves-mileway-promotes-andrew-jones-and-aymeric-canivenc-to-co-heads-of-real-estate/",
+        "https://www.ibrecruitment.com/l/investecs-realis-platform-appoints-joe-armstrong-as-head-of-capital-raising/",
+        "https://www.ibrecruitment.com/l/investecs-realis-platform-appoints-joe-armstrong-as-head-of-capital-raising/",
+        "https://www.ibrecruitment.com/exec-appointments/",
+        "https://www.ibrecruitment.com/l/asia-pacific-retail-transformation/",
+        "https://www.ibrecruitment.com/l/asia-pacific-retail-transformation/",
+        "https://www.ibrecruitment.com/l/news-colliers-named-asia-pacific-and-world-s-best-real-estate-adviser-for-second-straight-year/",
+        "https://www.ibrecruitment.com/l/news-colliers-named-asia-pacific-and-world-s-best-real-estate-adviser-for-second-straight-year/",
+        "https://www.ibrecruitment.com/l/dolphin-mall-store-opening/",
+        "https://www.ibrecruitment.com/l/dolphin-mall-store-opening/",
+        "https://www.ibrecruitment.com/news-insights/",
+        "https://www.ibrecruitment.com/profile/",
+        "https://www.ibrecruitment.com/releases/",
+        "https://www.ibrecruitment.com/team/",
+        "https://www.ibrecruitment.com/l/ibr-group-internationals-managing-director-selected-to-represent-career-masterclass-industry-mentorship-programme/",
+        "https://www.ibrecruitment.com/media/",
+        "https://www.ibrecruitment.com/news-insights/",
+        "https://www.ibrecruitment.com/the-list/",
+        "https://www.ibrecruitment.com/exec-appointments/",
+        "https://www.ibrecruitment.com/services/",
+        "https://www.ibrecruitment.com/user-registration/",
+        "https://www.ibrecruitment.com/foi/",
+        "https://www.ibrecruitment.com/media/",
+        "https://www.ibrecruitment.com/cookies/",
+        "https://www.ibrecruitment.com/privacy/",
+        "https://www.ibrecruitment.com/releases/",
+        "https://www.ibrecruitment.com/podcast/",
+        "https://www.ibrecruitment.com/profile/",
+        "https://www.ibrecruitment.com/contact/",
+        "https://www.ibrecruitment.com/#",
+        "https://www.ibrecruitment.com/cookies/"
+      ]
+    },
+    {
+      "url": "https://www.ibrecruitment.com/#",
+      "timestamp": "2026-01-10T20:40:42.164354",
+      "title": "Impact in Business Recruitment Blog",
+      "content": {
+        "headings": [
+          {
+            "text": "Featured People Moves",
+            "html": null
+          },
+          {
+            "text": "Inside:Energy &Infrastructure News",
+            "html": null
+          },
+          {
+            "text": "Featured News",
+            "html": null
+          },
+          {
+            "text": "Impact in Business Recruitment Blog",
+            "html": null
+          },
+          {
+            "text": "People Moves: Edmond de Rothschild Asset Management appoints new Group Head of Private markets",
+            "html": null
+          },
+          {
+            "text": "People Moves: Mileway promotes Andrew Jones and Aymeric Canivenc to Co-Heads of Real Estate",
+            "html": null
+          },
+          {
+            "text": "People Moves: Investec's REALIS platform appoints Joe Armstrong as Head of Capital Raising",
+            "html": null
+          },
+          {
+            "text": "Insights: Asia Pacific leads global retail transformation with omnichannel innovation and Gen Z influence",
+            "html": null
+          },
+          {
+            "text": "News: Colliers named Best Real Estate Adviser in Asia Pacific and worldwide",
+            "html": null
+          },
+          {
+            "text": "News: Primark to open new retail store in Miami's Dolphin Mall",
+            "html": null
+          },
+          {
+            "text": "About The Blog",
+            "html": null
+          },
+          {
+            "text": "Media Centre",
+            "html": null
+          },
+          {
+            "text": "Useful Links",
+            "html": null
+          },
+          {
+            "text": "Follow me on all platforms",
+            "html": null
+          },
+          {
+            "text": "Thank you for visiting",
+            "html": null
+          },
+          {
+            "text": "Advanced settings",
+            "html": null
+          }
+        ],
+        "content": [
+          {
+            "text": "Europe (Press Release) --Edmond de Rothschild Asset Managementannounces the appointment ofAnne-Laurence Roucher, effective January 5th, as Group Head of Private Markets. Her mission, in this strategic new role for the firm, will be to oversee the investment strategy and operations of private equity, infrastructure private debt and real estate...",
+            "html": null
+          },
+          {
+            "text": "Amsterdam, Netherlands (Press Release) --Mileway, the leading pan-European last-mile logistics real estate company, has announced the appointment ofAndrew JonesandAymeric Canivencas Co-Heads of Real Estate, effective 1 January 2026. Their appointments follow the decision of Chief Real Estate Officer,Thomas ten Bokum, to step down at the end...",
+            "html": null
+          },
+          {
+            "text": "London, England (Press Release) --Investec Bank plc(Investec), a leading international financial services provider, has appointedJoe Armstrongas Head of Capital Raising for REALIS, its real estate equity platform, effective immediately. The appointment supports Investec’s plans to scale the strategy in response to increasing demand from private...",
+            "html": null
+          },
+          {
+            "text": "Asia Pacific (Press Release) --The Asia Pacific region is setting the pace for global retail growth and innovation, according to a new report from Colliers. TheGlobal Retail: 2025 Trends & 2026 Outlook Reporthas found that despite geopolitical uncertainty and tariff risks, the Asia Pacific region remains the global pacesetter for omnichannel,...",
+            "html": null
+          },
+          {
+            "text": "Asia Pacific (Press Release) --In a recent press release,Colliers(NASDAQ, TSX: CIGI), a global diversified professional services and investment management company, has been honored as the Asia Pacific and World's Best Real Estate Adviser by the esteemed Euromoney Global Real Estate Awards.",
+            "html": null
+          },
+          {
+            "text": "Miami, FL (PR Newswire) --Primark, the international retailer offering quality fashion at value prices, is excited to announce its last grand store opening of 2025 at Dolphin Mall in Miami, Florida. This highly anticipated event marks Primark's official entrance into the Miami retail market, further strengthening the brand's growing presence...",
+            "html": null
+          },
+          {
+            "text": "Powered ByGoogle News Initiative",
+            "html": null
+          },
+          {
+            "text": "•Subscribe•Register•Information Requests•Media Centre•Cookie Policy•Privacy Policy•Press Releases•Podcast•About Us•Contact Us•",
+            "html": null
+          },
+          {
+            "text": "You can customize your cookie preferences here. Enable or disable the following categories and save your selection.",
+            "html": null
+          },
+          {
+            "text": "People Moves: Edmond de Rothschild Asset Management appoints new Group Head of Private markets09/01/2026Europe (Press Release) --Edmond de Rothschild Asset Managementannounces the appointment ofAnne-Laurence Roucher, effective January 5th, as Group Head of Private Markets. Her mission, in this strategic new role for the firm, will be to oversee the investment strategy and operations of private equity, infrastructure private debt and real estate...",
+            "html": null
+          },
+          {
+            "text": "People Moves: Mileway promotes Andrew Jones and Aymeric Canivenc to Co-Heads of Real Estate17/12/2025Amsterdam, Netherlands (Press Release) --Mileway, the leading pan-European last-mile logistics real estate company, has announced the appointment ofAndrew JonesandAymeric Canivencas Co-Heads of Real Estate, effective 1 January 2026. Their appointments follow the decision of Chief Real Estate Officer,Thomas ten Bokum, to step down at the end...",
+            "html": null
+          },
+          {
+            "text": "People Moves: Investec's REALIS platform appoints Joe Armstrong as Head of Capital Raising09/12/2025London, England (Press Release) --Investec Bank plc(Investec), a leading international financial services provider, has appointedJoe Armstrongas Head of Capital Raising for REALIS, its real estate equity platform, effective immediately. The appointment supports Investec’s plans to scale the strategy in response to increasing demand from private...",
+            "html": null
+          },
+          {
+            "text": "Insights: Asia Pacific leads global retail transformation with omnichannel innovation and Gen Z influence03/12/2025Asia Pacific (Press Release) --The Asia Pacific region is setting the pace for global retail growth and innovation, according to a new report from Colliers. TheGlobal Retail: 2025 Trends & 2026 Outlook Reporthas found that despite geopolitical uncertainty and tariff risks, the Asia Pacific region remains the global pacesetter for omnichannel,...",
+            "html": null
+          },
+          {
+            "text": "News: Colliers named Best Real Estate Adviser in Asia Pacific and worldwide26/11/2025Asia Pacific (Press Release) --In a recent press release,Colliers(NASDAQ, TSX: CIGI), a global diversified professional services and investment management company, has been honored as the Asia Pacific and World's Best Real Estate Adviser by the esteemed Euromoney Global Real Estate Awards.",
+            "html": null
+          },
+          {
+            "text": "News: Primark to open new retail store in Miami's Dolphin Mall24/11/2025Miami, FL (PR Newswire) --Primark, the international retailer offering quality fashion at value prices, is excited to announce its last grand store opening of 2025 at Dolphin Mall in Miami, Florida. This highly anticipated event marks Primark's official entrance into the Miami retail market, further strengthening the brand's growing presence...",
+            "html": null
+          }
+        ],
+        "jobs": [],
+        "contact": [
+          {
+            "text": "About The BlogPress ReleasesMeet the EditorMentorship ProgrammeMedia CentreNews & InsightsThe Power Moves AwardExecutive AppointmentsUseful LinksICO Code of ConductThe Labour Economics BlogPhotoVogue by VogueFollow me on all platformsPowered ByGoogle News Initiative•Subscribe•Register•Information Requests•Media Centre•Cookie Policy•Privacy Policy•Press Releases•Podcast•About Us•Contact Us•Copyright © 2009-2025 All Rights Reserved • Alfred Anate Bodurin Mayaki - London, England 🇬🇧Cookies",
+            "html": null
+          }
+        ]
+      },
+      "links_found": [
+        "https://www.ibrecruitment.com/#",
+        "https://www.ibrecruitment.com/profile/",
+        "https://www.ibrecruitment.com/media/",
+        "https://www.ibrecruitment.com/hub/",
+        "https://www.ibrecruitment.com/releases/",
+        "https://www.ibrecruitment.com/news-insights/",
+        "https://www.ibrecruitment.com/blog/",
+        "https://www.ibrecruitment.com/exec-appointments/",
+        "https://www.ibrecruitment.com/index/",
+        "https://www.ibrecruitment.com/podcast/",
+        "https://www.ibrecruitment.com/the-list/",
+        "https://www.ibrecruitment.com/the-power-list-criteria/",
+        "https://www.ibrecruitment.com/the-list-2023/",
+        "https://www.ibrecruitment.com/the-list-2025/",
+        "https://www.ibrecruitment.com/editor/",
+        "https://www.ibrecruitment.com/anate/",
+        "https://www.ibrecruitment.com/comms/",
+        "https://www.ibrecruitment.com/foi/",
+        "https://www.ibrecruitment.com/contact/",
+        "https://www.ibrecruitment.com/#",
+        "https://www.ibrecruitment.com/#mediaArrow",
+        "https://www.ibrecruitment.com/l/people-moves-edmond-de-rothschild-asset-management-appoints-new-group-head-of-private-markets/",
+        "https://www.ibrecruitment.com/l/people-moves-edmond-de-rothschild-asset-management-appoints-new-group-head-of-private-markets/",
+        "https://www.ibrecruitment.com/l/people-moves-mileway-promotes-andrew-jones-and-aymeric-canivenc-to-co-heads-of-real-estate/",
+        "https://www.ibrecruitment.com/l/people-moves-mileway-promotes-andrew-jones-and-aymeric-canivenc-to-co-heads-of-real-estate/",
+        "https://www.ibrecruitment.com/l/investecs-realis-platform-appoints-joe-armstrong-as-head-of-capital-raising/",
+        "https://www.ibrecruitment.com/l/investecs-realis-platform-appoints-joe-armstrong-as-head-of-capital-raising/",
+        "https://www.ibrecruitment.com/exec-appointments/",
+        "https://www.ibrecruitment.com/l/asia-pacific-retail-transformation/",
+        "https://www.ibrecruitment.com/l/asia-pacific-retail-transformation/",
+        "https://www.ibrecruitment.com/l/news-colliers-named-asia-pacific-and-world-s-best-real-estate-adviser-for-second-straight-year/",
+        "https://www.ibrecruitment.com/l/news-colliers-named-asia-pacific-and-world-s-best-real-estate-adviser-for-second-straight-year/",
+        "https://www.ibrecruitment.com/l/dolphin-mall-store-opening/",
+        "https://www.ibrecruitment.com/l/dolphin-mall-store-opening/",
+        "https://www.ibrecruitment.com/news-insights/",
+        "https://www.ibrecruitment.com/profile/",
+        "https://www.ibrecruitment.com/releases/",
+        "https://www.ibrecruitment.com/team/",
+        "https://www.ibrecruitment.com/l/ibr-group-internationals-managing-director-selected-to-represent-career-masterclass-industry-mentorship-programme/",
+        "https://www.ibrecruitment.com/media/",
+        "https://www.ibrecruitment.com/news-insights/",
+        "https://www.ibrecruitment.com/the-list/",
+        "https://www.ibrecruitment.com/exec-appointments/",
+        "https://www.ibrecruitment.com/services/",
+        "https://www.ibrecruitment.com/user-registration/",
+        "https://www.ibrecruitment.com/foi/",
+        "https://www.ibrecruitment.com/media/",
+        "https://www.ibrecruitment.com/cookies/",
+        "https://www.ibrecruitment.com/privacy/",
+        "https://www.ibrecruitment.com/releases/",
+        "https://www.ibrecruitment.com/podcast/",
+        "https://www.ibrecruitment.com/profile/",
+        "https://www.ibrecruitment.com/contact/",
+        "https://www.ibrecruitment.com/#",
+        "https://www.ibrecruitment.com/cookies/"
+      ]
+    },
+    {
+      "url": "https://www.ibrecruitment.com/profile/",
+      "timestamp": "2026-01-10T20:40:43.569005",
+      "title": "What's New? | Impact in Business Recruitment Blog",
+      "content": {
+        "headings": [
+          {
+            "text": "Sectoral Executive Appointments",
+            "html": null
+          },
+          {
+            "text": "Our Mission",
+            "html": null
+          },
+          {
+            "text": "Who We Serve",
+            "html": null
+          },
+          {
+            "text": "Our Values",
+            "html": null
+          },
+          {
+            "text": "What Sets Us Apart",
+            "html": null
+          },
+          {
+            "text": "About The Blog",
+            "html": null
+          },
+          {
+            "text": "Media Centre",
+            "html": null
+          },
+          {
+            "text": "Useful Links",
+            "html": null
+          },
+          {
+            "text": "Follow me on all platforms",
+            "html": null
+          },
+          {
+            "text": "Advanced settings",
+            "html": null
+          }
+        ],
+        "content": [
+          {
+            "text": "What's New On The Blog",
+            "html": null
+          },
+          {
+            "text": "The Impact in Business Recruitment Blog originally began as a specialist executive search and talent advisory firm dedicated to delivering world-class recruitment solutions across the energy, infrastructure, and real estate sectors. With a reputation built on trust, discretion, and performance, we connect leading organisations with exceptional professionals who drive impact, innovation, and long-term growth.",
+            "html": null
+          },
+          {
+            "text": "Founded with a vision to redefine industry standards in executive search, we're pleased to be offering our in-depth sector knowledge, global networks, and rigorous approach to those in the talent identification space. From C-suite appointments to senior management roles, we support businesses through every stage of their talent acquisition journey.",
+            "html": null
+          },
+          {
+            "text": "To empower our clients with the leadership and expertise they need to shape the future of sustainable infrastructure, global energy systems, and real estate investment.",
+            "html": null
+          },
+          {
+            "text": "We partner with institutional investors, private equity firms, asset managers, project developers, and government agencies across global markets. Whether you're building a new leadership team, navigating succession planning, or seeking market intelligence, IB Recruitment is your trusted advisor.",
+            "html": null
+          },
+          {
+            "text": "Integrity: We operate with complete transparency and uphold the highest ethical standards in all our interactions.",
+            "html": null
+          },
+          {
+            "text": "Excellence: We commit to delivering superior service and outcomes, underpinned by meticulous research and industry insight.",
+            "html": null
+          },
+          {
+            "text": "Collaboration: We work in close partnership with clients and candidates alike, fostering long-term relationships that create shared success.",
+            "html": null
+          },
+          {
+            "text": "Innovation: We embrace data, technology, and diversity to stay ahead of the curve in a rapidly evolving global landscape.",
+            "html": null
+          },
+          {
+            "text": "Sector-Specific Expertise: Deep industry focus ensures we understand the nuances and demands of each market.",
+            "html": null
+          },
+          {
+            "text": "Global Reach, Local Knowledge: Our international network enables access to diverse talent pools while maintaining cultural relevance.",
+            "html": null
+          },
+          {
+            "text": "Proven Track Record: A history of successful placements with some of the world's most respected companies and institutions.",
+            "html": null
+          },
+          {
+            "text": "-Alfred Anate Mayaki",
+            "html": null
+          },
+          {
+            "text": "Powered ByGoogle News Initiative",
+            "html": null
+          },
+          {
+            "text": "•Subscribe•Register•Information Requests•Media Centre•Cookie Policy•Privacy Policy•Press Releases•Podcast•About Us•Contact Us•",
+            "html": null
+          },
+          {
+            "text": "You can customize your cookie preferences here. Enable or disable the following categories and save your selection.",
+            "html": null
+          }
+        ],
+        "jobs": [],
+        "contact": [
+          {
+            "text": "About The BlogPress ReleasesMeet the EditorMentorship ProgrammeMedia CentreNews & InsightsThe Power Moves AwardExecutive AppointmentsUseful LinksICO Code of ConductThe Labour Economics BlogPhotoVogue by VogueFollow me on all platformsPowered ByGoogle News Initiative•Subscribe•Register•Information Requests•Media Centre•Cookie Policy•Privacy Policy•Press Releases•Podcast•About Us•Contact Us•Copyright © 2009-2025 All Rights Reserved • Alfred Anate Bodurin Mayaki - London, England 🇬🇧Cookies",
+            "html": null
+          }
+        ]
+      },
+      "links_found": [
+        "https://www.ibrecruitment.com/home/",
+        "https://www.ibrecruitment.com/profile/#",
+        "https://www.ibrecruitment.com/profile/",
+        "https://www.ibrecruitment.com/media/",
+        "https://www.ibrecruitment.com/hub/",
+        "https://www.ibrecruitment.com/releases/",
+        "https://www.ibrecruitment.com/news-insights/",
+        "https://www.ibrecruitment.com/blog/",
+        "https://www.ibrecruitment.com/exec-appointments/",
+        "https://www.ibrecruitment.com/index/",
+        "https://www.ibrecruitment.com/podcast/",
+        "https://www.ibrecruitment.com/the-list/",
+        "https://www.ibrecruitment.com/the-power-list-criteria/",
+        "https://www.ibrecruitment.com/the-list-2023/",
+        "https://www.ibrecruitment.com/the-list-2025/",
+        "https://www.ibrecruitment.com/editor/",
+        "https://www.ibrecruitment.com/anate/",
+        "https://www.ibrecruitment.com/comms/",
+        "https://www.ibrecruitment.com/foi/",
+        "https://www.ibrecruitment.com/contact/",
+        "https://www.ibrecruitment.com/profile/#",
+        "https://www.ibrecruitment.com/anate/",
+        "https://www.ibrecruitment.com/profile/",
+        "https://www.ibrecruitment.com/releases/",
+        "https://www.ibrecruitment.com/team/",
+        "https://www.ibrecruitment.com/l/ibr-group-internationals-managing-director-selected-to-represent-career-masterclass-industry-mentorship-programme/",
+        "https://www.ibrecruitment.com/media/",
+        "https://www.ibrecruitment.com/news-insights/",
+        "https://www.ibrecruitment.com/the-list/",
+        "https://www.ibrecruitment.com/exec-appointments/",
+        "https://www.ibrecruitment.com/services/",
+        "https://www.ibrecruitment.com/user-registration/",
+        "https://www.ibrecruitment.com/foi/",
+        "https://www.ibrecruitment.com/media/",
+        "https://www.ibrecruitment.com/cookies/",
+        "https://www.ibrecruitment.com/privacy/",
+        "https://www.ibrecruitment.com/releases/",
+        "https://www.ibrecruitment.com/podcast/",
+        "https://www.ibrecruitment.com/profile/",
+        "https://www.ibrecruitment.com/contact/",
+        "https://www.ibrecruitment.com/profile/#",
+        "https://www.ibrecruitment.com/cookies/"
+      ]
+    },
+    {
+      "url": "https://www.ibrecruitment.com/media/",
+      "timestamp": "2026-01-10T20:40:44.863365",
+      "title": "Media Centre | Impact in Business Recruitment Blog",
+      "content": {
+        "headings": [
+          {
+            "text": "Media Centre",
+            "html": null
+          },
+          {
+            "text": "About The Blog",
+            "html": null
+          },
+          {
+            "text": "Media Centre",
+            "html": null
+          },
+          {
+            "text": "Useful Links",
+            "html": null
+          },
+          {
+            "text": "Follow me on all platforms",
+            "html": null
+          },
+          {
+            "text": "Advanced settings",
+            "html": null
+          }
+        ],
+        "content": [
+          {
+            "text": "The Recruitment \nMedia Centre receives brand new content every day of the week. To navigate around the RMC, simply select the desired option that interests you by reviewing the menu. Here, with the use of the search bar, you should be able to find the required resources you need. These resources are presented in order to help you on your content journey. Whether you are an entry-level professional or an experienced CEO, we hope you enjoy your experience in the RMC.",
+            "html": null
+          },
+          {
+            "text": "Powered ByGoogle News Initiative",
+            "html": null
+          },
+          {
+            "text": "•Subscribe•Register•Information Requests•Media Centre•Cookie Policy•Privacy Policy•Press Releases•Podcast•About Us•Contact Us•",
+            "html": null
+          },
+          {
+            "text": "You can customize your cookie preferences here. Enable or disable the following categories and save your selection.",
+            "html": null
+          }
+        ],
+        "jobs": [],
+        "contact": [
+          {
+            "text": "About The BlogPress ReleasesMeet the EditorMentorship ProgrammeMedia CentreNews & InsightsThe Power Moves AwardExecutive AppointmentsUseful LinksICO Code of ConductThe Labour Economics BlogPhotoVogue by VogueFollow me on all platformsPowered ByGoogle News Initiative•Subscribe•Register•Information Requests•Media Centre•Cookie Policy•Privacy Policy•Press Releases•Podcast•About Us•Contact Us•Copyright © 2009-2025 All Rights Reserved • Alfred Anate Bodurin Mayaki - London, England 🇬🇧Cookies",
+            "html": null
+          }
+        ]
+      },
+      "links_found": [
+        "https://www.ibrecruitment.com/home/",
+        "https://www.ibrecruitment.com/media/#",
+        "https://www.ibrecruitment.com/profile/",
+        "https://www.ibrecruitment.com/media/",
+        "https://www.ibrecruitment.com/hub/",
+        "https://www.ibrecruitment.com/releases/",
+        "https://www.ibrecruitment.com/news-insights/",
+        "https://www.ibrecruitment.com/blog/",
+        "https://www.ibrecruitment.com/exec-appointments/",
+        "https://www.ibrecruitment.com/index/",
+        "https://www.ibrecruitment.com/podcast/",
+        "https://www.ibrecruitment.com/the-list/",
+        "https://www.ibrecruitment.com/the-power-list-criteria/",
+        "https://www.ibrecruitment.com/the-list-2023/",
+        "https://www.ibrecruitment.com/the-list-2025/",
+        "https://www.ibrecruitment.com/editor/",
+        "https://www.ibrecruitment.com/anate/",
+        "https://www.ibrecruitment.com/comms/",
+        "https://www.ibrecruitment.com/foi/",
+        "https://www.ibrecruitment.com/contact/",
+        "https://www.ibrecruitment.com/media/#",
+        "https://www.ibrecruitment.com/the-list/",
+        "https://www.ibrecruitment.com/index/",
+        "https://www.ibrecruitment.com/blog/",
+        "https://www.ibrecruitment.com/exec-appointments/",
+        "https://www.ibrecruitment.com/news-insights/",
+        "https://www.ibrecruitment.com/hub/",
+        "https://www.ibrecruitment.com/releases/",
+        "https://www.ibrecruitment.com/podcast/",
+        "https://www.ibrecruitment.com/profile/",
+        "https://www.ibrecruitment.com/releases/",
+        "https://www.ibrecruitment.com/team/",
+        "https://www.ibrecruitment.com/l/ibr-group-internationals-managing-director-selected-to-represent-career-masterclass-industry-mentorship-programme/",
+        "https://www.ibrecruitment.com/media/",
+        "https://www.ibrecruitment.com/news-insights/",
+        "https://www.ibrecruitment.com/the-list/",
+        "https://www.ibrecruitment.com/exec-appointments/",
+        "https://www.ibrecruitment.com/services/",
+        "https://www.ibrecruitment.com/user-registration/",
+        "https://www.ibrecruitment.com/foi/",
+        "https://www.ibrecruitment.com/media/",
+        "https://www.ibrecruitment.com/cookies/",
+        "https://www.ibrecruitment.com/privacy/",
+        "https://www.ibrecruitment.com/releases/",
+        "https://www.ibrecruitment.com/podcast/",
+        "https://www.ibrecruitment.com/profile/",
+        "https://www.ibrecruitment.com/contact/",
+        "https://www.ibrecruitment.com/media/#",
+        "https://www.ibrecruitment.com/cookies/"
+      ]
+    },
+    {
+      "url": "https://www.ibrecruitment.com/hub/",
+      "timestamp": "2026-01-10T20:40:46.494372",
+      "title": "Reporting Hub | Impact in Business Recruitment Blog",
+      "content": {
+        "headings": [
+          {
+            "text": "The Reporting Hub",
+            "html": null
+          },
+          {
+            "text": "About The Blog",
+            "html": null
+          },
+          {
+            "text": "Media Centre",
+            "html": null
+          },
+          {
+            "text": "Useful Links",
+            "html": null
+          },
+          {
+            "text": "Follow me on all platforms",
+            "html": null
+          },
+          {
+            "text": "A Hub for ESG Reporting",
+            "html": null
+          },
+          {
+            "text": "Amundi S.A.",
+            "html": null
+          },
+          {
+            "text": "Anglian Water",
+            "html": null
+          },
+          {
+            "text": "ANZ Limited",
+            "html": null
+          },
+          {
+            "text": "ARC Resources Ltd",
+            "html": null
+          },
+          {
+            "text": "Ardian Infrastructure",
+            "html": null
+          },
+          {
+            "text": "Avison Young",
+            "html": null
+          },
+          {
+            "text": "Aviva Plc",
+            "html": null
+          },
+          {
+            "text": "Balfour Beatty",
+            "html": null
+          },
+          {
+            "text": "BNP Paribas Real Estate",
+            "html": null
+          },
+          {
+            "text": "Boeing Company",
+            "html": null
+          },
+          {
+            "text": "Candriam",
+            "html": null
+          },
+          {
+            "text": "Chemring Group Plc",
+            "html": null
+          },
+          {
+            "text": "Churchill Retirement Plc",
+            "html": null
+          },
+          {
+            "text": "Citigroup, Inc.",
+            "html": null
+          },
+          {
+            "text": "ClearVue Technologies",
+            "html": null
+          },
+          {
+            "text": "Credit Suisse Group AG",
+            "html": null
+          },
+          {
+            "text": "Cundall",
+            "html": null
+          },
+          {
+            "text": "Cushman & Wakefield",
+            "html": null
+          },
+          {
+            "text": "Delek US Holdings",
+            "html": null
+          },
+          {
+            "text": "Digicel Group",
+            "html": null
+          },
+          {
+            "text": "Digital 9 Infrastructure Plc",
+            "html": null
+          },
+          {
+            "text": "Digital Realty Trust, Inc.",
+            "html": null
+          },
+          {
+            "text": "Duke Energy Corporation",
+            "html": null
+          },
+          {
+            "text": "Ecora Resources Plc",
+            "html": null
+          },
+          {
+            "text": "EG Group",
+            "html": null
+          },
+          {
+            "text": "Enel SpA",
+            "html": null
+          },
+          {
+            "text": "Energy Impact Partners",
+            "html": null
+          },
+          {
+            "text": "Enfinium",
+            "html": null
+          },
+          {
+            "text": "E.ON",
+            "html": null
+          },
+          {
+            "text": "Equnior",
+            "html": null
+          },
+          {
+            "text": "Europa Capital",
+            "html": null
+          },
+          {
+            "text": "Goldman Sachs",
+            "html": null
+          },
+          {
+            "text": "Greencoat Renewables Plc",
+            "html": null
+          },
+          {
+            "text": "Harbour Energy Plc",
+            "html": null
+          },
+          {
+            "text": "HICL Infrastructure Plc",
+            "html": null
+          },
+          {
+            "text": "High Speed 1 Ltd",
+            "html": null
+          },
+          {
+            "text": "Hines",
+            "html": null
+          },
+          {
+            "text": "Iberdrola S.A.",
+            "html": null
+          },
+          {
+            "text": "Immobel Group",
+            "html": null
+          },
+          {
+            "text": "Impax Asset Management",
+            "html": null
+          },
+          {
+            "text": "Inspired Plc",
+            "html": null
+          },
+          {
+            "text": "Jones Lang LaSalle",
+            "html": null
+          },
+          {
+            "text": "JP Morgan Chase & Co.",
+            "html": null
+          },
+          {
+            "text": "KKR & Co. Inc",
+            "html": null
+          },
+          {
+            "text": "La Francaise",
+            "html": null
+          },
+          {
+            "text": "Land Securities Group Plc",
+            "html": null
+          },
+          {
+            "text": "Lockheed Martin Corporation",
+            "html": null
+          },
+          {
+            "text": "M Group Services",
+            "html": null
+          },
+          {
+            "text": "Morgan Stanley",
+            "html": null
+          },
+          {
+            "text": "Murphy Oil Corporation",
+            "html": null
+          },
+          {
+            "text": "Neometals",
+            "html": null
+          },
+          {
+            "text": "Network Rail",
+            "html": null
+          },
+          {
+            "text": "Newcore Capital Management",
+            "html": null
+          },
+          {
+            "text": "New York Life Investments",
+            "html": null
+          },
+          {
+            "text": "NextEra Energy, Inc.",
+            "html": null
+          },
+          {
+            "text": "Nuveen Real Estate",
+            "html": null
+          },
+          {
+            "text": "One Olympia",
+            "html": null
+          },
+          {
+            "text": "ONE Swiss Bank SA",
+            "html": null
+          },
+          {
+            "text": "Ørsted",
+            "html": null
+          },
+          {
+            "text": "Otis",
+            "html": null
+          },
+          {
+            "text": "Partners Group",
+            "html": null
+          },
+          {
+            "text": "PetroChina Company Limited",
+            "html": null
+          },
+          {
+            "text": "Pictet Asset Management",
+            "html": null
+          },
+          {
+            "text": "PIMCO",
+            "html": null
+          },
+          {
+            "text": "Prudential Financial, Inc.",
+            "html": null
+          },
+          {
+            "text": "Redrow Plc",
+            "html": null
+          },
+          {
+            "text": "Renewable Energy Group, Inc.",
+            "html": null
+          },
+          {
+            "text": "Repsol, S.A.",
+            "html": null
+          },
+          {
+            "text": "RWE",
+            "html": null
+          },
+          {
+            "text": "Saudi Aramco",
+            "html": null
+          },
+          {
+            "text": "Savills Plc",
+            "html": null
+          },
+          {
+            "text": "Schneider Electric",
+            "html": null
+          },
+          {
+            "text": "Severn Trent Plc",
+            "html": null
+          },
+          {
+            "text": "Shell Plc",
+            "html": null
+          },
+          {
+            "text": "Siemens Energy",
+            "html": null
+          },
+          {
+            "text": "SK Inc.",
+            "html": null
+          },
+          {
+            "text": "SNC-Lavalin Group",
+            "html": null
+          },
+          {
+            "text": "Societe Generale Group",
+            "html": null
+          },
+          {
+            "text": "Springfield Properties Plc",
+            "html": null
+          },
+          {
+            "text": "Stanhope Plc",
+            "html": null
+          },
+          {
+            "text": "SSE Plc",
+            "html": null
+          },
+          {
+            "text": "SYSTRA Group",
+            "html": null
+          },
+          {
+            "text": "Tensar Corporation",
+            "html": null
+          },
+          {
+            "text": "Tesla, Inc.",
+            "html": null
+          },
+          {
+            "text": "Tikehau Capital",
+            "html": null
+          },
+          {
+            "text": "TotalEnergies",
+            "html": null
+          },
+          {
+            "text": "Tullow Oil Plc",
+            "html": null
+          },
+          {
+            "text": "UK Infrastructure Bank",
+            "html": null
+          },
+          {
+            "text": "Vantage Infrastructure",
+            "html": null
+          },
+          {
+            "text": "Vattenfall",
+            "html": null
+          },
+          {
+            "text": "Advanced settings",
+            "html": null
+          }
+        ],
+        "content": [
+          {
+            "text": "Welcome to the Environmental, Social, and Governance (ESG) Reporting Hub. What will users find the Reporting Hub useful for? I am in the process of promoting the cause of ESG transparency by aggregating a long list of annual sustainability reports from leadingenergy and infrastructureservice providers. Reporting, particularly in the most recent year for listed equities, is largely accomplished through ESG disclosure.",
+            "html": null
+          },
+          {
+            "text": "Primarily, users will be able to read and access corporate publications and annual reports provided by prominent infrastructure companies and ESG office functions (within both publicly-listed and privately-owned entities). IBR Group International will share these in the below index item, ideally with a view to gaining a more widespread audience as well as imparting a more processual understanding of the practice of ESG. If you would like to download any of these reports, please do so by using the information provided in the index. For user assistance, or if your organisation wishes to be included as part of the Hub, please contact me onreports@ibrecruitment.com.",
+            "html": null
+          },
+          {
+            "text": "Click item to reveal further information",
+            "html": null
+          },
+          {
+            "text": "Amundi is a publically owned investment manager. The firm engages in the asset management business. The company provides a range of retail products and solutions through quasi-exclusive distribution agreements with the retail banking networks of the Crédit Agricole and the Société Générale groups in France; and through international partner networks and joint ventures outside France, as well as through third-party distributors primarily in France, rest of Europe, and Asia. It also offers management and advisory services for various pension funds, insurers, and sovereigns; and treasury management and employee savings solutions for corporate customers through global relationship managers supported by sales and marketing staff in 30 countries. It was formerly known as Amundi Group. The company was founded in 1982 and is headquartered in Paris, France. Amundi Group operates as a subsidiary of Credit Agricole S.A.",
+            "html": null
+          },
+          {
+            "text": "Anglian Water Services Ltd (\"Anglian Water\") is the largest water and \nwater recycling company in England and Wales by geographic area. The company supplies water and water recycling services to almost seven million people\n in the East of England and\n Hartlepool.  The Anglian Water region includes water and water \nrecycling centres (sewage treatment works), reservoirs and networks \nstretching from the Humber in the north to the Thames in the south, from\n Northampton in the west across to the East Coast. The\n company was formed in 1989 and its headquarters are based in \nHuntingdon, Cambridgeshire.",
+            "html": null
+          },
+          {
+            "text": "Australia and New Zealand Banking Group Limited provides various banking\n and financial products and services in Australia and internationally. \nIts Australia Retail and Commercial division offers various products and\n services to consumer customers through the branch network, mortgage \nspecialists, contact centers, self-service channels, and third-party \nbrokers, as well as financial planning services. It also provides asset \nfinancing for medium to large commercial customers, agribusiness \ncustomers, small business owners, high net worth individuals, and family\n groups. The company's Institutional division offers documentary trade, \nsupply chain and commodity financing, cash management solutions, \ndeposits, payments, and clearing services; loan syndication, loan \nstructuring and execution, project and export finance, debt structuring \nand acquisition finance, and corporate advisory services, as well as \nloan products; and risk management services. It serves governments, and \nglobal institutional and corporate customers. The company's New Zealand \ndivision provides banking and wealth management services to consumer, \nand private banking and small business banking customers through its \nInternet and app-based digital solutions, network of branches, mortgage \nspecialists, relationship managers, and contact centers; and traditional\n relationship banking and financial solutions for medium to large \nenterprises, agricultural business segments, and government and \ngovernment-related entities. Its Pacific division offers retail \nproducts, and traditional relationship banking and financial solutions. \nThis division serves retail customers, small to medium-sized \nenterprises, institutional customers, and governments. Australia and New\n Zealand Banking Group Limited has a strategic partnership with \nCashrewards Limited to launch Cashrewards MaxTM for Australia and New \nZealand consumer credit and debit card holders. The company was founded \nin 1835 and is headquartered in Melbourne, Australia.",
+            "html": null
+          },
+          {
+            "text": "ARC Resources Ltd. explores, develops, and produces crude oil, natural \ngas, and natural gas liquids in Canada. The company holds interests in \nthe Montney properties located in northeast British Columbia and \nnorthern Alberta; and Pembina Cardium properties in central Alberta. As \nof December 31, 2020, it had proved plus probable reserves of 929 \nmillions of barrels of oil equivalent. ARC Resources Ltd. was founded in\n 1996 and is headquartered in Calgary, Canada.",
+            "html": null
+          },
+          {
+            "text": "Ardian invests in infrastructure assets across the transport, energy, renewables and telecoms sectors to create a well-diversified portfolio of vital economic assets for the communities. Ardian is a major energy player and is active in the full energy supply chain with a strong commitment to sustainable energy. Ardian Infrastructure was established in 1996 andhas more than 60 investment professionals based in Paris, Frankfurt, London, Madrid, Milan, Luxembourg, New York and Santiago de Chile.",
+            "html": null
+          },
+          {
+            "text": "Avison Young is the largest principal-owned and led commercial real estate services firm in the\nworld. Avison Young offers a full range of real estate services (including brokerage leasing;\nbrokerage sales and capital markets; property, facility, and project management; consulting;\nadvisory; asset management; and investment management) to occupiers, owners, and investors in\noffice, retail, industrial, multifamily, hospitality and other types of commercial real estate.\nAvison Young was formed through the combination of three independent Canadian real\nestate services firms that operated under Avison Young and predecessor brands for more than\n40 years. Avison Young has grown organically and through the recruitment of real estate\nprofessionals and strategic acquisitions (including the 2019 acquisition of GVA Grimley\nLimited, a London-based real estate advisory firm). Avison Young now has approximately 5,000\nreal estate professionals in over 100 offices (including over 20 licensed affiliate offices) in over\n15 countries in North America, Europe, and Asia. Avison Young was established in 2008 and is headquartered in Toronto, Canada.",
+            "html": null
+          },
+          {
+            "text": "Aviva plc provides various insurance, retirement, investment, and savings products in the United Kingdom, Ireland, Canada, and internationally. The company offers life insurance, long-term health and accident insurance, savings, pension, and annuity products, as well as pension fund business and lifetime mortgage products. It also provides insurance cover to individuals, small and medium-sized businesses for risks associated with motor vehicles and medical expenses, as well as property and liability, such as employers' and professional indemnity liabilities. In addition, the company provides investment management services for institutional pension fund mandates; and manages various retail investment products, including investment funds, unit trusts, open-ended investment companies, and individual savings accounts for third-party financial institutions, pension funds, public sector organizations, investment professionals, and private investors. It markets its products through a network of insurance brokers, as well as MyAviva platform. The company was formerly known as CGNU plc and changed its name to Aviva plc in July 2002. Aviva plc was founded in 1696 and is headquartered in London, the United Kingdom.",
+            "html": null
+          },
+          {
+            "text": "Balfour Beatty plc finances, designs, develops, builds, and maintains infrastructure in the United Kingdom, the United States, and internationally. It operates through three segments: Construction Services, Support Services, and Infrastructure Investments. The Construction Services segment provides civil engineering, building, ground engineering, mechanical and electrical, refurbishment, fit-out, and rail engineering services. The Support Services segment designs, upgrades, manages, and maintains water, gas, and electricity networks, as well as rail and highways. The Infrastructure Investments segment is involved in the acquisition, operation, and disposal of infrastructure assets, such as roads, hospitals, student accommodation, military housing, offshore transmission networks, waste and biomass, and other concessions. This segment also develops and finances public and private infrastructure projects. The company serves government departments and agencies, regulated utilities, and private sector organizations. Balfour Beatty plc was founded in 1909 and is based in London, the United Kingdom.",
+            "html": null
+          },
+          {
+            "text": "BNP Paribas SA engages in the provision of banking and financial services in Europe, North America, Asia Pacific, and internationally. It operates through three divisions: Corporate & Institutional Banking; Investment & Protection Services; and Commercial, Personal Banking & Services. The Corporate & Institutional Banking division offers capital markets, securities services, investment banking, financing, risk management, cash management, and financial advisory services for corporate clients, and institutional investors. The Investment & Protection Services division involved in protection, savings, investment, asset management, wealth management, and real estate services to support individuals, professionals, corporate clients, and institutions. The Commercial, Personal Banking & Services division financing and leasing services, financing of individuals, and digital banking services, as well as current and savings account products, equipment leasing and financing solutions, and consumer loans. The company was formerly known as Banque Nationale de Paris and changed its name to BNP Paribas SA in May 2000. BNP Paribas SA was founded in 1822 and is headquartered in Paris, France.",
+            "html": null
+          },
+          {
+            "text": "Download 2021 Report:here",
+            "html": null
+          },
+          {
+            "text": "Candriam is a global multi-expert asset manager and a recognized pioneer and leader in sustainable investing. Candriam has approximately EUR 130 billion of assets under management[1] with a team of more than 500 professionals. It operates management offices in Luxembourg, Brussels, Paris, and London, serving clients in more than 20 countries on 4 continents. Candriam offers innovative and diversified investment solutions in bonds, equities, absolute performance strategies and asset allocation.",
+            "html": null
+          },
+          {
+            "text": "Chemring Group PLC supplies countermeasures, sensors, and energetic solutions to aerospace, defense, and security industries in the United States, the United Kingdom, Norway, Australia, and internationally. The company operates through two segments, Sensors & Information and Countermeasures & Energetics. The Sensors & Information segment develops and manufactures electronic countermeasures; chemical and biological threat detection equipment; and explosive hazard detection equipment, as well as provides consulting and technology services to solve security-critical issues. The Countermeasures & Energetics segment offers expendable countermeasures for air, sea, and land platforms; cartridge/propellant actuated devices; pyrotechnic devices for satellite launch and deployment; missile components; separation sub-systems; actuators; and energetic materials, as well as aircrew egress and safety systems. Chemring Group PLC was incorporated in 1905 and is headquartered in Romsey, the United Kingdom.",
+            "html": null
+          },
+          {
+            "text": "Download 2022 Reporthere",
+            "html": null
+          },
+          {
+            "text": "No Description Available",
+            "html": null
+          },
+          {
+            "text": "ClearVue Technologies Limited, together with its subsidiaries, provides \nbuilding integrated photovoltaic solutions in Australia. It offers \nCLEARVUEPV, a solar window; SMARTVUEPV, a self-powered smart autonomous \nwindow; and ARTPV, an imaged solar window. The company was formerly \nknown as Tropiglas Technologies Limited. ClearVue Technologies Limited \nwas incorporated in 1995 and is headquartered in West Perth, Australia.",
+            "html": null
+          },
+          {
+            "text": "Credit Suisse Group AG, together with its subsidiaries, provides various financial services in Switzerland, Europe, the Middle East, Africa, the Americas, and Asia Pacific. The company offers wealth management solutions, including investment advice and discretionary asset management services; risk management solutions, such as managed investment products; and wealth planning, succession planning, and trust services. It also provides financing and lending solutions, including consumer credit and real estate mortgage lending, real asset lending relating to ship, and aviation financing for UHNWI; standard and structured hedging, and lombard lending solutions, as well as collateral trading services; and investment banking solutions, such as global securities sales, trading and execution, capital raising, and advisory services. In addition, the company offers banking solutions, such as payments, accounts, debit and credit cards, and product bundles; asset management products; equity and debt underwriting, and advisory services; cash equities, equity derivatives, and convertibles, as well as prime services; and fixed income products, such as credit, securitized, macro, emerging markets, financing, structured credit, and other products. Further, it provides HOLT, a framework for assessing the performance of approximately 20,000 companies; and equity and fixed income research services. The company serves private and institutional clients; ultra-high-net-worth individuals, high-net-worth individuals, and affluent and retail clients; corporate clients, small and medium-sized enterprises, external asset managers, financial institutions, and commodity traders; and pension funds, hedge funds, governments, foundations and endowments, corporations, entrepreneurs, private individuals, financial sponsors, and sovereign clients. As of December 31, 2021, it operated through a network of 311 offices and branches. The company was founded in 1856 and is based in Zurich, Switzerland.",
+            "html": null
+          },
+          {
+            "text": "Cundall is a global, independent, multi-disciplinary consultancy delivering sustainable engineering and design solutions across the built environment. Cundall's fundamental vision remains unchanged - to provide professional and high-quality solutions to satisfy each client's unique needs. The founders - Michael Burch, Rick Carr, Geoffrey Cundall, David Gandy and Bernard Johnston - shared a common vision for Cundall: that it would become a leading multi-disciplinary engineering consultancy which sets industry standards. Founded in Newcastle and Edinburgh, the partnerships expansion was rapid and a London office soon followed. Early clients included North British Properties plc and Equity and Law Life Assurance Society. We still work with the successors to these organisations today - a testament to the fact that our reputation has been built on the foundations of client service. Since 2003 Cundall has evolved from a UK-based multi-disciplinary practice of consulting engineers with three offices to a worldwide organisation with 20 offices in 11 countries offering world-leading sustainability advice. This has been achieved through a strategy of organic growth; visionary both in terms of both staff empowerment and business development. For further information regarding our international presence please visit our locations. In 2011 we celebrated our 35th birthday. Looking ahead we aim to build on our past achievements, consolidate our current successes and continue to provide value for the long term. Cundall was established in 1976 and is headquartered in Newcastle, in the United Kingdom.",
+            "html": null
+          },
+          {
+            "text": "Cushman & Wakefield plc, together with its subsidiaries, provides \ncommercial real estate services under the Cushman & Wakefield brand \nin the United States, Australia, the United Kingdom, and \ninternationally. The company operates through Americas; Europe, Middle \nEast, and Africa; and Asia Pacific segments. It offers integrated \nfacilities management, project and development, portfolio \nadministration, transaction management, and strategic consulting \nservices; property management services, including client accounting, \nengineering and operations, lease compliance administration, project and\n development, and sustainability services; and self-performed facilities\n services, which include janitorial, maintenance, critical environment \nmanagement, landscaping, and office services. The company also provides \nowner representation and tenant representation leasing services; capital\n market services, including investment sales and equity, and debt and \nstructured financing for real estate purchase and sales transactions; \nand appraisal management, investment management, valuation advisory, \nportfolio advisory, diligence advisory, dispute analysis and litigation \nsupport, financial reporting, and property and/or portfolio valuation \nservices on real estate debt and equity decisions. Cushman & \nWakefield has strategic partnerships with Vanke Service (Hong Kong) Co.,\n Limited. It serves real estate owners and occupiers, such as tenants, \ninvestors, and multi-national corporations. Cushman & Wakefield plc \nwas founded in 1784 and is based in London, the United Kingdom.",
+            "html": null
+          },
+          {
+            "text": "Delek US Holdings, Inc. engages in the integrated downstream energy business in the United States. The company operates through three segments: Refining, Logistics, and Retail. The Refining segment processes crude oil and other feedstock for the manufacture of various grades of gasoline, diesel fuel, aviation fuel, asphalt, and other petroleum-based products that are distributed through owned and third-party product terminal. It owns and operates four independent refineries located in Tyler, Texas; El Dorado, Arkansas; Big Spring, Texas; and Krotz Springs, Louisiana, as well as three biodiesel facilities in Crossett, Arkansas, Cleburne, Texas, and New Albany. The Logistics segment gathers, transports, and stores crude oil, intermediate, and refined products; and markets, distributes, transports, and stores refined products for third parties. It owns or leases capacity on approximately 400 miles of crude oil transportation pipelines, approximately 450 miles of refined product pipelines, an approximately 900-mile crude oil gathering system, and associated crude oil storage tanks with an aggregate of approximately 10.2 million barrels of active shell capacity; and owns and operates ten light product distribution terminals, as well as markets light products using third-party terminals. The Retail segment owns and leases 248 convenience store sites located primarily in West Texas and New Mexico. Its convenience stores offer various grades of gasoline and diesel under the DK or Alon brand; and food products and service, tobacco products, non-alcoholic and alcoholic beverages, and general merchandise, as well as money orders to the public primarily under the 7-Eleven and DK or Alon brand names. It serves oil companies, independent refiners and marketers, jobbers, distributors, utility and transportation companies, the U.S. government, and independent retail fuel operators. Delek US Holdings, Inc. was founded in 2001 and is headquartered in Brentwood, Tennessee.",
+            "html": null
+          },
+          {
+            "text": "Digicel is a mobile telecommunications operator which started operations in 2001.It has a presence in 33 countries across the Caribbean, Central America and Pacific Islands, serving more than 8mn customers.",
+            "html": null
+          },
+          {
+            "text": "Digital 9 Infrastructure PLC specializes in investment in digital infrastructure assets.",
+            "html": null
+          },
+          {
+            "text": "Digital Realty supports the world's leading enterprises and service providers by delivering the full spectrum of data center, colocation and interconnection solutions. PlatformDIGITALR, the company's global data center platform, provides customers a trusted foundation and proven Pervasive Datacenter Architecture PDxTM solution methodology for scaling digital business and efficiently managing data gravity challenges. Digital Realty's global data center footprint gives customers access to the connected communities that matter to them with more than 284 facilities in 48 metros across 23 countries on six continents.",
+            "html": null
+          },
+          {
+            "text": "Duke Energy Corporation, together with its subsidiaries, operates as an energy company in the United States. It operates through three segments: Electric Utilities and Infrastructure, Gas Utilities and Infrastructure, and Commercial Renewables. The Electric Utilities and Infrastructure segment generates, transmits, distributes, and sells electricity in the Carolinas, Florida, and the Midwest; and uses coal, hydroelectric, natural gas, oil, renewable generation, and nuclear fuel to generate electricity. It also engages in the wholesale of electricity to municipalities, electric cooperative utilities, and load-serving entities. This segment serves approximately 8.2 million customers in 6 states in the Southeast and Midwest regions of the United States covering a service territory of approximately 91,000 square miles; and owns approximately 50,259 megawatts (MW) of generation capacity. The Gas Utilities and Infrastructure segment distributes natural gas to residential, commercial, industrial, and power generation natural gas customers; and owns, operates, and invests in pipeline transmission and natural gas storage facilities. It has approximately 1.6 million customers, including 1.1 million customers in North Carolina, South Carolina, and Tennessee, as well as 550,000 customers in southwestern Ohio and northern Kentucky. The Commercial Renewables segment acquires, owns, develops, builds, and operates wind and solar renewable generation projects, including nonregulated renewable energy and energy storage services to utilities, electric cooperatives, municipalities, and corporate customers. It has 23 wind, 178 solar, and 2 battery storage facilities, as well as 71 fuel cell locations with a capacity of 3,554 MW across 22 states. The company was formerly known as Duke Energy Holding Corp. and changed its name to Duke Energy Corporation in April 2005. The company was founded in 1904 and is headquartered in Charlotte, North Carolina.",
+            "html": null
+          },
+          {
+            "text": "Ecora Resources PLC operates as a natural resources royalty and \nstreaming company. The company has royalties and investments in mining \nand exploration interests in cobalt, coking coal, iron ore, copper, \nvanadium, uranium, and gold primarily in Australia, North and South \nAmerica, and Europe. The company was formerly known as Anglo Pacific \nGroup plc and changed its name to Ecora Resources PLC in October 2022. \nEcora Resources PLC was incorporated in 1967 and is headquartered in \nLondon, the United Kingdom.",
+            "html": null
+          },
+          {
+            "text": "EG Group is one of the world's leading independent convenience \nretailers with an extensive network of sites across international \nmarkets in the United Kingdom & Ireland, Continental Europe, \nAustralia and the United States of America. Founded in 2001 by the Issa family with the acquisition of a single \nsite in the UK, today the company is at the forefront of delivering an \ninnovative approach to forecourt convenience retail. At EG Group, we pride ourselves on being recognised for our \ninvestment model, trading performance and more importantly, providing a \nbest-in-class customer experience in Grocery & Merchandise, \nFoodservice and Fuel. Our transformational convenience retail business model has been built\n upon excellent relationships with an extensive portfolio of leading \nretail brands, and through strategic network acquisitions supported by a\n programme of new-to-industry developments. Every day, our committed workforce tirelessly deliver our products \nand services to millions of customers alongside supporting the local \ncommunities in which we operate.",
+            "html": null
+          },
+          {
+            "text": "Enel SpA operates as an integrated electricity and gas operator worldwide. The company generates, transmits, distributes, purchases, transports, and sells electricity; transports and markets natural gas; supplies LNG; designs, develops, constructs, operates, manages, and maintains generation plants and distribution grids; and designs, constructs, and operates merchant lines. It is also involved in various activities, such as energy and infrastructure engineering; research and development in sciences and engineering; the cogeneration of electricity and heat; the construction and management of manages port infrastructure; product, plant, and equipment certification; mining; finance; energy products marketing; trading; and fuel trading and logistics operations. In addition, the company engages in construction and management of LNG regasification infrastructure; desalinization and water supply; electricity system monitoring; and optical fiber network operation activities. Further, it provides testing, inspection, and certification; engineering and consulting; legal; metering, remote control, and connectivity through power line communication; business consulting, administrative, management consulting, and corporate planning; civil, mechanical, and electrical engineering; personnel administration, information technology, real estate, and business; electronic plant installation, maintenance, and repairing; and security services. Additionally, the company offers water systems; public lighting systems and services; electric mobility; and environmental studies services. It operates renewable, wind, thermal, hydroelectric, nuclear, photovoltaic, and geothermal power plants. The company was founded in 1962 and is headquartered in Rome, Italy.",
+            "html": null
+          },
+          {
+            "text": "Energy Impact Partners LP (EIP) is a global venture capital firm investing in the transition to a sustainable future. EIP brings together entrepreneurs and some of the world's most forward-looking energy and industrial companies to advance innovation. With over $3 billion in assets under management, EIP invests globally across venture, growth, credit, and infrastructure - and has a team of over 80 professionals based in its offices in New York, San Francisco, Washington D.C., Palm Beach, London, Cologne, and Oslo. EIP was founded in 2015 and is headquartered in New York.",
+            "html": null
+          },
+          {
+            "text": "Enfiniumcarries out an essential service and is part of the U.K.'s environmental infrastructure. Working with local communities and partners, we provide waste collectors with a reliable and sustainable local solution for their waste - which would otherwise be landfilled or exported overseas.",
+            "html": null
+          },
+          {
+            "text": "E.ON SE operates as an energy company in Germany, the United Kingdom, Sweden, the Netherlands, Belgium, rest of Europe, and internationally. It operates through two segments, Energy Networks and Customer Solutions. The Energy Networks segment operates power and gas distribution networks, as well as provides maintenance, repairs, and related services. The Customer Solutions segment supplies power, gas, and heat, as well as with products and services that enhance energy efficiency to residential, small and medium-sized enterprises, large commercial and industrial, sales partners, and public entities. In addition, the company operates, generates, and dismantles nuclear power stations in Germany and Turkey. Further, it provides SmartSim, a software solution that allows renewable gases to be fed into gas grids; gas quality tracking solutions; GasPro, a mobile gas sample collector; metering solutions; and GasCalc, a software that calculates natural gases, LNG, and biogases properties. The company was founded in 1923 and is headquartered in Essen, Germany.",
+            "html": null
+          },
+          {
+            "text": "Download 2021 Report:here",
+            "html": null
+          },
+          {
+            "text": "Equinor ASA, an energy company, engages in the exploration, production, transportation, refining, and marketing of petroleum and petroleum-derived products, and other forms of energy in Norway and internationally. It operates through Exploration & Production Norway; Exploration & Production International; Exploration & Production USA; Marketing, Midstream & Processing; Renewables; and Other segments. The company also transports, processes, manufactures, markets, and trades in oil and gas commodities, such as crude and condensate products, gas liquids, natural gas, and liquefied natural gas; markets and trades in electricity and emission rights; operates refineries, terminals and processing, and power plants; and develops low carbon solutions for oil and gas. In addition, it develops wind, and carbon capture and storage projects, as well as offers other renewable energy. As of December 31, 2021, the company had proved oil and gas reserves of 5,356 million barrels of oil equivalent. Equinor ASA has collaboration agreements with Vårgrønn; and RWE Renewables and Hydro REIN. The company was formerly known as Statoil ASA and changed its name to Equinor ASA in May 2018. Equinor ASA was incorporated in 1972 and is headquartered in Stavanger, Norway.",
+            "html": null
+          },
+          {
+            "text": "Europa Capital is a real estate investment management firm focused on the European markets. Invests in value-add, core & core plus strategies in office buildings, student housing properties, and retail warehouses. Makes debt investments through senior & mezzanine loans and equity investments in real estate properties in UK & Europe.",
+            "html": null
+          },
+          {
+            "text": "Greencoat Renewables PLC invests in, acquires, operates, and manages wind farms in France, Finland, Sweden, and Spain. As of December 31, 2021, the company operated 25 wind farms with an aggregate generating capacity of 800 megawatts. It also invests in solar generation assets. The company was incorporated in 2017 and is based in Dublin, Ireland.",
+            "html": null
+          },
+          {
+            "text": "Download 2021 Reporthere",
+            "html": null
+          },
+          {
+            "text": "Harbour Energy plc, an independent oil and gas company, engages in the acquisition, exploration, development, and production of oil and gas reserves. It holds 124 license interests and 48 producing fields in various properties located in the United Kingdom, Norwegian Continental Shelves, Indonesia, Vietnam, and Mexico. The company is based in Edinburgh, the United Kingdom.",
+            "html": null
+          },
+          {
+            "text": "Download 2021 Report:here",
+            "html": null
+          },
+          {
+            "text": "HICL Infrastructure PLC specializes in direct and fund of funds investments. For direct investments, it seeks to invest in infrastructure projects. It invests in project companies which have not yet completed the construction phases of their concessions including project companies which are in the process of bidding for project concessions. The fund also invests project companies with demand' based concessions and project companies which do not have public sector sponsored/awarded or government backed concessions. It seeks to invest in PFI, PPP, P3, social infrastructure projects, toll roads, bridges, and tunnels, airports, ports, utilities, communication networks, and renewables. The fund makes fund of funds investments in limited partnerships and other funds that make infrastructure investments and financial instruments and securities issued by companies that make infrastructure investments, or whose activities are similar or comparable to infrastructure investments. The fund invests in European Union, Norway, Switzerland, North America, South America, and selected territories in Asia and Australasia.",
+            "html": null
+          },
+          {
+            "text": "HS1 Ltd has the 30-year concession to own, operate and maintain High Speed 1 (HS1), the UK's only high-speed railway, as well as the stations along the route: St Pancras International, Stratford International, Ebbsfleet International and Ashford International. HS1 is the 109km rail line between St Pancras International in London and the Channel Tunnel and connects the international high-speed routes between London and Paris, London and Brussels and London and Amsterdam, as well as the domestic route from London to Kent. In July 2017, HS1 Ltd was acquired by a consortium comprising of funds advised and managed by InfraRed Capital Partners Limited and Equitix Investment Management Limited. Network Rail (High Speed) is our contractor for maintaining and operating the railway infrastructure and three of our stations, St Pancras International, Stratford International and Ebbsfleet International. HS1 Ltd's railway infrastructure has physical connections with Eurotunnel, the DBS freight depot at Dollands Moor and the Network Rail classic railway at Ashford, Ebbsfleet, Ripple Lane and domestic lines north of London.",
+            "html": null
+          },
+          {
+            "text": "Iberdrola, S.A. engages in the generation, transmission, distribution, and supply of electricity in Spain and internationally. It generates and markets electrical power using renewable sources, such as onshore and offshore wind, hydro, solar photovoltaic, combined cycle gas, nuclear, and biomass, as well as through installation of batteries. The company is also involved in the purchase and sale of electricity and gas on wholesale markets; development of green hydrogen projects; and distribution and sale of gas. It has a total installed capacity of 58,320 MW, including 38,138 MW of renewable installed capacity; and operates 1.2 million kilometers of electricity transmission and distribution lines, as well as serves 36.11 million consumers. In addition, the company offers energy storage, heat pumps, self-consumption, and electric vehicles for residential customers; and management of energy facilities, as well as supplies green H2, industrial heat, etc. to industrial customers. Iberdrola, S.A. was founded in 1840 and is headquartered in Bilbao, Spain.",
+            "html": null
+          },
+          {
+            "text": "Impax Asset Management Group plc is a publicly owned investment manager. Through its subsidiaries, it provides investment services to funds specializing in the environmental markets sector, with a focus on alternative energy, water, and waste sectors, primarily in the United Kingdom. It manages a range of funds and segregated accounts on behalf of institutional and private investors. It employs both fundamental to make its investments. The company was formerly known as Impax Group plc and changed its name to Impax Asset Management Group plc in October 2009. Impax Asset Management Group plc was founded in 1998 and is based in London, the United Kingdom.",
+            "html": null
+          },
+          {
+            "text": "Inspired Plc provides energy consultancy services to corporate business energy users in the United Kingdom and Ireland. The company operates through three segments: Inspired Energy Solutions, Inspired ESG Solutions, and Inspired Software Solutions. Its energy solutions include energy assurance and energy optimization services. The company also offers ESG services, such as data collection, resources, taxonomy agnostic disclosures, audit management, internal expert empowerment, strategic advice, and technology solutions. In addition, it provides technology and energy management software solutions for third-party service providers and intermediaries; and delivers water and sustainability services. The company was formerly known as Inspired Energy PLC and changed its name to Inspired Plc in June 2021. Inspired Plc was founded in 2000 and is based in Preston, the United Kingdom.",
+            "html": null
+          },
+          {
+            "text": "Jones Lang LaSalle Incorporated, a professional services company, \nprovides real estate and investment management services in Americas, \nEurope, the Middle East, Africa, and the Asia Pacific. The company \noffers a range of real estate services, including agency leasing and \ntenant representation services; and capital market services, such as \ndebt advisory, loan sales, equity advisory, loan servicing, merger and \nacquisition, corporate advisory, and investment sales and advisory \nservices. It also provides on-site management services for office, \nindustrial, retail, multifamily residential, and specialty properties; \nintegrated facilities management services; designing, building, \nmanagement, and consulting services to tenants of leased space, owners \nin self-occupied buildings, and owners of real estate investments; and \nadvisory, consulting, valuation, and energy and sustainability services.\n In addition, the company offers investment management services to \ninstitutional and retail investors, including high-net-worth \nindividuals. It provides its services to real estate owners, occupiers, \ninvestors, and developers for various property types, including \ncultural, educational, government, healthcare, laboratory, hotel, \nhospitality, and sports facilities; industrial and warehouse, office, \nand residential properties; retail and shopping malls; critical \nenvironment, data, transportation, and sort and fulfillment centers; \ninfrastructure projects; and military housings. The company was formerly\n known as LaSalle Partners Incorporated and changed its name to Jones \nLang LaSalle Incorporated in March 1999. Jones Lang LaSalle Incorporated\n was incorporated in 1997 and is headquartered in Chicago, Illinois.",
+            "html": null
+          },
+          {
+            "text": "JPMorgan Chase & Co. operates as a financial services company worldwide. It operates through four segments: Consumer & Community Banking (CCB), Corporate & Investment Bank (CIB), Commercial Banking (CB), and Asset & Wealth Management (AWM). The CCB segment offers s deposit, investment and lending products, payments, and services to consumers; lending, deposit, and cash management and payment solutions to small businesses; mortgage origination and servicing activities; residential mortgages and home equity loans; and credit card, auto loan, and leasing services. The CIB segment provides investment banking products and services, including corporate strategy and structure advisory, and equity and debt markets capital-raising services, as well as loan origination and syndication; payments and cross-border financing; and cash and derivative instruments, risk management solutions, prime brokerage, and research. This segment also offers securities services, including custody, fund accounting and administration, and securities lending products for asset managers, insurance companies, and public and private investment funds. The CB segment provides financial solutions, including lending, payments, investment banking, and asset management to small business, large and midsized companies, local governments, and nonprofit clients; and commercial real estate banking services to investors, developers, and owners of multifamily, office, retail, industrial, and affordable housing properties. The AWM segment offers multi-asset investment management solutions in equities, fixed income, alternatives, and money market funds to institutional clients and retail investors; and retirement products and services, brokerage, custody, trusts and estates, loans, mortgages, deposits, and investment management products. The company also provides ATM, online and mobile, and telephone banking services. JPMorgan Chase & Co. was founded in 1799 and is headquartered in New York, New York.",
+            "html": null
+          },
+          {
+            "text": "KKR & Co. Inc. is a private equity and real estate investment firm \nspecializing in direct and fund of fund investments. It specializes in \nacquisitions, leveraged buyouts, management buyouts, credit special \nsituations, growth equity, mature, mezzanine, distressed, turnaround, \nlower middle market and middle market investments. The firm considers \ninvestments in all industries with a focus on software, security, \nsemiconductors, consumer electronics, internet of things (iot), \ninternet, information services, information technology infrastructure, \nfinancial technology, network and cyber security architecture, \nengineering and operations, content, technology and hardware, energy and\n infrastructure, real estate, services industry with a focus on business\n services, intelligence, industry-leading franchises and companies in \nnatural resource, containers and packaging, agriculture, airports, \nports, forestry, electric utilities, textiles, apparel and luxury goods,\n household durables, digital media, insurance, brokerage houses, \nnon-durable goods distribution, supermarket retailing, grocery stores, \nfood, beverage, and tobacco, hospitals, entertainment venues and \nproduction companies, publishing, printing services, capital goods, \nfinancial services, specialized finance, pipelines, and renewable \nenergy. In energy and infrastructure, it focuses on the upstream oil and\n gas and equipment, minerals and royalties and services verticals. In \nreal estate, the firm seeks to invest in private and public real estate \nsecurities including property-level equity, debt and special situations \ntransactions and businesses with significant real estate holdings, and \noil and natural gas properties. The firm also invests in asset services \nsector that encompasses a broad array of B2B, B2C and B2G services \nverticals including asset-based, transport, logistics, \nleisure/hospitality, resource and utility support, infra-like, \nmission-critical, and environmental services. Within Americas, the firm \nprefers to invest in consumer products; chemicals, metals and mining; \nenergy and natural resources; financial services; healthcare; \nindustrials; media and communications; retail; and technology. Within \nEurope, the firm invests in consumer and retail; energy; financial \nservices; health care; industrials and chemicals; media and digital; and\n telecom and technologies. Within Asia, it invests in consumer products;\n energy and resources; financial services; healthcare; industrials; \nlogistics; media and telecom; retail; real estate; and technology. It \nalso seeks to make impact investments focused on identifying and \ninvesting behind businesses with positive social or environmental \nimpact. The firm seeks to invest in mid to high-end residential \ndevelopments, but can invest in other projects throughout Mainland China\n through outright ownership, joint ventures, and merger. It invests \nglobally with a focus on Australia, emerging and developed Asia, Middle \nEast and Africa, Nordic, Southeast Asia, Asia Pacific, Ireland, Hong \nKong, Japan, Taiwan, India, Vietnam, Malaysia, Singapore, Indonesia, \nFrance, Germany, Netherlands, United Kingdom, Caribbean, Mexico, South \nAmerica, North America, Brazil, Latin America, Korea with a focus on \nSouth Korea, and United States of America. In the United States and \nEurope, the firm focuses on buyouts of large, publicly traded companies.\n It seeks to invest $30 million to $717 million in companies with \nenterprise values between $500 million to $2389 million. The firm \nprefers to invest in a range of debt and public equity investing and may\n co-invest. It seeks a board seat in its portfolio companies and a \ncontrolling ownership of a company or a strategic minority positions. \nThe firm may acquire majority and minority equity interests, \nparticularly when making private equity investments in Asia or \nsponsoring investments as part of a large investor consortium. The firm \ntypically holds its investment for a period of five to seven years and \nmore and exits through initial public offerings, secondary offerings, \nand sales to strategic buyers. KKR & Co. Inc. was founded in 1976 \nand is based in New York, New York with additional offices across North \nAmerica, Europe, Australia, Sweden and Asia.",
+            "html": null
+          },
+          {
+            "text": "La Française Group has developed a multiboutique approach based on two cornerstones - real estate and financial assets. A European platform with more than €29,5bn in assets under management (as at 31/03/2022),La Françaiseis a key player in this asset class. It offers a comprehensive range of real estate expertise both in terms \nof investment (Core, Core plus, Value added) and types of assets, with a\n strong specificity in office space and residential.",
+            "html": null
+          },
+          {
+            "text": "At Landsec, we build and invest in buildings, spaces and partnerships to create sustainable places, connect communities and realise potential. We are one of the largest real estate companies in Europe, with a £11 billion portfolio of retail, leisure, workspace and residential hubs. Landsec is shaping a better future by leading our industry on environmental and social sustainability while delivering value for our shareholders, great experiences for our guests and positive change for our communities.",
+            "html": null
+          },
+          {
+            "text": "Lockheed Martin Corporation, a security and aerospace company, engages in the research, design, development, manufacture, integration, and sustainment of technology systems, products, and services worldwide. It operates through four segments: Aeronautics, Missiles and Fire Control, Rotary and Mission Systems, and Space. The Aeronautics segment offers combat and air mobility aircraft, unmanned air vehicles, and related technologies. The Missiles and Fire Control segment provides air and missile defense systems; tactical missiles and air-to-ground precision strike weapon systems; logistics; fire control systems; mission operations support, readiness, engineering support, and integration services; manned and unmanned ground vehicles; and energy management solutions. The Rotary and Mission Systems segment offers military and commercial helicopters, surface ships, sea and land-based missile defense systems, radar systems, sea and air-based mission and combat systems, command and control mission solutions, cyber solutions, and simulation and training solutions. The Space segment offers satellites; space transportation systems; strategic, advanced strike, and defensive missile systems; and classified systems and services in support of national security systems. This segment also provides network-enabled situational awareness and integrates space and ground-based systems to help its customers gather, analyze, and securely distribute critical intelligence data. It serves primarily serves the U.S. government, as well as foreign military sales contracted through the U.S. government. Lockheed Martin Corporation was founded in 1912 and is headquartered in Bethesda, Maryland.",
+            "html": null
+          },
+          {
+            "text": "M Group Services is majority owned by PAI Partners,\n a leading pan-European private equity firm with a strong track record \nof investment in the UK and Europe. Their backing provides the financial\n strength and expertise to allow M Group Services to continue to grow \nboth organically and through further strategic acquisitions that will \nsupport us in delivering services to our clients and achieve our vision \nto be the leading service provider to essential infrastructure in the UK\n and Ireland.",
+            "html": null
+          },
+          {
+            "text": "Morgan Stanley, a financial holding company, provides various financial \nproducts and services to corporations, governments, financial \ninstitutions, and individuals in the Americas, Europe, the Middle East, \nAfrica, and Asia. It operates through Institutional Securities, Wealth \nManagement, and Investment Management segments. The Institutional \nSecurities segment offers capital raising and financial advisory \nservices, including services related to the underwriting of debt, \nequity, and other securities, as well as advice on mergers and \nacquisitions, restructurings, real estate, and project finance. This \nsegment also provides sales and trading services, such as sales, \nfinancing, prime brokerage, and market-making services in equity and \nfixed income products consisting of foreign exchange and commodities; \ncorporate and commercial real estate loans, which provides secured \nlending facilities and financing for sales and trading customers, and \nasset-backed and mortgage lending; and wealth management services, \ninvestment, and research services. The Wealth Management segment offers \nfinancial advisor-led brokerage and investment advisory services; \nself-directed brokerage services; financial and wealth planning \nservices; workplace services, including stock plan administration; \nannuity and insurance products; securities-based lending, residential \nreal estate loans, and other lending products; banking; and retirement \nplan services to individual investors and small to medium-sized \nbusinesses and institutions. The Investment Management segment provides \nequity, fixed income, liquidity, and alternative/other products to \nbenefit/defined contribution plans, foundations, endowments, government \nentities, sovereign wealth funds, insurance companies, and third-party \nfund sponsors and corporations through institutional and intermediary \nchannels. Morgan Stanley was founded in 1924 and is headquartered in New\n York, New York.",
+            "html": null
+          },
+          {
+            "text": "Neometals Ltd explores for mineral projects in Australia. The company \noperates through three segments: Lithium, Titanium/Vanadium, and Other. \nIts projects include the Lithium-ion Battery Recycling project, which \nrecovers cobalt and other materials from spent and scrap lithium \nbatteries; Vanadium Recovery project, which recovers vanadium pentoxide \nthrough processing of steelmaking by-products; Lithium Refinery project;\n and Barrambie Titanium and Vanadium project located in Western \nAustralia. The company was formerly known as Reed Resources Ltd. and \nchanged its name to Neometals Ltd in December 2014. Neometals Ltd was \nincorporated in 2001 and is based in West Perth, Australia.",
+            "html": null
+          },
+          {
+            "text": "Network Rail owns and operates most of Britain's railway \ninfrastructure, including 20,000 miles of track, 30,000 bridges \nand viaducts and thousands of signals, tunnels, level crossings \nand points. We also manage rail timetabling and operate 20 \nof the largest stations. Our role is to provide a safe, reliable \nand efficient railway while growing and upgrading the \nnetwork to better serve passengers and freight. As a public sector company, Network Rail is answerable to the \nDepartment for Transport (DfT) and Transport Scotland. Our \ndirect customers are the companies that pay to use our \ninfrastructure to provide passenger and freight services",
+            "html": null
+          },
+          {
+            "text": "With over $600 billion in assets under management,\n New York Life Investments is comprised of the affiliated global asset \nmanagement businesses of its parent company, New York Life Insurance \nCompany (New York Life), and offers clients access to specialized, \nindependent investment teams through its family of affiliated boutiques.\n New York Life Investments remains committed to clients through a \ncombination of the diverse perspectives of its boutiques and a \nlong-lasting focus on sustainable relationships.",
+            "html": null
+          },
+          {
+            "text": "NextEra Energy, Inc., through its subsidiaries, generates, transmits, \ndistributes, and sells electric power to retail and wholesale customers \nin North America. The company generates electricity through wind, solar,\n nuclear, coal, and natural gas facilities. It also develops, \nconstructs, and operates long-term contracted assets that consists of \nclean energy solutions, such as renewable generation facilities, battery\n storage projects, and electric transmission facilities; sells energy \ncommodities; and owns, develops, constructs, manages and operates \nelectric generation facilities in wholesale energy markets. As of \nDecember 31, 2021, the company had approximately 28,564 megawatts of net\n generating capacity; approximately 77,000 circuit miles of transmission\n and distribution lines; and 696 substations. It serves approximately 11\n million people through approximately 5.7 million customer accounts in \nthe east and lower west coasts of Florida. The company was formerly \nknown as FPL Group, Inc. and changed its name to NextEra Energy, Inc. in\n 2010. The company was founded in 1925 and is headquartered in Juno \nBeach, Florida.",
+            "html": null
+          },
+          {
+            "text": "Nuveen Real Estate is one of the largest investment managers in the world with $156 billion of assets under management. Managing a suite of funds and mandates, across both public and \nprivate investments, and spanning both debt and equity across diverse \ngeographies and investment styles, we provide access to every aspect of \nreal estate investing. With over 85 years of real estate investing experience and more than 745 employees2\n located across over 30 cities throughout the United States, Europe and \nAsia Pacific, the platform offers unparalleled geographic reach, which \nis married with deep sector expertise.",
+            "html": null
+          },
+          {
+            "text": "Olympia - a destination with a\n taste for the spectacular - uniting art, entertainment, technology and \nthe creative industries. Designed by Heatherwick\n Studio and SPPARC Architecture, the rejuvenation of the capital's \nbusiest events venue - which attracts more than 1.6 million visitors \neach year - sees the addition of five live entertainment venues, two \nglobally renowned hotels, 40+ restaurants and eateries,\n an art-house cinema, creative offices and studios, and 2.5 acres of \ngardens and public realm. You can read more about the plans at www.olympia.co.uk,\n as well as the importance of sustainability to the development of the Olympia ESG policy.",
+            "html": null
+          },
+          {
+            "text": "One Swiss Bank SA provides private banking and financial services \nprivate and institutional customers in Switzerland. The company offers \nwealth and asset management, and custodian services; personalized \nfinancial wealth plans; insurance products; and mortgages. It also \noperates as a financial intermediary, as well as a depositary bank. The \ncompany was formerly known as Banque Profil de Gestion SA and changed \nits name to One Swiss Bank SA in June 2021. One Swiss Bank SA is \nheadquartered in Geneva, Switzerland.",
+            "html": null
+          },
+          {
+            "text": "Ørsted A/S, together with its subsidiaries, develops, constructs, owns, \nand operates offshore and onshore wind farms, solar farms, energy \nstorage facilities, and bioenergy plants. It operates through Offshore, \nOnshore, and Markets & Bioenergy segments. The Offshore segment \ndevelops, constructs, owns, and operates offshore wind farms in the \nUnited Kingdom, Germany, Denmark, the Netherlands, the United States, \nTaiwan, Japan, and South Korea. The Onshore segment develops, owns, and \noperates onshore wind and solar farms in the United States. The Markets \n& Bioenergy segment engages in the generation of heat and power from\n combined heat and power plants in Denmark; sells power and gas in the \nwholesale and B2B markets; and optimizes and hedges energy portfolio. \nThe company was formerly known as DONG Energy A/S and changed its name \nto Ørsted A/S in November 2017. Ørsted A/S was founded in 1972 and is \nheadquartered in Fredericia, Denmark.",
+            "html": null
+          },
+          {
+            "text": "Otis is the world's leading elevator and escalator manufacturing, installation and service company. We move 2 billion people a day and maintain approximately 2.2 million customer units worldwide, the industry's largest Service portfolio. Headquartered in Connecticut, USA, Otis is 69,000 people strong, including 41,000 field professionals, all committed to meeting the diverse needs of our customers and passengers in more than 200 countries and territories worldwide.",
+            "html": null
+          },
+          {
+            "text": "Download 2022 Report:here",
+            "html": null
+          },
+          {
+            "text": "Partners Group Holding AG is a private equity firm specializing in direct, secondary, and primary investments across private equity, private real estate, private infrastructure, and private debt. The firm also makes fund-of-funds investments. It seeks to invest in distressed, special situations, later stage, mature, early venture, mid venture, late venture, industry consolidation, buyouts, recapitalizations, emerging growth, and seed capital. For direct private equity investments, the firm invests directly into healthcare, consumer, media & telecommunications, education, information technology, industrials, infrastructure/energy & utilities, financial and business services and real estate operating companies. For its private real estate direct investment practice, it focuses on seeking out properties globally. It also makes investments in private real estate secondaries and primaries and focuses on distressed assets in United States, Europe, and Japan. Under private debt, the firm provides senior debt financing, mezzanine financing, alongside secondaries and primaries, and also participates in add on acquisitions. It seeks to invest in middle market in Americas, Europe, and Asia. In energy infrastructure, the firm seeks to invest in the areas of midstream, power generation, gas transportation, gas export infrastructure, renewable energy including wind and solar energy. The firm seeks to invest globally with a focus on South Africa, China, India, Philippines, Austria, France, Germany, Switzerland, Russia, Brazil, and Chile. It seems to invest between £500,000 ($685,010) and £100 million ($137 million) in equity investment in companies with enterprise value between £100 million ($137 million) to £2 billion ($2740 million). The firm is a value-add investor targeting majority and minority stakes in its investee companies. While investing in funds, it invests in venture capital, mezzanine, private equity, real estate, distressed, turnaround, and secondary funds. Partners Group Holding AG was founded in 1996 and is based in Baar, Switzerland with additional offices across North America, South America, Europe, Australia, and Asia.",
+            "html": null
+          },
+          {
+            "text": "PetroChina Company Limited, together with its subsidiaries, engages in a\n range of petroleum related products, services, and activities in \nMainland China and internationally. It operates through Exploration and \nProduction, Refining and Chemicals, Marketing, and Natural Gas and \nPipeline segments. The Exploration and Production segment engages in the\n exploration, development, production, and marketing of crude oil and \nnatural gas. The Refining and Chemicals segment refines crude oil and \npetroleum products; and produces and markets primary petrochemical \nproducts, derivative petrochemical products, and other chemical \nproducts. The Marketing segment is involved in marketing of refined \nproducts and trading business. The Natural Gas and Pipeline segment \nengages in the transmission of natural gas, crude oil, and refined \nproducts; and sale of natural gas. As of December 31, 2021, the company \nhad a total length of 26,076 km, including 17,329 km of natural gas \npipelines, 7,340 km of crude oil pipelines, and 1,407 km of refined \nproduct pipelines. The company is also involved in the exploration, \ndevelopment, and production of oil sands and coalbed methane; trading of\n crude oil and petrochemical products; storage, chemical engineering, \nstorage facilities, service station, and transportation facilities and \nrelated businesses; and production and sales of basic and derivative \nchemical, and other chemical products. The company was founded in 1999 \nand is headquartered in Beijing, the People's Republic of China. \nPetroChina Company Limited is a subsidiary of China National Petroleum \nCorporation.",
+            "html": null
+          },
+          {
+            "text": "Pictet Asset Management are an independent asset manager and part of the Pictet Group, overseeing more than USD 284 \nbillion of investments across a range of equity, fixed income, \nalternative and multi asset products. Its clients are some of the \nworld's largest pension funds, financial institutions, sovereign wealth \nfunds, intermediaries and their clients.",
+            "html": null
+          },
+          {
+            "text": "Redrow plc focuses on housebuilding activities in the United Kingdom. It is involved in acquiring land; and developing and selling residential housing properties. Redrow plc was founded in 1974 and is based in Flintshire, the United Kingdom.",
+            "html": null
+          },
+          {
+            "text": "Chevron Renewable Energy Group is an international producer of sustainable fuels that significantly lower greenhouse gas emissions to immediately reduce carbon impact. Chevron Renewable Energy Group utilizes a globally integrated procurement, distribution and logistics network to operate 11 biorefineries in the U.S. and Europe. The roots of Chevron Renewable Energy Group go back more than two decades to when we operated under the umbrella of West Central Cooperative in Ralston, Iowa. Our history parallels that of the biodiesel industry as a whole: When we made our first batch of biodiesel in 1996, the industry was still in its early stages, a niche market with a potential few foresaw. While our leaders grew the company carefully and consistently by finding opportunity within challenges, they also advocated for the biodiesel industry as a whole, often working with competitors for the greater good. Today, Chevron Renewable Energy Group is one of the largest biodiesel producers by volume in the United States - as well as a producer and supplier of many other products - and continues to contribute resources and leadership to biofuel advocacy groups worldwide.",
+            "html": null
+          },
+          {
+            "text": "Download 2021 Report:here",
+            "html": null
+          },
+          {
+            "text": "Download 2020 Report:here",
+            "html": null
+          },
+          {
+            "text": "RWE AG (RWE) is a Germany-based holding company active in the energy \nsector. The Company is engaged in electricity generation, building \nstorage systems and energy trading. Its activities are divided into five\n segments: Offshore Wind, Onshore Wind & Solar, Hydro & Biomass \n& Gas, Supply&Trading; and Coal & Nuclear. Renewable energy,\n gas-fired power plants, energy storage, hydrogen business and energy \ntrading are distributed among the first four segments and make up the \nCompany's core business. Group Companies RWE Renewables, RWE Technology \nInternational, KELAG, RWE Generation and RWE Supply&Trading; are \nallocated to these segments. The fifth segment covers power generation \nfrom coal and nuclear energy, overseen by group companies RWE Power and \nRWE Generation. The Company's Supply & Trading business creates \ncustomized energy solutions for large customers. RWE serves its \ncustomers from Europe, America and the Asia-Pacific region.",
+            "html": null
+          },
+          {
+            "text": "Savills plc, together with its subsidiaries, provides real estate \nservices in the United Kingdom, Continental Europe, the Asia Pacific, \nAfrica, North America, and the Middle East. The company advises on \ncommercial, residential, rural, and leisure properties; and offers \ncorporate finance advisory, investment management, and a range of \nproperty-related financial services. It operates through Transaction \nAdvisory, Consultancy, Property and Facilities Management, and \nInvestment Management segments. The Transaction Advisory segment \nprovides commercial, residential, leisure, and agricultural leasing \nservices; and tenant representation, as well as investment advice on \npurchases and sales. The Consultancy segment offers various professional\n property services, such as valuation, project management and housing \nconsultancy, environmental consultancy, landlord and tenant, rating, \ndevelopment, planning, strategic projects, research, and corporate \nservices. The Property and Facilities Management segment manages \ncommercial, residential, leisure, and agricultural properties for \nowners; and provides services to occupiers of property, including \nstrategic advice and project management, as well as services relating to\n a property. The Investment Management segment is involved in the \ninvestment management of commercial and residential property portfolios \nfor institutional, corporate, or private investors on a pooled or \nsegregated account basis. Savills plc was founded in 1855 and is based \nin London, the United Kingdom.",
+            "html": null
+          },
+          {
+            "text": "Schneider Electric S.E. provides energy and automation digital solutions worldwide. It operates through two segments, Energy Management and Industrial Automation. The company offers busway and cable support products, circuit breakers and switches, contactors and protection relays, electrical protection and control products, energy management software solutions, transfer switches, surge protection and power conditioning products, power monitoring and control products, power quality and power factor correction products, pushbuttons, switches, pilot lights and joysticks, software products, and switchboards and enclosures. It also provides access control, building management, fire detection, sensors and room units, valve and valve actuator, and variable and frequency speed drive. In addition, the company offers feeder automation, grid automation and SCADA software products, medium voltage switchgears and transformers, outdoor equipment, substation automation products, and switchgear components. Further, it provides critical power and cooling services, data center software, IT power distribution products, prefabricated data center modules, racks and accessories, and security and environmental monitoring products; home automation and security, installation materials and systems, light switches and electrical sockets, and uninterruptible power supply products; and human machine interface, industrial automation software, industrial communication, measurement and instrumentation, motion control and robotics, signaling units, programmable logic and automation controllers, power supply and protection, process control and safety, RFID systems, signaling devices, and other industrial automation and control products, as well as solar and energy storage. The company was founded in 1836 and is headquartered in Rueil-Malmaison, France.",
+            "html": null
+          },
+          {
+            "text": "Shell plc operates as an energy and petrochemical company Europe, Asia, \nOceania, Africa, the United States, and Rest of the Americas. The \ncompany operates through Integrated Gas, Upstream, Marketing, Chemicals \nand Products, and Renewables and Energy Solutions segments. It explores \nfor and extracts crude oil, natural gas, and natural gas liquids; \nmarkets and transports oil and gas; produces gas-to-liquids fuels and \nother products; and operates upstream and midstream infrastructure \nnecessary to deliver gas to market. The company also markets and trades \nnatural gas, liquefied natural gas (LNG), crude oil, electricity, \ncarbon-emission rights; and markets and sells LNG as a fuel for \nheavy-duty vehicles and marine vessels. In addition, it trades in and \nrefines crude oil and other feed stocks, such ase low-carbon fuels, \nlubricants, bitumen, sulphur, gasoline, diesel, heating oil, aviation \nfuel, and marine fuel; produces and sells petrochemicals for industrial \nuse; and manages oil sands activities. Further, the company produces \nbase chemicals comprising ethylene, propylene, and aromatics, as well as\n intermediate chemicals, such as styrene monomer, propylene oxide, \nsolvents, detergent alcohols, ethylene oxide, and ethylene glycol. \nAdditionally, it generates electricity through wind and solar resources;\n produces and sells hydrogen; and provides electric vehicle charging \nservices, as well as electricity storage. The company was formerly known\n as Royal Dutch Shell plc and changed its name to Shell plc in January \n2022. Shell plc was founded in 1907 and is headquartered in London, the \nUnited Kingdom.",
+            "html": null
+          },
+          {
+            "text": "Siemens Energy AG operates as an energy technology company worldwide. It operates in two segments, Gas and Power; and Siemens Gamesa Renewable Energy. The company provides gas and steam turbines, generators, gas engines, instrumentation and controls, and electrical systems, as well as performance enhancement, maintenance, customer training, and professional consulting services for central and distributed power generation; and transformers, air and gas-insulated switchgears, AC transmission systems, offshore windfarm grid connections, high voltage direct current transmission systems, high voltage substations, digital solutions and components, and other products. It also offers rotating equipment that includes industrial and aero-derivative gas turbines, turbo- and reciprocating compressors, power generation products, and compression trains and modules, as well as solutions in the fields of electrification, automation and digitization, plant safety, plant security, and water treatment. In addition, the company develops technologies in the fields of decarbonized energy and storage systems. Further, it offers onshore wind turbine design, engineering, manufacturing, and installation solutions for onshore markets; offshore wind turbine equipment design, manufacturing, and installation solutions; and operation and maintenance services for wind farms. The company serves utilities, independent power producers, project developers, oil and gas, transmission and distribution system operators, and industrial and infrastructure customers. Siemens Energy AG was founded in 1866 and is based in Munich, Germany.",
+            "html": null
+          },
+          {
+            "text": "SK Inc. focuses on operating in energy, chemicals, information and communications, biopharmaceutical, mobility, materials, logistics, and service business areas. In 2021, SK Inc. changed its company name from SK Holdings.\nThe company was formerly known as SK Holdings Co., Ltd and changed its name to SK Inc. in March 2021. SK Inc. was founded in 1991 and is headquartered in Seoul, South Korea.",
+            "html": null
+          },
+          {
+            "text": "SNC-Lavalin Group Inc. operates as an integrated professional services and project management company. It operates through Engineering, Design, and Project Management (EDPM); Nuclear; Infrastructure Services; Resources; Infrastructure EPC (Engineering, Procurement, and Construction) Projects; and Capital segments. The EDPM segment provides consultancy, engineering, design, and project management services for the transportation, civil infrastructure, aerospace, defense and security, and technology sectors. The Nuclear segment supports clients across the nuclear life cycle with the spectrum of services, such as consultancy, field, technology, reactor support and decommissioning, and waste management services, as well as EPC management services. This segment also offers new-build and full refurbishment services for reactors; and spare parts. The Infrastructure Services segment undertakes operations and maintenance projects; and provides EPC services for district cooling plants and power substations. This segment also offers engineering solutions for the hydro, transmission and distribution, renewables, energy storage, and intelligent networks and cybersecurity sectors. The Resources segment provides project development, delivery, and support services primarily to the mining and metallurgy sector, as well as Build-Own-Operate contract services. The Infrastructure EPC Projects segment undertakes construction contracts for the mass transit, heavy rail, roads, bridges, airports, ports and harbors, and water infrastructure sectors. The Capital segment invests in infrastructure concessions, such as bridges and highways, mass transit systems, power facilities, energy infrastructure, water treatment plants, and social infrastructure. It has operations in the Asia Pacific, the United Kingdom, Europe, the Middle East, and the Americas. SNC-Lavalin Group Inc. was founded in 1911 and is headquartered in Montreal, Canada.",
+            "html": null
+          },
+          {
+            "text": "Springfield Properties Plc, together with its subsidiary, engages in the house building business in the United Kingdom. The company operates in Private Housing and Affordable markets. It is also involved in hiring plants and machineries, property development, buying and selling real estate and residential property, manufacturing timber kit, and management services. The company was founded in 1956 and is based in Elgin, the United Kingdom.",
+            "html": null
+          },
+          {
+            "text": "Stanhope PLC is a property developer and asset manager based in London. We want to leave a positive legacy of sustainable buildings and urban places, valued by their communities in a considered way that responds to the urgency of climate action. The science is clear: human-induced climate change is causing widespread negative impacts and losses to people and nature, with effects already irreversible. Our window of opportunity to avoid the worst effects is shrinking. We also know there are large social and economic challenges in London and the UK where we operate. With our unrivalled partnerships, our projects, assets and corporate action are the opportunity to make a difference in meaningfully reducing our environmental impact in line with climate science and improving the lives of our communities.",
+            "html": null
+          },
+          {
+            "text": "SSE plc engages in the generation, transmission, distribution, and supply of electricity. It generates electricity from water, gas, coal, oil, and multi fuel. The company distributes electricity to approximately 3.8 million homes and businesses across the north of the central belt of Scotland and central southern England; and owns, operates, and develops high voltage electricity transmission system in the north of Scotland and remote islands. It also produces, stores, distributes, and supplies gas. In addition, it engages in the electricity and utility contracting, telecommunications, energy trading, insurance, and property holding businesses, as well as provides maintenance services. The company was formerly known as Scottish and Southern Energy plc and changed its name to SSE plc in September 2011. SSE plc was incorporated in 1989 and is based in Perth, the United Kingdom.",
+            "html": null
+          },
+          {
+            "text": "SYSTRA is a multinational engineering and consulting group in the mobility sector, whose fields of activity include rail and public transport.",
+            "html": null
+          },
+          {
+            "text": "Tensar is a leading global provider of innovative ground stabilization and soil reinforcement solutions, selling into more than 80 national markets through its two major product lines: Tensar® geogrids and Geopier® foundation systems. Geogrids are polymer-based products used for ground stabilization, soil reinforcement, and asphalt optimization in construction applications including roadways, public infrastructure, and industrial facilities. Geopier systems are ground improvement solutions that increase the load-bearing characteristics of ground structures and working surfaces, and can be applied in soil types and construction situations in which traditional support methods are impractical or would make a project infeasible.",
+            "html": null
+          },
+          {
+            "text": "Tesla, Inc. designs, develops, manufactures, leases, and sells electric vehicles, and energy generation and storage systems in the United States, China, and internationally. The company operates in two segments, Automotive, and Energy Generation and Storage. The Automotive segment offers electric vehicles, as well as sells automotive regulatory credits. It provides sedans and sport utility vehicles through direct and used vehicle sales, a network of Tesla Superchargers, and in-app upgrades; and purchase financing and leasing services. This segment is also involved in the provision of non-warranty after-sales vehicle services, sale of used vehicles, retail merchandise, and vehicle insurance, as well as sale of products to third party customers; services for electric vehicles through its company-owned service locations, and Tesla mobile service technicians; and vehicle limited warranties and extended service plans. The Energy Generation and Storage segment engages in the design, manufacture, installation, sale, and leasing of solar energy generation and energy storage products, and related services to residential, commercial, and industrial customers and utilities through its website, stores, and galleries, as well as through a network of channel partners. This segment also offers service and repairs to its energy product customers, including under warranty; and various financing options to its solar customers. The company was formerly known as Tesla Motors, Inc. and changed its name to Tesla, Inc. in February 2017. Tesla, Inc. was incorporated in 2003 and is headquartered in Austin, Texas.",
+            "html": null
+          },
+          {
+            "text": "Tikehau Capital is a private equity and venture capital firm specializing in providing a full range of financing products including senior secured loans, equity, senior debt, unitranche, mezzanine, and preferred shares. The firm seeks to make early stage, mezzanine, and turnaround investments and manage long-term capital for institutional and private investors in various asset classes including credit, listed, private equity, and real estate. It invests in all sectors and all countries with a focus on Singapore. The firm prefers to invests between £0.41 million ($0.5 million) and £70 million ($82.1073 million). The firm seeks to invest in small and middle market European corporate. It makes balance sheet investments. Tikehau Capital was founded in June 2004 and is based in Paris, France with additional offices across Europe, North America and Asia.",
+            "html": null
+          },
+          {
+            "text": "TotalEnergies SE operates as an integrated oil and gas company \nworldwide. The company operates through four segments: Integrated Gas, \nRenewables & Power; Exploration & Production; Refining & \nChemicals; and Marketing & Services. The Integrated Gas, Renewables \n& Power segment engages in the liquefied natural gas production, \nshipping, trading, and regasification activities; trading of liquefied \npetroleum gas (LPG), petcoke and sulfur, natural gas, and electricity; \ntransportation of natural gas; electricity production from natural gas, \nwind, solar, hydroelectric, and biogas sources; energy storage \nactivities; and development and operation of biomethane production \nunits, as well as provides energy efficiency services. The Exploration \n& Production segment is involved in the oil and natural gas \nexploration and production activities. The Refining & Chemicals \nsegment engages in refining petrochemicals, including olefins and \naromatics; and polymer derivatives, such as polyethylene, polypropylene,\n polystyrene, and hydrocarbon resins, as well as biomass conversion and \nelastomer processing. This segment is also involved in trading and \nshipping crude oil and petroleum products. The Marketing & Services \nsegment produces and sells lubricants; supplies and markets petroleum \nproducts, including bulk fuel, aviation and marine fuel, special fluids,\n compressed natural gas, LPG, and bitumen; and provides fuel payment \nsolutions. It operates approximately 16,000 service stations and 25,000 \nEV charge points. As of December 31, 2021, the company had 12,062 Mboe \nof combined proved reserves of oil and gas. TotalEnergies SE has \nstrategic partnerships with PureCycle Technologies, Plastic Energy, \nFreepoint Eco-Systems, and Plastic Omnium for various development \nprojects. The company was formerly known as TOTAL SE and changed its \nname to TotalEnergies SE in June 2021. TotalEnergies SE was incorporated\n in 1924 and is headquartered in Courbevoie, France.",
+            "html": null
+          },
+          {
+            "text": "Description not available.",
+            "html": null
+          },
+          {
+            "text": "Description not available.",
+            "html": null
+          },
+          {
+            "text": "-- ENDS --",
+            "html": null
+          },
+          {
+            "text": "Powered ByGoogle News Initiative",
+            "html": null
+          },
+          {
+            "text": "•Subscribe•Register•Information Requests•Media Centre•Cookie Policy•Privacy Policy•Press Releases•Podcast•About Us•Contact Us•",
+            "html": null
+          },
+          {
+            "text": "You can customize your cookie preferences here. Enable or disable the following categories and save your selection.",
+            "html": null
+          }
+        ],
+        "jobs": [],
+        "contact": [
+          {
+            "text": "About The BlogPress ReleasesMeet the EditorMentorship ProgrammeMedia CentreNews & InsightsThe Power Moves AwardExecutive AppointmentsUseful LinksICO Code of ConductThe Labour Economics BlogPhotoVogue by VogueFollow me on all platformsPowered ByGoogle News Initiative•Subscribe•Register•Information Requests•Media Centre•Cookie Policy•Privacy Policy•Press Releases•Podcast•About Us•Contact Us•Copyright © 2009-2025 All Rights Reserved • Alfred Anate Bodurin Mayaki - London, England 🇬🇧Cookies",
+            "html": null
+          }
+        ]
+      },
+      "links_found": [
+        "https://www.ibrecruitment.com/home/",
+        "https://www.ibrecruitment.com/hub/#",
+        "https://www.ibrecruitment.com/profile/",
+        "https://www.ibrecruitment.com/media/",
+        "https://www.ibrecruitment.com/hub/",
+        "https://www.ibrecruitment.com/releases/",
+        "https://www.ibrecruitment.com/news-insights/",
+        "https://www.ibrecruitment.com/blog/",
+        "https://www.ibrecruitment.com/exec-appointments/",
+        "https://www.ibrecruitment.com/index/",
+        "https://www.ibrecruitment.com/podcast/",
+        "https://www.ibrecruitment.com/the-list/",
+        "https://www.ibrecruitment.com/the-power-list-criteria/",
+        "https://www.ibrecruitment.com/the-list-2023/",
+        "https://www.ibrecruitment.com/the-list-2025/",
+        "https://www.ibrecruitment.com/editor/",
+        "https://www.ibrecruitment.com/anate/",
+        "https://www.ibrecruitment.com/comms/",
+        "https://www.ibrecruitment.com/foi/",
+        "https://www.ibrecruitment.com/contact/",
+        "https://www.ibrecruitment.com/hub/#",
+        "https://www.ibrecruitment.com/profile/",
+        "https://www.ibrecruitment.com/releases/",
+        "https://www.ibrecruitment.com/team/",
+        "https://www.ibrecruitment.com/l/ibr-group-internationals-managing-director-selected-to-represent-career-masterclass-industry-mentorship-programme/",
+        "https://www.ibrecruitment.com/media/",
+        "https://www.ibrecruitment.com/news-insights/",
+        "https://www.ibrecruitment.com/the-list/",
+        "https://www.ibrecruitment.com/exec-appointments/",
+        "https://www.ibrecruitment.com/services/",
+        "https://www.ibrecruitment.com/user-registration/",
+        "https://www.ibrecruitment.com/foi/",
+        "https://www.ibrecruitment.com/media/",
+        "https://www.ibrecruitment.com/cookies/",
+        "https://www.ibrecruitment.com/privacy/",
+        "https://www.ibrecruitment.com/releases/",
+        "https://www.ibrecruitment.com/podcast/",
+        "https://www.ibrecruitment.com/profile/",
+        "https://www.ibrecruitment.com/contact/",
+        "https://www.ibrecruitment.com/hub/#",
+        "https://www.ibrecruitment.com/cookies/"
+      ]
+    }
+  ]
+}
