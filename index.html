@@ -477,66 +477,30 @@
         response = await fetch(chatApiUrl, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ message: text, stream: true })
+          // Switch OFF streaming to validate end-to-end first.
+          body: JSON.stringify({ message: text, stream: false })
         });
       } catch (e) {
         bubble.textContent = `Network error: ${String(e.message || e)}`;
         return;
       }
 
-      if (!response.ok || !response.body) {
-        const errText = await response.text().catch(() => '');
-        bubble.textContent = `Server error: ${response.status} ${errText}`;
+      const raw = await response.text().catch(() => '');
+      if (!response.ok) {
+        bubble.textContent = `Server error: ${response.status} ${raw}`;
         return;
       }
 
-      bubble.textContent = '';
-
-      const reader = response.body.getReader();
-      const decoder = new TextDecoder('utf-8');
-      let buffer = '';
-
+      let data;
       try {
-        while (true) {
-          const { value, done } = await reader.read();
-          if (done) break;
-
-          buffer += decoder.decode(value, { stream: true });
-
-          const frames = buffer.split('\n\n');
-          buffer = frames.pop() || '';
-
-          for (const frame of frames) {
-            for (const line of frame.split('\n')) {
-              if (!line.startsWith('data:')) continue;
-
-              const data = line.slice(5).trim();
-              if (!data) continue;
-
-              if (data === '[DONE]') return;
-
-              let evt;
-              try {
-                evt = JSON.parse(data);
-              } catch {
-                continue;
-              }
-
-              if (typeof evt.delta === 'string') {
-                bubble.textContent += evt.delta;
-                chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
-              }
-
-              if (typeof evt.error === 'string') {
-                bubble.textContent += `\n\n${evt.error}`;
-                return;
-              }
-            }
-          }
-        }
+        data = raw ? JSON.parse(raw) : null;
       } catch (e) {
-        bubble.textContent += `\n\nStream error: ${String(e.message || e)}`;
+        bubble.textContent = `Bad JSON from server: ${raw}`;
+        return;
       }
+
+      bubble.textContent = String(data?.reply || '').trim() || '(empty reply)';
+      chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
     }
   })();
   </script>

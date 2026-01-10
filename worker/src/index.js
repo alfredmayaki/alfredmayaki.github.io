@@ -117,18 +117,35 @@ async function callGeminiNonStreaming(env, message) {
     NON_STREAM_TIMEOUT_MS
   );
 
+  const responseText = await resp.text().catch(() => '');
+
   if (!resp.ok) {
-    const err = await resp.text().catch(() => '');
-    throw new Error(`Gemini error: ${resp.status} ${err}`);
+    throw new Error(`Gemini error: ${resp.status} ${responseText}`);
   }
 
-  const data = await resp.json();
+  let data;
+  try {
+    data = responseText ? JSON.parse(responseText) : null;
+  } catch {
+    throw new Error(`Gemini error: invalid JSON response: ${responseText}`);
+  }
+
   const parts = data?.candidates?.[0]?.content?.parts;
   const text = Array.isArray(parts)
     ? parts.map((p) => (typeof p?.text === 'string' ? p.text : '')).join('')
     : '';
 
-  return text || 'No response.';
+  if (text) return text;
+
+  // If empty, surface useful diagnostics to the client so you can see why.
+  const finishReason = data?.candidates?.[0]?.finishReason;
+  const promptFeedback = data?.promptFeedback;
+  const apiErrorMessage = data?.error?.message;
+
+  return (
+    apiErrorMessage ||
+    `No response text. finishReason=${finishReason || 'unknown'} promptFeedback=${promptFeedback ? JSON.stringify(promptFeedback) : 'none'}`
+  );
 }
 
 function streamGeminiAsSse(env, message) {
