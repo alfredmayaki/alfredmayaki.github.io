@@ -56,7 +56,8 @@ function getGeminiModel(env) {
 
 async function callGeminiNonStreaming(env, message) {
   const model = getGeminiModel(env);
-  const endpoint = `https://generativelanguage.googleapis.com/v1/models/${model}:generateContent?key=${encodeURIComponent(env.GEMINI_API_KEY)}`;
+  // Revert v1 back to v1beta
+  const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${encodeURIComponent(env.GEMINI_API_KEY)}`;
 
   const resp = await fetch(endpoint, {
     method: 'POST',
@@ -72,7 +73,6 @@ async function callGeminiNonStreaming(env, message) {
   }
 
   const data = await resp.json();
-
   const parts = data?.candidates?.[0]?.content?.parts;
   const text = Array.isArray(parts)
     ? parts.map((p) => (typeof p?.text === 'string' ? p.text : '')).join('')
@@ -96,7 +96,8 @@ function streamGeminiAsSse(env, message) {
   (async () => {
     try {
       const model = getGeminiModel(env);
-      const endpoint = `https://generativelanguage.googleapis.com/v1/models/${model}:streamGenerateContent?key=${encodeURIComponent(env.GEMINI_API_KEY)}`;
+      // Revert v1 back to v1beta
+      const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/${model}:streamGenerateContent?key=${encodeURIComponent(env.GEMINI_API_KEY)}`;
 
       const upstream = await fetch(endpoint, {
         method: 'POST',
