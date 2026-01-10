@@ -1,0 +1,469 @@
+﻿<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>IBRecruitment Web Scraper</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            overflow: hidden;
+        }
+
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            opacity: 0.9;
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        .tabs {
+            display: flex;
+            border-bottom: 2px solid #e0e0e0;
+            margin-bottom: 30px;
+        }
+
+        .tab {
+            padding: 15px 30px;
+            cursor: pointer;
+            border: none;
+            background: none;
+            font-size: 16px;
+            color: #666;
+            transition: all 0.3s;
+        }
+
+        .tab.active {
+            color: #667eea;
+            border-bottom: 3px solid #667eea;
+            font-weight: bold;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.3s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        input, textarea, select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 6px;
+            font-size: 14px;
+            transition: border-color 0.3s;
+        }
+
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        textarea {
+            min-height: 120px;
+            resize: vertical;
+            font-family: 'Courier New', monospace;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        button {
+            padding: 14px 28px;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-secondary {
+            background: #f0f0f0;
+            color: #333;
+        }
+
+        .btn-secondary:hover {
+            background: #e0e0e0;
+        }
+
+        .output-box {
+            background: #f8f9fa;
+            border: 2px solid #e0e0e0;
+            border-radius: 6px;
+            padding: 20px;
+            margin-top: 20px;
+            max-height: 500px;
+            overflow-y: auto;
+        }
+
+        .output-box h3 {
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .output-box pre {
+            background: #fff;
+            padding: 15px;
+            border-radius: 4px;
+            overflow-x: auto;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        .alert {
+            padding: 15px 20px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+        }
+
+        .alert-info {
+            background: #e3f2fd;
+            border-left: 4px solid #2196f3;
+            color: #1976d2;
+        }
+
+        .alert-success {
+            background: #e8f5e9;
+            border-left: 4px solid #4caf50;
+            color: #388e3c;
+        }
+
+        .code-block {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 20px;
+            border-radius: 6px;
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+
+        .code-block code {
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .stat-card h4 {
+            font-size: 2em;
+            margin-bottom: 5px;
+        }
+
+        .stat-card p {
+            opacity: 0.9;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🔍 IBRecruitment Web Scraper</h1>
+            <p>Python + BeautifulSoup Backend</p>
+        </header>
+
+        <div class="content">
+            <div class="tabs">
+                <button class="tab active" onclick="switchTab('config')">Configuration</button>
+                <button class="tab" onclick="switchTab('setup')">Setup Guide</button>
+                <button class="tab" onclick="switchTab('results')">View Results</button>
+            </div>
+
+            <!-- Configuration Tab -->
+            <div id="config" class="tab-content active">
+                <div class="alert alert-info">
+                    <strong>ℹ️ Instructions:</strong> Configure your scraping parameters below and generate the Python command to run.
+                </div>
+
+                <div class="form-group">
+                    <label for="targetUrl">Target URL:</label>
+                    <input type="url" id="targetUrl" value="https://www.ibrecruitment.com/" placeholder="https://www.ibrecruitment.com/">
+                </div>
+
+                <div class="form-group">
+                    <label for="selectors">CSS Selectors (JSON format):</label>
+                    <textarea id="selectors" placeholder='{"headings": ["h1", "h2"], "content": ["p", "article"]}'>{
+  "headings": ["h1", "h2", "h3"],
+  "content": ["p", ".content", "article"],
+  "jobs": [".job-listing", ".position"],
+  "contact": [".contact-info", "footer"]
+}</textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="maxPages">Max Pages to Scrape:</label>
+                    <input type="number" id="maxPages" value="5" min="1" max="100">
+                </div>
+
+                <div class="form-group">
+                    <label for="maxDepth">Max Crawl Depth:</label>
+                    <input type="number" id="maxDepth" value="2" min="1" max="5">
+                </div>
+
+                <div class="form-group">
+                    <label for="delay">Delay Between Requests (seconds):</label>
+                    <input type="number" id="delay" value="1" min="0.5" max="10" step="0.5">
+                </div>
+
+                <div class="button-group">
+                    <button class="btn-primary" onclick="generatePythonCommand()">Generate Python Command</button>
+                    <button class="btn-secondary" onclick="generateConfigFile()">Download Config</button>
+                </div>
+
+                <div id="commandOutput" class="output-box" style="display: none;">
+                    <h3>Python Command:</h3>
+                    <pre id="pythonCommand"></pre>
+                </div>
+            </div>
+
+            <!-- Setup Guide Tab -->
+            <div id="setup" class="tab-content">
+                <h2>🚀 Setup Instructions</h2>
+                
+                <div class="alert alert-success" style="margin-top: 20px;">
+                    <strong>✓ Files Created:</strong> scraper.py is ready to use!
+                </div>
+
+                <h3 style="margin-top: 30px;">Step 1: Install Dependencies</h3>
+                <div class="code-block">
+                    <code>pip install requests beautifulsoup4</code>
+                </div>
+
+                <h3 style="margin-top: 30px;">Step 2: Run the Scraper</h3>
+                <div class="code-block">
+                    <code>python scraper.py</code>
+                </div>
+
+                <h3 style="margin-top: 30px;">Step 3: Customize (Optional)</h3>
+                <p style="margin: 15px 0;">Edit the <code>main()</code> function in scraper.py to customize selectors and parameters:</p>
+                <div class="code-block">
+                    <code>custom_selectors = {
+    'headings': ['h1', 'h2', 'h3'],
+    'jobs': ['.job-listing', '.vacancy'],
+    'contact': ['footer', '.contact-info']
+}
+
+scraper.crawl(max_pages=10, max_depth=2, selectors=custom_selectors)</code>
+                </div>
+
+                <h3 style="margin-top: 30px;">Features Available:</h3>
+                <ul style="margin: 15px 0 15px 30px; line-height: 2;">
+                    <li>✓ Single page scraping</li>
+                    <li>✓ Multi-page crawling with depth control</li>
+                    <li>✓ Custom CSS selectors</li>
+                    <li>✓ Rate limiting to respect server</li>
+                    <li>✓ JSON export</li>
+                    <li>✓ Content search functionality</li>
+                </ul>
+            </div>
+
+            <!-- Results Tab -->
+            <div id="results" class="tab-content">
+                <h2>📊 View Scraped Results</h2>
+                
+                <div class="button-group" style="margin-top: 20px;">
+                    <button class="btn-primary" onclick="loadResults()">Load Results (ibrecruitment_data.json)</button>
+                    <button class="btn-secondary" onclick="document.getElementById('fileInput').click()">Upload JSON File</button>
+                </div>
+                <input type="file" id="fileInput" accept=".json" style="display: none;" onchange="handleFileUpload(event)">
+
+                <div id="statsContainer" style="display: none;">
+                    <div class="stats">
+                        <div class="stat-card">
+                            <h4 id="totalPages">0</h4>
+                            <p>Pages Scraped</p>
+                        </div>
+                        <div class="stat-card">
+                            <h4 id="totalContent">0</h4>
+                            <p>Content Items</p>
+                        </div>
+                        <div class="stat-card">
+                            <h4 id="scrapedDate">-</h4>
+                            <p>Last Scraped</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="resultsOutput" class="output-box" style="display: none;">
+                    <h3>Scraped Data:</h3>
+                    <pre id="resultsData"></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function switchTab(tabName) {
+            // Hide all tabs
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+
+            // Show selected tab
+            document.getElementById(tabName).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        function generatePythonCommand() {
+            const url = document.getElementById('targetUrl').value;
+            const maxPages = document.getElementById('maxPages').value;
+            const maxDepth = document.getElementById('maxDepth').value;
+            const delay = document.getElementById('delay').value;
+            const selectors = document.getElementById('selectors').value;
+
+            const command = `# Run the scraper with custom parameters
+python scraper.py
+
+# Or use it programmatically:
+from scraper import IBRecruitmentScraper
+
+scraper = IBRecruitmentScraper("${url}")
+selectors = ${selectors}
+
+scraper.crawl(max_pages=${maxPages}, max_depth=${maxDepth}, selectors=selectors, delay=${delay})
+scraper.save_to_json('ibrecruitment_data.json')`;
+
+            document.getElementById('pythonCommand').textContent = command;
+            document.getElementById('commandOutput').style.display = 'block';
+        }
+
+        function generateConfigFile() {
+            const config = {
+                target_url: document.getElementById('targetUrl').value,
+                max_pages: parseInt(document.getElementById('maxPages').value),
+                max_depth: parseInt(document.getElementById('maxDepth').value),
+                delay: parseFloat(document.getElementById('delay').value),
+                selectors: JSON.parse(document.getElementById('selectors').value)
+            };
+
+            const blob = new Blob([JSON.stringify(config, null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'scraper_config.json';
+            a.click();
+            URL.revokeObjectURL(url);
+        }
+
+        function loadResults() {
+            // Simulate loading - in production, you'd fetch the actual JSON file
+            alert('Please upload the ibrecruitment_data.json file using the "Upload JSON File" button');
+        }
+
+        function handleFileUpload(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    try {
+                        const data = JSON.parse(e.target.result);
+                        displayResults(data);
+                    } catch (error) {
+                        alert('Error parsing JSON file: ' + error.message);
+                    }
+                };
+                reader.readAsText(file);
+            }
+        }
+
+        function displayResults(data) {
+            document.getElementById('totalPages').textContent = data.total_pages || 0;
+            
+            let totalContent = 0;
+            if (data.data) {
+                data.data.forEach(page => {
+                    Object.values(page.content || {}).forEach(items => {
+                        totalContent += items.length;
+                    });
+                });
+            }
+            document.getElementById('totalContent').textContent = totalContent;
+            
+            const date = data.scraped_at ? new Date(data.scraped_at).toLocaleDateString() : '-';
+            document.getElementById('scrapedDate').textContent = date;
+            
+            document.getElementById('resultsData').textContent = JSON.stringify(data, null, 2);
+            document.getElementById('statsContainer').style.display = 'block';
+            document.getElementById('resultsOutput').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
