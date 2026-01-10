@@ -10,4 +10,4 @@ routes = [
 
 [vars]
 GEMINI_MODEL = "gemini-2.5-flash"
-GEMINI_API_VERSION = "v1beta"
+GEMINI_API_VERSION = "v1"
