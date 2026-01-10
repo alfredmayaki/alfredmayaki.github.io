@@ -21,7 +21,13 @@ function getGeminiModel(env) {
 }
 
 function getGeminiVersion(env) {
-  return String(env?.GEMINI_API_VERSION || 'v1').trim() || 'v1';
+  const raw = String(env?.GEMINI_API_VERSION || 'v1').trim().toLowerCase() || 'v1';
+  if (raw === 'v1' || raw === 'v1beta') return raw;
+
+  // Fail fast: avoids confusing upstream 404s when the base path is invalid.
+  throw new Error(
+    `Unsupported GEMINI_API_VERSION "${raw}". Supported values are "v1" and "v1beta".`
+  );
 }
 
 function isPalmChatBisonModel(model) {
@@ -255,6 +261,13 @@ export default {
 
     if (!env.GEMINI_API_KEY) {
       return json({ reply: 'Server is missing GEMINI_API_KEY.' }, 500);
+    }
+
+    // Trigger version validation early so misconfig returns a clear error.
+    try {
+      getGeminiVersion(env);
+    } catch (e) {
+      return json({ reply: String(e?.message || e) }, 400);
     }
 
     const model = getGeminiModel(env);
