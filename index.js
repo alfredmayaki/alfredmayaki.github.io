@@ -36,7 +36,7 @@
   // CONFIGURATION
   // ========================================
   const CONFIG = {
-    chatApiUrl: 'https://alfredmayaki.me/chat',  
+    chatApiUrl: 'https://alfredmayaki.me/chat*',  
     maxMessageChars: 1000,
     requestTimeoutMs: 30000,
     maxHistoryTurns: 6,
@@ -290,11 +290,12 @@
       const reply = String(data?.reply || '').trim();
       console.log('💬 Reply:', reply);
       bubble.textContent = reply || '(empty reply)';
+
       pushHistory('bot', bubble.textContent);
       
     } catch (error) {
       console.error('❌ Fetch error:', error);
-      console.error('Error name:', error?.name);`
+      console.error('Error name:', error?.name);
       console.error('Error message:', error?.message);
       console.error('Error stack:', error?.stack);
       
