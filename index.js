@@ -37,7 +37,7 @@
   // ========================================
   const CONFIG = {
     // Use your custom domain route, NOT the workers.dev URL
-    chatApiUrl: 'https://shy-sea-600a.alfred-mayaki.workers.dev/chat',  // ✅ Correct URL
+    chatApiUrl: 'https://alfredmayaki.me/chat',
     maxMessageChars: 1000,
     requestTimeoutMs: 30000,
     maxHistoryTurns: 6,
