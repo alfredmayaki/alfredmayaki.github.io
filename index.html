@@ -8,13 +8,9 @@
   <meta name="keywords" content="Alfred Mayaki, Labour Economist, Human Resource Management, Multilingual, Portfolio">
   <meta name="author" content="Alfred Anate Bodurin Mayaki">
 
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-CNF86BSG95"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-CNF86BSG95');
+  <!-- Google Analytics - Only loads if consent given -->
+  <script id="ga-script">
+    // Google Analytics will be initialized after consent
   </script>
 
   <style>
@@ -259,6 +255,101 @@
       box-shadow: none;
     }
 
+    /* --- Cookie Consent Banner --- */
+    .cookie-banner {
+      display: none;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      
+      background: var(--panel);
+      border-top: 2px solid var(--border);
+      box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.5);
+      z-index: 2147483646;
+      
+      padding: 1.5em;
+      animation: slideUp 0.4s ease-out;
+    }
+
+    .cookie-banner.show {
+      display: block;
+    }
+
+    @keyframes slideUp {
+      from {
+        transform: translateY(100%);
+      }
+      to {
+        transform: translateY(0);
+      }
+    }
+
+    .cookie-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2em;
+      flex-wrap: wrap;
+    }
+
+    .cookie-text {
+      flex: 1;
+      min-width: 300px;
+      color: var(--text);
+      line-height: 1.5;
+    }
+
+    .cookie-text a {
+      color: var(--brand);
+      text-decoration: none;
+    }
+
+    .cookie-text a:hover {
+      text-decoration: underline;
+    }
+
+    .cookie-buttons {
+      display: flex;
+      gap: 1em;
+      flex-wrap: wrap;
+    }
+
+    .cookie-btn {
+      padding: 0.7em 1.5em;
+      
+      color: var(--text);
+      background: var(--surface);
+      border: 2px solid var(--border);
+      border-radius: var(--radius-md);
+      
+      font-family: var(--font-sans);
+      font-size: 0.95em;
+      cursor: pointer;
+      white-space: nowrap;
+      
+      transition: all 0.2s ease;
+    }
+
+    .cookie-btn:hover {
+      background: var(--brand-hover);
+      border-color: var(--brand);
+      transform: translateY(-1px);
+    }
+
+    .cookie-btn.accept {
+      background: var(--brand);
+      border-color: var(--brand);
+    }
+
+    .cookie-btn.accept:hover {
+      background: var(--brand-hover);
+      box-shadow: var(--shadow-brand);
+    }
+
     /* --- Chatbot popup --- */
     .chatbot-popup {
       display: none;
@@ -409,6 +500,22 @@
       border-color: var(--brand);
     }
 
+    @media (max-width: 768px) {
+      .cookie-content {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .cookie-buttons {
+        justify-content: stretch;
+      }
+
+      .cookie-btn {
+        flex: 1;
+        text-align: center;
+      }
+    }
+
     @media (max-width: 480px) {
       .search-container {
         grid-template-columns: 1fr;
@@ -438,6 +545,14 @@
 
       .button-group .music-btn {
         width: 100%;
+      }
+
+      .cookie-banner {
+        padding: 1em;
+      }
+
+      .cookie-buttons {
+        flex-direction: column;
       }
     }
   </style>
@@ -506,8 +621,122 @@
     </div>
   </div>
 
+  <!-- Cookie Consent Banner -->
+  <div class="cookie-banner" id="cookieBanner">
+    <div class="cookie-content">
+      <div class="cookie-text">
+        🍪 This website uses cookies to enhance your experience and analyze site traffic. We use Google Analytics to understand how visitors interact with our site. By clicking "Accept", you consent to our use of cookies. <a href="#" id="learnMore">Learn more</a>
+      </div>
+      <div class="cookie-buttons">
+        <button class="cookie-btn" id="rejectCookies">Decline</button>
+        <button class="cookie-btn accept" id="acceptCookies">Accept</button>
+      </div>
+    </div>
+  </div>
+
   <!-- External Scripts -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
   <script src="index.js"></script>
+  
+  <!-- Cookie Consent Script -->
+  <script>
+    (function() {
+      'use strict';
+
+      const COOKIE_NAME = 'cookie_consent';
+      const COOKIE_EXPIRY_DAYS = 365;
+
+      function setCookie(name, value, days) {
+        const date = new Date();
+        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+        const expires = 'expires=' + date.toUTCString();
+        document.cookie = name + '=' + value + ';' + expires + ';path=/;SameSite=Strict';
+      }
+
+      function getCookie(name) {
+        const nameEQ = name + '=';
+        const ca = document.cookie.split(';');
+        for (let i = 0; i < ca.length; i++) {
+          let c = ca[i];
+          while (c.charAt(0) === ' ') c = c.substring(1, c.length);
+          if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
+        }
+        return null;
+      }
+
+      function initGoogleAnalytics() {
+        // Load Google Analytics
+        const script = document.createElement('script');
+        script.async = true;
+        script.src = 'https://www.googletagmanager.com/gtag/js?id=G-CNF86BSG95';
+        document.head.appendChild(script);
+
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-CNF86BSG95', {
+          'anonymize_ip': true,
+          'cookie_flags': 'SameSite=Strict;Secure'
+        });
+
+        console.log('✅ Google Analytics initialized');
+      }
+
+      function hideBanner() {
+        const banner = document.getElementById('cookieBanner');
+        if (banner) {
+          banner.style.animation = 'slideDown 0.4s ease-out';
+          setTimeout(() => {
+            banner.classList.remove('show');
+          }, 400);
+        }
+      }
+
+      function handleAccept() {
+        setCookie(COOKIE_NAME, 'accepted', COOKIE_EXPIRY_DAYS);
+        initGoogleAnalytics();
+        hideBanner();
+      }
+
+      function handleReject() {
+        setCookie(COOKIE_NAME, 'rejected', COOKIE_EXPIRY_DAYS);
+        hideBanner();
+      }
+
+      // Check consent status on page load
+      const consent = getCookie(COOKIE_NAME);
+      
+      if (consent === 'accepted') {
+        // User has already accepted, load analytics
+        initGoogleAnalytics();
+      } else if (!consent) {
+        // No consent yet, show banner
+        const banner = document.getElementById('cookieBanner');
+        if (banner) {
+          banner.classList.add('show');
+        }
+      }
+      // If rejected, do nothing (don't load analytics)
+
+      // Event listeners
+      document.getElementById('acceptCookies')?.addEventListener('click', handleAccept);
+      document.getElementById('rejectCookies')?.addEventListener('click', handleReject);
+      
+      document.getElementById('learnMore')?.addEventListener('click', function(e) {
+        e.preventDefault();
+        alert('Cookie Policy\n\nWe use Google Analytics to:\n• Understand how visitors use our website\n• Improve user experience\n• Analyze site traffic and performance\n\nYou can change your preferences at any time by clearing your browser cookies and refreshing the page.');
+      });
+
+      // Add slideDown animation
+      const style = document.createElement('style');
+      style.textContent = `
+        @keyframes slideDown {
+          from { transform: translateY(0); }
+          to { transform: translateY(100%); }
+        }
+      `;
+      document.head.appendChild(style);
+    })();
+  </script>
 </body>
 </html>
