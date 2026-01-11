@@ -36,7 +36,7 @@
   // CONFIGURATION
   // ========================================
   const CONFIG = {
-    chatApiUrl: 'https://shy-sea-600a.alfred-mayaki.workers.dev/chat',  
+    chatApiUrl: 'alfredmayaki.me/chat',  
     maxMessageChars: 1000,
     requestTimeoutMs: 30000,
     maxHistoryTurns: 6,
@@ -294,10 +294,16 @@
       
     } catch (error) {
       console.error('❌ Fetch error:', error);
+      console.error('Error name:', error?.name);`
+      console.error('Error message:', error?.message);
+      console.error('Error stack:', error?.stack);
+      
       if (String(error?.name) === 'AbortError') {
         bubble.textContent = 'Request timed out. Please try again.';
+      } else if (error instanceof TypeError && error.message.includes('Failed to fetch')) {
+        bubble.textContent = 'Cannot reach server. Possible reasons:\n1. Worker not deployed\n2. CORS issue\n3. Network problem\n\nCheck browser console for details.';
       } else {
-        bubble.textContent = `Network error: ${String(error?.message || error)}. Is your chat API endpoint configured?`;
+        bubble.textContent = `Network error: ${String(error?.message || error)}`;
       }
     } finally {
       clearTimeout(timeoutId);
