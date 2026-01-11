@@ -147,6 +147,15 @@
       transform: translateY(-2px);
     }
 
+    /* Button container for horizontal layout */
+    .button-group {
+      display: flex;
+      gap: 1em;
+      margin: 1em auto 0;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
     /* --- Search / Chat trigger --- */
     .search-container {
       width: 100%;
@@ -418,6 +427,15 @@
         width: calc(100vw - 24px);
         max-height: calc(100vh - 24px);
       }
+
+      .button-group {
+        flex-direction: column;
+        width: 100%;
+      }
+
+      .button-group .music-btn {
+        width: 100%;
+      }
     }
   </style>
 </head>
@@ -431,7 +449,10 @@
 
     <br><b><p class="tagline">It's January, the month of Davos</p></b>
 
-    <button id="musicBtn" class="music-btn" type="button" aria-pressed="false">Play music</button>
+    <div class="button-group">
+      <button id="musicBtn" class="music-btn" type="button" aria-pressed="false">Play music</button>
+      <a href="scraper.html" class="music-btn" style="text-decoration: none;">Web Scraper</a>
+    </div>
 
     <div class="search-container">
       <input type="text" class="search-bar" id="searchInput" placeholder="Ask Google Gemini...">
