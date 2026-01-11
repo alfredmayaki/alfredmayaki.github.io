@@ -41,7 +41,7 @@
     maxMessageChars: 1000,
     requestTimeoutMs: 30000,
     maxHistoryTurns: 6,
-    welcomeMessage: '👋 Hello! I\'m powered by Google Gemini. Ask me anything about Alfred Mayaki or any topic you\'d like to explore.'
+    welcomeMessage: '👋🏿 Hello! I\'m powered by Google Gemini. Ask me anything about Alfred Mayaki or any topic you\'d like to explore.'
   };
 
   console.log('⚙️ Config:', CONFIG);
