@@ -1,5 +1,7 @@
-(function () {
+﻿(function () {
   'use strict';
+
+  console.log('🚀 Chatbot script loaded');
 
   // ========================================
   // DOM ELEMENT REFERENCES
@@ -17,10 +19,16 @@
     languageSelect: document.getElementById('languageSelect')
   };
 
+  // Debug: Log which elements were found
+  Object.keys(elements).forEach(key => {
+    if (!elements[key]) console.error(`❌ Missing element: ${key}`);
+    else console.log(`✅ Found element: ${key}`);
+  });
+
   // Early exit if critical elements are missing
   if (!elements.searchInput || !elements.searchBtn || !elements.chatbotPopup || 
       !elements.chatbotMessages || !elements.chatbotInput || !elements.closeChat) {
-    console.error('Critical chatbot elements not found');
+    console.error('❌ Critical chatbot elements not found');
     return;
   }
 
@@ -28,12 +36,14 @@
   // CONFIGURATION
   // ========================================
   const CONFIG = {
-    chatApiUrl: 'https://shy-sea-600a.alfred-mayaki.workers.dev/chat',
+    chatApiUrl: 'https://shy-sea-600a.alfred-mayaki.workers.dev/chat',  
     maxMessageChars: 1000,
     requestTimeoutMs: 30000,
     maxHistoryTurns: 6,
-    welcomeMessage: '?? Hello! I\'m powered by Google Gemini. Ask me anything about Alfred Mayaki or any topic you\'d like to explore.'
+    welcomeMessage: '👋 Hello! I\'m powered by Google Gemini. Ask me anything about Alfred Mayaki or any topic you\'d like to explore.'
   };
+
+  console.log('⚙️ Config:', CONFIG);
 
   // ========================================
   // STATE MANAGEMENT
@@ -49,8 +59,10 @@
   // ========================================
   if (typeof particlesJS !== 'undefined') {
     particlesJS.load('particles-js', 'particles.json', function() {
-      console.log('Particles.js loaded');
+      console.log('✨ Particles.js loaded');
     });
+  } else {
+    console.warn('⚠️ particlesJS not found');
   }
 
   // ========================================
@@ -84,6 +96,7 @@
       setMusicButtonState(true);
       return true;
     } catch (error) {
+      console.log('🔇 Autoplay blocked (expected)', error.message);
       setMusicButtonState(false);
       return false;
     }
@@ -109,6 +122,7 @@
     setMusicButtonState(!elements.bgMusic.paused);
 
     elements.musicBtn.addEventListener('click', function () {
+      console.log('🎵 Music button clicked');
       void toggleMusic();
     });
 
@@ -135,20 +149,24 @@
   // CHATBOT UI FUNCTIONS
   // ========================================
   function openChatbot() {
+    console.log('💬 Opening chatbot');
     const query = elements.searchInput.value.trim();
     elements.chatbotPopup.classList.add('active');
 
     if (!query) {
+      console.log('No query provided, focusing input');
       elements.chatbotInput.focus();
       return;
     }
 
+    console.log('Processing query:', query);
     addUserMessage(query);
     processQuery(query);
     elements.searchInput.value = '';
   }
 
   function closeChatbot() {
+    console.log('Closing chatbot');
     elements.chatbotPopup.classList.remove('active');
   }
 
@@ -205,12 +223,15 @@
     const text = normalizeUserText(query);
     if (!text) return;
 
+    console.log('📤 Processing query:', text);
+
     if (text.length > CONFIG.maxMessageChars) {
       addBotBubble(`Message too long. Please keep it under ${CONFIG.maxMessageChars} characters.`);
       return;
     }
 
     if (state.isSending) {
+      console.warn('⚠️ Already sending a request, ignoring');
       return;
     }
 
@@ -223,6 +244,7 @@
     state.inFlightAbort = controller;
 
     const timeoutId = setTimeout(() => {
+      console.warn('⏱️ Request timeout');
       controller.abort('timeout');
     }, CONFIG.requestTimeoutMs);
 
@@ -233,6 +255,9 @@
         history: state.conversationHistory
       };
 
+      console.log('📡 Sending request to:', CONFIG.chatApiUrl);
+      console.log('📦 Payload:', payload);
+
       const response = await fetch(CONFIG.chatApiUrl, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -240,26 +265,35 @@
         signal: controller.signal
       });
 
+      console.log('📥 Response status:', response.status);
+
       const raw = await response.text().catch(() => '');
+      console.log('📥 Response body:', raw);
       
       if (!response.ok) {
-        bubble.textContent = `Server error: ${response.status}. Please check your chat API endpoint configuration.`;
+        const errorMsg = `Server error: ${response.status}. ${raw}`;
+        console.error('❌', errorMsg);
+        bubble.textContent = errorMsg;
         return;
       }
 
       let data;
       try {
         data = raw ? JSON.parse(raw) : null;
+        console.log('📥 Parsed data:', data);
       } catch (parseError) {
+        console.error('❌ JSON parse error:', parseError);
         bubble.textContent = 'Invalid response from server. Please verify your backend setup.';
         return;
       }
 
       const reply = String(data?.reply || '').trim();
+      console.log('💬 Reply:', reply);
       bubble.textContent = reply || '(empty reply)';
       pushHistory('bot', bubble.textContent);
       
     } catch (error) {
+      console.error('❌ Fetch error:', error);
       if (String(error?.name) === 'AbortError') {
         bubble.textContent = 'Request timed out. Please try again.';
       } else {
@@ -272,6 +306,7 @@
       setInputEnabled(true);
       elements.chatbotInput.focus();
       scrollToBottom();
+      console.log('✅ Request complete');
     }
   }
 
@@ -281,12 +316,14 @@
 
   // Search button and input
   elements.searchBtn.addEventListener('click', function () {
+    console.log('🔍 Search button clicked');
     void tryAutoplayMusic();
     openChatbot();
   });
 
   elements.searchInput.addEventListener('keypress', function (e) {
     if (e.key === 'Enter') {
+      console.log('⏎ Enter pressed in search input');
       void tryAutoplayMusic();
       openChatbot();
     }
@@ -296,6 +333,8 @@
   elements.chatbotInput.addEventListener('keydown', function (e) {
     if (e.key !== 'Enter') return;
     e.preventDefault();
+
+    console.log('⏎ Enter pressed in chatbot input');
 
     const message = normalizeUserText(elements.chatbotInput.value);
     if (!message) return;
@@ -315,6 +354,7 @@
     if (e.key !== 'Escape') return;
     
     if (state.inFlightAbort) {
+      console.log('🛑 Cancelling request');
       state.inFlightAbort.abort('user_cancel');
     } else if (elements.chatbotPopup.classList.contains('active')) {
       closeChatbot();
@@ -341,10 +381,11 @@
   // INITIALIZATION
   // ========================================
   function init() {
+    console.log('🎬 Initializing chatbot');
     // Add welcome message
     addBotBubble(CONFIG.welcomeMessage);
     
-    console.log('Chatbot initialized successfully');
+    console.log('✅ Chatbot initialized successfully');
   }
 
   // Initialize when DOM is ready
