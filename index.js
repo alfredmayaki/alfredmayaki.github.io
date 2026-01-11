@@ -36,7 +36,7 @@
   // CONFIGURATION
   // ========================================
   const CONFIG = {
-    chatApiUrl: 'alfredmayaki.me/chat',  
+    chatApiUrl: '/chat',  
     maxMessageChars: 1000,
     requestTimeoutMs: 30000,
     maxHistoryTurns: 6,
