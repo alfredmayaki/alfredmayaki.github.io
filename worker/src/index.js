@@ -30,7 +30,7 @@ async function callAnthropicAPI(env, message, history = []) {
 
   if (!apiKey) {
     throw new Error('ANTHROPIC_API_KEY is not set');
-  }wrangler secre
+  }
 
   // Log API key format for debugging (safely)
   const keyStart = apiKey.substring(0, 10);
