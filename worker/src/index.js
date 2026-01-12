@@ -1,6 +1,6 @@
 const NON_STREAM_TIMEOUT_MS = 25000;
 const STREAM_TIMEOUT_MS = 120000;
-const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5MB limit
+const MAX_FILE_SIZE = 10 * 1024 * 1024; // Increased to 10MB for PDFs/DOCX
 
 function corsHeaders() {
   return {
@@ -25,18 +25,79 @@ function getAIProvider(env) {
   return String(env?.AI_PROVIDER || 'anthropic').trim().toLowerCase();
 }
 
+// Extract text from PDF (simple text extraction)
+async function extractTextFromPDF(arrayBuffer) {
+  try {
+    const text = new TextDecoder('utf-8').decode(arrayBuffer);
+    
+    // Extract text between stream objects (simple PDF text extraction)
+    const matches = text.match(/\(([^)]+)\)/g);
+    if (matches) {
+      return matches.map(m => m.replace(/[()]/g, '')).join(' ');
+    }
+    
+    // Fallback: try to extract any readable text
+    const readableText = text.replace(/[^\x20-\x7E\n]/g, ' ').trim();
+    if (readableText.length > 100) {
+      return readableText;
+    }
+    
+    return 'PDF content detected but text extraction failed. Please try converting to .txt or .md format for better results.';
+  } catch (error) {
+    return `Error extracting PDF text: ${error.message}`;
+  }
+}
+
+// Extract text from DOCX (XML-based)
+async function extractTextFromDOCX(arrayBuffer) {
+  try {
+    const text = new TextDecoder('utf-8').decode(arrayBuffer);
+    
+    // DOCX is a ZIP file containing XML. Look for document.xml content
+    const matches = text.match(/<w:t[^>]*>([^<]+)<\/w:t>/g);
+    if (matches) {
+      return matches.map(m => m.replace(/<[^>]+>/g, '')).join(' ');
+    }
+    
+    // Try alternative extraction
+    const paraMatches = text.match(/<w:p[^>]*>[\s\S]*?<\/w:p>/g);
+    if (paraMatches) {
+      return paraMatches.map(p => p.replace(/<[^>]+>/g, ' ').trim()).join('\n\n');
+    }
+    
+    return 'DOCX content detected but text extraction failed. Please try converting to .txt or .md format for better results.';
+  } catch (error) {
+    return `Error extracting DOCX text: ${error.message}`;
+  }
+}
+
 // Extract text from different file types
-function extractTextFromFile(fileContent, fileName) {
+async function extractTextFromFile(file, fileName) {
   const extension = fileName.toLowerCase().split('.').pop();
   
   try {
     // For text-based files
     if (['txt', 'md', 'json', 'csv', 'log'].includes(extension)) {
-      return fileContent;
+      const text = await file.text();
+      return text;
     }
     
-    // For other files, return base64 or inform user
-    return `[${extension.toUpperCase()} file: ${fileName}]\n\nNote: Binary files are not fully supported. Please provide text-based files for best results.`;
+    // For PDF files
+    if (extension === 'pdf') {
+      const arrayBuffer = await file.arrayBuffer();
+      const extractedText = await extractTextFromPDF(arrayBuffer);
+      return `[PDF Document: ${fileName}]\n\n${extractedText}`;
+    }
+    
+    // For DOCX files
+    if (extension === 'docx') {
+      const arrayBuffer = await file.arrayBuffer();
+      const extractedText = await extractTextFromDOCX(arrayBuffer);
+      return `[Word Document: ${fileName}]\n\n${extractedText}`;
+    }
+    
+    // For other files
+    return `[${extension.toUpperCase()} file: ${fileName}]\n\nNote: This file type requires conversion to .txt, .md, .pdf, or .docx for analysis.`;
   } catch (error) {
     return `Error reading file: ${error.message}`;
   }
@@ -198,13 +259,12 @@ export default {
         if (file && file.size > 0) {
           if (file.size > MAX_FILE_SIZE) {
             return json({ 
-              reply: 'File too large. Maximum size is 5MB.' 
+              reply: 'File too large. Maximum size is 10MB.' 
             }, 400);
           }
 
           const fileName = file.name;
-          const fileContent = await file.text();
-          documentContext = extractTextFromFile(fileContent, fileName);
+          documentContext = await extractTextFromFile(file, fileName);
           
           console.log('File uploaded:', fileName, 'Size:', file.size);
         }
