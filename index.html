@@ -75,9 +75,9 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
+      justify-content: space-between;
 
-      padding: 3em;
+      padding: 3em 3em 0 3em;
       text-align: center;
 
       background: var(--bg-overlay);
@@ -94,6 +94,14 @@
         opacity: 1;
         transform: translateY(0);
       }
+    }
+
+    .main-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
     }
 
     .profile-photo {
@@ -184,7 +192,7 @@
       cursor: pointer;
       
       appearance: none;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23000000' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23ffffff' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
       background-repeat: no-repeat;
       background-position: right 0.7em center;
       background-size: 12px;
@@ -303,6 +311,47 @@
     .docs-btn:active {
       transform: translateY(0);
       box-shadow: none;
+    }
+
+    /* --- Footer --- */
+    .site-footer {
+      width: 100%;
+      padding: 1.5em 0;
+      margin-top: 3em;
+      
+      border-top: 1px solid var(--border);
+      color: var(--text-muted);
+      font-size: 0.9em;
+    }
+
+    .footer-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1em;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 2em;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .footer-link {
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    .footer-link:hover {
+      color: var(--brand);
+      text-decoration: underline;
+    }
+
+    .footer-copyright {
+      color: var(--text-muted);
+      font-size: 0.85em;
     }
 
     /* --- Cookie Consent Banner --- */
@@ -574,6 +623,10 @@
       .navigation-select {
         width: 100%;
       }
+
+      .footer-links {
+        gap: 1em;
+      }
     }
 
     @media (max-width: 480px) {
@@ -614,6 +667,15 @@
       .cookie-buttons {
         flex-direction: column;
       }
+
+      .footer-links {
+        flex-direction: column;
+        gap: 0.8em;
+      }
+
+      .site-footer {
+        padding: 1em 0;
+      }
     }
   </style>
 </head>
@@ -623,62 +685,78 @@
   <div id="particles-js" style="position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:-1;"></div>
 
   <div class="landing-container">
-    <img src="s200_alfred.mayaki.jpg" alt="Alfred Mayaki" class="profile-photo">
+    <div class="main-content">
+      <img src="s200_alfred.mayaki.jpg" alt="Alfred Mayaki" class="profile-photo">
 
-    <br><b><p class="tagline">It's January, the month of Davos 🗻</p></b>
+      <br><b><p class="tagline">It's January, the month of Davos 🗻</p></b>
 
-    <div class="button-group">
-      <button id="musicBtn" class="music-btn" type="button" aria-pressed="false">Play music</button>
-      <a href="scraper.html" class="music-btn">Web scraper</a>
-      <a href="https://alfredmayaki.me/FBL-PhD-research-proposal.pdf" class="music-btn" target="_blank" rel="noopener noreferrer">PhD proposal</a>
-    </div>
-
-    <div class="search-container">
-      <input type="text" class="search-bar" id="searchInput" placeholder="Ask Claude Code...">
-      <button class="search-btn" id="searchBtn" aria-label="Search">
-        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-          <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5s2.91 6.5 6.5 6.5c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" />
-        </svg>
-      </button>
-
-      <a class="docs-btn" id="docsBtn" href="pdf-viewer.html" target="_blank" rel="noopener noreferrer">Search documents</a>
-    </div>
-
-    <br><p>Powered by Google</p>
-
-    <div class="dropdown-group">
-      <div class="navigation-select-wrap">
-        <select id="navigationSelect" class="navigation-select" aria-label="Navigate to">
-          <option value="">Quick navigation…</option>
-          <option value="scraper.html">🔍 Web Scraper</option>
-          <option value="pdf-viewer.html">📄 Document Search</option>
-          <option value="https://alfredmayaki.me/FBL-PhD-research-proposal.pdf">🎓 PhD Proposal</option>
-          <option value="#chatbot">💬 Open Chatbot</option>
-        </select>
+      <div class="button-group">
+        <button id="musicBtn" class="music-btn" type="button" aria-pressed="false">Play music</button>
+        <a href="scraper.html" class="music-btn">Web scraper</a>
+        <a href="https://alfredmayaki.me/FBL-PhD-research-proposal.pdf" class="music-btn" target="_blank" rel="noopener noreferrer">PhD proposal</a>
       </div>
 
-      <div class="language-select-wrap">
-        <select id="languageSelect" class="language-select" aria-label="Select a language">
-          <option value="">Select a world language…</option>
-          <option value="index_en.html">🇬🇧 English</option>
-          <option value="index_ch.html">🇨🇳 中文（语言）</option>
-          <option value="index_cy.html">🇬🇧 Cymraeg</option>
-          <option value="index_fr.html">🇫🇷 Français</option>
-          <option value="index_de.html">🇩🇪 Deutsch</option>
-          <option value="index_es.html">🇪🇸 Español</option>
-          <option value="index_he.html">🇮🇱 עברית</option>
-          <option value="index_it.html">🇮🇹 Italiano</option>
-          <option value="index_jp.html">🇯🇵 日本語</option>
-          <option value="index_ksa.html">🇸🇦 العربية</option>
-          <option value="index_nl.html">🇳🇱 Nederlands</option>
-          <option value="index_ru.html">🇷🇺 Русский</option>
-          <option value="index_pt.html">🇵🇹 Português</option>
-          <option value="index_sw.html">🇸🇪 Svenska</option>
-          <option value="index_tr.html">🇹🇷 Türkçe</option>
-          <option value="index_yb.html">🇳🇬 Yorùbá</option>
-        </select>
+      <div class="search-container">
+        <input type="text" class="search-bar" id="searchInput" placeholder="Ask Claude 3 Haiku...">
+        <button class="search-btn" id="searchBtn" aria-label="Search">
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5s2.91 6.5 6.5 6.5c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" />
+          </svg>
+        </button>
+
+        <a class="docs-btn" id="docsBtn" href="pdf-viewer.html" target="_blank" rel="noopener noreferrer">Search documents</a>
+      </div>
+
+      <br><p>Virtual business cards</p>
+
+      <div class="dropdown-group">
+        <div class="navigation-select-wrap">
+          <select id="navigationSelect" class="navigation-select" aria-label="Navigate to">
+            <option value="">Quick navigation…</option>
+            <option value="scraper.html">🔍 Web Scraper</option>
+            <option value="pdf-viewer.html">📄 Document Search</option>
+            <option value="https://alfredmayaki.me/FBL-PhD-research-proposal.pdf">🎓 PhD Proposal</option>
+            <option value="#chatbot">💬 Open Chatbot</option>
+          </select>
+        </div>
+
+        <div class="language-select-wrap">
+          <select id="languageSelect" class="language-select" aria-label="Select a language">
+            <option value="">Select a world language…</option>
+            <option value="index_en.html">🇬🇧 English</option>
+            <option value="index_ch.html">🇨🇳 中文（语言）</option>
+            <option value="index_cy.html">🇬🇧 Cymraeg</option>
+            <option value="index_fr.html">🇫🇷 Français</option>
+            <option value="index_de.html">🇩🇪 Deutsch</option>
+            <option value="index_es.html">🇪🇸 Español</option>
+            <option value="index_he.html">🇮🇱 עברית</option>
+            <option value="index_it.html">🇮🇹 Italiano</option>
+            <option value="index_jp.html">🇯🇵 日本語</option>
+            <option value="index_ksa.html">🇸🇦 العربية</option>
+            <option value="index_nl.html">🇳🇱 Nederlands</option>
+            <option value="index_ru.html">🇷🇺 Русский</option>
+            <option value="index_pt.html">🇵🇹 Português</option>
+            <option value="index_sw.html">🇸🇪 Svenska</option>
+            <option value="index_tr.html">🇹🇷 Türkçe</option>
+            <option value="index_yb.html">🇳🇬 Yorùbá</option>
+          </select>
+        </div>
       </div>
     </div>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+      <div class="footer-content">
+        <nav class="footer-links">
+          <a href="#" class="footer-link" id="cookieSettingsLink">Cookie Settings</a>
+          <a href="#" class="footer-link" id="privacyPolicyLink">Privacy Policy</a>
+          <a href="#" class="footer-link" id="termsOfUseLink">Terms of Use</a>
+        </nav>
+        <p class="footer-copyright">
+          © 2026 Alfred A. B. Mayaki. All rights reserved.
+        </p>
+      </div>
+    </footer>
   </div>
 
   <div class="chatbot-popup" id="chatbotPopup">
@@ -718,7 +796,6 @@
       if (!target) return;
 
       if (target === '#chatbot') {
-        // Open chatbot instead of navigating
         const chatbotPopup = document.getElementById('chatbotPopup');
         if (chatbotPopup) {
           chatbotPopup.classList.add('active');
@@ -726,15 +803,56 @@
           if (chatInput) chatInput.focus();
         }
       } else if (target.startsWith('http')) {
-        // External link, open in new tab
         window.open(target, '_blank', 'noopener,noreferrer');
       } else {
-        // Internal navigation
         window.location.href = target;
       }
 
-      // Reset dropdown
       navigationSelect.value = '';
+    });
+
+    // Footer link handlers
+    document.getElementById('cookieSettingsLink').addEventListener('click', function(e) {
+      e.preventDefault();
+      // Delete cookie consent to show banner again
+      document.cookie = 'cookie_consent=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+      location.reload();
+    });
+
+    document.getElementById('privacyPolicyLink').addEventListener('click', function(e) {
+      e.preventDefault();
+      alert('Privacy Policy\n\n' +
+        'Last updated: January 12, 2026\n\n' +
+        '1. Information We Collect\n' +
+        'We collect information you provide directly and automatically through cookies and analytics.\n\n' +
+        '2. How We Use Your Information\n' +
+        '• To provide and improve our services\n' +
+        '• To analyze site usage and trends\n' +
+        '• To communicate with you\n\n' +
+        '3. Cookies\n' +
+        'We use Google Analytics cookies to understand how visitors use our website.\n\n' +
+        '4. Your Rights\n' +
+        'You can manage cookie preferences and request data deletion.\n\n' +
+        '5. Contact\n' +
+        'For privacy inquiries, contact via the website.');
+    });
+
+    document.getElementById('termsOfUseLink').addEventListener('click', function(e) {
+      e.preventDefault();
+      alert('Terms of Use\n\n' +
+        'Last updated: January 12, 2026\n\n' +
+        '1. Acceptance of Terms\n' +
+        'By accessing this website, you agree to these terms.\n\n' +
+        '2. Use of Services\n' +
+        'This website is for informational and professional purposes.\n\n' +
+        '3. Intellectual Property\n' +
+        'All content is owned by Alfred A. B. Mayaki unless otherwise stated.\n\n' +
+        '4. AI Chatbot\n' +
+        'The chatbot is powered by Claude AI. Conversations may be processed by third-party AI services.\n\n' +
+        '5. Disclaimer\n' +
+        'Content is provided "as is" without warranties.\n\n' +
+        '6. Changes to Terms\n' +
+        'We reserve the right to modify these terms at any time.');
     });
   </script>
   
@@ -765,7 +883,6 @@
       }
 
       function initGoogleAnalytics() {
-        // Load Google Analytics
         const script = document.createElement('script');
         script.async = true;
         script.src = 'https://www.googletagmanager.com/gtag/js?id=G-CNF86BSG95';
@@ -803,22 +920,17 @@
         hideBanner();
       }
 
-      // Check consent status on page load
       const consent = getCookie(COOKIE_NAME);
       
       if (consent === 'accepted') {
-        // User has already accepted, load analytics
         initGoogleAnalytics();
       } else if (!consent) {
-        // No consent yet, show banner
         const banner = document.getElementById('cookieBanner');
         if (banner) {
           banner.classList.add('show');
         }
       }
-      // If rejected, do nothing (don't load analytics)
 
-      // Event listeners
       document.getElementById('acceptCookies')?.addEventListener('click', handleAccept);
       document.getElementById('rejectCookies')?.addEventListener('click', handleReject);
       
@@ -827,7 +939,6 @@
         alert('Cookie Policy\n\nWe use Google Analytics to:\n• Understand how visitors use our website\n• Improve user experience\n• Analyze site traffic and performance\n\nYou can change your preferences at any time by clearing your browser cookies and refreshing the page.');
       });
 
-      // Add slideDown animation
       const style = document.createElement('style');
       style.textContent = `
         @keyframes slideDown {
