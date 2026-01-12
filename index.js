@@ -42,7 +42,7 @@
     maxHistoryTurns: 10,
     welcomeMessage: '👋🏿 Hello! I\'m powered by Claude 3.5 Haiku. Ask me anything about Alfred Mayaki or any topic you\'d like to explore.',
     soundEffects: {
-      enabled: false,
+      enabled: true,
       volume: 0.3     // 0.0 to 1.0
     }
   };
