@@ -2,6 +2,7 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Web Scraper</title>
     <style>
         * {
@@ -50,6 +51,8 @@
             display: flex;
             border-bottom: 2px solid #e0e0e0;
             margin-bottom: 30px;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
         }
 
         .tab {
@@ -60,6 +63,8 @@
             font-size: 16px;
             color: #666;
             transition: all 0.3s;
+            white-space: nowrap;
+            flex-shrink: 0;
         }
 
         .tab.active {
@@ -117,6 +122,7 @@
             display: flex;
             gap: 10px;
             margin-top: 20px;
+            flex-wrap: wrap;
         }
 
         button {
@@ -127,6 +133,8 @@
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s;
+            flex: 1;
+            min-width: 150px;
         }
 
         .btn-primary {
@@ -137,6 +145,10 @@
         .btn-primary:hover {
             transform: translateY(-2px);
             box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-primary:active {
+            transform: translateY(0);
         }
 
         .btn-secondary {
@@ -170,6 +182,8 @@
             overflow-x: auto;
             font-size: 13px;
             line-height: 1.6;
+            white-space: pre-wrap;
+            word-wrap: break-word;
         }
 
         .alert {
@@ -203,6 +217,8 @@
             font-family: 'Courier New', monospace;
             font-size: 13px;
             line-height: 1.6;
+            white-space: pre-wrap;
+            word-wrap: break-word;
         }
 
         .stats {
@@ -227,6 +243,203 @@
 
         .stat-card p {
             opacity: 0.9;
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            .container {
+                border-radius: 8px;
+            }
+
+            header {
+                padding: 20px 15px;
+            }
+
+            header h1 {
+                font-size: 1.8em;
+            }
+
+            header p {
+                font-size: 0.9em;
+            }
+
+            .content {
+                padding: 20px 15px;
+            }
+
+            .tabs {
+                margin-bottom: 20px;
+                scrollbar-width: thin;
+            }
+
+            .tabs::-webkit-scrollbar {
+                height: 4px;
+            }
+
+            .tabs::-webkit-scrollbar-track {
+                background: #f1f1f1;
+            }
+
+            .tabs::-webkit-scrollbar-thumb {
+                background: #667eea;
+                border-radius: 2px;
+            }
+
+            .tab {
+                padding: 12px 20px;
+                font-size: 14px;
+            }
+
+            .form-group {
+                margin-bottom: 20px;
+            }
+
+            input, textarea, select {
+                font-size: 16px; /* Prevents zoom on iOS */
+            }
+
+            textarea {
+                min-height: 150px;
+            }
+
+            .button-group {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            button {
+                width: 100%;
+                min-width: auto;
+                padding: 16px 20px;
+            }
+
+            .stats {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .stat-card {
+                padding: 15px;
+            }
+
+            .stat-card h4 {
+                font-size: 1.5em;
+            }
+
+            .output-box {
+                padding: 15px;
+                max-height: 400px;
+            }
+
+            .output-box pre {
+                font-size: 12px;
+                padding: 10px;
+            }
+
+            .code-block {
+                padding: 15px;
+                margin: 15px 0;
+            }
+
+            .code-block code {
+                font-size: 12px;
+            }
+
+            .alert {
+                padding: 12px 15px;
+                font-size: 14px;
+            }
+
+            h2 {
+                font-size: 1.5em;
+            }
+
+            h3 {
+                font-size: 1.2em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 5px;
+            }
+
+            header {
+                padding: 15px 10px;
+            }
+
+            header h1 {
+                font-size: 1.5em;
+            }
+
+            .content {
+                padding: 15px 10px;
+            }
+
+            .tab {
+                padding: 10px 15px;
+                font-size: 13px;
+            }
+
+            button {
+                font-size: 14px;
+                padding: 14px 18px;
+            }
+
+            .stat-card h4 {
+                font-size: 1.3em;
+            }
+
+            .stat-card p {
+                font-size: 0.9em;
+            }
+
+            .output-box {
+                padding: 12px;
+                max-height: 300px;
+            }
+
+            .code-block {
+                padding: 12px;
+            }
+
+            label {
+                font-size: 14px;
+            }
+        }
+
+        /* Landscape mode for mobile devices */
+        @media (max-width: 768px) and (orientation: landscape) {
+            header h1 {
+                font-size: 1.5em;
+            }
+
+            .content {
+                padding: 15px;
+            }
+
+            .output-box {
+                max-height: 250px;
+            }
+        }
+
+        /* Touch-friendly adjustments */
+        @media (hover: none) and (pointer: coarse) {
+            button {
+                min-height: 48px; /* iOS accessibility guidelines */
+            }
+
+            .tab {
+                min-height: 44px;
+            }
+
+            input, textarea, select {
+                min-height: 44px;
+            }
         }
     </style>
 </head>
