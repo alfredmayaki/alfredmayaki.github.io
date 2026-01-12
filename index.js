@@ -42,8 +42,8 @@
     maxHistoryTurns: 10,
     welcomeMessage: '👋🏿 Hello! I\'m powered by Claude 3.5 Haiku. Ask me anything about Alfred Mayaki or any topic you\'d like to explore.',
     soundEffects: {
-      enabled: true,
-      volume: 0.3     // 0.0 to 1.0
+      enabled: true,    
+      volume: 0.4     // Increased volume for better audibility
     }
   };
 
@@ -55,20 +55,36 @@
   const SoundFX = {
     // Web Audio API context
     audioContext: null,
+    isInitialized: false,
     
     // Initialize audio context
     init() {
       try {
         this.audioContext = new (window.AudioContext || window.webkitAudioContext)();
+        this.isInitialized = true;
         console.log('🔊 Sound effects initialized');
       } catch (error) {
         console.warn('⚠️ Web Audio API not supported:', error);
       }
     },
 
+    // Resume audio context (needed for autoplay policy)
+    async resume() {
+      if (this.audioContext && this.audioContext.state === 'suspended') {
+        try {
+          await this.audioContext.resume();
+          console.log('🔊 Audio context resumed');
+        } catch (error) {
+          console.warn('⚠️ Could not resume audio context:', error);
+        }
+      }
+    },
+
     // Generate click sound (synthesized)
-    playClick() {
+    async playClick() {
       if (!CONFIG.soundEffects.enabled || !this.audioContext) return;
+
+      await this.resume();
 
       try {
         const oscillator = this.audioContext.createOscillator();
@@ -91,8 +107,10 @@
     },
 
     // Generate scroll sound (subtle)
-    playScroll() {
+    async playScroll() {
       if (!CONFIG.soundEffects.enabled || !this.audioContext) return;
+
+      await this.resume();
 
       try {
         const oscillator = this.audioContext.createOscillator();
@@ -104,7 +122,7 @@
         oscillator.frequency.value = 400;
         oscillator.type = 'sine';
 
-        gainNode.gain.setValueAtTime(CONFIG.soundEffects.volume * 0.3, this.audioContext.currentTime);
+        gainNode.gain.setValueAtTime(CONFIG.soundEffects.volume * 0.5, this.audioContext.currentTime);
         gainNode.gain.exponentialRampToValueAtTime(0.01, this.audioContext.currentTime + 0.05);
 
         oscillator.start(this.audioContext.currentTime);
@@ -115,8 +133,10 @@
     },
 
     // Generate hover sound (very subtle)
-    playHover() {
+    async playHover() {
       if (!CONFIG.soundEffects.enabled || !this.audioContext) return;
+
+      await this.resume();
 
       try {
         const oscillator = this.audioContext.createOscillator();
@@ -128,7 +148,7 @@
         oscillator.frequency.value = 600;
         oscillator.type = 'sine';
 
-        gainNode.gain.setValueAtTime(CONFIG.soundEffects.volume * 0.2, this.audioContext.currentTime);
+        gainNode.gain.setValueAtTime(CONFIG.soundEffects.volume * 0.4, this.audioContext.currentTime);
         gainNode.gain.exponentialRampToValueAtTime(0.01, this.audioContext.currentTime + 0.03);
 
         oscillator.start(this.audioContext.currentTime);
@@ -139,8 +159,10 @@
     },
 
     // Generate success sound
-    playSuccess() {
+    async playSuccess() {
       if (!CONFIG.soundEffects.enabled || !this.audioContext) return;
+
+      await this.resume();
 
       try {
         const oscillator = this.audioContext.createOscillator();
@@ -166,18 +188,28 @@
   // Initialize sound system
   SoundFX.init();
 
+  // Resume audio context on first user interaction
+  const unlockAudio = async function() {
+    await SoundFX.resume();
+    console.log('🔊 Audio unlocked');
+  };
+
+  document.addEventListener('click', unlockAudio, { once: true });
+  document.addEventListener('keydown', unlockAudio, { once: true });
+  document.addEventListener('touchstart', unlockAudio, { once: true });
+
   // ========================================
   // SCROLL SOUND EFFECT
   // ========================================
   let scrollTimeout;
   let lastScrollTime = 0;
-  const scrollThrottle = 100; // Only play sound every 100ms
+  const scrollThrottle = 150; // Play sound every 150ms
 
   window.addEventListener('scroll', function() {
     const now = Date.now();
     
     if (now - lastScrollTime > scrollThrottle) {
-      SoundFX.playScroll();
+      void SoundFX.playScroll();
       lastScrollTime = now;
     }
 
@@ -187,24 +219,49 @@
     }, 150);
   }, { passive: true });
 
+  // Also listen for scroll events on the chatbot messages container
+  if (elements.chatbotMessages) {
+    elements.chatbotMessages.addEventListener('scroll', function() {
+      const now = Date.now();
+      
+      if (now - lastScrollTime > scrollThrottle) {
+        void SoundFX.playScroll();
+        lastScrollTime = now;
+      }
+    }, { passive: true });
+  }
+
   // ========================================
   // CLICK SOUND EFFECTS
   // ========================================
   document.addEventListener('click', function(e) {
     // Play click sound for interactive elements
-    if (e.target.matches('button, a, select, input[type="button"], input[type="submit"], .music-btn, .search-btn, .docs-btn')) {
-      SoundFX.playClick();
+    if (e.target.matches('button, a, select, input[type="button"], input[type="submit"], .music-btn, .search-btn, .docs-btn, .footer-link')) {
+      void SoundFX.playClick();
     }
   }, true);
 
   // ========================================
   // HOVER SOUND EFFECTS
   // ========================================
-  const interactiveSelectors = 'button, a, select, .music-btn, .search-btn, .docs-btn, .footer-link';
+  const interactiveSelectors = 'button, a, select, .music-btn, .search-btn, .docs-btn, .footer-link, option';
   
+  let lastHoverTime = 0;
+  const hoverThrottle = 100; // Throttle hover sounds
+
   document.addEventListener('mouseover', function(e) {
-    if (e.target.matches(interactiveSelectors)) {
-      SoundFX.playHover();
+    const now = Date.now();
+    
+    if (e.target.matches(interactiveSelectors) && now - lastHoverTime > hoverThrottle) {
+      void SoundFX.playHover();
+      lastHoverTime = now;
+    }
+  }, true);
+
+  // Listen for focus events on select elements
+  document.addEventListener('focus', function(e) {
+    if (e.target.matches('select')) {
+      void SoundFX.playHover();
     }
   }, true);
 
@@ -315,7 +372,7 @@
     console.log('💬 Opening chatbot');
     const query = elements.searchInput.value.trim();
     elements.chatbotPopup.classList.add('active');
-    SoundFX.playSuccess();
+    void SoundFX.playSuccess();
 
     if (!query) {
       console.log('No query provided, focusing input');
@@ -332,7 +389,7 @@
   function closeChatbot() {
     console.log('Closing chatbot');
     elements.chatbotPopup.classList.remove('active');
-    SoundFX.playClick();
+    void SoundFX.playClick();
   }
 
   function addUserMessage(message) {
@@ -457,7 +514,7 @@
       bubble.textContent = reply || '(empty reply)';
 
       pushHistory('bot', bubble.textContent);
-      SoundFX.playSuccess();
+      void SoundFX.playSuccess();
       
     } catch (error) {
       console.error('❌ Fetch error:', error);
