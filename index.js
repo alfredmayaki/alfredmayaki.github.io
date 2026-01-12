@@ -40,7 +40,7 @@
     maxMessageChars: 4000, // Claude can handle longer messages
     requestTimeoutMs: 30000,
     maxHistoryTurns: 10, // Claude has better context handling
-    welcomeMessage: '👋🏿 Hello! I\'m powered by Claude 3.5 Sonnet. Ask me anything about Alfred Mayaki or any topic you\'d like to explore.'
+    welcomeMessage: '👋🏿 Hello! I\'m powered by Claude 3.5 Haiku. Ask me anything about Alfred Mayaki or any topic you\'d like to explore.'
   };
 
   console.log('⚙️ Config:', CONFIG);
