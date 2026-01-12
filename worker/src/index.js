@@ -30,10 +30,16 @@ async function callAnthropicAPI(env, message, history = []) {
 
   if (!apiKey) {
     throw new Error('ANTHROPIC_API_KEY is not set');
-  }
+  }wrangler secre
+
+  // Log API key format for debugging (safely)
+  const keyStart = apiKey.substring(0, 10);
+  const keyEnd = apiKey.substring(apiKey.length - 4);
+  console.log('API Key format:', keyStart + '...' + keyEnd);
+  console.log('API Key length:', apiKey.length);
+  console.log('Model:', model);
 
   // Convert history to Anthropic format
-  // Anthropic requires alternating user/assistant messages
   const messages = [];
   
   // Process history and ensure proper alternation
@@ -43,9 +49,7 @@ async function callAnthropicAPI(env, message, history = []) {
     for (const item of history) {
       const role = item.role === 'bot' ? 'assistant' : 'user';
       
-      // Skip consecutive messages from the same role (merge them if needed)
       if (role === lastRole && messages.length > 0) {
-        // Append to previous message
         messages[messages.length - 1].content += '\n' + item.text;
       } else {
         messages.push({
@@ -56,16 +60,12 @@ async function callAnthropicAPI(env, message, history = []) {
       }
     }
     
-    // If history ends with assistant message, we can add the new user message
-    // If history ends with user message, we need to remove it (will add current message)
     if (messages.length > 0 && messages[messages.length - 1].role === 'user') {
-      // Merge the last user message with the current one
       const lastUserMessage = messages.pop();
       message = lastUserMessage.content + '\n' + message;
     }
   }
   
-  // Add current message
   messages.push({
     role: 'user',
     content: message
@@ -77,7 +77,7 @@ async function callAnthropicAPI(env, message, history = []) {
     messages: messages
   };
 
-  console.log('Anthropic API Request:', JSON.stringify(body, null, 2));
+  console.log('Request body:', JSON.stringify(body, null, 2));
 
   const controller = new AbortController();
   const timeoutId = setTimeout(() => controller.abort('timeout'), NON_STREAM_TIMEOUT_MS);
@@ -96,32 +96,49 @@ async function callAnthropicAPI(env, message, history = []) {
 
     clearTimeout(timeoutId);
 
+    console.log('Response status:', response.status);
+    console.log('Response headers:', JSON.stringify(Object.fromEntries(response.headers.entries())));
+
     const responseText = await response.text().catch(() => '');
+    console.log('Response body length:', responseText.length);
+    console.log('Response body:', responseText.substring(0, 500)); // First 500 chars
 
     if (!response.ok) {
-      console.error('Anthropic API Error Response:', responseText);
-      throw new Error(`Anthropic API error: ${response.status} - ${responseText}`);
+      let errorDetail = 'No error details';
+      try {
+        const errorData = JSON.parse(responseText);
+        errorDetail = JSON.stringify(errorData, null, 2);
+        console.error('Parsed error:', errorDetail);
+      } catch (e) {
+        console.error('Could not parse error response');
+        errorDetail = responseText || 'Empty response';
+      }
+      
+      throw new Error(`Anthropic API error: ${response.status} - ${errorDetail}`);
     }
 
     let data;
     try {
       data = responseText ? JSON.parse(responseText) : null;
-    } catch {
+    } catch (e) {
+      console.error('Failed to parse success response:', e);
       throw new Error(`Invalid JSON response: ${responseText}`);
     }
 
-    // Extract text from Claude's response
     const text = data?.content?.[0]?.text || '';
     
     if (!text) {
+      console.warn('No text in response:', JSON.stringify(data));
       return `No response. Stop reason: ${data?.stop_reason || 'unknown'}`;
     }
 
+    console.log('Success! Response length:', text.length);
     return text;
   } catch (error) {
     if (error.name === 'AbortError') {
       throw new Error('Request timed out');
     }
+    console.error('callAnthropicAPI error:', error);
     throw error;
   }
 }
@@ -152,6 +169,7 @@ export default {
       }
 
       const provider = getAIProvider(env);
+      console.log('Provider:', provider);
 
       if (provider === 'anthropic') {
         if (!env.ANTHROPIC_API_KEY) {
@@ -162,13 +180,13 @@ export default {
           const reply = await callAnthropicAPI(env, message, history);
           return json({ reply }, 200);
         } catch (error) {
-          console.error('Anthropic API Error:', error);
+          console.error('Anthropic API Error:', error.message);
+          console.error('Error stack:', error.stack);
           return json({ 
             reply: `Error calling Claude API: ${error.message}` 
           }, 500);
         }
       } else {
-        // If you want Gemini fallback, implement callGeminiAPI here
         return json({ reply: 'Only Anthropic provider is configured.' }, 400);
       }
 
