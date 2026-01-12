@@ -33,15 +33,35 @@ async function callAnthropicAPI(env, message, history = []) {
   }
 
   // Convert history to Anthropic format
+  // Anthropic requires alternating user/assistant messages
   const messages = [];
   
-  // Add conversation history
+  // Process history and ensure proper alternation
   if (history && history.length > 0) {
+    let lastRole = null;
+    
     for (const item of history) {
-      messages.push({
-        role: item.role === 'bot' ? 'assistant' : 'user',
-        content: item.text
-      });
+      const role = item.role === 'bot' ? 'assistant' : 'user';
+      
+      // Skip consecutive messages from the same role (merge them if needed)
+      if (role === lastRole && messages.length > 0) {
+        // Append to previous message
+        messages[messages.length - 1].content += '\n' + item.text;
+      } else {
+        messages.push({
+          role: role,
+          content: item.text
+        });
+        lastRole = role;
+      }
+    }
+    
+    // If history ends with assistant message, we can add the new user message
+    // If history ends with user message, we need to remove it (will add current message)
+    if (messages.length > 0 && messages[messages.length - 1].role === 'user') {
+      // Merge the last user message with the current one
+      const lastUserMessage = messages.pop();
+      message = lastUserMessage.content + '\n' + message;
     }
   }
   
@@ -56,6 +76,8 @@ async function callAnthropicAPI(env, message, history = []) {
     max_tokens: 4096,
     messages: messages
   };
+
+  console.log('Anthropic API Request:', JSON.stringify(body, null, 2));
 
   const controller = new AbortController();
   const timeoutId = setTimeout(() => controller.abort('timeout'), NON_STREAM_TIMEOUT_MS);
@@ -77,7 +99,8 @@ async function callAnthropicAPI(env, message, history = []) {
     const responseText = await response.text().catch(() => '');
 
     if (!response.ok) {
-      throw new Error(`Anthropic API error: ${response.status} ${responseText}`);
+      console.error('Anthropic API Error Response:', responseText);
+      throw new Error(`Anthropic API error: ${response.status} - ${responseText}`);
     }
 
     let data;
@@ -101,11 +124,6 @@ async function callAnthropicAPI(env, message, history = []) {
     }
     throw error;
   }
-}
-
-async function callGeminiAPI(env, message, history = []) {
-  // Keep your existing Gemini code here as fallback
-  // ... (your existing callGeminiNonStreaming function)
 }
 
 export default {
@@ -137,7 +155,7 @@ export default {
 
       if (provider === 'anthropic') {
         if (!env.ANTHROPIC_API_KEY) {
-          return json({ reply: 'Server is missing ANTHROPIC_API_KEY.' }, 500);
+          return json({ reply: 'Server is missing ANTHROPIC_API_KEY. Please set it in Cloudflare dashboard.' }, 500);
         }
 
         try {
@@ -150,20 +168,8 @@ export default {
           }, 500);
         }
       } else {
-        // Fallback to Gemini
-        if (!env.GEMINI_API_KEY) {
-          return json({ reply: 'Server is missing GEMINI_API_KEY.' }, 500);
-        }
-        
-        try {
-          const reply = await callGeminiAPI(env, message, history);
-          return json({ reply }, 200);
-        } catch (error) {
-          console.error('Gemini API Error:', error);
-          return json({ 
-            reply: `Error calling Gemini API: ${error.message}` 
-          }, 500);
-        }
+        // If you want Gemini fallback, implement callGeminiAPI here
+        return json({ reply: 'Only Anthropic provider is configured.' }, 400);
       }
 
     } catch (error) {
