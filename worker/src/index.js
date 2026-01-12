@@ -1,6 +1,6 @@
 const NON_STREAM_TIMEOUT_MS = 25000;
 const STREAM_TIMEOUT_MS = 120000;
-const MAX_FILE_SIZE = 10 * 1024 * 1024; // Increased to 10MB for PDFs/DOCX
+const MAX_FILE_SIZE = 1 * 1024 * 1024; // Reduced to 1MB limit
 
 function corsHeaders() {
   return {
@@ -259,7 +259,7 @@ export default {
         if (file && file.size > 0) {
           if (file.size > MAX_FILE_SIZE) {
             return json({ 
-              reply: 'File too large. Maximum size is 10MB.' 
+              reply: 'File too large. Maximum size is 1MB.' 
             }, 400);
           }
 

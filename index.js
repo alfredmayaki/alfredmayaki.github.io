@@ -40,8 +40,8 @@
     maxMessageChars: 4000,
     requestTimeoutMs: 30000,
     maxHistoryTurns: 10,
-    maxFileSize: 10 * 1024 * 1024, // Increased to 10MB for PDFs/DOCX
-    welcomeMessage: '👋🏿 Hello! I\'m powered by Claude 3.5 Haiku. Ask me anything about Alfred Mayaki or any topic you\'d like to explore. You can also upload documents (.txt, .md, .json, .csv, .pdf, .docx) for analysis!',
+    maxFileSize: 1 * 1024 * 1024, // Reduced to 1MB
+    welcomeMessage: '👋🏿 Hello! I\'m powered by Claude 3.5 Haiku. Ask me anything on any topic you\'d like to explore. You can also upload documents (.txt, .md, .json, .csv, .pdf, .docx) for analysis!',
     soundEffects: {
       enabled: true,        
       volume: 0.4
@@ -385,7 +385,7 @@
       const file = e.target.files[0];
       if (file) {
         if (file.size > CONFIG.maxFileSize) {
-          alert('File too large! Maximum size is 10MB.');
+          alert('File too large! Maximum size is 1MB.');
           fileInput.value = '';
           return;
         }
