@@ -629,6 +629,32 @@
       border-color: var(--brand);
     }
 
+    /* File upload area */
+    .file-upload-area {
+      padding: 0.5em 0.85em;
+      border-bottom: 1px solid var(--surface);
+      background: var(--panel-2);
+      display: flex;
+      align-items: center;
+    }
+
+    .upload-btn {
+      padding: 0.5em 1em;
+      background: var(--surface);
+      color: var(--text);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      font-size: 0.9em;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .upload-btn:hover {
+      background: var(--brand);
+      border-color: var(--brand);
+      transform: translateY(-1px);
+    }
+
     @media (max-width: 768px) {
       .cookie-content {
         flex-direction: column;

@@ -40,10 +40,11 @@
     maxMessageChars: 4000,
     requestTimeoutMs: 30000,
     maxHistoryTurns: 10,
-    welcomeMessage: '👋🏿 Hello! I\'m powered by Claude 3.5 Haiku. Ask me anything about Alfred Mayaki or any topic you\'d like to explore.',
+        maxFileSize: 5 * 1024 * 1024, // 5MB
+    welcomeMessage: '👋🏿 Hello! I\'m powered by Claude 3.5 Haiku. Ask me anything about Alfred Mayaki or any topic you\'d like to explore. You can also upload documents for analysis!',
     soundEffects: {
       enabled: true,    
-      volume: 0.4     // Increased volume for better audibility
+      volume: 0.4
     }
   };
 
@@ -53,11 +54,9 @@
   // SOUND EFFECTS SYSTEM
   // ========================================
   const SoundFX = {
-    // Web Audio API context
     audioContext: null,
     isInitialized: false,
     
-    // Initialize audio context
     init() {
       try {
         this.audioContext = new (window.AudioContext || window.webkitAudioContext)();
@@ -68,7 +67,6 @@
       }
     },
 
-    // Resume audio context (needed for autoplay policy)
     async resume() {
       if (this.audioContext && this.audioContext.state === 'suspended') {
         try {
@@ -80,25 +78,18 @@
       }
     },
 
-    // Generate click sound (synthesized)
     async playClick() {
       if (!CONFIG.soundEffects.enabled || !this.audioContext) return;
-
       await this.resume();
-
       try {
         const oscillator = this.audioContext.createOscillator();
         const gainNode = this.audioContext.createGain();
-
         oscillator.connect(gainNode);
         gainNode.connect(this.audioContext.destination);
-
         oscillator.frequency.value = 800;
         oscillator.type = 'sine';
-
         gainNode.gain.setValueAtTime(CONFIG.soundEffects.volume, this.audioContext.currentTime);
         gainNode.gain.exponentialRampToValueAtTime(0.01, this.audioContext.currentTime + 0.1);
-
         oscillator.start(this.audioContext.currentTime);
         oscillator.stop(this.audioContext.currentTime + 0.1);
       } catch (error) {
@@ -106,25 +97,18 @@
       }
     },
 
-    // Generate scroll sound (subtle)
     async playScroll() {
       if (!CONFIG.soundEffects.enabled || !this.audioContext) return;
-
       await this.resume();
-
       try {
         const oscillator = this.audioContext.createOscillator();
         const gainNode = this.audioContext.createGain();
-
         oscillator.connect(gainNode);
         gainNode.connect(this.audioContext.destination);
-
         oscillator.frequency.value = 400;
         oscillator.type = 'sine';
-
         gainNode.gain.setValueAtTime(CONFIG.soundEffects.volume * 0.5, this.audioContext.currentTime);
         gainNode.gain.exponentialRampToValueAtTime(0.01, this.audioContext.currentTime + 0.05);
-
         oscillator.start(this.audioContext.currentTime);
         oscillator.stop(this.audioContext.currentTime + 0.05);
       } catch (error) {
@@ -132,25 +116,18 @@
       }
     },
 
-    // Generate hover sound (very subtle)
     async playHover() {
       if (!CONFIG.soundEffects.enabled || !this.audioContext) return;
-
       await this.resume();
-
       try {
         const oscillator = this.audioContext.createOscillator();
         const gainNode = this.audioContext.createGain();
-
         oscillator.connect(gainNode);
         gainNode.connect(this.audioContext.destination);
-
         oscillator.frequency.value = 600;
         oscillator.type = 'sine';
-
         gainNode.gain.setValueAtTime(CONFIG.soundEffects.volume * 0.4, this.audioContext.currentTime);
         gainNode.gain.exponentialRampToValueAtTime(0.01, this.audioContext.currentTime + 0.03);
-
         oscillator.start(this.audioContext.currentTime);
         oscillator.stop(this.audioContext.currentTime + 0.03);
       } catch (error) {
@@ -158,25 +135,18 @@
       }
     },
 
-    // Generate success sound
     async playSuccess() {
       if (!CONFIG.soundEffects.enabled || !this.audioContext) return;
-
       await this.resume();
-
       try {
         const oscillator = this.audioContext.createOscillator();
         const gainNode = this.audioContext.createGain();
-
         oscillator.connect(gainNode);
         gainNode.connect(this.audioContext.destination);
-
         oscillator.frequency.value = 1000;
         oscillator.type = 'sine';
-
         gainNode.gain.setValueAtTime(CONFIG.soundEffects.volume, this.audioContext.currentTime);
         gainNode.gain.exponentialRampToValueAtTime(0.01, this.audioContext.currentTime + 0.2);
-
         oscillator.start(this.audioContext.currentTime);
         oscillator.stop(this.audioContext.currentTime + 0.2);
       } catch (error) {
@@ -185,10 +155,8 @@
     }
   };
 
-  // Initialize sound system
   SoundFX.init();
 
-  // Resume audio context on first user interaction
   const unlockAudio = async function() {
     await SoundFX.resume();
     console.log('🔊 Audio unlocked');
@@ -203,27 +171,21 @@
   // ========================================
   let scrollTimeout;
   let lastScrollTime = 0;
-  const scrollThrottle = 150; // Play sound every 150ms
+  const scrollThrottle = 150;
 
   window.addEventListener('scroll', function() {
     const now = Date.now();
-    
     if (now - lastScrollTime > scrollThrottle) {
       void SoundFX.playScroll();
       lastScrollTime = now;
     }
-
     clearTimeout(scrollTimeout);
-    scrollTimeout = setTimeout(() => {
-      // Scroll ended
-    }, 150);
+    scrollTimeout = setTimeout(() => {}, 150);
   }, { passive: true });
 
-  // Also listen for scroll events on the chatbot messages container
   if (elements.chatbotMessages) {
     elements.chatbotMessages.addEventListener('scroll', function() {
       const now = Date.now();
-      
       if (now - lastScrollTime > scrollThrottle) {
         void SoundFX.playScroll();
         lastScrollTime = now;
@@ -235,7 +197,6 @@
   // CLICK SOUND EFFECTS
   // ========================================
   document.addEventListener('click', function(e) {
-    // Play click sound for interactive elements
     if (e.target.matches('button, a, select, input[type="button"], input[type="submit"], .music-btn, .search-btn, .docs-btn, .footer-link')) {
       void SoundFX.playClick();
     }
@@ -245,20 +206,17 @@
   // HOVER SOUND EFFECTS
   // ========================================
   const interactiveSelectors = 'button, a, select, .music-btn, .search-btn, .docs-btn, .footer-link, option';
-  
   let lastHoverTime = 0;
-  const hoverThrottle = 100; // Throttle hover sounds
+  const hoverThrottle = 100;
 
   document.addEventListener('mouseover', function(e) {
     const now = Date.now();
-    
     if (e.target.matches(interactiveSelectors) && now - lastHoverTime > hoverThrottle) {
       void SoundFX.playHover();
       lastHoverTime = now;
     }
   }, true);
 
-  // Listen for focus events on select elements
   document.addEventListener('focus', function(e) {
     if (e.target.matches('select')) {
       void SoundFX.playHover();
@@ -271,7 +229,8 @@
   const state = {
     isSending: false,
     inFlightAbort: null,
-    conversationHistory: []
+    conversationHistory: [],
+    uploadedFile: null
   };
 
   // ========================================
@@ -292,7 +251,6 @@
     elements.languageSelect.addEventListener('change', function () {
       const target = String(elements.languageSelect.value || '').trim();
       if (!target) return;
-
       sessionStorage.setItem('lang_redirected', '1');
       window.location.href = target;
     });
@@ -303,14 +261,12 @@
   // ========================================
   function setMusicButtonState(isPlaying) {
     if (!elements.musicBtn) return;
-
     elements.musicBtn.textContent = isPlaying ? 'Pause music' : 'Play music';
     elements.musicBtn.setAttribute('aria-pressed', isPlaying ? 'true' : 'false');
   }
 
   async function tryAutoplayMusic() {
     if (!elements.bgMusic) return false;
-
     try {
       await elements.bgMusic.play();
       setMusicButtonState(true);
@@ -324,7 +280,6 @@
 
   async function toggleMusic() {
     if (!elements.bgMusic || !elements.musicBtn) return;
-
     if (elements.bgMusic.paused) {
       const ok = await tryAutoplayMusic();
       if (!ok) {
@@ -332,30 +287,20 @@
       }
       return;
     }
-
     elements.bgMusic.pause();
     setMusicButtonState(false);
   }
 
-  // Initialize music controls
   if (elements.musicBtn && elements.bgMusic) {
     setMusicButtonState(!elements.bgMusic.paused);
-
     elements.musicBtn.addEventListener('click', function () {
       console.log('🎵 Music button clicked');
       void toggleMusic();
     });
-
-    elements.bgMusic.addEventListener('play', function () { 
-      setMusicButtonState(true); 
-    });
-    
-    elements.bgMusic.addEventListener('pause', function () { 
-      setMusicButtonState(false); 
-    });
+    elements.bgMusic.addEventListener('play', function () { setMusicButtonState(true); });
+    elements.bgMusic.addEventListener('pause', function () { setMusicButtonState(false); });
   }
 
-  // Attempt autoplay after first meaningful user gesture
   const unlockMusicOnce = function () {
     document.removeEventListener('pointerdown', unlockMusicOnce);
     document.removeEventListener('keydown', unlockMusicOnce);
@@ -416,6 +361,42 @@
     elements.chatbotMessages.scrollTop = elements.chatbotMessages.scrollHeight;
   }
 
+  function addFileUploadUI() {
+    const uploadArea = document.createElement('div');
+    uploadArea.className = 'file-upload-area';
+    uploadArea.innerHTML = `
+      <input type="file" id="fileUpload" accept=".txt,.md,.json,.csv,.log,.pdf,.docx" style="display: none;">
+      <button class="upload-btn" id="uploadBtn">
+        📎 Upload Document
+      </button>
+      <span id="fileName" style="display: none; margin-left: 10px; color: var(--text-muted); font-size: 0.9em;"></span>
+    `;
+    
+    const inputArea = elements.chatbotPopup.querySelector('.chatbot-input-area');
+    inputArea.insertBefore(uploadArea, inputArea.firstChild);
+
+    const fileInput = document.getElementById('fileUpload');
+    const uploadBtn = document.getElementById('uploadBtn');
+    const fileNameSpan = document.getElementById('fileName');
+
+    uploadBtn.addEventListener('click', () => fileInput.click());
+
+    fileInput.addEventListener('change', (e) => {
+      const file = e.target.files[0];
+      if (file) {
+        if (file.size > CONFIG.maxFileSize) {
+          alert('File too large! Maximum size is 5MB.');
+          fileInput.value = '';
+          return;
+        }
+        state.uploadedFile = file;
+        fileNameSpan.textContent = `📄 ${file.name}`;
+        fileNameSpan.style.display = 'inline';
+        console.log('File selected:', file.name);
+      }
+    });
+  }
+
   // ========================================
   // UTILITY FUNCTIONS
   // ========================================
@@ -471,21 +452,46 @@
     }, CONFIG.requestTimeoutMs);
 
     try {
-      const payload = {
-        message: text,
-        stream: false,
-        history: state.conversationHistory
-      };
+      let response;
 
-      console.log('📡 Sending request to:', CONFIG.chatApiUrl);
-      console.log('📦 Payload:', payload);
+      if (state.uploadedFile) {
+        // Send with file
+        const formData = new FormData();
+        formData.append('message', text);
+        formData.append('file', state.uploadedFile);
+        formData.append('history', JSON.stringify(state.conversationHistory));
 
-      const response = await fetch(CONFIG.chatApiUrl, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload),
-        signal: controller.signal
-      });
+        console.log('📡 Sending request with file:', state.uploadedFile.name);
+
+        response = await fetch(CONFIG.chatApiUrl, {
+          method: 'POST',
+          body: formData,
+          signal: controller.signal
+        });
+
+        // Clear uploaded file after sending
+        state.uploadedFile = null;
+        const fileNameSpan = document.getElementById('fileName');
+        if (fileNameSpan) fileNameSpan.style.display = 'none';
+        document.getElementById('fileUpload').value = '';
+      } else {
+        // Send regular JSON
+        const payload = {
+          message: text,
+          stream: false,
+          history: state.conversationHistory
+        };
+
+        console.log('📡 Sending request to:', CONFIG.chatApiUrl);
+        console.log('📦 Payload:', payload);
+
+        response = await fetch(CONFIG.chatApiUrl, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+          signal: controller.signal
+        });
+      }
 
       console.log('📥 Response status:', response.status);
 
@@ -544,7 +550,6 @@
   // EVENT LISTENERS
   // ========================================
 
-  // Search button and input
   elements.searchBtn.addEventListener('click', function () {
     console.log('🔍 Search button clicked');
     void tryAutoplayMusic();
@@ -559,7 +564,6 @@
     }
   });
 
-  // Chatbot input
   elements.chatbotInput.addEventListener('keydown', function (e) {
     if (e.key !== 'Enter') return;
     e.preventDefault();
@@ -576,10 +580,8 @@
     elements.chatbotInput.value = '';
   });
 
-  // Close chatbot
   elements.closeChat.addEventListener('click', closeChatbot);
 
-  // Escape key to cancel request or close chatbot
   document.addEventListener('keydown', function (e) {
     if (e.key !== 'Escape') return;
     
@@ -591,16 +593,13 @@
     }
   });
 
-  // Quick action buttons (if any are added to the UI)
   document.addEventListener('click', function (e) {
     if (!e.target.classList.contains('quick-action-btn')) return;
-
     const action = e.target.getAttribute('data-action') || '';
     addUserMessage(action);
     processQuery(action);
   });
 
-  // Prevent docs button from triggering chatbot
   if (elements.docsBtn) {
     elements.docsBtn.addEventListener('click', function (e) {
       e.stopPropagation();
@@ -612,13 +611,11 @@
   // ========================================
   function init() {
     console.log('🎬 Initializing chatbot');
-    // Add welcome message
     addBotBubble(CONFIG.welcomeMessage);
-    
+    addFileUploadUI();
     console.log('✅ Chatbot initialized successfully');
   }
 
-  // Initialize when DOM is ready
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', init);
   } else {
