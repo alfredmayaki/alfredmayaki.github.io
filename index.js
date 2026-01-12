@@ -37,13 +37,176 @@
   // ========================================
   const CONFIG = {
     chatApiUrl: 'https://alfredmayaki.me/chat',
-    maxMessageChars: 4000, // Claude can handle longer messages
+    maxMessageChars: 4000,
     requestTimeoutMs: 30000,
-    maxHistoryTurns: 10, // Claude has better context handling
-    welcomeMessage: '👋🏿 Hello! I\'m powered by Claude 3.5 Haiku. Ask me anything about Alfred Mayaki or any topic you\'d like to explore.'
+    maxHistoryTurns: 10,
+    welcomeMessage: '👋🏿 Hello! I\'m powered by Claude 3.5 Haiku. Ask me anything about Alfred Mayaki or any topic you\'d like to explore.',
+    soundEffects: {
+      enabled: false,
+      volume: 0.3     // 0.0 to 1.0
+    }
   };
 
   console.log('⚙️ Config:', CONFIG);
+
+  // ========================================
+  // SOUND EFFECTS SYSTEM
+  // ========================================
+  const SoundFX = {
+    // Web Audio API context
+    audioContext: null,
+    
+    // Initialize audio context
+    init() {
+      try {
+        this.audioContext = new (window.AudioContext || window.webkitAudioContext)();
+        console.log('🔊 Sound effects initialized');
+      } catch (error) {
+        console.warn('⚠️ Web Audio API not supported:', error);
+      }
+    },
+
+    // Generate click sound (synthesized)
+    playClick() {
+      if (!CONFIG.soundEffects.enabled || !this.audioContext) return;
+
+      try {
+        const oscillator = this.audioContext.createOscillator();
+        const gainNode = this.audioContext.createGain();
+
+        oscillator.connect(gainNode);
+        gainNode.connect(this.audioContext.destination);
+
+        oscillator.frequency.value = 800;
+        oscillator.type = 'sine';
+
+        gainNode.gain.setValueAtTime(CONFIG.soundEffects.volume, this.audioContext.currentTime);
+        gainNode.gain.exponentialRampToValueAtTime(0.01, this.audioContext.currentTime + 0.1);
+
+        oscillator.start(this.audioContext.currentTime);
+        oscillator.stop(this.audioContext.currentTime + 0.1);
+      } catch (error) {
+        console.warn('⚠️ Error playing click sound:', error);
+      }
+    },
+
+    // Generate scroll sound (subtle)
+    playScroll() {
+      if (!CONFIG.soundEffects.enabled || !this.audioContext) return;
+
+      try {
+        const oscillator = this.audioContext.createOscillator();
+        const gainNode = this.audioContext.createGain();
+
+        oscillator.connect(gainNode);
+        gainNode.connect(this.audioContext.destination);
+
+        oscillator.frequency.value = 400;
+        oscillator.type = 'sine';
+
+        gainNode.gain.setValueAtTime(CONFIG.soundEffects.volume * 0.3, this.audioContext.currentTime);
+        gainNode.gain.exponentialRampToValueAtTime(0.01, this.audioContext.currentTime + 0.05);
+
+        oscillator.start(this.audioContext.currentTime);
+        oscillator.stop(this.audioContext.currentTime + 0.05);
+      } catch (error) {
+        console.warn('⚠️ Error playing scroll sound:', error);
+      }
+    },
+
+    // Generate hover sound (very subtle)
+    playHover() {
+      if (!CONFIG.soundEffects.enabled || !this.audioContext) return;
+
+      try {
+        const oscillator = this.audioContext.createOscillator();
+        const gainNode = this.audioContext.createGain();
+
+        oscillator.connect(gainNode);
+        gainNode.connect(this.audioContext.destination);
+
+        oscillator.frequency.value = 600;
+        oscillator.type = 'sine';
+
+        gainNode.gain.setValueAtTime(CONFIG.soundEffects.volume * 0.2, this.audioContext.currentTime);
+        gainNode.gain.exponentialRampToValueAtTime(0.01, this.audioContext.currentTime + 0.03);
+
+        oscillator.start(this.audioContext.currentTime);
+        oscillator.stop(this.audioContext.currentTime + 0.03);
+      } catch (error) {
+        console.warn('⚠️ Error playing hover sound:', error);
+      }
+    },
+
+    // Generate success sound
+    playSuccess() {
+      if (!CONFIG.soundEffects.enabled || !this.audioContext) return;
+
+      try {
+        const oscillator = this.audioContext.createOscillator();
+        const gainNode = this.audioContext.createGain();
+
+        oscillator.connect(gainNode);
+        gainNode.connect(this.audioContext.destination);
+
+        oscillator.frequency.value = 1000;
+        oscillator.type = 'sine';
+
+        gainNode.gain.setValueAtTime(CONFIG.soundEffects.volume, this.audioContext.currentTime);
+        gainNode.gain.exponentialRampToValueAtTime(0.01, this.audioContext.currentTime + 0.2);
+
+        oscillator.start(this.audioContext.currentTime);
+        oscillator.stop(this.audioContext.currentTime + 0.2);
+      } catch (error) {
+        console.warn('⚠️ Error playing success sound:', error);
+      }
+    }
+  };
+
+  // Initialize sound system
+  SoundFX.init();
+
+  // ========================================
+  // SCROLL SOUND EFFECT
+  // ========================================
+  let scrollTimeout;
+  let lastScrollTime = 0;
+  const scrollThrottle = 100; // Only play sound every 100ms
+
+  window.addEventListener('scroll', function() {
+    const now = Date.now();
+    
+    if (now - lastScrollTime > scrollThrottle) {
+      SoundFX.playScroll();
+      lastScrollTime = now;
+    }
+
+    clearTimeout(scrollTimeout);
+    scrollTimeout = setTimeout(() => {
+      // Scroll ended
+    }, 150);
+  }, { passive: true });
+
+  // ========================================
+  // CLICK SOUND EFFECTS
+  // ========================================
+  document.addEventListener('click', function(e) {
+    // Play click sound for interactive elements
+    if (e.target.matches('button, a, select, input[type="button"], input[type="submit"], .music-btn, .search-btn, .docs-btn')) {
+      SoundFX.playClick();
+    }
+  }, true);
+
+  // ========================================
+  // HOVER SOUND EFFECTS
+  // ========================================
+  const interactiveSelectors = 'button, a, select, .music-btn, .search-btn, .docs-btn, .footer-link';
+  
+  document.addEventListener('mouseover', function(e) {
+    if (e.target.matches(interactiveSelectors)) {
+      SoundFX.playHover();
+    }
+  }, true);
 
   // ========================================
   // STATE MANAGEMENT
@@ -152,6 +315,7 @@
     console.log('💬 Opening chatbot');
     const query = elements.searchInput.value.trim();
     elements.chatbotPopup.classList.add('active');
+    SoundFX.playSuccess();
 
     if (!query) {
       console.log('No query provided, focusing input');
@@ -168,6 +332,7 @@
   function closeChatbot() {
     console.log('Closing chatbot');
     elements.chatbotPopup.classList.remove('active');
+    SoundFX.playClick();
   }
 
   function addUserMessage(message) {
@@ -292,6 +457,7 @@
       bubble.textContent = reply || '(empty reply)';
 
       pushHistory('bot', bubble.textContent);
+      SoundFX.playSuccess();
       
     } catch (error) {
       console.error('❌ Fetch error:', error);
