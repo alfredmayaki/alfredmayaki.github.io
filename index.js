@@ -36,12 +36,11 @@
   // CONFIGURATION
   // ========================================
   const CONFIG = {
-    // Use your custom domain route, NOT the workers.dev URL
     chatApiUrl: 'https://alfredmayaki.me/chat',
-    maxMessageChars: 1000,
+    maxMessageChars: 4000, // Claude can handle longer messages
     requestTimeoutMs: 30000,
-    maxHistoryTurns: 6,
-    welcomeMessage: '👋🏿 Hello! I\'m powered by Google Gemini. Ask me anything about Alfred Mayaki or any topic you\'d like to explore.'
+    maxHistoryTurns: 10, // Claude has better context handling
+    welcomeMessage: '👋🏿 Hello! I\'m powered by Claude 3.5 Sonnet. Ask me anything about Alfred Mayaki or any topic you\'d like to explore.'
   };
 
   console.log('⚙️ Config:', CONFIG);

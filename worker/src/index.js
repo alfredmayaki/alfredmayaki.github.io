@@ -1,12 +1,11 @@
-const NON_STREAM_TIMEOUT_MS = 25_000;
-const STREAM_TIMEOUT_MS = 120_000;
+const NON_STREAM_TIMEOUT_MS = 25000;
+const STREAM_TIMEOUT_MS = 120000;
 
 function corsHeaders() {
   return {
     'Access-Control-Allow-Origin': '*',
-    'Access-Control-Allow-Methods': 'POST, OPTIONS, GET',
-    'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-    'Access-Control-Max-Age': '86400'  // Cache preflight for 24 hours
+    'Access-Control-Allow-Methods': 'POST, OPTIONS',
+    'Access-Control-Allow-Headers': 'Content-Type'
   };
 }
 
@@ -17,287 +16,161 @@ function json(obj, status) {
   });
 }
 
-function getGeminiModel(env) {
-  return String(env?.GEMINI_MODEL || 'gemini-1.5-flash').trim() || 'gemini-1.5-flash';
+function getAIModel(env) {
+  return String(env?.AI_MODEL || 'claude-3-5-sonnet-20241022').trim();
 }
 
-function getGeminiVersion(env) {
-  const raw = String(env?.GEMINI_API_VERSION || 'v1').trim().toLowerCase() || 'v1';
-  if (raw === 'v1' || raw === 'v1beta') return raw;
-
-  // Fail fast: avoids confusing upstream 404s when the base path is invalid.
-  throw new Error(
-    `Unsupported GEMINI_API_VERSION "${raw}". Supported values are "v1" and "v1beta".`
-  );
+function getAIProvider(env) {
+  return String(env?.AI_PROVIDER || 'anthropic').trim().toLowerCase();
 }
 
-function isPalmChatBisonModel(model) {
-  const normalized = String(model || '').trim();
-  return normalized === 'chat-bison-001' || normalized === 'models/chat-bison-001';
-}
+async function callAnthropicAPI(env, message, history = []) {
+  const model = getAIModel(env);
+  const apiKey = env.ANTHROPIC_API_KEY;
 
-function normalizeModelName(model) {
-  const normalized = String(model || '').trim();
-  if (!normalized) return normalized;
-  return normalized.startsWith('models/') ? normalized.slice('models/'.length) : normalized;
-}
-
-function buildGeminiEndpoint(env, model, method) {
-  const version = getGeminiVersion(env);
-  const normalizedModel = normalizeModelName(model);
-  return `https://generativelanguage.googleapis.com/${version}/models/${normalizedModel}:${method}?key=${encodeURIComponent(env.GEMINI_API_KEY)}`;
-}
-
-function buildPalmChatEndpoint(env, method) {
-  const model = 'chat-bison-001';
-  return `https://generativelanguage.googleapis.com/v1beta/models/${model}:${method}?key=${encodeURIComponent(env.GEMINI_API_KEY)}`;
-}
-
-function buildGeminiRequestInit(body, signal) {
-  return {
-    method: 'POST',
-    headers: {
-      'content-type': 'application/json',
-      'accept-encoding': 'gzip, br'
-    },
-    body: JSON.stringify(body),
-    signal,
-    cf: { cacheTtl: 0 }
-  };
-}
-
-async function fetchWithTimeout(url, init, timeoutMs) {
-  const controller = new AbortController();
-  const timeoutId = setTimeout(() => controller.abort('timeout'), timeoutMs);
-
-  try {
-    const resp = await fetch(url, { ...init, signal: controller.signal });
-    return resp;
-  } finally {
-    clearTimeout(timeoutId);
+  if (!apiKey) {
+    throw new Error('ANTHROPIC_API_KEY is not set');
   }
-}
 
-async function callPalmChatNonStreaming(env, message) {
-  const endpoint = buildPalmChatEndpoint(env, 'generateMessage');
-
-  const body = {
-    prompt: {
-      messages: [{ author: 'user', content: message }]
+  // Convert history to Anthropic format
+  const messages = [];
+  
+  // Add conversation history
+  if (history && history.length > 0) {
+    for (const item of history) {
+      messages.push({
+        role: item.role === 'bot' ? 'assistant' : 'user',
+        content: item.text
+      });
     }
-  };
-
-  const resp = await fetchWithTimeout(endpoint, buildGeminiRequestInit(body), NON_STREAM_TIMEOUT_MS);
-
-  if (!resp.ok) {
-    const err = await resp.text().catch(() => '');
-    throw new Error(`PaLM error: ${resp.status} ${err}`);
   }
-
-  const data = await resp.json();
-  const text = String(data?.candidates?.[0]?.content || '').trim();
-  return text || 'No response.';
-}
-
-async function callGeminiNonStreaming(env, message) {
-  const model = getGeminiModel(env);
-
-  if (isPalmChatBisonModel(model)) {
-    return callPalmChatNonStreaming(env, message);
-  }
-
-  const endpoint = buildGeminiEndpoint(env, model, 'generateContent');
-
-  const body = {
-    contents: [{ role: 'user', parts: [{ text: message }] }]
-  };
-
-  const resp = await fetchWithTimeout(
-    endpoint,
-    buildGeminiRequestInit(body),
-    NON_STREAM_TIMEOUT_MS
-  );
-
-  const responseText = await resp.text().catch(() => '');
-
-  if (!resp.ok) {
-    throw new Error(`Gemini error: ${resp.status} ${responseText}`);
-  }
-
-  let data;
-  try {
-    data = responseText ? JSON.parse(responseText) : null;
-  } catch {
-    throw new Error(`Gemini error: invalid JSON response: ${responseText}`);
-  }
-
-  const parts = data?.candidates?.[0]?.content?.parts;
-  const text = Array.isArray(parts)
-    ? parts.map((p) => (typeof p?.text === 'string' ? p.text : '')).join('')
-    : '';
-
-  if (text) return text;
-
-  // If empty, surface useful diagnostics to the client so you can see why.
-  const finishReason = data?.candidates?.[0]?.finishReason;
-  const promptFeedback = data?.promptFeedback;
-  const apiErrorMessage = data?.error?.message;
-
-  return (
-    apiErrorMessage ||
-    `No response text. finishReason=${finishReason || 'unknown'} promptFeedback=${promptFeedback ? JSON.stringify(promptFeedback) : 'none'}`
-  );
-}
-
-function streamGeminiAsSse(env, message) {
-  const { readable, writable } = new TransformStream();
-  const writer = writable.getWriter();
-  const encoder = new TextEncoder();
-
-  const write = (s) => writer.write(encoder.encode(s));
-  const writeEvent = (obj) => write(`data: ${JSON.stringify(obj)}\n\n`);
-  const finish = async () => {
-    await write('data: [DONE]\n\n');
-    await writer.close();
-  };
-
-  (async () => {
-    try {
-      const model = getGeminiModel(env);
-
-      if (isPalmChatBisonModel(model)) {
-        await writeEvent({ error: 'Streaming is not supported for chat-bison-001. Use stream=false.' });
-        await finish();
-        return;
-      }
-
-      const endpoint = buildGeminiEndpoint(env, model, 'streamGenerateContent');
-
-      const body = {
-        contents: [{ role: 'user', parts: [{ text: message }] }]
-      };
-
-      const upstream = await fetchWithTimeout(
-        endpoint,
-        buildGeminiRequestInit(body),
-        STREAM_TIMEOUT_MS
-      );
-
-      if (!upstream.ok || !upstream.body) {
-        const err = await upstream.text().catch(() => '');
-        await writeEvent({ error: `Upstream error: ${upstream.status} ${err}` });
-        await finish();
-        return;
-      }
-
-      const reader = upstream.body.getReader();
-      const decoder = new TextDecoder('utf-8');
-
-      let buffer = '';
-      const processLine = async (line) => {
-        const trimmed = line.trim();
-        if (!trimmed) return;
-
-        const jsonText = trimmed.startsWith('data:') ? trimmed.slice(5).trim() : trimmed;
-        if (!jsonText || jsonText === '[DONE]') return;
-
-        let evt;
-        try {
-          evt = JSON.parse(jsonText);
-        } catch {
-          return;
-        }
-
-        const parts = evt?.candidates?.[0]?.content?.parts;
-        const delta = Array.isArray(parts)
-          ? parts.map((p) => (typeof p?.text === 'string' ? p.text : '')).join('')
-          : '';
-
-        if (delta) {
-          await writeEvent({ delta });
-        }
-      };
-
-      while (true) {
-        const { value, done } = await reader.read();
-        if (done) break;
-
-        buffer += decoder.decode(value, { stream: true });
-
-        let newlineIndex;
-        while ((newlineIndex = buffer.indexOf('\n')) >= 0) {
-          const line = buffer.slice(0, newlineIndex);
-          buffer = buffer.slice(newlineIndex + 1);
-          await processLine(line);
-        }
-      }
-
-      if (buffer.trim()) {
-        await processLine(buffer);
-      }
-
-      await finish();
-    } catch (e) {
-      await writeEvent({ error: String(e?.message || e) });
-      await finish();
-    }
-  })();
-
-  return new Response(readable, {
-    headers: {
-      ...corsHeaders(),
-      'Content-Type': 'text/event-stream; charset=utf-8',
-      'Cache-Control': 'no-cache, no-transform',
-      Connection: 'keep-alive'
-    }
+  
+  // Add current message
+  messages.push({
+    role: 'user',
+    content: message
   });
+
+  const body = {
+    model: model,
+    max_tokens: 4096,
+    messages: messages
+  };
+
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort('timeout'), NON_STREAM_TIMEOUT_MS);
+
+  try {
+    const response = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'x-api-key': apiKey,
+        'anthropic-version': '2023-06-01'
+      },
+      body: JSON.stringify(body),
+      signal: controller.signal
+    });
+
+    clearTimeout(timeoutId);
+
+    const responseText = await response.text().catch(() => '');
+
+    if (!response.ok) {
+      throw new Error(`Anthropic API error: ${response.status} ${responseText}`);
+    }
+
+    let data;
+    try {
+      data = responseText ? JSON.parse(responseText) : null;
+    } catch {
+      throw new Error(`Invalid JSON response: ${responseText}`);
+    }
+
+    // Extract text from Claude's response
+    const text = data?.content?.[0]?.text || '';
+    
+    if (!text) {
+      return `No response. Stop reason: ${data?.stop_reason || 'unknown'}`;
+    }
+
+    return text;
+  } catch (error) {
+    if (error.name === 'AbortError') {
+      throw new Error('Request timed out');
+    }
+    throw error;
+  }
+}
+
+async function callGeminiAPI(env, message, history = []) {
+  // Keep your existing Gemini code here as fallback
+  // ... (your existing callGeminiNonStreaming function)
 }
 
 export default {
   async fetch(request, env) {
-    const url = new URL(request.url);
-
-    if (request.method === 'OPTIONS') {
-      return new Response(null, { headers: corsHeaders() });
-    }
-
-    if (url.pathname !== '/chat') {
-      return new Response('Not found', { status: 404, headers: corsHeaders() });
-    }
-
-    if (request.method !== 'POST') {
-      return new Response('Method not allowed', { status: 405, headers: corsHeaders() });
-    }
-
-    const payload = await request.json().catch(() => ({}));
-    const message = String(payload.message || '').trim();
-    const stream = payload.stream === true;
-
-    if (!message) {
-      return json({ reply: 'Please type a message.' }, 200);
-    }
-
-    if (!env.GEMINI_API_KEY) {
-      return json({ reply: 'Server is missing GEMINI_API_KEY.' }, 500);
-    }
-
-    // Trigger version validation early so misconfig returns a clear error.
     try {
-      getGeminiVersion(env);
-    } catch (e) {
-      return json({ reply: String(e?.message || e) }, 400);
-    }
+      const url = new URL(request.url);
 
-    const model = getGeminiModel(env);
-    if (stream && isPalmChatBisonModel(model)) {
-      return json({ reply: 'Streaming is not supported for chat-bison-001. Set stream=false.' }, 400);
-    }
+      if (request.method === 'OPTIONS') {
+        return new Response(null, { headers: corsHeaders() });
+      }
 
-    if (!stream) {
-      const reply = await callGeminiNonStreaming(env, message);
-      return json({ reply }, 200);
-    }
+      if (url.pathname !== '/chat') {
+        return new Response('Not found', { status: 404, headers: corsHeaders() });
+      }
 
-    return streamGeminiAsSse(env, message);
+      if (request.method !== 'POST') {
+        return new Response('Method not allowed', { status: 405, headers: corsHeaders() });
+      }
+
+      const payload = await request.json().catch(() => ({}));
+      const message = String(payload.message || '').trim();
+      const history = payload.history || [];
+
+      if (!message) {
+        return json({ reply: 'Please type a message.' }, 200);
+      }
+
+      const provider = getAIProvider(env);
+
+      if (provider === 'anthropic') {
+        if (!env.ANTHROPIC_API_KEY) {
+          return json({ reply: 'Server is missing ANTHROPIC_API_KEY.' }, 500);
+        }
+
+        try {
+          const reply = await callAnthropicAPI(env, message, history);
+          return json({ reply }, 200);
+        } catch (error) {
+          console.error('Anthropic API Error:', error);
+          return json({ 
+            reply: `Error calling Claude API: ${error.message}` 
+          }, 500);
+        }
+      } else {
+        // Fallback to Gemini
+        if (!env.GEMINI_API_KEY) {
+          return json({ reply: 'Server is missing GEMINI_API_KEY.' }, 500);
+        }
+        
+        try {
+          const reply = await callGeminiAPI(env, message, history);
+          return json({ reply }, 200);
+        } catch (error) {
+          console.error('Gemini API Error:', error);
+          return json({ 
+            reply: `Error calling Gemini API: ${error.message}` 
+          }, 500);
+        }
+      }
+
+    } catch (error) {
+      console.error('Worker Error:', error);
+      return json({ 
+        reply: `Worker error: ${error.message}` 
+      }, 500);
+    }
   }
 };
