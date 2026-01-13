@@ -105,10 +105,10 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 8px;
-      padding: 10px 20px;
+      gap: 6px;
+      padding: 8px 16px;
       margin-bottom: 1.5em;
-      min-height: 44px;
+      min-height: 36px;
 
       background: #3d4ee9;
       color: #ffffff !important;
@@ -116,7 +116,7 @@
       border-radius: 999px;
 
       font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
-      font-size: 0.9em;
+      font-size: 0.85em;
       font-weight: 600;
       text-decoration: none !important;
       white-space: nowrap;
@@ -140,7 +140,14 @@
     }
 
     .back-home-btn i {
-      font-size: 0.9em;
+      font-size: 0.85em;
+    }
+
+    /* Button container alignment */
+    .btn-container {
+      display: flex;
+      justify-content: flex-start;
+      margin-bottom: 1.3em;
     }
 
     /* Profile Links Dropdown */
@@ -271,9 +278,12 @@
         font-size: 1.6em;
       }
 
-      .back-home-btn {
-        width: 100%;
+      .btn-container {
         justify-content: center;
+      }
+
+      .back-home-btn {
+        width: auto;
       }
 
       .contact-info {
@@ -322,8 +332,8 @@
       }
 
       .back-home-btn {
-        padding: 10px 16px;
-        font-size: 0.85em;
+        padding: 7px 14px;
+        font-size: 0.8em;
       }
 
       .contact-info p {
@@ -354,8 +364,8 @@
       }
 
       .back-home-btn {
-        padding: 8px 14px;
-        font-size: 0.8em;
+        padding: 6px 12px;
+        font-size: 0.75em;
       }
     }
 
@@ -419,7 +429,7 @@
 <body>
   
   <!-- Back to Home Button -->
-  <div style="margin-bottom: 1.3em;">
+  <div class="btn-container">
     <a href="index.html" class="back-home-btn">
       <i class="fas fa-arrow-left"></i>
       返回主页
