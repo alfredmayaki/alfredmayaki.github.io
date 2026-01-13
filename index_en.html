@@ -38,7 +38,13 @@
       min-height: auto;
     }
 
-    h1,
+    h1 {
+      color: #979797;
+      font-size: 2em;
+      line-height: 1.3;
+      word-wrap: break-word;
+    }
+
     h2,
     h3 {
       color: #979797;
@@ -183,40 +189,199 @@
       padding: 0.5em;
     }
 
-    @media (max-width: 768px) {
+    /* Contact info styling */
+    .contact-info p {
+      display: flex;
+      align-items: center;
+      gap: 0.5em;
+      margin: 0.5em 0;
+    }
+
+    /* Footer styling */
+    footer {
+      margin-top: 2em;
+      padding-top: 1em;
+      border-top: 1px solid #464242;
+    }
+
+    footer p {
+      margin: 0.5em 0;
+    }
+
+    /* Tablet breakpoint */
+    @media (max-width: 900px) {
       body {
-        margin: 1em;
+        margin: 1.5em;
         padding: 1.5em;
       }
 
       .header-flex {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 1em;
+        gap: 1.5em;
       }
 
       .profile-photo {
         width: 200px;
         height: 200px;
-        margin: 0 auto;
+      }
+
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+
+    /* Mobile breakpoint */
+    @media (max-width: 768px) {
+      body {
+        margin: 1em;
+        padding: 1.5em;
+        font-size: 15px;
+      }
+
+      .header-flex {
+        flex-direction: column;
+        align-items: center;
+        gap: 1.5em;
+        text-align: center;
+      }
+
+      .header-content {
+        width: 100%;
+      }
+
+      .profile-photo {
+        width: 180px;
+        height: 180px;
+        order: -1;
+      }
+
+      h1 {
+        font-size: 1.6em;
       }
 
       .back-home-btn {
         width: 100%;
         justify-content: center;
       }
+
+      .contact-info {
+        margin-left: 0;
+      }
+
+      .section-content {
+        margin-left: 0.5em;
+      }
+
+      footer {
+        text-align: center;
+      }
     }
 
+    /* Small mobile breakpoint */
     @media (max-width: 600px) {
+      body {
+        margin: 0.5em;
+        padding: 1em;
+        font-size: 14px;
+        border-width: 2px;
+      }
+
       .profile-photo {
         width: 150px;
         height: 150px;
+        border-width: 3px;
+      }
+
+      h1 {
+        font-size: 1.4em;
       }
 
       .profile-links-select {
         font-size: 0.9em;
         padding: 10px 36px 10px 12px;
       }
+
+      .back-home-btn {
+        padding: 10px 20px;
+        font-size: 0.9em;
+      }
+
+      .contact-info p {
+        font-size: 0.95em;
+      }
+    }
+
+    /* Extra small devices */
+    @media (max-width: 400px) {
+      body {
+        margin: 0.25em;
+        padding: 0.75em;
+        border-radius: 12px;
+      }
+
+      h1 {
+        font-size: 1.2em;
+      }
+
+      .profile-photo {
+        width: 120px;
+        height: 120px;
+      }
+
+      .profile-links-select {
+        font-size: 0.85em;
+        padding: 8px 32px 8px 10px;
+      }
+
+      .back-home-btn {
+        padding: 8px 16px;
+        font-size: 0.85em;
+      }
+    }
+
+    /* Landscape mode for mobile devices */
+    @media (max-width: 900px) and (orientation: landscape) {
+      .header-flex {
+        flex-direction: row;
+        align-items: center;
+      }
+
+      .profile-photo {
+        width: 150px;
+        height: 150px;
+        order: 0;
+      }
+
+      body {
+        padding: 1em;
+      }
+    }
+
+    /* Touch-friendly adjustments */
+    @media (hover: none) and (pointer: coarse) {
+      .back-home-btn,
+      .profile-links-select {
+        min-height: 44px;
+      }
+
+      a,
+      button,
+      select {
+        min-height: 44px;
+        display: inline-flex;
+        align-items: center;
+      }
+    }
+
+    /* Prevent text selection on profile photo */
+    .profile-photo {
+      user-select: none;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+    }
+
+    /* Smooth scrolling */
+    html {
+      scroll-behavior: smooth;
     }
   </style>
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-CNF86BSG95"></script>
