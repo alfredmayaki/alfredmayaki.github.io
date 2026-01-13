@@ -76,6 +76,12 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
+      gap: 2em;
+    }
+
+    .header-content {
+      flex: 1;
+      min-width: 0;
     }
 
     .profile-photo {
@@ -84,7 +90,7 @@
       object-fit: cover;
       border-radius: 50%;
       border: 5px solid #838383;
-      margin-left: 32px;
+      flex-shrink: 0;
       background: #222;
     }
 
@@ -129,11 +135,13 @@
     }
 
     /* Profile Links Dropdown */
+    .profile-links-wrapper {
+      margin: 1.5em 0 0 0;
+    }
+
     .profile-links-select {
       width: 100%;
-      max-width: 450px;
       padding: 12px 40px 12px 16px;
-      margin: 1em 0;
       
       background-color: #2a2a2a;
       color: #ffffff;
@@ -175,7 +183,7 @@
       padding: 0.5em;
     }
 
-    @media (max-width: 600px) {
+    @media (max-width: 768px) {
       body {
         margin: 1em;
         padding: 1.5em;
@@ -184,21 +192,30 @@
       .header-flex {
         flex-direction: column;
         align-items: flex-start;
+        gap: 1em;
       }
 
       .profile-photo {
-        margin-left: 0;
-        margin-top: 1em;
+        width: 200px;
+        height: 200px;
+        margin: 0 auto;
       }
 
       .back-home-btn {
         width: 100%;
         justify-content: center;
       }
+    }
+
+    @media (max-width: 600px) {
+      .profile-photo {
+        width: 150px;
+        height: 150px;
+      }
 
       .profile-links-select {
-        max-width: 100%;
         font-size: 0.9em;
+        padding: 10px 36px 10px 12px;
       }
     }
   </style>
@@ -223,12 +240,12 @@
     </a>
   </div>
 
-<!-- Particles.js background layer -->
+  <!-- Particles.js background layer -->
   <div id="particles-js" style="position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:-1;"></div>
 
   <header>
     <div class="header-flex">
-      <div>
+      <div class="header-content">
         <h1>
           Alfred Anate Bodurin Mayaki
           <span title="Verified" style="display:inline-block;vertical-align:middle;margin-left:6px;">
@@ -237,17 +254,22 @@
             </span>
           </span>
         </h1>
-        <span id="typed-text"></span>
+        <div style="margin: 1em 0;">
+          <span id="typed-text"></span>
+        </div>
         
         <!-- Profile Links Dropdown -->
-        <select id="profileLinks" class="profile-links-select" aria-label="My academic and professional profiles">
-          <option value="">🔗 Quick Links to My Profiles...</option>
-          <option value="https://sites.google.com/view/alfredmayaki/">📚 Google Academic Webpage</option>
-          <option value="https://scholar.google.com/citations?user=QK1gWHoAAAAJ&hl=en">🎓 Google Scholar Profile</option>
-          <option value="https://orcid.org/0009-0006-3363-9603">🆔 ORCID Research Profile</option>
-          <option value="https://learn1.open.ac.uk/mod/oublog/view.php?u=zt476627">✍️ My Open University Blog</option>
-        </select>
+        <div class="profile-links-wrapper">
+          <select id="profileLinks" class="profile-links-select" aria-label="My academic and professional profiles">
+            <option value="">🔗 Quick Links to My Profiles...</option>
+            <option value="https://sites.google.com/view/alfredmayaki/">📚 Google Academic Webpage</option>
+            <option value="https://scholar.google.com/citations?user=QK1gWHoAAAAJ&hl=en">🎓 Google Scholar Profile</option>
+            <option value="https://orcid.org/0009-0006-3363-9603">🆔 ORCID Research Profile</option>
+            <option value="https://learn1.open.ac.uk/mod/oublog/view.php?u=zt476627">✍️ My Open University Blog</option>
+          </select>
+        </div>
       </div>
+      
       <img src="s200_alfred.mayaki.jpg" alt="Alfred Mayaki" class="profile-photo">
     </div>
   </header>
