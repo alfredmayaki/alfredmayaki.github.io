@@ -43,6 +43,7 @@
       font-size: 2em;
       line-height: 1.3;
       word-wrap: break-word;
+      word-break: break-word;
     }
 
     h2,
@@ -207,6 +208,7 @@
       align-items: center;
       gap: 0.5em;
       margin: 0.5em 0;
+      flex-wrap: wrap;
     }
 
     /* Footer styling */
@@ -218,6 +220,11 @@
 
     footer p {
       margin: 0.5em 0;
+    }
+
+    footer a {
+      display: inline-block;
+      margin: 0.25em 0;
     }
 
     /* Tablet breakpoint */
@@ -241,26 +248,27 @@
       }
 
       .profile-links-wrapper {
-        max-width: 350px;
+        max-width: 100%;
       }
 
       .profile-links-select {
-        max-width: 350px;
+        max-width: 100%;
       }
     }
 
     /* Mobile breakpoint */
     @media (max-width: 768px) {
       body {
-        margin: 1em;
-        padding: 1.5em;
+        margin: 0.75em;
+        padding: 1.25em;
         font-size: 15px;
+        border-width: 2px;
       }
 
       .header-flex {
         flex-direction: column;
         align-items: center;
-        gap: 1.5em;
+        gap: 1.25em;
         text-align: center;
       }
 
@@ -269,13 +277,15 @@
       }
 
       .profile-photo {
-        width: 180px;
-        height: 180px;
+        width: 160px;
+        height: 160px;
         order: -1;
+        border-width: 4px;
       }
 
       h1 {
-        font-size: 1.6em;
+        font-size: 1.5em;
+        margin: 0.5em 0;
       }
 
       .btn-container {
@@ -284,14 +294,20 @@
 
       .back-home-btn {
         width: auto;
+        padding: 8px 18px;
       }
 
       .contact-info {
         margin-left: 0;
+        text-align: center;
+      }
+
+      .contact-info p {
+        justify-content: center;
       }
 
       .section-content {
-        margin-left: 0.5em;
+        margin-left: 0;
       }
 
       footer {
@@ -300,10 +316,12 @@
 
       .profile-links-wrapper {
         max-width: 100%;
+        margin: 1.25em 0 0 0;
       }
 
       .profile-links-select {
         max-width: 100%;
+        font-size: 0.9em;
       }
     }
 
@@ -314,38 +332,50 @@
         padding: 1em;
         font-size: 14px;
         border-width: 2px;
+        border-radius: 14px;
       }
 
       .profile-photo {
-        width: 150px;
-        height: 150px;
+        width: 140px;
+        height: 140px;
         border-width: 3px;
       }
 
       h1 {
-        font-size: 1.4em;
+        font-size: 1.35em;
+        line-height: 1.25;
       }
 
       .profile-links-select {
         font-size: 0.85em;
-        padding: 9px 32px 9px 12px;
+        padding: 10px 32px 10px 12px;
       }
 
       .back-home-btn {
         padding: 7px 14px;
         font-size: 0.8em;
+        min-height: 38px;
       }
 
       .contact-info p {
         font-size: 0.95em;
+      }
+
+      footer {
+        font-size: 0.9em;
+      }
+
+      footer a {
+        display: inline;
+        margin: 0 0.25em;
       }
     }
 
     /* Extra small devices */
     @media (max-width: 400px) {
       body {
-        margin: 0.25em;
-        padding: 0.75em;
+        margin: 0.35em;
+        padding: 0.85em;
         border-radius: 12px;
       }
 
@@ -354,18 +384,27 @@
       }
 
       .profile-photo {
-        width: 120px;
-        height: 120px;
+        width: 110px;
+        height: 110px;
       }
 
       .profile-links-select {
         font-size: 0.8em;
-        padding: 8px 30px 8px 10px;
+        padding: 9px 30px 9px 10px;
       }
 
       .back-home-btn {
         padding: 6px 12px;
         font-size: 0.75em;
+        min-height: 36px;
+      }
+
+      .contact-info p {
+        font-size: 0.9em;
+      }
+
+      footer {
+        font-size: 0.85em;
       }
     }
 
@@ -374,16 +413,21 @@
       .header-flex {
         flex-direction: row;
         align-items: center;
+        text-align: left;
       }
 
       .profile-photo {
-        width: 150px;
-        height: 150px;
+        width: 120px;
+        height: 120px;
         order: 0;
       }
 
       body {
-        padding: 1em;
+        padding: 0.75em 1em;
+      }
+
+      h1 {
+        font-size: 1.3em;
       }
     }
 
@@ -400,6 +444,14 @@
         min-height: 44px;
         display: inline-flex;
         align-items: center;
+        padding: 0.5em 0.75em;
+      }
+
+      /* Increase tap targets */
+      .contact-info a,
+      footer a {
+        padding: 0.5em;
+        margin: 0.25em;
       }
     }
 
@@ -413,6 +465,18 @@
     /* Smooth scrolling */
     html {
       scroll-behavior: smooth;
+    }
+
+    /* Prevent horizontal scroll on mobile */
+    body {
+      overflow-x: hidden;
+    }
+
+    /* Better text rendering on mobile */
+    body {
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      text-rendering: optimizeLegibility;
     }
   </style>
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-CNF86BSG95"></script>
