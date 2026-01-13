@@ -48,14 +48,10 @@
               "RelativeDocumentMoniker": "index_en.html",
               "ToolTip": "C:\\Users\\44746\\AppData\\Local\\Microsoft\\WindowsApps\\wget\\repo\\alfredmayaki.github.io\\index_en.html",
               "RelativeToolTip": "index_en.html",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAJwAAAAAAAAAAAAAAKsAAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
               "WhenOpened": "2026-01-12T21:21:10.271Z",
               "EditorCaption": ""
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:128:0:{75188d03-9892-4ae2-abf1-207126247ce5}"
             },
             {
               "$type": "Document",
@@ -67,8 +63,7 @@
               "RelativeToolTip": "worker\\src\\index.js",
               "ViewState": "AgIAABsAAAAAAAAAAAAwwAIBAAAkAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
-              "WhenOpened": "2026-01-11T02:36:26.034Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-01-11T02:36:26.034Z"
             },
             {
               "$type": "Document",
@@ -80,12 +75,7 @@
               "RelativeToolTip": "index.html",
               "ViewState": "AgIAAGsCAAAAAAAAAAAwwAEAAAAQAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
-              "WhenOpened": "2026-01-10T20:44:13.742Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+              "WhenOpened": "2026-01-10T20:44:13.742Z"
             },
             {
               "$type": "Document",
@@ -97,8 +87,7 @@
               "RelativeToolTip": "scraper.html",
               "ViewState": "AgIAAHIAAAAAAAAAAAAAAJgAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
-              "WhenOpened": "2026-01-11T08:57:23.815Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-01-11T08:57:23.815Z"
             },
             {
               "$type": "Document",
