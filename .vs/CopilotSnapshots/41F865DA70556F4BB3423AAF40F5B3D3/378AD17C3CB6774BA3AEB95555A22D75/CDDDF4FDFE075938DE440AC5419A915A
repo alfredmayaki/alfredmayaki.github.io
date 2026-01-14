@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+﻿#!/usr/bin/env python3
 """
 Script to standardize the "Back to Home" button across all language-specific index files.
 Ensures consistent styling, mobile responsiveness, and proper alignment.
@@ -50,13 +50,6 @@ STANDARD_BUTTON_CSS = """    /* Back to Home Button */
 
     .back-home-btn i {
       font-size: 0.85em;
-    }
-
-    /* Button container alignment */
-    .btn-container {
-      display: flex;
-      justify-content: flex-start;
-      margin-bottom: 1.3em;
     }
 
     /* Mobile optimization - matching index_it.html */
