@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -502,24 +502,6 @@
 
     <div id="alertContainer"></div>
 
-    <!-- Troubleshooting Notice -->
-    <div class="credentials-section" style="background: rgba(245, 158, 11, 0.1); border-color: var(--warning);">
-      <h2>⚠️ Important: CORS Limitations</h2>
-      <p style="color: var(--text); line-height: 1.6; margin: 0;">
-        <strong>Direct browser requests to Cloudflare's API may be blocked due to CORS policies.</strong><br><br>
-        If you encounter "Failed to fetch" errors, you'll need to use one of these solutions:
-      </p>
-      <ul style="color: var(--text-muted); line-height: 1.8; margin-top: 1em;">
-        <li><strong>Option 1 (Recommended):</strong> Create a Cloudflare Worker as a proxy for your API requests</li>
-        <li><strong>Option 2:</strong> Use a backend server (Node.js, Python, etc.) to make the API calls</li>
-        <li><strong>Option 3:</strong> View analytics directly in your Cloudflare Dashboard</li>
-        <li><strong>Option 4 (Dev Only):</strong> Use a CORS browser extension or disable web security (not recommended for production)</li>
-      </ul>
-      <p style="color: var(--text-muted); margin-top: 1em; font-size: 0.9em;">
-        💡 <strong>Tip:</strong> Check your browser's console (F12) for detailed error messages.
-      </p>
-    </div>
-
     <!-- Credentials Section -->
     <div class="credentials-section">
       <h2>🔐 API Credentials</h2>
@@ -551,9 +533,6 @@
       <div class="button-group">
         <button class="btn" id="fetchDataBtn">
           <i class="fas fa-chart-line"></i> Fetch Analytics
-        </button>
-        <button class="btn btn-secondary" id="demoBtn">
-          <i class="fas fa-play"></i> View Demo Data
         </button>
         <button class="btn btn-secondary" id="saveCredentialsBtn">
           <i class="fas fa-save"></i> Save Credentials
@@ -936,12 +915,12 @@
       // Create/update requests chart
       createOrUpdateChart('requestsChart', 'Requests', dates, requests, 'rgba(61, 78, 233, 0.2)', '#3d4ee9');
 
-        // Create/update visitors chart
-        createOrUpdateChart('visitorsChart', 'Unique Visitors', dates, visitors, 'rgba(16, 185, 129, 0.2)', '#10b981');
-      }
+      // Create/update visitors chart
+      createOrUpdateChart('visitorsChart', 'Unique Visitors', dates, visitors, 'rgba(16, 185, 129, 0.2)', '#10b981');
+    }
 
-      // Create or update a chart
-      function createOrUpdateChart(canvasId, label, labels, data, backgroundColor, borderColor) {
+    // Create or update a chart
+    function createOrUpdateChart(canvasId, label, labels, data, backgroundColor, borderColor) {
       const ctx = document.getElementById(canvasId);
       const chartInstance = canvasId === 'requestsChart' ? requestsChart : visitorsChart;
 
@@ -1026,83 +1005,18 @@
           }
         });
 
-            if (canvasId === 'requestsChart') {
-              requestsChart = newChart;
-            } else {
-              visitorsChart = newChart;
-            }
-          }
+        if (canvasId === 'requestsChart') {
+          requestsChart = newChart;
+        } else {
+          visitorsChart = newChart;
         }
+      }
+    }
 
-        // Load demo data for testing/preview
-        function loadDemoData() {
-          showAlert('Loading demo data...', 'success');
-
-          // Generate 28 days of sample data
-          const dates = [];
-          const requests = [];
-          const visitors = [];
-
-          for (let i = 27; i >= 0; i--) {
-            const date = new Date();
-            date.setDate(date.getDate() - i);
-            dates.push(date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }));
-
-            // Generate realistic random data with trends
-            const baseRequests = 15000 + (27 - i) * 500; // Upward trend
-            const baseVisitors = 2000 + (27 - i) * 50;
-
-            requests.push(Math.floor(baseRequests + (Math.random() * 3000 - 1500)));
-            visitors.push(Math.floor(baseVisitors + (Math.random() * 400 - 200)));
-          }
-
-          const totalRequests = requests.reduce((a, b) => a + b, 0);
-          const totalVisitors = visitors.reduce((a, b) => a + b, 0);
-          const totalBytes = totalRequests * 1024 * 150; // ~150KB per request
-          const cacheHitRate = (75 + Math.random() * 10).toFixed(1); // 75-85%
-
-          // Update stats
-          document.getElementById('totalRequests').textContent = formatNumber(totalRequests);
-          document.getElementById('uniqueVisitors').textContent = formatNumber(totalVisitors);
-          document.getElementById('bandwidthUsed').textContent = formatBytes(totalBytes);
-          document.getElementById('cacheHitRate').textContent = cacheHitRate + '%';
-
-          // Calculate trends
-          const midpoint = Math.floor(requests.length / 2);
-          const firstHalfRequests = requests.slice(0, midpoint).reduce((a, b) => a + b, 0);
-          const secondHalfRequests = requests.slice(midpoint).reduce((a, b) => a + b, 0);
-          const requestsTrend = ((secondHalfRequests - firstHalfRequests) / firstHalfRequests * 100).toFixed(1);
-
-          const firstHalfVisitors = visitors.slice(0, midpoint).reduce((a, b) => a + b, 0);
-          const secondHalfVisitors = visitors.slice(midpoint).reduce((a, b) => a + b, 0);
-          const visitorsTrend = ((secondHalfVisitors - firstHalfVisitors) / firstHalfVisitors * 100).toFixed(1);
-
-          // Update trends
-          const requestsChangeEl = document.getElementById('requestsChange');
-          requestsChangeEl.textContent = `${requestsTrend > 0 ? '↑' : '↓'} ${Math.abs(requestsTrend)}% vs previous period`;
-          requestsChangeEl.className = `stat-change ${requestsTrend >= 0 ? 'positive' : 'negative'}`;
-
-          const visitorsChangeEl = document.getElementById('visitorsChange');
-          visitorsChangeEl.textContent = `${visitorsTrend > 0 ? '↑' : '↓'} ${Math.abs(visitorsTrend)}% vs previous period`;
-          visitorsChangeEl.className = `stat-change ${visitorsTrend >= 0 ? 'positive' : 'negative'}`;
-
-          // Show sections
-          document.getElementById('statsGrid').style.display = 'grid';
-          document.getElementById('requestsChartSection').style.display = 'block';
-          document.getElementById('visitorsChartSection').style.display = 'block';
-
-          // Create charts
-          createOrUpdateChart('requestsChart', 'Requests (Demo Data)', dates, requests, 'rgba(61, 78, 233, 0.2)', '#3d4ee9');
-          createOrUpdateChart('visitorsChart', 'Unique Visitors (Demo Data)', dates, visitors, 'rgba(16, 185, 129, 0.2)', '#10b981');
-
-          showAlert('📊 Demo data loaded! This shows sample analytics data.', 'warning');
-        }
-
-        // Event listeners
-        document.getElementById('fetchDataBtn').addEventListener('click', fetchCloudflareAnalytics);
-        document.getElementById('demoBtn').addEventListener('click', loadDemoData);
-        document.getElementById('saveCredentialsBtn').addEventListener('click', saveCredentials);
-        document.getElementById('clearCredentialsBtn').addEventListener('click', clearCredentials);
+    // Event listeners
+    document.getElementById('fetchDataBtn').addEventListener('click', fetchCloudflareAnalytics);
+    document.getElementById('saveCredentialsBtn').addEventListener('click', saveCredentials);
+    document.getElementById('clearCredentialsBtn').addEventListener('click', clearCredentials);
 
     // Allow Enter key to fetch data
     document.getElementById('apiToken').addEventListener('keypress', (e) => {

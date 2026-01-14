@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -502,24 +502,6 @@
 
     <div id="alertContainer"></div>
 
-    <!-- Troubleshooting Notice -->
-    <div class="credentials-section" style="background: rgba(245, 158, 11, 0.1); border-color: var(--warning);">
-      <h2>⚠️ Important: CORS Limitations</h2>
-      <p style="color: var(--text); line-height: 1.6; margin: 0;">
-        <strong>Direct browser requests to Cloudflare's API may be blocked due to CORS policies.</strong><br><br>
-        If you encounter "Failed to fetch" errors, you'll need to use one of these solutions:
-      </p>
-      <ul style="color: var(--text-muted); line-height: 1.8; margin-top: 1em;">
-        <li><strong>Option 1 (Recommended):</strong> Create a Cloudflare Worker as a proxy for your API requests</li>
-        <li><strong>Option 2:</strong> Use a backend server (Node.js, Python, etc.) to make the API calls</li>
-        <li><strong>Option 3:</strong> View analytics directly in your Cloudflare Dashboard</li>
-        <li><strong>Option 4 (Dev Only):</strong> Use a CORS browser extension or disable web security (not recommended for production)</li>
-      </ul>
-      <p style="color: var(--text-muted); margin-top: 1em; font-size: 0.9em;">
-        💡 <strong>Tip:</strong> Check your browser's console (F12) for detailed error messages.
-      </p>
-    </div>
-
     <!-- Credentials Section -->
     <div class="credentials-section">
       <h2>🔐 API Credentials</h2>
@@ -551,9 +533,6 @@
       <div class="button-group">
         <button class="btn" id="fetchDataBtn">
           <i class="fas fa-chart-line"></i> Fetch Analytics
-        </button>
-        <button class="btn btn-secondary" id="demoBtn">
-          <i class="fas fa-play"></i> View Demo Data
         </button>
         <button class="btn btn-secondary" id="saveCredentialsBtn">
           <i class="fas fa-save"></i> Save Credentials
@@ -744,141 +723,80 @@
       fetchBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Loading...';
 
       try {
-        // Format dates for Cloudflare API
-        const since = startDate;
-        const until = endDate;
+        // Format dates for Cloudflare API (ISO 8601 format)
+        const since = new Date(startDate).toISOString();
+        const until = new Date(endDate + 'T23:59:59').toISOString();
 
-        // Try REST API first (better CORS support)
-        const restUrl = `https://api.cloudflare.com/client/v4/zones/${zoneId}/analytics/dashboard?since=${since}&until=${until}&continuous=true`;
+        // Fetch analytics data using GraphQL
+        const query = `
+          query {
+            viewer {
+              zones(filter: { zoneTag: "${zoneId}" }) {
+                httpRequests1dGroups(
+                  limit: 31
+                  filter: {
+                    date_geq: "${since.split('T')[0]}"
+                    date_leq: "${until.split('T')[0]}"
+                  }
+                ) {
+                  dimensions {
+                    date
+                  }
+                  sum {
+                    requests
+                    bytes
+                    cachedBytes
+                    cachedRequests
+                  }
+                  uniq {
+                    uniques
+                  }
+                }
+              }
+            }
+          }
+        `;
 
-        console.log('Fetching from Cloudflare Analytics API...');
-
-        const response = await fetch(restUrl, {
-          method: 'GET',
+        const response = await fetch('https://api.cloudflare.com/client/v4/graphql', {
+          method: 'POST',
           headers: {
             'Authorization': `Bearer ${apiToken}`,
             'Content-Type': 'application/json'
-          }
+          },
+          body: JSON.stringify({ query })
         });
 
-        console.log('Response status:', response.status);
-
         if (!response.ok) {
-          const errorText = await response.text();
-          console.error('API Error Response:', errorText);
-
-          if (response.status === 403) {
-            throw new Error('Access denied. Please check your API token has "Analytics:Read" permission.');
-          } else if (response.status === 401) {
-            throw new Error('Authentication failed. Please verify your API token is correct.');
-          } else if (response.status === 404) {
-            throw new Error('Zone not found. Please verify your Zone ID is correct.');
-          } else {
-            throw new Error(`API Error: ${response.status} ${response.statusText}`);
-          }
+          throw new Error(`API Error: ${response.status} ${response.statusText}`);
         }
 
         const data = await response.json();
-        console.log('API Response:', data);
 
-        if (!data.success) {
-          const errorMsg = data.errors?.[0]?.message || 'Unknown API error';
-          throw new Error(errorMsg);
+        if (data.errors) {
+          throw new Error(data.errors[0].message);
         }
 
-        if (!data.result || !data.result.timeseries) {
-          throw new Error('No analytics data found. This might be due to:\n• CORS restrictions (browser blocking cross-origin requests)\n• Insufficient API permissions\n• No data for selected date range\n\nSee console for details.');
+        if (!data.data?.viewer?.zones?.[0]?.httpRequests1dGroups) {
+          throw new Error('No analytics data found. Please check your Zone ID and API permissions.');
         }
 
-        processAndDisplayRestData(data.result);
+        const analyticsData = data.data.viewer.zones[0].httpRequests1dGroups;
+        
+        if (analyticsData.length === 0) {
+          showAlert('No data available for the selected date range', 'warning');
+          return;
+        }
+
+        processAndDisplayData(analyticsData);
         showAlert('Analytics data fetched successfully!', 'success');
 
       } catch (error) {
         console.error('Error fetching analytics:', error);
-
-        let errorMessage = error.message;
-
-        // Check if it's a CORS error
-        if (error.message.includes('Failed to fetch') || error.message.includes('CORS')) {
-          errorMessage = 'CORS Error: Browser blocked the request.\n\n' +
-            '⚠️ Solution Options:\n' +
-            '1. Use Cloudflare Workers as a proxy\n' +
-            '2. Run this from a backend server\n' +
-            '3. Use Cloudflare Dashboard instead\n' +
-            '4. Disable browser CORS (development only)\n\n' +
-            'See browser console for more details.';
-        }
-
-        showAlert(errorMessage, 'error');
+        showAlert(`Failed to fetch analytics: ${error.message}`, 'error');
       } finally {
         fetchBtn.disabled = false;
         fetchBtn.innerHTML = '<i class="fas fa-chart-line"></i> Fetch Analytics';
       }
-    }
-
-    // Process REST API response
-    function processAndDisplayRestData(result) {
-      const timeseries = result.timeseries;
-
-      if (!timeseries || timeseries.length === 0) {
-        showAlert('No data available for the selected date range', 'warning');
-        return;
-      }
-
-      // Extract data for charts
-      const dates = timeseries.map(d => {
-        const date = new Date(d.since);
-        return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
-      });
-
-      const requests = timeseries.map(d => d.requests.all || 0);
-      const visitors = timeseries.map(d => d.uniques.all || 0);
-      const bytes = timeseries.map(d => d.bytes.all || 0);
-      const cachedRequests = timeseries.map(d => d.requests.cached || 0);
-
-      // Calculate totals from result.totals if available
-      const totals = result.totals || {};
-      const totalRequests = totals.requests?.all || requests.reduce((a, b) => a + b, 0);
-      const totalVisitors = totals.uniques?.all || visitors.reduce((a, b) => a + b, 0);
-      const totalBytes = totals.bytes?.all || bytes.reduce((a, b) => a + b, 0);
-      const totalCachedRequests = totals.requests?.cached || cachedRequests.reduce((a, b) => a + b, 0);
-      const cacheHitRate = totalRequests > 0 ? ((totalCachedRequests / totalRequests) * 100).toFixed(1) : 0;
-
-      // Update stats cards
-      document.getElementById('totalRequests').textContent = formatNumber(totalRequests);
-      document.getElementById('uniqueVisitors').textContent = formatNumber(totalVisitors);
-      document.getElementById('bandwidthUsed').textContent = formatBytes(totalBytes);
-      document.getElementById('cacheHitRate').textContent = cacheHitRate + '%';
-
-      // Calculate trends (compare first half vs second half)
-      const midpoint = Math.floor(requests.length / 2);
-      const firstHalfRequests = requests.slice(0, midpoint).reduce((a, b) => a + b, 0);
-      const secondHalfRequests = requests.slice(midpoint).reduce((a, b) => a + b, 0);
-      const requestsTrend = firstHalfRequests > 0 ? ((secondHalfRequests - firstHalfRequests) / firstHalfRequests * 100).toFixed(1) : 0;
-
-      const firstHalfVisitors = visitors.slice(0, midpoint).reduce((a, b) => a + b, 0);
-      const secondHalfVisitors = visitors.slice(midpoint).reduce((a, b) => a + b, 0);
-      const visitorsTrend = firstHalfVisitors > 0 ? ((secondHalfVisitors - firstHalfVisitors) / firstHalfVisitors * 100).toFixed(1) : 0;
-
-      // Update trend indicators
-      const requestsChangeEl = document.getElementById('requestsChange');
-      requestsChangeEl.textContent = `${requestsTrend > 0 ? '↑' : '↓'} ${Math.abs(requestsTrend)}% vs previous period`;
-      requestsChangeEl.className = `stat-change ${requestsTrend >= 0 ? 'positive' : 'negative'}`;
-
-      const visitorsChangeEl = document.getElementById('visitorsChange');
-      visitorsChangeEl.textContent = `${visitorsTrend > 0 ? '↑' : '↓'} ${Math.abs(visitorsTrend)}% vs previous period`;
-      visitorsChangeEl.className = `stat-change ${visitorsTrend >= 0 ? 'positive' : 'negative'}`;
-
-      // Show stats and charts
-      document.getElementById('statsGrid').style.display = 'grid';
-      document.getElementById('requestsChartSection').style.display = 'block';
-      document.getElementById('visitorsChartSection').style.display = 'block';
-
-      // Create/update requests chart
-      createOrUpdateChart('requestsChart', 'Requests', dates, requests, 'rgba(61, 78, 233, 0.2)', '#3d4ee9');
-
-      // Create/update visitors chart
-      createOrUpdateChart('visitorsChart', 'Unique Visitors', dates, visitors, 'rgba(16, 185, 129, 0.2)', '#10b981');
     }
 
     // Process and display analytics data
@@ -936,12 +854,12 @@
       // Create/update requests chart
       createOrUpdateChart('requestsChart', 'Requests', dates, requests, 'rgba(61, 78, 233, 0.2)', '#3d4ee9');
 
-        // Create/update visitors chart
-        createOrUpdateChart('visitorsChart', 'Unique Visitors', dates, visitors, 'rgba(16, 185, 129, 0.2)', '#10b981');
-      }
+      // Create/update visitors chart
+      createOrUpdateChart('visitorsChart', 'Unique Visitors', dates, visitors, 'rgba(16, 185, 129, 0.2)', '#10b981');
+    }
 
-      // Create or update a chart
-      function createOrUpdateChart(canvasId, label, labels, data, backgroundColor, borderColor) {
+    // Create or update a chart
+    function createOrUpdateChart(canvasId, label, labels, data, backgroundColor, borderColor) {
       const ctx = document.getElementById(canvasId);
       const chartInstance = canvasId === 'requestsChart' ? requestsChart : visitorsChart;
 
@@ -1026,83 +944,18 @@
           }
         });
 
-            if (canvasId === 'requestsChart') {
-              requestsChart = newChart;
-            } else {
-              visitorsChart = newChart;
-            }
-          }
+        if (canvasId === 'requestsChart') {
+          requestsChart = newChart;
+        } else {
+          visitorsChart = newChart;
         }
+      }
+    }
 
-        // Load demo data for testing/preview
-        function loadDemoData() {
-          showAlert('Loading demo data...', 'success');
-
-          // Generate 28 days of sample data
-          const dates = [];
-          const requests = [];
-          const visitors = [];
-
-          for (let i = 27; i >= 0; i--) {
-            const date = new Date();
-            date.setDate(date.getDate() - i);
-            dates.push(date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }));
-
-            // Generate realistic random data with trends
-            const baseRequests = 15000 + (27 - i) * 500; // Upward trend
-            const baseVisitors = 2000 + (27 - i) * 50;
-
-            requests.push(Math.floor(baseRequests + (Math.random() * 3000 - 1500)));
-            visitors.push(Math.floor(baseVisitors + (Math.random() * 400 - 200)));
-          }
-
-          const totalRequests = requests.reduce((a, b) => a + b, 0);
-          const totalVisitors = visitors.reduce((a, b) => a + b, 0);
-          const totalBytes = totalRequests * 1024 * 150; // ~150KB per request
-          const cacheHitRate = (75 + Math.random() * 10).toFixed(1); // 75-85%
-
-          // Update stats
-          document.getElementById('totalRequests').textContent = formatNumber(totalRequests);
-          document.getElementById('uniqueVisitors').textContent = formatNumber(totalVisitors);
-          document.getElementById('bandwidthUsed').textContent = formatBytes(totalBytes);
-          document.getElementById('cacheHitRate').textContent = cacheHitRate + '%';
-
-          // Calculate trends
-          const midpoint = Math.floor(requests.length / 2);
-          const firstHalfRequests = requests.slice(0, midpoint).reduce((a, b) => a + b, 0);
-          const secondHalfRequests = requests.slice(midpoint).reduce((a, b) => a + b, 0);
-          const requestsTrend = ((secondHalfRequests - firstHalfRequests) / firstHalfRequests * 100).toFixed(1);
-
-          const firstHalfVisitors = visitors.slice(0, midpoint).reduce((a, b) => a + b, 0);
-          const secondHalfVisitors = visitors.slice(midpoint).reduce((a, b) => a + b, 0);
-          const visitorsTrend = ((secondHalfVisitors - firstHalfVisitors) / firstHalfVisitors * 100).toFixed(1);
-
-          // Update trends
-          const requestsChangeEl = document.getElementById('requestsChange');
-          requestsChangeEl.textContent = `${requestsTrend > 0 ? '↑' : '↓'} ${Math.abs(requestsTrend)}% vs previous period`;
-          requestsChangeEl.className = `stat-change ${requestsTrend >= 0 ? 'positive' : 'negative'}`;
-
-          const visitorsChangeEl = document.getElementById('visitorsChange');
-          visitorsChangeEl.textContent = `${visitorsTrend > 0 ? '↑' : '↓'} ${Math.abs(visitorsTrend)}% vs previous period`;
-          visitorsChangeEl.className = `stat-change ${visitorsTrend >= 0 ? 'positive' : 'negative'}`;
-
-          // Show sections
-          document.getElementById('statsGrid').style.display = 'grid';
-          document.getElementById('requestsChartSection').style.display = 'block';
-          document.getElementById('visitorsChartSection').style.display = 'block';
-
-          // Create charts
-          createOrUpdateChart('requestsChart', 'Requests (Demo Data)', dates, requests, 'rgba(61, 78, 233, 0.2)', '#3d4ee9');
-          createOrUpdateChart('visitorsChart', 'Unique Visitors (Demo Data)', dates, visitors, 'rgba(16, 185, 129, 0.2)', '#10b981');
-
-          showAlert('📊 Demo data loaded! This shows sample analytics data.', 'warning');
-        }
-
-        // Event listeners
-        document.getElementById('fetchDataBtn').addEventListener('click', fetchCloudflareAnalytics);
-        document.getElementById('demoBtn').addEventListener('click', loadDemoData);
-        document.getElementById('saveCredentialsBtn').addEventListener('click', saveCredentials);
-        document.getElementById('clearCredentialsBtn').addEventListener('click', clearCredentials);
+    // Event listeners
+    document.getElementById('fetchDataBtn').addEventListener('click', fetchCloudflareAnalytics);
+    document.getElementById('saveCredentialsBtn').addEventListener('click', saveCredentials);
+    document.getElementById('clearCredentialsBtn').addEventListener('click', clearCredentials);
 
     // Allow Enter key to fetch data
     document.getElementById('apiToken').addEventListener('keypress', (e) => {
