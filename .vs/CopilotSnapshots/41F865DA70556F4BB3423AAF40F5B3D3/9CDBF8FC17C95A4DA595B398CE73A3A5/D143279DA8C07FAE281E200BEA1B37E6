@@ -314,8 +314,7 @@
             button {
                 width: 100%;
                 min-width: auto;
-                padding: 14px 18px;
-                font-size: 0.95em;
+                padding: 16px 20px;
             }
 
             .stats {

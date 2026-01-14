@@ -290,8 +290,8 @@
             }
 
             .tab {
-                padding: 10px 16px;
-                font-size: 13px;
+                padding: 12px 20px;
+                font-size: 14px;
             }
 
             .form-group {
@@ -314,8 +314,7 @@
             button {
                 width: 100%;
                 min-width: auto;
-                padding: 14px 18px;
-                font-size: 0.95em;
+                padding: 16px 20px;
             }
 
             .stats {

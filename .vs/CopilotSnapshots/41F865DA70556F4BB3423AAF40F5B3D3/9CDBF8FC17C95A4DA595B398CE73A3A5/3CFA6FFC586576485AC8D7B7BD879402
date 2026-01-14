@@ -130,7 +130,7 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 8px;
+      gap: 10px;
 
       margin: 0;
       padding: 0.7em 1.1em;
@@ -668,8 +668,6 @@
       .cookie-btn {
         flex: 1;
         text-align: center;
-        padding: 0.6em 1.2em;
-        font-size: 0.9em;
       }
 
       .dropdown-group {
@@ -680,14 +678,6 @@
       .language-select,
       .navigation-select {
         width: 100%;
-        padding: 0.65em 2.5em 0.65em 0.9em;
-        font-size: 0.9em;
-      }
-
-      .music-btn {
-        padding: 0.65em 1em;
-        font-size: 0.95em;
-        gap: 6px;
       }
 
       .footer-links {
@@ -702,19 +692,12 @@
 
       .search-btn {
         width: 100%;
-        height: 42px;
+        height: 46px;
       }
 
       .docs-btn {
         width: 100%;
-        height: 42px;
-        padding: 0 12px;
-        font-size: 0.9em;
-      }
-
-      .search-bar {
-        padding: 0.8em 0.95em;
-        font-size: 0.95em;
+        height: 46px;
       }
 
       .chatbot-popup {
@@ -727,13 +710,10 @@
       .button-group {
         flex-direction: column;
         width: 100%;
-        gap: 0.75em;
       }
 
       .button-group .music-btn {
         width: 100%;
-        padding: 0.6em 1em;
-        font-size: 0.9em;
       }
 
       .cookie-banner {
@@ -744,11 +724,6 @@
         flex-direction: column;
       }
 
-      .cookie-btn {
-        padding: 0.55em 1em;
-        font-size: 0.85em;
-      }
-
       .footer-links {
         flex-direction: column;
         gap: 0.8em;
@@ -756,11 +731,6 @@
 
       .site-footer {
         padding: 1em 0;
-      }
-
-      .profile-photo {
-        width: 140px;
-        height: 140px;
       }
     }
   </style>
