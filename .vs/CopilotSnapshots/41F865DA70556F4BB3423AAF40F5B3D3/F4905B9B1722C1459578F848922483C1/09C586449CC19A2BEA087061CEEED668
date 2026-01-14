@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -171,6 +171,14 @@
 
     .back-home-btn i {
       font-size: 0.85em;
+    }
+
+    .widget-container {
+      min-height: 400px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2em;
     }
 
     .footer {
