@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Firebase Connection Test</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      max-width: 800px;
+      margin: 50px auto;
+      padding: 20px;
+      background: #f5f5f5;
+    }
+    .test-box {
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      margin-bottom: 20px;
+    }
+    .status {
+      padding: 15px;
+      border-radius: 5px;
+      margin: 10px 0;
+      font-weight: bold;
+    }
+    .success { background: #d4edda; color: #155724; }
+    .error { background: #f8d7da; color: #721c24; }
+    .info { background: #d1ecf1; color: #0c5460; }
+    button {
+      background: #3d4ee9;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      margin: 5px;
+    }
+    button:hover {
+      background: #5563f0;
+    }
+    #log {
+      background: #f8f9fa;
+      padding: 15px;
+      border-radius: 5px;
+      font-family: monospace;
+      font-size: 14px;
+      max-height: 400px;
+      overflow-y: auto;
+      margin-top: 20px;
+    }
+    .log-entry {
+      padding: 5px 0;
+      border-bottom: 1px solid #dee2e6;
+    }
+  </style>
+</head>
+<body>
+  <div class="test-box">
+    <h1>🔥 Firebase Connection Test</h1>
+    <p>This page tests if Firebase is properly configured and connected.</p>
+    
+    <div id="status"></div>
+    
+    <button onclick="testConnection()">Test Firebase Connection</button>
+    <button onclick="testWrite()">Test Write to Database</button>
+    <button onclick="testRead()">Test Read from Database</button>
+    <button onclick="clearLog()">Clear Log</button>
+    
+    <div id="log"></div>
+  </div>
+
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
+  <script src="firebase-config.js"></script>
+
+  <script>
+    const logDiv = document.getElementById('log');
+    const statusDiv = document.getElementById('status');
+
+    function log(message, type = 'info') {
+      const entry = document.createElement('div');
+      entry.className = 'log-entry';
+      entry.textContent = `[${new Date().toLocaleTimeString()}] ${message}`;
+      logDiv.appendChild(entry);
+      logDiv.scrollTop = logDiv.scrollHeight;
+      console.log(message);
+    }
+
+    function setStatus(message, type) {
+      statusDiv.innerHTML = `<div class="status ${type}">${message}</div>`;
+    }
+
+    function clearLog() {
+      logDiv.innerHTML = '';
+      statusDiv.innerHTML = '';
+    }
+
+    // Auto-test on load
+    window.addEventListener('DOMContentLoaded', () => {
+      setTimeout(testConnection, 1000);
+    });
+
+    function testConnection() {
+      log('=== Testing Firebase Connection ===');
+      
+      // Check if Firebase SDK loaded
+      if (typeof firebase === 'undefined') {
+        setStatus('❌ Firebase SDK not loaded', 'error');
+        log('ERROR: Firebase SDK script not loaded');
+        log('Make sure firebase-app-compat.js is loading');
+        return;
+      }
+      log('✅ Firebase SDK loaded');
+
+      // Check if config loaded
+      if (typeof window.FirebaseSearchTracking === 'undefined') {
+        setStatus('❌ firebase-config.js not loaded', 'error');
+        log('ERROR: firebase-config.js not found');
+        log('Make sure the file exists in the same directory');
+        return;
+      }
+      log('✅ firebase-config.js loaded');
+
+      // Try to initialize
+      try {
+        const initialized = window.FirebaseSearchTracking.initFirebase();
+        if (initialized) {
+          setStatus('✅ Firebase Connected Successfully!', 'success');
+          log('✅ Firebase initialized successfully');
+          log('Database URL: ' + firebase.app().options.databaseURL);
+          log('Project ID: ' + firebase.app().options.projectId);
+        } else {
+          setStatus('❌ Firebase initialization failed', 'error');
+          log('ERROR: Firebase initialization returned false');
+        }
+      } catch (error) {
+        setStatus('❌ Error: ' + error.message, 'error');
+        log('ERROR: ' + error.message);
+        log('Stack: ' + error.stack);
+      }
+    }
+
+    async function testWrite() {
+      log('=== Testing Database Write ===');
+      
+      if (!window.FirebaseSearchTracking) {
+        setStatus('❌ Firebase not initialized', 'error');
+        log('ERROR: Run connection test first');
+        return;
+      }
+
+      try {
+        setStatus('⏳ Writing test data...', 'info');
+        log('Attempting to write test search...');
+        
+        await window.FirebaseSearchTracking.trackSearchFirebase(
+          'test search from test page',
+          { test: 1, page: 1 }
+        );
+        
+        setStatus('✅ Write Successful!', 'success');
+        log('✅ Test data written to Firebase');
+        log('Check Firebase Console to see the data');
+      } catch (error) {
+        setStatus('❌ Write Failed: ' + error.message, 'error');
+        log('ERROR: ' + error.message);
+        
+        if (error.message.includes('PERMISSION_DENIED')) {
+          log('⚠️ Database rules may not be set correctly');
+          log('Go to Firebase Console → Database → Rules');
+          log('Make sure ".write": true is set for searches');
+        }
+      }
+    }
+
+    async function testRead() {
+      log('=== Testing Database Read ===');
+      
+      if (!window.FirebaseSearchTracking) {
+        setStatus('❌ Firebase not initialized', 'error');
+        log('ERROR: Run connection test first');
+        return;
+      }
+
+      try {
+        setStatus('⏳ Reading data...', 'info');
+        log('Attempting to read search data...');
+        
+        const data = await window.FirebaseSearchTracking.getAggregatedSearchData(10);
+        
+        setStatus('✅ Read Successful!', 'success');
+        log('✅ Data retrieved from Firebase');
+        log('Total searches: ' + data.totalSearches);
+        log('Unique keywords: ' + Object.keys(data.keywords).length);
+        log('Keywords: ' + JSON.stringify(data.keywords, null, 2));
+      } catch (error) {
+        setStatus('❌ Read Failed: ' + error.message, 'error');
+        log('ERROR: ' + error.message);
+        
+        if (error.message.includes('PERMISSION_DENIED')) {
+          log('⚠️ Database rules may not allow reads');
+          log('Go to Firebase Console → Database → Rules');
+          log('Make sure ".read": true is set');
+        }
+      }
+    }
+  </script>
+</body>
+</html>
