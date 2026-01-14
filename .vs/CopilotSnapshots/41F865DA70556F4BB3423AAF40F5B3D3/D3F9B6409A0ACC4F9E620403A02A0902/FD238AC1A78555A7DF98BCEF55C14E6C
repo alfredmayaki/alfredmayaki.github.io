@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -173,14 +173,6 @@
       font-size: 0.85em;
     }
 
-    .widget-container {
-      min-height: 400px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 2em;
-    }
-
     .footer {
       margin-top: 3em;
       padding-top: 2em;
@@ -268,11 +260,18 @@
         </ul>
       </div>
 
-      <div class="widget-container">
-        <!-- Buy Me a Coffee Widget will load here -->
-        <p style="color: var(--text-muted);">
-          Loading Buy Me a Coffee widget...<br>
-          <small>If the widget doesn't load, you can <a href="https://buymeacoffee.com/alfred6072" target="_blank" style="color: var(--brand);">visit my page directly</a>.</small>
+      <div class="info-box" style="background: linear-gradient(135deg, rgba(95, 127, 255, 0.1), rgba(61, 78, 233, 0.1)); border-color: #5F7FFF;">
+        <h2>☕ How It Works</h2>
+        <p>
+          Click the <strong style="color: #5F7FFF;">floating coffee button</strong> on the right side of this page to support me!
+        </p>
+        <p>
+          The Buy Me a Coffee widget will appear as a button → Just click it to donate any amount you'd like.
+        </p>
+        <p>
+          <small style="color: var(--text-muted);">
+            Don't see the button? <a href="https://buymeacoffee.com/alfred6072" target="_blank" style="color: var(--brand);">Click here to visit my page directly</a>.
+          </small>
         </p>
       </div>
 
@@ -303,7 +302,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
 
   <!-- Buy Me a Coffee Widget -->
-  <script data-name="BMC-Widget" data-cfasync="false" src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js" data-id="alfred6072" data-description="Support me on Buy me a coffee!" data-message="" data-color="#5F7FFF" data-position="Right" data-x_margin="18" data-y_margin="18"></script>
+ 
 
   <script>
     // Initialize particles.js
