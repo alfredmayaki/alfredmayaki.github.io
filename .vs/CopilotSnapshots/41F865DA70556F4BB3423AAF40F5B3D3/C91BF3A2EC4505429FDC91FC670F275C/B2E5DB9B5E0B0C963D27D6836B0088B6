@@ -255,6 +255,59 @@
   }
 
   // ========================================
+  // MUSIC PLAYER FUNCTIONALITY
+  // ========================================
+  function setMusicButtonState(isPlaying) {
+    if (!elements.musicBtn) return;
+    elements.musicBtn.textContent = isPlaying ? 'Pause music' : 'Play music';
+    elements.musicBtn.setAttribute('aria-pressed', isPlaying ? 'true' : 'false');
+  }
+
+  async function tryAutoplayMusic() {
+    if (!elements.bgMusic) return false;
+    try {
+      await elements.bgMusic.play();
+      setMusicButtonState(true);
+      return true;
+    } catch (error) {
+      console.log('🔇 Autoplay blocked (expected)', error.message);
+      setMusicButtonState(false);
+      return false;
+    }
+  }
+
+  async function toggleMusic() {
+    if (!elements.bgMusic || !elements.musicBtn) return;
+    if (elements.bgMusic.paused) {
+      const ok = await tryAutoplayMusic();
+      if (!ok) {
+        elements.musicBtn.textContent = 'Tap to enable music';
+      }
+      return;
+    }
+    elements.bgMusic.pause();
+    setMusicButtonState(false);
+  }
+
+  if (elements.musicBtn && elements.bgMusic) {
+    setMusicButtonState(!elements.bgMusic.paused);
+    elements.musicBtn.addEventListener('click', function () {
+      console.log('🎵 Music button clicked');
+      void toggleMusic();
+    });
+    elements.bgMusic.addEventListener('play', function () { setMusicButtonState(true); });
+    elements.bgMusic.addEventListener('pause', function () { setMusicButtonState(false); });
+  }
+
+  const unlockMusicOnce = function () {
+    document.removeEventListener('pointerdown', unlockMusicOnce);
+    document.removeEventListener('keydown', unlockMusicOnce);
+    void tryAutoplayMusic();
+  };
+
+  document.addEventListener('pointerdown', unlockMusicOnce, { once: true });
+  document.addEventListener('keydown', unlockMusicOnce, { once: true });
+
   // ========================================
   // CHATBOT UI FUNCTIONS
   // ========================================
