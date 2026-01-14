@@ -792,7 +792,7 @@
         </button>
       </div>
 
-      <br><p>Powered by GitHub + Anthropic</p>
+      <br><p>Powered by GitHub + Anthropic | <a href="tagcloud.html" style="color: var(--brand); text-decoration: none;">📊 View Search Tag Cloud</a></p>
 
       <div class="dropdown-group">
         <div class="navigation-select-wrap">
@@ -800,6 +800,7 @@
             <option value="">Quick navigation…</option>
             <option value="scraper.html">🔍 Web Scraper</option>
             <option value="pdf-viewer.html">📄 Document Search</option>
+            <option value="tagcloud.html">📊 Search Tag Cloud</option>
             <option value="https://alfredmayaki.me/FBL-PhD-research-proposal.pdf">🎓 MSc Dissertation</option>
             <option value="#chatbot">💬 Open Chatbot</option>
           </select>
@@ -873,7 +874,80 @@
   <!-- External Scripts -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
   <script src="index.js"></script>
-  
+
+  <!-- Firebase SDK (for site-wide search tracking) -->
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
+  <script src="firebase-config.js"></script>
+
+  <!-- Search Tracking Script -->
+  <script>
+    // Initialize Firebase
+    let firebaseInitialized = false;
+    if (window.FirebaseSearchTracking) {
+      firebaseInitialized = window.FirebaseSearchTracking.initFirebase();
+    }
+
+    // Track search queries for tag cloud
+    function trackSearch(query) {
+      if (!query || query.trim().length === 0) return;
+
+      // Extract keywords (split by spaces, remove common words)
+      const stopWords = ['the', 'a', 'an', 'and', 'or', 'but', 'in', 'on', 'at', 'to', 'for', 'of', 'with', 'is', 'was', 'are', 'be', 'have', 'has', 'what', 'when', 'where', 'why', 'how', 'can', 'could', 'would', 'should', 'will'];
+
+      const words = query.toLowerCase()
+        .replace(/[^\w\s]/g, ' ')
+        .split(/\s+/)
+        .filter(word => word.length > 2 && !stopWords.includes(word));
+
+      // Count each word (for Firebase)
+      const keywords = {};
+      words.forEach(word => {
+        keywords[word] = (keywords[word] || 0) + 1;
+      });
+
+      // Track locally (existing personal tag cloud)
+      let searches = JSON.parse(localStorage.getItem('claudeSearches') || '{}');
+      words.forEach(word => {
+        searches[word] = (searches[word] || 0) + 1;
+      });
+
+      // Also track full query
+      const fullQuery = query.trim();
+      if (fullQuery.length <= 50) {
+        searches[`_query_${fullQuery}`] = (searches[`_query_${fullQuery}`] || 0) + 1;
+      }
+
+      // Save to localStorage
+      localStorage.setItem('claudeSearches', JSON.stringify(searches));
+
+      // Track timestamp
+      const timestamps = JSON.parse(localStorage.getItem('claudeSearchTimestamps') || '[]');
+      timestamps.push({ query: fullQuery, timestamp: Date.now() });
+      if (timestamps.length > 100) timestamps.shift();
+      localStorage.setItem('claudeSearchTimestamps', JSON.stringify(timestamps));
+
+      // Track in Firebase (site-wide)
+      if (firebaseInitialized && window.FirebaseSearchTracking) {
+        window.FirebaseSearchTracking.trackSearchFirebase(fullQuery, keywords)
+          .catch(error => console.warn('Firebase tracking failed:', error));
+      }
+    }
+
+    // Attach to search button and Enter key
+    document.getElementById('searchBtn')?.addEventListener('click', function() {
+      const query = document.getElementById('searchInput')?.value;
+      if (query) trackSearch(query);
+    });
+
+    document.getElementById('searchInput')?.addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') {
+        const query = this.value;
+        if (query) trackSearch(query);
+      }
+    });
+  </script>
+
   <!-- Navigation Dropdown Script -->
   <script>
     const navigationSelect = document.getElementById('navigationSelect');
