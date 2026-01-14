@@ -12,6 +12,8 @@
   "author": "Alfred Anate Bodurin Mayaki",
   "license": "GNU",
   "dependencies": {
+    "@capacitor/cli": "^8.0.1",
+    "@capacitor/core": "^8.0.1",
     "serve": "^14.2.0"
   }
 }
