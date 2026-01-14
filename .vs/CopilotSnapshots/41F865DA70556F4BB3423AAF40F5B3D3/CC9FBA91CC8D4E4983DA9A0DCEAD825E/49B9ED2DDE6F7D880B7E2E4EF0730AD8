@@ -792,7 +792,7 @@
         </button>
       </div>
 
-      <br><p>Powered by GitHub + Anthropic</p>
+      <br><p>Powered by GitHub + Anthropic | <a href="tagcloud.html" style="color: var(--brand); text-decoration: none;">📊 View Search Tag Cloud</a></p>
 
       <div class="dropdown-group">
         <div class="navigation-select-wrap">
@@ -800,6 +800,7 @@
             <option value="">Quick navigation…</option>
             <option value="scraper.html">🔍 Web Scraper</option>
             <option value="pdf-viewer.html">📄 Document Search</option>
+            <option value="tagcloud.html">📊 Search Tag Cloud</option>
             <option value="https://alfredmayaki.me/FBL-PhD-research-proposal.pdf">🎓 MSc Dissertation</option>
             <option value="#chatbot">💬 Open Chatbot</option>
           </select>
@@ -933,37 +934,19 @@
       }
     }
 
-      // Attach to search button and Enter key
-      document.getElementById('searchBtn')?.addEventListener('click', function() {
-        const query = document.getElementById('searchInput')?.value;
-        if (query) {
-          console.log('🔍 Search triggered:', query);
-          trackSearch(query);
-          console.log('✅ trackSearch() called');
-        }
-      });
+    // Attach to search button and Enter key
+    document.getElementById('searchBtn')?.addEventListener('click', function() {
+      const query = document.getElementById('searchInput')?.value;
+      if (query) trackSearch(query);
+    });
 
-      document.getElementById('searchInput')?.addEventListener('keypress', function(e) {
-        if (e.key === 'Enter') {
-          const query = this.value;
-          if (query) {
-            console.log('🔍 Search triggered (Enter):', query);
-            trackSearch(query);
-            console.log('✅ trackSearch() called');
-          }
-        }
-      });
-
-      // DEBUG: Check tracking status after 2 seconds
-      setTimeout(() => {
-        console.log('=== SEARCH TRACKING DEBUG ===');
-        console.log('Firebase initialized:', firebaseInitialized);
-        console.log('FirebaseSearchTracking exists:', typeof window.FirebaseSearchTracking !== 'undefined');
-        console.log('LocalStorage searches:', localStorage.getItem('claudeSearches'));
-        console.log('LocalStorage timestamps:', localStorage.getItem('claudeSearchTimestamps'));
-        console.log('================================');
-      }, 2000);
-    </script>
+    document.getElementById('searchInput')?.addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') {
+        const query = this.value;
+        if (query) trackSearch(query);
+      }
+    });
+  </script>
 
   <!-- Navigation Dropdown Script -->
   <script>
