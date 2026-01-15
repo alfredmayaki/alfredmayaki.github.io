@@ -18,9 +18,9 @@ export default {
 
     // CORS headers for all responses
     const corsHeaders = {
-      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Origin': 'https://alfredmayaki.me', // ← Restrict to your domain!
       'Access-Control-Allow-Methods': 'GET, POST, DELETE, OPTIONS',
-      'Access-Control-Allow-Headers': 'Content-Type',
+      'Access-Control-Allow-Headers': 'Content-Type, X-API-Key', // ← Add API Key header
       'Access-Control-Max-Age': '86400',
     };
 
@@ -29,8 +29,28 @@ export default {
       return new Response(null, { headers: corsHeaders });
     }
 
+    // ========================================
+    // 🔐 AUTHENTICATION CHECK
+    // ========================================
+    // For write operations, require API key
+    if (['POST', 'DELETE'].includes(request.method)) {
+      const apiKey = request.headers.get('X-API-Key');
+
+      if (!apiKey || apiKey !== env.API_SECRET) {
+        return new Response(JSON.stringify({ 
+          error: 'Unauthorized - Invalid or missing API key' 
+        }), {
+          status: 401,
+          headers: {
+            ...corsHeaders,
+            'Content-Type': 'application/json'
+          }
+        });
+      }
+    }
+
     try {
-      // Route handling
+      // Route handling (existing code)
       if (path === '/api/search/track' && request.method === 'POST') {
         return handleTrackSearch(request, env, corsHeaders);
       }

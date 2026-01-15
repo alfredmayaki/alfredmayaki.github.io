@@ -18,6 +18,22 @@ workers_dev = true
 [build]
 command = ""
 
+# ========================================
+# 🔐 SECRETS - DO NOT COMMIT ACTUAL VALUES!
+# ========================================
+# Set this using: wrangler secret put API_SECRET
+# Then enter a strong random key when prompted
+# 
+# To set the secret:
+#   wrangler secret put API_SECRET
+#   Enter a secret value: [paste your secret key]
+# 
+# The secret will be stored securely in Cloudflare
+# and accessible via env.API_SECRET in your worker
+# 
+# To generate a strong key:
+#   node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
+
 # Optional: Separate environments (uncomment and configure if needed)
 # [env.production]
 # kv_namespaces = [

@@ -12,6 +12,11 @@ const SearchTrackerAPI = (function() {
   // Replace this with your actual worker URL
   const API_BASE_URL = 'https://search-tracker.alfred-mayaki.workers.dev/api/search';
 
+  // 🔐 API Key - For write operations
+  // Get this from your environment or config
+  // ⚠️ DO NOT commit this to GitHub! Use environment variables in production
+  const API_KEY = 'a709ca12cb56b49ea86f85b6160b3de99ce4067db0fb952bdfcc9d8614d8836c'; // Replace with actual key after wrangler secret put
+
   // Example formats:
   // workers.dev: 'https://search-tracker.YOUR-SUBDOMAIN.workers.dev/api/search'
   // custom domain: 'https://alfredmayaki.me/api/search'
@@ -92,7 +97,10 @@ const SearchTrackerAPI = (function() {
 
       const response = await fetch(`${API_BASE_URL}/track`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 
+          'Content-Type': 'application/json',
+          'X-API-Key': API_KEY  // Add authentication
+        },
         body: JSON.stringify({ userId, query, keywords }),
         signal: controller.signal
       });

@@ -639,7 +639,13 @@
       console.log('⏰ Updated timestamp:', now.toLocaleTimeString());
 
       // Fetch from API (auto-fallback to localStorage)
+      console.log('🔄 Calling SearchTrackerAPI.getUserCloud()...');
       const result = await SearchTrackerAPI.getUserCloud(50);
+
+      console.log('📦 API Result:', result);
+      console.log('  - Success:', result.success);
+      console.log('  - Source:', result.source);
+      console.log('  - Data:', result.data);
 
       if (!result.success) {
         console.error('❌ Failed to load cloud:', result.error);
@@ -651,6 +657,8 @@
       const { keywords, recentSearches, totalSearches, uniqueWords } = result.data;
       console.log('✅ Loaded from:', result.source);
       console.log('📊 Stats - Total:', totalSearches, 'Unique:', uniqueWords);
+      console.log('📝 Recent searches array:', recentSearches);
+      console.log('📝 Recent searches length:', recentSearches ? recentSearches.length : 0);
 
       const tagCloudEl = document.getElementById('tagCloud');
       const emptyStateEl = document.getElementById('emptyState');
@@ -695,23 +703,37 @@
         })
         .join('');
 
-      // Show recent searches
-      console.log('📝 Processing recent searches - Count:', recentSearches.length);
-      if (recentSearches && recentSearches.length > 0) {
+      // Show recent searches with detailed logging
+      console.log('📝 Starting recent searches rendering...');
+      console.log('📝 recentSearches is:', typeof recentSearches, recentSearches);
+
+      if (recentSearches && Array.isArray(recentSearches) && recentSearches.length > 0) {
         const recentSearchesEl = document.getElementById('recentSearches');
         const recentListEl = document.getElementById('recentList');
 
         console.log('📝 Recent searches element:', recentSearchesEl);
         console.log('📝 Recent list element:', recentListEl);
 
+        if (!recentSearchesEl || !recentListEl) {
+          console.error('❌ Recent searches DOM elements not found!');
+          return;
+        }
+
         recentSearchesEl.style.display = 'block';
 
         const recentList = recentSearches
           .slice(0, 10)
-          .map(({ query, timestamp }) => {
+          .map((search, index) => {
+            console.log(`📝 Processing search ${index}:`, search);
+
+            // Handle both formats: {query, timestamp} or just the search object
+            const query = search.query || search;
+            const timestamp = search.timestamp || Date.now();
+
             const date = new Date(timestamp);
             const timeStr = date.toLocaleString();
-            console.log('📝 Formatting search:', query, 'at', timeStr);
+            console.log(`  - Query: ${query}, Time: ${timeStr}`);
+
             return `
               <div class="search-item">
                 <span class="search-query">${query}</span>
@@ -721,11 +743,14 @@
           })
           .join('');
 
-        console.log('📝 Recent searches HTML length:', recentList.length);
+        console.log('📝 Recent searches HTML:', recentList.substring(0, 200) + '...');
         recentListEl.innerHTML = recentList;
-        console.log('📝 Recent searches updated successfully');
+        console.log('✅ Recent searches updated successfully');
       } else {
-        console.log('📝 No timestamps to show');
+        console.log('⚠️ No recent searches to show');
+        console.log('  - recentSearches:', recentSearches);
+        console.log('  - Is array?', Array.isArray(recentSearches));
+        console.log('  - Length:', recentSearches ? recentSearches.length : 'N/A');
         document.getElementById('recentSearches').style.display = 'none';
       }
     }
