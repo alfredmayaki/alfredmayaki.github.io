@@ -696,14 +696,23 @@
         .join('');
       
       // Show recent searches
+      console.log('📝 Processing recent searches - Count:', timestamps.length);
       if (timestamps.length > 0) {
-        document.getElementById('recentSearches').style.display = 'block';
+        const recentSearchesEl = document.getElementById('recentSearches');
+        const recentListEl = document.getElementById('recentList');
+
+        console.log('📝 Recent searches element:', recentSearchesEl);
+        console.log('📝 Recent list element:', recentListEl);
+
+        recentSearchesEl.style.display = 'block';
+
         const recentList = timestamps
           .slice(-10)
           .reverse()
           .map(({ query, timestamp }) => {
             const date = new Date(timestamp);
             const timeStr = date.toLocaleString();
+            console.log('📝 Formatting search:', query, 'at', timeStr);
             return `
               <div class="search-item">
                 <span class="search-query">${query}</span>
@@ -712,7 +721,13 @@
             `;
           })
           .join('');
-        document.getElementById('recentList').innerHTML = recentList;
+
+        console.log('📝 Recent searches HTML length:', recentList.length);
+        recentListEl.innerHTML = recentList;
+        console.log('📝 Recent searches updated successfully');
+      } else {
+        console.log('📝 No timestamps to show');
+        document.getElementById('recentSearches').style.display = 'none';
       }
     }
 
