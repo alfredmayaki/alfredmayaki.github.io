@@ -510,14 +510,6 @@
       overflow: hidden;
     }
 
-    .chatbot-popup.minimized .chatbot-header {
-      cursor: pointer;
-    }
-
-    .chatbot-popup.minimized .chatbot-header:hover {
-      background: var(--brand-hover);
-    }
-
     .chatbot-popup.minimized .chatbot-messages,
     .chatbot-popup.minimized .chatbot-input-area {
       display: none;
@@ -876,7 +868,7 @@
 
   <div class="chatbot-popup" id="chatbotPopup">
     <div class="chatbot-header" id="chatbotHeader">
-      <h3>💬 Ask Claude Code</h3>
+      <h3>💬 Ask Claude 3.5 Haiku</h3>
       <div class="chatbot-header-buttons">
         <button class="minimize-chat" id="minimizeChat" title="Minimize" aria-label="Minimize chatbot">−</button>
         <button class="close-chat" id="closeChat" title="Close" aria-label="Close chatbot">&times;</button>

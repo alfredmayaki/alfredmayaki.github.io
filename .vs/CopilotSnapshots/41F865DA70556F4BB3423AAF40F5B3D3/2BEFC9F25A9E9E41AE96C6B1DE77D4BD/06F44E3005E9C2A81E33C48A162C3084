@@ -510,14 +510,6 @@
       overflow: hidden;
     }
 
-    .chatbot-popup.minimized .chatbot-header {
-      cursor: pointer;
-    }
-
-    .chatbot-popup.minimized .chatbot-header:hover {
-      background: var(--brand-hover);
-    }
-
     .chatbot-popup.minimized .chatbot-messages,
     .chatbot-popup.minimized .chatbot-input-area {
       display: none;
@@ -876,7 +868,7 @@
 
   <div class="chatbot-popup" id="chatbotPopup">
     <div class="chatbot-header" id="chatbotHeader">
-      <h3>💬 Ask Claude Code</h3>
+      <h3>💬 Ask Claude 3.5 Haiku</h3>
       <div class="chatbot-header-buttons">
         <button class="minimize-chat" id="minimizeChat" title="Minimize" aria-label="Minimize chatbot">−</button>
         <button class="close-chat" id="closeChat" title="Close" aria-label="Close chatbot">&times;</button>
@@ -905,56 +897,6 @@
   <!-- External Scripts -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
   <script src="index.js"></script>
-
-  <!-- Chatbot Minimize/Restore Script -->
-  <script>
-    (function() {
-      const chatbotPopup = document.getElementById('chatbotPopup');
-      const minimizeBtn = document.getElementById('minimizeChat');
-      const chatbotHeader = document.getElementById('chatbotHeader');
-
-      // Minimize/Restore toggle
-      function toggleMinimize() {
-        chatbotPopup.classList.toggle('minimized');
-
-        // Update button text
-        if (chatbotPopup.classList.contains('minimized')) {
-          minimizeBtn.textContent = '□';
-          minimizeBtn.title = 'Restore';
-          minimizeBtn.setAttribute('aria-label', 'Restore chatbot');
-        } else {
-          minimizeBtn.textContent = '−';
-          minimizeBtn.title = 'Minimize';
-          minimizeBtn.setAttribute('aria-label', 'Minimize chatbot');
-
-          // Focus input when restored
-          const chatInput = document.getElementById('chatbotInput');
-          if (chatInput) {
-            setTimeout(() => chatInput.focus(), 100);
-          }
-        }
-      }
-
-      // Click minimize button
-      if (minimizeBtn) {
-        minimizeBtn.addEventListener('click', function(e) {
-          e.stopPropagation();
-          toggleMinimize();
-        });
-      }
-
-      // Click header to restore when minimized
-      if (chatbotHeader) {
-        chatbotHeader.addEventListener('click', function(e) {
-          // Only restore if minimized and not clicking buttons
-          if (chatbotPopup.classList.contains('minimized') && 
-              !e.target.closest('button')) {
-            toggleMinimize();
-          }
-        });
-      }
-    })();
-  </script>
 
   <!-- Firebase SDK (for site-wide search tracking) -->
   <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
