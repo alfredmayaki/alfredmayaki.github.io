@@ -828,8 +828,7 @@
             <option value="">Quick navigation…</option>
             <option value="scraper.html">🔍 Dissertation Web Scraper</option>
             <option value="pdf-viewer.html">📄 Document SharePoint</option>
-            <option value="tagcloud.html">📊 Personal Search Analytics</option>
-            <option value="tag-cloud.html">🌍 Global Search Analytics</option>
+            <option value="tagcloud.html">📊 Search Analytics Dashboard</option>
             <option value="https://alfredmayaki.me/FBL-PhD-research-proposal.pdf">🎓 MSc Dissertation</option>
             <option value="#chatbot">💬 Open Claude 3.5 Haiku</option>
           </select>

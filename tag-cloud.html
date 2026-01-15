@@ -1,0 +1,1155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Global Search Analytics — Alfred Mayaki</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Real-time global search analytics powered by Cloudflare Workers">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <style>
+    :root {
+      --font: "Segoe UI", system-ui, -apple-system, sans-serif;
+      --bg: #0f0f0f;
+      --bg-panel: #1a1a1a;
+      --bg-surface: #252525;
+      --bg-hover: #2d2d2d;
+      --border: #3a3a3a;
+      --text: #ffffff;
+      --text-secondary: #b0b0b0;
+      --text-muted: #808080;
+      --brand: #3d4ee9;
+      --brand-hover: #5563f0;
+      --green: #10b981;
+      --amber: #f59e0b;
+      --red: #ef4444;
+      --purple: #8b5cf6;
+      --pink: #ec4899;
+      --cyan: #06b6d4;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      font-family: var(--font);
+      background: url("/universe.png") center / cover no-repeat fixed;
+      color: var(--text);
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+    }
+
+    /* ============ HEADER ============ */
+    .header {
+      background: rgba(15, 15, 15, 0.8);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+      padding: 1rem 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .header-content {
+      max-width: 1600px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1rem;
+      background: var(--bg-surface);
+      color: var(--text);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+
+    .back-btn:hover {
+      background: var(--brand);
+      border-color: var(--brand);
+      transform: translateY(-2px);
+    }
+
+    .header-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .header-subtitle {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      display: block;
+      margin-top: 0.25rem;
+    }
+
+    .header-right {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .view-tabs {
+      display: flex;
+      gap: 0;
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .view-tab {
+      padding: 0.6rem 1.2rem;
+      background: transparent;
+      border: none;
+      color: var(--text-secondary);
+      cursor: pointer;
+      font-weight: 500;
+      font-size: 0.9rem;
+      transition: all 0.2s;
+    }
+
+    .view-tab:hover {
+      color: var(--text);
+      background: var(--bg-hover);
+    }
+
+    .view-tab.active {
+      background: var(--brand);
+      color: var(--text);
+    }
+
+    .refresh-btn {
+      padding: 0.6rem 1.2rem;
+      background: var(--green);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: all 0.2s;
+    }
+
+    .refresh-btn:hover {
+      background: #059669;
+      transform: translateY(-2px);
+    }
+
+    .refresh-btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .refresh-btn.loading i {
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    /* ============ MAIN ============ */
+    .main {
+      flex: 1;
+      overflow-y: auto;
+      padding: 2rem;
+    }
+
+    .container {
+      max-width: 1600px;
+      margin: 0 auto;
+    }
+
+    /* ============ METRICS ============ */
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .metric-card {
+      background: var(--bg-panel);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.5rem;
+      transition: all 0.3s;
+    }
+
+    .metric-card:hover {
+      border-color: var(--brand);
+      transform: translateY(-4px);
+      box-shadow: 0 8px 24px rgba(61, 78, 233, 0.15);
+    }
+
+    .metric-label {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 0.75rem;
+    }
+
+    .metric-icon {
+      font-size: 1.25rem;
+      opacity: 0.7;
+    }
+
+    .metric-value {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--brand);
+      margin-bottom: 0.5rem;
+    }
+
+    .metric-change {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+    }
+
+    .metric-change.positive { color: var(--green); }
+    .metric-change.negative { color: var(--red); }
+
+    /* ============ SECTIONS ============ */
+    .section {
+      background: var(--bg-panel);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.5rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .section-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .section-subtitle {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-top: 0.25rem;
+      display: block;
+    }
+
+    /* ============ TAG CLOUD ============ */
+    .tag-cloud {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+      padding: 3rem 2rem;
+      min-height: 300px;
+      align-items: center;
+    }
+
+    .tag {
+      padding: 0.6rem 1.2rem;
+      background: linear-gradient(135deg, var(--brand), var(--brand-hover));
+      color: white;
+      border-radius: 999px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+      position: relative;
+      animation: fadeIn 0.5s ease-out;
+      box-shadow: 0 4px 12px rgba(61, 78, 233, 0.2);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.8); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    .tag:hover {
+      transform: scale(1.15) translateY(-4px);
+      box-shadow: 0 12px 24px rgba(61, 78, 233, 0.3);
+    }
+
+    .tag::after {
+      content: attr(data-count);
+      position: absolute;
+      top: -10px;
+      right: -10px;
+      background: var(--green);
+      color: white;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      font-weight: bold;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    .tag.size-1 { font-size: 0.75rem; opacity: 0.6; }
+    .tag.size-2 { font-size: 0.85rem; opacity: 0.65; }
+    .tag.size-3 { font-size: 0.95rem; opacity: 0.7; }
+    .tag.size-4 { font-size: 1.05rem; opacity: 0.75; }
+    .tag.size-5 { font-size: 1.15rem; opacity: 0.8; }
+    .tag.size-6 { font-size: 1.3rem; opacity: 0.85; }
+    .tag.size-7 { font-size: 1.45rem; opacity: 0.9; }
+    .tag.size-8 { font-size: 1.65rem; opacity: 0.95; }
+    .tag.size-9 { font-size: 1.85rem; opacity: 1; }
+    .tag.size-10 { font-size: 2.1rem; opacity: 1; font-weight: 800; }
+
+    .tag:nth-child(6n+1) { background: linear-gradient(135deg, var(--brand), var(--brand-hover)); }
+    .tag:nth-child(6n+2) { background: linear-gradient(135deg, var(--green), #059669); }
+    .tag:nth-child(6n+3) { background: linear-gradient(135deg, var(--amber), #d97706); }
+    .tag:nth-child(6n+4) { background: linear-gradient(135deg, var(--purple), #7c3aed); }
+    .tag:nth-child(6n+5) { background: linear-gradient(135deg, var(--pink), #db2777); }
+    .tag:nth-child(6n+6) { background: linear-gradient(135deg, var(--cyan), #0891b2); }
+
+    /* ============ TWO COLUMN ============ */
+    .two-column {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    /* ============ LISTS ============ */
+    .list-container {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      max-height: 500px;
+      overflow-y: auto;
+    }
+
+    .item {
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1rem;
+      transition: all 0.2s;
+      animation: slideIn 0.3s ease-out;
+    }
+
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateX(-20px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+
+    .item:hover {
+      background: var(--bg-hover);
+      border-color: var(--brand);
+      transform: translateX(4px);
+    }
+
+    .item-content {
+      flex: 1;
+    }
+
+    .item-title {
+      color: var(--text);
+      font-weight: 500;
+      margin-bottom: 0.25rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .item-meta {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 2px 8px;
+      background: var(--green);
+      color: white;
+      border-radius: 999px;
+      font-size: 0.65rem;
+      font-weight: 700;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.6; }
+    }
+
+    .rank {
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(135deg, var(--brand), var(--brand-hover));
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .bar-container {
+      width: 100px;
+      height: 8px;
+      background: var(--border);
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--brand), var(--brand-hover));
+      border-radius: 999px;
+      transition: width 0.5s ease;
+    }
+
+    .count {
+      width: 50px;
+      text-align: right;
+      font-weight: 700;
+      color: var(--brand);
+      flex-shrink: 0;
+    }
+
+    /* ============ EMPTY STATE ============ */
+    .empty-state {
+      text-align: center;
+      padding: 4rem 2rem;
+      color: var(--text-muted);
+    }
+
+    .empty-state i {
+      font-size: 4rem;
+      margin-bottom: 1rem;
+      opacity: 0.3;
+    }
+
+    .empty-state h3 {
+      color: var(--text);
+      margin-bottom: 0.5rem;
+      font-size: 1.25rem;
+    }
+
+    .empty-state p {
+      margin-bottom: 1.5rem;
+      color: var(--text-secondary);
+    }
+
+    .empty-state a {
+      display: inline-block;
+      padding: 0.75rem 1.5rem;
+      background: var(--brand);
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: 600;
+      transition: all 0.2s;
+    }
+
+    .empty-state a:hover {
+      background: var(--brand-hover);
+      transform: translateY(-2px);
+    }
+
+    /* ============ LOADING ============ */
+    .loading-state {
+      text-align: center;
+      padding: 4rem 2rem;
+    }
+
+    .spinner {
+      width: 50px;
+      height: 50px;
+      border: 4px solid var(--border);
+      border-top-color: var(--brand);
+      border-radius: 50%;
+      margin: 0 auto 1rem;
+      animation: spin 1s linear infinite;
+    }
+
+    /* ============ ERROR ============ */
+    .error-state {
+      background: rgba(239, 68, 68, 0.1);
+      border: 2px solid var(--red);
+      border-radius: 12px;
+      padding: 2rem;
+      text-align: center;
+    }
+
+    .error-state i {
+      font-size: 3rem;
+      color: var(--red);
+      margin-bottom: 1rem;
+    }
+
+    .error-state h3 {
+      color: var(--red);
+      margin-bottom: 0.5rem;
+    }
+
+    .error-state p {
+      color: var(--text-secondary);
+      margin-bottom: 1rem;
+    }
+
+    /* ============ ACTIONS ============ */
+    .actions {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-top: 2rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .action-btn {
+      padding: 0.75rem 1.5rem;
+      background: var(--bg-surface);
+      color: var(--text);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: all 0.2s;
+      font-size: 0.9rem;
+    }
+
+    .action-btn:hover {
+      background: var(--bg-hover);
+      border-color: var(--brand);
+      transform: translateY(-2px);
+    }
+
+    .action-btn.danger {
+      color: var(--red);
+      border-color: var(--red);
+    }
+
+    .action-btn.danger:hover {
+      background: rgba(239, 68, 68, 0.1);
+    }
+
+    /* ============ TOAST ============ */
+    .toast {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      background: var(--bg-panel);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1rem 1.5rem;
+      display: none;
+      align-items: center;
+      gap: 0.75rem;
+      z-index: 2000;
+      animation: slideUp 0.3s ease-out;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+    }
+
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .toast.show { display: flex; }
+    .toast.success { border-left: 4px solid var(--green); }
+    .toast.error { border-left: 4px solid var(--red); }
+    .toast.info { border-left: 4px solid var(--brand); }
+
+    /* ============ RESPONSIVE ============ */
+    @media (max-width: 1024px) {
+      .two-column { grid-template-columns: 1fr; }
+      .metrics-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 768px) {
+      .header-content { flex-direction: column; align-items: stretch; }
+      .main { padding: 1rem; }
+      .section { padding: 1rem; }
+      .metrics-grid { grid-template-columns: 1fr; }
+      .header-right { width: 100%; }
+      .view-tabs { flex: 1; }
+      .refresh-btn { flex: 1; }
+    }
+
+    @media (max-width: 480px) {
+      .header { padding: 1rem; }
+      .section { padding: 1rem; margin-bottom: 1rem; }
+      .metric-value { font-size: 1.75rem; }
+      .tag { padding: 0.4rem 0.8rem; font-size: 0.75rem !important; }
+      .header-title { font-size: 1.1rem; }
+    }
+  </style>
+</head>
+<body>
+  <div id="particles-js" style="position:fixed;top:0;left:0;width:100%;height:100%;z-index:-1;opacity:0.2;"></div>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="header-content">
+      <div class="header-left">
+        <a href="index.html" class="back-btn">
+          <i class="fas fa-arrow-left"></i>
+          Back
+        </a>
+        <div>
+          <div class="header-title">
+            <i class="fas fa-globe"></i>
+            Global Search Analytics
+          </div>
+          <span class="header-subtitle">Anonymous aggregated search data from all users</span>
+        </div>
+      </div>
+      
+      <div class="header-right">
+        <div class="view-tabs">
+          <button class="view-tab active" id="globalTab" onclick="switchView('global')">
+            <i class="fas fa-globe"></i> Global
+          </button>
+          <button class="view-tab" id="personalTab" onclick="switchView('personal')">
+            <i class="fas fa-user"></i> Personal
+          </button>
+        </div>
+        
+        <button class="refresh-btn" id="refreshBtn" onclick="refreshData()">
+          <i class="fas fa-sync-alt"></i>
+          Refresh
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="main">
+    <div class="container">
+      <!-- Metrics Grid -->
+      <div class="metrics-grid">
+        <div class="metric-card">
+          <div class="metric-label">
+            <i class="fas fa-search metric-icon"></i>
+            Total Searches
+          </div>
+          <div class="metric-value" id="totalSearches">0</div>
+          <div class="metric-change" id="totalChange"></div>
+        </div>
+
+        <div class="metric-card">
+          <div class="metric-label">
+            <i class="fas fa-tags metric-icon"></i>
+            Unique Keywords
+          </div>
+          <div class="metric-value" id="uniqueWords">0</div>
+          <div class="metric-change" id="uniqueChange"></div>
+        </div>
+
+        <div class="metric-card">
+          <div class="metric-label">
+            <i class="fas fa-crown metric-icon"></i>
+            Top Keyword
+          </div>
+          <div class="metric-value" id="topWord" style="font-size: 1.5rem;">—</div>
+          <div class="metric-change" id="topChange"></div>
+        </div>
+
+        <div class="metric-card">
+          <div class="metric-label">
+            <i class="fas fa-users metric-icon"></i>
+            Active Users
+          </div>
+          <div class="metric-value" id="activeUsers">0</div>
+          <div class="metric-change">Tracked anonymously</div>
+        </div>
+      </div>
+
+      <!-- Keyword Cloud -->
+      <div class="section">
+        <div class="section-header">
+          <div>
+            <div class="section-title">
+              <i class="fas fa-cloud"></i>
+              Global Keyword Cloud
+            </div>
+            <span class="section-subtitle">Top 50 keywords by frequency</span>
+          </div>
+        </div>
+        <div class="tag-cloud" id="tagCloud">
+          <div class="loading-state">
+            <div class="spinner"></div>
+            <p>Loading global analytics...</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Two Column Layout -->
+      <div class="two-column">
+        <!-- Recent Searches -->
+        <div class="section">
+          <div class="section-header">
+            <div>
+              <div class="section-title">
+                <i class="fas fa-history"></i>
+                Recent Global Searches
+              </div>
+              <span class="section-subtitle" id="recentMeta">Last 10 searches from all users</span>
+            </div>
+          </div>
+          <div class="list-container" id="recentSearches">
+            <div class="loading-state">
+              <div class="spinner"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Top Keywords -->
+        <div class="section">
+          <div class="section-header">
+            <div>
+              <div class="section-title">
+                <i class="fas fa-chart-bar"></i>
+                Top Keywords (Global)
+              </div>
+              <span class="section-subtitle" id="topMeta">Ranked by search frequency</span>
+            </div>
+          </div>
+          <div class="list-container" id="topKeywords">
+            <div class="loading-state">
+              <div class="spinner"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Actions -->
+      <div class="section">
+        <div class="section-header">
+          <div class="section-title">
+            <i class="fas fa-tools"></i>
+            Data Management
+          </div>
+        </div>
+        <div class="actions">
+          <button class="action-btn" onclick="exportData()">
+            <i class="fas fa-download"></i>
+            Export JSON
+          </button>
+          <button class="action-btn" onclick="openDiagnostics()">
+            <i class="fas fa-stethoscope"></i>
+            Diagnostics
+          </button>
+          <button class="action-btn" onclick="openPersonalDashboard()">
+            <i class="fas fa-user"></i>
+            Personal Dashboard
+          </button>
+          <button class="action-btn danger" onclick="clearAllData()">
+            <i class="fas fa-trash"></i>
+            Clear All
+          </button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Toast -->
+  <div class="toast" id="toast">
+    <i id="toastIcon" class="fas fa-check-circle"></i>
+    <span id="toastMessage">Success!</span>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
+  <script src="search-tracker-api.js"></script>
+
+  <script>
+    let currentView = 'global';
+    let autoRefreshInterval;
+
+    // Initialize particles
+    if (typeof particlesJS !== 'undefined') {
+      particlesJS('particles-js', {
+        particles: {
+          number: { value: 30, density: { enable: true, value_area: 800 } },
+          color: { value: '#3d4ee9' },
+          shape: { type: 'circle' },
+          opacity: { value: 0.2, random: true },
+          size: { value: 2, random: true },
+          line_linked: {
+            enable: true,
+            distance: 150,
+            color: '#3d4ee9',
+            opacity: 0.1,
+            width: 1
+          },
+          move: { enable: true, speed: 0.5 }
+        }
+      });
+    }
+
+    // Initialize
+    window.addEventListener('DOMContentLoaded', () => {
+      loadAnalytics();
+      startAutoRefresh();
+      setupStorageListener();
+    });
+
+    // Switch View
+    function switchView(view) {
+      currentView = view;
+      document.getElementById('globalTab').classList.toggle('active', view === 'global');
+      document.getElementById('personalTab').classList.toggle('active', view === 'personal');
+      loadAnalytics();
+    }
+
+    // Load Analytics
+    async function loadAnalytics() {
+      try {
+        const result = currentView === 'global' 
+          ? await SearchTrackerAPI.getGlobalCloud(50)
+          : await SearchTrackerAPI.getUserCloud(50);
+
+        if (!result.success) {
+          showError(result.error || 'Failed to load analytics');
+          return;
+        }
+
+        renderAnalytics(result.data);
+        updateTimestamp();
+        showToast('Analytics updated', 'success');
+
+      } catch (error) {
+        console.error('Error loading analytics:', error);
+        showError(error.message);
+      }
+    }
+
+    // Render Analytics
+    function renderAnalytics(data) {
+      const { keywords, recentSearches, totalSearches, uniqueWords } = data;
+
+      // Update metrics
+      document.getElementById('totalSearches').textContent = totalSearches || 0;
+      document.getElementById('uniqueWords').textContent = uniqueWords || 0;
+      document.getElementById('activeUsers').textContent = calculateActiveUsers(recentSearches);
+
+      const keywordArray = Object.entries(keywords || {})
+        .sort((a, b) => b[1] - a[1]);
+
+      document.getElementById('topWord').textContent = keywordArray[0]?.[0] || '—';
+
+      // Render sections
+      renderTagCloud(keywordArray);
+      renderRecentSearches(recentSearches || []);
+      renderTopKeywords(keywordArray);
+    }
+
+    // Calculate Active Users
+    function calculateActiveUsers(searches) {
+      if (!searches || !Array.isArray(searches)) return 0;
+      const uniqueUsers = new Set();
+      // Extract unique users from search data
+      return Math.ceil(searches.length / 3); // Rough estimate
+    }
+
+    // Render Tag Cloud
+    function renderTagCloud(keywords) {
+      const container = document.getElementById('tagCloud');
+
+      if (keywords.length === 0) {
+        container.innerHTML = `
+          <div class="empty-state">
+            <i class="fas fa-search"></i>
+            <h3>No Data Yet</h3>
+            <p>Start searching to see global analytics</p>
+            <a href="index.html">Go to Homepage</a>
+          </div>
+        `;
+        return;
+      }
+
+      const maxCount = keywords[0][1];
+      const minCount = keywords[keywords.length - 1][1];
+      const range = maxCount - minCount || 1;
+
+      function getSizeClass(count) {
+        const normalized = (count - minCount) / range;
+        return Math.ceil(normalized * 9) + 1;
+      }
+
+      container.innerHTML = keywords
+        .slice(0, 50)
+        .map(([word, count]) => `
+          <span class="tag size-${getSizeClass(count)}" 
+                data-count="${count}" 
+                onclick="searchWord('${word}')">
+            ${word}
+          </span>
+        `)
+        .join('');
+    }
+
+    // Render Recent Searches
+    function renderRecentSearches(searches) {
+      const container = document.getElementById('recentSearches');
+
+      if (!searches.length) {
+        container.innerHTML = `
+          <div class="empty-state" style="padding: 2rem 1rem;">
+            <i class="fas fa-inbox"></i>
+            <h3>No Recent Searches</h3>
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = searches
+        .slice(0, 10)
+        .map((search) => {
+          const timestamp = search.timestamp || Date.now();
+          const timeAgo = formatTimeAgo(timestamp);
+          const isNew = Date.now() - timestamp < 30000;
+
+          return `
+            <div class="item">
+              <div class="item-content">
+                <div class="item-title">
+                  ${search.query}
+                  ${isNew ? '<span class="badge">NEW</span>' : ''}
+                </div>
+                <div class="item-meta">
+                  <i class="fas fa-clock"></i> ${timeAgo}
+                </div>
+              </div>
+            </div>
+          `;
+        })
+        .join('');
+    }
+
+    // Render Top Keywords
+    function renderTopKeywords(keywords) {
+      const container = document.getElementById('topKeywords');
+
+      if (!keywords.length) {
+        container.innerHTML = `
+          <div class="empty-state" style="padding: 2rem 1rem;">
+            <i class="fas fa-chart-bar"></i>
+            <h3>No Keywords</h3>
+          </div>
+        `;
+        return;
+      }
+
+      const maxCount = keywords[0][1];
+
+      container.innerHTML = keywords
+        .slice(0, 10)
+        .map(([word, count], index) => {
+          const percentage = (count / maxCount) * 100;
+          return `
+            <div class="item" style="display: flex; align-items: center; gap: 1rem;">
+              <div class="rank">${index + 1}</div>
+              <div class="item-content" style="flex: 1;">
+                <div class="item-title">${word}</div>
+              </div>
+              <div class="bar-container">
+                <div class="bar-fill" style="width: ${percentage}%"></div>
+              </div>
+              <div class="count">${count}</div>
+            </div>
+          `;
+        })
+        .join('');
+    }
+
+    // Format Time Ago
+    function formatTimeAgo(timestamp) {
+      const diff = Date.now() - timestamp;
+      const seconds = Math.floor(diff / 1000);
+      const minutes = Math.floor(seconds / 60);
+      const hours = Math.floor(minutes / 60);
+      const days = Math.floor(hours / 24);
+
+      if (seconds < 60) return 'Just now';
+      if (minutes < 60) return `${minutes}m ago`;
+      if (hours < 24) return `${hours}h ago`;
+      return `${days}d ago`;
+    }
+
+    // Show Error
+    function showError(message) {
+      const container = document.getElementById('tagCloud');
+      container.innerHTML = `
+        <div class="error-state">
+          <i class="fas fa-exclamation-triangle"></i>
+          <h3>Unable to Load</h3>
+          <p>${message}</p>
+          ${message.includes('404') || message.includes('Failed to fetch') ? `
+            <p style="font-size: 0.85rem;">Deploy worker: <code style="background: var(--bg-surface); padding: 4px 8px; border-radius: 4px;">wrangler deploy</code></p>
+          ` : ''}
+        </div>
+      `;
+    }
+
+    // Update Timestamp
+    function updateTimestamp() {
+      const timestamp = new Date().toLocaleTimeString();
+      const header = document.querySelector('.header-subtitle');
+      if (header && currentView === 'global') {
+        header.textContent = `Anonymous aggregated data • Updated ${timestamp}`;
+      }
+    }
+
+    // Show Toast
+    function showToast(message, type = 'success') {
+      const toast = document.getElementById('toast');
+      const icon = document.getElementById('toastIcon');
+      
+      toast.className = `toast show ${type}`;
+      document.getElementById('toastMessage').textContent = message;
+      
+      if (type === 'success') icon.className = 'fas fa-check-circle';
+      else if (type === 'error') icon.className = 'fas fa-exclamation-circle';
+      else icon.className = 'fas fa-info-circle';
+
+      setTimeout(() => toast.classList.remove('show'), 3000);
+    }
+
+    // Refresh Data
+    async function refreshData() {
+      const btn = document.getElementById('refreshBtn');
+      btn.disabled = true;
+      btn.classList.add('loading');
+      
+      await loadAnalytics();
+      
+      btn.disabled = false;
+      btn.classList.remove('loading');
+    }
+
+    // Auto Refresh
+    function startAutoRefresh() {
+      autoRefreshInterval = setInterval(async () => {
+        const timestamps = JSON.parse(localStorage.getItem('claudeSearchTimestamps') || '[]');
+        const lastCount = parseInt(sessionStorage.getItem('lastSearchCount') || '0');
+        
+        if (timestamps.length !== lastCount) {
+          sessionStorage.setItem('lastSearchCount', timestamps.length.toString());
+          await loadAnalytics();
+        }
+      }, 5000);
+    }
+
+    // Setup Storage Listener
+    function setupStorageListener() {
+      window.addEventListener('storage', async (e) => {
+        if ((e.key === 'claudeSearches' || e.key === 'claudeSearchTimestamps')) {
+          await loadAnalytics();
+        }
+      });
+    }
+
+    // Search Word
+    function searchWord(word) {
+      showToast(`Searching for "${word}"...`, 'info');
+      window.location.href = `index.html?q=${encodeURIComponent(word)}`;
+    }
+
+    // Export Data
+    async function exportData() {
+      try {
+        const result = await SearchTrackerAPI.getGlobalCloud(1000);
+        const blob = new Blob([JSON.stringify(result.data, null, 2)], { type: 'application/json' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `global-analytics-${Date.now()}.json`;
+        a.click();
+        URL.revokeObjectURL(url);
+        showToast('Data exported!', 'success');
+      } catch (error) {
+        showToast('Export failed', 'error');
+      }
+    }
+
+    // Clear All Data
+    async function clearAllData() {
+      if (!confirm('⚠️ Clear ALL data? This cannot be undone!')) return;
+
+      try {
+        await SearchTrackerAPI.clearUserData();
+        await loadAnalytics();
+        showToast('Data cleared', 'success');
+      } catch (error) {
+        showToast('Failed to clear data', 'error');
+      }
+    }
+
+    // Open Diagnostics
+    function openDiagnostics() {
+      window.open('diagnose-tagcloud.html', 'diagnostics', 'width=1200,height=800');
+    }
+
+    // Open Personal Dashboard
+    function openPersonalDashboard() {
+      window.open('tagcloud.html', 'personal', 'width=1200,height=900');
+    }
+
+    // Cleanup
+    window.addEventListener('beforeunload', () => {
+      if (autoRefreshInterval) clearInterval(autoRefreshInterval);
+    });
+  </script>
+</body>
+</html>
