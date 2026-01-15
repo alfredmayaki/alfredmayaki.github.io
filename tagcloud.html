@@ -437,7 +437,7 @@
 
     <!-- Controls -->
     <div class="controls">
-      <button class="btn" onclick="refreshCloud()">
+      <button class="btn" onclick="refreshCloud(event)">
         <i class="fas fa-sync-alt"></i> Refresh
       </button>
       <button class="btn" onclick="exportData()">
@@ -638,15 +638,24 @@
       document.getElementById('lastUpdated').textContent = now.toLocaleTimeString();
       console.log('⏰ Updated timestamp:', now.toLocaleTimeString());
 
-      // Force fresh read from localStorage
-      const searchesRaw = localStorage.getItem('claudeSearches');
-      const timestampsRaw = localStorage.getItem('claudeSearchTimestamps');
+      // Force fresh read from localStorage with error handling
+      let searchesRaw, timestampsRaw, searches, timestamps;
 
-      console.log('Raw localStorage claudeSearches:', searchesRaw);
-      console.log('Raw localStorage claudeSearchTimestamps:', timestampsRaw);
+      try {
+        searchesRaw = localStorage.getItem('claudeSearches');
+        timestampsRaw = localStorage.getItem('claudeSearchTimestamps');
 
-      const searches = JSON.parse(searchesRaw || '{}');
-      const timestamps = JSON.parse(timestampsRaw || '[]');
+        console.log('Raw localStorage claudeSearches:', searchesRaw);
+        console.log('Raw localStorage claudeSearchTimestamps:', timestampsRaw);
+
+        searches = JSON.parse(searchesRaw || '{}');
+        timestamps = JSON.parse(timestampsRaw || '[]');
+      } catch (error) {
+        console.error('❌ Error reading localStorage:', error);
+        searches = {};
+        timestamps = [];
+        alert('Error loading search data. Storage may be corrupted. Click "Clear All Data" to reset.');
+      }
 
       console.log('Parsed searches:', searches);
       console.log('Parsed timestamps count:', timestamps.length);
@@ -742,7 +751,7 @@
       // window.location.href = `index.html?search=${encodeURIComponent(word)}`;
     }
 
-    function refreshCloud() {
+    function refreshCloud(event) {
       console.log('🔄 REFRESH BUTTON CLICKED at', new Date().toLocaleTimeString());
       console.log('🔄 Current view - isGlobalView:', isGlobalView);
 
@@ -782,8 +791,16 @@
     }
 
     function exportData() {
-      const searches = JSON.parse(localStorage.getItem('claudeSearches') || '{}');
-      const timestamps = JSON.parse(localStorage.getItem('claudeSearchTimestamps') || '[]');
+      let searches, timestamps;
+
+      try {
+        searches = JSON.parse(localStorage.getItem('claudeSearches') || '{}');
+        timestamps = JSON.parse(localStorage.getItem('claudeSearchTimestamps') || '[]');
+      } catch (error) {
+        console.error('❌ Error reading data for export:', error);
+        alert('Error reading search data. Cannot export.');
+        return;
+      }
       
       const data = {
         keywords: searches,
@@ -804,9 +821,15 @@
       if (confirm('Are you sure you want to clear all search data? This cannot be undone.')) {
         console.log('🗑️ Clearing all data...');
 
-        // Clear localStorage
-        localStorage.removeItem('claudeSearches');
-        localStorage.removeItem('claudeSearchTimestamps');
+        try {
+          // Clear localStorage
+          localStorage.removeItem('claudeSearches');
+          localStorage.removeItem('claudeSearchTimestamps');
+        } catch (error) {
+          console.error('❌ Error clearing localStorage:', error);
+          alert('Error clearing data. Please try clearing browser cache manually.');
+          return;
+        }
 
         // Verify cleared
         console.log('After clear - Searches:', localStorage.getItem('claudeSearches'));
@@ -819,7 +842,7 @@
 
         // Hard reload to clear any cache
         setTimeout(() => {
-          location.reload(true);
+          location.reload();
         }, 1000);
       }
     }
