@@ -496,11 +496,31 @@
       z-index: 2147483647;
 
       overflow: hidden;
+      transition: max-height 0.3s ease, width 0.3s ease;
     }
 
     .chatbot-popup.active {
       display: flex;
       flex-direction: column;
+    }
+
+    .chatbot-popup.minimized {
+      max-height: 60px;
+      width: 280px;
+      overflow: hidden;
+    }
+
+    .chatbot-popup.minimized .chatbot-header {
+      cursor: pointer;
+    }
+
+    .chatbot-popup.minimized .chatbot-header:hover {
+      background: var(--brand-hover);
+    }
+
+    .chatbot-popup.minimized .chatbot-messages,
+    .chatbot-popup.minimized .chatbot-input-area {
+      display: none;
     }
 
     .chatbot-header {
@@ -512,6 +532,8 @@
 
       color: var(--text);
       background: var(--brand);
+      cursor: pointer;
+      user-select: none;
     }
 
     .chatbot-header h3 {
@@ -519,8 +541,16 @@
       font-size: 1.05em;
       font-weight: 600;
       letter-spacing: 0.2px;
+      flex: 1;
     }
 
+    .chatbot-header-buttons {
+      display: flex;
+      align-items: center;
+      gap: 0.3em;
+    }
+
+    .minimize-chat,
     .close-chat {
       width: 36px;
       height: 36px;
@@ -537,6 +567,12 @@
       transition: background 0.15s ease;
     }
 
+    .minimize-chat {
+      font-size: 1.8em;
+      padding-bottom: 8px;
+    }
+
+    .minimize-chat:hover,
     .close-chat:hover {
       background: rgba(255, 255, 255, 0.12);
     }
@@ -784,7 +820,7 @@
         </button>
       </div>
 
-      <br><p>Powered by GitHub + Anthropic | <a href="tagcloud.html" style="color: var(--brand); text-decoration: none;">📊 View Search Tag Cloud</a></p>
+      <br><p>Powered by GitHub + Anthropic</p>
 
       <div class="dropdown-group">
         <div class="navigation-select-wrap">
@@ -839,9 +875,12 @@
   </div>
 
   <div class="chatbot-popup" id="chatbotPopup">
-    <div class="chatbot-header">
+    <div class="chatbot-header" id="chatbotHeader">
       <h3>💬 Ask Claude 3.5 Haiku</h3>
-      <button class="close-chat" id="closeChat">&times;</button>
+      <div class="chatbot-header-buttons">
+        <button class="minimize-chat" id="minimizeChat" title="Minimize" aria-label="Minimize chatbot">−</button>
+        <button class="close-chat" id="closeChat" title="Close" aria-label="Close chatbot">&times;</button>
+      </div>
     </div>
     <div class="chatbot-messages" id="chatbotMessages">
     </div>
@@ -866,6 +905,56 @@
   <!-- External Scripts -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
   <script src="index.js"></script>
+
+  <!-- Chatbot Minimize/Restore Script -->
+  <script>
+    (function() {
+      const chatbotPopup = document.getElementById('chatbotPopup');
+      const minimizeBtn = document.getElementById('minimizeChat');
+      const chatbotHeader = document.getElementById('chatbotHeader');
+
+      // Minimize/Restore toggle
+      function toggleMinimize() {
+        chatbotPopup.classList.toggle('minimized');
+
+        // Update button text
+        if (chatbotPopup.classList.contains('minimized')) {
+          minimizeBtn.textContent = '□';
+          minimizeBtn.title = 'Restore';
+          minimizeBtn.setAttribute('aria-label', 'Restore chatbot');
+        } else {
+          minimizeBtn.textContent = '−';
+          minimizeBtn.title = 'Minimize';
+          minimizeBtn.setAttribute('aria-label', 'Minimize chatbot');
+
+          // Focus input when restored
+          const chatInput = document.getElementById('chatbotInput');
+          if (chatInput) {
+            setTimeout(() => chatInput.focus(), 100);
+          }
+        }
+      }
+
+      // Click minimize button
+      if (minimizeBtn) {
+        minimizeBtn.addEventListener('click', function(e) {
+          e.stopPropagation();
+          toggleMinimize();
+        });
+      }
+
+      // Click header to restore when minimized
+      if (chatbotHeader) {
+        chatbotHeader.addEventListener('click', function(e) {
+          // Only restore if minimized and not clicking buttons
+          if (chatbotPopup.classList.contains('minimized') && 
+              !e.target.closest('button')) {
+            toggleMinimize();
+          }
+        });
+      }
+    })();
+  </script>
 
   <!-- Firebase SDK (for site-wide search tracking) -->
   <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
