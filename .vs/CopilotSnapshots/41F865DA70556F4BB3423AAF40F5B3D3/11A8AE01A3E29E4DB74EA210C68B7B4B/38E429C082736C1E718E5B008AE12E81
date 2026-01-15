@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Search Tracker API Client
  * Handles communication with Cloudflare Worker API
  * Includes localStorage fallback for offline/privacy mode
