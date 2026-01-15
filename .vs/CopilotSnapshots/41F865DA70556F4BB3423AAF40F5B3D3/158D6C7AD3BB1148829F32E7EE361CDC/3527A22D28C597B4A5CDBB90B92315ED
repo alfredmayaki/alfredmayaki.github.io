@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Search Tracker API Client
  * Handles communication with Cloudflare Worker API
  * Includes localStorage fallback for offline/privacy mode
@@ -10,7 +10,7 @@ const SearchTrackerAPI = (function() {
   // API Base URL - UPDATE THIS after deploying worker
   // After running 'wrangler deploy', you'll get a workers.dev URL
   // Replace this with your actual worker URL
-  const API_BASE_URL = 'https://search-tracker.alfred-mayaki.workers.dev';  // CHANGE THIS!
+  const API_BASE_URL = 'https://alfredmayaki.me/api/search';  // CHANGE THIS!
 
   // Example after deployment:
   // const API_BASE_URL = 'https://search-tracker.YOUR-SUBDOMAIN.workers.dev/api/search';
