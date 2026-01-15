@@ -622,9 +622,13 @@
     }
 
     function loadTagCloud() {
+      console.log('📊 Loading personal tag cloud...');
       const searches = JSON.parse(localStorage.getItem('claudeSearches') || '{}');
       const timestamps = JSON.parse(localStorage.getItem('claudeSearchTimestamps') || '[]');
-      
+
+      console.log('Found searches:', searches);
+      console.log('Found timestamps:', timestamps.length);
+
       const tagCloudEl = document.getElementById('tagCloud');
       const emptyStateEl = document.getElementById('emptyState');
       
@@ -699,10 +703,28 @@
     }
 
     function refreshCloud() {
+      console.log('🔄 Refresh clicked - Global view:', isGlobalView);
+
       if (isGlobalView) {
+        console.log('Refreshing global cloud...');
         showGlobalCloud();
       } else {
+        console.log('Refreshing personal cloud...');
+        // Force reload from localStorage
         loadTagCloud();
+      }
+
+      // Visual feedback
+      const btn = event?.target;
+      if (btn) {
+        const originalText = btn.innerHTML;
+        btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Refreshing...';
+        btn.disabled = true;
+
+        setTimeout(() => {
+          btn.innerHTML = originalText;
+          btn.disabled = false;
+        }, 500);
       }
     }
 
