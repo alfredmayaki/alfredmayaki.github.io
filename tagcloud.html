@@ -822,9 +822,12 @@
         console.log('🗑️ Clearing all data...');
 
         try {
-          // Clear localStorage
+          // Clear ALL localStorage items
           localStorage.removeItem('claudeSearches');
           localStorage.removeItem('claudeSearchTimestamps');
+
+          // Set a flag to indicate data was just cleared
+          sessionStorage.setItem('dataJustCleared', 'true');
         } catch (error) {
           console.error('❌ Error clearing localStorage:', error);
           alert('Error clearing data. Please try clearing browser cache manually.');
@@ -832,23 +835,58 @@
         }
 
         // Verify cleared
-        console.log('After clear - Searches:', localStorage.getItem('claudeSearches'));
-        console.log('After clear - Timestamps:', localStorage.getItem('claudeSearchTimestamps'));
+        console.log('✅ After clear - Searches:', localStorage.getItem('claudeSearches'));
+        console.log('✅ After clear - Timestamps:', localStorage.getItem('claudeSearchTimestamps'));
 
-        // Force refresh
-        loadTagCloud();
+        // Immediate visual update
+        document.getElementById('tagCloud').innerHTML = '';
+        document.getElementById('emptyState').style.display = 'block';
+        document.getElementById('totalSearches').textContent = '0';
+        document.getElementById('uniqueWords').textContent = '0';
+        document.getElementById('topWord').textContent = '—';
+        document.getElementById('recentSearches').style.display = 'none';
+        document.getElementById('lastUpdated').textContent = new Date().toLocaleTimeString();
 
-        alert('All search data has been cleared. The page will now reload.');
-
-        // Hard reload to clear any cache
+        // Force hard reload with cache bypass
         setTimeout(() => {
-          location.reload();
+          // Multiple cache-busting techniques
+          window.location.href = window.location.href.split('?')[0] + '?nocache=' + Date.now();
         }, 1000);
       }
     }
 
         // Load on page load
-        window.addEventListener('DOMContentLoaded', loadTagCloud);
+        window.addEventListener('DOMContentLoaded', function() {
+          // Check if data was just cleared
+          if (sessionStorage.getItem('dataJustCleared') === 'true') {
+            console.log('🗑️ Data was just cleared - forcing empty state');
+            sessionStorage.removeItem('dataJustCleared');
+
+            // Force empty state
+            document.getElementById('tagCloud').innerHTML = '';
+            document.getElementById('emptyState').style.display = 'block';
+            document.getElementById('totalSearches').textContent = '0';
+            document.getElementById('uniqueWords').textContent = '0';
+            document.getElementById('topWord').textContent = '—';
+            document.getElementById('recentSearches').style.display = 'none';
+            document.getElementById('lastUpdated').textContent = new Date().toLocaleTimeString();
+
+            // Reset counter
+            lastKnownSearchCount = 0;
+          } else {
+            // Normal load
+            loadTagCloud();
+
+            // Initialize counter with current count
+            try {
+              const timestamps = JSON.parse(localStorage.getItem('claudeSearchTimestamps') || '[]');
+              lastKnownSearchCount = timestamps.length;
+              console.log('📊 Initialized search counter:', lastKnownSearchCount);
+            } catch (error) {
+              lastKnownSearchCount = 0;
+            }
+          }
+        });
 
         // ========================================
         // AUTO-REFRESH ON STORAGE CHANGES
