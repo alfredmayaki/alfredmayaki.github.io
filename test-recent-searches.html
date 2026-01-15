@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Test Recent Searches</title>
+  <style>
+    body {
+      font-family: system-ui;
+      max-width: 800px;
+      margin: 50px auto;
+      padding: 20px;
+      background: #1a1a1a;
+      color: #fff;
+    }
+    button {
+      padding: 12px 24px;
+      margin: 10px;
+      background: #3d4ee9;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    button:hover {
+      background: #5563f0;
+    }
+    .output {
+      margin-top: 20px;
+      padding: 15px;
+      background: #2a2a2a;
+      border-radius: 8px;
+      font-family: monospace;
+      font-size: 14px;
+      white-space: pre-wrap;
+    }
+    input {
+      padding: 12px;
+      width: 400px;
+      background: #2a2a2a;
+      border: 2px solid #464242;
+      border-radius: 8px;
+      color: white;
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+  <h1>🧪 Test Recent Searches System</h1>
+  
+  <h2>1️⃣ Add Test Searches</h2>
+  <button onclick="addTestSearches()">Add 3 Test Searches</button>
+  <button onclick="clearAll()">Clear All Data</button>
+  
+  <h2>2️⃣ Add Custom Search</h2>
+  <input type="text" id="customSearch" placeholder="Enter your search query...">
+  <button onclick="addCustomSearch()">Add Search</button>
+  
+  <h2>3️⃣ View Data</h2>
+  <button onclick="viewData()">View localStorage Data</button>
+  <button onclick="openTagCloud()">Open Tag Cloud</button>
+  
+  <div class="output" id="output">Results will appear here...</div>
+
+  <script src="search-tracker-api.js"></script>
+  
+  <script>
+    function log(message) {
+      const output = document.getElementById('output');
+      output.textContent += message + '\n';
+      console.log(message);
+    }
+
+    function clearOutput() {
+      document.getElementById('output').textContent = '';
+    }
+
+    async function addTestSearches() {
+      clearOutput();
+      log('🔄 Adding test searches...\n');
+
+      const searches = [
+        'cloudflare worker deployment',
+        'recent searches feature',
+        'tag cloud visualization'
+      ];
+
+      for (let i = 0; i < searches.length; i++) {
+        log(`${i + 1}. Adding: "${searches[i]}"`);
+        const result = await SearchTrackerAPI.trackSearch(searches[i]);
+        log(`   → Success: ${result.success}, Source: ${result.source}`);
+        
+        // Small delay between searches
+        await new Promise(resolve => setTimeout(resolve, 500));
+      }
+
+      log('\n✅ All test searches added!');
+      log('📊 Now open the tag cloud to see them.');
+    }
+
+    async function addCustomSearch() {
+      const input = document.getElementById('customSearch');
+      const query = input.value.trim();
+
+      if (!query) {
+        alert('Please enter a search query');
+        return;
+      }
+
+      clearOutput();
+      log(`🔍 Adding custom search: "${query}"\n`);
+
+      const result = await SearchTrackerAPI.trackSearch(query);
+      log(`✅ Success: ${result.success}`);
+      log(`📍 Source: ${result.source}`);
+      log(`⏰ Timestamp: ${new Date().toLocaleString()}`);
+
+      input.value = '';
+      log('\n💡 Tip: Open tag cloud in another window to see real-time updates!');
+    }
+
+    function viewData() {
+      clearOutput();
+      log('📊 Current localStorage Data:\n');
+
+      try {
+        const searches = JSON.parse(localStorage.getItem('claudeSearches') || '{}');
+        const timestamps = JSON.parse(localStorage.getItem('claudeSearchTimestamps') || '[]');
+
+        log('Keywords:');
+        Object.entries(searches)
+          .filter(([key]) => !key.startsWith('_query_'))
+          .forEach(([word, count]) => {
+            log(`  • ${word}: ${count}`);
+          });
+
+        log(`\nRecent Searches (${timestamps.length} total):`);
+        timestamps.slice(-10).reverse().forEach((item, i) => {
+          const date = new Date(item.timestamp);
+          log(`  ${i + 1}. "${item.query}" - ${date.toLocaleString()}`);
+        });
+
+      } catch (error) {
+        log('❌ Error reading data: ' + error.message);
+      }
+    }
+
+    function clearAll() {
+      if (confirm('Clear all search data?')) {
+        localStorage.removeItem('claudeSearches');
+        localStorage.removeItem('claudeSearchTimestamps');
+        clearOutput();
+        log('🗑️ All data cleared!');
+      }
+    }
+
+    function openTagCloud() {
+      window.open('tagcloud.html', 'tagcloud');
+      log('📊 Tag cloud opened in new window!');
+      log('💡 Try adding more searches here and watch the tag cloud update automatically.');
+    }
+
+    // Auto-show current data on load
+    window.addEventListener('DOMContentLoaded', viewData);
+  </script>
+</body>
+</html>
