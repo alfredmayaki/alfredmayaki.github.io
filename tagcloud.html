@@ -847,8 +847,58 @@
       }
     }
 
-    // Load on page load
-    window.addEventListener('DOMContentLoaded', loadTagCloud);
-  </script>
-</body>
-</html>
+        // Load on page load
+        window.addEventListener('DOMContentLoaded', loadTagCloud);
+
+        // ========================================
+        // AUTO-REFRESH ON STORAGE CHANGES
+        // ========================================
+        // Listen for localStorage changes from other tabs/windows (like index.html)
+        window.addEventListener('storage', function(e) {
+          // Only refresh if search data changed
+          if (e.key === 'claudeSearches' || e.key === 'claudeSearchTimestamps') {
+            console.log('🔔 Storage changed:', e.key);
+            console.log('🔄 Auto-refreshing tag cloud...');
+
+            // Show brief notification
+            const lastUpdatedEl = document.getElementById('lastUpdated');
+            const originalText = lastUpdatedEl.textContent;
+            lastUpdatedEl.textContent = 'Updating...';
+            lastUpdatedEl.style.color = 'var(--brand)';
+
+            // Refresh after short delay
+            setTimeout(() => {
+              if (!isGlobalView) {
+                loadTagCloud();
+              }
+              lastUpdatedEl.style.color = '';
+            }, 500);
+          }
+        });
+
+        // ========================================
+        // PERIODIC AUTO-REFRESH (OPTIONAL)
+        // ========================================
+        // Auto-refresh every 10 seconds if data might have changed
+        let lastKnownSearchCount = 0;
+
+        setInterval(() => {
+          if (isGlobalView) return; // Don't auto-refresh global view
+
+          try {
+            const timestamps = JSON.parse(localStorage.getItem('claudeSearchTimestamps') || '[]');
+            const currentCount = timestamps.length;
+
+            if (currentCount !== lastKnownSearchCount) {
+              console.log('🔔 New searches detected:', currentCount, 'vs', lastKnownSearchCount);
+              console.log('🔄 Auto-refreshing...');
+              loadTagCloud();
+              lastKnownSearchCount = currentCount;
+            }
+          } catch (error) {
+            console.error('❌ Auto-refresh check failed:', error);
+          }
+        }, 10000); // Check every 10 seconds
+      </script>
+    </body>
+    </html>
