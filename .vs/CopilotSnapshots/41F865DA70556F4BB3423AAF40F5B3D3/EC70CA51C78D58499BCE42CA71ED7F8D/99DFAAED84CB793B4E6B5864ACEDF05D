@@ -77,11 +77,11 @@
       align-items: center;
       justify-content: space-between;
 
-      padding: 1.5em 1.5em 0 1.5em;
+      padding: 3em 3em 0 3em;
       text-align: center;
 
       background: var(--bg-overlay);
-      border: 1px solid var(--border);
+      border: 3px solid var(--border);
       animation: fadeIn 0.7s ease-in;
     }
 
