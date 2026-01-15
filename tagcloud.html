@@ -426,6 +426,10 @@
       </div>
     </div>
 
+    <div style="text-align: center; margin-bottom: 1em; color: var(--text-muted); font-size: 0.85em;">
+      <i class="fas fa-clock"></i> Last updated: <span id="lastUpdated">Never</span>
+    </div>
+
     <!-- Controls -->
     <div class="controls">
       <button class="btn" onclick="refreshCloud()">
@@ -622,12 +626,21 @@
     }
 
     function loadTagCloud() {
-      console.log('📊 Loading personal tag cloud...');
-      const searches = JSON.parse(localStorage.getItem('claudeSearches') || '{}');
-      const timestamps = JSON.parse(localStorage.getItem('claudeSearchTimestamps') || '[]');
+      console.log('📊 Loading personal tag cloud at', new Date().toLocaleTimeString());
 
-      console.log('Found searches:', searches);
-      console.log('Found timestamps:', timestamps.length);
+      // Force fresh read from localStorage
+      const searchesRaw = localStorage.getItem('claudeSearches');
+      const timestampsRaw = localStorage.getItem('claudeSearchTimestamps');
+
+      console.log('Raw localStorage claudeSearches:', searchesRaw);
+      console.log('Raw localStorage claudeSearchTimestamps:', timestampsRaw);
+
+      const searches = JSON.parse(searchesRaw || '{}');
+      const timestamps = JSON.parse(timestampsRaw || '[]');
+
+      console.log('Parsed searches:', searches);
+      console.log('Parsed timestamps count:', timestamps.length);
+      console.log('Keywords found:', Object.keys(searches).filter(k => !k.startsWith('_query_')).length);
 
       const tagCloudEl = document.getElementById('tagCloud');
       const emptyStateEl = document.getElementById('emptyState');
@@ -649,10 +662,17 @@
       const totalSearches = timestamps.length;
       const uniqueWords = keywords.length;
       const topWord = keywords[0][0];
-      
+
+      console.log('📊 Stats - Total:', totalSearches, 'Unique:', uniqueWords, 'Top:', topWord);
+
       document.getElementById('totalSearches').textContent = totalSearches;
       document.getElementById('uniqueWords').textContent = uniqueWords;
       document.getElementById('topWord').textContent = topWord;
+
+      // Update last updated time
+      const now = new Date();
+      document.getElementById('lastUpdated').textContent = now.toLocaleTimeString();
+      console.log('⏰ Updated timestamp:', now.toLocaleTimeString());
       
       // Calculate size classes (1-10)
       const maxCount = keywords[0][1];
@@ -703,28 +723,41 @@
     }
 
     function refreshCloud() {
-      console.log('🔄 Refresh clicked - Global view:', isGlobalView);
+      console.log('🔄 REFRESH BUTTON CLICKED at', new Date().toLocaleTimeString());
+      console.log('🔄 Current view - isGlobalView:', isGlobalView);
+
+      // Get the button reference first
+      const btn = event?.target?.closest('button');
 
       if (isGlobalView) {
-        console.log('Refreshing global cloud...');
+        console.log('🌍 Refreshing GLOBAL cloud...');
         showGlobalCloud();
       } else {
-        console.log('Refreshing personal cloud...');
-        // Force reload from localStorage
-        loadTagCloud();
+        console.log('🔒 Refreshing PERSONAL cloud...');
+        console.log('🔒 About to call loadTagCloud()...');
+
+        // Force a complete refresh
+        const tagCloudEl = document.getElementById('tagCloud');
+        tagCloudEl.innerHTML = '<div style="text-align: center; padding: 2em; color: var(--text-muted)"><i class="fas fa-spinner fa-spin"></i><br>Refreshing...</div>';
+
+        // Small delay to show spinner
+        setTimeout(() => {
+          loadTagCloud();
+          console.log('✅ loadTagCloud() completed');
+        }, 100);
       }
 
-      // Visual feedback
-      const btn = event?.target;
+      // Visual feedback on button
       if (btn) {
-        const originalText = btn.innerHTML;
+        const originalHTML = btn.innerHTML;
         btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Refreshing...';
         btn.disabled = true;
 
         setTimeout(() => {
-          btn.innerHTML = originalText;
+          btn.innerHTML = originalHTML;
           btn.disabled = false;
-        }, 500);
+          console.log('✅ Refresh complete');
+        }, 600);
       }
     }
 
