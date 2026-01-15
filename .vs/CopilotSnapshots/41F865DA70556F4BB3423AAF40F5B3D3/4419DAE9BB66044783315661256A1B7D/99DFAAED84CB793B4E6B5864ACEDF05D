@@ -70,21 +70,18 @@
 
     .landing-container {
       width: 100%;
-      max-width: 900px;
       min-height: 100vh;
-      margin: 1em auto;
-      padding: 1em 1em 0 1em;
 
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: space-between;
 
+      padding: 1.5em 1.5em 0 1.5em;
       text-align: center;
 
       background: var(--bg-overlay);
       border: 1px solid var(--border);
-      border-radius: 12px;
       animation: fadeIn 0.7s ease-in;
     }
 
