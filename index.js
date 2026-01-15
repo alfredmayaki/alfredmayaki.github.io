@@ -195,7 +195,7 @@
   // CLICK SOUND EFFECTS
   // ========================================
   document.addEventListener('click', function(e) {
-    if (e.target.matches('button, a, select, input[type="button"], input[type="submit"], .music-btn, .search-btn, .docs-btn, .footer-link')) {
+    if (e.target.matches('button, a, select, input[type="button"], input[type="submit"], .search-btn, .docs-btn, .footer-link, .button-link')) {
       void SoundFX.playClick();
     }
   }, true);
@@ -203,7 +203,7 @@
   // ========================================
   // HOVER SOUND EFFECTS
   // ========================================
-  const interactiveSelectors = 'button, a, select, .music-btn, .search-btn, .docs-btn, .footer-link, option';
+  const interactiveSelectors = 'button, a, select, .search-btn, .docs-btn, .footer-link, .button-link, option';
   let lastHoverTime = 0;
   const hoverThrottle = 100;
 
@@ -497,14 +497,12 @@
 
   elements.searchBtn.addEventListener('click', function () {
     console.log('🔍 Search button clicked');
-    void tryAutoplayMusic();
     openChatbot();
   });
 
   elements.searchInput.addEventListener('keypress', function (e) {
     if (e.key === 'Enter') {
       console.log('⏎ Enter pressed in search input');
-      void tryAutoplayMusic();
       openChatbot();
     }
   });
