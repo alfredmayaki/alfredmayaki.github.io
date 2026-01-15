@@ -213,6 +213,45 @@ When everything is working:
 
 ---
 
+## 🌍 **Global View ("Everyone's Searches")**
+
+### **Before:**
+- Used Firebase Realtime Database
+- Required separate configuration
+- Only worked if Firebase was set up
+
+### **After:**
+- Uses Cloudflare Worker API
+- Same backend as personal searches
+- Automatically aggregates all users' searches
+- No Firebase needed!
+
+### **How It Works:**
+
+```
+User A searches              User B searches
+      ↓                            ↓
+Cloudflare Worker API ← Aggregates → Cloudflare Worker API
+      ↓                            ↓
+      └─────────── KV Storage ─────┘
+                      ↓
+              Global Tag Cloud
+              (Everyone's data)
+```
+
+### **To Enable:**
+
+1. **Deploy Cloudflare Worker:**
+   ```sh
+   wrangler deploy
+   ```
+
+2. **Click "🌍 Everyone's Searches"** in tag cloud
+
+3. **See aggregated data** from all users!
+
+---
+
 ## ✅ **Success Criteria:**
 
 - [x] Recent searches appear on page load

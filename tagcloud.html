@@ -503,24 +503,21 @@
       });
     }
 
-    // Initialize Firebase
+    // Initialize Firebase (optional, for backward compatibility)
     let firebaseInitialized = false;
     let isGlobalView = false;
 
     if (window.FirebaseSearchTracking) {
       firebaseInitialized = window.FirebaseSearchTracking.initFirebase();
-      if (!firebaseInitialized) {
-        console.warn('Firebase not configured. Global view will not work.');
-        document.getElementById('globalBtn').disabled = true;
-        document.getElementById('globalBtn').title = 'Firebase not configured';
+      if (firebaseInitialized) {
+        console.log('✅ Firebase initialized (legacy support)');
+      } else {
+        console.log('ℹ️ Firebase not configured - using Cloudflare Worker API only');
       }
     }
 
     async function showGlobalCloud() {
-      if (!firebaseInitialized) {
-        alert('Site-wide tracking is not configured yet.\n\nTo enable:\n1. Follow FIREBASE_SETUP.md\n2. Configure Firebase\n3. Deploy changes');
-        return;
-      }
+      console.log('🌍 Loading global cloud from Cloudflare Worker API...');
 
       isGlobalView = true;
       document.getElementById('personalBtn').classList.remove('active');
@@ -528,28 +525,65 @@
 
       // Show loading
       const tagCloudEl = document.getElementById('tagCloud');
-      tagCloudEl.innerHTML = '<div style="text-align: center; padding: 3em; color: var(--text-muted)"><i class="fas fa-spinner fa-spin" style="font-size: 3em; margin-bottom: 1em;"></i><br>Loading global data...</div>';
+      const emptyStateEl = document.getElementById('emptyState');
+      tagCloudEl.innerHTML = '<div style="text-align: center; padding: 3em; color: var(--text-muted)"><i class="fas fa-spinner fa-spin" style="font-size: 3em; margin-bottom: 1em;"></i><br>Loading global data from Cloudflare...</div>';
 
       try {
-        const data = await window.FirebaseSearchTracking.getAggregatedSearchData(50);
+        // Use Cloudflare Worker API instead of Firebase
+        console.log('🔄 Calling SearchTrackerAPI.getGlobalCloud()...');
+        const result = await SearchTrackerAPI.getGlobalCloud(50);
 
-        if (Object.keys(data.keywords).length === 0) {
-          document.getElementById('emptyState').style.display = 'block';
+        console.log('📦 Global API Result:', result);
+        console.log('  - Success:', result.success);
+        console.log('  - Source:', result.source);
+
+        if (!result.success) {
+          throw new Error(result.error || 'Failed to load global data');
+        }
+
+        const data = result.data;
+
+        if (!data.keywords || Object.keys(data.keywords).length === 0) {
+          console.log('⚠️ No global data available yet');
+          emptyStateEl.style.display = 'block';
           tagCloudEl.innerHTML = '';
           document.getElementById('totalSearches').textContent = '0';
           document.getElementById('uniqueWords').textContent = '0';
           document.getElementById('topWord').textContent = '—';
+          document.getElementById('recentSearches').style.display = 'none';
           return;
         }
 
-        document.getElementById('emptyState').style.display = 'none';
+        emptyStateEl.style.display = 'none';
 
-        // Render global tag cloud
+        console.log('✅ Global data loaded:', data.totalSearches, 'total searches');
+
+        // Render global tag cloud (keywords, totalSearches, recentSearches)
         renderTagCloud(data.keywords, data.totalSearches, data.recentSearches);
 
+        // Update last updated timestamp
+        document.getElementById('lastUpdated').textContent = new Date().toLocaleTimeString();
+
       } catch (error) {
-        console.error('Error loading global data:', error);
-        alert('Failed to load global data. Check console for details.');
+        console.error('❌ Error loading global data:', error);
+
+        // Show error state
+        tagCloudEl.innerHTML = `
+          <div style="text-align: center; padding: 3em; color: var(--text-muted)">
+            <i class="fas fa-exclamation-triangle" style="font-size: 3em; margin-bottom: 1em; color: var(--accent-3);"></i>
+            <h3 style="color: var(--text); margin-bottom: 0.5em;">Unable to Load Global Data</h3>
+            <p style="margin-bottom: 1em;">${error.message}</p>
+            <p style="font-size: 0.9em;">
+              ${error.message.includes('404') || error.message.includes('Failed to fetch') ? 
+                '💡 The Cloudflare Worker needs to be deployed.<br>Run <code style="background: var(--surface); padding: 4px 8px; border-radius: 4px;">wrangler deploy</code> to enable global tracking.' : 
+                'Check browser console for details.'}
+            </p>
+            <button class="btn" onclick="showPersonalCloud()" style="margin-top: 1em;">
+              <i class="fas fa-arrow-left"></i> Back to My Searches
+            </button>
+          </div>
+        `;
+        document.getElementById('recentSearches').style.display = 'none';
       }
     }
 
