@@ -630,7 +630,7 @@
       }
     }
 
-    function loadTagCloud() {
+    async function loadTagCloud() {
       console.log('📊 Loading personal tag cloud at', new Date().toLocaleTimeString());
 
       // ALWAYS update timestamp first
@@ -638,80 +638,66 @@
       document.getElementById('lastUpdated').textContent = now.toLocaleTimeString();
       console.log('⏰ Updated timestamp:', now.toLocaleTimeString());
 
-      // Force fresh read from localStorage with error handling
-      let searchesRaw, timestampsRaw, searches, timestamps;
+      // Fetch from API (auto-fallback to localStorage)
+      const result = await SearchTrackerAPI.getUserCloud(50);
 
-      try {
-        searchesRaw = localStorage.getItem('claudeSearches');
-        timestampsRaw = localStorage.getItem('claudeSearchTimestamps');
-
-        console.log('Raw localStorage claudeSearches:', searchesRaw);
-        console.log('Raw localStorage claudeSearchTimestamps:', timestampsRaw);
-
-        searches = JSON.parse(searchesRaw || '{}');
-        timestamps = JSON.parse(timestampsRaw || '[]');
-      } catch (error) {
-        console.error('❌ Error reading localStorage:', error);
-        searches = {};
-        timestamps = [];
-        alert('Error loading search data. Storage may be corrupted. Click "Clear All Data" to reset.');
+      if (!result.success) {
+        console.error('❌ Failed to load cloud:', result.error);
+        document.getElementById('tagCloud').innerHTML = '';
+        document.getElementById('emptyState').style.display = 'block';
+        return;
       }
 
-      console.log('Parsed searches:', searches);
-      console.log('Parsed timestamps count:', timestamps.length);
-      console.log('Keywords found:', Object.keys(searches).filter(k => !k.startsWith('_query_')).length);
+      const { keywords, recentSearches, totalSearches, uniqueWords } = result.data;
+      console.log('✅ Loaded from:', result.source);
+      console.log('📊 Stats - Total:', totalSearches, 'Unique:', uniqueWords);
 
       const tagCloudEl = document.getElementById('tagCloud');
       const emptyStateEl = document.getElementById('emptyState');
-      
-      // Filter out full queries (they start with _query_)
-      const keywords = Object.entries(searches)
-        .filter(([word]) => !word.startsWith('_query_'))
+
+      // Convert keywords object to sorted array
+      const keywordArray = Object.entries(keywords)
         .sort((a, b) => b[1] - a[1]);
-      
-      if (keywords.length === 0) {
+
+      if (keywordArray.length === 0) {
         tagCloudEl.innerHTML = '';
         emptyStateEl.style.display = 'block';
         return;
       }
-      
-      emptyStateEl.style.display = 'none';
-      
-      // Calculate stats
-      const totalSearches = timestamps.length;
-      const uniqueWords = keywords.length;
-      const topWord = keywords[0][0];
 
-      console.log('📊 Stats - Total:', totalSearches, 'Unique:', uniqueWords, 'Top:', topWord);
+      emptyStateEl.style.display = 'none';
+
+      // Calculate stats
+      const topWord = keywordArray[0][0];
 
       document.getElementById('totalSearches').textContent = totalSearches;
       document.getElementById('uniqueWords').textContent = uniqueWords;
       document.getElementById('topWord').textContent = topWord;
 
       // Calculate size classes (1-10)
-      const maxCount = keywords[0][1];
-      const minCount = keywords[keywords.length - 1][1];
+      const maxCount = keywordArray[0][1];
+      const minCount = keywordArray[keywordArray.length - 1][1];
       const range = maxCount - minCount;
-      
+
       function getSizeClass(count) {
         if (range === 0) return 'size-5';
         const normalized = (count - minCount) / range;
         const size = Math.ceil(normalized * 9) + 1;
         return `size-${size}`;
       }
-      
+
       // Generate tags
-      tagCloudEl.innerHTML = keywords
+      tagCloudEl.innerHTML = keywordArray
         .slice(0, 50) // Limit to top 50
         .map(([word, count]) => {
           const sizeClass = getSizeClass(count);
           return `<span class="tag ${sizeClass}" data-count="${count}" onclick="searchWord('${word}')">${word}</span>`;
         })
         .join('');
-      
+
       // Show recent searches
-      console.log('📝 Processing recent searches - Count:', timestamps.length);
-      if (timestamps.length > 0) {
+      console.log('📝 Processing recent searches - Count:', recentSearches.length);
+      if (recentSearches && recentSearches.length > 0) {
         const recentSearchesEl = document.getElementById('recentSearches');
         const recentListEl = document.getElementById('recentList');
 
@@ -720,9 +706,8 @@
 
         recentSearchesEl.style.display = 'block';
 
-        const recentList = timestamps
-          .slice(-10)
-          .reverse()
+        const recentList = recentSearches
+          .slice(0, 10)
           .map(({ query, timestamp }) => {
             const date = new Date(timestamp);
             const timeStr = date.toLocaleString();
@@ -817,26 +802,31 @@
       URL.revokeObjectURL(url);
     }
 
-    function clearData() {
+    async function clearData() {
       if (confirm('Are you sure you want to clear all search data? This cannot be undone.')) {
         console.log('🗑️ Clearing all data...');
 
-        try {
-          // Clear ALL localStorage items
-          localStorage.removeItem('claudeSearches');
-          localStorage.removeItem('claudeSearchTimestamps');
+        // Use API to clear both localStorage and server data
+        const result = await SearchTrackerAPI.clearUserData();
 
-          // Set a flag to indicate data was just cleared
-          sessionStorage.setItem('dataJustCleared', 'true');
-        } catch (error) {
-          console.error('❌ Error clearing localStorage:', error);
-          alert('Error clearing data. Please try clearing browser cache manually.');
-          return;
+        if (result.success) {
+          console.log('✅ Data cleared:', result.localOnly ? 'localStorage only' : 'localStorage + API');
+        } else {
+          console.warn('⚠️ Clear failed, trying manual clear...');
+
+          // Fallback: clear localStorage manually
+          try {
+            localStorage.removeItem('claudeSearches');
+            localStorage.removeItem('claudeSearchTimestamps');
+          } catch (error) {
+            console.error('❌ Error clearing localStorage:', error);
+            alert('Error clearing data. Please try clearing browser cache manually.');
+            return;
+          }
         }
 
-        // Verify cleared
-        console.log('✅ After clear - Searches:', localStorage.getItem('claudeSearches'));
-        console.log('✅ After clear - Timestamps:', localStorage.getItem('claudeSearchTimestamps'));
+        // Set a flag to indicate data was just cleared
+        sessionStorage.setItem('dataJustCleared', 'true');
 
         // Immediate visual update
         document.getElementById('tagCloud').innerHTML = '';
@@ -849,7 +839,6 @@
 
         // Force hard reload with cache bypass
         setTimeout(() => {
-          // Multiple cache-busting techniques
           window.location.href = window.location.href.split('?')[0] + '?nocache=' + Date.now();
         }, 1000);
       }
@@ -936,7 +925,10 @@
           } catch (error) {
             console.error('❌ Auto-refresh check failed:', error);
           }
-        }, 10000); // Check every 10 seconds
-      </script>
-    </body>
-    </html>
+            }, 10000); // Check every 10 seconds
+          </script>
+
+          <!-- Search Tracker API Client -->
+          <script src="search-tracker-api.js"></script>
+        </body>
+        </html>
