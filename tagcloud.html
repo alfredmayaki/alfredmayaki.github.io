@@ -5,6 +5,11 @@
   <title>Search Tag Cloud — Alfred Mayaki</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Visualization of Claude AI search queries">
+
+  <!-- Prevent caching -->
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
   
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   
@@ -628,6 +633,11 @@
     function loadTagCloud() {
       console.log('📊 Loading personal tag cloud at', new Date().toLocaleTimeString());
 
+      // ALWAYS update timestamp first
+      const now = new Date();
+      document.getElementById('lastUpdated').textContent = now.toLocaleTimeString();
+      console.log('⏰ Updated timestamp:', now.toLocaleTimeString());
+
       // Force fresh read from localStorage
       const searchesRaw = localStorage.getItem('claudeSearches');
       const timestampsRaw = localStorage.getItem('claudeSearchTimestamps');
@@ -669,11 +679,6 @@
       document.getElementById('uniqueWords').textContent = uniqueWords;
       document.getElementById('topWord').textContent = topWord;
 
-      // Update last updated time
-      const now = new Date();
-      document.getElementById('lastUpdated').textContent = now.toLocaleTimeString();
-      console.log('⏰ Updated timestamp:', now.toLocaleTimeString());
-      
       // Calculate size classes (1-10)
       const maxCount = keywords[0][1];
       const minCount = keywords[keywords.length - 1][1];
@@ -797,10 +802,25 @@
 
     function clearData() {
       if (confirm('Are you sure you want to clear all search data? This cannot be undone.')) {
+        console.log('🗑️ Clearing all data...');
+
+        // Clear localStorage
         localStorage.removeItem('claudeSearches');
         localStorage.removeItem('claudeSearchTimestamps');
+
+        // Verify cleared
+        console.log('After clear - Searches:', localStorage.getItem('claudeSearches'));
+        console.log('After clear - Timestamps:', localStorage.getItem('claudeSearchTimestamps'));
+
+        // Force refresh
         loadTagCloud();
-        alert('All search data has been cleared.');
+
+        alert('All search data has been cleared. The page will now reload.');
+
+        // Hard reload to clear any cache
+        setTimeout(() => {
+          location.reload(true);
+        }, 1000);
       }
     }
 
