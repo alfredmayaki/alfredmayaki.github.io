@@ -1,10 +1,9 @@
-# Firebase Deployment Checklist for MSC Survey
+﻿# Firebase Deployment Checklist for MSC Survey
 
 ## Pre-Deployment ✅
 
 - [ ] Firebase Blaze plan activated (billing enabled)
-- [ ] Node.js 20+ installed (`node --version` → should show v20.x.x or higher)
-  - ⚠️ **Node.js 18 is deprecated!** Upgrade if needed: https://nodejs.org/
+- [ ] Node.js 18+ installed (`node --version`)
 - [ ] Firebase CLI installed (`firebase --version`)
 - [ ] Authenticated with Firebase (`firebase login`)
 - [ ] Git repository clean (`git status`)

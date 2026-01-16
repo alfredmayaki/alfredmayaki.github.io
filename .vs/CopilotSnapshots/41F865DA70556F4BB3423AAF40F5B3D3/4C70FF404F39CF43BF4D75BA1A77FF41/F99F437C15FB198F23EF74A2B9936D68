@@ -1,4 +1,4 @@
-{
+﻿{
   "main": "index.js",
   "scripts": {
     "genkit:start": "genkit start -- tsx --watch src/genkit-sample.ts",
