@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -7,9 +7,6 @@
   <meta name="description" content="Secure survey on neurodiversity in recruitment. Research study based on Miller and Doyle (2025).">
   <meta name="author" content="Alfred Anate Bodurin Mayaki">
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-
-  <!-- Environment Variable Loader (Development) -->
-  <script src="env-loader.js"></script>
 
   <!-- Google Auth Library -->
   <script src="https://accounts.google.com/gsi/client" async defer></script>
@@ -793,170 +790,22 @@
 
   <script>
     // ===================================
-    // SECURE CONFIGURATION MANAGER
+    // CONFIGURATION
     // ===================================
-    // Loads environment variables safely without exposing credentials
-    // Supports: .env.local (development) and process.env (build-time injection)
+    // Replace these with your actual credentials from Google Cloud Console
+    // DO NOT commit real credentials to GitHub - use environment variables in production
 
-    class ConfigManager {
-      constructor() {
-        this.config = {};
-        this.loadConfig();
-        this.validateConfig();
-      }
+    const CONFIG = {
+      // Get from: https://console.cloud.google.com/ -> Credentials -> OAuth 2.0 Client ID
+      GOOGLE_CLIENT_ID: '968825640822-nd8mrq80q6hr3t9gfed8rgeu06o9r1s5.apps.googleusercontent.com',
 
-      /**
-       * Load configuration from multiple sources
-       * Priority: window.__ENV__ > import.meta.env > .env file
-       */
-      loadConfig() {
-        // Check if running with build tool (Vite, Webpack, etc.)
-        if (typeof window !== 'undefined' && window.__ENV__) {
-          this.config = window.__ENV__;
-          console.log('✅ Config loaded from window.__ENV__ (build-time injection)');
-          return;
-        }
+      // Get from: Firebase Console -> Project Settings -> Service Accounts
+      BACKEND_URL: 'https://us-central1-supa-73a39.cloudfunctions.net',
 
-        // For static HTML files, load from localStorage (populated by .env.local loader)
-        if (typeof window !== 'undefined' && window.localStorage) {
-          const envConfig = localStorage.getItem('__app_config__');
-          if (envConfig) {
-            try {
-              this.config = JSON.parse(envConfig);
-              console.log('✅ Config loaded from localStorage');
-              return;
-            } catch (e) {
-              console.warn('⚠️ Failed to parse localStorage config');
-            }
-          }
-        }
-
-        // Fallback: Try to load from global config (for manual setup)
-        if (typeof window !== 'undefined' && window.__APP_CONFIG__) {
-          this.config = window.__APP_CONFIG__;
-          console.log('✅ Config loaded from window.__APP_CONFIG__');
-          return;
-        }
-
-        console.warn('⚠️ No configuration found');
-      }
-
-      /**
-       * Validate all required configuration values exist
-       */
-      validateConfig() {
-        const required = [
-          'FIREBASE_API_KEY',
-          'FIREBASE_AUTH_DOMAIN',
-          'FIREBASE_PROJECT_ID',
-          'FIREBASE_STORAGE_BUCKET',
-          'FIREBASE_MESSAGING_SENDER_ID',
-          'FIREBASE_APP_ID',
-          'BACKEND_URL'
-        ];
-
-        const missing = required.filter(key => !this.get(key));
-
-        if (missing.length > 0) {
-          console.error('❌ Missing required configuration:', missing);
-          this.showConfigError(missing);
-          throw new Error(`Missing configuration: ${missing.join(', ')}`);
-        }
-
-        console.log('✅ All required configuration validated');
-      }
-
-      /**
-       * Get a configuration value safely
-       */
-      get(key) {
-        const value = this.config[key];
-        if (!value) {
-          console.warn(`⚠️ Config key not found: ${key}`);
-          return null;
-        }
-        return String(value);
-      }
-
-      /**
-       * Get all configuration as object
-       */
-      getAll() {
-        return { ...this.config };
-      }
-
-      /**
-       * Get Firebase configuration object
-       */
-      getFirebaseConfig() {
-        return {
-          apiKey: this.get('FIREBASE_API_KEY'),
-          authDomain: this.get('FIREBASE_AUTH_DOMAIN'),
-          projectId: this.get('FIREBASE_PROJECT_ID'),
-          storageBucket: this.get('FIREBASE_STORAGE_BUCKET'),
-          messagingSenderId: this.get('FIREBASE_MESSAGING_SENDER_ID'),
-          appId: this.get('FIREBASE_APP_ID')
-        };
-      }
-
-      /**
-       * Get backend URL
-       */
-      getBackendUrl() {
-        return this.get('BACKEND_URL');
-      }
-
-      /**
-       * Show configuration error UI
-       */
-      showConfigError(missing) {
-        const loginSection = document.getElementById('loginSection');
-        if (!loginSection) return;
-
-        const missingStr = missing.join(', ');
-        loginSection.innerHTML = `
-          <div style="background: rgba(239, 68, 68, 0.1); border: 1px solid #ef4444; border-radius: 8px; padding: 2rem; text-align: center;">
-            <h2 style="color: #ef4444; margin-bottom: 1rem;">⚠️ Configuration Error</h2>
-            <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">
-              This survey app is not properly configured. Missing: <code style="background: var(--surface); padding: 0.25rem 0.5rem; border-radius: 4px;">${missingStr}</code>
-            </p>
-            <div style="background: var(--surface); padding: 1.5rem; border-radius: 6px; text-align: left; margin-bottom: 1.5rem;">
-              <p style="color: var(--text); margin-bottom: 1rem;"><strong>✅ Setup Instructions:</strong></p>
-              <ol style="color: var(--text-secondary); line-height: 2; font-size: 0.9rem;">
-                <li><strong>Create <code>.env.local</code> file</strong> in your project root (do NOT commit to git)</li>
-                <li><strong>Copy values from <code>.env.example</code></strong></li>
-                <li><strong>Fill in your Firebase credentials:</strong>
-                  <ul style="margin-top: 0.5rem; margin-left: 1.5rem;">
-                    <li>Go to <a href="https://console.firebase.google.com" target="_blank" style="color: var(--brand);">Firebase Console</a></li>
-                    <li>Select your project</li>
-                    <li>Click Settings ⚙️ > Project Settings</li>
-                    <li>Copy Web App config values</li>
-                  </ul>
-                </li>
-                <li><strong>Set your Backend URL</strong> (Cloud Functions endpoint)</li>
-                <li><strong>Reload this page</strong> after updating .env.local</li>
-              </ol>
-            </div>
-            <div style="background: rgba(16, 185, 129, 0.1); border: 1px solid var(--green); border-radius: 8px; padding: 1rem; margin-bottom: 1.5rem;">
-              <p style="color: var(--text-secondary); font-size: 0.85rem;"><strong style="color: var(--green);">💡 Development:</strong> For local development, ensure your build tool or a config loader script reads .env.local and injects variables.</p>
-            </div>
-            <button onclick="location.reload()" class="btn btn-primary" style="background: var(--brand); color: white; border: none;">
-              Retry Configuration
-            </button>
-          </div>
-        `;
-      }
-    }
-
-    // ===================================
-    // INITIALIZE CONFIG MANAGER
-    // ===================================
-    let configManager;
-    try {
-      configManager = new ConfigManager();
-    } catch (error) {
-      console.error('Configuration initialization failed:', error);
-    }
+      // Optional: For testing/development
+      ENABLE_DEMO_MODE: true, // Set to true to test without real Google auth
+      USE_LOCALSTORAGE_FALLBACK: false // Use localStorage when backend is unavailable (NOW SET TO FALSE - USING FIREBASE)
+    };
 
     // ===================================
     // STATE MANAGEMENT
@@ -1098,9 +947,22 @@
     // ===================================
     async function checkIfUserSubmitted(userId) {
       try {
-        // Check backend to see if user already submitted
-        const backendUrl = configManager.getBackendUrl();
-        const response = await fetch(`${backendUrl}/checkSubmission`, {
+        // First check localStorage (for demo mode)
+        if (CONFIG.USE_LOCALSTORAGE_FALLBACK) {
+          const submittedUsers = JSON.parse(localStorage.getItem('mscSurveySubmittedUsers') || '[]');
+          if (submittedUsers.includes(userId)) {
+            hasSubmitted = true;
+            console.log('⚠️ User has already submitted survey (from localStorage)');
+            showError(
+              'You have already completed this survey. Each Google account can only submit once. ' +
+              'If you believe this is an error, please contact the researcher.'
+            );
+            throw new Error('Duplicate submission detected');
+          }
+        }
+
+        // Try to call backend to check if user has already submitted
+        const response = await fetch(`${CONFIG.BACKEND_URL}/checkSubmission`, {
           method: 'POST',
           headers: { 
             'Content-Type': 'application/json'
@@ -1109,7 +971,12 @@
         });
 
         if (!response.ok) {
-          console.warn('⚠️ Could not verify submission status');
+          console.warn('⚠️ Could not verify submission status (backend unavailable)');
+          // If using fallback and backend is down, that's okay - we already checked localStorage
+          if (CONFIG.USE_LOCALSTORAGE_FALLBACK) {
+            console.log('✅ Using localStorage for submission tracking');
+            return;
+          }
           return;
         }
 
@@ -1266,8 +1133,7 @@
           console.log('📤 Submitting survey data...');
 
           // Submit to backend
-          const backendUrl = configManager.getBackendUrl();
-          const response = await fetch(`${backendUrl}/submitSurvey`, {
+          const response = await fetch(`${CONFIG.BACKEND_URL}/submitSurvey`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(submissionData)
@@ -1275,6 +1141,32 @@
 
           if (!response.ok) {
             const errorData = await response.json().catch(() => ({}));
+
+            // Fallback to localStorage if backend is unavailable
+            if (CONFIG.USE_LOCALSTORAGE_FALLBACK) {
+              console.warn('⚠️ Backend unavailable, using localStorage fallback...');
+              const submissions = JSON.parse(localStorage.getItem('mscSurveySubmissions') || '[]');
+              submissions.push(submissionData);
+              localStorage.setItem('mscSurveySubmissions', JSON.stringify(submissions));
+
+              // Also store that this user has submitted
+              const submittedUsers = JSON.parse(localStorage.getItem('mscSurveySubmittedUsers') || '[]');
+              if (!submittedUsers.includes(currentUser.id)) {
+                submittedUsers.push(currentUser.id);
+                localStorage.setItem('mscSurveySubmittedUsers', JSON.stringify(submittedUsers));
+              }
+
+              console.log('✅ Survey saved to localStorage (Demo Mode)');
+              console.log('📊 Total submissions:', submissions.length);
+
+              // Mark as submitted
+              hasSubmitted = true;
+
+              // Show success page
+              showSuccessPage();
+              return;
+            }
+
             throw new Error(errorData.message || `Server error: ${response.statusText}`);
           }
 

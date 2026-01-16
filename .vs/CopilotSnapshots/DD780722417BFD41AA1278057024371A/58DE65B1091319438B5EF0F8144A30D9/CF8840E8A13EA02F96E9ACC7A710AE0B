@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -7,9 +7,6 @@
   <meta name="description" content="Secure survey on neurodiversity in recruitment. Research study based on Miller and Doyle (2025).">
   <meta name="author" content="Alfred Anate Bodurin Mayaki">
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-
-  <!-- Environment Variable Loader (Development) -->
-  <script src="env-loader.js"></script>
 
   <!-- Google Auth Library -->
   <script src="https://accounts.google.com/gsi/client" async defer></script>
@@ -1098,9 +1095,22 @@
     // ===================================
     async function checkIfUserSubmitted(userId) {
       try {
-        // Check backend to see if user already submitted
-        const backendUrl = configManager.getBackendUrl();
-        const response = await fetch(`${backendUrl}/checkSubmission`, {
+        // First check localStorage (for demo mode)
+        if (CONFIG.USE_LOCALSTORAGE_FALLBACK) {
+          const submittedUsers = JSON.parse(localStorage.getItem('mscSurveySubmittedUsers') || '[]');
+          if (submittedUsers.includes(userId)) {
+            hasSubmitted = true;
+            console.log('⚠️ User has already submitted survey (from localStorage)');
+            showError(
+              'You have already completed this survey. Each Google account can only submit once. ' +
+              'If you believe this is an error, please contact the researcher.'
+            );
+            throw new Error('Duplicate submission detected');
+          }
+        }
+
+        // Try to call backend to check if user has already submitted
+        const response = await fetch(`${CONFIG.BACKEND_URL}/checkSubmission`, {
           method: 'POST',
           headers: { 
             'Content-Type': 'application/json'
@@ -1109,7 +1119,12 @@
         });
 
         if (!response.ok) {
-          console.warn('⚠️ Could not verify submission status');
+          console.warn('⚠️ Could not verify submission status (backend unavailable)');
+          // If using fallback and backend is down, that's okay - we already checked localStorage
+          if (CONFIG.USE_LOCALSTORAGE_FALLBACK) {
+            console.log('✅ Using localStorage for submission tracking');
+            return;
+          }
           return;
         }
 
@@ -1266,8 +1281,7 @@
           console.log('📤 Submitting survey data...');
 
           // Submit to backend
-          const backendUrl = configManager.getBackendUrl();
-          const response = await fetch(`${backendUrl}/submitSurvey`, {
+          const response = await fetch(`${CONFIG.BACKEND_URL}/submitSurvey`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(submissionData)
@@ -1275,6 +1289,32 @@
 
           if (!response.ok) {
             const errorData = await response.json().catch(() => ({}));
+
+            // Fallback to localStorage if backend is unavailable
+            if (CONFIG.USE_LOCALSTORAGE_FALLBACK) {
+              console.warn('⚠️ Backend unavailable, using localStorage fallback...');
+              const submissions = JSON.parse(localStorage.getItem('mscSurveySubmissions') || '[]');
+              submissions.push(submissionData);
+              localStorage.setItem('mscSurveySubmissions', JSON.stringify(submissions));
+
+              // Also store that this user has submitted
+              const submittedUsers = JSON.parse(localStorage.getItem('mscSurveySubmittedUsers') || '[]');
+              if (!submittedUsers.includes(currentUser.id)) {
+                submittedUsers.push(currentUser.id);
+                localStorage.setItem('mscSurveySubmittedUsers', JSON.stringify(submittedUsers));
+              }
+
+              console.log('✅ Survey saved to localStorage (Demo Mode)');
+              console.log('📊 Total submissions:', submissions.length);
+
+              // Mark as submitted
+              hasSubmitted = true;
+
+              // Show success page
+              showSuccessPage();
+              return;
+            }
+
             throw new Error(errorData.message || `Server error: ${response.statusText}`);
           }
 

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -7,9 +7,6 @@
   <meta name="description" content="Secure survey on neurodiversity in recruitment. Research study based on Miller and Doyle (2025).">
   <meta name="author" content="Alfred Anate Bodurin Mayaki">
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-
-  <!-- Environment Variable Loader (Development) -->
-  <script src="env-loader.js"></script>
 
   <!-- Google Auth Library -->
   <script src="https://accounts.google.com/gsi/client" async defer></script>
