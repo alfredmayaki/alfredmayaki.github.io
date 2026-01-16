@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -566,8 +566,12 @@
       </div>
       <div id="google-login-btn"></div>
       <p style="margin-top: 1.5rem; font-size: 0.9rem; color: var(--text-secondary);">
-        Don't have a Google Account? Visit <a href="https://gmail.com" target="_blank" rel="noopener noreferrer" style="color: var(--brand); text-decoration: none;">gmail.com</a> to create one.
+        Don't have a Google Account?
       </p>
+      <a href="https://support.google.com/mail/answer/56256?hl=en-GB" target="_blank" rel="noopener noreferrer" class="button-link" style="margin-top: 0.5rem; background: var(--surface); border: 1px solid var(--border);">
+        <span>📧</span>
+        <span>Create a Google Account</span>
+      </a>
     </div>
 
     <!-- Survey Form Section -->
