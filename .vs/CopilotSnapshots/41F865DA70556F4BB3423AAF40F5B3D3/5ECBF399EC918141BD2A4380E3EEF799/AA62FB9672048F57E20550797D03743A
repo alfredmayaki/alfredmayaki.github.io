@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -778,10 +778,10 @@
 
     const CONFIG = {
       // Get from: https://console.cloud.google.com/ -> Credentials -> OAuth 2.0 Client ID
-      GOOGLE_CLIENT_ID: '968825640822-nd8mrq80q6hr3t9gfed8rgeu06o9r1s5.apps.googleusercontent.com',
+      GOOGLE_CLIENT_ID: 'YOUR_GOOGLE_CLIENT_ID_HERE.apps.googleusercontent.com',
 
       // Get from: Firebase Console -> Project Settings -> Service Accounts
-      BACKEND_URL: 'https://us-central1-supa-73a39.cloudfunctions.net',
+      BACKEND_URL: 'https://us-central1-YOUR_FIREBASE_PROJECT.cloudfunctions.net',
 
       // Optional: For testing/development
       ENABLE_DEMO_MODE: false // Set to true to test without real Google auth
@@ -996,225 +996,155 @@
       `;
     }
 
-      // Display user information in header
-      function displayUserInfo() {
-        if (!currentUser) return;
+    // Display user information
+    function displayUserInfo() {
+      if (!currentUser) return;
+      
+      document.getElementById('userSection').style.display = 'flex';
+      document.getElementById('userName').textContent = currentUser.name.split(' ')[0];
+      document.getElementById('userAvatar').src = currentUser.picture;
+    }
 
-        const userSection = document.getElementById('userSection');
-        if (!userSection) return;
+    // Show survey form
+    function showSurveyForm() {
+      document.getElementById('loginSection').style.display = 'none';
+      document.getElementById('formSection').classList.add('active');
+      updateProgress();
+    }
 
-        userSection.style.display = 'flex';
-        document.getElementById('userName').textContent = currentUser.name.split(' ')[0];
-        document.getElementById('userAvatar').src = currentUser.picture;
-        document.getElementById('userAvatar').alt = currentUser.name;
+    // Update progress bar
+    function updateProgress() {
+      const form = document.getElementById('surveyForm');
+      if (!form) return;
+      
+      const totalQuestions = 7;
+      const filledQuestions = document.querySelectorAll('textarea[required]:not([value=""])').length;
+      const progressPercentage = (filledQuestions / totalQuestions) * 100;
+      
+      document.getElementById('progressFill').style.width = progressPercentage + '%';
+    }
 
-        console.log('✅ User info displayed');
+    // Handle form submission
+    document.getElementById('surveyForm')?.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      if (!currentUser) {
+        showStatus('Please sign in first', 'error');
+        return;
       }
 
-      // Show survey form after login
-      function showSurveyForm() {
-        const loginSection = document.getElementById('loginSection');
-        const formSection = document.getElementById('formSection');
-
-        if (!loginSection || !formSection) return;
-
-        loginSection.style.display = 'none';
-        formSection.classList.add('active');
-        updateProgress();
-
-        console.log('✅ Survey form displayed');
+      if (hasSubmitted) {
+        showStatus('You have already submitted this survey', 'error');
+        return;
       }
 
-      // Update progress bar
-      function updateProgress() {
-        const form = document.getElementById('surveyForm');
-        if (!form) return;
+      // Show loading state
+      const submitBtn = e.target.querySelector('button[type="submit"]');
+      const originalText = submitBtn.innerHTML;
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = '<div class="spinner"></div> Submitting...';
+      showStatus('Submitting your survey...', 'loading');
 
-        const totalQuestions = 7;
-        const requiredTextareas = form.querySelectorAll('textarea[required]');
-        const filledQuestions = Array.from(requiredTextareas).filter(ta => ta.value.trim().length > 0).length;
+      try {
+        // Collect form data
+        const formData = new FormData(e.target);
+        const responses = Object.fromEntries(formData);
 
-        const progressPercentage = (filledQuestions / totalQuestions) * 100;
-        const progressFill = document.getElementById('progressFill');
+        // Add metadata
+        const submissionData = {
+          userId: currentUser.id,
+          userEmail: currentUser.email,
+          userName: currentUser.name,
+          timestamp: new Date().toISOString(),
+          ...responses
+        };
 
-        if (progressFill) {
-          progressFill.style.width = progressPercentage + '%';
+        // Submit to backend (which writes to Google Sheets)
+        const response = await fetch(`${CONFIG.BACKEND_URL}/submit-survey`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(submissionData)
+        });
+
+        if (!response.ok) {
+          throw new Error(`Server error: ${response.statusText}`);
         }
 
-        document.getElementById('currentQuestion').textContent = filledQuestions;
+        // Success
+        hasSubmitted = true;
+        showSuccessPage();
+
+      } catch (error) {
+        console.error('Submission error:', error);
+        showStatus(`Failed to submit survey: ${error.message}`, 'error');
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = originalText;
       }
+    });
 
-      // ===================================
-      // FORM SUBMISSION
-      // ===================================
-      document.getElementById('surveyForm')?.addEventListener('submit', async (e) => {
-        e.preventDefault();
+    // Show status message
+    function showStatus(message, type) {
+      const statusDiv = document.getElementById('statusMessage');
+      if (!statusDiv) return;
 
-        if (!currentUser) {
-          showStatus('Please sign in first', 'error');
-          return;
-        }
-
-        if (hasSubmitted) {
-          showStatus('You have already submitted this survey', 'error');
-          return;
-        }
-
-        // Get submit button
-        const submitBtn = e.target.querySelector('button[type="submit"]');
-        const originalHtml = submitBtn.innerHTML;
-
-        // Show loading state
-        submitBtn.disabled = true;
-        submitBtn.innerHTML = '<div class="spinner"></div> Submitting...';
-        showStatus('Submitting your survey...', 'loading');
-
-        try {
-          // Collect form data
-          const formData = new FormData(e.target);
-          const responses = Object.fromEntries(formData);
-
-          // Validate required fields
-          const requiredFields = ['q1', 'q2', 'q3', 'q4', 'q5', 'q6'];
-          for (const field of requiredFields) {
-            if (!responses[field] || responses[field].trim().length === 0) {
-              throw new Error(`Required field "${field}" is empty`);
-            }
-          }
-
-          // Build submission data
-          const submissionData = {
-            userId: currentUser.id,
-            userEmail: currentUser.email,
-            userName: currentUser.name,
-            timestamp: new Date().toISOString(),
-            ...responses
-          };
-
-          console.log('📤 Submitting survey data...');
-
-          // Submit to backend
-          const response = await fetch(`${CONFIG.BACKEND_URL}/submitSurvey`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(submissionData)
-          });
-
-          if (!response.ok) {
-            const errorData = await response.json().catch(() => ({}));
-            throw new Error(errorData.message || `Server error: ${response.statusText}`);
-          }
-
-          const result = await response.json();
-
-          console.log('✅ Survey submitted successfully:', result);
-
-          // Mark as submitted
-          hasSubmitted = true;
-
-          // Show success page
-          showSuccessPage();
-
-        } catch (error) {
-          console.error('❌ Submission error:', error);
-          showStatus(`Failed to submit survey: ${error.message}`, 'error');
-          submitBtn.disabled = false;
-          submitBtn.innerHTML = originalHtml;
-        }
-      });
-
-      // Show status message
-      function showStatus(message, type) {
-        const statusDiv = document.getElementById('statusMessage');
-        if (!statusDiv) return;
-
-        if (type === 'loading') {
-          statusDiv.innerHTML = `<div class="status-message status-loading">
-            <div class="spinner"></div>
-            <span>${message}</span>
-          </div>`;
-        } else {
-          statusDiv.innerHTML = `<div class="status-message status-${type}">${message}</div>`;
-        }
+      if (type === 'loading') {
+        statusDiv.innerHTML = `<div class="status-message status-loading">
+          <div class="spinner"></div>
+          <span>${message}</span>
+        </div>`;
+      } else {
+        statusDiv.innerHTML = `<div class="status-message status-${type}">${message}</div>`;
       }
+    }
 
-      // Show error
-      function showError(message) {
-        console.error('❌ Error:', message);
-        document.getElementById('errorMessage').textContent = message;
-        showErrorPage();
-      }
+    // Show error
+    function showError(message) {
+      document.getElementById('errorMessage').textContent = message;
+      showErrorPage();
+    }
 
-      // Show success page
-      function showSuccessPage() {
-        document.getElementById('formSection').classList.remove('active');
-        document.getElementById('successPage').classList.add('active');
-        document.getElementById('submissionTime').textContent = new Date().toLocaleString();
-        document.getElementById('userSection').style.display = 'none';
-        console.log('✅ Survey completed successfully');
-      }
+    // Show success page
+    function showSuccessPage() {
+      document.getElementById('formSection').classList.remove('active');
+      document.getElementById('successPage').classList.add('active');
+      document.getElementById('submissionTime').textContent = new Date().toLocaleString();
+      document.getElementById('userSection').style.display = 'none';
+    }
 
-      // Show error page
-      function showErrorPage() {
-        document.getElementById('formSection').classList.remove('active');
-        document.getElementById('loginSection').style.display = 'none';
-        document.getElementById('successPage').classList.remove('active');
-        document.getElementById('errorPage').classList.add('active');
-      }
+    // Show error page
+    function showErrorPage() {
+      document.getElementById('formSection').classList.remove('active');
+      document.getElementById('loginSection').style.display = 'none';
+      document.getElementById('successPage').classList.remove('active');
+      document.getElementById('errorPage').classList.add('active');
+    }
 
-      // ===================================
-      // LOGOUT FUNCTIONALITY
-      // ===================================
-      document.getElementById('logoutBtn')?.addEventListener('click', () => {
-        console.log('🚪 Logout requested');
+    // Logout
+    document.getElementById('logoutBtn')?.addEventListener('click', () => {
+      google.accounts.id.disableAutoSelect();
+      currentUser = null;
+      hasSubmitted = false;
+      
+      // Reset UI
+      document.getElementById('userSection').style.display = 'none';
+      document.getElementById('formSection').classList.remove('active');
+      document.getElementById('loginSection').style.display = 'block';
+      document.getElementById('successPage').classList.remove('active');
+      document.getElementById('errorPage').classList.remove('active');
+      
+      // Redirect to homepage
+      setTimeout(() => {
+        window.location.href = 'https://alfredmayaki.me/';
+      }, 500);
+    });
 
-        // Disable Google Sign-In auto select
-        if (typeof google !== 'undefined' && google.accounts?.id) {
-          google.accounts.id.disableAutoSelect();
-        }
+    // Update progress on input
+    document.getElementById('surveyForm')?.addEventListener('input', updateProgress);
 
-        // Reset state
-        currentUser = null;
-        hasSubmitted = false;
-
-        // Reset UI
-        document.getElementById('userSection').style.display = 'none';
-        document.getElementById('formSection').classList.remove('active');
-        document.getElementById('loginSection').style.display = 'block';
-        document.getElementById('successPage').classList.remove('active');
-        document.getElementById('errorPage').classList.remove('active');
-
-        console.log('✅ Logged out successfully');
-
-        // Redirect to homepage
-        setTimeout(() => {
-          window.location.href = 'https://alfredmayaki.me/';
-        }, 500);
-      });
-
-      // Update progress as user types
-      document.getElementById('surveyForm')?.addEventListener('input', updateProgress);
-
-      // ===================================
-      // PAGE INITIALIZATION
-      // ===================================
-      window.addEventListener('DOMContentLoaded', () => {
-        console.log('🚀 MSC Survey app initializing...');
-
-        // Wait for Google API to load
-        let attempts = 0;
-        const checkGoogleAPI = setInterval(() => {
-          if (typeof google !== 'undefined' && google.accounts) {
-            clearInterval(checkGoogleAPI);
-            initializeGoogleAuth();
-          } else if (attempts > 20) {
-            clearInterval(checkGoogleAPI);
-            console.error('❌ Google Sign-In SDK failed to load');
-            showConfigurationError();
-          }
-          attempts++;
-        }, 100);
-      });
-    </script>
+    // Initialize on page load
+    window.addEventListener('DOMContentLoaded', () => {
+      initializeGoogleAuth();
+    });
+  </script>
 </body>
 </html>

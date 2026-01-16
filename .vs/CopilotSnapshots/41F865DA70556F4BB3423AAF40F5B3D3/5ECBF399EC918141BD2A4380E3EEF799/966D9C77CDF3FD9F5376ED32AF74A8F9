@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -778,10 +778,10 @@
 
     const CONFIG = {
       // Get from: https://console.cloud.google.com/ -> Credentials -> OAuth 2.0 Client ID
-      GOOGLE_CLIENT_ID: '968825640822-nd8mrq80q6hr3t9gfed8rgeu06o9r1s5.apps.googleusercontent.com',
+      GOOGLE_CLIENT_ID: 'YOUR_GOOGLE_CLIENT_ID_HERE.apps.googleusercontent.com',
 
       // Get from: Firebase Console -> Project Settings -> Service Accounts
-      BACKEND_URL: 'https://us-central1-supa-73a39.cloudfunctions.net',
+      BACKEND_URL: 'https://us-central1-YOUR_FIREBASE_PROJECT.cloudfunctions.net',
 
       // Optional: For testing/development
       ENABLE_DEMO_MODE: false // Set to true to test without real Google auth

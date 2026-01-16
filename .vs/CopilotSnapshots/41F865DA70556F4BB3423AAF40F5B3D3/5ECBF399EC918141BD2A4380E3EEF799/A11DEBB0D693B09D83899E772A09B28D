@@ -1,4 +1,4 @@
-# 🧠 MSC Survey - Setup & Deployment Guide
+﻿# 🧠 MSC Survey - Setup & Deployment Guide
 
 ## Overview
 
@@ -67,25 +67,7 @@ You need:
 
 ---
 
-## Quick Start: OAuth Configuration
-
-**⏱️ 5 MINUTES**
-
-1. Get your Google OAuth Client ID (see **OAUTH_SETUP.md**)
-2. Open `msc-survey.html` in text editor
-3. Find line with `GOOGLE_CLIENT_ID: 'YOUR_GOOGLE_CLIENT_ID_HERE'`
-4. Replace with your actual Client ID
-5. Save and deploy
-
-That's it! OAuth login is ready to test.
-
----
-
-## Complete Setup: Google Cloud & Backend
-
-**⏱️ 30 MINUTES** (Optional - only needed for data submission)
-
-### Step 1: Google Cloud Setup
+## Step 1: Google Cloud Setup
 
 ### 1.1 Create a Google Cloud Project
 

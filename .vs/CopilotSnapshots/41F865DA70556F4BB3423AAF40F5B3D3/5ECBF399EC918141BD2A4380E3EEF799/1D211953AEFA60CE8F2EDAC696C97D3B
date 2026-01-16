@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -770,451 +770,250 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
   <script>
-    // ===================================
-    // CONFIGURATION
-    // ===================================
-    // Replace these with your actual credentials from Google Cloud Console
-    // DO NOT commit real credentials to GitHub - use environment variables in production
-
+    // Configuration
     const CONFIG = {
-      // Get from: https://console.cloud.google.com/ -> Credentials -> OAuth 2.0 Client ID
-      GOOGLE_CLIENT_ID: '968825640822-nd8mrq80q6hr3t9gfed8rgeu06o9r1s5.apps.googleusercontent.com',
-
-      // Get from: Firebase Console -> Project Settings -> Service Accounts
-      BACKEND_URL: 'https://us-central1-supa-73a39.cloudfunctions.net',
-
-      // Optional: For testing/development
-      ENABLE_DEMO_MODE: false // Set to true to test without real Google auth
+      GOOGLE_CLIENT_ID: process.env.GOOGLE_CLIENT_ID || '',
+      GOOGLE_SHEET_ID: process.env.GOOGLE_SHEET_ID || '',
+      BACKEND_URL: process.env.BACKEND_URL || '', // For submitting to Sheets
+      GOOGLE_API_KEY: process.env.GOOGLE_API_KEY || ''
     };
 
-    // ===================================
-    // STATE MANAGEMENT
-    // ===================================
+    // State
     let currentUser = null;
     let hasSubmitted = false;
-    let googleInitialized = false;
 
-    // ===================================
-    // GOOGLE OAUTH 2.0 INITIALIZATION
-    // ===================================
+    // Initialize Google Sign-In
     function initializeGoogleAuth() {
-      // Check if Google API is loaded
-      if (typeof google === 'undefined' || !google.accounts) {
-        console.error('❌ Google Sign-In SDK not loaded. Check your internet connection.');
-        showError('Failed to load Google Sign-In. Please refresh the page.');
-        return;
-      }
+      google.accounts.id.initialize({
+        client_id: CONFIG.GOOGLE_CLIENT_ID,
+        callback: handleGoogleSignIn,
+        ux_mode: 'popup'
+      });
 
-      // Check if Client ID is configured
-      if (!CONFIG.GOOGLE_CLIENT_ID || CONFIG.GOOGLE_CLIENT_ID.includes('YOUR_GOOGLE_CLIENT_ID')) {
-        console.error('❌ GOOGLE_CLIENT_ID not configured');
-        showConfigurationError();
-        return;
-      }
+      google.accounts.id.renderButton(
+        document.getElementById('google-login-btn'),
+        {
+          type: 'standard',
+          size: 'large',
+          width: '300',
+          text: 'signin_with'
+        }
+      );
 
-      try {
-        // Initialize Google Sign-In with OAuth 2.0
-        google.accounts.id.initialize({
-          client_id: CONFIG.GOOGLE_CLIENT_ID,
-          callback: handleGoogleSignIn,
-          auto_select: false,
-          itp_support: true
-        });
-
-        // Render the Google Sign-In Button
-        google.accounts.id.renderButton(
-          document.getElementById('google-login-btn'),
-          {
-            type: 'standard',           // Standard button style
-            size: 'large',              // Large size
-            text: 'signin_with',        // "Sign in with"
-            shape: 'rounded',           // Rounded corners
-            logo_alignment: 'left',     // Logo on left
-            width: '300'                // Width in pixels
-          }
-        );
-
-        // Display One Tap prompt (optional - for returning users)
-        google.accounts.id.prompt((notification) => {
-          if (notification.isNotDisplayed()) {
-            console.log('One Tap UI not displayed');
-          }
-          if (notification.isSkippedMoment()) {
-            console.log('One Tap skipped');
-          }
-        });
-
-        googleInitialized = true;
-        console.log('✅ Google OAuth 2.0 initialized successfully');
-
-      } catch (error) {
-        console.error('❌ Failed to initialize Google Sign-In:', error);
-        showError('Failed to initialize Google Sign-In. Please refresh the page.');
-      }
+      // Check if already signed in
+      google.accounts.id.prompt((notification) => {
+        if (notification.isNotDisplayed()) {
+          console.log('One Tap not displayed');
+        }
+      });
     }
 
-    // ===================================
-    // HANDLE GOOGLE SIGN-IN CALLBACK
-    // ===================================
+    // Handle Google Sign-In
     async function handleGoogleSignIn(response) {
-      if (!response.credential) {
-        showError('Google Sign-In failed. Please try again.');
-        return;
-      }
-
       try {
-        console.log('🔐 Google Sign-In successful. Processing token...');
+        // Decode JWT token
+        const base64Url = response.credential.split('.')[1];
+        const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+        const jsonPayload = decodeURIComponent(atob(base64).split('').map((c) => {
+          return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+        }).join(''));
 
-        // Decode JWT token to extract user information
-        const userPayload = parseJwt(response.credential);
-
-        if (!userPayload) {
-          throw new Error('Invalid token format');
-        }
-
-        // Store user information
+        const userPayload = JSON.parse(jsonPayload);
         currentUser = {
-          id: userPayload.sub,                    // Unique Google ID
-          email: userPayload.email,               // Email address
-          name: userPayload.name,                 // Full name
-          picture: userPayload.picture,           // Profile picture URL
-          emailVerified: userPayload.email_verified // Email verification status
+          id: userPayload.sub,
+          email: userPayload.email,
+          name: userPayload.name,
+          picture: userPayload.picture
         };
-
-        console.log('✅ User authenticated:', {
-          name: currentUser.name,
-          email: currentUser.email
-        });
 
         // Check if user has already submitted
         await checkIfUserSubmitted(currentUser.id);
 
-        // Update UI to show logged-in state
+        // Update UI
         displayUserInfo();
         showSurveyForm();
 
       } catch (error) {
-        console.error('❌ Error processing sign-in:', error);
-        showError(`Sign-in error: ${error.message}`);
+        console.error('Sign-in error:', error);
+        showError('Failed to sign in with Google. Please try again.');
       }
     }
 
-    // ===================================
-    // JWT TOKEN DECODER
-    // ===================================
-    function parseJwt(token) {
-      try {
-        // JWT format: header.payload.signature
-        const base64Url = token.split('.')[1];
-        const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-
-        // Decode base64
-        const jsonPayload = decodeURIComponent(
-          atob(base64).split('').map((c) => {
-            return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
-          }).join('')
-        );
-
-        return JSON.parse(jsonPayload);
-      } catch (error) {
-        console.error('❌ Failed to parse JWT:', error);
-        return null;
-      }
-    }
-
-    // ===================================
-    // CHECK FOR DUPLICATE SUBMISSIONS
-    // ===================================
+    // Check if user has already submitted (via backend API call)
     async function checkIfUserSubmitted(userId) {
       try {
-        // Call backend to check if user has already submitted
-        const response = await fetch(`${CONFIG.BACKEND_URL}/checkSubmission`, {
+        const response = await fetch(`${CONFIG.BACKEND_URL}/check-submission`, {
           method: 'POST',
-          headers: { 
-            'Content-Type': 'application/json'
-          },
+          headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ userId })
         });
 
-        if (!response.ok) {
-          console.warn('⚠️ Could not verify submission status');
-          return;
+        if (response.ok) {
+          const data = await response.json();
+          if (data.hasSubmitted) {
+            hasSubmitted = true;
+            showError('You have already completed this survey. Each Google account can only submit once. If you believe this is an error, please contact the researcher.');
+            throw new Error('User has already submitted');
+          }
         }
-
-        const data = await response.json();
-
-        if (data.hasSubmitted) {
-          hasSubmitted = true;
-          console.log('⚠️ User has already submitted survey');
-          showError(
-            'You have already completed this survey. Each Google account can only submit once. ' +
-            'If you believe this is an error, please contact the researcher.'
-          );
-          throw new Error('Duplicate submission detected');
-        }
-
-        console.log('✅ User can submit survey');
-
       } catch (error) {
-        if (error.message === 'Duplicate submission detected') {
+        if (error.message === 'User has already submitted') {
           showErrorPage();
           throw error;
         }
-        console.warn('⚠️ Submission check failed:', error.message);
-        // Continue anyway - don't block user if backend is unavailable
+        console.warn('Could not verify submission status:', error);
       }
     }
 
-    // ===================================
-    // CONFIGURATION ERROR PAGE
-    // ===================================
-    function showConfigurationError() {
-      document.getElementById('loginSection').innerHTML = `
-        <div style="background: rgba(239, 68, 68, 0.1); border: 1px solid #ef4444; border-radius: 8px; padding: 2rem; text-align: center;">
-          <h2 style="color: #ef4444; margin-bottom: 1rem;">⚠️ Configuration Required</h2>
-          <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">
-            This survey app needs to be configured with your Google OAuth 2.0 credentials before it can be used.
-          </p>
-          <div style="background: var(--surface); padding: 1rem; border-radius: 6px; text-align: left; margin-bottom: 1.5rem;">
-            <p style="color: var(--text); margin-bottom: 0.5rem;"><strong>Steps to configure:</strong></p>
-            <ol style="color: var(--text-secondary); line-height: 1.8;">
-              <li>Go to <a href="https://console.cloud.google.com/" target="_blank" style="color: var(--brand);">Google Cloud Console</a></li>
-              <li>Create OAuth 2.0 Client ID</li>
-              <li>Copy the Client ID</li>
-              <li>In msc-survey.html, find the CONFIG object and replace:
-                <div style="background: var(--panel); padding: 0.5rem; margin: 0.5rem 0; border-radius: 4px; font-family: monospace; font-size: 0.85rem; overflow-x: auto;">
-                  GOOGLE_CLIENT_ID: 'YOUR_GOOGLE_CLIENT_ID_HERE.apps.googleusercontent.com'
-                </div>
-              </li>
-              <li>Deploy the updated file</li>
-            </ol>
-          </div>
-          <p style="color: var(--text-muted); font-size: 0.9rem;">
-            See <strong>MSC_SURVEY_SETUP.md</strong> for detailed configuration instructions.
-          </p>
-        </div>
-      `;
+    // Display user information
+    function displayUserInfo() {
+      if (!currentUser) return;
+      
+      document.getElementById('userSection').style.display = 'flex';
+      document.getElementById('userName').textContent = currentUser.name.split(' ')[0];
+      document.getElementById('userAvatar').src = currentUser.picture;
     }
 
-      // Display user information in header
-      function displayUserInfo() {
-        if (!currentUser) return;
+    // Show survey form
+    function showSurveyForm() {
+      document.getElementById('loginSection').style.display = 'none';
+      document.getElementById('formSection').classList.add('active');
+      updateProgress();
+    }
 
-        const userSection = document.getElementById('userSection');
-        if (!userSection) return;
+    // Update progress bar
+    function updateProgress() {
+      const form = document.getElementById('surveyForm');
+      if (!form) return;
+      
+      const totalQuestions = 7;
+      const filledQuestions = document.querySelectorAll('textarea[required]:not([value=""])').length;
+      const progressPercentage = (filledQuestions / totalQuestions) * 100;
+      
+      document.getElementById('progressFill').style.width = progressPercentage + '%';
+    }
 
-        userSection.style.display = 'flex';
-        document.getElementById('userName').textContent = currentUser.name.split(' ')[0];
-        document.getElementById('userAvatar').src = currentUser.picture;
-        document.getElementById('userAvatar').alt = currentUser.name;
+    // Handle form submission
+    document.getElementById('surveyForm')?.addEventListener('submit', async (e) => {
+      e.preventDefault();
 
-        console.log('✅ User info displayed');
+      if (!currentUser) {
+        showStatus('Please sign in first', 'error');
+        return;
       }
 
-      // Show survey form after login
-      function showSurveyForm() {
-        const loginSection = document.getElementById('loginSection');
-        const formSection = document.getElementById('formSection');
-
-        if (!loginSection || !formSection) return;
-
-        loginSection.style.display = 'none';
-        formSection.classList.add('active');
-        updateProgress();
-
-        console.log('✅ Survey form displayed');
+      if (hasSubmitted) {
+        showStatus('You have already submitted this survey', 'error');
+        return;
       }
 
-      // Update progress bar
-      function updateProgress() {
-        const form = document.getElementById('surveyForm');
-        if (!form) return;
+      // Show loading state
+      const submitBtn = e.target.querySelector('button[type="submit"]');
+      const originalText = submitBtn.innerHTML;
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = '<div class="spinner"></div> Submitting...';
+      showStatus('Submitting your survey...', 'loading');
 
-        const totalQuestions = 7;
-        const requiredTextareas = form.querySelectorAll('textarea[required]');
-        const filledQuestions = Array.from(requiredTextareas).filter(ta => ta.value.trim().length > 0).length;
+      try {
+        // Collect form data
+        const formData = new FormData(e.target);
+        const responses = Object.fromEntries(formData);
 
-        const progressPercentage = (filledQuestions / totalQuestions) * 100;
-        const progressFill = document.getElementById('progressFill');
+        // Add metadata
+        const submissionData = {
+          userId: currentUser.id,
+          userEmail: currentUser.email,
+          userName: currentUser.name,
+          timestamp: new Date().toISOString(),
+          ...responses
+        };
 
-        if (progressFill) {
-          progressFill.style.width = progressPercentage + '%';
+        // Submit to backend (which writes to Google Sheets)
+        const response = await fetch(`${CONFIG.BACKEND_URL}/submit-survey`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(submissionData)
+        });
+
+        if (!response.ok) {
+          throw new Error(`Server error: ${response.statusText}`);
         }
 
-        document.getElementById('currentQuestion').textContent = filledQuestions;
+        // Success
+        hasSubmitted = true;
+        showSuccessPage();
+
+      } catch (error) {
+        console.error('Submission error:', error);
+        showStatus(`Failed to submit survey: ${error.message}`, 'error');
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = originalText;
       }
+    });
 
-      // ===================================
-      // FORM SUBMISSION
-      // ===================================
-      document.getElementById('surveyForm')?.addEventListener('submit', async (e) => {
-        e.preventDefault();
+    // Show status message
+    function showStatus(message, type) {
+      const statusDiv = document.getElementById('statusMessage');
+      if (!statusDiv) return;
 
-        if (!currentUser) {
-          showStatus('Please sign in first', 'error');
-          return;
-        }
-
-        if (hasSubmitted) {
-          showStatus('You have already submitted this survey', 'error');
-          return;
-        }
-
-        // Get submit button
-        const submitBtn = e.target.querySelector('button[type="submit"]');
-        const originalHtml = submitBtn.innerHTML;
-
-        // Show loading state
-        submitBtn.disabled = true;
-        submitBtn.innerHTML = '<div class="spinner"></div> Submitting...';
-        showStatus('Submitting your survey...', 'loading');
-
-        try {
-          // Collect form data
-          const formData = new FormData(e.target);
-          const responses = Object.fromEntries(formData);
-
-          // Validate required fields
-          const requiredFields = ['q1', 'q2', 'q3', 'q4', 'q5', 'q6'];
-          for (const field of requiredFields) {
-            if (!responses[field] || responses[field].trim().length === 0) {
-              throw new Error(`Required field "${field}" is empty`);
-            }
-          }
-
-          // Build submission data
-          const submissionData = {
-            userId: currentUser.id,
-            userEmail: currentUser.email,
-            userName: currentUser.name,
-            timestamp: new Date().toISOString(),
-            ...responses
-          };
-
-          console.log('📤 Submitting survey data...');
-
-          // Submit to backend
-          const response = await fetch(`${CONFIG.BACKEND_URL}/submitSurvey`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(submissionData)
-          });
-
-          if (!response.ok) {
-            const errorData = await response.json().catch(() => ({}));
-            throw new Error(errorData.message || `Server error: ${response.statusText}`);
-          }
-
-          const result = await response.json();
-
-          console.log('✅ Survey submitted successfully:', result);
-
-          // Mark as submitted
-          hasSubmitted = true;
-
-          // Show success page
-          showSuccessPage();
-
-        } catch (error) {
-          console.error('❌ Submission error:', error);
-          showStatus(`Failed to submit survey: ${error.message}`, 'error');
-          submitBtn.disabled = false;
-          submitBtn.innerHTML = originalHtml;
-        }
-      });
-
-      // Show status message
-      function showStatus(message, type) {
-        const statusDiv = document.getElementById('statusMessage');
-        if (!statusDiv) return;
-
-        if (type === 'loading') {
-          statusDiv.innerHTML = `<div class="status-message status-loading">
-            <div class="spinner"></div>
-            <span>${message}</span>
-          </div>`;
-        } else {
-          statusDiv.innerHTML = `<div class="status-message status-${type}">${message}</div>`;
-        }
+      if (type === 'loading') {
+        statusDiv.innerHTML = `<div class="status-message status-loading">
+          <div class="spinner"></div>
+          <span>${message}</span>
+        </div>`;
+      } else {
+        statusDiv.innerHTML = `<div class="status-message status-${type}">${message}</div>`;
       }
+    }
 
-      // Show error
-      function showError(message) {
-        console.error('❌ Error:', message);
-        document.getElementById('errorMessage').textContent = message;
-        showErrorPage();
-      }
+    // Show error
+    function showError(message) {
+      document.getElementById('errorMessage').textContent = message;
+      showErrorPage();
+    }
 
-      // Show success page
-      function showSuccessPage() {
-        document.getElementById('formSection').classList.remove('active');
-        document.getElementById('successPage').classList.add('active');
-        document.getElementById('submissionTime').textContent = new Date().toLocaleString();
-        document.getElementById('userSection').style.display = 'none';
-        console.log('✅ Survey completed successfully');
-      }
+    // Show success page
+    function showSuccessPage() {
+      document.getElementById('formSection').classList.remove('active');
+      document.getElementById('successPage').classList.add('active');
+      document.getElementById('submissionTime').textContent = new Date().toLocaleString();
+      document.getElementById('userSection').style.display = 'none';
+    }
 
-      // Show error page
-      function showErrorPage() {
-        document.getElementById('formSection').classList.remove('active');
-        document.getElementById('loginSection').style.display = 'none';
-        document.getElementById('successPage').classList.remove('active');
-        document.getElementById('errorPage').classList.add('active');
-      }
+    // Show error page
+    function showErrorPage() {
+      document.getElementById('formSection').classList.remove('active');
+      document.getElementById('loginSection').style.display = 'none';
+      document.getElementById('successPage').classList.remove('active');
+      document.getElementById('errorPage').classList.add('active');
+    }
 
-      // ===================================
-      // LOGOUT FUNCTIONALITY
-      // ===================================
-      document.getElementById('logoutBtn')?.addEventListener('click', () => {
-        console.log('🚪 Logout requested');
+    // Logout
+    document.getElementById('logoutBtn')?.addEventListener('click', () => {
+      google.accounts.id.disableAutoSelect();
+      currentUser = null;
+      hasSubmitted = false;
+      
+      // Reset UI
+      document.getElementById('userSection').style.display = 'none';
+      document.getElementById('formSection').classList.remove('active');
+      document.getElementById('loginSection').style.display = 'block';
+      document.getElementById('successPage').classList.remove('active');
+      document.getElementById('errorPage').classList.remove('active');
+      
+      // Redirect to homepage
+      setTimeout(() => {
+        window.location.href = 'https://alfredmayaki.me/';
+      }, 500);
+    });
 
-        // Disable Google Sign-In auto select
-        if (typeof google !== 'undefined' && google.accounts?.id) {
-          google.accounts.id.disableAutoSelect();
-        }
+    // Update progress on input
+    document.getElementById('surveyForm')?.addEventListener('input', updateProgress);
 
-        // Reset state
-        currentUser = null;
-        hasSubmitted = false;
-
-        // Reset UI
-        document.getElementById('userSection').style.display = 'none';
-        document.getElementById('formSection').classList.remove('active');
-        document.getElementById('loginSection').style.display = 'block';
-        document.getElementById('successPage').classList.remove('active');
-        document.getElementById('errorPage').classList.remove('active');
-
-        console.log('✅ Logged out successfully');
-
-        // Redirect to homepage
-        setTimeout(() => {
-          window.location.href = 'https://alfredmayaki.me/';
-        }, 500);
-      });
-
-      // Update progress as user types
-      document.getElementById('surveyForm')?.addEventListener('input', updateProgress);
-
-      // ===================================
-      // PAGE INITIALIZATION
-      // ===================================
-      window.addEventListener('DOMContentLoaded', () => {
-        console.log('🚀 MSC Survey app initializing...');
-
-        // Wait for Google API to load
-        let attempts = 0;
-        const checkGoogleAPI = setInterval(() => {
-          if (typeof google !== 'undefined' && google.accounts) {
-            clearInterval(checkGoogleAPI);
-            initializeGoogleAuth();
-          } else if (attempts > 20) {
-            clearInterval(checkGoogleAPI);
-            console.error('❌ Google Sign-In SDK failed to load');
-            showConfigurationError();
-          }
-          attempts++;
-        }, 100);
-      });
-    </script>
+    // Initialize on page load
+    window.addEventListener('DOMContentLoaded', () => {
+      initializeGoogleAuth();
+    });
+  </script>
 </body>
 </html>
