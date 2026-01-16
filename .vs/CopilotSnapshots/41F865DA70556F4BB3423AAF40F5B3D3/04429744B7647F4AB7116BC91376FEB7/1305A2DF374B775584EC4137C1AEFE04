@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -189,36 +189,6 @@
       font-size: 0.9em;
     }
 
-    .footer-content {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 1em;
-    }
-
-    .footer-links {
-      display: flex;
-      gap: 2em;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-
-    .footer-link {
-      color: var(--text-muted);
-      text-decoration: none;
-      transition: color 0.2s ease;
-    }
-
-    .footer-link:hover {
-      color: var(--brand);
-      text-decoration: underline;
-    }
-
-    .footer-copyright {
-      color: var(--text-muted);
-      font-size: 0.85em;
-    }
-
     /* Mobile optimization */
     @media (max-width: 600px) {
       .container {
@@ -324,17 +294,7 @@
       </div>
 
       <div class="footer">
-        <div class="footer-content">
-          <nav class="footer-links">
-            <a href="#" class="footer-link" id="cookieSettingsLink">Cookie Settings</a>
-            <a href="privacy-policy.html" class="footer-link">Privacy Policy</a>
-            <a href="terms-of-use.html" class="footer-link">Terms of Use</a>
-            <a href="index.html" class="footer-link">Back to Home</a>
-          </nav>
-          <p class="footer-copyright">
-            © 2026 Alfred Anate Bodurin Mayaki. All rights reserved.
-          </p>
-        </div>
+        <p>© 2026 Alfred A. B. Mayaki. All rights reserved.</p>
       </div>
     </div>
   </div>
@@ -346,54 +306,47 @@
   <script data-name="BMC-Widget" data-cfasync="false" src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js" data-id="alfred6072" data-description="Support me on Buy me a coffee!" data-message="" data-color="#5F7FFF" data-position="Right" data-x_margin="18" data-y_margin="18"></script>
 
   <script>
-      // Initialize particles.js
-      if (typeof particlesJS !== 'undefined') {
-        particlesJS('particles-js', {
-          particles: {
-            number: { value: 80, density: { enable: true, value_area: 800 } },
-            color: { value: '#3d4ee9' },
-            shape: { type: 'circle' },
-            opacity: { value: 0.5, random: false },
-            size: { value: 3, random: true },
-            line_linked: {
-              enable: true,
-              distance: 150,
-              color: '#3d4ee9',
-              opacity: 0.4,
-              width: 1
-            },
-            move: { 
-              enable: true, 
-              speed: 2, 
-              direction: 'none', 
-              random: false, 
-              straight: false, 
-              out_mode: 'out', 
-              bounce: false 
-            }
+    // Initialize particles.js
+    if (typeof particlesJS !== 'undefined') {
+      particlesJS('particles-js', {
+        particles: {
+          number: { value: 80, density: { enable: true, value_area: 800 } },
+          color: { value: '#3d4ee9' },
+          shape: { type: 'circle' },
+          opacity: { value: 0.5, random: false },
+          size: { value: 3, random: true },
+          line_linked: {
+            enable: true,
+            distance: 150,
+            color: '#3d4ee9',
+            opacity: 0.4,
+            width: 1
           },
-          interactivity: {
-            detect_on: 'canvas',
-            events: { 
-              onhover: { enable: true, mode: 'repulse' }, 
-              onclick: { enable: true, mode: 'push' }, 
-              resize: true 
-            },
-            modes: { 
-              repulse: { distance: 100, duration: 0.4 }, 
-              push: { particles_nb: 4 } 
-            }
+          move: { 
+            enable: true, 
+            speed: 2, 
+            direction: 'none', 
+            random: false, 
+            straight: false, 
+            out_mode: 'out', 
+            bounce: false 
+          }
+        },
+        interactivity: {
+          detect_on: 'canvas',
+          events: { 
+            onhover: { enable: true, mode: 'repulse' }, 
+            onclick: { enable: true, mode: 'push' }, 
+            resize: true 
           },
-          retina_detect: true
-        });
-      }
-
-      // Footer link handlers
-      document.getElementById('cookieSettingsLink').addEventListener('click', function(e) {
-        e.preventDefault();
-        document.cookie = 'cookie_consent=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
-        location.reload();
+          modes: { 
+            repulse: { distance: 100, duration: 0.4 }, 
+            push: { particles_nb: 4 } 
+          }
+        },
+        retina_detect: true
       });
-    </script>
+    }
+  </script>
 </body>
 </html>

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -605,7 +605,6 @@
       <p>
         <strong>Related Documents:</strong>
         <a href="index.html" class="footer-link">Home</a> • 
-        <a href="terms-of-use.html" class="footer-link">Terms of Use</a> • 
         <a href="msc-survey.html" class="footer-link">Survey</a> • 
         <a href="references.html" class="footer-link">References</a>
       </p>
