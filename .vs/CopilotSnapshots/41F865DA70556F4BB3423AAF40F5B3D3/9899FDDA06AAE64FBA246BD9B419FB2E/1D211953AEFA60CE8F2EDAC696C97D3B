@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -286,8 +286,7 @@
     }
 
     textarea::placeholder {
-      color: var(--text-secondary);
-      opacity: 0.9;
+      color: var(--text-muted);
     }
 
     /* Size variations */
