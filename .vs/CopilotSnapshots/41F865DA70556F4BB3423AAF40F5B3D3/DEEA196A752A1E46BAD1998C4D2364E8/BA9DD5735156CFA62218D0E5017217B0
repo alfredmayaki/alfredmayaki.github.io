@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -267,7 +267,7 @@
 
     textarea {
       width: 100%;
-      padding: 0.5rem;
+      padding: 0.85rem;
       background: var(--panel);
       color: var(--text);
       border: 1px solid var(--border);
