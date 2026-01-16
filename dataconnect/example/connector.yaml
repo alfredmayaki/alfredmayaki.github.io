@@ -1,0 +1,13 @@
+connectorId: example
+generate:
+  javascriptSdk:
+    - outputDir: ..\..\src\dataconnect-generated
+      package: "@dataconnect/generated"
+      packageJsonDir: ..\..
+      react: false
+      angular: false
+    - outputDir: ..\..\hench-spyro\src\dataconnect-generated
+      package: "@dataconnect/generated"
+      packageJsonDir: ..\..\hench-spyro
+      react: false
+      angular: false

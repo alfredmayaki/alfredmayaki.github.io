@@ -28,6 +28,7 @@ Gemfile.lock
 .env
 .env.local
 .env.*.local
+.env.example
 *.pem
 credentials.json
 config.json
