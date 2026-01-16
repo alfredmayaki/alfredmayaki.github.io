@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -972,72 +972,61 @@
     let googleInitialized = false;
 
     // ===================================
-    // OAUTH INITIALIZATION (GOOGLE & LINKEDIN)
+    // GOOGLE OAUTH 2.0 INITIALIZATION
     // ===================================
-    function initializeOAuth() {
-      // Google Sign-In
-      if (typeof google !== 'undefined' && google.accounts) {
-        try {
-          google.accounts.id.initialize({
-            client_id: configManager.get('GOOGLE_CLIENT_ID'),
-            callback: handleGoogleSignIn,
-            auto_select: false,
-            itp_support: true
-          });
-          google.accounts.id.renderButton(
-            document.getElementById('google-login-btn'),
-            {
-              type: 'standard',
-              size: 'large',
-              text: 'signin_with',
-              shape: 'rounded',
-              logo_alignment: 'left',
-              width: '300'
-            }
-          );
-          google.accounts.id.prompt((notification) => {
-            if (notification.isNotDisplayed()) {
-              console.log('One Tap UI not displayed');
-            }
-            if (notification.isSkippedMoment()) {
-              console.log('One Tap skipped');
-            }
-          });
-          googleInitialized = true;
-          console.log('✅ Google OAuth 2.0 initialized successfully');
-        } catch (error) {
-          console.error('❌ Failed to initialize Google Sign-In:', error);
-          showError('Failed to initialize Google Sign-In. Please refresh the page.');
-        }
+    function initializeGoogleAuth() {
+      // Check if Google API is loaded
+      if (typeof google === 'undefined' || !google.accounts) {
+        console.error('❌ Google Sign-In SDK not loaded. Check your internet connection.');
+        showError('Failed to load Google Sign-In. Please refresh the page.');
+        return;
       }
 
-      // LinkedIn Sign-In
-      const linkedinBtn = document.getElementById('linkedin-login-btn');
-      if (linkedinBtn && typeof firebase !== 'undefined' && firebase.auth) {
-        linkedinBtn.addEventListener('click', async () => {
-          try {
-            const provider = new firebase.auth.OAuthProvider('linkedin.com');
-            provider.addScope('r_liteprofile');
-            provider.addScope('r_emailaddress');
-            const result = await firebase.auth().signInWithPopup(provider);
-            const user = result.user;
-            currentUser = {
-              id: user.uid,
-              email: user.email,
-              name: user.displayName || 'User',
-              picture: user.photoURL || '',
-              provider: 'linkedin',
-              emailVerified: user.emailVerified
-            };
-            console.log('✅ LinkedIn user authenticated:', currentUser);
-            await checkIfUserSubmitted(currentUser.id);
-            displayUserInfo();
-            showSurveyForm();
-          } catch (error) {
-            console.error('❌ LinkedIn Sign-In error:', error);
-            showError('LinkedIn Sign-In failed. Please try again.');
+      // Check if Client ID is configured
+      if (!CONFIG.GOOGLE_CLIENT_ID || CONFIG.GOOGLE_CLIENT_ID.includes('YOUR_GOOGLE_CLIENT_ID')) {
+        console.error('❌ GOOGLE_CLIENT_ID not configured');
+        showConfigurationError();
+        return;
+      }
+
+      try {
+        // Initialize Google Sign-In with OAuth 2.0
+        google.accounts.id.initialize({
+          client_id: CONFIG.GOOGLE_CLIENT_ID,
+          callback: handleGoogleSignIn,
+          auto_select: false,
+          itp_support: true
+        });
+
+        // Render the Google Sign-In Button
+        google.accounts.id.renderButton(
+          document.getElementById('google-login-btn'),
+          {
+            type: 'standard',           // Standard button style
+            size: 'large',              // Large size
+            text: 'signin_with',        // "Sign in with"
+            shape: 'rounded',           // Rounded corners
+            logo_alignment: 'left',     // Logo on left
+            width: '300'                // Width in pixels
+          }
+        );
+
+        // Display One Tap prompt (optional - for returning users)
+        google.accounts.id.prompt((notification) => {
+          if (notification.isNotDisplayed()) {
+            console.log('One Tap UI not displayed');
+          }
+          if (notification.isSkippedMoment()) {
+            console.log('One Tap skipped');
           }
         });
+
+        googleInitialized = true;
+        console.log('✅ Google OAuth 2.0 initialized successfully');
+
+      } catch (error) {
+        console.error('❌ Failed to initialize Google Sign-In:', error);
+        showError('Failed to initialize Google Sign-In. Please refresh the page.');
       }
     }
 
@@ -1388,24 +1377,23 @@
       // ===================================
       // PAGE INITIALIZATION
       // ===================================
-    window.addEventListener('DOMContentLoaded', () => {
-      console.log('🚀 MSC Survey app initializing...');
-      let attempts = 0;
-      const checkOAuth = setInterval(() => {
-        if (
-          (typeof google !== 'undefined' && google.accounts) &&
-          (typeof firebase !== 'undefined' && firebase.auth)
-        ) {
-          clearInterval(checkOAuth);
-          initializeOAuth();
-        } else if (attempts > 30) {
-          clearInterval(checkOAuth);
-          console.error('❌ OAuth SDKs failed to load');
-          showConfigurationError();
-        }
-        attempts++;
-      }, 100);
-    });
+      window.addEventListener('DOMContentLoaded', () => {
+        console.log('🚀 MSC Survey app initializing...');
+
+        // Wait for Google API to load
+        let attempts = 0;
+        const checkGoogleAPI = setInterval(() => {
+          if (typeof google !== 'undefined' && google.accounts) {
+            clearInterval(checkGoogleAPI);
+            initializeGoogleAuth();
+          } else if (attempts > 20) {
+            clearInterval(checkGoogleAPI);
+            console.error('❌ Google Sign-In SDK failed to load');
+            showConfigurationError();
+          }
+          attempts++;
+        }, 100);
+      });
     </script>
 </body>
 </html>
