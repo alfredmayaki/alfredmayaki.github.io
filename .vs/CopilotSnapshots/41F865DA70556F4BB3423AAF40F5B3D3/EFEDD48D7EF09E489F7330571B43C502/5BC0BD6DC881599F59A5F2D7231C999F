@@ -867,7 +867,7 @@
       <div class="footer-content">
         <nav class="footer-links">
           <a href="#" class="footer-link" id="cookieSettingsLink">Cookie Settings</a>
-          <a href="privacy-policy.html" class="footer-link">Privacy Policy</a>
+          <a href="#" class="footer-link" id="privacyPolicyLink">Privacy Policy</a>
           <a href="#" class="footer-link" id="termsOfUseLink">Terms of Use</a>
           <a href="buymeacoffee.html" class="footer-link">Buy Me a Coffee ☕</a>
           </nav>
