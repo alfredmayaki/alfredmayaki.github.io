@@ -10,107 +10,240 @@
 
   <style>
     :root {
-  --font-sans: "Segoe UI", system-ui, -apple-system, Arial, sans-serif;
+      --font-sans: "Segoe UI", system-ui, -apple-system, Arial, sans-serif;
 
-  --bg-overlay: rgba(22, 22, 22, 0.88);        /* Slightly lighter overlay for better readability */
-  --panel: #161616;
-  --panel-2: #141414;
-  --surface: #2a2a2a;
+      --bg-overlay: rgba(22, 22, 22, 0.92);
+      --panel: #161616;
+      --panel-2: #141414;
+      --surface: #2a2a2a;
 
-  --text: #ffffff;
-  --text-muted: #979797;
+      --text: #ffffff;
+      --text-muted: #979797;
 
-  --border: #464242;
-  --border-soft: rgba(255, 255, 255, 0.06);
+      --border: #464242;
+      --border-soft: rgba(255, 255, 255, 0.06);
 
-  --brand: #3d4ee9;
-  --brand-hover: #5563f0;
+      --brand: #3d4ee9;
+      --brand-hover: #5563f0;
 
-  --radius-sm: 10px;
-  --radius-md: 14px;
-  --radius-lg: 16px;
-  --radius-pill: 999px;
+      --radius-sm: 10px;
+      --radius-md: 14px;
+      --radius-lg: 16px;
+      --radius-pill: 999px;
 
-  --shadow-pop: 0 14px 40px rgba(0, 0, 0, 0.55);
-  --shadow-brand: 0 6px 16px rgba(61, 78, 233, 0.35);
-}
+      --shadow-pop: 0 14px 40px rgba(0, 0, 0, 0.55);
+      --shadow-brand: 0 6px 16px rgba(61, 78, 233, 0.35);
+    }
 
-/* Make container wider on large screens */
-.landing-container {
-  width: 100%;
-  max-width: 1400px;                    /* ← Increased from 900px → much wider */
-  min-height: 100vh;
-  margin: 1em auto;
-  padding: 2em 3em 6em;                 /* More side padding on wide screens */
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  background: var(--bg-overlay);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  animation: fadeIn 0.7s ease-in;
-  box-sizing: border-box;
-}
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: var(--font-sans);
+      color: var(--text-muted);
+      background: url("https://alfredmayaki.me/universe.png") center / cover no-repeat fixed;
+      position: relative;
+    }
 
-/* Wider cards (question boxes) */
-.card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-md);
-  padding: 2rem;                        /* More internal breathing room */
-  margin-bottom: 2.2rem;
-  width: 100%;
-  max-width: 1100px;                    /* ← Increased from ~800px → noticeably wider */
-  box-shadow: var(--shadow-pop);
-}
+    #particles-js {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: -1;
+    }
 
-/* Make textareas feel less constrained */
-textarea {
-  width: 100%;
-  min-height: 140px;                    /* Slightly taller for comfort */
-  padding: 1.2rem;
-  background: var(--panel-2);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-sm);
-  color: var(--text);
-  font-size: 1.05rem;                   /* Slightly larger text */
-  resize: vertical;
-  line-height: 1.6;
-}
+    .landing-container {
+      width: 100%;
+      max-width: 900px;
+      min-height: 100vh;
+      margin: 1em auto;
+      padding: 2em 1em 6em;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      background: var(--bg-overlay);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      animation: fadeIn 0.7s ease-in;
+    }
 
-/* Center buttons also get more space */
-.center-buttons {
-  display: flex;
-  gap: 1.5rem;
-  justify-content: center;
-  flex-wrap: wrap;
-  margin: 3rem 0;
-}
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
 
-/* Responsive: on smaller screens, tighten up a bit */
-@media (max-width: 1200px) {
-  .landing-container {
-    max-width: 1100px;
-    padding: 2em 2em 6em;
-  }
-  .card {
-    max-width: 95%;
-    padding: 1.8rem;
-  }
-}
+    .main-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
 
-@media (max-width: 768px) {
-  .landing-container {
-    max-width: 100%;
-    margin: 0.5em;
-    padding: 1.5em 1em 6em;
-    border-radius: 0;
-  }
-  .card {
-    padding: 1.4rem;
-  }
-}
+    .profile-photo {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      border: 5px solid var(--text-muted);
+      object-fit: cover;
+      margin-bottom: 2em;
+      box-shadow: var(--shadow-pop);
+    }
+
+    h1 {
+      margin: 0 0 0.3em;
+      font-size: 2.5em;
+      color: var(--text);
+    }
+
+    .tagline {
+      margin: 0 0 2em;
+      font-size: 1.2em;
+      color: var(--text-muted);
+    }
+
+    .intro {
+      max-width: 700px;
+      margin: 0 auto 2.5rem;
+      color: var(--text-muted);
+      font-size: 1.1em;
+      line-height: 1.7;
+    }
+
+    .section-hidden { display: none !important; }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 1.8rem;
+      margin-bottom: 1.8rem;
+      width: 100%;
+      max-width: 800px;
+      box-shadow: var(--shadow-pop);
+    }
+
+    label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 0.8rem;
+      color: var(--text);
+    }
+
+    textarea {
+      width: 100%;
+      min-height: 130px;
+      padding: 1rem;
+      background: var(--panel-2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      color: var(--text);
+      font-size: 1rem;
+      resize: vertical;
+    }
+
+    textarea:focus {
+      outline: none;
+      border-color: var(--brand);
+      box-shadow: 0 0 0 4px rgba(61, 78, 233, 0.2);
+    }
+
+    .subquestion {
+      margin-top: 1.5rem;
+      padding-left: 1.5rem;
+      border-left: 4px solid var(--brand);
+    }
+
+    .btn {
+      padding: 0.9rem 1.8rem;
+      font-size: 1.05rem;
+      font-weight: 500;
+      border: none;
+      border-radius: var(--radius-pill);
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .btn-primary {
+      background: var(--brand);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: var(--brand-hover);
+      box-shadow: var(--shadow-brand);
+      transform: translateY(-2px);
+    }
+
+    .btn-danger {
+      background: #dc3545;
+      color: white;
+    }
+
+    .btn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .center-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin: 2rem 0;
+    }
+
+    #status {
+      color: #28a745;
+      font-weight: 600;
+      text-align: center;
+      margin: 1.5rem 0;
+      font-size: 1.1em;
+    }
+
+    #error {
+      color: #ff4444;
+      font-weight: 500;
+      text-align: center;
+      margin: 1.2rem 0;
+    }
+
+    /* Footer – centered like your main site */
+    .site-footer {
+      width: 100%;
+      padding: 2em 0;
+      border-top: 1px solid var(--border);
+      color: var(--text-muted);
+      font-size: 0.9em;
+      text-align: center;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 2em;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 1em;
+    }
+
+    .footer-link {
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    .footer-link:hover {
+      color: var(--brand);
+      text-decoration: underline;
+    }
+
+    .footer-copyright {
+      color: var(--text-muted);
+      font-size: 0.85em;
+    }
   </style>
 </head>
 <body>
