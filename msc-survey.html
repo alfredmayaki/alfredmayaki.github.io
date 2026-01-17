@@ -276,17 +276,37 @@
       };
 
       try {
-        import { doc, setDoc } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js";
-        await setDoc(doc(db, "surveyResponses", user.uid), data);
-        statusEl.textContent = "Thank you! Your responses have been successfully submitted.";
-        form.reset();
-      } catch (err) {
-        console.error(err);
-        errorEl.textContent = "Submission failed: " + (err.message || "unknown error");
-      } finally {
-        submitBtn.disabled = false;
-        submitBtn.textContent = "Submit Survey";
-      }
+  await setDoc(doc(db, "surveyResponses", user.uid), data);
+  statusEl.textContent = "Thank you! Your responses have been successfully submitted.";
+  form.reset();
+  submitBtn.disabled = true; // Optional: prevent further attempts
+  submitBtn.textContent = "Submitted";
+} catch (err) {
+  console.error("Submission error:", err);
+  
+  let message = "Unable to submit your survey at this time.";
+  
+  if (err.code === 'permission-denied' || 
+      err.message?.includes('Missing or insufficient permissions')) {
+    message = 
+      "You've already submitted a response with this account. " +
+      "Thank you for participating! Each person can submit only once.";
+    
+    // Optional: make it clear this is final
+    submitBtn.disabled = true;
+    submitBtn.textContent = "Already Submitted";
+  } else {
+    message += " Please try again or contact support if the issue persists.";
+  }
+  
+  errorEl.textContent = message;
+} finally {
+  // Reset button text if not permanently disabled
+  if (!submitBtn.disabled) {
+    submitBtn.textContent = "Submit Survey";
+  }
+}
+      
     });
   </script>
 </body>
