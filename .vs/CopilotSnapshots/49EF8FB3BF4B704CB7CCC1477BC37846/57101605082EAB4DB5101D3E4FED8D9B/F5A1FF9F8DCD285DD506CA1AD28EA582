@@ -1,0 +1,6 @@
+﻿# Copilot Instructions
+
+## General Guidelines
+- Ensure visual consistency across the website.
+- Apply the same CSS styling and theme variables from `index.html` to `survey2.html`, maintaining the dark theme, spacing system, colors, and animations.
+- Initialize Firebase directly via `firebase-config.js` instead of using `.env.local` to simplify project setup and reduce Vite/env complexity. Use a single Firebase project for streamlined management.

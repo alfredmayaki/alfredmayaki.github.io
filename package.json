@@ -12,7 +12,7 @@
   "author": "Alfred Anate Bodurin Mayaki",
   "license": "GNU",
   "dependencies": {
-    "@capacitor/cli": "^8.0.1",
+    "@capacitor/cli": "^2.5.0",
     "@capacitor/core": "^8.0.1",
     "@dataconnect/generated": "file:src/dataconnect-generated",
     "firebase": "^12.7.0",

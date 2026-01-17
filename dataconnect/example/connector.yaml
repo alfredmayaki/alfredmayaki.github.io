@@ -6,8 +6,15 @@ generate:
       packageJsonDir: ..\..
       react: false
       angular: false
-    - outputDir: ..\..\hench-spyro\src\dataconnect-generated
+    - outputDir: ..\..\worker\src\dataconnect-generated
       package: "@dataconnect/generated"
-      packageJsonDir: ..\..\hench-spyro
+      packageJsonDir: ..\..\worker
       react: false
       angular: false
+  adminNodeSdk:
+    - outputDir: ..\..\functions\src\dataconnect-admin-generated
+      package: "@dataconnect/admin-generated"
+      packageJsonDir: ..\..\functions
+    - outputDir: ..\..\Firebase DBL\src\dataconnect-admin-generated
+      package: "@dataconnect/admin-generated"
+      packageJsonDir: ..\..\Firebase DBL
