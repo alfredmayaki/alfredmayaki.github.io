@@ -171,20 +171,26 @@
         const statusDiv = document.getElementById('status');
         const errorDiv = document.getElementById('error');
 
-        // Handle Login
-        loginButton.addEventListener('click', () => {
-            auth.signInWithPopup(provider)
-                .then((result) => {
-                    // User signed in
-                    loginSection.style.display = 'none';
-                    surveySection.style.display = 'block';
-                })
-                .catch((error) => {
-                    errorDiv.textContent = `Error: ${error.message}`;
-                });
-        });
+        // Replace the click listener above with:
+            loginButton.addEventListener('click', () => {
+            signInWithRedirect(auth, provider);
+            });
 
-        // Handle Form Submit
+        import { signInWithRedirect, getRedirectResult } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js";
+
+        // Handle redirect result on page load
+            window.addEventListener('load', async () => {
+            try {
+            const result = await getRedirectResult(auth);
+            if (result) {
+            console.log("Signed in via redirect:", result.user.email);
+             }
+            }catch (error) {
+            console.error("Redirect error:", error);
+            }
+            });
+        
+       // Handle Form Submit
         surveyForm.addEventListener('submit', (e) => {
             e.preventDefault();
             const user = auth.currentUser;
