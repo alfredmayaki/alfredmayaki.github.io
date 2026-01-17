@@ -1,0 +1,236 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neurodivergence in Recruitment Survey</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+        h1, h2 {
+            text-align: center;
+        }
+        #login-section {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        #survey-section {
+            display: none;
+        }
+        .question {
+            margin-bottom: 20px;
+        }
+        .question label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .question textarea {
+            width: 100%;
+            height: 150px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            resize: vertical;
+        }
+        .subquestion {
+            margin-left: 20px;
+            margin-top: 10px;
+        }
+        button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        #status {
+            text-align: center;
+            margin-top: 10px;
+            color: green;
+        }
+        #error {
+            text-align: center;
+            margin-top: 10px;
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <h1>Neurodivergence in Recruitment Survey</h1>
+    
+    <div id="login-section">
+        <p>Welcome! This survey, based on questions from Miller and Doyle (2025), aims to gather insights on experiences of neurodivergence during recruitment processes. Your responses will help improve inclusivity in hiring. To participate, please log in with your Google account. Your data will be stored securely and associated with your account for authentication purposes.</p>
+        <button id="login-button">Login with Google</button>
+    </div>
+    
+    <div id="survey-section">
+        <form id="survey-form">
+            <div class="question">
+                <label>1. What attracts you to an organization?</label>
+                <textarea name="q1" placeholder="Share what factors (e.g., culture, values, opportunities) draw you to potential employers."></textarea>
+            </div>
+            
+            <div class="question">
+                <label>2. How do you perceive if a potential employer is inclusive during recruitment?</label>
+                <textarea name="q2" placeholder="Describe signs or indicators that suggest an employer values diversity and inclusion in their hiring process."></textarea>
+                <div class="subquestion">
+                    <label>a. How does this impact you?</label>
+                    <textarea name="q2a" placeholder="Explain how perceptions of inclusivity affect your decision-making or experience."></textarea>
+                </div>
+            </div>
+            
+            <div class="question">
+                <label>3. What was your experience of applying to your current organization?</label>
+                <textarea name="q3" placeholder="Detail your application process, including any challenges or positives."></textarea>
+                <div class="subquestion">
+                    <label>a. Do you have other experiences that have been the same, or different?</label>
+                    <textarea name="q3a" placeholder="Compare this to other application experiences you've had."></textarea>
+                </div>
+            </div>
+            
+            <div class="question">
+                <label>4. Do you disclose your neurodivergence during recruitment?</label>
+                <textarea name="q4" placeholder="Indicate yes/no and any reasoning behind your choice."></textarea>
+                <div class="subquestion">
+                    <label>a. What has been your experience of disclosing or deciding not to disclose?</label>
+                    <textarea name="q4a" placeholder="Share outcomes or feelings related to disclosure decisions."></textarea>
+                </div>
+            </div>
+            
+            <div class="question">
+                <label>5. What has been your experience of adjustments during recruitment?</label>
+                <textarea name="q5" placeholder="Describe any accommodations requested or provided, and their effectiveness."></textarea>
+            </div>
+            
+            <div class="question">
+                <label>6. When you have been at your best during recruitment, that's like what?</label>
+                <textarea name="q6" placeholder="Describe scenarios where you performed optimally in recruitment stages."></textarea>
+                <div class="subquestion">
+                    <label>a. How did the organization help you do your best?</label>
+                    <textarea name="q6a" placeholder="Explain specific actions by the employer that supported your performance."></textarea>
+                </div>
+            </div>
+            
+            <div class="question">
+                <label>7. Anything else you want to share?</label>
+                <textarea name="q7" placeholder="Add any additional thoughts or experiences related to neurodivergence in recruitment."></textarea>
+            </div>
+            
+            <button type="submit">Submit Survey</button>
+        </form>
+        <div id="status"></div>
+        <div id="error"></div>
+    </div>
+
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-check.js"></script>
+
+    <script>
+        // Firebase configuration - Replace with your own from Firebase Console
+        // For security, in a production setup with a build tool (e.g., Vite/React), store these in .env files and .gitignore them.
+        // Here, they are placeholders; expose only what's necessary and secure Firestore with rules.
+        const firebaseConfig = {
+            apiKey: "AIzaSyD0IQolC1QyP-RV0QWdJQ7MteXl5axb1go", // From Firebase Console
+            authDomain: "supa-73a39.firebaseapp.com",
+            projectId: "supa-73a39",
+            storageBucket: "supa-73a39.firebasestorage.app",
+            messagingSenderId: "447556072560",
+            appId: "1:447556072560:web:0857492edd4898abf470b5",
+            measurementId: "G-YW598Z1FFD" // Optional
+        };
+
+        // Initialize Firebase
+        const app = firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth(app);
+        const db = firebase.firestore(app);
+
+        // Google Auth Provider (uses Google Cloud Client ID implicitly via Firebase)
+        const provider = new firebase.auth.GoogleAuthProvider();
+
+        // Elements
+        const loginButton = document.getElementById('login-button');
+        const surveySection = document.getElementById('survey-section');
+        const loginSection = document.getElementById('login-section');
+        const surveyForm = document.getElementById('survey-form');
+        const statusDiv = document.getElementById('status');
+        const errorDiv = document.getElementById('error');
+
+        // Handle Login
+        loginButton.addEventListener('click', () => {
+            auth.signInWithPopup(provider)
+                .then((result) => {
+                    // User signed in
+                    loginSection.style.display = 'none';
+                    surveySection.style.display = 'block';
+                })
+                .catch((error) => {
+                    errorDiv.textContent = `Error: ${error.message}`;
+                });
+        });
+
+        // Handle Form Submit
+        surveyForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const user = auth.currentUser;
+            if (!user) {
+                errorDiv.textContent = 'Please log in to submit.';
+                return;
+            }
+
+            // Collect responses
+            const responses = {
+                q1: document.querySelector('textarea[name="q1"]').value,
+                q2: document.querySelector('textarea[name="q2"]').value,
+                q2a: document.querySelector('textarea[name="q2a"]').value,
+                q3: document.querySelector('textarea[name="q3"]').value,
+                q3a: document.querySelector('textarea[name="q3a"]').value,
+                q4: document.querySelector('textarea[name="q4"]').value,
+                q4a: document.querySelector('textarea[name="q4a"]').value,
+                q5: document.querySelector('textarea[name="q5"]').value,
+                q6: document.querySelector('textarea[name="q6"]').value,
+                q6a: document.querySelector('textarea[name="q6a"]').value,
+                q7: document.querySelector('textarea[name="q7"]').value,
+                userId: user.uid,
+                timestamp: firebase.firestore.FieldValue.serverTimestamp()
+            };
+
+            // Save to Firestore securely (ensure rules allow only authenticated writes)
+            db.collection('surveyResponses').add(responses)
+                .then(() => {
+                    statusDiv.textContent = 'Survey submitted successfully!';
+                    surveyForm.reset();
+                })
+                .catch((error) => {
+                    errorDiv.textContent = `Error submitting: ${error.message}`;
+                });
+        });
+
+        // Auth state listener
+        auth.onAuthStateChanged((user) => {
+            if (user) {
+                loginSection.style.display = 'none';
+                surveySection.style.display = 'block';
+            } else {
+                loginSection.style.display = 'block';
+                surveySection.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
