@@ -276,7 +276,8 @@
       };
 
       try {
-        await addDoc(collection(db, "surveyResponses"), data);
+        import { doc, setDoc } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js";
+        await setDoc(doc(db, "surveyResponses", user.uid), data);
         statusEl.textContent = "Thank you! Your responses have been successfully submitted.";
         form.reset();
       } catch (err) {
