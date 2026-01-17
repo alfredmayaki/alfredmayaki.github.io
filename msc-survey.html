@@ -1,293 +1,292 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Neurodivergence in Recruitment Survey</title>
-    <style>
-        body {
-            font-family: Arial, Helvetica, sans-serif;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: #f9f9f9;
-            line-height: 1.6;
-        }
-        h1, h2 {
-            text-align: center;
-            color: #333;
-        }
-        #intro-text {
-            margin-bottom: 30px;
-            text-align: center;
-        }
-        #login-section {
-            text-align: center;
-            margin: 40px 0;
-        }
-        #survey-section {
-            display: none;
-        }
-        .question {
-            margin-bottom: 28px;
-            background: white;
-            padding: 18px;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-        .question label {
-            display: block;
-            font-weight: bold;
-            margin-bottom: 8px;
-            color: #222;
-        }
-        .question textarea {
-            width: 100%;
-            min-height: 120px;
-            padding: 12px;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-            resize: vertical;
-            font-size: 16px;
-        }
-        .subquestion {
-            margin-top: 16px;
-            margin-left: 20px;
-        }
-        button {
-            display: block;
-            width: 100%;
-            max-width: 400px;
-            margin: 0 auto;
-            padding: 14px;
-            background-color: #4285f4;
-            color: white;
-            border: none;
-            border-radius: 6px;
-            font-size: 17px;
-            cursor: pointer;
-            transition: background-color 0.2s;
-        }
-        button:hover {
-            background-color: #3367d6;
-        }
-        button:disabled {
-            background-color: #aaa;
-            cursor: not-allowed;
-        }
-        #status {
-            text-align: center;
-            margin-top: 20px;
-            color: #2e7d32;
-            font-weight: bold;
-        }
-        #error {
-            text-align: center;
-            margin-top: 15px;
-            color: #c62828;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Neurodivergence in Recruitment – Survey</title>
+  
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      max-width: 820px;
+      margin: 0 auto;
+      padding: 24px 16px;
+      background: #f8f9fa;
+      color: #212529;
+      line-height: 1.6;
+    }
+    h1 {
+      text-align: center;
+      color: #1a1a1a;
+      margin-bottom: 0.4em;
+    }
+    .intro {
+      text-align: center;
+      margin-bottom: 2.5rem;
+      color: #444;
+    }
+    .question {
+      background: white;
+      padding: 1.5rem;
+      margin-bottom: 1.6rem;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+    .question label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 0.6rem;
+      color: #222;
+    }
+    .subquestion {
+      margin-top: 1.2rem;
+      padding-left: 1.2rem;
+      border-left: 3px solid #4285f4;
+    }
+    textarea {
+      width: 100%;
+      min-height: 110px;
+      padding: 12px;
+      border: 1px solid #ced4da;
+      border-radius: 6px;
+      resize: vertical;
+      font-size: 1rem;
+      box-sizing: border-box;
+    }
+    textarea:focus {
+      outline: none;
+      border-color: #4285f4;
+      box-shadow: 0 0 0 0.2rem rgba(66,133,244,0.25);
+    }
+    .btn {
+      display: block;
+      width: 100%;
+      max-width: 360px;
+      margin: 1.5rem auto;
+      padding: 14px;
+      font-size: 1.1rem;
+      font-weight: 500;
+      color: white;
+      background: #4285f4;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .btn:hover:not(:disabled) {
+      background: #3367d6;
+    }
+    .btn:disabled {
+      background: #9e9e9e;
+      cursor: not-allowed;
+    }
+    #status, #error {
+      text-align: center;
+      margin: 1rem 0;
+      font-weight: 500;
+    }
+    #status  { color: #2e7d32; }
+    #error   { color: #c62828; }
+  </style>
 </head>
 <body>
 
-    <h1>Neurodivergence in Recruitment Survey</h1>
+  <h1>Neurodivergence in Recruitment Survey</h1>
 
-    <div id="login-section">
-        <div id="intro-text">
-            <p>Welcome! This anonymous survey explores experiences of neurodivergence during recruitment processes, based on questions inspired by Miller and Doyle (2025).</p>
-            <p>Your responses will help improve inclusivity in hiring. To participate and ensure the authenticity of submissions, please sign in with your Google account.</p>
-            <p>Your data will be stored securely and linked only to your user ID for validation purposes.</p>
+  <div class="intro" id="login-section">
+    <p>This survey draws on questions from <strong>Miller and Doyle (2025)</strong> to explore experiences of neurodivergence during recruitment processes.</p>
+    <p>Your responses are anonymous and will help improve inclusivity in hiring practices.</p>
+    <p>Please sign in with Google to validate your submission (your identity is not linked to responses in any published output).</p>
+    
+    <button id="login-button" class="btn">Sign in with Google</button>
+  </div>
+
+  <div id="survey-section" style="display:none;">
+    <form id="survey-form">
+
+      <div class="question">
+        <label>1. What attracts you to an organization?</label>
+        <textarea name="q1" placeholder="e.g. culture, values, career progression, flexibility, leadership style, reputation..."></textarea>
+      </div>
+
+      <div class="question">
+        <label>2. How do you perceive if a potential employer is inclusive during recruitment?</label>
+        <textarea name="q2" placeholder="What signs, language, processes or behaviours indicate inclusivity to you?"></textarea>
+        <div class="subquestion">
+          <label>a. How does this impact you?</label>
+          <textarea name="q2a" placeholder="How does (perceived) inclusivity affect your confidence, motivation or decision-making?"></textarea>
         </div>
-        <button id="login-button">Sign in with Google</button>
-    </div>
+      </div>
 
-    <div id="survey-section">
-        <form id="survey-form">
+      <div class="question">
+        <label>3. What was your experience of applying to your current organization?</label>
+        <textarea name="q3" placeholder="Describe the process – what felt positive, challenging, surprising or noteworthy?"></textarea>
+        <div class="subquestion">
+          <label>a. Do you have other experiences that have been the same, or different?</label>
+          <textarea name="q3a" placeholder="How does this compare to other recruitment experiences you've had?"></textarea>
+        </div>
+      </div>
 
-            <div class="question">
-                <label>1. What attracts you to an organization?</label>
-                <textarea name="q1" placeholder="Share what factors (e.g., culture, values, opportunities, leadership, flexibility) draw you to potential employers."></textarea>
-            </div>
+      <div class="question">
+        <label>4. Do you disclose your neurodivergence during recruitment?</label>
+        <textarea name="q4" placeholder="Yes / No / Sometimes / It depends — please briefly explain your usual approach"></textarea>
+        <div class="subquestion">
+          <label>a. What has been your experience of disclosing or deciding not to disclose?</label>
+          <textarea name="q4a" placeholder="Outcomes, feelings, consequences or advice you would give others"></textarea>
+        </div>
+      </div>
 
-            <div class="question">
-                <label>2. How do you perceive if a potential employer is inclusive during recruitment?</label>
-                <textarea name="q2" placeholder="Describe signs, language, processes, or behaviours that suggest an employer values diversity and inclusion."></textarea>
-                <div class="subquestion">
-                    <label>a. How does this impact you?</label>
-                    <textarea name="q2a" placeholder="Explain how your perception of inclusivity affects your motivation, confidence, or decisions during application."></textarea>
-                </div>
-            </div>
+      <div class="question">
+        <label>5. What has been your experience of adjustments during recruitment?</label>
+        <textarea name="q5" placeholder="Any adjustments requested/offered? How helpful (or unhelpful) were they?"></textarea>
+      </div>
 
-            <div class="question">
-                <label>3. What was your experience of applying to your current organization?</label>
-                <textarea name="q3" placeholder="Describe your application journey — what went well, what was challenging, any standout moments."></textarea>
-                <div class="subquestion">
-                    <label>a. Do you have other experiences that have been the same, or different?</label>
-                    <textarea name="q3a" placeholder="Compare this experience to others you've had (similarities or significant differences)."></textarea>
-                </div>
-            </div>
+      <div class="question">
+        <label>6. When you have been at your best during recruitment, that's like what?</label>
+        <textarea name="q6" placeholder="Describe a moment/stage where you felt you performed at your peak"></textarea>
+        <div class="subquestion">
+          <label>a. How did the organization help you do your best?</label>
+          <textarea name="q6a" placeholder="Specific actions, environment, communication or support that made the difference"></textarea>
+        </div>
+      </div>
 
-            <div class="question">
-                <label>4. Do you disclose your neurodivergence during recruitment?</label>
-                <textarea name="q4" placeholder="Yes / No / Sometimes — please explain your general approach and reasoning."></textarea>
-                <div class="subquestion">
-                    <label>a. What has been your experience of disclosing or deciding not to disclose?</label>
-                    <textarea name="q4a" placeholder="Share any outcomes, feelings, or consequences related to disclosure decisions."></textarea>
-                </div>
-            </div>
+      <div class="question">
+        <label>7. Anything else you want to share?</label>
+        <textarea name="q7" placeholder="Additional thoughts, experiences, suggestions or reflections"></textarea>
+      </div>
 
-            <div class="question">
-                <label>5. What has been your experience of adjustments during recruitment?</label>
-                <textarea name="q5" placeholder="Describe any accommodations you requested or were offered, and how effective/helpful they were (or weren't)."></textarea>
-            </div>
+      <button type="submit" id="submit-button" class="btn" disabled>Submit Survey</button>
+    </form>
 
-            <div class="question">
-                <label>6. When you have been at your best during recruitment, that's like what?</label>
-                <textarea name="q6" placeholder="Describe a moment or stage where you felt you performed at your peak during the hiring process."></textarea>
-                <div class="subquestion">
-                    <label>a. How did the organization help you do your best?</label>
-                    <textarea name="q6a" placeholder="What specific actions, environment, communication, or support from the employer enabled this?"></textarea>
-                </div>
-            </div>
+    <div id="status"></div>
+    <div id="error"></div>
+  </div>
 
-            <div class="question">
-                <label>7. Anything else you want to share?</label>
-                <textarea name="q7" placeholder="Any additional thoughts, experiences, suggestions, or reflections related to neurodivergence and recruitment."></textarea>
-            </div>
+  <!-- Firebase SDK (modular v10+) -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
+    import { 
+      getAuth, 
+      GoogleAuthProvider, 
+      signInWithPopup, 
+      onAuthStateChanged 
+    } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js";
+    import { 
+      getFirestore, 
+      collection, 
+      addDoc, 
+      serverTimestamp 
+    } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js";
 
-            <button type="submit">Submit Survey</button>
-        </form>
+    // ────────────────────────────────────────────────
+    //          REPLACE THESE WITH YOUR REAL VALUES
+    // ────────────────────────────────────────────────
+    const firebaseConfig = {
+      apiKey:            "AIzaSyD0IQolC1QyP-RV0QWdJQ7MteXl5axb1go",
+      authDomain:        "supa-73a39.firebaseapp.com",
+      projectId:         "supa-73a39",
+      storageBucket:     "supa-73a39.firebasestorage.app",
+      messagingSenderId: "447556072560",
+      appId:             "1:447556072560:web:0857492edd4898abf470b5",
+      // measurementId:  "G-XXXXXXXXXX"   ← optional
+    };
 
-        <div id="status"></div>
-        <div id="error"></div>
-    </div>
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db   = getFirestore(app);
 
-    <!-- Firebase Modular SDK v10+ -->
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
-        import {
-            getAuth,
-            GoogleAuthProvider,
-            signInWithRedirect,
-            getRedirectResult,
-            onAuthStateChanged
-        } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js";
-        import {
-            getFirestore,
-            collection,
-            addDoc,
-            serverTimestamp
-        } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js";
+    const provider = new GoogleAuthProvider();
+    provider.setCustomParameters({ prompt: 'select_account' });
 
-        // ── REPLACE WITH YOUR ACTUAL FIREBASE CONFIG ──
-        const firebaseConfig = {
-            apiKey: "AIzaSyD0IQolC1QyP-RV0QWdJQ7MteXl5axb1go",
-            authDomain: "supa-73a39.firebaseapp.com",
-            projectId: "supa-73a39",
-            storageBucket: "supa-73a39.firebasestorage.app",
-            messagingSenderId: "447556072560",
-            appId: "1:447556072560:web:0857492edd4898abf470b5"
-        };
+    // Elements
+    const loginSection   = document.getElementById('login-section');
+    const surveySection  = document.getElementById('survey-section');
+    const loginBtn       = document.getElementById('login-button');
+    const submitBtn      = document.getElementById('submit-button');
+    const form           = document.getElementById('survey-form');
+    const statusEl       = document.getElementById('status');
+    const errorEl        = document.getElementById('error');
 
-        const app = initializeApp(firebaseConfig);
-        const auth = getAuth(app);
-        const db = getFirestore(app);
-        const provider = new GoogleAuthProvider();
+    // Login handler
+    loginBtn.addEventListener('click', async () => {
+      loginBtn.disabled = true;
+      loginBtn.textContent = "Connecting…";
+      errorEl.textContent = "";
 
-        provider.setCustomParameters({ prompt: 'select_account' });
+      try {
+        await signInWithPopup(auth, provider);
+      } catch (err) {
+        console.error(err);
+        let msg = "Sign-in failed. ";
+        if (err.code === 'auth/popup-blocked') msg += "Popup was blocked. Please allow popups.";
+        else if (err.code === 'auth/popup-closed-by-user') msg += "Popup was closed.";
+        else msg += err.message || "Please try again.";
+        errorEl.textContent = msg;
+      } finally {
+        loginBtn.disabled = false;
+        loginBtn.textContent = "Sign in with Google";
+      }
+    });
 
-        // DOM elements
-        const loginSection = document.getElementById('login-section');
-        const surveySection = document.getElementById('survey-section');
-        const loginButton = document.getElementById('login-button');
-        const surveyForm = document.getElementById('survey-form');
-        const statusDiv = document.getElementById('status');
-        const errorDiv = document.getElementById('error');
+    // Auth state → show/hide UI + enable submit button when logged in
+    onAuthStateChanged(auth, user => {
+      if (user) {
+        loginSection.style.display = 'none';
+        surveySection.style.display = 'block';
+        submitBtn.disabled = false;
+      } else {
+        loginSection.style.display = 'block';
+        surveySection.style.display = 'none';
+        submitBtn.disabled = true;
+      }
+    });
 
-        // Handle redirect result (runs on every page load)
-        async function checkRedirectResult() {
-            try {
-                const result = await getRedirectResult(auth);
-                if (result) {
-                    console.log("Signed in via redirect:", result.user.email);
-                }
-            } catch (error) {
-                console.error("Redirect result error:", error);
-                errorDiv.textContent = `Error during sign-in: ${error.message}`;
-            }
-        }
+    // Form submission
+    form.addEventListener('submit', async e => {
+      e.preventDefault();
+      errorEl.textContent = "";
+      statusEl.textContent = "";
 
-        checkRedirectResult();
+      const user = auth.currentUser;
+      if (!user) return;
 
-        // Trigger Google redirect login
-        loginButton.addEventListener('click', async () => {
-            loginButton.disabled = true;
-            loginButton.textContent = "Redirecting to Google...";
-            errorDiv.textContent = "";
+      // Very basic required field check
+      if (!form.q1.value.trim()) {
+        errorEl.textContent = "Please provide an answer for question 1.";
+        return;
+      }
 
-            try {
-                await signInWithRedirect(auth, provider);
-            } catch (error) {
-                console.error("Sign-in redirect failed:", error);
-                errorDiv.textContent = `Failed to start sign-in: ${error.message}`;
-                loginButton.disabled = false;
-                loginButton.textContent = "Sign in with Google";
-            }
-        });
+      submitBtn.disabled = true;
+      submitBtn.textContent = "Submitting…";
 
-        // Show/hide UI based on auth state
-        onAuthStateChanged(auth, (user) => {
-            if (user) {
-                loginSection.style.display = 'none';
-                surveySection.style.display = 'block';
-            } else {
-                loginSection.style.display = 'block';
-                surveySection.style.display = 'none';
-            }
-        });
+      const data = {
+        q1:  form.q1.value,
+        q2:  form.q2.value,
+        q2a: form.q2a.value,
+        q3:  form.q3.value,
+        q3a: form.q3a.value,
+        q4:  form.q4.value,
+        q4a: form.q4a.value,
+        q5:  form.q5.value,
+        q6:  form.q6.value,
+        q6a: form.q6a.value,
+        q7:  form.q7.value,
+        userId:     user.uid,
+        submittedAt: serverTimestamp()
+      };
 
-        // Form submission
-        surveyForm.addEventListener('submit', async (e) => {
-            e.preventDefault();
-
-            const user = auth.currentUser;
-            if (!user) {
-                errorDiv.textContent = 'Please sign in to submit.';
-                return;
-            }
-
-            // Very basic required field check
-            if (!document.querySelector('textarea[name="q1"]').value.trim()) {
-                errorDiv.textContent = 'Please provide an answer for question 1.';
-                return;
-            }
-
-            const responses = {
-                q1:  document.querySelector('textarea[name="q1"]').value,
-                q2:  document.querySelector('textarea[name="q2"]').value,
-                q2a: document.querySelector('textarea[name="q2a"]').value,
-                q3:  document.querySelector('textarea[name="q3"]').value,
-                q3a: document.querySelector('textarea[name="q3a"]').value,
-                q4:  document.querySelector('textarea[name="q4"]').value,
-                q4a: document.querySelector('textarea[name="q4a"]').value,
-                q5:  document.querySelector('textarea[name="q5"]').value,
-                q6:  document.querySelector('textarea[name="q6"]').value,
-                q6a: document.querySelector('textarea[name="q6a"]').value,
-                q7:  document.querySelector('textarea[name="q7"]').value,
-                userId: user.uid,
-                submittedAt: serverTimestamp()
-            };
-
-            try {
-                await addDoc(collection(db, 'surveyResponses'), responses);
-                statusDiv.textContent = "Thank you! Your responses have been successfully submitted.";
-                surveyForm.reset();
-                errorDiv.textContent = "";
-            } catch (err) {
-                console.error("Submission failed:", err);
-                errorDiv.textContent = "Error submitting survey: " + err.message;
-            }
-        });
-    </script>
+      try {
+        await addDoc(collection(db, "surveyResponses"), data);
+        statusEl.textContent = "Thank you! Your responses have been successfully submitted.";
+        form.reset();
+      } catch (err) {
+        console.error(err);
+        errorEl.textContent = "Submission failed: " + (err.message || "unknown error");
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = "Submit Survey";
+      }
+    });
+  </script>
 </body>
 </html>
