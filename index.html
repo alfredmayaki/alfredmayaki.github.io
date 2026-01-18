@@ -317,34 +317,44 @@ body {
 .minimize-chat:focus, .close-chat:focus { outline: 3px solid rgba(61,78,233,0.18); }
 
 /* ===== Footer links precise styling ===== */
-.site-footer { padding: 1.25rem 0; margin-top: 2.5rem; }
-.footer-content { gap: 0.65rem; align-items: center; }
+/* Footer: center links and copyright */
+.site-footer {
+  padding: 1.25rem 0;
+  margin-top: 2.5rem;
+  text-align: center; /* center everything inside footer */
+}
 
-/* Footer links shown as inline list with subtle separators */
+.footer-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* vertical center */
+  justify-content: center;
+  gap: 0.65rem;
+  text-align: center;
+}
+
 .footer-links {
   display: inline-flex;
-  gap: 0;
+  gap: 0.5rem;
   align-items: center;
+  justify-content: center; /* ensure links centered horizontally */
   flex-wrap: wrap;
-  list-style: none;
   padding: 0;
   margin: 0;
+  list-style: none;
 }
+
 .footer-links a {
   color: var(--text-muted);
   text-decoration: none;
-  padding: 0.25rem 0.75rem;
+  padding: 0.25rem 0.6rem;
   font-size: 0.95rem;
   display: inline-block;
   transition: color var(--transition-med), transform var(--transition-fast);
   position: relative;
 }
-.footer-links a:hover {
-  color: var(--brand);
-  transform: translateY(-2px);
-}
 
-/* Add centered dot separators between items (visual, not accessible separators) */
+/* subtle separators handled visually but keep layout centered */
 .footer-links a:not(:last-child)::after {
   content: "•";
   position: absolute;
@@ -355,12 +365,15 @@ body {
   font-size: 0.9rem;
 }
 
-/* Responsive: allow footer links to wrap gracefully on small screens */
-@media (max-width: 600px) {
-  .footer-links { gap: 0.25rem; }
-  .footer-links a { padding: 0.25rem 0.5rem; font-size: 0.9rem; }
-  .chatbot-popup { right: 12px; bottom: 12px; width: calc(100vw - 24px); }
+/* Copyright centered */
+.footer-copyright {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 0. nine em;
+  text-align: center;
+  padding-top: 0.25rem;
 }
+
   </style>
 </head>
 <body>
@@ -385,12 +398,6 @@ body {
         <p>📵 The documents contained within the repository are all my own or have been entrusted to me by organisations I am closely affiliated with. The documents under my immediate ownership are copyright-protected and should not be reproduced for sale or for profit without my acknowledgement. Finally, I would like to send a big thank you to the designer of this web application's theme, Mr. Vincent Garreau, who is the author of 'particles.js' on GitHub.</p>
       </div>
 
-      <div class="button-group">
-        <a href="scraper.html" class="button-link">Web scraper</a>
-        <a href="references.html" class="button-link" target="_blank" rel="noopener noreferrer">MSc references</a>
-        <a class="button-link" id="docsBtn" href="msc-survey.html" target="_blank" rel="noopener noreferrer">Take survey</a>
-      </div>
-
       <div class="search-container">
         <input type="text" class="search-bar" id="searchInput" placeholder="Ask Claude 3.5 Haiku...">
         <button class="search-btn" id="searchBtn" aria-label="Search">
@@ -402,43 +409,117 @@ body {
 
       <p><h5>Powered with ❤ using GitHub + Anthropic</h5></p>
 
-      <div class="dropdown-group">
-        <div class="navigation-select-wrap">
-          <select id="navigationSelect" class="navigation-select" aria-label="Navigate to">
-            <option value="">Quick navigation…</option>
-            <option value="https://www.meetup.com/central-london-bipolar-uk-meetup/">👩🏾‍🤝‍🧑🏽 BipolarUK Meetup Group - Central London</option>
-            <option value="scraper.html">🔍 Dissertation Web Scraper</option>
-            <option value="https://www.oustudents.com/organisation/6211/">🤝 OU Student Association</option>
-            <option value="pdf-viewer.html">📄 Document SharePoint</option>
-            <option value="msc-survey.html">📝 MSc HRM Dissertation Survey</option>
-            <option value="https://www.qeios.com/profile/102543">💻 Qeios Research Profile</option>
-            <option value="https://sites.google.com/view/alfredmayaki/useful-links?authuser=0">🔗 Useful Links</option>
-            <option value="#chatbot">💬 Open Claude 3.5 Haiku</option>
-          </select>
-        </div>
+      <div class="dropdown-group" role="navigation" aria-label="Quick navigation and language selection">
+  <style>
+    /* small helper to keep labels accessible but hidden */
+    .visually-hidden {
+      position: absolute !important;
+      height: 1px; width: 1px;
+      overflow: hidden; clip: rect(1px, 1px, 1px, 1px);
+      white-space: nowrap; border: 0; padding: 0; margin: -1px;
+    }
+    .dropdown-group { display:flex; gap:0.75rem; justify-content:center; align-items:center; flex-wrap:wrap; margin:1.25rem auto 0; }
+    .dropdown-group .select-wrap { min-width:220px; max-width:320px; width:100%; }
+  </style>
 
-        <div class="language-select-wrap">
-          <select id="languageSelect" class="language-select" aria-label="Select a language">
-            <option value="">Select a world language…</option>
-            <option value="index_en.html">🇬🇧 English</option>
-            <option value="index_cy.html">🇬🇧 Cymraeg</option>
-            <option value="index_ch.html">🇨🇳 中文（语言）</option>
-            <option value="index_fr.html">🇫🇷 Français</option>
-            <option value="index_de.html">🇩🇪 Deutsch</option>
-            <option value="index_es.html">🇪🇸 Español</option>
-            <option value="index_he.html">🇮🇱 עברית</option>
-            <option value="index_it.html">🇮🇹 Italiano</option>
-            <option value="index_jp.html">🇯🇵 日本語</option>
-            <option value="index_ksa.html">🇸🇦 العربية</option>
-            <option value="index_nl.html">🇳🇱 Nederlands</option>
-            <option value="index_ru.html">🇷🇺 Русский</option>
-            <option value="index_pt.html">🇵🇹 Português</option>
-            <option value="index_sw.html">🇸🇪 Svenska</option>
-            <option value="index_tr.html">🇹🇷 Türkçe</option>
-            <option value="index_yb.html">🇳🇬 Yorùbá</option>
-          </select>
-        </div>
-      </div>
+  <div class="select-wrap">
+    <label class="visually-hidden" for="navigationSelect">Quick navigation</label>
+    <select id="navigationSelect" class="navigation-select" aria-label="Quick navigation">
+      <option value="" selected disabled>Quick navigation…</option>
+
+      <optgroup label="Site">
+        <option value="msc-survey.html">📝 MSc HRM Dissertation Survey</option>
+        <option value="scraper.html">🔍 Dissertation Web Scraper</option>
+        <option value="pdf-viewer.html">📄 Document SharePoint</option>
+      </optgroup>
+
+      <optgroup label="Research & Profiles">
+        <option value="https://www.qeios.com/profile/102543">💻 Qeios Research Profile</option>
+        <option value="https://sites.google.com/view/alfredmayaki/useful-links?authuser=0">🔗 Useful Links</option>
+      </optgroup>
+
+      <optgroup label="Community & External">
+        <option value="https://www.meetup.com/central-london-bipolar-uk-meetup/">👥 BipolarUK Meetup — Central London</option>
+        <option value="https://www.oustudents.com/organisation/6211/">🤝 OU Student Association</option>
+      </optgroup>
+
+      <optgroup label="Tools">
+        <option value="#chatbot">💬 Open Claude 3.5 Haiku</option>
+      </optgroup>
+    </select>
+  </div>
+
+  <div class="select-wrap">
+    <label class="visually-hidden" for="languageSelect">Select a language</label>
+    <select id="languageSelect" class="language-select" aria-label="Select a world language">
+      <option value="" selected disabled>Select a world language…</option>
+
+      <option value="index_en.html" lang="en">🇬🇧 English</option>
+      <option value="index_cy.html" lang="cy">🇬🇧 Cymraeg</option>
+      <option value="index_ch.html" lang="zh">🇨🇳 中文（语言）</option>
+      <option value="index_fr.html" lang="fr">🇫🇷 Français</option>
+      <option value="index_de.html" lang="de">🇩🇪 Deutsch</option>
+      <option value="index_es.html" lang="es">🇪🇸 Español</option>
+      <option value="index_he.html" lang="he">🇮🇱 עברית</option>
+      <option value="index_it.html" lang="it">🇮🇹 Italiano</option>
+      <option value="index_jp.html" lang="ja">🇯🇵 日本語</option>
+      <option value="index_ksa.html" lang="ar">🇸🇦 العربية</option>
+      <option value="index_nl.html" lang="nl">🇳🇱 Nederlands</option>
+      <option value="index_ru.html" lang="ru">🇷🇺 Русский</option>
+      <option value="index_pt.html" lang="pt">🇵🇹 Português</option>
+      <option value="index_sw.html" lang="sv">🇸🇪 Svenska</option>
+      <option value="index_tr.html" lang="tr">🇹🇷 Türkçe</option>
+      <option value="index_yb.html" lang="yo">🇳🇬 Yorùbá</option>
+    </select>
+  </div>
+</div>
+
+<script>
+  // Accessible, theme-consistent navigation for the two selects.
+  (function () {
+    const nav = document.getElementById('navigationSelect');
+    const lang = document.getElementById('languageSelect');
+    const chatbotPopup = document.getElementById('chatbotPopup');
+
+    function openChatAndFocus() {
+      if (!chatbotPopup) return;
+      chatbotPopup.classList.add('active');
+      chatbotPopup.classList.remove('minimized');
+      setTimeout(() => document.getElementById('chatbotInput')?.focus(), 200);
+    }
+
+    nav?.addEventListener('change', function () {
+      const target = (this.value || '').trim();
+      if (!target) return;
+      if (target === '#chatbot') {
+        openChatAndFocus();
+      } else if (target.startsWith('http')) {
+        window.open(target, '_blank', 'noopener,noreferrer');
+      } else {
+        // local internal navigation
+        window.location.href = target;
+      }
+      // Reset to placeholder for quick reuse
+      this.selectedIndex = 0;
+    });
+
+    lang?.addEventListener('change', function () {
+      const target = (this.value || '').trim();
+      if (!target) return;
+      // If you prefer to open language pages in same tab (keeps theme), use location.href
+      window.location.href = target;
+    });
+
+    // keyboard: allow Enter on selects for accessibility (some browsers already handle)
+    [nav, lang].forEach(s => {
+      s?.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+          s.dispatchEvent(new Event('change', { bubbles: true }));
+        }
+      });
+    });
+  })();
+</script>
     </div>
 
     <!-- Footer -->
