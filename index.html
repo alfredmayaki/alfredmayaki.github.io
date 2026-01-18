@@ -715,6 +715,18 @@ body {
     box-shadow: none !important;
   }
 }
+
+.hero-image {
+  display: block;
+  margin: 1rem auto 1.5rem;
+  width: 100%;
+  max-width: 320px;
+  height: auto;
+  border-radius: 12px;
+  object-fit: cover;
+  border: 3px solid rgba(255,255,255,0.06);
+  box-shadow: var(--shadow-pop);
+}
   </style>
 </head>
 <body>
@@ -733,6 +745,8 @@ body {
 
         <p>📵 The documents contained within the repository are all my own or have been entrusted to me by organisations I am closely affiliated with. The documents under my immediate ownership are copyright-protected and should not be reproduced for sale or for profit without my acknowledgement. Finally, I would like to send a big thank you to the designer of this web application's theme, Mr. Vincent Garreau, who is the author of 'particles.js' on GitHub.</p>
       </div>
+
+      <img src="/136989183.jpg" alt="Alfred A. B. Mayaki" class="hero-image" />
 
       <div class="search-container">
         <input type="text" class="search-bar" id="searchInput" placeholder="Ask Claude Opus 4.5...">
