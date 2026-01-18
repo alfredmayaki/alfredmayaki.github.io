@@ -277,6 +277,43 @@ body {
   outline: none;
 }
 
+/* Chatbot input: constrain width and center inside popup */
+.chatbot-popup .chatbot-input-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* center the inner controls */
+  gap: 0.6rem;
+  padding: 0.8rem;
+  box-sizing: border-box;
+}
+
+/* Limit input width so it doesn't overflow the popup, remain rounded and responsive */
+.chatbot-popup .chatbot-input-area .chatbot-input {
+  width: 100%;
+  max-width: 360px;      /* target width that fits the popup */
+  box-sizing: border-box;
+  margin: 0;             /* centered by parent flex alignment */
+  border-radius: 14px;   /* softer corners (already set, repeated for specificity) */
+  padding: 0.7rem 0.95rem;
+}
+
+/* If you have an upload control above the input, center it and keep it compact */
+.chatbot-popup .chatbot-input-area .file-upload-area {
+  width: 100%;
+  max-width: 360px;
+  box-sizing: border-box;
+  margin: 0;
+  justify-content: center; /* center upload controls */
+}
+
+/* Ensure small screens still use available width */
+@media (max-width: 420px) {
+  .chatbot-popup .chatbot-input-area .chatbot-input,
+  .chatbot-popup .chatbot-input-area .file-upload-area {
+    max-width: calc(100% - 24px);
+  }
+}
+
 /* If you add an upload area inside the chatbot, style it here */
 .file-upload-area {
   display: flex;
