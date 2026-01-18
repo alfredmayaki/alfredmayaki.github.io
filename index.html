@@ -233,6 +233,20 @@ body {
   box-sizing: border-box;
 }
 
+/* Make optgroup labels and their options use dark theme to match the selects */
+.navigation-select optgroup,
+.language-select optgroup {
+  background-color: #2a2a2a; /* dark surface */
+  color: #ffffff;            /* readable text */
+}
+
+/* Ensure options inside optgroups inherit the same dark appearance where supported */
+.navigation-select optgroup option,
+.language-select optgroup option {
+  background-color: #2a2a2a;
+  color: #ffffff;
+}
+
 /* Hover / focus using same accent as index_en */
 .navigation-select:hover,
 .language-select:hover {
@@ -667,12 +681,6 @@ body {
   color: #fff;
 }
 
-/* Subtle focus ring for select itself to match accept button */
-.navigation-select:focus,
-.language-select:focus {
-  outline: 3px solid rgba(61,78,233,0.18);
-  outline-offset: 2px;
-}
 .page-welcome {
   text-align: center;
   color: var(--text);
