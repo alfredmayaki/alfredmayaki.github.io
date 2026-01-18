@@ -36,6 +36,70 @@
   --transition-med: 300ms;
 }
 
+/* Intro header (title + image) */
+.site-intro {
+  display: flex;
+  gap: 0.9rem;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  margin: 0 0 1.25rem;
+  padding: 0.4rem 0.6rem;
+}
+.site-intro img {
+  width: 110px;
+  height: 110px;
+  border-radius: 999px;
+  object-fit: cover;
+  border: 3px solid rgba(255,255,255,0.06);
+  box-shadow: 0 8px 24px rgba(61,78,233,0.08);
+}
+.site-intro h1 {
+  margin: 0;
+  font-size: 1.15rem;
+  color: var(--text);
+  font-weight: 700;
+  line-height: 1.1;
+}
+.site-intro p {
+  margin: 0.35rem 0 0;
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+}
+
+/* Intro header (title + image) */
+.site-intro {
+  display: flex;
+  gap: 0.9rem;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  margin: 0 0 1.25rem;
+  padding: 0.4rem 0.6rem;
+}
+.site-intro img {
+  width: 110px;
+  height: 110px;
+  border-radius: 999px;
+  object-fit: cover;
+  border: 3px solid rgba(255,255,255,0.06);
+  box-shadow: 0 8px 24px rgba(61,78,233,0.08);
+}
+.site-intro h1 {
+  margin: 0;
+  font-size: 1.15rem;
+  color: var(--text);
+  font-weight: 700;
+  line-height: 1.1;
+}
+.site-intro p {
+  margin: 0.35rem 0 0;
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+}
+
 /* Page container (index_en look) */
 html {
   background: url("/universe.png") center / cover no-repeat fixed;
@@ -189,6 +253,44 @@ body {
   background-repeat: no-repeat;
   background-position: right 0.8rem center;
   transition: border-color var(--transition-med), box-shadow var(--transition-med), color var(--transition-med);
+}
+
+/* Reset selects to native browser defaults (override previous custom select rules) */
+.navigation-select,
+.language-select {
+  -webkit-appearance: auto !important;
+  -moz-appearance: auto !important;
+  appearance: auto !important;
+
+  /* Remove custom background/caret/caret-image applied earlier */
+  background-image: none !important;
+  background-color: transparent !important;
+
+  /* Let the browser choose native text/color/border */
+  color: inherit !important;
+  border: revert !important;
+  border-radius: revert !important;
+  padding: revert !important;
+  box-shadow: none !important;
+}
+
+/* Undo hover / focus visual overrides */
+.navigation-select:hover,
+.language-select:hover,
+.navigation-select:focus,
+.language-select:focus {
+  background: transparent !important;
+  color: inherit !important;
+  border-color: revert !important;
+  box-shadow: none !important;
+  outline: revert !important;
+}
+
+/* Don't try to style <option> — leave option rendering to the UA */
+.navigation-select option,
+.language-select option {
+  background: initial !important;
+  color: initial !important;
 }
 
 /* ---------- Chatbot popup (smooth open, minimize) ---------- */
@@ -695,8 +797,6 @@ body {
   </div>
 </div>
 
-<p><h5>Powered with ❤ using GitHub</h5></p>
-
 <script>
   // Accessible, theme-consistent navigation for the two selects.
   (function () {
@@ -757,6 +857,7 @@ body {
         <p class="footer-copyright">
           © 2026 Alfred Anate Bodurin Mayaki. All rights reserved.
         </p>
+        <p><h5>Powered with ❤ using GitHub</h5></p>
       </div>
     </footer>
   </div>
