@@ -1261,5 +1261,35 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 });
 </script>
+<script>
+/* Unified behaviour: make 'Quick navigation' act exactly like 'Select a world language'
+   - navigates in the same tab via location.href
+   - shared keyboard support (Enter)
+   - resets to placeholder after navigation
+*/
+(function () {
+  const nav = document.getElementById('navigationSelect');
+  const lang = document.getElementById('languageSelect');
+
+  const selects = [nav, lang].filter(Boolean);
+  if (!selects.length) return;
+
+  function handleSelectChange() {
+    const target = String(this.value || '').trim();
+    if (!target) return;
+    // Navigate in same tab for both selects
+    window.location.href = target;
+    // Reset to placeholder for quick reuse
+    this.value = '';
+  }
+
+  selects.forEach(s => {
+    s.addEventListener('change', handleSelectChange);
+    s.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') handleSelectChange.call(s, e);
+    });
+  });
+})();
+</script>
   </body>
   </html>
