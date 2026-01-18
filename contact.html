@@ -22,6 +22,7 @@
       --radius-md: 14px;
       --radius-lg: 18px;
       --shadow-pop: 0 10px 30px rgba(0,0,0,0.6);
+      --shadow-brand: 0 10px 30px rgba(61,78,233,0.12);
       --transition-fast: 180ms;
       --transition-med: 300ms;
     }
@@ -154,12 +155,33 @@
       color: #fff;
       font-weight:600;
       transition: transform var(--transition-fast), box-shadow var(--transition-fast), background var(--transition-fast);
+      will-change: transform, box-shadow;
     }
-    .btn[disabled] { opacity: 0.6; cursor: default; transform:none; }
+    .btn[disabled] { opacity: 0.6; cursor: default; transform:none; box-shadow: none; }
     .btn.secondary {
       background: transparent;
       color: var(--text);
       border: 1px solid rgba(255,255,255,0.06);
+    }
+
+    /* Hover / focus / active states for send button (responsive to cursor) */
+    .btn:not([disabled]):hover,
+    .btn:not([disabled]):focus {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-brand);
+      background: var(--brand-hover);
+    }
+    .btn.secondary:not([disabled]):hover,
+    .btn.secondary:not([disabled]):focus {
+      background: rgba(255,255,255,0.03);
+      color: var(--text);
+      box-shadow: var(--shadow-brand);
+      transform: translateY(-2px);
+    }
+    .btn:active { transform: translateY(-1px); }
+    .btn:focus-visible {
+      outline: 3px solid rgba(61,78,233,0.18);
+      outline-offset: 3px;
     }
 
     .thankyou {
