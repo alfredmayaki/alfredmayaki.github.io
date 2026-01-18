@@ -115,6 +115,20 @@
       color: var(--text-muted);
       font-size: 1.1em;
       line-height: 1.7;
+      /* Override parent centering and justify paragraph text for readability */
+      text-align: justify;
+      text-justify: inter-word;
+      /* Keep the last line left-aligned (prevents awkward centered last lines) */
+      text-align-last: left;
+    }
+
+    /* Be explicit for paragraph elements inside .intro */
+    .intro p {
+      margin-left: 0;
+      margin-right: 0;
+      text-align: justify;
+      text-justify: inter-word;
+      text-align-last: left;
     }
 
     .section-hidden { display: none !important; }
@@ -279,7 +293,7 @@
         </div>
 
         <div class="center-buttons">
-          <button id="login-button" class="btn btn-primary">Sign in with Google</button>
+          <button id="login-button" class="btn btn-primary">Take survey</button>
         </div>
       </div>
 
