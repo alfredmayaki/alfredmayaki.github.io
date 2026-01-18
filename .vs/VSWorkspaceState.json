@@ -1,6 +1,9 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\worker",
+    "\\worker\\src"
   ],
+  "SelectedNode": "\\index.js",
   "PreviewInSolutionExplorer": false
 }

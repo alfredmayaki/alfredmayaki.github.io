@@ -39,7 +39,7 @@
     requestTimeoutMs: 30000,
     maxHistoryTurns: 10,
     maxFileSize: 1 * 1024 * 1024, // Reduced to 1MB
-    welcomeMessage: '👋🏿🌍🚀 Hello! I\'m powered by Claude Opus 4.5. Ask me anything on any topic you\'d like to explore. You can also upload documents (.txt, .md, .json, .csv, .pdf, .docx) for analysis!',
+    welcomeMessage: '👋🏿🌍🚀 Hello! I\'m powered by Claude Opus 4.5. Ask me anything on any topic you\'d like to explore. You can also show me documents (.txt, .md, .json, .csv, .pdf, .docx) for analysis!',
     soundEffects: {
       enabled: true,        
       volume: 0.4
@@ -312,7 +312,7 @@
     uploadArea.innerHTML = `
       <input type="file" id="fileUpload" accept=".txt,.md,.json,.csv,.log,.pdf,.docx" style="display: none;">
       <button class="upload-btn" id="uploadBtn">
-        📎 Upload Document
+        📎 Upload Document (Beta)
       </button>
       <span id="fileName" style="display: none; margin-left: 10px; color: var(--text-muted); font-size: 0.9em;"></span>
     `;

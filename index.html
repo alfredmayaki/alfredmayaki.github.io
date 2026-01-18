@@ -572,6 +572,18 @@ body {
   gap: 0.6rem;
   padding: 0.9rem;
   box-sizing: border-box;
+
+}
+
+ /* Soft horizontal separator between dropdowns and footer */
+.soft-separator {
+  border: none;
+  height: 1px;
+  margin: 1.5rem 0;
+  max-width: 920px;
+  width: 100%;
+  background: linear-gradient(90deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+  opacity: 0.85;
 }
 
 /* Each message row fills width; alignment controlled by role classes */
@@ -727,15 +739,39 @@ body {
   border: 3px solid rgba(255,255,255,0.06);
   box-shadow: var(--shadow-pop);
 }
+
+/* Add inside the existing <style> block (e.g. near .hero-image) */
+.inline-code {
+  font-family: "Consolas", "Courier New", monospace;
+  background: rgba(255,255,255,0.04);
+  color: var(--text);
+  padding: 0.08rem 0.45rem;
+  border-radius: 6px;
+  border: 1px solid rgba(255,255,255,0.04);
+  font-size: 0.95rem;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.12) inset;
+}
+
+/* Add inside the existing <style> block (near other heading or subtitle rules) */
+.page-subtitle  {
+  color: #9b9b9b;                        /* grey */
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: center;
+  margin: 0.6rem 0;
+  font-weight: 600;
+  font-size: 1rem;
+}
   </style>
 </head>
 <body>
   
   <div id="particles-js" style="position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:-1;"></div>
 <h1 class="page-welcome">A.A.B. Mayaki - Welcome to my Personal Website</h1>
+<div class="page-subtitle"><h4>Labour Economist, Public Policy Researcher, and Human Resource Business Partner</h4></div>
+<div class="page-subtitle"><h4>The Open University & Royal Economic Society</h4></div>
 
       <div style="max-width: 800px; text-align: left; font-size: 0.9em; line-height: 1.8; color: var(--text-secondary); margin: 2em auto; padding: 1.5em; background: rgba(255, 255, 255, 0.02); border-left: 4px solid var(--brand); border-radius: 4px;">
-        <p>🛸 This is a frontend Python 3, JavaScript and HTML5 web application that was created by simply using an index.html file in GitHub and developed using the Visual Studio IDE and further developed at a later date using the Microsoft VS Insiders 2026 IDE. It is deployed from GitHub to a student-licensed app on Heroku and then through a wrangler deploy command using Cloudflare, the main search protocol on the homepage calls Claude Code 4.5 Opus for the chatbot feature. This is achieved via an index.js file.</p>
+        <p>🛸 This is a frontend Python 3, JavaScript and HTML5 web application that was created by simply using an index.html file in GitHub and developed using the Visual Studio IDE and further developed at a later date using the Microsoft VS Insiders 2026 IDE. It is deployed from GitHub to a student-licensed app on Heroku and then through a <code class="inline-code">wrangler deploy</code> command using Cloudflare, the main search protocol on the homepage calls Claude Code 4.5 Opus for the chatbot feature. This is achieved via an index.js file.</p>
 
         <p>🌍 The application consists of a personal profile of mine which offers multilingual support for its readership ~ in English as well as in 14 other languages. More languages may become available at a later date.</p>
 
@@ -746,7 +782,7 @@ body {
         <p>📵 The documents contained within the repository are all my own or have been entrusted to me by organisations I am closely affiliated with. The documents under my immediate ownership are copyright-protected and should not be reproduced for sale or for profit without my acknowledgement. Finally, I would like to send a big thank you to the designer of this web application's theme, Mr. Vincent Garreau, who is the author of 'particles.js' on GitHub.</p>
       </div>
 
-      <img src="/136989183.jpg" alt="Alfred A. B. Mayaki" class="hero-image" />
+      <img src="/s200_alfred.mayaki.jpg" alt="Alfred A. B. Mayaki" class="hero-image" />
 
       <div class="search-container">
         <input type="text" class="search-bar" id="searchInput" placeholder="Ask Claude Opus 4.5...">
@@ -773,7 +809,7 @@ body {
   <div class="select-wrap">
     <label class="visually-hidden" for="navigationSelect">Quick navigation</label>
     <select id="navigationSelect" class="navigation-select" aria-label="Quick navigation">
-      <option value="" selected disabled>Quick navigation…</option>
+      <option value="" selected disabled>🎬 Quick navigation…</option>
 
       <optgroup label="Site">
         <option value="msc-survey.html">📝 MSc HRM Dissertation Survey</option>
@@ -792,12 +828,12 @@ body {
       </optgroup>
 
     </select>
-  </div>
+  </div
 
-  <div class="select-wrap">
+    <div class="select-wrap">
     <label class="visually-hidden" for="languageSelect">Select a language</label>
     <select id="languageSelect" class="language-select" aria-label="Select a world language">
-      <option value="" selected disabled>Select a world language…</option>
+      <option value="" selected disabled>🌈 Select a world language…</option>
 
       <option value="index_en.html" lang="en">🇬🇧 English</option>
       <option value="index_cy.html" lang="cy">🇬🇧 Cymraeg</option>
@@ -818,6 +854,9 @@ body {
     </select>
   </div>
 </div>
+
+<!-- Soft separator inserted here -->
+<hr class="soft-separator" aria-hidden="true">
 
 <script>
   // Accessible, theme-consistent navigation for the two selects.
