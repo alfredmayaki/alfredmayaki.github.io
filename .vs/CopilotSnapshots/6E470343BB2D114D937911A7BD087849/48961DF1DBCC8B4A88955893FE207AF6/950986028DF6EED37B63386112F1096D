@@ -1,4 +1,4 @@
-# Copilot Instructions
+﻿# Copilot Instructions
 
 ## General Guidelines
 - First general instruction
@@ -9,4 +9,4 @@
 - Use distinct bubble styles for bot and user messages, ensuring bubbles are rounded and animated.
 - Implement entrance animations for messages.
 - Ensure input and upload controls are rounded, centered, and have a maximum width of 360px.
-- Prefer select controls to use border/box-shadow accent on hover/focus rather than changing the select background or styling `<option>` elements directly to avoid inverse/native OS rendering inconsistencies across browsers. Maintain consistent caret styling, use `appearance: none` on selects, and apply accent-color (brand blue) for additional emphasis.
+- For select controls, prefer accenting with border/box-shadow on hover instead of changing the select background or styling `<option>` elements to avoid inverse color rendering across browsers. Maintain consistent caret styling and prefer `appearance: none` on selects.

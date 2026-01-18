@@ -172,13 +172,23 @@ body {
 .search-btn:hover { transform: translateY(-2px); background: var(--brand-hover); box-shadow: var(--shadow-brand); }
 .search-btn svg { width:20px; height:20px; fill: #fff; }
 
-/* ---------- Selects ---------- */
-.language-select, .navigation-select {
+/* DROPLIST: keep brand accent without styling <option> (avoids inverse/native rendering) */
+.navigation-select,
+.language-select {
   padding: 0.7rem 2.5rem 0.7rem 1rem;
   color: var(--text);
   background-color: var(--surface);
   border: 1px solid rgba(255,255,255,0.04);
   border-radius: 10px;
+  /* remove native appearance so the control looks consistent */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  padding-right: 2.5rem; /* room for caret */
+  background-image: linear-gradient(transparent, transparent);
+  background-repeat: no-repeat;
+  background-position: right 0.8rem center;
+  transition: border-color var(--transition-med), box-shadow var(--transition-med), color var(--transition-med);
 }
 
 /* ---------- Chatbot popup (smooth open, minimize) ---------- */
@@ -599,11 +609,14 @@ body {
   
   <div id="particles-js" style="position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:-1;"></div>
 
-  <div class="landing-container">
-    <div class="main-content">
-      <img src="s200_alfred.mayaki.jpg" alt="Alfred Mayaki" class="profile-photo">
+/* Responsive tweaks */
+@media (max-width: 600px) {
+  .cookie-content { gap:0.5rem; }
+  .cookie-text { max-width: 100%; }
+  .chatbot-popup { right:12px; bottom:12px; width: calc(100vw - 24px); }
+}
 
-      <br><b><p class="tagline">B894-25K: MSc in HRM Dissertation Research Project - Supervised by Dr. Nicola J. Bowman</p></b>
+/* ===== Overrides: precise footer + full-bleed chatbot header ===== */
 
       <div style="max-width: 800px; text-align: left; font-size: 0.9em; line-height: 1.8; color: var(--text-secondary); margin: 2em auto; padding: 1.5em; background: rgba(255, 255, 255, 0.02); border-left: 4px solid var(--brand); border-radius: 4px;">
         <p>🛸 This is a frontend Python 3, JavaScript and HTML5 web application that was created by simply using an index.html file in GitHub and developed using the Visual Studio IDE and further developed at a later date using the Microsoft VS Insiders 2026 IDE. It is deployed from GitHub to a student-licensed app on Heroku and then through a wrangler deploy command using Cloudflare, the main search protocol on the homepage calls Claude Code 3.5 Haiku for the chatbot feature. This is achieved via an index.js file.</p>
