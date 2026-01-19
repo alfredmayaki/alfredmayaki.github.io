@@ -1,4 +1,4 @@
-# Copilot Instructions
+﻿# Copilot Instructions
 
 ## General Guidelines
 - First general instruction
@@ -21,4 +21,4 @@
 - User prefers Font Awesome icons for social links on the contact page.
 
 ## User Interaction Preferences
-- After Google authentication, reveal the embedded survey on the same page (hide login and show survey-section) and enable the Submit button immediately; backend sessionLogin may run in the background but must not redirect the user away to /dashboard.
+- After Google sign-in, reveal the survey UI on the same page (hide login and show survey-section) and enable the Submit button instead of redirecting to /dashboard. Attempt backend /sessionLogin in the background but do not navigate away.

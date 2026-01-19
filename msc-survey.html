@@ -440,37 +440,41 @@
 
     logoutBtn?.addEventListener('click', () => signOut(auth));
 
-    // onAuthStateChanged will update UI and perform session setup as before
+    // onAuthStateChanged will update UI and reveal the hidden survey on successful login.
+    // Important: this no longer redirects to /dashboard which prevented access to the in-page survey.
     onAuthStateChanged(auth, async (user) => {
       if (user) {
-        // Immediately update UI so user can proceed to survey
-        if (googleStatusEl) googleStatusEl.textContent = `Signed in as ${user.email}`;
+        // Show survey UI (hidden behind login)
+        if (googleStatusEl) googleStatusEl.textContent = `Signed in as ${user.email || user.displayName || 'user'}`;
         if (loginSection) loginSection.classList.add('section-hidden');
         if (surveySection) surveySection.classList.remove('section-hidden');
         if (submitBtn) submitBtn.disabled = false;
 
-        // Send token to backend asynchronously; do not block UI or redirect
+        // Send token to backend asynchronously (fire-and-forget).
+        // Do not redirect — user should remain on this page to complete the survey.
         try {
           const idToken = await getIdToken(user, /* forceRefresh= */ false);
-          // Fire-and-forget POST; log warnings/errors but don't prevent survey access
           fetch('/sessionLogin', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ idToken })
           }).then(resp => {
-            if (!resp.ok) console.warn('Backend session login responded with non-OK status.');
+            if (!resp.ok) {
+              // Log but don't break the user flow
+              console.warn('sessionLogin responded with non-OK status', resp.status);
+            }
           }).catch(err => {
-            console.error('Session login network error:', err);
+            console.error('sessionLogin network error', err);
           });
         } catch (err) {
-          console.error('Failed to obtain ID token:', err);
+          console.error('Could not get ID token for sessionLogin:', err);
         }
       } else {
-        // Not signed in — show login UI
-        loginSection.classList.remove('section-hidden');
-        surveySection.classList.add('section-hidden');
-        submitBtn.disabled = true;
-        form.reset();
+        // Not signed in — show login UI and hide survey
+        if (loginSection) loginSection.classList.remove('section-hidden');
+        if (surveySection) surveySection.classList.add('section-hidden');
+        if (submitBtn) submitBtn.disabled = true;
+        if (form) form.reset();
         if (googleStatusEl) googleStatusEl.textContent = 'Not signed in';
       }
     });
@@ -478,7 +482,7 @@
     form.addEventListener('submit', async e => {
       e.preventDefault();
       if (!auth.currentUser || !form.q1.value.trim()) {
-        errorEl.textContent = !auth.currentUser ? "Please sign in." : "Please answer question 1.";
+        if (errorEl) errorEl.textContent = !auth.currentUser ? "Please sign in." : "Please answer question 1.";
         return;
       }
 
@@ -495,12 +499,13 @@
 
       try {
         await setDoc(doc(db, "surveyResponses", auth.currentUser.uid), data);
-        statusEl.textContent = "Thank you! Your responses have been successfully submitted.";
+        if (statusEl) statusEl.textContent = "Thank you! Your responses have been successfully submitted.";
         form.reset();
         submitBtn.textContent = "Submitted";
         submitBtn.disabled = true;
       } catch (err) {
-        errorEl.textContent = err.code === 'permission-denied'
+        console.error('Submission error', err);
+        if (errorEl) errorEl.textContent = err.code === 'permission-denied'
           ? "You have already submitted a response with this account. Thank you!"
           : "Submission failed. Please try again.";
         submitBtn.disabled = false;
@@ -509,7 +514,6 @@
     });
 
     // Google Identity Services integration
-    // Replace YOUR_GOOGLE_OAUTH_CLIENT_ID with your OAuth client id (web).
     const GOOGLE_CLIENT_ID = '447556072560-9fn2v4pq58bahht7b1d4khgltk6ja8p0.apps.googleusercontent.com';
 
     // Handler invoked by the Google Identity callback
@@ -524,7 +528,7 @@
         const idToken = response.credential;
         const credential = GoogleAuthProvider.credential(idToken);
         await signInWithCredential(auth, credential); // modular sign-in
-        // onAuthStateChanged will run and handle showing the survey
+        // onAuthStateChanged will run and reveal the survey
       } catch (err) {
         console.error('Error signing in with Google credential:', err);
         if (errorEl) errorEl.textContent = "Google sign-in failed. Please try the popup fallback or enable cookies.";
