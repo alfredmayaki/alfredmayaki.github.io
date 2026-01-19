@@ -195,6 +195,24 @@
 
     .soft-separator { border:none; height:1px; margin:1.5rem 0; width:100%; background: linear-gradient(90deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02)); opacity:0.85; }
 
+    /* Map embed */
+    .map-embed {
+      display:flex;
+      justify-content:center;
+      margin-top: 1rem;
+    }
+    .map-embed iframe {
+      width: 100%;
+      max-width: 720px;
+      height: 600px;
+      border: 0;
+      border-radius: 10px;
+      box-shadow: 0 12px 36px rgba(0,0,0,0.55);
+    }
+    @media (max-width: 760px) {
+      .map-embed iframe { height: 420px; }
+    }
+
     /* Footer */
     .site-footer { padding: 1.25rem 0; margin-top: 2.5rem; text-align:center; }
     .footer-links { display:inline-flex; gap:0.5rem; align-items:center; justify-content:center; flex-wrap:wrap; padding:0; margin:0 0 0.6rem 0; list-style:none; }
@@ -261,7 +279,22 @@
       </form>
     </div>
 
-    <p style="margin-top:1rem;color:var(--text-secondary);">By sending a message the visitor consents to Alfred processing the contact information for the purpose of responding to the enquiry. Personal data will be handled in accordance with the site's privacy policy.</p>
+    <!-- Map: ArcGIS instant app embedded using provided iframe. Centered and responsive. -->
+    <section aria-labelledby="map-heading" class="map-embed" style="margin-top:1.25rem;">
+      <h2 id="map-heading" class="section-title" style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden;">Location map</h2>
+      <iframe
+        title="ArcGIS map — Alfred's contact area"
+        src="https://www.arcgis.com/apps/instant/sidebar/index.html?appid=b5b0715207c245b3865a084f3f3ee7ec"
+        width="400"
+        height="600"
+        frameborder="0"
+        style="border:0"
+        allowfullscreen>
+        iFrames are not supported on this page.
+      </iframe>
+    </section>
+
+    <p style="margin-top:1rem;color:var(--text-secondary);">By sending a message the visitor consents to the processing of contact information for the purpose of responding to the enquiry. Personal data will be handled in accordance with the site's privacy policy.</p>
   </main>
 
   <footer class="site-footer" role="contentinfo">
@@ -348,29 +381,22 @@
         status.textContent = 'Preparing message...';
 
         // Try to open mail client as a fallback delivery mechanism
-        // (This will open user's mail application and prepopulate recipient info)
-        // Also show a thank-you message to the visitor.
         try {
           const mailto = buildMailto(values);
-          // Small delay so user sees "Sending..." then mail client opens
           setTimeout(() => {
-            // Open mail client
             window.location.href = mailto;
           }, 250);
         } catch (err) {
-          // noop - still continue to UX
           console.warn('mailto fallback failed', err);
         }
 
         // Final UX: show thank you and expected timeline
         setTimeout(() => {
-          // Replace form with thank-you box
           const thank = document.createElement('div');
           thank.className = 'thankyou';
           thank.innerHTML = '<div>Thank you — your message has been prepared.<br><small style="font-weight:400;color:var(--text-secondary);">Alfred aims to reply within 3–5 working days. If this is urgent, please call 07940 916731.</small></div>';
           form.replaceWith(thank);
 
-          // Clear status and errors
           status.textContent = '';
           errorList.textContent = '';
         }, 700);
