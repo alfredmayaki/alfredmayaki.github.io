@@ -1,4 +1,4 @@
-# Copilot Instructions
+﻿# Copilot Instructions
 
 ## General Guidelines
 - First general instruction
@@ -17,4 +17,4 @@
 - Apply the dropdown/select visual theme from index_en.html (the `.profile-links-select` styling) to the droplists in index.html (navigationSelect and languageSelect), making selects dark, rounded, with custom caret SVG, hover and focus styles, and slightly larger max-width (≈400px).
 
 ## Contact Page Preferences
-- User prefers Font Awesome brand icons for social links on the contact page. Use 'fa-brands fa-x' for X and 'fa-brands fa-bluesky' for BlueSky.
+- User prefers Font Awesome icons for social links on the contact page.

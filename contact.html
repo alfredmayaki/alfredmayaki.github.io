@@ -7,6 +7,9 @@
   <meta name="description" content="Contact Alfred Anate Bodurin Mayaki — enquiries, collaborations and community work." />
   <meta name="author" content="Alfred Anate Bodurin Mayaki" />
 
+  <!-- Font Awesome (icons for social links) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" />
+
   <style>
     :root{
       --font-sans: "Segoe UI", system-ui, -apple-system, Arial, sans-serif;
@@ -195,6 +198,51 @@
 
     .soft-separator { border:none; height:1px; margin:1.5rem 0; width:100%; background: linear-gradient(90deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02)); opacity:0.85; }
 
+    /* Social links (Font Awesome) */
+    .social-links {
+      display:flex;
+      gap:0.5rem;
+      margin-top:0.6rem;
+      align-items:center;
+      flex-wrap:wrap;
+    }
+    .social-link {
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:0.5rem;
+      padding:0.45rem 0.6rem;
+      border-radius:10px;
+      background: var(--surface);
+      color: var(--text);
+      text-decoration:none;
+      border: 1px solid rgba(255,255,255,0.04);
+      transition: transform var(--transition-fast), box-shadow var(--transition-fast), background var(--transition-fast);
+      font-size:0.95rem;
+    }
+    .social-link .fa {
+      color: var(--brand);
+      font-size: 18px;
+      line-height: 1;
+    }
+    .social-link:hover, .social-link:focus {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-brand);
+      background: linear-gradient(90deg, var(--brand), var(--brand-hover));
+      color: #fff;
+    }
+    .social-link:hover .fa, .social-link:focus .fa {
+      color: #fff;
+    }
+
+    /* small helper for screen-reader-only text */
+    .sr-only {
+      position: absolute !important;
+      height: 1px; width: 1px;
+      overflow: hidden; clip: rect(1px, 1px, 1px, 1px);
+      white-space: nowrap; border: 0; padding: 0; margin: -1px;
+    }
+
     /* Map embed */
     .map-embed {
       display:flex;
@@ -252,10 +300,24 @@
         <div class="soft-separator" aria-hidden="true"></div>
 
         <p class="note"><strong>Expected reply time:</strong> Alfred aims to respond to enquiries within 3–5 working days. For urgent community support requests, please use the appropriate local support channels (see BipolarUK and Meetup pages).</p>
+
+        <!-- Social icons + links (Font Awesome) -->
+        <div class="social-links" role="navigation" aria-label="Social profiles">
+          <a class="social-link" href="https://www.linkedin.com/in/alfredmayaki" target="_blank" rel="noopener noreferrer" aria-label="Alfred on LinkedIn">
+            <i class="fa fa-brands fa-linkedin-in" aria-hidden="true"></i>
+            <span class="sr-only">LinkedIn</span>
+          </a>
+
+          <a class="social-link" href="https://x.com/alfredmayaki" target="_blank" rel="noopener noreferrer" aria-label="Alfred on X (formerly Twitter)">
+            <i class="fa fa-brands fa-x-twitter" aria-hidden="true"></i>
+            <span class="sr-only">X</span>
+          </a>
+        </div>
+
       </div>
 
       <form id="contactForm" class="contact-form" aria-describedby="contact-form-desc" novalidate>
-        <div id="contact-form-desc" class="note">Please provide your name, a contact email, and a short message. Submitted messages are sent to info@alfredmayaki.me. A confirmation will be shown after sending.</div>
+        <div id="contact-form-desc" class="note">Please provide your name, a contact email, and a short message. Submitted messages are sent to info@alfredmayaki.me. A "thank you" confirmation will be shown after sending.</div>
 
         <label for="name">Your name <span class="note" aria-hidden="true">*</span></label>
         <input id="name" name="name" class="input" type="text" autocomplete="name" required />
@@ -283,7 +345,7 @@
     <section aria-labelledby="map-heading" class="map-embed" style="margin-top:1.25rem;">
       <h2 id="map-heading" class="section-title" style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden;">Location map</h2>
       <iframe
-        title="ArcGIS map — Alfred's contact area"
+        title="ArcGIS map — Alfred's constituency area of Peckham"
         src="https://www.arcgis.com/apps/instant/sidebar/index.html?appid=b5b0715207c245b3865a084f3f3ee7ec"
         width="400"
         height="600"
@@ -294,7 +356,7 @@
       </iframe>
     </section>
 
-    <p style="margin-top:1rem;color:var(--text-secondary);">By sending a message the visitor consents to the processing of contact information for the purpose of responding to the enquiry. Personal data will be handled in accordance with the site's privacy policy.</p>
+    <p style="margin-top:1rem;color:var(--text-secondary);">By sending a message the visitor consents to Alfred processing the contact information for the purpose of responding to the enquiry. Personal data will be handled in accordance with the site's privacy policy.</p>
   </main>
 
   <footer class="site-footer" role="contentinfo">
