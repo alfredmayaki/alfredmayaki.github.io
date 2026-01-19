@@ -443,27 +443,27 @@
     // onAuthStateChanged will update UI and perform session setup as before
     onAuthStateChanged(auth, async (user) => {
       if (user) {
+        // Immediately update UI so user can proceed to survey
+        if (googleStatusEl) googleStatusEl.textContent = `Signed in as ${user.email}`;
+        if (loginSection) loginSection.classList.add('section-hidden');
+        if (surveySection) surveySection.classList.remove('section-hidden');
+        if (submitBtn) submitBtn.disabled = false;
+
+        // Send token to backend asynchronously; do not block UI or redirect
         try {
-          // Update native status display
-          if (googleStatusEl) googleStatusEl.textContent = `Signed in as ${user.email}`;
-
-          // Get Firebase ID token and send to backend to establish a session
           const idToken = await getIdToken(user, /* forceRefresh= */ false);
-
-          const resp = await fetch('/sessionLogin', {
+          // Fire-and-forget POST; log warnings/errors but don't prevent survey access
+          fetch('/sessionLogin', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ idToken })
+          }).then(resp => {
+            if (!resp.ok) console.warn('Backend session login responded with non-OK status.');
+          }).catch(err => {
+            console.error('Session login network error:', err);
           });
-
-          if (!resp.ok) throw new Error('Backend session login failed');
-
-          // Redirect to backend page (adjust path to your backend endpoint)
-          window.location.href = '/dashboard'; // <- change to your backend URL
         } catch (err) {
-          console.error('Session login failed:', err);
-          // fallback: remain on page or show error
-          if (googleStatusEl && auth.currentUser) googleStatusEl.textContent = `Signed in as ${auth.currentUser.email}`;
+          console.error('Failed to obtain ID token:', err);
         }
       } else {
         // Not signed in — show login UI
@@ -524,7 +524,7 @@
         const idToken = response.credential;
         const credential = GoogleAuthProvider.credential(idToken);
         await signInWithCredential(auth, credential); // modular sign-in
-        // onAuthStateChanged will run and handle session/login redirect
+        // onAuthStateChanged will run and handle showing the survey
       } catch (err) {
         console.error('Error signing in with Google credential:', err);
         if (errorEl) errorEl.textContent = "Google sign-in failed. Please try the popup fallback or enable cookies.";
