@@ -138,6 +138,14 @@ body {
 @media (max-width: 600px) {
   .top-nav { flex-direction: column; align-items: flex-start; gap: 0.6rem; padding: 0.4rem; }
   .top-nav .nav-links { width: 100%; justify-content: space-between; }
+
+  .top-nav .brand {
+    order: 1;
+    margin-bottom: 0.5rem;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
 }
 
 /* ---------- Cookie banner (smooth slide) ---------- */
@@ -829,15 +837,15 @@ body {
 <body>
   <!-- Top navigation (new) -->
   <nav class="top-nav" aria-label="Main navigation">
-    <a href="index.html" class="brand">A.A.B. Mayaki</a>
-    <div class="nav-links" role="menubar" aria-label="Primary links">
-      <a href="index.html" role="menuitem">Home</a>
-      <a href="about.html" role="menuitem">About</a>
-      <a href="research.html" role="menuitem">Research</a>
-      <a href="projects.html" role="menuitem">Projects</a>
-      <a href="contact.html" role="menuitem">Contact</a>
-    </div>
-  </nav>
+  <a href="index.html" class="brand">A.A.B. Mayaki</a>
+  <div class="nav-links" role="menubar" aria-label="Primary links">
+    <a href="index.html" role="menuitem">Home</a>
+    <a href="about.html" role="menuitem">About</a>
+    <a href="research.html" role="menuitem">Research</a>
+    <a href="projects.html" role="menuitem">Projects</a>
+    <a href="contact.html" role="menuitem">Contact</a>
+  </div>    
+</nav>
   
   <div id="particles-js" style="position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:-1;"></div>
 <h1 class="page-welcome">Welcome to my Personal Website</h1>
@@ -845,7 +853,7 @@ body {
 <div class="page-subtitle"><h4>The Open University & Royal Economic Society</h4></div>
 
       <div style="max-width: 800px; text-align: left; font-size: 0.9em; line-height: 1.8; color: var(--text-secondary); margin: 2em auto; padding: 1.5em; background: rgba(255, 255, 255, 0.02); border-left: 4px solid var(--brand); border-radius: 4px;">
-        <p>🛸 This app uses a backend of Python 3, Node.js and a frontend of JavaScript and HTML5 to generate a web application created in January 2026 by simply using an index.html file in GitHub that was developed in the Visual Studio IDE and further developed in the Microsoft VS Insiders 2026 IDE. It is deployed from GitHub to a student-licensed app on Heroku and then through a <code class="inline-code">wrangler deploy</code> command using Cloudflare, the main search protocol on the homepage calls Claude Code 4.5 Opus for the chatbot feature. This is achieved via an index.js file.</p>
+        <p>🛸 This app uses a backend tech stack of Python 3, FireBase + Node.js, and a frontend stack of JavaScript CSS, and HTML5 to generate a web application created in January 2026 by simply using an index.html file in GitHub that was developed in the Visual Studio IDE and further developed in the Microsoft VS Insiders 2026 IDE. It is deployed from GitHub to a student-licensed app on Heroku and then through a <code class="inline-code">wrangler deploy</code> command using Cloudflare, the main search protocol on the homepage calls Claude Code 4.5 Opus for the chatbot feature. This is achieved via an index.js file.</p>
         
         <p>🌍 The application consists of a personal profile of mine which offers multilingual support to its readership ~ in English as well as in 14 other languages. More languages may become available at a later date.</p>
 
@@ -891,6 +899,7 @@ body {
       <optgroup label="Research & Profiles">
         <option value="https://www.qeios.com/profile/102543">💻 Qeios Research Profile</option>
         <option value="https://sites.google.com/view/alfredmayaki/useful-links?authuser=0">🔗 Useful Links</option>
+        <option value="claude-code.html">🤖 Claude Code 4.5 Opus — Explainer</option>
       </optgroup>
 
       <optgroup label="Community & External">
