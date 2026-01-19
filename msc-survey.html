@@ -1,4 +1,4 @@
-﻿`<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -7,6 +7,8 @@
 
   <!-- Particles.js -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
+  <!-- Google Identity Services (native Google button) -->
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
 
   <style>
     :root {
@@ -217,6 +219,7 @@
       justify-content: center;
       flex-wrap: wrap;
       margin: 2rem 0;
+      align-items: center;
     }
 
     #status {
@@ -306,11 +309,17 @@
             Please sign in with your Google account to respond to the survey.<br>
             <em>And may the Lord Jesus bless you divinely as you do so. Amen.</em>
           </p>
-        
 
+        <!-- REPLACED: Native Google Sign-In area (replaces the previous Sign in with Google button) -->
         <div class="center-buttons">
-          <button id="login-button" class="btn btn-primary">Sign in with Google</button>
+          <!-- Container where the native Google button will render -->
+          <div id="g_id_signin" aria-hidden="false"></div>
+
+          <!-- Small status area to show user's signed-in email when available -->
+          <div id="google-login-status" role="status" aria-live="polite" style="color:var(--text); margin-left:8px;"></div>
         </div>
+        <!-- End of Google sign-in area -->
+
       </div>
 
       <!-- Survey Section (hidden until login) -->
@@ -398,7 +407,7 @@
   <!-- Firebase SDK -->
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
-    import { getAuth, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged, getIdToken } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js";
+    import { getAuth, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged, getIdToken, signInWithCredential } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js";
     import { getFirestore, doc, setDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js";
 
     const firebaseConfig = {
@@ -418,36 +427,29 @@
 
     const loginSection = document.getElementById('login-section');
     const surveySection = document.getElementById('survey-section');
-    const loginBtn = document.getElementById('login-button');
     const logoutBtn = document.getElementById('logout-button');
     const submitBtn = document.getElementById('submit-button');
     const form = document.getElementById('survey-form');
     const statusEl = document.getElementById('status');
     const errorEl = document.getElementById('error');
+    const googleStatusEl = document.getElementById('google-login-status');
 
-    loginBtn.addEventListener('click', async () => {
-      loginBtn.disabled = true;
-      loginBtn.textContent = "Connecting…";
-      try { await signInWithPopup(auth, provider); }
-      catch (err) {
-        errorEl.textContent = err.code === 'auth/popup-blocked'
-          ? "Popup blocked – please allow popups."
-          : "Sign-in failed. Please try again.";
-      } finally {
-        loginBtn.disabled = false;
-        loginBtn.textContent = "Sign in with Google";
-      }
-    });
+    // Legacy popup sign-in (kept as fallback)
+    // Sign-in with popup is still available when needed:
+    // await signInWithPopup(auth, provider);
 
-    logoutBtn.addEventListener('click', () => signOut(auth));
+    logoutBtn?.addEventListener('click', () => signOut(auth));
 
+    // onAuthStateChanged will update UI and perform session setup as before
     onAuthStateChanged(auth, async (user) => {
       if (user) {
         try {
-          // Get Firebase ID token
+          // Update native status display
+          if (googleStatusEl) googleStatusEl.textContent = `Signed in as ${user.email}`;
+
+          // Get Firebase ID token and send to backend to establish a session
           const idToken = await getIdToken(user, /* forceRefresh= */ false);
 
-          // Send token to backend to establish a session
           const resp = await fetch('/sessionLogin', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -461,12 +463,15 @@
         } catch (err) {
           console.error('Session login failed:', err);
           // fallback: remain on page or show error
+          if (googleStatusEl && auth.currentUser) googleStatusEl.textContent = `Signed in as ${auth.currentUser.email}`;
         }
       } else {
+        // Not signed in — show login UI
         loginSection.classList.remove('section-hidden');
         surveySection.classList.add('section-hidden');
         submitBtn.disabled = true;
         form.reset();
+        if (googleStatusEl) googleStatusEl.textContent = 'Not signed in';
       }
     });
 
@@ -501,6 +506,57 @@
         submitBtn.disabled = false;
         submitBtn.textContent = "Submit Survey";
       }
+    });
+
+    // Google Identity Services integration
+    // Replace YOUR_GOOGLE_OAUTH_CLIENT_ID with your OAuth client id (web).
+    const GOOGLE_CLIENT_ID = '447556072560-9fn2v4pq58bahht7b1d4khgltk6ja8p0.apps.googleusercontent.com';
+
+    // Handler invoked by the Google Identity callback
+    window.handleGoogleCredentialResponse = async function (response) {
+      // response.credential is the ID token (JWT)
+      if (!response || !response.credential) {
+        console.warn('No credential returned from Google Identity.');
+        return;
+      }
+      try {
+        // Sign in to Firebase using the ID token obtained from Google Identity Services
+        const idToken = response.credential;
+        const credential = GoogleAuthProvider.credential(idToken);
+        await signInWithCredential(auth, credential); // modular sign-in
+        // onAuthStateChanged will run and handle session/login redirect
+      } catch (err) {
+        console.error('Error signing in with Google credential:', err);
+        if (errorEl) errorEl.textContent = "Google sign-in failed. Please try the popup fallback or enable cookies.";
+      }
+    };
+
+    // Initialize Google Identity button after the GIS script is loaded
+    function initGoogleButton() {
+      if (!window.google || !google.accounts || !google.accounts.id) {
+        console.warn('Google Identity Services not available yet.');
+        return;
+      }
+      google.accounts.id.initialize({
+        client_id: GOOGLE_CLIENT_ID,
+        callback: handleGoogleCredentialResponse,
+        // auto_select: false // don't auto sign-in unless desired
+      });
+
+      // Render the "Sign in with Google" button into the placeholder
+      google.accounts.id.renderButton(
+        document.getElementById('g_id_signin'),
+        { theme: 'outline', size: 'large', text: 'signin_with' } // customization
+      );
+
+      // Optional: don't auto prompt; leave user to click the button
+      google.accounts.id.prompt(); // can be removed if you don't want prompt behavior
+    }
+
+    // Wait for GIS to load, then init the button
+    window.addEventListener('load', function () {
+      // Give GIS a short time to load; if you prefer, poll for google.accounts.id
+      setTimeout(initGoogleButton, 250);
     });
   </script>
 
