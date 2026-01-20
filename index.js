@@ -500,39 +500,93 @@
   // EVENT LISTENERS
   // ========================================
 
-  elements.searchBtn.addEventListener('click', function () {
-    console.log('🔍 Search button clicked');
-    openChatbot();
+  // Centralized send helper used by Enter key and send button
+  function sendFromChatInput() {
+    // Prevent starting a send if one is already in flight
+    if (state.isSending) {
+      console.warn('⚠️ Send ignored: request already in flight');
+      return;
+    }
+
+    const raw = normalizeUserText(elements.chatbotInput.value);
+    if (!raw) return;
+
+    // Disable inputs to prevent double-typing while request is being created.
+    // Do NOT set state.isSending here — processQuery() sets it synchronously.
+    setInputEnabled(false);
+
+    // Add user message to UI & history BEFORE sending so UI updates instantly
+    addUserMessage(raw);
+    pushHistory('user', raw);
+
+    // Clear and focus
+    elements.chatbotInput.value = '';
+    elements.chatbotInput.focus();
+
+    // Call the existing processQuery (it sets state.isSending and handles finalization)
+    void processQuery(raw);
+  }
+
+  // Safely bind a click handler only once (prevents double-binding)
+  function bindOnce(el, event, handler) {
+    if (!el) return;
+    if (el.dataset && el.dataset.bound === '1') return;
+    el.addEventListener(event, handler);
+    if (el.dataset) el.dataset.bound = '1';
+  }
+
+  // Search button: open chatbot and optionally send query
+  bindOnce(elements.searchBtn, 'click', function (e) {
+    e.preventDefault();
+    if (e.stopImmediatePropagation) e.stopImmediatePropagation();
+    console.log('🔍 Search button clicked (safe handler)');
+
+    const query = normalizeUserText(elements.searchInput.value);
+    elements.chatbotPopup.classList.add('active');
+    void SoundFX.playSuccess();
+
+    if (!query) {
+      elements.chatbotInput.focus();
+      elements.searchInput.value = '';
+      return;
+    }
+
+    // Move query to chat input and send via central flow
+    elements.chatbotInput.value = query;
+    elements.searchInput.value = '';
+    sendFromChatInput();
   });
 
-  elements.searchInput.addEventListener('keypress', function (e) {
+  // Enter on search input triggers search button
+  bindOnce(elements.searchInput, 'keypress', function (e) {
     if (e.key === 'Enter') {
-      console.log('⏎ Enter pressed in search input');
-      openChatbot();
+      e.preventDefault();
+      elements.searchBtn.click();
     }
   });
 
-  elements.chatbotInput.addEventListener('keydown', function (e) {
-    if (e.key !== 'Enter') return;
+  // Send button inside chat
+  const chatSendBtn = document.getElementById('chatSend');
+  bindOnce(chatSendBtn, 'click', function (e) {
     e.preventDefault();
-
-    console.log('⏎ Enter pressed in chatbot input');
-
-    const message = normalizeUserText(elements.chatbotInput.value);
-    if (!message) return;
-
-    addUserMessage(message);
-    pushHistory('user', message);
-
-    void processQuery(message);
-    elements.chatbotInput.value = '';
+    if (e.stopImmediatePropagation) e.stopImmediatePropagation();
+    sendFromChatInput();
   });
 
-  elements.closeChat.addEventListener('click', closeChatbot);
+  // Enter in the chatbot input -> central send
+  bindOnce(elements.chatbotInput, 'keydown', function (e) {
+    if (e.key !== 'Enter' || e.shiftKey) return;
+    e.preventDefault();
+    sendFromChatInput();
+  });
 
-  document.addEventListener('keydown', function (e) {
+  // Close / cancel logic
+  bindOnce(elements.closeChat, 'click', closeChatbot);
+
+  // Escape handling: cancel in-flight or close popup
+  bindOnce(document, 'keydown', function (e) {
     if (e.key !== 'Escape') return;
-    
+
     if (state.inFlightAbort) {
       console.log('🛑 Cancelling request');
       state.inFlightAbort.abort('user_cancel');
@@ -541,18 +595,16 @@
     }
   });
 
-  document.addEventListener('click', function (e) {
+  // Delegated quick-action handler
+  bindOnce(document, 'click', function (e) {
     if (!e.target.classList.contains('quick-action-btn')) return;
+    e.preventDefault();
+    if (e.stopImmediatePropagation) e.stopImmediatePropagation();
     const action = e.target.getAttribute('data-action') || '';
-    addUserMessage(action);
-    processQuery(action);
+    if (!action) return;
+    elements.chatbotInput.value = action;
+    sendFromChatInput();
   });
-
-  if (elements.docsBtn) {
-    elements.docsBtn.addEventListener('click', function (e) {
-      e.stopPropagation();
-    });
-  }
 
   // ========================================
   // INITIALIZATION
