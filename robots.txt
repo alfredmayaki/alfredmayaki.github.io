@@ -1,0 +1,5 @@
+# robots.txt — disallow just the PhD proposal PDF
+# Placed at site root (https://your-site.com/robots.txt)
+
+User-agent: *
+Disallow: /FBL-PhD-research-proposal.pdf
