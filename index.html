@@ -518,7 +518,60 @@ body {
 @media (max-width: 600px) {
   .cookie-content { gap:0.5rem; }
   .cookie-text { max-width: 100%; }
-  .chatbot-popup { right:12px; bottom:12px; width: calc(100vw - 24px); }
+
+  /* Make the chatbot popup inset on mobile with safer margins and a controlled max-height */
+  .chatbot-popup {
+    right: 12px !important;
+    left: 12px !important;
+    bottom: 12px !important;
+    width: auto !important;
+    max-width: none !important;
+    max-height: 70vh !important;          /* limit height to viewport fraction */
+    border-radius: 12px !important;
+  }
+
+  .chatbot-popup.active {
+    /* allow the popup to expand within the 70vh limit */
+    height: auto !important;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Increase header tappable area and adjust spacing */
+  .chatbot-header {
+    height: 56px !important;
+    padding: 0.6rem 0.75rem !important;
+  }
+  .chatbot-header h3 { font-size: 0.98rem; padding-left: 10px; }
+
+  /* Larger, touch-friendly header buttons */
+  .minimize-chat, .close-chat {
+    width:44px; height:44px; font-size:20px;
+  }
+  .chatbot-header-buttons { gap:0.5rem; }
+
+  /* Constrain messages area to available space and make it scrollable */
+  .chatbot-messages {
+    max-height: calc(70vh - 56px - 72px); /* viewport limit minus header & input area estimate */
+    overflow-y: auto;
+    padding: 0.8rem;
+  }
+
+  /* Make input and upload controls full-width on mobile */
+  .chatbot-popup .chatbot-input-area .chatbot-input,
+  .chatbot-popup .chatbot-input-area .file-upload-area {
+    max-width: 100% !important;
+    width: 100% !important;
+  }
+
+  /* Slightly increase bubble max width for mobile */
+  .message-bubble { max-width: 92%; }
+
+  /* When minimized on mobile ensure header still visible and compact */
+  .chatbot-popup.minimized {
+    max-height: 64px !important;
+    width: calc(100vw - 24px) !important;
+  }
 }
 
 /* ===== Overrides: precise footer + full-bleed chatbot header ===== */
@@ -1001,7 +1054,7 @@ body {
     </footer>
   </div>
 
-  <div class="chatbot-popup" id="chatbotPopup">
+  <div class="chatbot-popup" id="chatbotPopup" aria-hidden="true" role="dialog" aria-label="Ask Claude Code">
     <div class="chatbot-header" id="chatbotHeader">
       <h3>💬 Ask Claude Code</h3>
       <div class="chatbot-header-buttons">
@@ -1009,10 +1062,9 @@ body {
         <button class="close-chat" id="closeChat" title="Close" aria-label="Close chatbot">&times;</button>
       </div>
     </div>
-    <div class="chatbot-messages" id="chatbotMessages">
-    </div>
+    <div class="chatbot-messages" id="chatbotMessages" role="log" aria-live="polite"></div>
     <div class="chatbot-input-area">
-      <input type="text" class="chatbot-input" id="chatbotInput" placeholder="Type your message...">
+      <input type="text" class="chatbot-input" id="chatbotInput" placeholder="Type your message..." aria-label="Chat input">
     </div>
   </div>
 
@@ -1039,6 +1091,7 @@ body {
       const chatbotPopup = document.getElementById('chatbotPopup');
       const minimizeBtn = document.getElementById('minimizeChat');
       const chatbotHeader = document.getElementById('chatbotHeader');
+      const closeBtn = document.getElementById('closeChat');
 
       // Minimize/Restore toggle
       function toggleMinimize() {
@@ -1049,6 +1102,10 @@ body {
           minimizeBtn.textContent = '□';
           minimizeBtn.title = 'Restore';
           minimizeBtn.setAttribute('aria-label', 'Restore chatbot');
+          // On mobile ensure header remains in view after minimize
+          if (window.innerWidth <= 600) {
+            chatbotPopup.scrollIntoView({ block: 'end', behavior: 'smooth' });
+          }
         } else {
           minimizeBtn.textContent = '−';
           minimizeBtn.title = 'Minimize';
@@ -1070,6 +1127,15 @@ body {
         });
       }
 
+      // Close button hides the popup
+      if (closeBtn) {
+        closeBtn.addEventListener('click', function(e) {
+          e.stopPropagation();
+          chatbotPopup.classList.remove('active');
+          chatbotPopup.classList.add('minimized');
+        });
+      }
+
       // Click header to restore when minimized
       if (chatbotHeader) {
         chatbotHeader.addEventListener('click', function(e) {
@@ -1080,6 +1146,16 @@ body {
           }
         });
       }
+
+      // Accessibility: allow Escape to close popup
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+          if (chatbotPopup.classList.contains('active')) {
+            chatbotPopup.classList.remove('active');
+            chatbotPopup.classList.add('minimized');
+          }
+        }
+      });
     })();
   </script>
 
