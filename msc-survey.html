@@ -64,7 +64,7 @@
       max-width: 900px;
       min-height: 100vh;
       margin: 1em auto;
-      padding: 2em 1em 6em;
+      padding: 2em 4em 6em;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -72,7 +72,7 @@
       background: var(--bg-overlay);
       border: 1px solid var(--border);
       border-radius: 12px;
-      animation: fadeIn 0.7s ease-in;
+      animation: fadeIn 0.9s ease-in;
     }
 
     @keyframes fadeIn {
@@ -283,6 +283,14 @@
       font-style: italic;
       color: var(--text-muted);
     }
+
+    /* New wrapper for login section to contain and optionally style it */
+    .login-container {
+      width: 100%;
+      max-width: 820px;
+      margin: 0 auto 1.5rem;
+      padding: 0 12px;
+    }
   </style>
 </head>
 <body>
@@ -298,36 +306,42 @@
       <h1>Neurodivergence in Recruitment Survey</h1>
       <p class="tagline">MSc in HRM Dissertation Research Survey</p>
 
-      <!-- Login Section -->
-      <div id="login-section">
-        <div class="intro">
-          <p> Recent advances in organisational psychology and human resource management have foregrounded the importance of signalling during recruitment as a critical mechanism through which applicants infer an employer’s diversity climate. The progressive work of Helen Miller and Nancy Doyle (2025) demonstrates that neurodivergent candidates actively interpret recruitment processes, assessment formats, and organisational communications as signals of inclusion or exclusion, often prior to any direct interpersonal interaction. Their findings show that ambiguity, procedural rigidity, and opaque assessment criteria disproportionately disadvantage neurodivergent applicants by amplifying uncertainty and cognitive load during selection. Importantly, the study reframes inclusion not as a post-hire accommodation problem, but as an upstream signalling challenge embedded within recruitment architecture itself. This reconceptualisation establishes recruitment as a psychologically consequential stage in which perceived organisational intent, legitimacy, and fairness are continuously inferred by neurodivergent candidates.</p>
-          <p> --
-          <p> Building directly on this framework, the present research situates neurodivergent applicant experiences within a strategic human resource management and signalling theory perspective, with particular emphasis on resource-based views of the firm. Whereas prior work has largely examined inclusion through descriptive climate perceptions, this study advances the literature by interrogating how firm-level investment, capability deployment, and recruitment design choices function as costly and credible signals to neurodivergent applicants. By focusing on applicant attraction rather than post-entry outcomes, the research addresses a persistent empirical gap concerning how neurodivergent individuals evaluate organisations before disclosure, onboarding, or accommodation occurs. The survey instrument therefore captures how candidates interpret recruitment signals such as transparency, flexibility, adjustment practices, and communication tone as indicators of organisational competence, trustworthiness, and neuroinclusion.</p>
-          <p> --
-          <p> The significance of this neurodivergence in recruitment survey lies in its capacity to empirically connect individual applicant perceptions with broader theories of signalling, attribution, and competitive advantage. By eliciting first-hand accounts of recruitment experiences, disclosure decisions, and adjustment practices, the study enables a nuanced assessment of how inclusive intent is inferred under conditions of information asymmetry. In doing so, it extends Miller and Doyle’s (2025) contribution by incorporating strategic HRM expenditure and signalling intensity as explanatory variables in applicant sensemaking. The findings are expected to inform both academic debates on neuroinclusive labour markets and practical policy discussions on how organisations can design recruitment systems that enable, rather than deter, neurodivergent talent—without requiring premature self-identification or reliance on symbolic diversity statements alone.</p>
+      <!-- Login Section wrapped in a container -->
+      <div class="login-container">
+        <div id="login-section">
+          <div class="intro">
+            <p> Recent advances in organisational psychology and human resource management have foregrounded the importance of signalling during recruitment as a critical mechanism through which applicants infer an employer’s diversity climate. The progressive work of Helen Miller and Nancy Doyle (2025) demonstrates that neurodivergent candidates actively interpret recruitment processes, assessment formats, and organisational communications as signals of inclusion or exclusion, often prior to any direct interpersonal interaction. Their findings show that ambiguity, procedural rigidity, and opaque assessment criteria disproportionately disadvantage neurodivergent applicants by amplifying uncertainty and cognitive load during selection. Importantly, the study reframes inclusion not as a post-hire accommodation problem, but as an upstream signalling challenge embedded within recruitment architecture itself. This reconceptualisation establishes recruitment as a psychologically consequential stage in which perceived organisational intent, legitimacy, and fairness are continuously inferred by neurodivergent candidates.</p>
+            <!-- Add a soft <hr> separator for readability -->
+             
+            <p> Building directly on this framework, the present research situates neurodivergent applicant experiences within a strategic human resource management and signalling theory perspective, with particular emphasis on resource-based views of the firm. Whereas prior work has largely examined inclusion through descriptive climate perceptions, this study advances the literature by interrogating how firm-level investment, capability deployment, and recruitment design choices function as costly and credible signals to neurodivergent applicants. By focusing on applicant attraction rather than post-entry outcomes, the research addresses a persistent empirical gap concerning how neurodivergent individuals evaluate organisations before disclosure, onboarding, or accommodation occurs. The survey instrument therefore captures how candidates interpret recruitment signals such as transparency, flexibility, adjustment practices, and communication tone as indicators of organisational competence, trustworthiness, and neuroinclusion.</p>
+            <!-- Add a soft <hr> separator for readability -->
+          
+            <p> The significance of this neurodivergence in recruitment survey lies in its capacity to empirically connect individual applicant perceptions with broader theories of signalling, attribution, and competitive advantage. By eliciting first-hand accounts of recruitment experiences, disclosure decisions, and adjustment practices, the study enables a nuanced assessment of how inclusive intent is inferred under conditions of information asymmetry. In doing so, it extends Miller and Doyle’s (2025) contribution by incorporating strategic HRM expenditure and signalling intensity as explanatory variables in applicant sensemaking. The findings are expected to inform both academic debates on neuroinclusive labour markets and practical policy discussions on how organisations can design recruitment systems that enable, rather than deter, neurodivergent talent—without requiring premature self-identification or reliance on symbolic diversity statements alone.</p>
           </div>
           <p class="intro-note">
             Please sign in with your Google account to respond to the survey.<br>
             <em>And may the Lord Jesus bless you divinely as you do so. Amen.</em>
           </p>
 
-        <!-- REPLACED: Native Google Sign-In area (replaces the previous Sign in with Google button) -->
-        <div class="center-buttons">
-          <!-- Container where the native Google button will render -->
-          <div id="g_id_signin" aria-hidden="false"></div>
+          <br><hr>
 
-          <!-- Small status area to show user's signed-in email when available -->
-          <div id="google-login-status" role="status" aria-live="polite" style="color:var(--text); margin-left:8px;"></div>
+          <!-- REPLACED: Native Google Sign-In area (replaces the previous Sign in with Google button) -->
+          <div class="center-buttons">
+            <!-- Container where the native Google button will render -->
+            <div id="g_id_signin" aria-hidden="false"></div>
+
+            <!-- Small status area to show user's signed-in email when available -->
+            <div id="google-login-status" role="status" aria-live="polite" style="color:var(--text); margin-left:8px;"></div>
+          </div>
+          <!-- End of Google sign-in area -->
         </div>
-        <!-- End of Google sign-in area -->
-
       </div>
+      <!-- End login-container -->
 
       <!-- Survey Section (hidden until login) -->
       <div id="survey-section" class="section-hidden">
         <div class="center-buttons">
-          <button id="logout-button" class="btn btn-danger">Log out</button>
+          <button id="logout-button" class="btn btn-danger">Sign Out</button>
         </div>
 
         <form id="survey-form">
@@ -443,7 +457,6 @@
     logoutBtn?.addEventListener('click', () => signOut(auth));
 
     // onAuthStateChanged will update UI and reveal the hidden survey on successful login.
-    // Important: this no longer redirects to /dashboard which prevented access to the in-page survey.
     onAuthStateChanged(auth, async (user) => {
       if (user) {
         // Show survey UI (hidden behind login)
@@ -453,7 +466,6 @@
         if (submitBtn) submitBtn.disabled = false;
 
         // Send token to backend asynchronously (fire-and-forget).
-        // Do not redirect — user should remain on this page to complete the survey.
         try {
           const idToken = await getIdToken(user, /* forceRefresh= */ false);
           fetch('/sessionLogin', {
@@ -462,7 +474,6 @@
             body: JSON.stringify({ idToken })
           }).then(resp => {
             if (!resp.ok) {
-              // Log but don't break the user flow
               console.warn('sessionLogin responded with non-OK status', resp.status);
             }
           }).catch(err => {
