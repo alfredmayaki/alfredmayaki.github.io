@@ -1102,10 +1102,6 @@ body {
           minimizeBtn.textContent = '□';
           minimizeBtn.title = 'Restore';
           minimizeBtn.setAttribute('aria-label', 'Restore chatbot');
-          // On mobile ensure header remains in view after minimize
-          if (window.innerWidth <= 600) {
-            chatbotPopup.scrollIntoView({ block: 'end', behavior: 'smooth' });
-          }
         } else {
           minimizeBtn.textContent = '−';
           minimizeBtn.title = 'Minimize';
@@ -1127,15 +1123,6 @@ body {
         });
       }
 
-      // Close button hides the popup
-      if (closeBtn) {
-        closeBtn.addEventListener('click', function(e) {
-          e.stopPropagation();
-          chatbotPopup.classList.remove('active');
-          chatbotPopup.classList.add('minimized');
-        });
-      }
-
       // Click header to restore when minimized
       if (chatbotHeader) {
         chatbotHeader.addEventListener('click', function(e) {
@@ -1146,16 +1133,6 @@ body {
           }
         });
       }
-
-      // Accessibility: allow Escape to close popup
-      document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape') {
-          if (chatbotPopup.classList.contains('active')) {
-            chatbotPopup.classList.remove('active');
-            chatbotPopup.classList.add('minimized');
-          }
-        }
-      });
     })();
   </script>
 
