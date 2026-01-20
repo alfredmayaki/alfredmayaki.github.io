@@ -1,8 +1,9 @@
 {
   "ExpandedNodes": [
     "",
-    "\\worker\\src"
+    "\\assets\\js",
+    "\\extensions"
   ],
-  "SelectedNode": "\\msc-survey.html",
+  "SelectedNode": "\\index.html",
   "PreviewInSolutionExplorer": false
 }
