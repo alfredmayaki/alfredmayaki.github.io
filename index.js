@@ -286,7 +286,12 @@
     const messageDiv = document.createElement('div');
     messageDiv.className = 'message user';
     messageDiv.innerHTML = '<div class="message-bubble"></div>';
-    messageDiv.querySelector('.message-bubble').textContent = message;
+    const bubble = messageDiv.querySelector('.message-bubble');
+
+    // Prepend a black-skin-tone person emoji for user messages to enforce black-tone emoji usage in the chat UI.
+    // Keep stored history/plain message unchanged (caller manages history).
+    bubble.textContent = `🧑🏿 ${message}`;
+
     elements.chatbotMessages.appendChild(messageDiv);
     scrollToBottom();
   }
