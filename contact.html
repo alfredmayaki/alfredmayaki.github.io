@@ -304,13 +304,18 @@
         <!-- Social icons + links (Font Awesome) -->
         <div class="social-links" role="navigation" aria-label="Social profiles">
           <a class="social-link" href="https://www.linkedin.com/in/alfredmayaki" target="_blank" rel="noopener noreferrer" aria-label="Alfred on LinkedIn">
-            <i class="fa fa-brands fa-linkedin-in" aria-hidden="true"></i>
+            <i class="fa-brands fa-linkedin-in" aria-hidden="true"></i>
             <span class="sr-only">LinkedIn</span>
           </a>
 
           <a class="social-link" href="https://x.com/alfredmayaki" target="_blank" rel="noopener noreferrer" aria-label="Alfred on X (formerly Twitter)">
-            <i class="fa fa-brands fa-x-twitter" aria-hidden="true"></i>
+            <i class="fa-brands fa-x-twitter" aria-hidden="true"></i>
             <span class="sr-only">X</span>
+          </a>
+
+          <a class="social-link" href="https://www.instagram.com/alfred.mayaki" target="_blank" rel="noopener noreferrer" aria-label="Alfred on Instagram">
+            <i class="fa-brands fa-instagram" aria-hidden="true"></i>
+            <span class="sr-only">Instagram</span>
           </a>
         </div>
 
@@ -366,117 +371,4 @@
         <a href="privacy-policy.html">Privacy Policy</a>
         <a href="terms-of-use.html">Terms of Use</a>
         <a href="buymeacoffee.html">Buy Me a Coffee ☕</a>
-      </nav>
-
-      <p class="footer-copyright">
-        © 2026 Alfred Anate Bodurin Mayaki. All rights reserved.
-      </p>
-      <p style="margin:0.4rem 0 0;"><small style="color:var(--text-secondary);">Powered with ❤ using GitHub</small></p>
-    </div>
-  </footer>
-
-  <script>
-    (function () {
-      const form = document.getElementById('contactForm');
-      const sendBtn = document.getElementById('sendBtn');
-      const resetBtn = document.getElementById('resetBtn');
-      const status = document.getElementById('formStatus');
-      const errorList = document.getElementById('errorList');
-
-      // Helper: simple client-side validation
-      function validate() {
-        errorList.textContent = '';
-        const errors = [];
-        const name = form.name.value.trim();
-        const email = form.email.value.trim();
-        const message = form.message.value.trim();
-
-        if (!name) errors.push('Please provide your name.');
-        if (!email) errors.push('Please provide a valid email address.');
-        else {
-          // basic email pattern
-          const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-          if (!re.test(email)) errors.push('Please provide a valid email address.');
-        }
-        if (!message) errors.push('Please enter a message.');
-
-        if (errors.length) {
-          errorList.innerHTML = errors.map(e => '• ' + e).join('<br>');
-          return false;
-        }
-        return true;
-      }
-
-      // Build mailto link (opens user's mail client as fallback)
-      function buildMailto(values) {
-        const to = 'info@alfredmayaki.me';
-        const subject = encodeURIComponent(values.subject || ('Contact from website: ' + values.name));
-        const bodyLines = [
-          'Name: ' + values.name,
-          'Email: ' + values.email,
-          '---',
-          values.message
-        ];
-        const body = encodeURIComponent(bodyLines.join('\n\n'));
-        return `mailto:${to}?subject=${subject}&body=${body}`;
-      }
-
-      // On submit: validate, attempt mailto fallback, show thank you
-      form.addEventListener('submit', function (e) {
-        e.preventDefault();
-        errorList.textContent = '';
-        status.textContent = '';
-
-        if (!validate()) return;
-
-        // collect values
-        const values = {
-          name: form.name.value.trim(),
-          email: form.email.value.trim(),
-          subject: form.subject.value.trim(),
-          message: form.message.value.trim()
-        };
-
-        // Optimistic UX: disable and show sending state
-        sendBtn.disabled = true;
-        sendBtn.textContent = 'Sending...';
-        status.textContent = 'Preparing message...';
-
-        // Try to open mail client as a fallback delivery mechanism
-        try {
-          const mailto = buildMailto(values);
-          setTimeout(() => {
-            window.location.href = mailto;
-          }, 250);
-        } catch (err) {
-          console.warn('mailto fallback failed', err);
-        }
-
-        // Final UX: show thank you and expected timeline
-        setTimeout(() => {
-          const thank = document.createElement('div');
-          thank.className = 'thankyou';
-          thank.innerHTML = '<div>Thank you — your message has been prepared.<br><small style="font-weight:400;color:var(--text-secondary);">Alfred aims to reply within 3–5 working days. If this is urgent, please call 07940 916731.</small></div>';
-          form.replaceWith(thank);
-
-          status.textContent = '';
-          errorList.textContent = '';
-        }, 700);
-      });
-
-      resetBtn.addEventListener('click', function () {
-        form.reset();
-        errorList.textContent = '';
-        status.textContent = '';
-      });
-
-      // Cookie Settings link behaviour consistent with other pages
-      document.getElementById('cookieSettingsLink')?.addEventListener('click', function(e){
-        e.preventDefault();
-        document.cookie = 'cookie_consent=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
-        location.reload();
-      });
-    })();
-  </script>
-</body>
-</html>
+      <
