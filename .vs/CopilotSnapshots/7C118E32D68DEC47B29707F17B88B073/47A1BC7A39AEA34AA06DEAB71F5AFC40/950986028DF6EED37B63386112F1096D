@@ -1,10 +1,10 @@
-# Copilot Instructions
+﻿# Copilot Instructions
 
 ## General Guidelines
 - First general instruction
 - Second general instruction
 - Commit changes using GitHub Desktop to ensure version control and collaboration efficiency. User has successfully committed changes to the repository using GitHub Desktop.
-- Prefer precise, line-based edits to files, replacing specific lines with specific lines as needed. Apply suggested edits (e.g., wrapping intro paragraphs in a `.container-grid` and adding corresponding CSS) directly to the current file (msc-survey.html) and prefer one-step patching when changes are needed.
+- Prefer precise, line-based edits to files, replacing specific lines with specific lines as needed.
 
 ## Navigation/Select Menu Behavior
 - Make the quick navigation menu (`navigationSelect`) behave identically to the language menu (`languageSelect`): use the same CSS theme and a change handler that navigates via `window.location.href`; remove special cases for '#chatbot' and opening external links in new tabs.
