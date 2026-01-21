@@ -1,4 +1,4 @@
-﻿(function () {
+﻿﻿(function () {
   'use strict';
 
   console.log('🚀 Chatbot script loaded');
@@ -391,7 +391,7 @@
     state.isSending = true;
     setInputEnabled(false);
 
-    const bubble = addBotBubble('🧑🏿‍💻💭');
+    const bubble = addBotBubble('🧑🏿‍💻💭 Thinking...');
 
     const controller = new AbortController();
     state.inFlightAbort = controller;

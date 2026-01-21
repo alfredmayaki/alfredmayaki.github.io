@@ -1,4 +1,4 @@
-# Copilot Instructions
+﻿# Copilot Instructions
 
 ## General Guidelines
 - First general instruction
@@ -10,7 +10,7 @@
 - Make the quick navigation menu (`navigationSelect`) behave identically to the language menu (`languageSelect`): use the same CSS theme and a change handler that navigates via `window.location.href`; remove special cases for '#chatbot' and opening external links in new tabs.
 
 ## Chat UI Preferences
-- Align bot messages to the left and user messages to the right, with cascading chat bubble offsets for alternating sides.
+- Align bot messages to the left and user messages to the right.
 - Use distinct bubble styles for bot and user messages, ensuring bubbles are rounded and animated. User prefers modern, polished right-side (user) chat bubble styling for the chatbot UI. Revert recent UI change to `index.html` (chat bubble styling) when requested.
 - Implement entrance animations for messages.
 - Ensure input and upload controls are rounded, centered, and have a maximum width of 360px.
