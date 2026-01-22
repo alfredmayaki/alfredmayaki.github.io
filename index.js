@@ -258,6 +258,17 @@
   // ========================================
   // CHATBOT UI FUNCTIONS
   // ========================================
+
+  // Helper: format timestamp for message meta (hour:minute, locale-aware)
+  function formatMessageTime(date) {
+    try {
+      const fmt = new Intl.DateTimeFormat(undefined, { hour: '2-digit', minute: '2-digit' });
+      return fmt.format(date);
+    } catch (err) {
+      return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    }
+  }
+
   function openChatbot() {
     console.log('💬 Opening chatbot');
     const query = elements.searchInput.value.trim();
@@ -292,6 +303,12 @@
     // Keep stored history/plain message unchanged (caller manages history).
     bubble.textContent = `🧑🏿 ${message}`;
 
+    // Add timestamp meta
+    const meta = document.createElement('div');
+    meta.className = 'message-meta';
+    meta.textContent = formatMessageTime(new Date());
+    messageDiv.appendChild(meta);
+
     elements.chatbotMessages.appendChild(messageDiv);
     scrollToBottom();
   }
@@ -302,6 +319,13 @@
     messageDiv.innerHTML = '<div class="message-bubble"></div>';
     const bubble = messageDiv.querySelector('.message-bubble');
     bubble.textContent = initialText || '';
+
+    // Add timestamp meta
+    const meta = document.createElement('div');
+    meta.className = 'message-meta';
+    meta.textContent = formatMessageTime(new Date());
+    messageDiv.appendChild(meta);
+
     elements.chatbotMessages.appendChild(messageDiv);
     scrollToBottom();
     return bubble;
