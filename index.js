@@ -10,6 +10,10 @@
     searchInput: document.getElementById('searchInput'),
     searchBtn: document.getElementById('searchBtn'),
     docsBtn: document.getElementById('docsBtn'),
+    // New: wire the page-level uploader (the paperclip in the search bar)
+    docUploadInput: document.getElementById('docUploadInput'),
+    docUploadBtn: document.getElementById('docUploadBtn'),
+    uploadList: document.getElementById('uploadList'),
     chatbotPopup: document.getElementById('chatbotPopup'),
     chatbotMessages: document.getElementById('chatbotMessages'),
     chatbotInput: document.getElementById('chatbotInput'),
@@ -447,7 +451,8 @@
         state.uploadedFile = null;
         const fileNameSpan = document.getElementById('fileName');
         if (fileNameSpan) fileNameSpan.style.display = 'none';
-        document.getElementById('fileUpload').value = '';
+        // also clear the page-level input (if present) to avoid accidental reuse on next search
+        if (elements.docUploadInput) elements.docUploadInput.value = '';
       } else {
         // Send regular JSON
         const payload = {
@@ -505,7 +510,7 @@
       if (String(error?.name) === 'AbortError') {
         bubble.textContent = 'Request timed out. Please try again.';
       } else if (error instanceof TypeError && error.message.includes('Failed to fetch')) {
-        bubble.textContent = 'Cannot reach server. Possible reasons:\n1. Worker not deployed\n2. CORS issue\n3. Network problem\n\nCheck browser console for details.';
+        bubble.textContent = 'Cannot reach server. Possible reasons:\n1. Worker not deployed\n2. CORS issue\n3. Network problem\n\nCheck browser console for details.'; 
       } else {
         bubble.textContent = `Network error: ${String(error?.message || error)}`;
       }
@@ -568,6 +573,33 @@
     const query = normalizeUserText(elements.searchInput.value);
     elements.chatbotPopup.classList.add('active');
     void SoundFX.playSuccess();
+
+    // --- New: ensure any file chosen using the page-level uploader is wired into chatbot state
+    try {
+      if (!state.uploadedFile && elements.docUploadInput && elements.docUploadInput.files && elements.docUploadInput.files.length > 0) {
+        const pageFile = elements.docUploadInput.files[0];
+
+        // basic size check to mirror chatbot file UI rules
+        if (pageFile.size <= CONFIG.maxFileSize) {
+          state.uploadedFile = pageFile;
+
+          // If chatbot's file UI exists, show the filename there for user feedback
+          const fileNameSpan = document.getElementById('fileName');
+          if (fileNameSpan) {
+            fileNameSpan.textContent = `📄 ${pageFile.name}`;
+            fileNameSpan.style.display = 'inline';
+          }
+
+          console.log('ℹ️ Attached file from search upload to chatbot state:', pageFile.name);
+        } else {
+          // if too large, inform user and clear the page-level input
+          alert(`Selected file "${pageFile.name}" is too large. Maximum is ${Math.round(CONFIG.maxFileSize / 1024 / 1024)}MB.`);
+          elements.docUploadInput.value = '';
+        }
+      }
+    } catch (attachErr) {
+      console.warn('⚠️ Could not attach page upload to chatbot state:', attachErr);
+    }
 
     if (!query) {
       elements.chatbotInput.focus();
@@ -697,6 +729,39 @@
     elements.chatbotInput.value = action;
     sendFromChatInput();
   });
+
+  // If a file is chosen using the page-level uploader (search-area), ensure it's attached to chatbot immediately.
+  if (elements.docUploadInput) {
+    try {
+      elements.docUploadInput.addEventListener('change', function (e) {
+        const files = Array.from(e.target.files || []);
+        if (!files.length) return;
+        const f = files[0];
+
+        if (f.size > CONFIG.maxFileSize) {
+          alert(`Selected file "${f.name}" is too large. Maximum is ${Math.round(CONFIG.maxFileSize / 1024 / 1024)}MB.`);
+          elements.docUploadInput.value = '';
+          return;
+        }
+
+        // attach to chatbot state so the next / first search uses it
+        state.uploadedFile = f;
+        const fileNameSpan = document.getElementById('fileName');
+        if (fileNameSpan) {
+          fileNameSpan.textContent = `📄 ${f.name}`;
+          fileNameSpan.style.display = 'inline';
+        }
+
+        console.log('✅ Page uploader attached to chatbot state:', f.name);
+
+        // Optionally open chatbot automatically so the user knows the document is ready
+        // (keep this behavior optional/commented if you prefer manual open)
+        // elements.chatbotPopup.classList.add('active');
+      });
+    } catch (err) {
+      console.warn('⚠️ Failed to bind page-level uploader change handler:', err);
+    }
+  }
 
   // ========================================
   // INITIALIZATION
