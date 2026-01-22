@@ -301,6 +301,8 @@ body {
   font-size: 1rem;
   outline: none;
   caret-color: var(--brand);
+  min-width: 0;              /* allow input to shrink inside flex container */
+  box-sizing: border-box;
 }
 .search-bar::placeholder { color: var(--text-secondary); opacity:0.9; }
 
