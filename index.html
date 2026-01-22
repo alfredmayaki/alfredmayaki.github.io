@@ -168,22 +168,10 @@ body {
 
   /* Keep attach + search controls on a single row but aligned to the right */
   .search-controls {
-    order: 2;
     width: 100%;
     display: flex;
-    gap: 0.5rem;
     justify-content: flex-end;
     align-items: center;
-  }
-
-  /* Ensure touch targets are at least 48x48 and visually consistent */
-  .attach-btn,
-  .search-btn {
-    flex: 0 0 48px;
-    width: 48px;
-    height: 48px;
-    padding: 0;
-    min-width: 48px;
   }
 
   /* Make the paperclip label behave like a button for keyboard users */
@@ -191,14 +179,6 @@ body {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-  }
-
-  /* Give the centered report button enough vertical space above mobile chat / cookie */
-  .report-bug {
-    bottom: 110px !important; /* sits above chatbot and cookie banner */
-    left: 50%;
-    transform: translateX(-50%);
-    padding: 0.5rem 0.9rem;
   }
 
   /* Ensure chatbot popup fits comfortably on small viewports */
