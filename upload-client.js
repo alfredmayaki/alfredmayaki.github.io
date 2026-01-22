@@ -56,7 +56,7 @@ async function uploadAndPrompt(file) {
   const prompt = `Use the following extracted document as context:\n\n--- ${file.name} ---\n${extracted.slice(0, 3000)}\n\nAnswer the user's question: ${userQuery || 'Please summarise.'}`;
 
   // 3) call chat/claude endpoint that proxies to Claude
-  const chatResp = await fetch('/api/claude', {
+  const chatResp = await fetch('/chat', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ model: 'claude-opus-4.5', prompt })
