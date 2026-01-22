@@ -1,4 +1,4 @@
-﻿﻿<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -12,6 +12,7 @@
   <script id="ga-script">
     // Google Analytics will be initialized after consent
   </script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" />
 
   <style>
 :root {
@@ -22,6 +23,7 @@
   --surface: #2a2a2a;
   --text: #ffffff;
   --text-muted: #979797;
+  --text-secondary: #b0b0b0;
   --text-secondary: #b0b0b0;
   --border: #464242;
   --border-soft: rgba(255, 255, 255, 0.06);
@@ -957,7 +959,7 @@ body {
       </optgroup>
 
     </select>
-  </div
+  </div>
 
     <div class="select-wrap">
     <label class="visually-hidden" for="languageSelect">Select a language</label>
@@ -1042,7 +1044,8 @@ body {
           <a href="privacy-policy.html" class="footer-link">Privacy Policy</a>
           <a href="terms-of-use.html" class="footer-link">Terms of Use</a>
           <a href="buymeacoffee.html" class="footer-link">Buy Me a Coffee ☕</a>
-          </nav>
+</nav>
+
         <p class="footer-copyright">
           © 2026 Alfred Anate Bodurin Mayaki. All rights reserved.
         </p>
@@ -1051,6 +1054,17 @@ body {
     </footer>
   </div>
 
+    <!-- Discord invite (opens in new tab, accessible) -->
+  <a href="https://discord.gg/QZDb56gguX"
+     class="footer-link"
+     target="_blank"
+     rel="noopener noreferrer"
+     aria-label="Join our Discord">
+    <i class="fab fa-discord" aria-hidden="true" style="font-size:1.05rem;"></i>
+    <span class="visually-hidden">Discord</span>
+  </a>
+
+  <!-- Chatbot Popup -->
   <div class="chatbot-popup" id="chatbotPopup" aria-hidden="true" role="dialog" aria-label="Ask Claude Code">
     <div class="chatbot-header" id="chatbotHeader">
       <h3>💬 Ask Claude Code</h3>
@@ -1562,7 +1576,7 @@ document.addEventListener('DOMContentLoaded', function () {
   window.__recordMenuTimestamp = recordTimestamp;
 })();
 
-/* Unified behaviour: make 'Quick navigation' act exactly like 'Select a world language'
+ /* Unified behaviour: make 'Quick navigation' act exactly like 'Select a world language'
    - navigates in the same tab via location.href
    - shared keyboard support (Enter)
    - resets to placeholder after navigation
@@ -1590,6 +1604,6 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 })();
-</script>
+  </script>
   </body>
   </html>

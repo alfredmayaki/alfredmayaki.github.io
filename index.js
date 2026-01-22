@@ -1,4 +1,4 @@
-﻿﻿(function () {
+﻿(function () {
   'use strict';
 
   console.log('🚀 Chatbot script loaded');
@@ -566,6 +566,74 @@
   });
 
   // Send button inside chat
+  // Ensure a send button exists in the chatbot input area so the UI always has one (works even if HTML lacks it).
+  (function ensureChatSendButtonExists() {
+    try {
+      if (document.getElementById('chatSend')) return;
+
+      const inputArea = elements.chatbotPopup?.querySelector('.chatbot-input-area');
+      if (!inputArea) return;
+
+      // Create the button
+      const btn = document.createElement('button');
+      btn.id = 'chatSend';
+      btn.type = 'button';
+      btn.className = 'chat-send-btn';
+      btn.setAttribute('aria-label', 'Send message');
+      // Small, accessible label + icon fallback for browsers that don't show SVG
+      btn.innerHTML = '<span aria-hidden="true">➤</span><span class="visually-hidden">Send</span>';
+
+      // Minimal inline styles to match existing rounded input aesthetic.
+      // Prefer CSS in stylesheet, but inline keeps the new button visible without editing HTML/CSS files.
+      btn.style.marginTop = '0';
+      btn.style.marginLeft = '8px';
+      btn.style.padding = '0.55rem 0.85rem';
+      btn.style.borderRadius = '12px';
+      btn.style.border = 'none';
+      btn.style.background = 'var(--brand)';
+      btn.style.color = '#ffffff';
+      btn.style.cursor = 'pointer';
+      btn.style.fontSize = '0.95rem';
+      btn.style.display = 'inline-flex';
+      btn.style.alignItems = 'center';
+      btn.style.gap = '0.35rem';
+      btn.style.boxShadow = '0 6px 18px rgba(61,78,233,0.12)';
+
+      // Make sure inputArea uses a layout that keeps controls centered and allows the button to appear
+      // If the input area currently contains only the input, wrap input + button in a small container.
+      const inputEl = inputArea.querySelector('#chatbotInput') || inputArea.querySelector('.chatbot-input');
+      if (inputEl) {
+        const wrapper = document.createElement('div');
+        wrapper.style.display = 'flex';
+        wrapper.style.gap = '8px';
+        wrapper.style.alignItems = 'center';
+        wrapper.style.width = '100%';
+        wrapper.style.justifyContent = 'center';
+        wrapper.style.boxSizing = 'border-box';
+
+        // Ensure the input keeps its constrained max-width while the wrapper centers everything
+        inputEl.style.flex = '1 1 auto';
+        inputEl.style.maxWidth = '360px';
+        inputEl.style.boxSizing = 'border-box';
+
+        // Insert the wrapper and move the input into it, then append the button
+        inputArea.insertBefore(wrapper, inputEl);
+        wrapper.appendChild(inputEl);
+        wrapper.appendChild(btn);
+      } else {
+        // If no input found, append button directly (best-effort)
+        inputArea.appendChild(btn);
+      }
+
+      // Click sound / focus UX
+      btn.addEventListener('click', () => {
+        try { elements.chatbotInput?.focus(); } catch (e) {}
+      });
+    } catch (err) {
+      console.warn('Failed to ensure chat send button exists:', err);
+    }
+  })();
+
   const chatSendBtn = document.getElementById('chatSend');
   bindOnce(chatSendBtn, 'click', function (e) {
     e.preventDefault();
