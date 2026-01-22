@@ -40,6 +40,6 @@
     "express": "^5.2.1",
     "firebase-admin": "^13.6.0",
     "@anthropic-ai/sdk": "^0.2.7"
-
-  }
+  },
+  "devDependencies": {}
 }

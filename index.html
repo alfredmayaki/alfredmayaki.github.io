@@ -379,13 +379,15 @@ body {
   justify-content: center;
   min-width: 44px;
   height: 44px;
-  padding: 0 10px;
+  padding: 0;
   border-radius: 10px;
   background: rgba(255,255,255,0.02);
-  color: var(--text-muted);
+  color: #cfcfcf;          /* light grey */
   border: 1px solid rgba(255,255,255,0.03);
   cursor: pointer;
-  font-size: 18px;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1;
   transition: transform var(--transition-fast), background var(--transition-fast), box-shadow var(--transition-fast), color var(--transition-fast);
 }
 .attach-btn:hover,
@@ -1048,12 +1050,53 @@ body {
 
   <div class="search-controls" role="group" aria-label="Search controls">
     <!-- hidden file input triggered by the paperclip label -->
-    <input id="docUploadInput" type="file" accept=".pdf,.doc,.docx,.txt" style="display:none" multiple />
+    <input id="docUploadInput" class="sr-only" type="file" accept=".pdf,.doc,.docx,.txt" multiple />
 
-    <!-- visible paperclip button (uses emoji to match request) -->
-    <label for="docUploadInput" class="attach-btn" title="Upload document (Beta)" aria-label="Upload document (Beta)">
-      📎
-    </label>
+<button id="docUploadBtn" class="attach-btn" type="button" aria-label="Upload document (Beta)" title="Upload document (Beta)">
+  ➕
+</button>
+
+<div id="uploadList" class="upload-list" aria-live="polite" aria-atomic="true"></div>
+
+<script>
+/* Lightweight, robust client-side upload UI wiring.
+   Keeps change handling available for other scripts that already listen to #docUploadInput.
+*/
+(function () {
+  const fileInput = document.getElementById('docUploadInput');
+  const uploadBtn = document.getElementById('docUploadBtn');
+  const uploadList = document.getElementById('uploadList');
+
+  if (!fileInput || !uploadBtn) return;
+
+  // Open native picker on click / keyboard activation
+  uploadBtn.addEventListener('click', () => fileInput.click());
+  uploadBtn.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      fileInput.click();
+    }
+  });
+
+  // Render simple file list for immediate feedback; do NOT duplicate heavy processing here
+  fileInput.addEventListener('change', (e) => {
+    const files = Array.from(e.target.files || []);
+    uploadList.innerHTML = '';
+    files.forEach(f => {
+      const el = document.createElement('div');
+      el.className = 'upload-item';
+      el.innerHTML = `<div class="name">${f.name}</div><div class="status">Queued</div>`;
+      uploadList.appendChild(el);
+    });
+
+    // Keep change event available for other scripts which perform extraction/upload.
+    // Optionally notify a global handler:
+    if (window.onFilesSelectedForProcessing) {
+      window.onFilesSelectedForProcessing(files);
+    }
+  });
+})();
+</script>
 
     <!-- existing search button -->
     <button class="search-btn" id="searchBtn" aria-label="Search">
@@ -1588,7 +1631,7 @@ document.addEventListener('DOMContentLoaded', function () {
 (function () {
   const NAV_SELECTOR = '.top-nav .nav-links a';
   const SELECT_IDS = ['navigationSelect', 'languageSelect'];
-  const STORAGE_PREFIX = 'menu_ts_';
+  const STORAGE_PREFIX = 'menu_ts_'.
 
   function nowISO() { return new Date().toISOString(); }
   function formatForDisplay(iso) {
@@ -1731,10 +1774,59 @@ document.addEventListener('DOMContentLoaded', function () {
   selects.forEach(s => {
     s.addEventListener('change', handleSelectChange);
     s.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter') handleSelectChange.call(s, e);
+      if (e.key === 'Enter') {
+        handleSelectChange.call(s, e);
+      }
     });
   });
 })();
+
   </script>
+
+  <!-- Add this script near the end of the document (before </body>) to wire uploaded documents into the search prompt sent to Claude Opus 4.5 -->
+<script>
+(function () {
+  const fileInput = document.getElementById('docUploadInput');
+  const uploadBtn = document.getElementById('docUploadBtn');
+
+  if (!fileInput || !uploadBtn) return;
+
+  // Open native picker on click / keyboard activation
+  uploadBtn.addEventListener('click', () => fileInput.click());
+  uploadBtn.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      fileInput.click();
+    }
+  });
+
+  // Optional: lightweight feedback when files chosen (keeps existing processing)
+  fileInput.addEventListener('change', async (e) => {
+    const files = Array.from(e.target.files || []);
+    if (!files.length) return;
+
+    for (const f of files) {
+      pushChatMessage(`Uploading ${f.name}…`, 'user');
+
+      const result = await extractFile(f);
+      window.uploadedDocs.push(result);
+      pushChatMessage(`Document received: ${f.name}`, 'bot');
+
+      // --- New: make chatbot flow know about the raw File so processQuery sends it as multipart ---
+      if (window.__setUploadedFile) {
+        window.__setUploadedFile(f);   // set state.uploadedFile inside index.js
+      }
+
+      // Optionally open the chatbot so user can continue in that UI
+      if (window.__openChatbot) {
+        window.__openChatbot();       // opens chatbot and focuses input
+      }
+    }
+
+    renderUploadList();
+    e.target.value = '';
+  });
+})();
+</script>
   </body>
   </html>

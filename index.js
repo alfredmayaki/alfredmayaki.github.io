@@ -714,4 +714,32 @@
     init();
   }
 
+  // expose helpers so other scripts (the search-bar uploader) can attach files to the chatbot flow
+  window.__setUploadedFile = function (file) {
+    try {
+      // set the internal uploaded file used by processQuery
+      state.uploadedFile = file;
+
+      // update chatbot file UI if present
+      const fileNameSpan = document.getElementById('fileName');
+      if (fileNameSpan && file) {
+        fileNameSpan.textContent = `📄 ${file.name}`;
+        fileNameSpan.style.display = 'inline';
+      }
+
+      console.log('✅ __setUploadedFile: set file on chatbot state ->', file?.name);
+    } catch (err) {
+      console.warn('⚠️ __setUploadedFile failed', err);
+    }
+  };
+
+  // allow other scripts to open/focus the chatbot UI (calls existing openChatbot)
+  window.__openChatbot = function () {
+    try {
+      openChatbot();
+      console.log('✅ __openChatbot called');
+    } catch (err) {
+      console.warn('⚠️ __openChatbot failed', err);
+    }
+  };
 })();
