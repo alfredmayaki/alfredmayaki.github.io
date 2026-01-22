@@ -308,8 +308,11 @@ body {
 
 /* ---------- Landing / general (kept) ---------- */
 .landing-container { width:100%; max-width:900px; margin:0 auto; padding:0; background:transparent; }
-.main-content { width:100%; display:flex; flex-direction:column; align-items:center; justify-content:center; }
-
+.main-content { width:100%; display:flex; flex-direction:column; align-items:center; justify-content:center;
+  display: grid;
+  grid-template-rows: auto 1fr auto; /* Header, main, footer */
+  gap: 2em;
+}
 /* ---------- Search bar (integrated and smooth) ---------- */
 .search-container {
   width: 100%;
@@ -552,11 +555,11 @@ body {
 
 /* Messages & input */
 .chatbot-messages { flex:1; padding: 0.9rem 0.9rem 1rem; overflow:auto; background: linear-gradient(180deg, rgba(255,255,255,0.01), transparent); }
-.message-bubble { max-width:82%; padding:0.65rem 0.9rem; background:var(--surface); border-radius:12px; border:1px solid rgba(255,255,255,0.03); color:var(--text); }
+.message-bubble { max-width:100%; padding:0.65rem 0.9rem; background:var(--surface); border-radius:12px; border:1px solid rgba(255,255,255,0.03); color:var(--text); }
 .message.user .message-bubble { 
   align-self: flex-end;
   padding: 0.65rem 0.9rem;
-  max-width: 78%;
+  max-width: 100%;
   white-space: pre-wrap;
   word-wrap: break-word;
   line-height: 1.35;
@@ -565,10 +568,19 @@ body {
   color: #fff;
   border-color: rgba(255,255,255,0.08);
   border-radius: 12px 12px 6px 12px;
-  animation-name: slideInRight;
+  animation-name: slideInLeft;
   animation-duration: 260ms;
   animation-timing-function: cubic-bezier(.2,.9,.2,1);
   box-shadow: 0 8px 28px rgba(61,78,233,0.12);
+
+}
+
+@keyframes slideInLeft {
+  from { transform: translateX(-20px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+.message.bot .message-bubble {
+  animation: slideInLeft 260ms cubic-bezier(.2,.9,.2,1);
 }
 
 /* Remove the decorative ::after tail added previously */
@@ -578,7 +590,7 @@ body {
 
 /* Restore compact metadata/timestamp styling for right-side bubbles */
 .message.user .message-meta {
-  text-align: right;
+  text-align: left;
   align-self: flex-end;
   color: rgba(255,255,255,0.45);
   font-size: 0.78rem;
@@ -617,7 +629,7 @@ body {
 
 /* Limit input width so it doesn't overflow the popup, remain rounded and responsive */
 .chatbot-popup .chatbot-input-area .chatbot-input {
-  width: 100%;
+  width: 70%;
   max-width: 360px;      /* target width that fits the popup */
   box-sizing: border-box;
   margin: 0;             /* centered by parent flex alignment */
@@ -733,7 +745,7 @@ body {
   }
 
   /* Slightly increase bubble max width for mobile */
-  .message-bubble { max-width: 92%; }
+  .message-bubble { max-width: 70%; }
 
   /* When minimized on mobile ensure header still visible and compact */
   .chatbot-popup.minimized {
@@ -741,6 +753,114 @@ body {
     width: calc(100vw - 24px) !important;
   }
 }
+
+/* ==========================================================================
+   CHATBOT MESSAGE BUBBLES – CLEAR DISTINCTION BETWEEN USER & BOT
+   ========================================================================== */
+
+/* Common base for all message rows */
+.chatbot-messages {
+  display: flex;
+  flex-direction: column;
+  gap: 1.4rem;          /* increased gap for better readability */
+  padding: 1rem 0.9rem;
+}
+
+/* Base bubble style */
+.message-bubble {
+  padding: 0.75rem 1rem;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,0.06);
+  font-size: 1rem;
+  line-height: 1.45;
+  max-width: 82%;
+  word-wrap: break-word;
+  white-space: pre-wrap;
+}
+
+/* === BOT (Claude) messages – LEFT aligned, dark background === */
+.message.bot {
+  align-items: flex-start;
+}
+
+.message.bot .message-bubble {
+  background: var(--surface);           /* #2a2a2a – dark gray */
+  color: var(--text);                   /* white-ish */
+  border-radius: 14px 14px 14px 4px;    /* softer corner on left-bottom */
+  box-shadow: 0 2px 12px rgba(0,0,0,0.25);
+}
+
+/* === USER messages – RIGHT aligned, brand blue gradient === */
+.message.user {
+  justify-content: flex-end;
+  margin: 10px;
+}
+
+.message.user .message-bubble {
+  background: linear-gradient(135deg, var(--brand), var(--brand-hover));
+  color: #ffffff;
+  border-radius: 14px 14px 4px 14px;   /* rounded on left side, sharp on right-bottom */
+  border-color: rgba(61,78,233,0.4);
+  box-shadow: 0 6px 24px rgba(61,78,233,0.28);
+}
+
+.message.user .message-bubble {
+  background: linear-gradient(135deg, var(--brand), var(--brand-hover));
+  color: #ffffff;
+  border-radius: 14px 14px 4px 14px;    /* softer corner on right-bottom */
+  border-color: rgba(61,78,233,0.4);
+  box-shadow: 0 6px 24px rgba(61,78,233,0.28);
+}
+
+/* Metadata / timestamp – smaller and more subtle */
+.message-meta {
+  margin-top: 0.4rem;
+  font-size: 0.78rem;
+  color: rgba(255,255,255,0.55);
+  letter-spacing: 0.01em;
+}
+
+.message.bot .message-meta {
+  text-align: left;
+}
+
+.message.user .message-meta {
+  text-align: right;
+}
+
+/* Optional: small avatar/initials (very clean look) */
+.message-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--surface);
+  color: var(--brand);
+  font-weight: 700;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: right;
+  justify-content: right;
+  flex-shrink: 0;
+  margin-top: 0.3rem;
+  border: 1px solid rgba(61,78,233,0.3);
+}
+
+.message.bot .message-row-inner {
+  display: flex;
+  gap: 0.8rem;
+  align-items: flex-end;
+}
+
+.message.user .message-row-inner {
+  display: flex;
+  gap: 0.8rem;
+  align-items: flex-end;
+  flex-direction: row-reverse;
+}
+
+/* ==========================================================================
+   Optional: Add avatar wrapper in HTML structure (recommended)
+   ========================================================================== */
 
 /* ===== Overrides: precise footer + full-bleed chatbot header ===== */
 
@@ -1857,6 +1977,39 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 })();
+
+function createMessageEl(text, role, date = new Date()) {
+  ensureYearSeparator(date);
+
+  const row = document.createElement('div');
+  row.className = 'message ' + (role === 'user' ? 'user' : 'bot');
+
+  // New wrapper for avatar + bubble alignment
+  const inner = document.createElement('div');
+  inner.className = 'message-row-inner';
+
+  // Avatar
+  const avatar = document.createElement('div');
+  avatar.className = 'message-avatar';
+  avatar.textContent = role === 'user' ? 'You' : 'C';   // C for Claude
+
+  // Bubble container
+  const bubble = document.createElement('div');
+  bubble.className = 'message-bubble';
+  bubble.textContent = text;
+
+  const meta = document.createElement('div');
+  meta.className = 'message-meta';
+  // ... (keep your existing time formatting code)
+
+  // Assemble
+  inner.appendChild(avatar);
+  inner.appendChild(bubble);
+  row.appendChild(inner);
+  row.appendChild(meta);
+
+  return row;
+}
 
   </script>
 
