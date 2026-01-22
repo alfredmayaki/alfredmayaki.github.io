@@ -35,7 +35,7 @@
   // ========================================
   const CONFIG = {
     chatApiUrl: 'https://alfredmayaki.me/chat',
-    maxMessageChars: 4000,
+    maxMessageChars: 2000,
     requestTimeoutMs: 30000,
     maxHistoryTurns: 10,
     maxFileSize: 1 * 1024 * 1024, // Reduced to 1MB
