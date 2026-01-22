@@ -345,7 +345,7 @@
     uploadArea.innerHTML = `
       <input type="file" id="fileUpload" accept=".txt,.md,.json,.csv,.log,.pdf,.docx" style="display: none;">
       <button class="upload-btn" id="uploadBtn">
-        ➕ Upload Document (Beta)
+        ➕ Attach file (Beta)
       </button>
       <span id="fileName" style="display: none; margin-left: 10px; color: var(--text-muted); font-size: 0.9em;"></span>
     `;
