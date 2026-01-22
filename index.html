@@ -150,6 +150,86 @@ body {
   }
 }
 
+/* Add into your existing <style> block (near other @media rules). These rules realign the search controls, shrink touch targets, reduce page padding, and ensure the centered report button sits above the chatbot on narrow screens. */
+@media (max-width: 600px) {
+  /* Make the page less crowded on small screens */
+  body {
+    margin: 1rem auto;
+    padding: 1rem;
+    max-width: calc(100% - 2rem);
+    border-radius: 12px;
+  }
+
+  /* Stack the search bar and controls vertically */
+  .search-container {
+    max-width: none;
+    width: calc(100% - 2rem);
+    margin: 1rem auto;
+    padding: 0.6rem;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.6rem;
+  }
+
+  .search-bar {
+    order: 1;
+    width: 100%;
+    padding: 0.85rem 0.9rem;
+    font-size: 1rem;
+  }
+
+  /* Keep attach + search controls on a single row but aligned to the right */
+  .search-controls {
+    order: 2;
+    width: 100%;
+    display: flex;
+    gap: 0.5rem;
+    justify-content: flex-end;
+    align-items: center;
+  }
+
+  /* Ensure touch targets are at least 48x48 and visually consistent */
+  .attach-btn,
+  .search-btn {
+    flex: 0 0 48px;
+    width: 48px;
+    height: 48px;
+    padding: 0;
+    min-width: 48px;
+  }
+
+  /* Make the paperclip label behave like a button for keyboard users */
+  label[for="docUploadInput"].attach-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Give the centered report button enough vertical space above mobile chat / cookie */
+  .report-bug {
+    bottom: 110px !important; /* sits above chatbot and cookie banner */
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 0.5rem 0.9rem;
+  }
+
+  /* Ensure chatbot popup fits comfortably on small viewports */
+  .chatbot-popup {
+    right: 12px !important;
+    left: 12px !important;
+    bottom: 12px !important;
+    width: auto !important;
+    max-width: none !important;
+    max-height: 70vh !important;
+    border-radius: 12px !important;
+  }
+
+  .chatbot-popup.minimized {
+    width: calc(100vw - 24px) !important;
+    max-height: 64px !important;
+  }
+}
+
 /* ---------- Cookie banner (smooth slide) ---------- */
 .cookie-banner {
   position: fixed;
@@ -1486,7 +1566,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
-  <!-- Add near the end of the document, before the closing </body> -->
+  /* Add near the end of the document, before the closing </body> */
 <script>
 (function () {
   const NAV_SELECTOR = '.top-nav .nav-links a';
