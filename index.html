@@ -178,21 +178,6 @@ body {
     font-size: 1rem;
   }
 
-  .search-controls {
-    order: 2;
-    width: 100%;
-    justify-content: flex-end;
-  }
-
-  .attach-btn,
-  .search-btn {
-    width: 48px;
-    height: 48px;
-    padding: 0;
-    min-width: 48px;
-    border-radius: 10px;
-  }
-
   /* Keep attach + search controls on a single row but aligned to the right */
   .search-controls {
     width: 100%;
@@ -222,6 +207,39 @@ body {
   .chatbot-popup.minimized {
     width: calc(100vw - 24px) !important;
     max-height: 64px !important;
+  }
+}
+
+/* Mobile: ensure search bar and controls fit with side gaps */
+@media (max-width: 600px) {
+  .search-container {
+    margin: 1rem 16px;         /* 16px gap left/right from viewport edge */
+    padding: 0.6rem;          /* internal padding so controls don't touch edges */
+    width: auto;
+    box-sizing: border-box;
+    max-width: calc(100% - 32px);
+    border-radius: 12px;
+  }
+
+  .search-bar {
+    width: 100%;
+    min-width: 0;             /* allow flex shrink */
+    box-sizing: border-box;
+  }
+
+  .search-controls {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end; /* keep buttons aligned and inside padded area */
+    gap: 0.5rem;
+  }
+
+  .attach-btn,
+  .search-btn {
+    flex: 0 0 48px;
+    width: 48px;
+    height: 48px;
+    padding: 0;
   }
 }
 
@@ -306,8 +324,6 @@ body {
   box-shadow: 0 8px 30px rgba(0,0,0,0.45);
   border: 1px solid rgba(255,255,255,0.03);
   transition: box-shadow var(--transition-med);
-  position: relative;    /* ensure z-index works and children are positioned naturally */
-  z-index: 2200;         /* sit above other page layers but below chatbot (if needed) */
 }
 
 /* stronger, slightly more intense blue glow when focused */
@@ -332,10 +348,6 @@ body {
   caret-color: var(--brand);
   min-width: 0;              /* allow input to shrink inside flex container */
   box-sizing: border-box;
-  z-index: 1;            /* keep input focusable above background */
-  pointer-events: auto;  /* make sure touches reach the input */
-  -webkit-user-select: text;
-  user-select: text;
 }
 .search-bar::placeholder { color: var(--text-secondary); opacity:0.9; }
 
@@ -1028,8 +1040,8 @@ body {
   <div id="particles-js" style="position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:-1;"></div>
 <div style="text-align:center;">
   <h1 class="page-welcome" style="color: #FFFFFF;">Welcome to AM Global</h1>
-  <div class="page-subtitle"><h4>A New Conversational AI App</h4></div>
-  <div class="page-subtitle"><h4>The Open University</h4></div>
+  <div class="page-subtitle"><h4>A New Conversational AI App built on Claude Code</h4></div>
+  <div class="page-subtitle"><h4>An Open University Spin Off</h4></div>
 </div>
         <div class="search-container" aria-label="Site search and document upload">
   <input type="text" class="search-bar" id="searchInput" placeholder="Begin your conversation here..." />
