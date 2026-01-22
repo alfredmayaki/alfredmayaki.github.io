@@ -160,10 +160,37 @@ body {
     border-radius: 12px;
   }
 
+  .search-container {
+    display: flex !important;
+    flex-direction: column;
+    gap: 0.6rem;
+    align-items: stretch;
+    width: calc(100% - 2rem);
+    max-width: none;
+    margin: 1rem auto;
+    padding: 0.6rem;
+  }
+
   .search-bar {
+    order: 1;
     width: 100%;
     padding: 0.85rem 0.9rem;
     font-size: 1rem;
+  }
+
+  .search-controls {
+    order: 2;
+    width: 100%;
+    justify-content: flex-end;
+  }
+
+  .attach-btn,
+  .search-btn {
+    width: 48px;
+    height: 48px;
+    padding: 0;
+    min-width: 48px;
+    border-radius: 10px;
   }
 
   /* Keep attach + search controls on a single row but aligned to the right */
@@ -279,6 +306,8 @@ body {
   box-shadow: 0 8px 30px rgba(0,0,0,0.45);
   border: 1px solid rgba(255,255,255,0.03);
   transition: box-shadow var(--transition-med);
+  position: relative;    /* ensure z-index works and children are positioned naturally */
+  z-index: 2200;         /* sit above other page layers but below chatbot (if needed) */
 }
 
 /* stronger, slightly more intense blue glow when focused */
@@ -303,6 +332,10 @@ body {
   caret-color: var(--brand);
   min-width: 0;              /* allow input to shrink inside flex container */
   box-sizing: border-box;
+  z-index: 1;            /* keep input focusable above background */
+  pointer-events: auto;  /* make sure touches reach the input */
+  -webkit-user-select: text;
+  user-select: text;
 }
 .search-bar::placeholder { color: var(--text-secondary); opacity:0.9; }
 
@@ -357,6 +390,8 @@ body {
   display: inline-flex;
   gap: 0.5rem;
   align-items: center;
+  flex: 0 0 auto;
+  z-index: 2;
 }
 
 /* ---------- DROPLIST: adopt index_en theme (profile-links-select) ---------- */
