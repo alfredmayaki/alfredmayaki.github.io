@@ -301,7 +301,7 @@
 
     // Prepend a black-skin-tone person emoji for user messages to enforce black-tone emoji usage in the chat UI.
     // Keep stored history/plain message unchanged (caller manages history).
-    bubble.textContent = `🧑🏿 ${message}`;
+    bubble.textContent = `💬 ${message}`;
 
     // Add timestamp meta
     const meta = document.createElement('div');
