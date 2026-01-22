@@ -277,6 +277,38 @@ body {
 }
 .search-btn svg { width:20px; height:20px; fill: #fff; }
 
+/* upload / attach button (paperclip) to sit beside the search button */
+.attach-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  height: 44px;
+  padding: 0 10px;
+  border-radius: 10px;
+  background: rgba(255,255,255,0.02);
+  color: var(--text-muted);
+  border: 1px solid rgba(255,255,255,0.03);
+  cursor: pointer;
+  font-size: 18px;
+  transition: transform var(--transition-fast), background var(--transition-fast), box-shadow var(--transition-fast), color var(--transition-fast);
+}
+.attach-btn:hover,
+.attach-btn:focus {
+  color: var(--text);
+  background: rgba(61,78,233,0.06);
+  box-shadow: var(--shadow-brand);
+  transform: translateY(-2px);
+  outline: none;
+}
+
+/* ensure the search controls align nicely on small widths */
+.search-controls {
+  display: inline-flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
 /* ---------- DROPLIST: adopt index_en theme (profile-links-select) ---------- */
 /* Use the same visual styling as index_en.html's .profile-links-select */
 .dropdown-group { display:flex; gap:0.75rem; justify-content:center; align-items:center; flex-wrap:wrap; margin:1.25rem auto 0; }
@@ -914,14 +946,26 @@ body {
   <div class="page-subtitle"><h4>A New Conversational AI App</h4></div>
   <div class="page-subtitle"><h4>The Open University</h4></div>
 </div>
-        <div class="search-container">
-        <input type="text" class="search-bar" id="searchInput" placeholder="Begin your conversation here...">
-        <button class="search-btn" id="searchBtn" aria-label="Search">
-          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-            <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5s2.91 6.5 6.5 6.5c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" />
-          </svg>
-        </button>
-      </div>
+        <div class="search-container" aria-label="Site search and document upload">
+  <input type="text" class="search-bar" id="searchInput" placeholder="Begin your conversation here..." />
+
+  <div class="search-controls" role="group" aria-label="Search controls">
+    <!-- hidden file input triggered by the paperclip label -->
+    <input id="docUploadInput" type="file" accept=".pdf,.doc,.docx,.txt" style="display:none" multiple />
+
+    <!-- visible paperclip button (uses emoji to match request) -->
+    <label for="docUploadInput" class="attach-btn" title="Upload document (Beta)" aria-label="Upload document (Beta)">
+      📎
+    </label>
+
+    <!-- existing search button -->
+    <button class="search-btn" id="searchBtn" aria-label="Search">
+      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+        <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5s2.91 6.5 6.5 6.5c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" />
+      </svg>
+    </button>
+  </div>
+</div>
 
       <div class="dropdown-group" role="navigation" aria-label="Quick navigation and language selection">
   <style>
