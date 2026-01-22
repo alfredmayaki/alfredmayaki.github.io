@@ -1,4 +1,4 @@
-# Copilot Instructions
+﻿# Copilot Instructions
 
 ## General Guidelines
 - First general instruction
@@ -18,7 +18,6 @@
 - Apply the dropdown/select visual theme from index_en.html (the `.profile-links-select` styling) to the droplists in index.html (navigationSelect and languageSelect), making selects dark, rounded, with custom caret SVG, hover and focus styles, and slightly larger max-width (≈400px).
 - Prefer chatbot popup to be responsive on mobile: use full-width inset (12px) with max-height ~70vh, touch-friendly controls (larger buttons), input and upload controls full-width, and scrollable messages area. Ensure minimized state still works on mobile.
 - Prefer black skin tone emojis in the chat UI.
-- When wiring page-level file uploads to the chatbot, always attach uploads to chatbot state synchronously and use robust feature-detection. Initialize `window.uploadedDocs` if missing; guard calls to helper functions like `extractFile`, `pushChatMessage`, `renderUploadList`; prefer calling `window.__setUploadedFile` and `window.__openChatbot`.
 
 ## Contact Page Preferences
 - User prefers Font Awesome icons for social links on the contact page.

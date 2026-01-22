@@ -1069,6 +1069,9 @@ body {
 
   if (!fileInput || !uploadBtn) return;
 
+  // Ensure global storage exists (defensive)
+  window.uploadedDocs = window.uploadedDocs || [];
+
   // Open native picker on click / keyboard activation
   uploadBtn.addEventListener('click', () => fileInput.click());
   uploadBtn.addEventListener('keydown', (e) => {
@@ -1078,22 +1081,96 @@ body {
     }
   });
 
-  // Render simple file list for immediate feedback; do NOT duplicate heavy processing here
-  fileInput.addEventListener('change', (e) => {
+  // Lightweight, robust handler that tolerates missing helpers in production
+  fileInput.addEventListener('change', async (e) => {
     const files = Array.from(e.target.files || []);
-    uploadList.innerHTML = '';
-    files.forEach(f => {
-      const el = document.createElement('div');
-      el.className = 'upload-item';
-      el.innerHTML = `<div class="name">${f.name}</div><div class="status">Queued</div>`;
-      uploadList.appendChild(el);
-    });
+    if (!files.length) return;
 
-    // Keep change event available for other scripts which perform extraction/upload.
-    // Optionally notify a global handler:
-    if (window.onFilesSelectedForProcessing) {
-      window.onFilesSelectedForProcessing(files);
+    for (const f of files) {
+      // Try to show a quick UI hint only if helper exists
+      try {
+        if (typeof pushChatMessage === 'function') {
+          pushChatMessage(`Uploading ${f.name}…`, 'user');
+        }
+      } catch (err) {
+        console.warn('pushChatMessage not available:', err);
+      }
+
+      // Try to extract locally if helper exists, otherwise fall back to a minimal placeholder.
+      let result = null;
+      try {
+        if (typeof extractFile === 'function') {
+          result = await extractFile(f);
+        } else {
+          // Fallback: create a minimal result object so other code can rely on structure
+          result = { name: f.name, text: '', filename: f.name, source: 'client-fallback' };
+        }
+      } catch (err) {
+        console.warn('extractFile failed or not present:', err);
+        result = { name: f.name, text: '', filename: f.name, source: 'client-error' };
+      }
+
+      try {
+        // Ensure global list exists and push the extraction/result
+        window.uploadedDocs = window.uploadedDocs || [];
+        window.uploadedDocs.push(result);
+      } catch (err) {
+        console.warn('Failed to push to window.uploadedDocs:', err);
+      }
+
+      try {
+        if (typeof pushChatMessage === 'function') {
+          pushChatMessage(`Document received: ${f.name}`, 'bot');
+        }
+      } catch (err) {
+        /* ignore */
+      }
+
+      // Always attach the raw File to the chatbot state if the helper is available.
+      // This ensures the very next search will be sent with the file even if extraction helpers are missing.
+      try {
+        if (typeof window.__setUploadedFile === 'function') {
+          window.__setUploadedFile(f);   // set state.uploadedFile inside index.js
+        } else {
+          // As an additional defensive step, store the raw File locally so other scripts can pick it up.
+          window.__rawUploadedFile = f;
+          console.log('Note: __setUploadedFile not present; stored as __rawUploadedFile for later attachment.');
+        }
+      } catch (err) {
+        console.warn('Could not call __setUploadedFile:', err);
+      }
+
+      // Optionally open the chatbot so the user can continue there (if helper present)
+      try {
+        if (typeof window.__openChatbot === 'function') {
+          window.__openChatbot();
+        }
+      } catch (err) {
+        /* ignore */
+      }
     }
+
+    // Update any upload list UI if function exists; don't throw if not present.
+    try {
+      if (typeof renderUploadList === 'function') {
+        renderUploadList();
+      } else if (document.getElementById('uploadList')) {
+        // Basic rendering fallback for immediate user feedback
+        const uploadList = document.getElementById('uploadList');
+        uploadList.innerHTML = '';
+        (window.uploadedDocs || []).forEach(d => {
+          const el = document.createElement('div');
+          el.className = 'upload-item';
+          el.innerHTML = `<div class="name">${d.filename || d.name}</div><div class="status">Ready</div>`;
+          uploadList.appendChild(el);
+        });
+      }
+    } catch (err) {
+      console.warn('renderUploadList failed or not present:', err);
+    }
+
+    // Clear selection so same file can be re-selected
+    e.target.value = '';
   });
 })();
 </script>
