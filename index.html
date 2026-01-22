@@ -348,40 +348,6 @@ body {
   .language-select { max-width: 100%; font-size: 0.95rem; padding: 10px 32px 10px 12px; }
 }
 
-/* Add inside your existing <style> block (replace any previous .report-bug rules) */
-.report-bug {
-  position: fixed;
-  left: 50%;
-  transform: translateX(-50%);
-  bottom: 18px;
-  z-index: 2147483650;
-  color: var(--text-muted);
-  background: rgba(255,255,255,0.02);
-  padding: 0.45rem 0.8rem;
-  border-radius: 10px;
-  text-decoration: none;
-  font-size: 0.95rem;
-  border: 1px solid rgba(255,255,255,0.03);
-  transition: transform var(--transition-fast), background var(--transition-fast), box-shadow var(--transition-fast), color var(--transition-fast);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.45);
-}
-.report-bug:hover,
-.report-bug:focus {
-  color: var(--text);
-  background: rgba(61,78,233,0.06);
-  box-shadow: var(--shadow-brand);
-  transform: translateX(-50%) translateY(-2px);
-  outline: none;
-}
-@media (max-width: 600px) {
-  .report-bug {
-    bottom: 28px;
-    left: 50%;
-    transform: translateX(-50%);
-    padding: 0.5rem 0.9rem;
-  }
-}
-
 /* ---------- Chatbot popup (smooth open, minimize) ---------- */
 .chatbot-popup {
   display: none;
@@ -941,7 +907,6 @@ body {
 
 <br>
 <br>
-<br>
 
   <div id="particles-js" style="position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:-1;"></div>
 <div style="text-align:center;">
@@ -1087,10 +1052,7 @@ body {
       </div>
     </footer>
   </div>
-
-    
-<a href="contact.html" class="report-bug" aria-label="Report a technical issue">Report a technical issue</a>
-  
+ 
 <!-- Chatbot Popup -->
   <div class="chatbot-popup" id="chatbotPopup" aria-hidden="true" role="dialog" aria-label="Ask Claude Code">
     <div class="chatbot-header" id="chatbotHeader">
