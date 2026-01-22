@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>Contact — Alfred Anate Bodurin Mayaki</title>
+  <title>Contact — AM Global</title>
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <meta name="description" content="Contact Alfred Anate Bodurin Mayaki — enquiries, collaborations and community work." />
   <meta name="author" content="Alfred Anate Bodurin Mayaki" />
@@ -293,8 +293,6 @@
         <h3 id="contact-details-heading">Contact details</h3>
         <p class="note">Visitors may contact Alfred using the details below for research enquiries, community collaborations, or facilitation requests.</p>
 
-        <p><strong>Phone (UK):</strong><br><a href="tel:+447940916731" style="color:var(--brand);text-decoration:none;">07940 916731</a></p>
-
         <p><strong>Email:</strong><br><a href="mailto:info@alfredmayaki.me" style="color:var(--brand);text-decoration:none;">info@alfredmayaki.me</a></p>
 
         <div class="soft-separator" aria-hidden="true"></div>
@@ -316,6 +314,12 @@
           <a class="social-link" href="https://www.instagram.com/alfred.mayaki" target="_blank" rel="noopener noreferrer" aria-label="Alfred on Instagram">
             <i class="fa-brands fa-instagram" aria-hidden="true"></i>
             <span class="sr-only">Instagram</span>
+          </a>
+
+          <!-- Discord FA icon added beside other social icons -->
+          <a class="social-link" href="https://discord.gg/QZDb56gguX" target="_blank" rel="noopener noreferrer" aria-label="Join our Discord">
+            <i class="fa-brands fa-discord" aria-hidden="true"></i>
+            <span class="sr-only">Discord</span>
           </a>
         </div>
 
@@ -371,4 +375,25 @@
         <a href="privacy-policy.html">Privacy Policy</a>
         <a href="terms-of-use.html">Terms of Use</a>
         <a href="buymeacoffee.html">Buy Me a Coffee ☕</a>
-      <
+      </nav>
+      <p class="footer-copyright">© 2026 AM Global. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Basic form reset handler and simple client-side validation placeholders.
+    document.getElementById('resetBtn')?.addEventListener('click', function () {
+      document.getElementById('contactForm')?.reset();
+      document.getElementById('formStatus').textContent = '';
+      document.getElementById('errorList').textContent = '';
+    });
+
+    // Cookie settings link behaviour (matches index implementation)
+    document.getElementById('cookieSettingsLink')?.addEventListener('click', function (e) {
+      e.preventDefault();
+      document.cookie = 'cookie_consent=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+      location.reload();
+    });
+  </script>
+</body>
+</html>

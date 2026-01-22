@@ -1,4 +1,4 @@
-# Copilot Instructions
+﻿# Copilot Instructions
 
 ## General Guidelines
 - First general instruction
@@ -21,7 +21,6 @@
 
 ## Contact Page Preferences
 - User prefers Font Awesome icons for social links on the contact page.
-- Replace the Discord invite in the footer with a 'report a bug' link (linking to the contact page) instead of keeping the Discord icon; prefer a single 'report a bug' entry rather than duplicates.
 
 ## User Interaction Preferences
 - After Google authentication, reveal the embedded survey on the same page (hide login and show survey-section) and enable the Submit button immediately; backend sessionLogin may run in the background but must not redirect the user away to /dashboard.
