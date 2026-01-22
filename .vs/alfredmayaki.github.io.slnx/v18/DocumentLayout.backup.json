@@ -26,7 +26,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 6,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Bookmark",
@@ -48,22 +48,9 @@
               "RelativeDocumentMoniker": "msc-survey.html",
               "ToolTip": "C:\\Users\\44746\\AppData\\Local\\Microsoft\\WindowsApps\\wget\\repo\\alfredmayaki.github.io\\msc-survey.html",
               "RelativeToolTip": "msc-survey.html",
-              "ViewState": "AgIAACEBAAAAAAAAAIAwwCgBAAAUAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAC8CAAA2AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
               "WhenOpened": "2026-01-21T17:42:02.904Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "about.html",
-              "DocumentMoniker": "C:\\Users\\44746\\AppData\\Local\\Microsoft\\WindowsApps\\wget\\repo\\alfredmayaki.github.io\\about.html",
-              "RelativeDocumentMoniker": "about.html",
-              "ToolTip": "C:\\Users\\44746\\AppData\\Local\\Microsoft\\WindowsApps\\wget\\repo\\alfredmayaki.github.io\\about.html",
-              "RelativeToolTip": "about.html",
-              "ViewState": "AgIAABkBAAAAAAAAAAAYwC0BAAAHAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
-              "WhenOpened": "2026-01-21T13:49:33.236Z",
               "EditorCaption": ""
             },
             {
@@ -76,8 +63,7 @@
               "RelativeToolTip": "research.html",
               "ViewState": "AgIAALoAAAAAAAAAAAArwMYAAABCAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
-              "WhenOpened": "2026-01-21T11:39:55.851Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-01-21T11:39:55.851Z"
             },
             {
               "$type": "Document",
@@ -87,10 +73,22 @@
               "RelativeDocumentMoniker": "index.html",
               "ToolTip": "C:\\Users\\44746\\AppData\\Local\\Microsoft\\WindowsApps\\wget\\repo\\alfredmayaki.github.io\\index.html",
               "RelativeToolTip": "index.html",
-              "ViewState": "AgIAAIEDAAAAAAAAAAAIwIsDAAAvAAAAAAAAAA==",
+              "ViewState": "AgIAAIEDAAAAAAAAAAAIwIwDAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
               "WhenOpened": "2026-01-21T07:01:26.964Z",
               "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "about.html",
+              "DocumentMoniker": "C:\\Users\\44746\\AppData\\Local\\Microsoft\\WindowsApps\\wget\\repo\\alfredmayaki.github.io\\about.html",
+              "RelativeDocumentMoniker": "about.html",
+              "ToolTip": "C:\\Users\\44746\\AppData\\Local\\Microsoft\\WindowsApps\\wget\\repo\\alfredmayaki.github.io\\about.html",
+              "RelativeToolTip": "about.html",
+              "ViewState": "AgIAABkBAAAAAAAAAAAYwC0BAAAHAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2026-01-21T13:49:33.236Z"
             }
           ]
         }
