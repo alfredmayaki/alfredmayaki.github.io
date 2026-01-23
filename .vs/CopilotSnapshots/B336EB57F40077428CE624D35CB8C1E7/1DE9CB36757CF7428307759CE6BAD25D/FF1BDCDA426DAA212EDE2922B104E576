@@ -43,11 +43,11 @@
 /* Soft horizontal separator used below the footer for supervisory note */
 .soft-sep {
   border: 0;
-  height: 2px; /* slightly thicker so it's clearly visible */
-  background: linear-gradient(90deg, rgba(255,255,255,0.06), rgba(255,255,255,0.14), rgba(255,255,255,0.06));
+  height: 1px;
+  background: linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.04), rgba(255,255,255,0.02));
   margin: 0.8rem auto 0.4rem;
   max-width: 720px;
-  opacity: 1; /* fully visible */
+  opacity: 0.9;
 }
 
 /* Intro header (title + image) */

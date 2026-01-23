@@ -40,16 +40,6 @@
   --transition-med: 300ms;
 }
 
-/* Soft horizontal separator used below the footer for supervisory note */
-.soft-sep {
-  border: 0;
-  height: 2px; /* slightly thicker so it's clearly visible */
-  background: linear-gradient(90deg, rgba(255,255,255,0.06), rgba(255,255,255,0.14), rgba(255,255,255,0.06));
-  margin: 0.8rem auto 0.4rem;
-  max-width: 720px;
-  opacity: 1; /* fully visible */
-}
-
 /* Intro header (title + image) */
 .site-intro {
   display: flex;
@@ -80,19 +70,6 @@
   margin: 0.35rem 0 0;
   color: var(--text-secondary);
   font-size: 0.95rem;
-}
-
-/* Prominent glowing heading above the search area */
-.page-welcome {
-  color: var(--text);
-  font-size: 1.6rem;
-  font-weight: 700;
-  line-height: 1.05;
-  text-shadow:
-    0 2px 6px rgba(61,78,233,0.36),
-    0 6px 20px rgba(61,78,233,0.18),
-    0 0 28px rgba(212,175,55,0.06);
-  transition: text-shadow var(--transition-med), color var(--transition-med);
 }
 
 /* Page container (index_en look) */
@@ -1541,12 +1518,10 @@ body {
 
           <div style="text-align:center; font-size:0.95rem; color:var(--text-muted)">
             <div>© 2026 Alfred Anate Bodurin Mayaki. All rights reserved.</div>
+            <div style="font-size:0.85rem; color:var(--text-secondary)">Supervised by Dr. Nicola J. Bowman, The Open University</div>
           </div>
         </div>
       </footer>
-      <!-- Soft separator and supervisory note (placed below footer) -->
-      <hr class="soft-sep" aria-hidden="true" />
-      <p style="text-align:center; font-size:0.85rem; color:var(--text-secondary); margin:0.6rem 0 0;">Supervised by Dr. Nicola Bowman, The Open University</p>
     </div>
   </div>
  

@@ -43,11 +43,11 @@
 /* Soft horizontal separator used below the footer for supervisory note */
 .soft-sep {
   border: 0;
-  height: 2px; /* slightly thicker so it's clearly visible */
-  background: linear-gradient(90deg, rgba(255,255,255,0.06), rgba(255,255,255,0.14), rgba(255,255,255,0.06));
+  height: 1px;
+  background: linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.04), rgba(255,255,255,0.02));
   margin: 0.8rem auto 0.4rem;
   max-width: 720px;
-  opacity: 1; /* fully visible */
+  opacity: 0.9;
 }
 
 /* Intro header (title + image) */
@@ -1541,12 +1541,10 @@ body {
 
           <div style="text-align:center; font-size:0.95rem; color:var(--text-muted)">
             <div>© 2026 Alfred Anate Bodurin Mayaki. All rights reserved.</div>
+            <div style="font-size:0.85rem; color:var(--text-secondary)">Supervised by Dr. Nicola J. Bowman, The Open University</div>
           </div>
         </div>
       </footer>
-      <!-- Soft separator and supervisory note (placed below footer) -->
-      <hr class="soft-sep" aria-hidden="true" />
-      <p style="text-align:center; font-size:0.85rem; color:var(--text-secondary); margin:0.6rem 0 0;">Supervised by Dr. Nicola Bowman, The Open University</p>
     </div>
   </div>
  
