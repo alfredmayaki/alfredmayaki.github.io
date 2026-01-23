@@ -568,7 +568,6 @@ body {
   align-items: center;
   flex: 0 0 auto;
   z-index: 2;
-  flex-wrap: wrap; /* allow controls to wrap on narrow viewports */
 }
 
 /* ---------- DROPLIST: adopt index_en theme (profile-links-select) ---------- */
