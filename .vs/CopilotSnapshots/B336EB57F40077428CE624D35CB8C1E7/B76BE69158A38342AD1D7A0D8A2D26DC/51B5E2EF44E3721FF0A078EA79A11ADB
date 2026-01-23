@@ -89,7 +89,6 @@ body {
   max-width: 990px;
   margin: 2em auto;
   padding: 2em;
-  padding-bottom: 120px; /* ensure space for fixed footer bar */
   border: 3px solid var(--border);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-pop);
@@ -929,29 +928,21 @@ body {
 }
 .minimize-chat:focus, .close-chat:focus { outline: 3px solid rgba(61,78,233,0.18); }
 
+/* ===== Footer links precise styling ===== */
+/* Footer: center links and copyright */
 .site-footer {
-  /* fixed footer bar across bottom of viewport */
-  position: fixed;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: #000000; /* solid jet black */
-  border-top: 1px solid var(--border);
-  z-index: 1200;
-  padding: 0.6rem 1rem;
-  box-sizing: border-box;
+  padding: 1.25rem 0;
+  margin-top: 2.5rem;
+  text-align: center; /* center everything inside footer */
 }
 
 .footer-content {
   display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0.75rem;
-  max-width: 1100px;
-  margin: 0 auto;
-  width: 100%;
-  box-sizing: border-box;
+  flex-direction: column;
+  align-items: center; /* vertical center */
+  justify-content: center;
+  gap: 0.65rem;
+  text-align: center;
 }
 
 .footer-links {
@@ -1200,6 +1191,10 @@ body {
   <br>
 </div>
 
+<br
+<br
+<br>
+<br>
         <div class="search-container" aria-label="Site search and document upload">
   <input type="text" class="search-bar" id="searchInput" placeholder="Ask Claude Opus 4.5..." />
 
@@ -1453,22 +1448,35 @@ body {
 </script>
     </div>
 
+<br
+<br>
+<br>
+<br
+<br>
 <br>
 
-    <!-- Footer bar (fixed to bottom) -->
-    <footer class="site-footer" role="contentinfo" aria-label="Site footer">
+<br
+<br>
+<br>
+<br
+<br>
+<br>
+
+    <!-- Footer -->
+    <footer class="site-footer">
       <div class="footer-content">
         <nav class="footer-links" aria-label="Footer links">
           <a href="#" class="footer-link" id="cookieSettingsLink">Cookie Settings</a>
           <a href="privacy-policy.html" class="footer-link">Privacy Policy</a>
           <a href="terms-of-use.html" class="footer-link">Terms of Use</a>
           <a href="buymeacoffee.html" class="footer-link">Buy Me a Coffee ☕</a>
-        </nav>
+</nav>
 
-        <div style="text-align:right; font-size:0.95rem; color:var(--text-muted)">
-          <div>© 2026 Alfred Anate Bodurin Mayaki. All rights reserved.</div>
-          <div style="font-size:0.85rem; color:var(--text-secondary)">Supervised by Dr. Nicola J. Bowman, The Open University</div>
-        </div>
+        <p class="footer-copyright">
+             © 2026 Alfred Anate Bodurin Mayaki. All rights reserved.<br>
+        Supervised by Dr. Nicola J. Bowman, The Open University
+      </p>
+        <p><h5>Powered with ❤ via GitHub</h5></p>
       </div>
     </footer>
   </div>
