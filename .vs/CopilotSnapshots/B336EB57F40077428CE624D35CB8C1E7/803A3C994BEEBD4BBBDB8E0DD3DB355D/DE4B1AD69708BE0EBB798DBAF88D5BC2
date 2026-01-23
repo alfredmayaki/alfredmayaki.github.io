@@ -1378,20 +1378,6 @@ body {
         if (typeof window.__openChatbot === 'function') {
           window.__openChatbot();
         }
-    
-    // Visualizer button toggle (minimal wiring). Toggles an "active" class for visual feedback.
-    const visualizerBtn = document.getElementById('visualizerBtn');
-    if (visualizerBtn) {
-      visualizerBtn.addEventListener('click', function (e) {
-        e.preventDefault();
-        visualizerBtn.classList.toggle('active');
-        // Placeholder: future integration with audio playback/visualization logic
-        // Optionally call window.__openVisualizer() if implemented elsewhere
-        if (typeof window.__openVisualizer === 'function') {
-          try { window.__openVisualizer(visualizerBtn.classList.contains('active')); } catch (err) { /* ignore */ }
-        }
-      });
-    }
       } catch (err) {
         /* ignore */
       }
