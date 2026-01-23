@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
@@ -320,11 +320,6 @@
           <a class="social-link" href="https://discord.gg/QZDb56gguX" target="_blank" rel="noopener noreferrer" aria-label="Join our Discord">
             <i class="fa-brands fa-discord" aria-hidden="true"></i>
             <span class="sr-only">Discord</span>
-          </a>
-          <!-- GitHub icon linking to Alfred's profile -->
-          <a class="social-link" href="https://github.com/alfredmayaki" target="_blank" rel="noopener noreferrer" aria-label="Alfred on GitHub">
-            <i class="fa-brands fa-github" aria-hidden="true"></i>
-            <span class="sr-only">GitHub</span>
           </a>
         </div>
 
