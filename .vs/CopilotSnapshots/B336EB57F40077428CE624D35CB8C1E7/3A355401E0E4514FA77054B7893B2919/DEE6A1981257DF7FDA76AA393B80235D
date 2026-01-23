@@ -445,8 +445,8 @@ body {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 48px; /* match .search-btn size */
-  height: 48px; /* match .search-btn size */
+  min-width: 44px;
+  height: 44px;
   padding: 0;
   border-radius: 10px;
   background: rgba(255,255,255,0.02);
@@ -457,7 +457,6 @@ body {
   font-weight: 600;
   line-height: 1;
   transition: transform var(--transition-fast), background var(--transition-fast), box-shadow var(--transition-fast), color var(--transition-fast);
-  box-sizing: border-box;
 }
 .attach-btn:hover,
 .attach-btn:focus {
