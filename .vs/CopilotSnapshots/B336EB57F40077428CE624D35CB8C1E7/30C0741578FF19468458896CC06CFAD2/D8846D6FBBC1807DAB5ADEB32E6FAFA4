@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
@@ -27,16 +27,15 @@
     }
 
     html {
-      /* Use unified opaque background to avoid background-image bleed */
-      background: var(--footer-bg, #000000);
+      background: url("/universe.png") center / cover no-repeat fixed;
+      background-color: #161616;
       min-height: 100vh;
       scroll-behavior: smooth;
     }
 
     body {
       font-family: var(--font-sans);
-      /* match opaque site background for consistent contrast */
-      background: var(--footer-bg, #000000);
+      background: var(--bg-overlay);
       color: var(--text-muted);
       line-height: 1.6;
       font-size: 16px;
