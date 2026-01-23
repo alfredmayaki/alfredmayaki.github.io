@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
@@ -28,16 +28,12 @@
 
     /* Page background (keeps site theme) */
     html,body{
-      min-height:100vh;
+      height:100%;
       margin:0;
-      display:flex;
-      align-items:center;
-      justify-content:center;
       background: url("/universe.png") center / cover no-repeat fixed;
       color:var(--muted);
       font-family:var(--font-sans);
       -webkit-font-smoothing:antialiased;
-      box-sizing: border-box;
     }
 
     /* Re-introduced landing container to match site layout/brand
@@ -45,16 +41,13 @@
     .landing-container {
       width: 100%;
       max-width: 900px;
-      margin: 0 auto;
+      margin: 2rem auto;
       padding: 1.25rem;
       box-sizing: border-box;
       background: #000000; /* jet black */
       border: 3px solid var(--border);
       border-radius: var(--radius-lg);
       box-shadow: var(--shadow-pop);
-      align-self: center;
-      max-height: calc(100vh - 40px);
-      overflow: auto;
     }
 
     /* Inner page card — visually sits on top of the landing container */
@@ -125,7 +118,7 @@
 
     @media (max-width:520px) {
       .page { padding: 1rem; border-radius: 14px; }
-      .landing-container { padding: 1rem; margin: 12px; max-width: calc(100% - 24px); }
+      .landing-container { padding: 1rem; margin: 1rem; }
       .back-home { font-size: 0.9rem; padding: 0.35rem 0.55rem; }
     }
   </style>
