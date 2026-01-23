@@ -49,7 +49,8 @@
 
       font-family: var(--font-sans);
       color: var(--text-muted);
-      background: url("/universe.png") center / cover no-repeat fixed;
+      /* use opaque background to avoid bleed */
+      background: var(--footer-bg, #000000);
     }
 
     .container {

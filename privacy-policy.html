@@ -29,15 +29,16 @@
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
     html {
-      background: url("/universe.png") center / cover no-repeat fixed;
-      background-color: var(--bg);
+      /* Use unified opaque background to avoid background-image bleed */
+      background: var(--footer-bg, #000000);
       scroll-behavior: smooth;
     }
 
     body {
       font-family: var(--font-sans);
+      /* match opaque site background for consistent contrast */
       color: var(--text-muted);
-      background: transparent;
+      background: var(--footer-bg, #000000);
       min-height: 100vh;
       padding: 1em;
     }

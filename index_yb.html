@@ -14,16 +14,16 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/fontawesome.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/brands.min.css">
   <style>
-    /* HTML background with universe.png */
+    /* Use unified opaque background to avoid background-image bleed */
     html {
-      background: url("/universe.png") center / cover no-repeat fixed;
-      background-color: #161616;
+      background: var(--footer-bg, #000000);
       min-height: 100vh;
     }
 
     body {
       font-family: 'Segoe UI', sans-serif;
-      background: rgba(22, 22, 22, 0.92);
+      /* match opaque site background for consistent contrast */
+      background: var(--footer-bg, #000000);
       color: #979797;
       line-height: 1.6;
       font-size: 16px;
