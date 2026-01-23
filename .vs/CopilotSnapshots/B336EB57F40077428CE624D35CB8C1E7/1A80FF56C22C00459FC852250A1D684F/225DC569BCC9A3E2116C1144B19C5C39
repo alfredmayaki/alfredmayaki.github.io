@@ -83,7 +83,6 @@ body {
   font-family: var(--font-sans);
   background: var(--bg-overlay);
   color: var(--text-muted);
-  opacity: 100%;
   line-height: 1.6;
   font-size: 16px;
   max-width: 990px;
@@ -308,7 +307,7 @@ body {
 .cookie-btn:focus { outline: 3px solid rgba(61,78,233,0.18); }
 
 /* ---------- Landing / general (kept) ---------- */
-.landing-container { width:100%; max-width:1024px; margin:0 auto; padding:0; background: #000000 !important; background-image: none !important; opacity: 1 !important; color: var(--text, #ffffff); }
+.landing-container { width:100%; max-width:1024px; margin:0 auto; padding:0; background: #000000 !important; color: var(--text, #ffffff); }
 .main-content { width:100%; display:flex; flex-direction:column; align-items:center; justify-content:center;
   display: grid;
   grid-template-rows: auto 1fr auto; /* Header, main, footer */
@@ -1169,7 +1168,7 @@ body {
 <body>
   <!-- Top navigation (new) -->
   <nav class="top-nav" aria-label="Main navigation">
-  <a href="index.html" class="brand">🚀 AM-Global™</a>
+  <a href="index.html" class="brand">🚀 AM Global</a>
   <div class="nav-links" role="menubar" aria-label="Primary links">
     <a href="about.html" role="menuitem">About</a>
     <a href="research.html" role="menuitem">Research</a>
@@ -1184,7 +1183,7 @@ body {
 
   <div id="particles-js" style="position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:-1;"></div>
 <div style="text-align:center;">
-  <h1 class="page-welcome" style="color: #FFFFFF;">Welcome to AM-Global™</h1>
+  <h1 class="page-welcome" style="color: #FFFFFF;">Welcome to AM Global</h1>
   <div class="page-subtitle"><h3>Which question would you like an answer to, today?</h3></div>
   <br>
 </div>
