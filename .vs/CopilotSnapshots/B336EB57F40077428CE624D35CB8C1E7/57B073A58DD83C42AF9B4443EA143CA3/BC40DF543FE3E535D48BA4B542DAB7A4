@@ -1690,24 +1690,12 @@ body {
     let analyser = null;
     let source = null;
     let rafId = null;
-    let canvasResizeHandler = null;
 
     function stopVisualizer() {
       if (rafId) cancelAnimationFrame(rafId);
       rafId = null;
-      try {
-        if (source && source.mediaStream) source.mediaStream.getTracks().forEach(t => t.stop());
-      } catch (e) { /* ignore */ }
+      if (source && source.mediaStream) source.mediaStream.getTracks().forEach(t => t.stop());
       try { if (audioCtx && audioCtx.state !== 'closed') audioCtx.close(); } catch (e) { /* ignore */ }
-      // remove resize listener
-      try { if (canvasResizeHandler) window.removeEventListener('resize', canvasResizeHandler); } catch (e) { /* ignore */ }
-      canvasResizeHandler = null;
-      // hide and clear canvas
-      if (canvas) {
-        const ctx = canvas.getContext && canvas.getContext('2d');
-        if (ctx) ctx.clearRect(0, 0, canvas.width, canvas.height);
-        canvas.style.display = 'none';
-      }
       audioCtx = analyser = source = null;
     }
 
@@ -1715,21 +1703,6 @@ body {
       if (!canvas) return;
       if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) return;
       canvas.style.display = 'block';
-
-      // helper to size canvas to its CSS size while accounting for devicePixelRatio
-      function resizeCanvasToDisplaySize(ctx) {
-        const dpr = window.devicePixelRatio || 1;
-        const rect = canvas.getBoundingClientRect();
-        const width = Math.max(1, Math.floor(rect.width * dpr));
-        const height = Math.max(1, Math.floor(rect.height * dpr));
-        if (canvas.width !== width || canvas.height !== height) {
-          canvas.width = width;
-          canvas.height = height;
-          // set transform so drawing operations use CSS pixels coordinates
-          ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-        }
-      }
-
       navigator.mediaDevices.getUserMedia({ audio: true }).then(stream => {
         audioCtx = new (window.AudioContext || window.webkitAudioContext)();
         analyser = audioCtx.createAnalyser();
@@ -1742,17 +1715,9 @@ body {
         const dataArray = new Uint8Array(bufferLength);
         const ctx = canvas.getContext('2d');
 
-        // initial sizing
-        resizeCanvasToDisplaySize(ctx);
-
-        // keep canvas responsive on resize
-        canvasResizeHandler = () => resizeCanvasToDisplaySize(ctx);
-        window.addEventListener('resize', canvasResizeHandler);
-
         function draw() {
           rafId = requestAnimationFrame(draw);
           analyser.getByteFrequencyData(dataArray);
-          // clear using CSS pixel size
           ctx.clearRect(0, 0, canvas.width, canvas.height);
           const barWidth = (canvas.width / bufferLength) * 1.5;
           let x = 0;

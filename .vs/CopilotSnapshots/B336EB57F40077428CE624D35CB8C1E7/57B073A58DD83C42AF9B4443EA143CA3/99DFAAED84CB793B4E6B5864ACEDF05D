@@ -518,29 +518,15 @@ body {
 .visualizer-btn.active .visualizer-icon .b5 { animation-duration: 660ms; }
 
 /* small canvas for basic audio visualizer (hidden by default) */
-.visualizer-canvas {
-  border-radius: 8px;
-  background: linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-  display: block;
-  width: 240px;         /* default visual width when space allows */
-  max-width: 100%;      /* never overflow parent on small screens */
-  height: 48px;         /* CSS height; actual canvas pixel size is set in JS for DPR */
-  box-sizing: border-box;
-  margin-left: 8px;
-}
+.visualizer-canvas { border-radius: 8px; background: linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); display:block; }
 
-/* default placement: inline within controls (no fixed coordinates) */
+/* default fixed position: bottom-right near search area */
+/* visualizer placed inline; no fixed coordinates */
 
 @media (max-width: 600px) {
-  /* on small screens, allow the canvas to expand to available width and sit under the controls */
-  .visualizer-btn { right: 0; bottom: 0; }
-  .visualizer-canvas {
-    width: calc(100% - 64px); /* leave room for buttons on the right */
-    max-width: none;
-    height: 56px;            /* slightly taller on touch devices */
-    margin: 6px 0 0 0;       /* place below controls when it wraps */
-    display: block;
-  }
+  /* on small screens, tuck it above the chatbot and keep it reachable */
+  .visualizer-btn { right: 18px; bottom: 88px; }
+  .visualizer-canvas { width: 200px; height: 48px; }
 }
 
 /* Ensure the gold-border toggle is clearly visible and centered */
@@ -1690,24 +1676,12 @@ body {
     let analyser = null;
     let source = null;
     let rafId = null;
-    let canvasResizeHandler = null;
 
     function stopVisualizer() {
       if (rafId) cancelAnimationFrame(rafId);
       rafId = null;
-      try {
-        if (source && source.mediaStream) source.mediaStream.getTracks().forEach(t => t.stop());
-      } catch (e) { /* ignore */ }
+      if (source && source.mediaStream) source.mediaStream.getTracks().forEach(t => t.stop());
       try { if (audioCtx && audioCtx.state !== 'closed') audioCtx.close(); } catch (e) { /* ignore */ }
-      // remove resize listener
-      try { if (canvasResizeHandler) window.removeEventListener('resize', canvasResizeHandler); } catch (e) { /* ignore */ }
-      canvasResizeHandler = null;
-      // hide and clear canvas
-      if (canvas) {
-        const ctx = canvas.getContext && canvas.getContext('2d');
-        if (ctx) ctx.clearRect(0, 0, canvas.width, canvas.height);
-        canvas.style.display = 'none';
-      }
       audioCtx = analyser = source = null;
     }
 
@@ -1715,21 +1689,6 @@ body {
       if (!canvas) return;
       if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) return;
       canvas.style.display = 'block';
-
-      // helper to size canvas to its CSS size while accounting for devicePixelRatio
-      function resizeCanvasToDisplaySize(ctx) {
-        const dpr = window.devicePixelRatio || 1;
-        const rect = canvas.getBoundingClientRect();
-        const width = Math.max(1, Math.floor(rect.width * dpr));
-        const height = Math.max(1, Math.floor(rect.height * dpr));
-        if (canvas.width !== width || canvas.height !== height) {
-          canvas.width = width;
-          canvas.height = height;
-          // set transform so drawing operations use CSS pixels coordinates
-          ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-        }
-      }
-
       navigator.mediaDevices.getUserMedia({ audio: true }).then(stream => {
         audioCtx = new (window.AudioContext || window.webkitAudioContext)();
         analyser = audioCtx.createAnalyser();
@@ -1742,17 +1701,9 @@ body {
         const dataArray = new Uint8Array(bufferLength);
         const ctx = canvas.getContext('2d');
 
-        // initial sizing
-        resizeCanvasToDisplaySize(ctx);
-
-        // keep canvas responsive on resize
-        canvasResizeHandler = () => resizeCanvasToDisplaySize(ctx);
-        window.addEventListener('resize', canvasResizeHandler);
-
         function draw() {
           rafId = requestAnimationFrame(draw);
           analyser.getByteFrequencyData(dataArray);
-          // clear using CSS pixel size
           ctx.clearRect(0, 0, canvas.width, canvas.height);
           const barWidth = (canvas.width / bufferLength) * 1.5;
           let x = 0;
