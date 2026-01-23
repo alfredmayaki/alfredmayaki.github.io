@@ -461,73 +461,8 @@ body {
   border: 1px solid rgba(255,255,255,0.03);
   padding: 0;
 }
-
-.visualizer-btn {
-  /* Inline inside the search controls so it sits between attach and search buttons */
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 48px;
-  height: 48px;
-  box-sizing: border-box;
-  margin: 0;
-  position: relative;
-}
-.visualizer-btn svg { display:block; width:20px; height:20px; }
-.visualizer-icon { color: #ffffff; }
-.visualizer-btn { background: linear-gradient(90deg, rgba(61,78,233,0.08), rgba(255,255,255,0.02)); border: 1px solid rgba(255,255,255,0.04); }
-.visualizer-btn.active { box-shadow: 0 18px 54px rgba(61,78,233,0.36); /* keep elevated shadow but do not translate when active */ transform: none; }
-
-/* When active, keep the button visually elevated but prevent any translate movement on hover/focus/active */
-.visualizer-btn.active:hover,
-.visualizer-btn.active:focus,
-.visualizer-btn.active:active {
-  transform: none;
-}
-
-/* Hover / focus for visualizer to match other controls */
-.visualizer-btn:hover,
-.visualizer-btn:focus {
-  color: var(--text);
-  background: rgba(61,78,233,0.06);
-  box-shadow: var(--shadow-brand);
-  transform: translateY(-2px);
-  outline: none;
-}
-
-/* Visualizer icon bar animation */
-.visualizer-icon { display:block; color: #cfcfcf; }
-.visualizer-icon .bar { transform-origin: center bottom; transition: transform 220ms ease; }
-.visualizer-btn.active .visualizer-icon .bar { transition: transform 140ms linear; }
-.visualizer-icon .b1 { transform: scaleY(0.6); }
-.visualizer-icon .b2 { transform: scaleY(0.8); }
-.visualizer-icon .b3 { transform: scaleY(1); }
-.visualizer-icon .b4 { transform: scaleY(0.75); }
-.visualizer-icon .b5 { transform: scaleY(0.65); }
-
-/* pulsate keyframes for active state */
-@keyframes pulseBar {
-  0% { transform: scaleY(0.4); }
-  50% { transform: scaleY(1); }
-  100% { transform: scaleY(0.5); }
-}
-.visualizer-btn.active .visualizer-icon .bar { animation: pulseBar 700ms infinite ease-in-out; }
-.visualizer-btn.active .visualizer-icon .b2 { animation-duration: 620ms; }
-.visualizer-btn.active .visualizer-icon .b3 { animation-duration: 540ms; }
-.visualizer-btn.active .visualizer-icon .b4 { animation-duration: 700ms; }
-.visualizer-btn.active .visualizer-icon .b5 { animation-duration: 660ms; }
-
-/* small canvas for basic audio visualizer (hidden by default) */
-.visualizer-canvas { border-radius: 8px; background: linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); display:block; }
-
-/* default fixed position: bottom-right near search area */
-/* visualizer placed inline; no fixed coordinates */
-
-@media (max-width: 600px) {
-  /* on small screens, tuck it above the chatbot and keep it reachable */
-  .visualizer-btn { right: 18px; bottom: 88px; }
-  .visualizer-canvas { width: 200px; height: 48px; }
-}
+.visualizer-btn img { display:block; width:20px; height:20px; }
+.visualizer-btn.active { box-shadow: 0 18px 54px rgba(61,78,233,0.36); transform: translateY(-2px); }
 
 /* Ensure the gold-border toggle is clearly visible and centered */
 #toggleGoldBorder {
@@ -1336,20 +1271,12 @@ body {
 </button>
 
 <!-- audio visualizer button inserted between attach and search buttons -->
-<button id="visualizerBtn" class="attach-btn visualizer-btn" type="button" aria-label="Audio visualizer" title="Toggle audio visualizer" aria-pressed="false">
-  <!-- inline SVG so internal bars can be animated via CSS/JS -->
-  <svg class="visualizer-icon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false">
-    <title>Record audio</title>
-    <g fill="currentColor">
-      <rect class="bar b1" x="4" y="9" width="2" height="6" rx="0.3"></rect>
-      <rect class="bar b2" x="8" y="7" width="2" height="10" rx="0.3"></rect>
-      <rect class="bar b3" x="12" y="5" width="2" height="14" rx="0.3"></rect>
-      <rect class="bar b4" x="16" y="8" width="2" height="11" rx="0.3"></rect>
-      <rect class="bar b5" x="20" y="10" width="2" height="9" rx="0.3"></rect>
-    </g>
-  </svg>
+<button id="visualizerBtn" class="attach-btn visualizer-btn" type="button" aria-label="Audio visualizer" title="Toggle audio visualizer">
+  <!-- use inline img for easier theming; fall back to aria label if image fails -->
+  <img src="/assets/icons/audio-visualizer.svg" alt="Audio visualizer" style="width:20px;height:20px;display:block;filter:invert(100%);" aria-hidden="true" />
 </button>
-<!-- canvas removed: visualizer now uses inline SVG animation only (no microphone permission requested) -->
+<!-- inline canvas for small visualizer; will be shown when visualizer is active -->
+<canvas id="visualizerCanvas" class="visualizer-canvas" width="240" height="48" aria-hidden="true" style="display:none;">Your browser does not support canvas.</canvas>
 
 <div id="uploadList" class="upload-list" aria-live="polite" aria-atomic="true"></div>
 
@@ -1454,7 +1381,19 @@ body {
           window.__openChatbot();
         }
     
-    // Visualizer init moved to top-level script so it is available immediately (not dependent on file uploads)
+    // Visualizer button toggle (minimal wiring). Toggles an "active" class for visual feedback.
+    const visualizerBtn = document.getElementById('visualizerBtn');
+    if (visualizerBtn) {
+      visualizerBtn.addEventListener('click', function (e) {
+        e.preventDefault();
+        visualizerBtn.classList.toggle('active');
+        // Placeholder: future integration with audio playback/visualization logic
+        // Optionally call window.__openVisualizer() if implemented elsewhere
+        if (typeof window.__openVisualizer === 'function') {
+          try { window.__openVisualizer(visualizerBtn.classList.contains('active')); } catch (err) { /* ignore */ }
+        }
+      });
+    }
       } catch (err) {
         /* ignore */
       }
@@ -1655,81 +1594,6 @@ body {
   <!-- External Scripts -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
   <script src="index.js"></script>
-
-  <!-- Visualizer init: top-level wiring so it works without uploading files -->
-  <script>
-  (function () {
-    const visualizerBtn = document.getElementById('visualizerBtn');
-    const canvas = document.getElementById('visualizerCanvas');
-    if (!visualizerBtn) return;
-
-    // Toggle aria-pressed and active class
-    visualizerBtn.addEventListener('click', function (e) {
-      e.preventDefault();
-      const active = visualizerBtn.classList.toggle('active');
-      visualizerBtn.setAttribute('aria-pressed', String(active));
-    });
-
-    // Microphone visualizer wiring
-    let audioCtx = null;
-    let analyser = null;
-    let source = null;
-    let rafId = null;
-
-    function stopVisualizer() {
-      if (rafId) cancelAnimationFrame(rafId);
-      rafId = null;
-      if (source && source.mediaStream) source.mediaStream.getTracks().forEach(t => t.stop());
-      try { if (audioCtx && audioCtx.state !== 'closed') audioCtx.close(); } catch (e) { /* ignore */ }
-      audioCtx = analyser = source = null;
-    }
-
-    function startVisualizer() {
-      if (!canvas) return;
-      if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) return;
-      canvas.style.display = 'block';
-      navigator.mediaDevices.getUserMedia({ audio: true }).then(stream => {
-        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-        analyser = audioCtx.createAnalyser();
-        analyser.fftSize = 256;
-        source = audioCtx.createMediaStreamSource(stream);
-        source.mediaStream = stream;
-        source.connect(analyser);
-
-        const bufferLength = analyser.frequencyBinCount;
-        const dataArray = new Uint8Array(bufferLength);
-        const ctx = canvas.getContext('2d');
-
-        function draw() {
-          rafId = requestAnimationFrame(draw);
-          analyser.getByteFrequencyData(dataArray);
-          ctx.clearRect(0, 0, canvas.width, canvas.height);
-          const barWidth = (canvas.width / bufferLength) * 1.5;
-          let x = 0;
-          for (let i = 0; i < bufferLength; i++) {
-            const v = dataArray[i] / 255;
-            const y = v * canvas.height;
-            ctx.fillStyle = 'rgba(61,78,233,0.9)';
-            ctx.fillRect(x, canvas.height - y, barWidth, y);
-            x += barWidth + 1;
-          }
-        }
-        draw();
-      }).catch(err => {
-        console.warn('Microphone access denied or not available:', err);
-        if (canvas) canvas.style.display = 'none';
-        visualizerBtn.classList.remove('active');
-        visualizerBtn.setAttribute('aria-pressed', 'false');
-      });
-    }
-
-    // Observe active class changes to start/stop the microphone visualizer
-    const mo = new MutationObserver(() => {
-      if (visualizerBtn.classList.contains('active')) startVisualizer(); else { if (canvas) canvas.style.display = 'none'; stopVisualizer(); }
-    });
-    mo.observe(visualizerBtn, { attributes: true, attributeFilter: ['class'] });
-  })();
-  </script>
 
   <!-- Chatbot Minimize/Restore Script -->
   <script>

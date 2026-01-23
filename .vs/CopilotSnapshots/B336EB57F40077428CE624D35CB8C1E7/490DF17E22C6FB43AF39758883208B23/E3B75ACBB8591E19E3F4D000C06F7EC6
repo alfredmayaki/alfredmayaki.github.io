@@ -463,15 +463,16 @@ body {
 }
 
 .visualizer-btn {
-  /* Inline inside the search controls so it sits between attach and search buttons */
+  /* Fixed to viewport; place in a safe bottom-right corner and sit above overlays */
+  position: fixed;
+  z-index: 2147483648; /* above chatbot (2147483647) */
   display: inline-flex;
   align-items: center;
   justify-content: center;
   width: 48px;
   height: 48px;
   box-sizing: border-box;
-  margin: 0;
-  position: relative;
+  pointer-events: auto;
 }
 .visualizer-btn svg { display:block; width:20px; height:20px; }
 .visualizer-icon { color: #ffffff; }
@@ -521,7 +522,7 @@ body {
 .visualizer-canvas { border-radius: 8px; background: linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); display:block; }
 
 /* default fixed position: bottom-right near search area */
-/* visualizer placed inline; no fixed coordinates */
+.visualizer-btn { right: 24px; bottom: 24px; }
 
 @media (max-width: 600px) {
   /* on small screens, tuck it above the chatbot and keep it reachable */
@@ -1339,7 +1340,7 @@ body {
 <button id="visualizerBtn" class="attach-btn visualizer-btn" type="button" aria-label="Audio visualizer" title="Toggle audio visualizer" aria-pressed="false">
   <!-- inline SVG so internal bars can be animated via CSS/JS -->
   <svg class="visualizer-icon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false">
-    <title>Record audio</title>
+    <title>Audio visualizer</title>
     <g fill="currentColor">
       <rect class="bar b1" x="4" y="9" width="2" height="6" rx="0.3"></rect>
       <rect class="bar b2" x="8" y="7" width="2" height="10" rx="0.3"></rect>
