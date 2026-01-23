@@ -1689,7 +1689,26 @@ body {
 
   <!-- Navigation Dropdown Script -->
   <script>
-    // Gold border feature removed — toggle intentionally disabled
+    // Toggle gold border for search container
+    (function () {
+      const toggleBtn = document.getElementById('toggleGoldBorder');
+      const searchContainer = document.querySelector('.search-container');
+      if (!toggleBtn || !searchContainer) return;
+
+      function updateButton() {
+        const off = searchContainer.classList.contains('gold-off');
+        toggleBtn.textContent = off ? 'SuperSearch ON' : 'SuperSearch OFF';
+        toggleBtn.setAttribute('aria-pressed', String(!off));
+      }
+
+      toggleBtn.addEventListener('click', function () {
+        searchContainer.classList.toggle('gold-off');
+        updateButton();
+      });
+
+      // initialize state
+      updateButton();
+    })();
 
     const navigationSelect = document.getElementById('navigationSelect');
     navigationSelect.addEventListener('change', function () {
