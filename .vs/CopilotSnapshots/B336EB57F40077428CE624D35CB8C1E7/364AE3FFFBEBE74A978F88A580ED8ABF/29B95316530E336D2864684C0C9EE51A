@@ -1349,8 +1349,7 @@ body {
     </g>
   </svg>
 </button>
-<!-- inline canvas for small visualizer; will be shown when visualizer is active -->
-<canvas id="visualizerCanvas" class="visualizer-canvas" width="240" height="48" aria-hidden="true" style="display:none;">Your browser does not support canvas.</canvas>
+<!-- canvas removed: visualizer now uses inline SVG animation only (no microphone permission requested) -->
 
 <div id="uploadList" class="upload-list" aria-live="polite" aria-atomic="true"></div>
 
