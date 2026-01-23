@@ -95,15 +95,6 @@
   transition: text-shadow var(--transition-med), color var(--transition-med);
 }
 
-/* Tagline image (responsive) */
-.page-subtitle .tagline-image {
-  display: inline-block;
-  max-width: 720px;
-  width: 100%;
-  height: auto;
-  margin: 0.4rem auto 0;
-}
-
 /* Page container (index_en look) */
 html {
   /* Use a solid background to ensure opacity and avoid the page background image showing through */
@@ -1263,7 +1254,7 @@ body {
 </nav>
   
 
-<br>
+<br
 <br>
 <br>
 <br>
@@ -1271,9 +1262,8 @@ body {
   <div id="particles-js" style="position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:-1;"></div>
 <div style="text-align:center;">
   <h1 class="page-welcome" style="color: #FFFFFF;">Welcome to 🚀 AM-Global™</h1>
-  <div class="page-subtitle">
-    <img src="/tagline.png" alt="AM-Global tagline" class="tagline-image" />
-  </div>
+  <div class="page-subtitle"><h3>Which question would you like an answer to, today?</h3></div>
+  <br>
 </div>
 
         <div class="search-container" aria-label="Site search and document upload">
