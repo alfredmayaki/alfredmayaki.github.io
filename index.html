@@ -14,6 +14,90 @@
   </script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" />
 
+  <script>
+(function () {
+  // Replace with your Heroku app host (no trailing slash)
+  const HEROKU_HOST = 'chatgptapp.herokuapp.com';
+
+  // If running locally (localhost), use relative paths so local server can be used.
+  const isLocal = location.hostname === 'localhost' || location.hostname === '127.0.0.1';
+
+  window.CONFIG = window.CONFIG || {};
+  window.CONFIG.chatApiUrl = isLocal ? '/api/chatgpt' : 'https://' + HEROKU_HOST + '/api/chatgpt';
+  window.CONFIG.resultsUrl = isLocal ? '/results' : 'https://' + HEROKU_HOST + '/results';
+
+  // Small convenience wrapper used by UI pages (returns parsed JSON or throws)
+  window.callChatApi = async function (message) {
+    const resp = await fetch(window.CONFIG.chatApiUrl, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ message })
+    });
+
+    // prefer JSON but tolerate plain/text HTML fallbacks
+    const ct = (resp.headers.get('content-type') || '').toLowerCase();
+    if (ct.includes('application/json')) {
+      const json = await resp.json();
+      if (!resp.ok) throw new Error(json.error || `API error (${resp.status})`);
+      return json; // contains { success, text, raw }
+    } else {
+      const text = await resp.text();
+      if (!resp.ok) throw new Error(text || `API error (${resp.status})`);
+      return { success: true, text };
+    }
+  };
+
+  // Optional: helper to open results page in new tab (form POST fallback)
+  window.openResultsPage = function (message) {
+    const w = window.open('', '_blank', 'noopener');
+    if (!w) return alert('Popup blocked. Allow popups for this site.');
+
+    // try to POST JSON to resultsUrl via fetch first (best-effort)
+    fetch(window.CONFIG.resultsUrl, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ message })
+    }).then(async (r) => {
+      if (r.ok) {
+        const ct = (r.headers.get('content-type') || '').toLowerCase();
+        const body = ct.includes('text/html') ? await r.text() : await r.text();
+        w.document.open();
+        w.document.write(body);
+        w.document.close();
+      } else {
+        // fallback: build form and submit so server can render HTML
+        const form = document.createElement('form');
+        form.method = 'POST';
+        form.action = window.CONFIG.resultsUrl;
+        form.target = '_blank';
+        const i = document.createElement('input');
+        i.type = 'hidden';
+        i.name = 'message';
+        i.value = message;
+        form.appendChild(i);
+        document.body.appendChild(form);
+        form.submit();
+        form.remove();
+      }
+    }).catch(() => {
+      // network/CORS error -> form fallback
+      const form = document.createElement('form');
+      form.method = 'POST';
+      form.action = window.CONFIG.resultsUrl;
+      form.target = '_blank';
+      const i = document.createElement('input');
+      i.type = 'hidden';
+      i.name = 'message';
+      i.value = message;
+      form.appendChild(i);
+      document.body.appendChild(form);
+      form.submit();
+      form.remove();
+    });
+  };
+})();
+</script>
+
   <style>
 :root {
   --font-sans: "Segoe UI", system-ui, -apple-system, Arial, sans-serif;
