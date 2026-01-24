@@ -1350,6 +1350,17 @@ body {
   ➕
 </button>
 
+    <!-- Open results (ChatGPT) - uses blogs.alfredmayaki.me as target host (POST fallback) -->
+    <button class="search-btn" id="openResultsBtn" aria-label="Open results (ChatGPT)" title="Open results in new tab">
+      <!-- Chat / AI icon: speech bubble with two lines to indicate a query; uses currentColor so it matches button styling -->
+      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" width="20" height="20">
+        <title>Open results</title>
+        <!-- filled interior should be white; bubble outline and inner lines use brand blue for contrast -->
+        <path d="M21 6.5a2.5 2.5 0 0 0-2.5-2.5H5.5A2.5 2.5 0 0 0 3 6.5v7A2.5 2.5 0 0 0 5.5 16H8v3l3-3h6.5A2.5 2.5 0 0 0 21 13.5v-7z" fill="#FFFFFF" stroke="#3d4ee9" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"></path>
+        <path d="M7.5 9.5h9M7.5 12.2h5" fill="none" stroke="#3d4ee9" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"></path>
+      </svg>
+    </button>
+
 <!-- audio visualizer button inserted between attach and search buttons -->
 <button id="visualizerBtn" class="attach-btn visualizer-btn" type="button" aria-label="Audio visualizer" title="Record audio clip" aria-pressed="false">
   <!-- inline SVG so internal bars can be animated via CSS/JS -->
@@ -1643,7 +1654,7 @@ body {
 <!-- Chatbot Popup -->
   <div class="chatbot-popup" id="chatbotPopup" aria-hidden="true" role="dialog" aria-label="Ask Claude Code">
     <div class="chatbot-header" id="chatbotHeader">
-      <h3>💬 Ask Claude Code</h3>
+      <h3>🔍 Ask Claude Code</h3>
       <div class="chatbot-header-buttons">
         <button class="minimize-chat" id="minimizeChat" title="Minimize" aria-label="Minimize chatbot">−</button>
         <button class="close-chat" id="closeChat" title="Close" aria-label="Close chatbot">&times;</button>
@@ -2072,10 +2083,10 @@ body {
       `;
       document.head.appendChild(style);
     });
-    </script>
+    </script    
 
     <!-- Search Tracker API Client -->
-    <script src="search-tracker-api.js"></script>
+  <script src="search-tracker-api.js"></script>
     <script>
 /* Small WebAudio "click" when moving between select items.
    Plays only after a user gesture (to satisfy browser autoplay policies).
@@ -2142,11 +2153,10 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 
   /* Add near the end of the document, before the closing </body> */
-<script>
 (function () {
   const NAV_SELECTOR = '.top-nav .nav-links a';
   const SELECT_IDS = ['navigationSelect', 'languageSelect'];
-  const STORAGE_PREFIX = 'menu_ts_'.
+  const STORAGE_PREFIX = 'menu_ts_';
 
   function nowISO() { return new Date().toISOString(); }
   function formatForDisplay(iso) {
@@ -2383,6 +2393,83 @@ function createMessageEl(text, role, date = new Date()) {
 
     renderUploadList();
     e.target.value = '';
+  });
+})();
+</script>
+<!-- Open results (ChatGPT) handler: prefer local /api/chatgpt, fallback to remote host or blob -->
+<script>
+(function () {
+  const btn = document.getElementById('openResultsBtn');
+  const searchInput = document.getElementById('searchInput');
+  if (!btn || !searchInput) return;
+
+  const apiProxy = '/api/chatgpt';
+  const targetHost = 'https://blogs.alfredmayaki.me/results';
+
+  function escapeHtml(s) {
+    return String(s || '')
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#39;');
+  }
+
+  async function openInWindowWithHtml(win, html) {
+    try { win.document.open(); win.document.write(html); win.document.close(); } catch (err) { console.warn('failed to write to window', err); }
+  }
+
+  btn.addEventListener('click', async function (e) {
+    e.preventDefault();
+
+    const query = String(searchInput.value || '').trim();
+    if (!query) { searchInput.focus(); return; }
+
+    // Open new window synchronously to satisfy popup policies
+    const newWin = window.open('', '_blank', 'noopener');
+    if (!newWin) return alert('Popup blocked. Please allow popups for this site.');
+
+    // Try local proxy first
+    try {
+      const resp = await fetch(apiProxy, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ message: query })
+      });
+
+      if (resp.ok) {
+        const json = await resp.json();
+        const text = json && (json.text || json.reply || json.message) ? (json.text || json.reply || json.message) : 'No reply';
+        const html = '<!doctype html><html><head><meta charset="utf-8"><title>ChatGPT Results</title></head><body><h2>ChatGPT Results</h2><pre>' + escapeHtml(text) + '</pre></body></html>';
+        return openInWindowWithHtml(newWin, html);
+      }
+    } catch (err) {
+      console.warn('Local ChatGPT proxy failed:', err);
+    }
+
+    // Next try remote target host (best-effort)
+    try {
+      newWin.location.href = targetHost;
+      await fetch(targetHost, { method: 'POST', headers: { 'Content-Type': 'text/html' }, body: '<p>Referer: local</p>', mode: 'cors' });
+      return;
+    } catch (err) {
+      console.warn('Remote host POST failed or blocked, falling back to blob:', err);
+    }
+
+    // Final fallback: show the query in a blob page
+    const fallbackHtml = '<!doctype html><html><head><meta charset="utf-8"><title>ChatGPT Results</title></head><body>' +
+      '<h2>Query</h2><pre>' + escapeHtml(query) + '</pre>' +
+      '<p><em>No remote results available; this is a local fallback.</em></p>' +
+      '</body></html>';
+
+    const blob = new Blob([fallbackHtml], { type: 'text/html' });
+    const url = URL.createObjectURL(blob);
+    try { newWin.location.href = url; } catch (err) { openInWindowWithHtml(newWin, fallbackHtml); }
+  });
+
+  // Keyboard accessibility
+  btn.addEventListener('keydown', function (e) {
+    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); btn.click(); }
   });
 })();
 </script>
