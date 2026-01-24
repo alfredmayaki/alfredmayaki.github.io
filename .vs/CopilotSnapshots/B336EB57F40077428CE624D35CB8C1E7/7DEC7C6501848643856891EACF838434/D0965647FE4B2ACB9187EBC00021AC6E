@@ -1352,7 +1352,16 @@ body {
   ➕
 </button>
 
-    <!-- Open Results button removed (ChatGPT/results flow abandoned) -->
+    <!-- Open results (ChatGPT) - uses blogs.alfredmayaki.me as target host (POST fallback) -->
+    <button class="search-btn" id="openResultsBtn" aria-label="Open results (ChatGPT)" title="Open results in new tab">
+      <!-- Chat / AI icon: speech bubble with two lines to indicate a query; uses currentColor so it matches button styling -->
+      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" width="20" height="20">
+        <title>Open results</title>
+        <!-- filled interior should be white; bubble outline and inner lines use brand blue for contrast -->
+        <path d="M21 6.5a2.5 2.5 0 0 0-2.5-2.5H5.5A2.5 2.5 0 0 0 3 6.5v7A2.5 2.5 0 0 0 5.5 16H8v3l3-3h6.5A2.5 2.5 0 0 0 21 13.5v-7z" fill="#FFFFFF" stroke="#3d4ee9" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"></path>
+        <path d="M7.5 9.5h9M7.5 12.2h5" fill="none" stroke="#3d4ee9" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"></path>
+      </svg>
+    </button>
 
 <!-- audio visualizer button inserted between attach and search buttons -->
 <button id="visualizerBtn" class="attach-btn visualizer-btn" type="button" aria-label="Audio visualizer" title="Record audio clip" aria-pressed="false">
@@ -2389,6 +2398,36 @@ function createMessageEl(text, role, date = new Date()) {
   });
 })();
 </script>
-  <!-- Open results script removed (ChatGPT/results flow abandoned) -->
+  <!-- Open results: open a dedicated prompt page so user can interact with ChatGPT -->
+  <script>
+  (function () {
+    const btn = document.getElementById('openResultsBtn');
+    const searchInput = document.getElementById('searchInput');
+    if (!btn || !searchInput) return;
+
+    function openPromptPage(query) {
+      const base = '/chatgpt.html';
+      const url = base + (query ? ('?q=' + encodeURIComponent(query)) : '');
+      // open in new tab/window
+      const w = window.open(url, '_blank', 'noopener');
+      if (!w) alert('Popup blocked. Please allow popups for this site.');
+    }
+
+    btn.addEventListener('click', function (e) {
+      e.preventDefault();
+      const q = String(searchInput.value || '').trim();
+      if (!q) {
+        // open empty prompt page
+        openPromptPage('');
+      } else {
+        openPromptPage(q);
+      }
+    });
+
+    btn.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); btn.click(); }
+    });
+  })();
+  </script>
   </body>
   </html>

@@ -74,75 +74,7 @@ app.post('/api/chatgpt', async (req, res) => {
   }
 });
 
-// Results endpoint used by the front-end's "Open results" flow.
-// Accepts either text/html (posted full HTML) or JSON { message } or form posts. Returns an HTML page.
-app.post('/results', async (req, res) => {
-  try {
-    const contentType = (req.headers['content-type'] || '').split(';')[0].trim();
-
-    if (contentType === 'text/html') {
-      // If a full HTML document is posted, return it as-is
-      const bodyChunks = [];
-      req.on('data', (chunk) => bodyChunks.push(chunk));
-      req.on('end', () => {
-        const html = Buffer.concat(bodyChunks).toString('utf8');
-        res.setHeader('Content-Type', 'text/html; charset=utf-8');
-        return res.status(200).send(html);
-      });
-      req.on('error', (err) => { throw err; });
-      return;
-    }
-
-    // If JSON with a message was posted, call OpenAI and render the AI reply in an HTML results page
-    if (req.is('application/json') && req.body && (req.body.message || req.body.prompt)) {
-      const prompt = req.body.message || req.body.prompt || '';
-      const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
-      if (!OPENAI_API_KEY) return res.status(500).send('<p>Server misconfigured: missing OPENAI_API_KEY</p>');
-
-      // Call OpenAI chat completions
-      const openaiResp = await fetch('https://api.openai.com/v1/chat/completions', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${OPENAI_API_KEY}`
-        },
-        body: JSON.stringify({ model: 'gpt-3.5-turbo', messages: [{ role: 'user', content: prompt }], max_tokens: 600, temperature: 0.6 })
-      });
-
-      const openaiData = await openaiResp.json();
-      let aiText = '';
-      if (openaiResp.ok && openaiData && openaiData.choices && openaiData.choices[0] && openaiData.choices[0].message) {
-        aiText = openaiData.choices[0].message.content || '';
-      } else {
-        aiText = 'No reply (OpenAI error)';
-      }
-
-      const html = `<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>ChatGPT Results</title><style>body{font-family:Arial,Helvetica,sans-serif;padding:20px;background:#0b0b0b;color:#fff}h2{color:#3d4ee9}pre{white-space:pre-wrap;}</style></head><body><h2>ChatGPT Results</h2><pre>${escapeHtml(aiText)}</pre></body></html>`;
-      res.setHeader('Content-Type', 'text/html; charset=utf-8');
-      return res.status(200).send(html);
-    }
-
-    // For urlencoded/form posts or other content types, render a lightweight results page containing posted text
-    let text = '';
-    if (req.is('application/json')) {
-      text = req.body && (req.body.message || req.body.text || req.body.html) ? (req.body.message || req.body.text || req.body.html) : '';
-    } else if (req.is('application/x-www-form-urlencoded')) {
-      text = req.body && (req.body.message || req.body.text) ? (req.body.message || req.body.text) : '';
-    } else {
-      // Fallback: read raw body
-      const chunks = [];
-      req.on('data', c => chunks.push(c));
-      await new Promise((resolve) => req.on('end', resolve));
-      text = Buffer.concat(chunks).toString('utf8');
-    }
-
-    const html = `<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Results</title><style>body{font-family:Arial,Helvetica,sans-serif;padding:20px;background:#0b0b0b;color:#fff}h2{color:#3d4ee9}pre{white-space:pre-wrap;}</style></head><body><h2>ChatGPT Results</h2><pre>${escapeHtml(text)}</pre></body></html>`;
-    res.setHeader('Content-Type', 'text/html; charset=utf-8');
-    res.status(200).send(html);
-  } catch (err) {
-    res.status(500).json({ success: false, error: err.message });
-  }
-});
+// /results endpoint removed — ChatGPT HTML results flow deprecated.
 
 // Serve static site (assumes index.html in current folder)
 app.use(express.static(path.join(__dirname)));
