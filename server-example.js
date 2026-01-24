@@ -14,6 +14,8 @@ try {
 const express = require('express');
 const fetch = require('node-fetch');
 const path = require('path');
+const rateLimit = require('express-rate-limit');
+const cors = require('cors');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -21,7 +23,25 @@ const PORT = process.env.PORT || 3000;
 app.use(express.json({ limit: '512kb' }));
 app.use(express.urlencoded({ extended: true }));
 
-// ChatGPT proxy route
+// Rate limiter for API endpoints to protect OpenAI usage from abuse
+const chatLimiter = rateLimit({
+  windowMs: 60 * 1000, // 1 minute window
+  max: 20, // limit each IP to 20 requests per windowMs
+  standardHeaders: true, // Return rate limit info in the `RateLimit-*` headers
+  legacyHeaders: false, // Disable the `X-RateLimit-*` headers
+  message: { success: false, error: 'Too many requests, please slow down.' }
+});
+
+// Enable CORS for the chat proxy so frontends hosted on other origins (GitHub Pages, Cloudflare) can POST here.
+// Apply CORS before the rate limiter so preflight OPTIONS requests are handled.
+app.use('/api/chatgpt', cors({ origin: true }), chatLimiter);
+
+// Small HTML-escaping helper used by /results
+function escapeHtml(s) {
+  return String(s || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+}
+
+// ChatGPT proxy route - returns JSON
 app.post('/api/chatgpt', async (req, res) => {
   try {
     const prompt = req.body && (req.body.message || req.body.prompt) ? (req.body.message || req.body.prompt) : '';
@@ -44,13 +64,18 @@ app.post('/api/chatgpt', async (req, res) => {
       })
     });
 
-// Small HTML-escaping helper used by /results
-function escapeHtml(s) {
-  return String(s || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-}
+    const data = await response.json();
+    if (!response.ok) return res.status(502).json({ success: false, error: 'OpenAI API error', raw: data });
+
+    const text = data.choices && data.choices[0] && data.choices[0].message && data.choices[0].message.content ? data.choices[0].message.content : '';
+    res.json({ success: true, text, raw: data });
+  } catch (err) {
+    res.status(500).json({ success: false, error: err.message });
+  }
+});
 
 // Results endpoint used by the front-end's "Open results" flow.
-// Accepts either text/html (posted full HTML) or JSON { message } or plain text.
+// Accepts either text/html (posted full HTML) or JSON { message } or form posts. Returns an HTML page.
 app.post('/results', async (req, res) => {
   try {
     const contentType = (req.headers['content-type'] || '').split(';')[0].trim();
@@ -71,7 +96,7 @@ app.post('/results', async (req, res) => {
     // If JSON with a message was posted, call OpenAI and render the AI reply in an HTML results page
     if (req.is('application/json') && req.body && (req.body.message || req.body.prompt)) {
       const prompt = req.body.message || req.body.prompt || '';
-      const OPENAI_API_KEY = process.env.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;
+      const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
       if (!OPENAI_API_KEY) return res.status(500).send('<p>Server misconfigured: missing OPENAI_API_KEY</p>');
 
       // Call OpenAI chat completions
@@ -97,7 +122,7 @@ app.post('/results', async (req, res) => {
       return res.status(200).send(html);
     }
 
-    // For other content types, render a lightweight results page containing posted text
+    // For urlencoded/form posts or other content types, render a lightweight results page containing posted text
     let text = '';
     if (req.is('application/json')) {
       text = req.body && (req.body.message || req.body.text || req.body.html) ? (req.body.message || req.body.text || req.body.html) : '';
@@ -114,16 +139,6 @@ app.post('/results', async (req, res) => {
     const html = `<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Results</title><style>body{font-family:Arial,Helvetica,sans-serif;padding:20px;background:#0b0b0b;color:#fff}h2{color:#3d4ee9}pre{white-space:pre-wrap;}</style></head><body><h2>ChatGPT Results</h2><pre>${escapeHtml(text)}</pre></body></html>`;
     res.setHeader('Content-Type', 'text/html; charset=utf-8');
     res.status(200).send(html);
-  } catch (err) {
-    res.status(500).json({ success: false, error: err.message });
-  }
-});
-
-    const data = await response.json();
-    if (!response.ok) return res.status(502).json({ success: false, error: 'OpenAI API error', raw: data });
-
-    const text = data.choices && data.choices[0] && data.choices[0].message && data.choices[0].message.content ? data.choices[0].message.content : '';
-    res.json({ success: true, text, raw: data });
   } catch (err) {
     res.status(500).json({ success: false, error: err.message });
   }
