@@ -601,13 +601,47 @@ body {
 
 /* ensure the search controls align nicely on small widths */
     .search-controls {
+      display: flex;
+      gap: 0.35rem;               /* tighter distance between buttons */
+      align-items: center;      /* vertical alignment */
+      justify-content: flex-end; /* keep controls aligned to the right */
+      flex: 0 0 auto;
+      z-index: 2;
+      flex-wrap: nowrap;        /* keep controls on a single line when space allows */
+    }
+
+    /* Standardize sizes and alignment for buttons inside the search controls */
+    .search-controls .attach-btn,
+    .search-controls .visualizer-btn,
+    .search-controls .search-btn {
+      width: 48px;
+      height: 48px;
+      padding: 0;
       display: inline-flex;
-      gap: 0.10rem;
-  align-items: center;
-  flex: 0 0 auto;
-  z-index: 2;
-  flex-wrap: wrap; /* allow controls to wrap on narrow viewports */
-}
+      align-items: center;
+      justify-content: center;
+      box-sizing: border-box;
+      border-radius: 10px;
+      margin: 0; /* reset any inline spacing */
+    }
+
+    /* Allow wrapping on very small screens while preserving equal spacing */
+    @media (max-width: 420px) {
+      .search-controls { gap: 0.35rem; flex-wrap: wrap; justify-content: flex-end; }
+      .search-controls .attach-btn,
+      .search-controls .visualizer-btn,
+      .search-controls .search-btn { width: 44px; height: 44px; }
+    }
+
+    /* Tighten spacing specifically between the three controls without affecting other groups */
+    .search-controls .attach-btn { margin-right: -0.06rem; }
+    .search-controls .visualizer-btn { margin-left: -0.03rem; }
+    .search-controls .visualizer-btn + .search-btn { margin-left: -0.16rem; }
+
+    @media (max-width: 420px) {
+      .search-controls .attach-btn { margin-right: -0.04rem; }
+      .search-controls .visualizer-btn + .search-btn { margin-left: -0.10rem; }
+    }
 
 /* ---------- DROPLIST: adopt index_en theme (profile-links-select) ---------- */
 /* Use the same visual styling as index_en.html's .profile-links-select */
@@ -1388,41 +1422,37 @@ body {
   ➕
 </button>
 
+  <!-- audio visualizer button inserted between attach and search buttons -->
+  <button id="visualizerBtn" class="attach-btn visualizer-btn" type="button" aria-label="Audio visualizer" title="Record audio clip" aria-pressed="false">
+    <!-- inline SVG so internal bars can be animated via CSS/JS -->
+    <svg class="visualizer-icon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false">
+      <title>Record audio</title>
+      <g fill="currentColor">
+        <rect class="bar b1" x="4" y="9" width="2" height="6" rx="0.3"></rect>
+        <rect class="bar b2" x="8" y="7" width="2" height="10" rx="0.3"></rect>
+        <rect class="bar b3" x="12" y="5" width="2" height="14" rx="0.3"></rect>
+        <rect class="bar b4" x="16" y="8" width="2" height="11" rx="0.3"></rect>
+        <rect class="bar b5" x="20" y="10" width="2" height="9" rx="0.3"></rect>
+      </g>
+    </svg>
+  </button>
+
+  <!-- inline canvas for small visualizer; will be shown when visualizer is active -->
+  <canvas id="visualizerCanvas" class="visualizer-canvas" width="240" height="48" aria-hidden="true" style="display:none;">Your browser does not support canvas.</canvas>
+
+  <!-- existing search button (moved into search controls) -->
+  <button class="search-btn" id="searchBtn" aria-label="Search" title="Search the site — press Enter to submit">
+    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+      <title>Search</title>
+      <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5s2.91 6.5 6.5 6.5c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" />
+    </svg>
+  </button>
+
   </div>
 
   <!-- Ask OpenAI button removed -->
 
-    <!-- Open Results button removed (ChatGPT/results flow abandoned) -->
-
-<!-- audio visualizer button inserted between attach and search buttons -->
-<button id="visualizerBtn" class="attach-btn visualizer-btn" type="button" aria-label="Audio visualizer" title="Record audio clip" aria-pressed="false">
-  <!-- inline SVG so internal bars can be animated via CSS/JS -->
-  <svg class="visualizer-icon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false">
-    <title>Record audio</title>
-    <g fill="currentColor">
-      <rect class="bar b1" x="4" y="9" width="2" height="6" rx="0.3"></rect>
-      <rect class="bar b2" x="8" y="7" width="2" height="10" rx="0.3"></rect>
-      <rect class="bar b3" x="12" y="5" width="2" height="14" rx="0.3"></rect>
-      <rect class="bar b4" x="16" y="8" width="2" height="11" rx="0.3"></rect>
-      <rect class="bar b5" x="20" y="10" width="2" height="9" rx="0.3"></rect>
-    </g>
-  </svg>
-</button>
-<!-- inline canvas for small visualizer; will be shown when visualizer is active -->
-<canvas id="visualizerCanvas" class="visualizer-canvas" width="240" height="48" aria-hidden="true" style="display:none;">Your browser does not support canvas.</canvas>
-
-<div id="uploadList" class="upload-list" aria-live="polite" aria-atomic="true"></div>
-
-    <!-- existing search button (moved into search controls) -->
-    <button class="search-btn" id="searchBtn" aria-label="Search" title="Search the site — press Enter to submit">
-      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-        <title>Search</title>
-        <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5s2.91 6.5 6.5 6.5c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" />
-      </svg>
-    </button>
-
-    </div>
-  </div>
+  <!-- Open Results button removed (ChatGPT/results flow abandoned) -->
 
   <!-- Toggle removed: gold border feature intentionally removed -->
 
