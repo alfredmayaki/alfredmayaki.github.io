@@ -35,10 +35,9 @@
   },
   "homepage": "https://github.com/alfredmayaki/alfredmayaki.github.io#readme",
   "dependencies": {
+    "@anthropic-ai/sdk": "^0.71.2",
     "cookie-parser": "^1.4.7",
     "express": "^5.2.1",
-    "firebase-admin": "^13.6.0",
-    "@anthropic-ai/sdk": "^0.2.7"
-  },
-  "devDependencies": {}
+    "firebase-admin": "^13.6.0"
+  }
 }
