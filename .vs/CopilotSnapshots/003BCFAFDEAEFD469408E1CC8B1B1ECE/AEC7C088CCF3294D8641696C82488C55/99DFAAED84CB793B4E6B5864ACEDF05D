@@ -176,44 +176,6 @@
   </script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" />
 
-  <!-- Strong, specific rules to ensure the chatbot popup never shows a horizontal scrollbar
-       Applied here to override any environment differences between test and production. -->
-  <style>
-    /* make sure popup and its message area never overflow horizontally */
-    .chatbot-popup, #chatbotPopup, .chatbot-messages {
-      overflow-x: hidden !important;
-      -ms-overflow-style: none !important; /* IE/Edge */
-      scrollbar-width: none !important; /* Firefox */
-    }
-
-    /* hide webkit scrollbars inside the popup/messages */
-    .chatbot-popup::-webkit-scrollbar,
-    #chatbotPopup::-webkit-scrollbar,
-    .chatbot-messages::-webkit-scrollbar,
-    .chatbot-messages *::-webkit-scrollbar {
-      display: none !important;
-      width: 0 !important;
-      height: 0 !important;
-    }
-
-    /* ensure flex children can shrink and cannot force overflow */
-    .chatbot-popup *,
-    .chatbot-messages *,
-    .message,
-    .message-row-inner,
-    .message-bubble {
-      box-sizing: border-box !important;
-      min-width: 0 !important;
-      max-width: 100% !important;
-      word-break: break-word !important;
-      overflow-wrap: anywhere !important;
-      white-space: normal !important;
-    }
-
-    /* ensure images/snippets inside bubbles don't overflow */
-    .chatbot-popup img, .chatbot-popup .avatar-img { max-width: 100% !important; height: auto !important; }
-  </style>
-
   <style>
 :root {
   --font-sans: "Segoe UI", system-ui, -apple-system, Arial, sans-serif;
@@ -1347,6 +1309,7 @@ body {
 .message {
   display: flex;
   width: 100%;
+  align-items: flex-end;
   box-sizing: border-box;
 }
 
@@ -1356,31 +1319,6 @@ body {
   gap: 0.8rem;
   /* allow the inner wrapper to shrink so bubble width is constrained consistently */
   flex: 1 1 auto;
-}
-
-/* Position timestamps beneath each chat bubble and align per role */
-/* Use column layout so .message-row-inner stays responsible for horizontal alignment */
-.message {
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: stretch !important;
-  gap: 0.25rem;
-}
-.message .message-row-inner { width: 100%; }
-.message-meta {
-  margin-top: 0;
-  font-size: 0.78rem;
-  color: rgba(255,255,255,0.55);
-  line-height: 1;
-  opacity: 0.95;
-}
-.message.user .message-meta {
-  align-self: flex-end;
-  text-align: right;
-}
-.message.bot .message-meta {
-  align-self: flex-start;
-  text-align: left;
 }
 
 /* Consistent bubble width for user and bot messages */

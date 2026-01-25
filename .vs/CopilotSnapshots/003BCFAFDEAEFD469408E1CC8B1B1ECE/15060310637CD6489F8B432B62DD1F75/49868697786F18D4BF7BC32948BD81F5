@@ -1347,6 +1347,7 @@ body {
 .message {
   display: flex;
   width: 100%;
+  align-items: flex-end;
   box-sizing: border-box;
 }
 
@@ -1356,31 +1357,6 @@ body {
   gap: 0.8rem;
   /* allow the inner wrapper to shrink so bubble width is constrained consistently */
   flex: 1 1 auto;
-}
-
-/* Position timestamps beneath each chat bubble and align per role */
-/* Use column layout so .message-row-inner stays responsible for horizontal alignment */
-.message {
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: stretch !important;
-  gap: 0.25rem;
-}
-.message .message-row-inner { width: 100%; }
-.message-meta {
-  margin-top: 0;
-  font-size: 0.78rem;
-  color: rgba(255,255,255,0.55);
-  line-height: 1;
-  opacity: 0.95;
-}
-.message.user .message-meta {
-  align-self: flex-end;
-  text-align: right;
-}
-.message.bot .message-meta {
-  align-self: flex-start;
-  text-align: left;
 }
 
 /* Consistent bubble width for user and bot messages */
