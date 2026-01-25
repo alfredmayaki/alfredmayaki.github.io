@@ -871,8 +871,8 @@ body {
   height: 64px;
   width: 100%;
   box-sizing: border-box;
-  /* full-bleed gradient */
-  background: linear-gradient(90deg, var(--brand), var(--brand-hover));
+  /* full-bleed header should be solid black to match landing ribbon */
+  background: #000000; /* use solid black ribbon instead of brand gradient */
   border-top-left-radius: 14px;
   border-top-right-radius: 14px;
   box-shadow: 0 6px 18px rgba(61,78,233,0.12) inset;
@@ -1553,7 +1553,7 @@ body {
   </div>
 </div>
         <div class="search-container" aria-label="Site search and document upload">
-  <input type="text" class="search-bar" id="searchInput" placeholder="Ask Claude Opus 4.5..." />
+  <input type="text" class="search-bar" id="searchInput" placeholder="Enter Query..." />
 
   <div class="search-controls" role="group" aria-label="Search controls">
     <!-- hidden file input triggered by the paperclip label -->
@@ -1863,7 +1863,7 @@ body {
 <!-- Chatbot Popup -->
   <div class="chatbot-popup" id="chatbotPopup" aria-hidden="true" role="dialog" aria-label="Ask Claude Code">
     <div class="chatbot-header" id="chatbotHeader">
-      <h3>🔍 Ask Claude Code</h3>
+      <h3>💬 Chat History</h3>
       <div class="chatbot-header-buttons">
         <button class="minimize-chat" id="minimizeChat" title="Minimize" aria-label="Minimize chatbot">−</button>
         <button class="close-chat" id="closeChat" title="Close" aria-label="Close chatbot">&times;</button>
