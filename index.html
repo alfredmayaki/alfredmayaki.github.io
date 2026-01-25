@@ -849,6 +849,10 @@ body {
   transform: translateY(0) scale(1);
   opacity: 1;
 }
+.chatbot-popup:hover {
+  border: 2px solid var(--brand);
+  box-shadow: 0 24px 64px rgba(0,0,0,0.6), 0 10px 40px rgba(61,78,233,0.08);
+}
 
 /* Minimized shows only header gracefully */
 .chatbot-popup.minimized {
@@ -1235,12 +1239,12 @@ body {
   height: 64px;
   box-sizing: border-box;
   width: 100%;
-  /* full-bleed gradient */
-  background: linear-gradient(90deg, var(--brand), var(--brand-hover));
-  color: var(--text);
-  border-top-left-radius: 14px;
-  border-top-right-radius: 14px;
-  box-shadow: 0 6px 18px rgba(61,78,233,0.12) inset;
+    /* full-bleed header should be solid black to match landing ribbon */
+    background: #000000; /* use solid black ribbon instead of brand gradient */
+    color: var(--text);
+    border-top-left-radius: 14px;
+    border-top-right-radius: 14px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.6) inset;
 }
 
 /* Ensure the popup body sits visually below the header */
@@ -1553,7 +1557,7 @@ body {
   </div>
 </div>
         <div class="search-container" aria-label="Site search and document upload">
-  <input type="text" class="search-bar" id="searchInput" placeholder="Enter Query..." />
+  <input type="text" class="search-bar" id="searchInput" placeholder="Query a model..." />
 
   <div class="search-controls" role="group" aria-label="Search controls">
     <!-- hidden file input triggered by the paperclip label -->
