@@ -84,7 +84,13 @@
       padding: 1.25rem;
       color: var(--text-secondary);
       box-sizing: border-box;
-      border-left: 4px solid var(--brand);
+      border-left: 4px solid transparent;
+      transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+    }
+
+    .content:hover {
+      border-left-color: var(--brand);
+      box-shadow: 0 8px 24px rgba(61,78,233,0.06);
     }
 
     .section-title { color: var(--text); margin: 0.25rem 0 0.65rem; font-size: 1.02rem; font-weight: 700; }

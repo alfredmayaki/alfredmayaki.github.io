@@ -134,7 +134,14 @@
       padding: 1.25rem 1.25rem;
       color: var(--text-secondary);
       box-sizing: border-box;
-      border-left: 4px solid var(--brand);
+      /* show brand border only on hover */
+      border-left: 4px solid transparent;
+      transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+    }
+
+    .about-container:hover {
+      border-left-color: var(--brand);
+      box-shadow: var(--shadow-brand);
     }
 
     .bio-grid {
