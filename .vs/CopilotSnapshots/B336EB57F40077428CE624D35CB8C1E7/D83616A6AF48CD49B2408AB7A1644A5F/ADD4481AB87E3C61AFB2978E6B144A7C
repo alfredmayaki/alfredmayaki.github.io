@@ -43,7 +43,7 @@
     requestTimeoutMs: 30000,
     maxHistoryTurns: 10,
     maxFileSize: 1 * 1024 * 1024, // Reduced to 1MB
-    welcomeMessage: '👋🏿 Hello — I\'m your coding assistant (Claude Opus 4.5 + ChatGPT 5.2). Ask coding questions or upload .txt, .md, .json, .csv files for quick analysis.',
+    welcomeMessage: '👋🏿🌍🚀 Hello! I\'m powered by Claude Opus 4.5 and ChatGPT 5.2. Ask me coding questions or upload files (.txt, .md, .json, .csv) for analysis.',
     soundEffects: {
       enabled: true,        
       volume: 0.4
