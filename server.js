@@ -1,6 +1,7 @@
 
 const express = require('express');
 const cookieParser = require('cookie-parser');
+const cors = require('cors');
 const admin = require('firebase-admin');
 const path = require('path');
 const multer = require('multer');
@@ -17,6 +18,7 @@ admin.initializeApp({
 
 const upload = multer({ storage: multer.memoryStorage() });
 const app = express();
+app.use(cors());
 app.use(express.json({ limit: '5mb' }));
 app.use(cookieParser());
 
@@ -120,6 +122,48 @@ app.post('/api/claude', async (req, res) => {
     return res.json({ reply });
   } catch (err) {
     console.error('Claude proxy exception', err);
+    return res.status(500).json({ error: 'proxy failed' });
+  }
+});
+
+// POST /api/gpt - proxy to OpenAI completions (expects { model, prompt })
+app.post('/api/gpt', async (req, res) => {
+  const { model, prompt } = req.body || {};
+  if (!prompt) return res.status(400).json({ error: 'prompt required' });
+
+  const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
+  if (!OPENAI_API_KEY) {
+    // Fallback reply to keep client behaviour predictable when not configured
+    return res.json({ reply: 'Simulated reply: OpenAI integration not configured on this server.' });
+  }
+
+  try {
+    const usedModel = model || 'gpt-4o-mini';
+    const r = await fetch('https://api.openai.com/v1/completions', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${OPENAI_API_KEY}`
+      },
+      body: JSON.stringify({
+        model: usedModel,
+        prompt,
+        max_tokens: 600,
+        temperature: 0.2
+      })
+    });
+
+    if (!r.ok) {
+      const text = await r.text();
+      console.warn('OpenAI proxy error', r.status, text);
+      return res.status(502).json({ error: 'OpenAI upstream error', details: text });
+    }
+
+    const json = await r.json();
+    const reply = (json?.choices && json.choices[0] && (json.choices[0].text || json.choices[0].message?.content)) || json?.reply || json?.text || '';
+    return res.json({ reply, raw: json });
+  } catch (err) {
+    console.error('OpenAI proxy exception', err);
     return res.status(500).json({ error: 'proxy failed' });
   }
 });
