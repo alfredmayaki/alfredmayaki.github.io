@@ -1,4 +1,4 @@
-
+﻿
 const express = require('express');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
@@ -100,62 +100,30 @@ app.post('/api/claude', async (req, res) => {
     return res.json({ reply: 'Simulated reply: Claude integration not configured on this server.' });
   }
 
-  // Small retry/backoff to tolerate transient upstream overloads
-  const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
-  const maxRetries = 2;
-  let attempt = 0;
-  let lastError = null;
+  try {
+    const r = await fetch(claudeUrl, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${apiKey}`
+      },
+      body: JSON.stringify({ model: model || 'claude-opus-4.5', prompt })
+    });
 
-  while (attempt <= maxRetries) {
-    try {
-      const r = await fetch(claudeUrl, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${apiKey}`
-        },
-        body: JSON.stringify({ model: model || 'claude-opus-4.5', prompt })
-      });
-
-      if (r.ok) {
-        const json = await r.json();
-        const reply = json.reply || json.output || json.text || JSON.stringify(json);
-        return res.json({ reply, timestamp: new Date().toISOString(), raw: json });
-      }
-
-      const bodyText = await r.text().catch(() => '');
-      lastError = `status=${r.status} body=${bodyText}`;
-      console.warn('Claude upstream non-ok response', lastError);
-
-      // Retry on transient server-side errors (including Anthropic 529 overloaded)
-      if ([429, 502, 503, 504, 529].includes(r.status) && attempt < maxRetries) {
-        attempt += 1;
-        const backoff = 250 * Math.pow(2, attempt); // exponential backoff
-        await sleep(backoff);
-        continue;
-      }
-
-      // Non-retriable or exhausted retries
-      break;
-    } catch (err) {
-      lastError = String(err);
-      console.warn('Claude proxy fetch error', err);
-      if (attempt < maxRetries) {
-        attempt += 1;
-        await sleep(300 * attempt);
-        continue;
-      }
-      break;
+    if (!r.ok) {
+      const text = await r.text();
+      console.warn('Claude proxy error', r.status, text);
+      return res.status(502).json({ error: 'Claude upstream error' });
     }
-  }
 
-  // Upstream failed after retries — return a friendly simulated reply instead of 500
-  console.error('Claude upstream failed after retries:', lastError);
-  return res.json({
-    reply: 'Simulated reply: Claude service temporarily unavailable (upstream overloaded). Please try again in a few moments.',
-    timestamp: new Date().toISOString(),
-    upstreamError: lastError
-  });
+    const json = await r.json();
+    // adjust depending on upstream response format
+    const reply = json.reply || json.output || json.text || JSON.stringify(json);
+    return res.json({ reply });
+  } catch (err) {
+    console.error('Claude proxy exception', err);
+    return res.status(500).json({ error: 'proxy failed' });
+  }
 });
 
 // POST /api/gpt - proxy to OpenAI completions (expects { model, prompt })
@@ -176,7 +144,7 @@ app.post('/api/gpt', async (req, res) => {
     const isChatModel = String(usedModel).toLowerCase().includes('gpt') || String(usedModel).toLowerCase().includes('chat');
 
     if (isChatModel) {
-      const r = await fetch('https://api.openai.com/v1/completions', {
+      const r = await fetch('https://api.openai.com/v1/chat/completions', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -234,4 +202,3 @@ app.post('/api/gpt', async (req, res) => {
 // Start server
 const PORT = process.env.PORT || 8000;
 app.listen(PORT, () => console.log(`API server listening on ${PORT}`));
-

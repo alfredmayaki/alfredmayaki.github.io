@@ -20,9 +20,9 @@
     // - endpoint: backend route that proxies requests to OpenAI / other LLM provider (must be server-side)
     // - model: choose a model available to your account (do not embed API keys here)
     const GPT_CONFIG = {
-      endpoint: '/api/gpt',       // <-- Replace with your deployed backend path if different
-      model: 'gpt-5.2'            // <-- Replace with a supported model for your account
-    };
+      endpoint: 'api/gpt',       // <-- Replace with your deployed backend path if different
+      model: 'gpt-5.2',            // <-- Replace with a supported model for your account
+    }
 
     // Defer wiring until DOM is available
     function initGptButton() {
@@ -1607,12 +1607,6 @@ body {
 
   </div>
 
-  <!-- Ask OpenAI button removed -->
-
-  <!-- Open Results button removed (ChatGPT/results flow abandoned) -->
-
-  <!-- Toggle removed: gold border feature intentionally removed -->
-
 <script>
 /* Lightweight, robust client-side upload UI wiring.
    Keeps change handling available for other scripts that already listen to #docUploadInput.
@@ -1753,7 +1747,7 @@ body {
     <select id="navigationSelect" class="navigation-select" aria-label="Quick navigation">
       <option value="" selected disabled>🎬 Quick navigation…</option>
 
-      <optgroup label="Site">
+      <optgroup label="Site Navigation">
         <option value="msc-survey.html">📝 MSc in HRM Dissertation Survey</option>
         <option value="scraper.html">🔍 Dissertation Web Scraper</option>
         <option value="claude-code.html">🤖 Claude Code 4.5 Opus — Explainer</option>

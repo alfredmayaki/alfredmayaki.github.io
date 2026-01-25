@@ -1,4 +1,4 @@
-
+﻿
 const express = require('express');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
@@ -235,3 +235,40 @@ app.post('/api/gpt', async (req, res) => {
 const PORT = process.env.PORT || 8000;
 app.listen(PORT, () => console.log(`API server listening on ${PORT}`));
 
+// Unified chat endpoint used by frontend (/chat)
+// Accepts JSON { message, history } or multipart/form-data with fields 'message' + optional file
+app.post('/chat', upload.single('file'), async (req, res) => {
+  try {
+    // message may be in JSON body or form-data
+    const message = (req.body && (req.body.message || req.body.prompt)) || '';
+
+    let extractedText = '';
+    if (req.file) {
+      const file = req.file;
+      const name = file.originalname || 'file';
+      const ext = path.extname(name).toLowerCase();
+
+      if (ext === '.pdf' || file.mimetype === 'application/pdf') {
+        const data = await pdfParse(file.buffer);
+        extractedText = data.text || '';
+      } else if (ext === '.docx' || file.mimetype === 'application/vnd.openxmlformats-officedocument.wordprocessingml.document') {
+        const result = await mammoth.extractRawText({ buffer: file.buffer });
+        extractedText = result.value || '';
+      } else if (file.mimetype && file.mimetype.startsWith('text')) {
+        extractedText = file.buffer.toString('utf8');
+      } else {
+        extractedText = '';
+      }
+    }
+
+    // Simple simulated reply — replace with LLM proxy as needed
+    const reply = extractedText
+      ? `Received message: "${String(message).slice(0,200)}". Extracted file text length: ${extractedText.length} chars.`
+      : `Received message: "${String(message).slice(0,200)}".`;
+
+    return res.json({ reply, timestamp: new Date().toISOString(), received: { message: message || null, file: req.file ? req.file.originalname : null } });
+  } catch (err) {
+    console.error('/chat handler error', err);
+    return res.status(500).json({ error: 'chat handling failed' });
+  }
+});
