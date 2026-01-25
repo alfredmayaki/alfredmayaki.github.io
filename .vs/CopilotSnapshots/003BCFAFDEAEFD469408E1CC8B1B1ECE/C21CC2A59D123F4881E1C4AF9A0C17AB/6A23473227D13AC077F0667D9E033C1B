@@ -1,4 +1,4 @@
-
+﻿
 const express = require('express');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
@@ -170,13 +170,12 @@ app.post('/api/gpt', async (req, res) => {
   }
 
   try {
-    const usedModel = model || 'gpt-4.1';
+    const usedModel = model || 'gpt-5.2';
 
     // Prefer chat completions for chat-capable models
     const isChatModel = String(usedModel).toLowerCase().includes('gpt') || String(usedModel).toLowerCase().includes('chat');
 
     if (isChatModel) {
-      // Use the Chat Completions endpoint for chat-capable models
       const r = await fetch('https://api.openai.com/v1/completions', {
         method: 'POST',
         headers: {

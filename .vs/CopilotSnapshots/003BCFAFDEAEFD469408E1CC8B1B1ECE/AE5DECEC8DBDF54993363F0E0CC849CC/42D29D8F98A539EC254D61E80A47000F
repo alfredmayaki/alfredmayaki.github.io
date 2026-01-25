@@ -846,8 +846,7 @@ body {
   position: fixed;
   right: 18px;
   bottom: 18px;
-  /* reduced overall popup width for a narrower appearance */
-  width: min(800px, calc(100vw - 36px));
+  width: min(480px, calc(100vw - 36px));
   max-height: 620px;
   background: var(--panel);
   border: 1px solid rgba(255,255,255,0.06);
@@ -873,8 +872,7 @@ body {
 /* Minimized shows only header gracefully */
 .chatbot-popup.minimized {
   max-height: 58px !important;
-  /* smaller minimized width */
-  width: 260px !important;
+  width: 300px !important;
   transition: max-height var(--transition-med) ease, width var(--transition-med) ease, transform var(--transition-med) ease;
 }
 .chatbot-popup.minimized .chatbot-messages,

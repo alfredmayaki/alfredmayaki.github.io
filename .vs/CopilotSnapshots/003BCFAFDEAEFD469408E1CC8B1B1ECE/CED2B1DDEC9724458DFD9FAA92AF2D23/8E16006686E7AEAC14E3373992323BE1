@@ -59,8 +59,7 @@
 
         const bubble = document.createElement('div');
         bubble.className = 'message-bubble';
-        // Prepend chat emoji for user-originated prompts
-        bubble.textContent = (role === 'user') ? `💬 ${text}` : text;
+        bubble.textContent = text;
 
         // metadata / timestamp for message (show time only, no date)
         const meta = document.createElement('div');
@@ -846,8 +845,7 @@ body {
   position: fixed;
   right: 18px;
   bottom: 18px;
-  /* reduced overall popup width for a narrower appearance */
-  width: min(800px, calc(100vw - 36px));
+  width: min(480px, calc(100vw - 36px));
   max-height: 620px;
   background: var(--panel);
   border: 1px solid rgba(255,255,255,0.06);
@@ -873,8 +871,7 @@ body {
 /* Minimized shows only header gracefully */
 .chatbot-popup.minimized {
   max-height: 58px !important;
-  /* smaller minimized width */
-  width: 260px !important;
+  width: 300px !important;
   transition: max-height var(--transition-med) ease, width var(--transition-med) ease, transform var(--transition-med) ease;
 }
 .chatbot-popup.minimized .chatbot-messages,
@@ -1509,8 +1506,7 @@ body {
     // Bubble container
     const bubble = document.createElement('div');
     bubble.className = 'message-bubble';
-    // Prepend chat emoji for user-originated prompts
-    bubble.textContent = (role === 'user') ? `💬 ${text}` : text;
+    bubble.textContent = text;
 
     const meta = document.createElement('div');
     meta.className = 'message-meta';
@@ -2614,11 +2610,10 @@ function createMessageEl(text, role, date = new Date()) {
   avatar.className = 'message-avatar';
   avatar.textContent = role === 'user' ? 'You' : 'C';   // C for Claude
 
-    // Bubble container
-    const bubble = document.createElement('div');
-    bubble.className = 'message-bubble';
-    // Prepend chat emoji for user-originated prompts
-    bubble.textContent = (role === 'user') ? `💬 ${text}` : text;
+  // Bubble container
+  const bubble = document.createElement('div');
+  bubble.className = 'message-bubble';
+  bubble.textContent = text;
 
   const meta = document.createElement('div');
   meta.className = 'message-meta';

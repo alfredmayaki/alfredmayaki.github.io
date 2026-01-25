@@ -20,8 +20,8 @@
     // - endpoint: backend route that proxies requests to OpenAI / other LLM provider (must be server-side)
     // - model: choose a model available to your account (do not embed API keys here)
     const GPT_CONFIG = {
-      endpoint: 'https://chatgptapp-16393aeb6f52.herokuapp.com/api/gpt', // Heroku app endpoint
-      model: 'gpt-4.1',            // <-- Replace with a supported model for your account
+      endpoint: 'api/gpt',       // <-- Replace with your deployed backend path if different
+      model: 'gpt-5.2',            // <-- Replace with a supported model for your account
     }
 
     // Defer wiring until DOM is available
@@ -59,8 +59,7 @@
 
         const bubble = document.createElement('div');
         bubble.className = 'message-bubble';
-        // Prepend chat emoji for user-originated prompts
-        bubble.textContent = (role === 'user') ? `💬 ${text}` : text;
+        bubble.textContent = text;
 
         // metadata / timestamp for message (show time only, no date)
         const meta = document.createElement('div');
@@ -846,8 +845,7 @@ body {
   position: fixed;
   right: 18px;
   bottom: 18px;
-  /* reduced overall popup width for a narrower appearance */
-  width: min(800px, calc(100vw - 36px));
+  width: min(480px, calc(100vw - 36px));
   max-height: 620px;
   background: var(--panel);
   border: 1px solid rgba(255,255,255,0.06);
@@ -873,8 +871,7 @@ body {
 /* Minimized shows only header gracefully */
 .chatbot-popup.minimized {
   max-height: 58px !important;
-  /* smaller minimized width */
-  width: 260px !important;
+  width: 300px !important;
   transition: max-height var(--transition-med) ease, width var(--transition-med) ease, transform var(--transition-med) ease;
 }
 .chatbot-popup.minimized .chatbot-messages,
@@ -1225,32 +1222,6 @@ body {
   object-fit: cover;
 }
 
-/* Responsive chat bubble sizing: ensure bubbles grow/shrink with content and viewport */
-.chatbot-messages {
-  box-sizing: border-box;
-}
-.message-row-inner { max-width: 100%; }
-.message-bubble {
-  /* Let bubble size to content up to a reasonable maximum */
-  display: inline-block;
-  width: auto;
-  max-width: min(82%, 720px);
-  box-sizing: border-box; /* include padding in width calculations */
-  overflow-wrap: anywhere; /* break long words/URLs */
-  word-break: break-word;
-  white-space: pre-wrap; /* preserve newlines while allowing wrap */
-}
-
-.message.user .message-bubble {
-  align-self: flex-end; /* ensure right-side placement */
-}
-
-@media (max-width: 600px) {
-  .message-bubble {
-    max-width: calc(100% - 72px); /* leave space for padding/avatar area */
-  }
-}
-
 .message.bot .message-row-inner {
   display: flex;
   gap: 0.8rem;
@@ -1262,41 +1233,6 @@ body {
   gap: 0.8rem;
   align-items: flex-end;
   flex-direction: row-reverse;
-}
-
-/* Ensure message rows occupy full width and inner content aligns consistently */
-.message {
-  display: flex;
-  width: 100%;
-  align-items: flex-end;
-  box-sizing: border-box;
-}
-
-.message-row-inner {
-  display: flex;
-  align-items: flex-end;
-  gap: 0.8rem;
-  /* allow the inner wrapper to shrink so bubble width is constrained consistently */
-  flex: 1 1 auto;
-}
-
-/* Consistent bubble width for user and bot messages */
-.message-bubble {
-  display: inline-block;
-  /* same max width for both roles so they appear consistent */
-  max-width: 72%;
-  width: auto;
-  box-sizing: border-box;
-  overflow-wrap: anywhere;
-  word-break: break-word;
-  white-space: pre-wrap;
-}
-
-.message.bot .message-bubble { margin-left: 0; }
-.message.user .message-bubble { margin-right: 0; }
-
-@media (max-width: 600px) {
-  .message-bubble { max-width: calc(100% - 72px); }
 }
 
 /* ==========================================================================
@@ -1509,8 +1445,7 @@ body {
     // Bubble container
     const bubble = document.createElement('div');
     bubble.className = 'message-bubble';
-    // Prepend chat emoji for user-originated prompts
-    bubble.textContent = (role === 'user') ? `💬 ${text}` : text;
+    bubble.textContent = text;
 
     const meta = document.createElement('div');
     meta.className = 'message-meta';
@@ -1559,11 +1494,11 @@ body {
 
     // Attempt to send to backend API, fallback to simulated reply
     try {
-      // Send to local server proxy for OpenAI (ensure server is running and OPENAI_API_KEY is set)
+      // Replace /api/chat with your real endpoint if available
       const resp = await fetch('/api/gpt', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ model: 'gpt-4.1', prompt: text })
+        body: JSON.stringify({ message: text })
       });
 
       if (!resp.ok) throw new Error('network');
@@ -1671,8 +1606,8 @@ body {
   <canvas id="visualizerCanvas" class="visualizer-canvas" width="240" height="48" aria-hidden="true" style="display:none;">Your browser does not support canvas.</canvas>
 
   <!-- existing search button (moved into search controls) -->
-  <!-- GPT completions button (calls GPT-4.1) -->
-  <button id="gptBtn" class="attach-btn gpt-btn" type="button" aria-label="Ask GPT-4.1" title="Ask GPT-4.1 (Beta)">
+  <!-- GPT completions button (calls GPT-5.2) -->
+  <button id="gptBtn" class="attach-btn gpt-btn" type="button" aria-label="Ask GPT-5.2" title="Ask GPT-5.2 (Beta)">
     GPT
   </button>
 
@@ -2614,11 +2549,10 @@ function createMessageEl(text, role, date = new Date()) {
   avatar.className = 'message-avatar';
   avatar.textContent = role === 'user' ? 'You' : 'C';   // C for Claude
 
-    // Bubble container
-    const bubble = document.createElement('div');
-    bubble.className = 'message-bubble';
-    // Prepend chat emoji for user-originated prompts
-    bubble.textContent = (role === 'user') ? `💬 ${text}` : text;
+  // Bubble container
+  const bubble = document.createElement('div');
+  bubble.className = 'message-bubble';
+  bubble.textContent = text;
 
   const meta = document.createElement('div');
   meta.className = 'message-meta';
