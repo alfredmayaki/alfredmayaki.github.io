@@ -61,24 +61,11 @@
         bubble.className = 'message-bubble';
         bubble.textContent = text;
 
-        // metadata / timestamp for message (show time only, no date)
+        // metadata / timestamp for message
         const meta = document.createElement('div');
         meta.className = 'message-meta';
         try {
-          let timeText = '';
-          if (timestamp) {
-            // Prefer Date parsing, fall back to extracting time-like substring
-            const dt = (timestamp instanceof Date) ? timestamp : new Date(timestamp);
-            if (!isNaN(dt)) {
-              timeText = dt.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
-            } else {
-              const m = String(timestamp).match(/\d{1,2}:\d{2}(?::\d{2})?/);
-              timeText = m ? m[0] : String(timestamp || '');
-            }
-          } else {
-            timeText = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
-          }
-          meta.textContent = timeText;
+          meta.textContent = timestamp || new Date().toLocaleString();
         } catch (e) {
           meta.textContent = '';
         }
@@ -86,8 +73,7 @@
         inner.appendChild(avatar);
         inner.appendChild(bubble);
         row.appendChild(inner);
-        // Do not show date/meta for bot replies (OpenAI/Claude)
-        if (role !== 'bot') row.appendChild(meta);
+        row.appendChild(meta);
         messages.appendChild(row);
         scrollToBottom();
         return row;
@@ -1417,30 +1403,10 @@ body {
     const inner = document.createElement('div');
     inner.className = 'message-row-inner';
 
-    // Avatar
+    // Avatar: use simple text initials instead of default profile images
     const avatar = document.createElement('div');
     avatar.className = 'message-avatar';
-    if (role === 'user') {
-      // user profile placeholder image (keeps consistent sizing)
-      const img = document.createElement('img');
-      img.className = 'avatar-img';
-      img.alt = 'You';
-      // primary src is site root image; if missing, fallback to a tiny SVG avatar so UI still shows
-      img.src = '/default.jpg';
-      img.onerror = function () {
-        try {
-          this.onerror = null;
-          this.src = 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64"><rect width="100%" height="100%" fill="%232a2a2a"/><text x="50%" y="50%" dy=".35em" fill="%23ffffff" font-family="Segoe UI, Arial, sans-serif" font-size="28" text-anchor="middle">U</text></svg>';
-        } catch (e) {
-          // as a last resort, show nothing
-          this.style.display = 'none';
-        }
-      };
-      avatar.appendChild(img);
-    } else {
-      // bot initial
-      avatar.textContent = 'C';   // C for Claude / chatbot
-    }
+    avatar.textContent = role === 'user' ? 'You' : 'C';
 
     // Bubble container
     const bubble = document.createElement('div');
@@ -1450,14 +1416,19 @@ body {
     const meta = document.createElement('div');
     meta.className = 'message-meta';
 
-    // Show time-only (include seconds) in the message meta
+    // Robust time + short date formatting using Intl.DateTimeFormat (works across locales)
     try {
-      const timeFormatter = new Intl.DateTimeFormat(undefined, { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+      const timeFormatter = new Intl.DateTimeFormat(undefined, { hour: '2-digit', minute: '2-digit' });
+      // include year so Claude timestamps match OpenAI timestamps (date + time)
+      const dateFormatter = new Intl.DateTimeFormat(undefined, { year: 'numeric', month: 'short', day: 'numeric' });
       const time = timeFormatter.format(date);
-      meta.textContent = time;
+      const shortDate = dateFormatter.format(date);
+      meta.textContent = `${time} • ${shortDate}`;
     } catch (err) {
-      // Fallback: locale-aware time with seconds
-      meta.textContent = date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+      // Fallback
+      const time = date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+      const shortDate = date.toLocaleDateString([], { month: 'short', day: 'numeric' });
+      meta.textContent = `${time} • ${shortDate}`;
     }
 
     inner.appendChild(avatar);
@@ -1548,10 +1519,6 @@ body {
   window.__chatSendMessage = sendMessage;
 })();
 </script>
-  </style>
-  <style>
-    /* Hide avatar initials/icons inside the chatbot popup */
-    .chatbot-popup .message-avatar { display: none !important; }
   </style>
 </head>
 <body>
@@ -2559,11 +2526,16 @@ function createMessageEl(text, role, date = new Date()) {
 
   // Robust time + short date formatting using Intl.DateTimeFormat (works across locales)
   try {
-    const timeFormatter = new Intl.DateTimeFormat(undefined, { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+    const timeFormatter = new Intl.DateTimeFormat(undefined, { hour: '2-digit', minute: '2-digit' });
+    const dateFormatter = new Intl.DateTimeFormat(undefined, { month: 'short', day: 'numeric' });
     const time = timeFormatter.format(date);
-    meta.textContent = time; // only show time
+    const shortDate = dateFormatter.format(date);
+    meta.textContent = `${time} • ${shortDate}`;
   } catch (err) {
-    meta.textContent = date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+    // Fallback
+    const time = date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    const shortDate = date.toLocaleDateString([], { month: 'short', day: 'numeric' });
+    meta.textContent = `${time} • ${shortDate}`;
   }
 
   inner.appendChild(avatar);

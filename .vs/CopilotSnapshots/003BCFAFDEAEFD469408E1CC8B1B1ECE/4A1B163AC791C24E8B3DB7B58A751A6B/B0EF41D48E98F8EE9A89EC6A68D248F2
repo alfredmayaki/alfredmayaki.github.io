@@ -1,4 +1,4 @@
-
+﻿
 const express = require('express');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
@@ -8,6 +8,13 @@ const multer = require('multer');
 const pdfParse = require('pdf-parse');
 const mammoth = require('mammoth');
 const fetch = require('node-fetch');
+
+// Load environment variables from .env when present
+try {
+  require('dotenv').config();
+} catch (e) {
+  // ignore if dotenv not installed or .env missing
+}
 
 // REQUIRE: place your Firebase Admin service account JSON at ./serviceAccountKey.json
 const serviceAccount = require('./serviceAccountKey.json');
@@ -165,44 +172,16 @@ app.post('/api/gpt', async (req, res) => {
 
   const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
   if (!OPENAI_API_KEY) {
-    // Fallback reply to keep client behaviour predictable when not configured
     return res.json({ reply: 'Simulated reply: OpenAI integration not configured on this server.' });
   }
 
   try {
-    const usedModel = model || 'gpt-5.2';
+    const usedModel = model || 'gpt-4o-mini';
 
-    // Prefer chat completions for chat-capable models
-    const isChatModel = String(usedModel).toLowerCase().includes('gpt') || String(usedModel).toLowerCase().includes('chat');
+    // Use Chat Completions for chat-capable models
+    const chatEndpoint = 'https://api.openai.com/v1/chat/completions';
 
-    if (isChatModel) {
-      const r = await fetch('https://api.openai.com/v1/completions', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${OPENAI_API_KEY}`
-        },
-        body: JSON.stringify({
-          model: usedModel,
-          messages: [{ role: 'user', content: prompt }],
-          max_tokens: 800,
-          temperature: 0.2
-        })
-      });
-
-      if (!r.ok) {
-        const text = await r.text();
-        console.warn('OpenAI chat proxy error', r.status, text);
-        return res.status(502).json({ error: 'OpenAI upstream error', details: text });
-      }
-
-      const json = await r.json();
-      const reply = (json?.choices && json.choices[0] && (json.choices[0].message?.content || json.choices[0].text)) || json?.reply || '';
-      return res.json({ reply, timestamp: new Date().toISOString(), raw: json });
-    }
-
-    // Fallback to legacy completions endpoint
-    const r = await fetch('https://api.openai.com/v1/completions', {
+    const r = await fetch(chatEndpoint, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -210,20 +189,20 @@ app.post('/api/gpt', async (req, res) => {
       },
       body: JSON.stringify({
         model: usedModel,
-        prompt,
-        max_tokens: 600,
+        messages: [{ role: 'user', content: prompt }],
+        max_tokens: 800,
         temperature: 0.2
       })
     });
 
     if (!r.ok) {
-      const text = await r.text();
+      const text = await r.text().catch(() => '');
       console.warn('OpenAI proxy error', r.status, text);
       return res.status(502).json({ error: 'OpenAI upstream error', details: text });
     }
 
     const json = await r.json();
-    const reply = (json?.choices && json.choices[0] && (json.choices[0].text || json.choices[0].message?.content)) || json?.reply || json?.text || '';
+    const reply = (json?.choices && json.choices[0] && (json.choices[0].message?.content || json.choices[0].text)) || json?.reply || json?.text || '';
     return res.json({ reply, timestamp: new Date().toISOString(), raw: json });
   } catch (err) {
     console.error('OpenAI proxy exception', err);

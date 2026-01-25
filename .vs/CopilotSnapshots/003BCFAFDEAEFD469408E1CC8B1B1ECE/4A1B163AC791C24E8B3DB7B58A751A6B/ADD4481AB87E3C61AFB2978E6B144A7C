@@ -266,10 +266,10 @@
   // Helper: format timestamp for message meta (hour:minute, locale-aware)
   function formatMessageTime(date) {
     try {
-      const fmt = new Intl.DateTimeFormat(undefined, { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+      const fmt = new Intl.DateTimeFormat(undefined, { hour: '2-digit', minute: '2-digit' });
       return fmt.format(date);
     } catch (err) {
-      return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+      return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
     }
   }
 

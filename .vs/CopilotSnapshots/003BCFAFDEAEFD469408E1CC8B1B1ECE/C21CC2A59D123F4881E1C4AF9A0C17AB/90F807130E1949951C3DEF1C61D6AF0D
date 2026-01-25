@@ -61,24 +61,11 @@
         bubble.className = 'message-bubble';
         bubble.textContent = text;
 
-        // metadata / timestamp for message (show time only, no date)
+        // metadata / timestamp for message
         const meta = document.createElement('div');
         meta.className = 'message-meta';
         try {
-          let timeText = '';
-          if (timestamp) {
-            // Prefer Date parsing, fall back to extracting time-like substring
-            const dt = (timestamp instanceof Date) ? timestamp : new Date(timestamp);
-            if (!isNaN(dt)) {
-              timeText = dt.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
-            } else {
-              const m = String(timestamp).match(/\d{1,2}:\d{2}(?::\d{2})?/);
-              timeText = m ? m[0] : String(timestamp || '');
-            }
-          } else {
-            timeText = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
-          }
-          meta.textContent = timeText;
+          meta.textContent = timestamp || new Date().toLocaleString();
         } catch (e) {
           meta.textContent = '';
         }
@@ -1450,13 +1437,13 @@ body {
     const meta = document.createElement('div');
     meta.className = 'message-meta';
 
-    // Show time-only (include seconds) in the message meta
+    // Robust time + short date formatting using Intl.DateTimeFormat (works across locales)
     try {
       const timeFormatter = new Intl.DateTimeFormat(undefined, { hour: '2-digit', minute: '2-digit', second: '2-digit' });
       const time = timeFormatter.format(date);
-      meta.textContent = time;
+      meta.textContent = time; // only show time, no date
     } catch (err) {
-      // Fallback: locale-aware time with seconds
+      // Fallback
       meta.textContent = date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
     }
 
