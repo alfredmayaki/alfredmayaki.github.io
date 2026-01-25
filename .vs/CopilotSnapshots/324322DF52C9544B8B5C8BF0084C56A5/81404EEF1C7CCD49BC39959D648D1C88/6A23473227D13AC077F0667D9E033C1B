@@ -1,4 +1,4 @@
-
+﻿
 const express = require('express');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
@@ -139,37 +139,6 @@ app.post('/api/gpt', async (req, res) => {
 
   try {
     const usedModel = model || 'gpt-5.2';
-
-    // Prefer chat completions for chat-capable models
-    const isChatModel = String(usedModel).toLowerCase().includes('gpt') || String(usedModel).toLowerCase().includes('chat');
-
-    if (isChatModel) {
-      const r = await fetch('https://api.openai.com/v1/chat/completions', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${OPENAI_API_KEY}`
-        },
-        body: JSON.stringify({
-          model: usedModel,
-          messages: [{ role: 'user', content: prompt }],
-          max_tokens: 800,
-          temperature: 0.2
-        })
-      });
-
-      if (!r.ok) {
-        const text = await r.text();
-        console.warn('OpenAI chat proxy error', r.status, text);
-        return res.status(502).json({ error: 'OpenAI upstream error', details: text });
-      }
-
-      const json = await r.json();
-      const reply = (json?.choices && json.choices[0] && (json.choices[0].message?.content || json.choices[0].text)) || json?.reply || '';
-      return res.json({ reply, timestamp: new Date().toISOString(), raw: json });
-    }
-
-    // Fallback to legacy completions endpoint
     const r = await fetch('https://api.openai.com/v1/completions', {
       method: 'POST',
       headers: {
@@ -192,7 +161,7 @@ app.post('/api/gpt', async (req, res) => {
 
     const json = await r.json();
     const reply = (json?.choices && json.choices[0] && (json.choices[0].text || json.choices[0].message?.content)) || json?.reply || json?.text || '';
-    return res.json({ reply, timestamp: new Date().toISOString(), raw: json });
+    return res.json({ reply, raw: json });
   } catch (err) {
     console.error('OpenAI proxy exception', err);
     return res.status(500).json({ error: 'proxy failed' });
