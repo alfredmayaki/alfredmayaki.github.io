@@ -897,15 +897,8 @@ body {
   width:36px; height:36px; border-radius:10px; border:none; background:transparent; color:var(--text);
   display:inline-flex; align-items:center; justify-content:center; font-size:18px;
 }
-.minimize-chat:hover, .close-chat:hover {
-  background: rgba(255,255,255,0.06);
-  border: 1px solid var(--brand);
-  box-shadow: var(--shadow-brand);
-}
-.minimize-chat:focus, .close-chat:focus {
-  outline: 3px solid rgba(61,78,233,0.18);
-  border: 1px solid var(--brand);
-}
+.minimize-chat:hover, .close-chat:hover { background: rgba(255,255,255,0.06); }
+.minimize-chat:focus, .close-chat:focus { outline: 3px solid rgba(61,78,233,0.18); }
 
 /* Messages & input */
 .chatbot-messages { flex:1; padding: 0.9rem 0.9rem 1rem; overflow:auto; background: linear-gradient(180deg, rgba(255,255,255,0.01), transparent); }
@@ -1598,9 +1591,9 @@ body {
     GPT
   </button>
 
-  <button class="search-btn" id="searchBtn" aria-label="Search" title="Ask Claude Opus 4.5">
+  <button class="search-btn" id="searchBtn" aria-label="Search" title="Search the site — press Enter to submit">
     <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-      <title>Ask Claude Opus 4.5"</title>
+      <title>Search</title>
       <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5s2.91 6.5 6.5 6.5c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" />
     </svg>
   </button>
@@ -1857,7 +1850,8 @@ body {
             <a href="#" class="footer-link" id="cookieSettingsLink">Cookie Settings</a>
             <a href="privacy-policy.html" class="footer-link">Privacy Policy</a>
             <a href="terms-of-use.html" class="footer-link">Terms of Use</a>
-            </nav>
+            <a href="buymeacoffee.html" class="footer-link">Buy Me a Coffee ☕</a>
+          </nav>
 
           <div style="text-align:center; font-size:0.95rem; color:var(--text-muted)">
             <div>© 2026 Alfred Anate Bodurin Mayaki. All rights reserved.</div>
@@ -1881,7 +1875,7 @@ body {
     </div>
     <div class="chatbot-messages" id="chatbotMessages" role="log" aria-live="polite"></div>
     <div class="chatbot-input-area">
-      <input type="text" class="chatbot-input" id="chatbotInput" placeholder="Enter subsequent queries here..." aria-label="Chat input">
+      <input type="text" class="chatbot-input" id="chatbotInput" placeholder="Type all subsequent messages here..." aria-label="Chat input">
     </div>
   </div>
 

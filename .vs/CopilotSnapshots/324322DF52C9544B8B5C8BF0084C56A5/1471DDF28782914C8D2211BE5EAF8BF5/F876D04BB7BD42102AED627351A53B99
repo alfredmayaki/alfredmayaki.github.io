@@ -569,24 +569,14 @@
     e.preventDefault();
     if (e.stopImmediatePropagation) e.stopImmediatePropagation();
     console.log('🔍 Search button clicked (safe handler)');
-    // Normalize current input and detect any page-level file selection
+
     const query = normalizeUserText(elements.searchInput.value);
-    const hasPageFile = !!(elements.docUploadInput && elements.docUploadInput.files && elements.docUploadInput.files.length > 0);
-
-    // Block blank searches: if there's no query text AND no file attached, do nothing.
-    if (!query && !hasPageFile && !state.uploadedFile) {
-      try { elements.searchInput.focus(); } catch (err) { /* ignore */ }
-      console.log('Ignored blank search (no query, no file)');
-      return;
-    }
-
-    // Open chatbot UI now that we know there's a meaningful action (text or file)
     elements.chatbotPopup.classList.add('active');
     void SoundFX.playSuccess();
 
-    // --- Ensure any file chosen using the page-level uploader is wired into chatbot state
+    // --- New: ensure any file chosen using the page-level uploader is wired into chatbot state
     try {
-      if (!state.uploadedFile && hasPageFile) {
+      if (!state.uploadedFile && elements.docUploadInput && elements.docUploadInput.files && elements.docUploadInput.files.length > 0) {
         const pageFile = elements.docUploadInput.files[0];
 
         // basic size check to mirror chatbot file UI rules
@@ -611,7 +601,6 @@
       console.warn('⚠️ Could not attach page upload to chatbot state:', attachErr);
     }
 
-    // If there is no text query but a file is attached, focus the chat input so user can add context.
     if (!query) {
       elements.chatbotInput.focus();
       elements.searchInput.value = '';
