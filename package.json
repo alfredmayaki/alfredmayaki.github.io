@@ -1,6 +1,35 @@
 {
-  "name": "alfredmayaki.github.io",
+  "name": "blench-spyro",
   "version": "1.1.0",
+  "description": "<b>Disclaimer:</b> Please read this disclaimer carefully and thoroughly to ensure there is no confusion cast between the intended purpose of this application and what transpires in a given context. Thank you for taking the opportunity to review the supporting documentation for this University-related web project, which I have been working on since 2023. All information referred to and contained within the repository is reliably accurate as of the date of publication. This includes all weblinks, files, contact details, skills, and relevant on-the-job experience.\r <p> 🛸 This is a frontend Python3, JavaScript and HTML5 web application that was created by simply using an index.html file in GitHub and developed using the Visual Studio IDE and further developed at a later date using the Microsoft VS Insider 2026 IDE. It is deployed from GitHub to a student-licensed app on Heroku and then through a wrangler deploy command using Cloudflare, the main search protocol on the homepage calls Gemini 2.5 Flash for the chatbot feature. This is achieved via an index.js file.</p>\r <p> 🌍 The application consists of a personal profile of mine which offers multilingual support for its readership ~ in English as well as in 14 other languages. More languages may become available at a date later to the publication of this disclaimer.</p>\r <p> 💜 All outbound weblinks that are displayed on this website have been screened for safety. Please ensure precaution is taken when clicking links, as from time to time, embedded links may have been written manually and may contain errors.</p>\r <p> ⚪ This main branch of this repo is a public code repository, which will be supported throughout the entirety of its SDLC lifecycle by me personally and by my Discord comrades from The Open University. Forks and other requests can be made on an as-and-when basis, as is usually the case.</p>\r <p> 📵 The documents contained within the repository are all my own or have been entrusted to me by organisations I am closely affiliated with. The documents under my immediate ownership are copyright-protected and should not be reproduced for sale or for profit without my acknowledgement. Finally, I would like to send a big thank you to the designer of this web application's theme, Mr. Vincent Garreau, who is the author of <a href=\"https://github.com/VincentGarreau/particles.js\">'particles.js'</a> on GitHub.</p>",
+  "keywords": [],
+  "homepage": "https://github.com/alfredmayaki/alfredmayaki.github.io#readme",
+  "bugs": {
+    "url": "https://github.com/alfredmayaki/alfredmayaki.github.io/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alfredmayaki/alfredmayaki.github.io.git"
+  },
+  "license": "ISC",
+  "author": "Alfred Anate Bodurin Mayaki",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.71.2",
+    "cookie-parser": "^1.4.7",
+    "express": "^4.18.2",
+    "node-fetch": "^2.6.9",
+    "express-rate-limit": "^6.7.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "firebase-admin": "^13.6.0"
+  },
+  "devDependencies": {},
   "requires": true,
   "packages": {
     "src/dataconnect-generated": {
@@ -15,33 +44,5 @@
         "firebase": "^10.14.0 || ^11.3.0 || ^12.0.0"
       }
     }
-  },
-  "description": "<b>Disclaimer:</b> Please read this disclaimer carefully and thoroughly to ensure there is no confusion cast between the intended purpose of this application and what transpires in a given context. Thank you for taking the opportunity to review the supporting documentation for this University-related web project, which I have been working on since 2023. All information referred to and contained within the repository is reliably accurate as of the date of publication. This includes all weblinks, files, contact details, skills, and relevant on-the-job experience.\r <p> 🛸 This is a frontend Python3, JavaScript and HTML5 web application that was created by simply using an index.html file in GitHub and developed using the Visual Studio IDE and further developed at a later date using the Microsoft VS Insider 2026 IDE. It is deployed from GitHub to a student-licensed app on Heroku and then through a wrangler deploy command using Cloudflare, the main search protocol on the homepage calls Gemini 2.5 Flash for the chatbot feature. This is achieved via an index.js file.</p>\r <p> 🌍 The application consists of a personal profile of mine which offers multilingual support for its readership ~ in English as well as in 14 other languages. More languages may become available at a date later to the publication of this disclaimer.</p>\r <p> 💜 All outbound weblinks that are displayed on this website have been screened for safety. Please ensure precaution is taken when clicking links, as from time to time, embedded links may have been written manually and may contain errors.</p>\r <p> ⚪ This main branch of this repo is a public code repository, which will be supported throughout the entirety of its SDLC lifecycle by me personally and by my Discord comrades from The Open University. Forks and other requests can be made on an as-and-when basis, as is usually the case.</p>\r <p> 📵 The documents contained within the repository are all my own or have been entrusted to me by organisations I am closely affiliated with. The documents under my immediate ownership are copyright-protected and should not be reproduced for sale or for profit without my acknowledgement. Finally, I would like to send a big thank you to the designer of this web application's theme, Mr. Vincent Garreau, who is the author of <a href=\"https://github.com/VincentGarreau/particles.js\">'particles.js'</a> on GitHub.</p>",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server-example.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/alfredmayaki/alfredmayaki.github.io.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "type": "commonjs",
-  "bugs": {
-    "url": "https://github.com/alfredmayaki/alfredmayaki.github.io/issues"
-  },
-  "homepage": "https://github.com/alfredmayaki/alfredmayaki.github.io#readme",
-  "dependencies": {
-    "@anthropic-ai/sdk": "^0.71.2",
-    "cookie-parser": "^1.4.7",
-    "express": "^4.18.2",
-    "node-fetch": "^2.6.9",
-    "express-rate-limit": "^6.7.0",
-    "cors": "^2.8.5",
-    "dotenv": "^16.3.1",
-    "firebase-admin": "^13.6.0"
   }
 }

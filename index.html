@@ -12,6 +12,103 @@
   <script id="ga-script">
     // Google Analytics will be initialized after consent
   </script>
+
+  <!-- GPT button wiring: waits for DOM, uses configurable endpoint and model placeholders -->
+  <script>
+  (function () {
+    // Configure these values for your deployment environment.
+    // - endpoint: backend route that proxies requests to OpenAI / other LLM provider (must be server-side)
+    // - model: choose a model available to your account (do not embed API keys here)
+    const GPT_CONFIG = {
+      endpoint: '/api/gpt',       // <-- Replace with your deployed backend path if different
+      model: 'gpt-5.2'            // <-- Replace with a supported model for your account
+    };
+
+    // Defer wiring until DOM is available
+    function initGptButton() {
+      const gptBtn = document.getElementById('gptBtn');
+      const searchInput = document.getElementById('searchInput');
+      const chatbotPopup = document.getElementById('chatbotPopup');
+      const messages = document.getElementById('chatbotMessages');
+
+      if (!gptBtn) return; // nothing to wire
+
+      function openChatAndFocus() {
+        if (!chatbotPopup) return;
+        chatbotPopup.classList.add('active');
+        chatbotPopup.classList.remove('minimized');
+        setTimeout(() => document.getElementById('chatbotInput')?.focus(), 200);
+      }
+
+      function scrollToBottom() {
+        if (!messages) return;
+        messages.scrollTo({ top: messages.scrollHeight, behavior: 'smooth' });
+      }
+
+      function appendMessage(text, role) {
+        if (!messages) return null;
+        const row = document.createElement('div');
+        row.className = 'message ' + (role === 'user' ? 'user' : 'bot');
+
+        const inner = document.createElement('div');
+        inner.className = 'message-row-inner';
+
+        const avatar = document.createElement('div');
+        avatar.className = 'message-avatar';
+        avatar.textContent = role === 'user' ? 'You' : 'C';
+
+        const bubble = document.createElement('div');
+        bubble.className = 'message-bubble';
+        bubble.textContent = text;
+
+        inner.appendChild(avatar);
+        inner.appendChild(bubble);
+        row.appendChild(inner);
+        messages.appendChild(row);
+        scrollToBottom();
+        return row;
+      }
+
+      function addTyping() { return appendMessage('...', 'bot'); }
+
+      gptBtn.addEventListener('click', async function (e) {
+        e.preventDefault();
+        const prompt = (searchInput && searchInput.value || '').trim();
+        if (!prompt) { searchInput?.focus(); return; }
+
+        openChatAndFocus();
+        appendMessage(prompt, 'user');
+        const typingRow = addTyping();
+
+        try {
+          // Send to backend proxy. Ensure this endpoint exists and handles API keys securely server-side.
+          const resp = await fetch(GPT_CONFIG.endpoint, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ model: GPT_CONFIG.model, prompt: prompt })
+          });
+
+          if (!resp.ok) throw new Error('network');
+          const json = await resp.json();
+          const reply = (json && (json.reply || json.text || (json.choices && json.choices[0] && json.choices[0].text))) || 'No reply';
+
+          try { typingRow.remove(); } catch (e) { /* ignore */ }
+          appendMessage(reply, 'bot');
+        } catch (err) {
+          try { typingRow.remove(); } catch (e) { /* ignore */ }
+          appendMessage('Simulated reply — GPT endpoint not configured. Please implement ' + GPT_CONFIG.endpoint + ' to proxy completions.', 'bot');
+          console.warn('GPT request failed or endpoint not present:', err);
+        }
+      });
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initGptButton);
+    } else {
+      initGptButton();
+    }
+  })();
+  </script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" />
 
   <style>
@@ -1442,6 +1539,11 @@ body {
   <canvas id="visualizerCanvas" class="visualizer-canvas" width="240" height="48" aria-hidden="true" style="display:none;">Your browser does not support canvas.</canvas>
 
   <!-- existing search button (moved into search controls) -->
+  <!-- GPT completions button (calls GPT-5.2) -->
+  <button id="gptBtn" class="attach-btn gpt-btn" type="button" aria-label="Ask GPT-5.2" title="Ask GPT-5.2 (completions)">
+    GPT
+  </button>
+
   <button class="search-btn" id="searchBtn" aria-label="Search" title="Search the site — press Enter to submit">
     <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
       <title>Search</title>
