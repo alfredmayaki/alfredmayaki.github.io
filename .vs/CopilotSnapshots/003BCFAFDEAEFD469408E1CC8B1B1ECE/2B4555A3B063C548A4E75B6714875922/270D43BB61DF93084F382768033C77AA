@@ -884,9 +884,8 @@ body {
   position: fixed;
   right: 18px;
   bottom: 18px;
-  /* explicit popup width per user request; keep a responsive max-width fallback */
-  width: 800px;
-  max-width: calc(100vw - 36px);
+  /* reduced overall popup width for a narrower appearance */
+  width: min(360px, calc(100vw - 36px));
   max-height: 620px;
   background: var(--panel);
   border: none;
