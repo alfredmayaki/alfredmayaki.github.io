@@ -45,7 +45,7 @@
         messages.scrollTo({ top: messages.scrollHeight, behavior: 'smooth' });
       }
 
-      function appendMessage(text, role) {
+      function appendMessage(text, role, timestamp) {
         if (!messages) return null;
         const row = document.createElement('div');
         row.className = 'message ' + (role === 'user' ? 'user' : 'bot');
@@ -61,9 +61,19 @@
         bubble.className = 'message-bubble';
         bubble.textContent = text;
 
+        // metadata / timestamp for message
+        const meta = document.createElement('div');
+        meta.className = 'message-meta';
+        try {
+          meta.textContent = timestamp || new Date().toLocaleString();
+        } catch (e) {
+          meta.textContent = '';
+        }
+
         inner.appendChild(avatar);
         inner.appendChild(bubble);
         row.appendChild(inner);
+        row.appendChild(meta);
         messages.appendChild(row);
         scrollToBottom();
         return row;
@@ -91,9 +101,11 @@
           if (!resp.ok) throw new Error('network');
           const json = await resp.json();
           const reply = (json && (json.reply || json.text || (json.choices && json.choices[0] && json.choices[0].text))) || 'No reply';
+          // timestamp for GPT response - prefer server-provided time if available
+          const respTime = (json && (json.timestamp || json.created_at)) || new Date().toLocaleString();
 
           try { typingRow.remove(); } catch (e) { /* ignore */ }
-          appendMessage(reply, 'bot');
+          appendMessage(reply, 'bot', respTime);
         } catch (err) {
           try { typingRow.remove(); } catch (e) { /* ignore */ }
           appendMessage('Simulated reply — GPT endpoint not configured. Please implement ' + GPT_CONFIG.endpoint + ' to proxy completions.', 'bot');
@@ -1541,7 +1553,7 @@ body {
   </div>
 </div>
         <div class="search-container" aria-label="Site search and document upload">
-  <input type="text" class="search-bar" id="searchInput" placeholder="Ask Claude Opus..." />
+  <input type="text" class="search-bar" id="searchInput" placeholder="Ask Claude Opus 4.5..." />
 
   <div class="search-controls" role="group" aria-label="Search controls">
     <!-- hidden file input triggered by the paperclip label -->
@@ -1552,7 +1564,7 @@ body {
 </button>
 
   <!-- audio visualizer button inserted between attach and search buttons -->
-  <button id="visualizerBtn" class="attach-btn visualizer-btn" type="button" aria-label="Audio visualizer" title="Record audio clip" aria-pressed="false">
+  <button id="visualizerBtn" class="attach-btn visualizer-btn" type="button" aria-label="Audio visualizer" title="Record audio (Beta)" aria-pressed="false">
     <!-- inline SVG so internal bars can be animated via CSS/JS -->
     <svg class="visualizer-icon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false">
       <title>Record audio</title>
@@ -1571,7 +1583,7 @@ body {
 
   <!-- existing search button (moved into search controls) -->
   <!-- GPT completions button (calls GPT-5.2) -->
-  <button id="gptBtn" class="attach-btn gpt-btn" type="button" aria-label="Ask GPT-5.2" title="Ask GPT-5.2 (completions)">
+  <button id="gptBtn" class="attach-btn gpt-btn" type="button" aria-label="Ask GPT-5.2" title="Ask GPT-5.2 (Beta)">
     GPT
   </button>
 

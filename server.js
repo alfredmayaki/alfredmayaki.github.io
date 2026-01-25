@@ -138,7 +138,7 @@ app.post('/api/gpt', async (req, res) => {
   }
 
   try {
-    const usedModel = model || 'gpt-4o-mini';
+    const usedModel = model || 'gpt-5.2';
     const r = await fetch('https://api.openai.com/v1/completions', {
       method: 'POST',
       headers: {
@@ -169,5 +169,5 @@ app.post('/api/gpt', async (req, res) => {
 });
 
 // Start server
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 8000;
 app.listen(PORT, () => console.log(`API server listening on ${PORT}`));
