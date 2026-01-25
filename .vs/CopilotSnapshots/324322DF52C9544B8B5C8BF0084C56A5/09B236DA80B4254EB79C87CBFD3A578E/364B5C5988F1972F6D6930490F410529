@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -133,6 +133,7 @@
   <nav class="top-nav" aria-label="Main navigation">
     <a href="index.html" class="brand">🚀 AM-Global™</a>
     <div class="nav-links" role="menubar" aria-label="Primary links">
+      <a href="about.html" role="menuitem">About</a>
       <a href="research.html" role="menuitem" aria-current="page">Research</a>
       <a href="projects.html" role="menuitem">Projects</a>
       <a href="contact.html" role="menuitem">Contact</a>
@@ -233,7 +234,7 @@
       </nav>
 
       <p class="footer-copyright">
-        © 2026 <a href="about.html">Alfred Anate Bodurin Mayaki</a>. All rights reserved.
+        © 2026 Alfred Anate Bodurin Mayaki. All rights reserved.
       </p>
       <p style="margin:0.4rem 0 0;"><small style="color:var(--text-secondary);">Powered with 💙 using GitHub</small></p>
     </div>
