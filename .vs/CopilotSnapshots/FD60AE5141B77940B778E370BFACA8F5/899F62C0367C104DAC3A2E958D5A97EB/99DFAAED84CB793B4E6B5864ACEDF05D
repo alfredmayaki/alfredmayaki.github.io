@@ -2361,37 +2361,18 @@ body {
 
       // Attach to search button and Enter key
       document.getElementById('searchBtn')?.addEventListener('click', function() {
-        const query = document.getElementById('searchInput')?.value?.trim();
+        const query = document.getElementById('searchInput')?.value;
         if (query) {
           console.log('🔍 Search triggered:', query);
           trackSearch(query);
           console.log('✅ trackSearch() called');
+          // If GPT was last selected, send to GPT popup; otherwise add clickable chat link
           try {
             if (window.__lastChatTarget === 'gpt') {
-              // GPT popup flow
               void window.__sendPromptToGpt(query);
             } else {
-              // Ensure the main chatbot popup is opened and the user prompt is
-              // inserted as an actual user message before the backend reply.
-              // Prefer using the chat input + send button so the existing
-              // processQuery/addUserMessage flow runs consistently.
+              window.appendChatLink && window.appendChatLink(query, 'user');
               window.__openChatbot && window.__openChatbot();
-
-              const chatInput = document.getElementById('chatbotInput');
-              const chatSend = document.getElementById('chatSend');
-
-              if (chatInput) chatInput.value = query;
-
-              if (chatSend) {
-                // Trigger the existing send handler which will add the user
-                // message to the popup and then send to the configured backend.
-                chatSend.click();
-              } else {
-                // Fallback: append a visible user message immediately
-                if (window.appendChatMessage) {
-                  window.appendChatMessage('💬 ' + query, 'user', 'chatbotMessages');
-                }
-              }
             }
           } catch (e) { /* ignore */ }
         }
@@ -2399,9 +2380,8 @@ body {
 
       document.getElementById('searchInput')?.addEventListener('keypress', function(e) {
         if (e.key === 'Enter') {
-          e.preventDefault();
-          const query = this.value?.trim();
-          if (query) {
+          const query = this.value;
+            if (query) {
             console.log('🔍 Search triggered (Enter):', query);
             trackSearch(query);
             console.log('✅ trackSearch() called');
@@ -2409,12 +2389,8 @@ body {
               if (window.__lastChatTarget === 'gpt') {
                 void window.__sendPromptToGpt(query);
               } else {
+                window.appendChatLink && window.appendChatLink(query, 'user');
                 window.__openChatbot && window.__openChatbot();
-                const chatInput = document.getElementById('chatbotInput');
-                const chatSend = document.getElementById('chatSend');
-                if (chatInput) chatInput.value = query;
-                if (chatSend) chatSend.click();
-                else if (window.appendChatMessage) window.appendChatMessage('💬 ' + query, 'user', 'chatbotMessages');
               }
             } catch (e) { /* ignore */ }
           }
