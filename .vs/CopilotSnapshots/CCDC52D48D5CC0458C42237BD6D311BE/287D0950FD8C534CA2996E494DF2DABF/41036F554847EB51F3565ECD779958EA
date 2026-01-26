@@ -37,55 +37,6 @@
     return;
   }
 
-  // Send a prompt to the server /api/gpt and render the reply inside the Claude chatbot popup
-  async function sendGptToChatbot(prompt) {
-    const text = normalizeUserText(prompt);
-    if (!text) return;
-
-    if (state.isSending) {
-      console.warn('⚠️ Already sending a request, ignoring GPT request');
-      return;
-    }
-
-    state.isSending = true;
-    setInputEnabled(false);
-
-    // Add user message to UI & history
-    addUserMessage(text);
-    pushHistory('user', text);
-
-    const bubble = addBotBubble('🧑🏿‍💻💭 Thinking...');
-
-    try {
-      const resp = await fetch('/api/gpt', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ model: 'gpt-5.2', prompt: text })
-      });
-
-      if (!resp.ok) {
-        const raw = await resp.text().catch(() => '');
-        console.error('GPT proxy error', resp.status, raw);
-        bubble.textContent = `GPT error: ${resp.status}`;
-        return;
-      }
-
-      const json = await resp.json().catch(() => null);
-      const reply = String(json?.reply || json?.text || json?.message || '').trim();
-      bubble.textContent = reply || '(empty reply)';
-      pushHistory('bot', bubble.textContent);
-      void SoundFX.playSuccess();
-    } catch (err) {
-      console.error('❌ GPT fetch error:', err);
-      bubble.textContent = 'Cannot reach GPT service. Please check server.';
-    } finally {
-      state.isSending = false;
-      setInputEnabled(true);
-      elements.chatbotInput.focus();
-      scrollToBottom();
-    }
-  }
-
   // ========================================
   // CONFIGURATION
   // ========================================
@@ -671,9 +622,9 @@
     }
 
     // Move query to chat input and send via central flow
-        // Route the query to OpenAI proxy and render reply inside the Claude chatbot popup
-        elements.searchInput.value = '';
-        void sendGptToChatbot(query);
+    elements.chatbotInput.value = query;
+    elements.searchInput.value = '';
+    sendFromChatInput();
   });
 
   // Enter on search input triggers search button

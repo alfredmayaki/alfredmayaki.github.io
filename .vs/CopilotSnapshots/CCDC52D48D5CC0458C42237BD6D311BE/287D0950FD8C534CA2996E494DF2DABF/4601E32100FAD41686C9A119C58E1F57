@@ -671,9 +671,9 @@
     }
 
     // Move query to chat input and send via central flow
-        // Route the query to OpenAI proxy and render reply inside the Claude chatbot popup
-        elements.searchInput.value = '';
-        void sendGptToChatbot(query);
+    elements.chatbotInput.value = query;
+    elements.searchInput.value = '';
+    sendFromChatInput();
   });
 
   // Enter on search input triggers search button
