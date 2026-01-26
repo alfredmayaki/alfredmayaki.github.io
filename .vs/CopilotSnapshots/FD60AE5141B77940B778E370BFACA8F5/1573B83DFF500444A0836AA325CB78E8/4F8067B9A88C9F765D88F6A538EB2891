@@ -422,30 +422,7 @@ body {
   box-shadow: 0 8px 30px rgba(0,0,0,0.45), var(--shadow-brand);
 }
 
-.search-container::after {
-  content: "";
-  pointer-events: none;
-  position: absolute;
-  inset: -2px; /* thin outer border */
-  border-radius: calc(var(--radius-md) - 2px);
-  /* subtle deep-blue gradient that moves horizontally (replaces gold) */
-  background: linear-gradient(90deg, rgba(61,78,233,0.00) 0%, rgba(61,78,233,0.85) 50%, rgba(61,78,233,0.00) 100%);
-  background-size: 200% 100%;
-  filter: blur(2px);
-  opacity: 0;
-  transition: opacity var(--transition-fast) ease;
-  z-index: 0; /* sit behind interactive controls (controls use z-index > 0) */
-  mix-blend-mode: screen;
-  animation: sparkleBorder 2200ms linear infinite;
-}
-
-.search-container:focus-within::after { opacity: 1; }
-
-@keyframes sparkleBorder {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
+/* Gold border removed — decorative border and animation intentionally omitted */
 
 /* stronger, slightly more intense blue glow when focused */
 .search-container:focus-within {
@@ -466,8 +443,8 @@ body {
   pointer-events: none;
   opacity: 0;
   transition: opacity 220ms ease;
-  box-shadow: 0 6px 30px rgba(61,78,233,0.06);
-  background: linear-gradient(90deg, rgba(61,78,233,0.0) 0%, rgba(61,78,233,0.85) 40%, rgba(61,78,233,0.0) 80%);
+  box-shadow: 0 6px 30px rgba(212,175,55,0.06);
+  background: linear-gradient(90deg, rgba(212,175,55,0.0) 0%, rgba(212,175,55,0.85) 40%, rgba(212,175,55,0.0) 80%);
   background-size: 200% 100%;
   mix-blend-mode: screen;
 }
