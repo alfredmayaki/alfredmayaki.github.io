@@ -1420,7 +1420,7 @@ body {
       const resp = await fetch('/api/gpt', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ model: 'gpt-5.2', prompt })
+        body: JSON.stringify({ model: 'gpt-4.1', prompt })
       });
       if (!resp.ok) throw new Error('network');
       const json = await resp.json();

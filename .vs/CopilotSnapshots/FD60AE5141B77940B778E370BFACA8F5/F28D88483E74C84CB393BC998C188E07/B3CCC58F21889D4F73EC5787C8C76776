@@ -1,4 +1,4 @@
- 
+﻿ 
 const express = require('express');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
@@ -55,8 +55,8 @@ app.get('/debug/env', (req, res) => {
   });
 });
 
-// Serve static site (put your static files like msc-survey.html in ./public/)
-app.use(express.static(path.join(__dirname, 'public')));
+// Serve static site (put msc-survey.html in ./public/)
+app.use(express.static(path.join(__dirname, '/msc-survey.html')));
 
 // Create session cookie from client ID token (5 days)
 app.post('/sessionLogin', async (req, res) => {
