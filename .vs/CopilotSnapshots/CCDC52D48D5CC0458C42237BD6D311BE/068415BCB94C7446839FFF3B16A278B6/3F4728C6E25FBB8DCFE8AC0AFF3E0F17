@@ -873,23 +873,6 @@ body {
   animation: slideInLeft 260ms cubic-bezier(.2,.9,.2,1);
 }
 
-/* GPT-specific bot styling inside the shared chatbot popup */
-.bot-gpt .message-bubble {
-  background: linear-gradient(90deg, #ffc857, #ff7b54); /* warm orange */
-  color: #1a1a1a;
-  border-color: rgba(0,0,0,0.06);
-  box-shadow: 0 8px 28px rgba(255,123,84,0.12);
-}
-.bot-gpt .message-meta .message-source {
-  background: #ff7b54;
-  color: #fff;
-  padding: 0.12rem 0.45rem;
-  border-radius: 8px;
-  font-size: 0.72rem;
-  margin-right: 0.5rem;
-  font-weight: 700;
-}
-
 /* Remove the decorative ::after tail added previously */
 .message.user .message-bubble::after {
   display: none;

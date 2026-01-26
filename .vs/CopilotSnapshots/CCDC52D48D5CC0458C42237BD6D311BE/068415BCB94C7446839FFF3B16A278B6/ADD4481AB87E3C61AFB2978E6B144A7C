@@ -54,7 +54,7 @@
     addUserMessage(text);
     pushHistory('user', text);
 
-    const bubble = addBotBubble('🧑🏿‍💻💭 Thinking...', 'gpt');
+    const bubble = addBotBubble('🧑🏿‍💻💭 Thinking...');
 
     try {
       const resp = await fetch('/api/gpt', {
@@ -369,24 +369,17 @@
     scrollToBottom();
   }
 
-  // Add a bot message bubble. `source` can be 'claude' or 'gpt' to allow visual differentiation.
-  function addBotBubble(initialText, source = 'claude') {
+  function addBotBubble(initialText) {
     const messageDiv = document.createElement('div');
-    // include specific source class for styling
-    messageDiv.className = 'message bot ' + (source === 'gpt' ? 'bot-gpt' : 'bot-claude');
+    messageDiv.className = 'message bot';
     messageDiv.innerHTML = '<div class="message-bubble"></div>';
     const bubble = messageDiv.querySelector('.message-bubble');
     bubble.textContent = initialText || '';
 
-    // Add timestamp meta and source badge
+    // Add timestamp meta
     const meta = document.createElement('div');
     meta.className = 'message-meta';
-    const badge = document.createElement('span');
-    badge.className = 'message-source';
-    badge.textContent = source === 'gpt' ? 'GPT' : 'Claude';
-    const timeText = document.createTextNode(' ' + formatMessageTime(new Date()));
-    meta.appendChild(badge);
-    meta.appendChild(timeText);
+    meta.textContent = formatMessageTime(new Date());
     messageDiv.appendChild(meta);
 
     elements.chatbotMessages.appendChild(messageDiv);

@@ -54,7 +54,7 @@
     addUserMessage(text);
     pushHistory('user', text);
 
-    const bubble = addBotBubble('🧑🏿‍💻💭 Thinking...', 'gpt');
+    const bubble = addBotBubble('🧑🏿‍💻💭 Thinking...');
 
     try {
       const resp = await fetch('/api/gpt', {
