@@ -885,7 +885,37 @@
     console.log('🎬 Initializing chatbot');
     addBotBubble(CONFIG.welcomeMessage);
     addFileUploadUI();
-    
+    // Ensure GPT button is disabled until the search input has adequate content
+    try {
+      const gptBtn = document.getElementById('gptNewBtn');
+      const si = elements.searchInput;
+      const min = Number(CONFIG.minGptChars || 5);
+      if (gptBtn && si) {
+        const update = () => {
+          const ok = String(si.value || '').trim().length >= min;
+          gptBtn.disabled = !ok;
+          gptBtn.setAttribute('aria-disabled', String(!ok));
+        };
+        // initialize
+        update();
+        si.addEventListener('input', update);
+        // also prevent click through from any inline handlers
+        gptBtn.addEventListener('click', (e) => {
+          const v = String(si.value || '').trim();
+          if (v.length < min) {
+            e.preventDefault();
+            e.stopImmediatePropagation && e.stopImmediatePropagation();
+            // brief visual cue
+            gptBtn.classList.add('disabled-flash');
+            setTimeout(() => gptBtn.classList.remove('disabled-flash'), 420);
+            return false;
+          }
+          return true;
+        }, { capture: true });
+      }
+    } catch (err) {
+      console.warn('Failed to wire GPT button enablement:', err);
+    }
     // Bind GPT button here now that helpers (bindOnce, normalizeUserText, sendFromChatInput)
     // and `elements` are initialized. Routes GPT queries into the Claude chatbot popup.
     try {
