@@ -796,31 +796,6 @@
     console.log('🎬 Initializing chatbot');
     addBotBubble(CONFIG.welcomeMessage);
     addFileUploadUI();
-    // Bind GPT button here now that helpers (bindOnce, normalizeUserText, sendFromChatInput)
-    // and `elements` are initialized. Routes GPT queries into the Claude chatbot popup.
-    try {
-      const gptBtn = document.getElementById('gptNewBtn');
-      bindOnce(gptBtn, 'click', function (e) {
-        e.preventDefault();
-        if (e.stopImmediatePropagation) e.stopImmediatePropagation();
-        console.log('🤖 GPT button clicked - routing into Claude chatbot');
-
-        const query = normalizeUserText(elements.searchInput.value);
-        elements.chatbotPopup.classList.add('active');
-        void SoundFX.playSuccess();
-
-        if (!query) {
-          elements.chatbotInput.focus();
-          return;
-        }
-
-        elements.chatbotInput.value = query;
-        elements.searchInput.value = '';
-        sendFromChatInput();
-      });
-    } catch (err) {
-      console.warn('Failed to bind GPT button in init:', err);
-    }
     console.log('✅ Chatbot initialized successfully');
   }
 
