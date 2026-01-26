@@ -1747,8 +1747,7 @@ document.addEventListener('DOMContentLoaded', function () {
   </div>    
 
   <!-- GPT Responses Popup (separate from Claude chatbot) -->
-  <!-- GPT popup kept for programmatic use but GPT search button removed from controls -->
-  <div class="chatbot-popup" id="gptPopup" aria-hidden="true" role="dialog" aria-label="GPT Responses" style="right: 18px; bottom: 18px; display:none;">
+  <div class="chatbot-popup" id="gptPopup" aria-hidden="true" role="dialog" aria-label="GPT Responses" style="right: 18px; bottom: 18px;">
     <div class="chatbot-header" id="gptHeader">
       <h3>🤖 GPT Responses</h3>
       <div class="chatbot-header-buttons">

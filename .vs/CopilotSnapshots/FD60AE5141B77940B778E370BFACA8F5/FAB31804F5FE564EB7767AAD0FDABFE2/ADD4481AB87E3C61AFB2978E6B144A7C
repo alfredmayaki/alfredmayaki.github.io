@@ -314,10 +314,10 @@
     // Keep stored history/plain message unchanged (caller manages history).
     bubble.textContent = `💬 ${message}`;
 
-    // Add timestamp meta with author label
+    // Add timestamp meta
     const meta = document.createElement('div');
     meta.className = 'message-meta';
-    meta.innerHTML = `<span class="message-author">You</span> ${formatMessageTime(new Date())}`;
+    meta.textContent = formatMessageTime(new Date());
     messageDiv.appendChild(meta);
 
     elements.chatbotMessages.appendChild(messageDiv);
@@ -567,13 +567,7 @@
     setInputEnabled(false);
 
     // Add user message to UI & history BEFORE sending so UI updates instantly
-    // Allow pages to pre-insert the user message and set a flag to avoid
-    // double-adding. If __skipNextAutoUserAdd is set, skip the UI add here.
-    if (window.__skipNextAutoUserAdd) {
-      try { delete window.__skipNextAutoUserAdd; } catch (e) {}
-    } else {
-      addUserMessage(raw);
-    }
+    addUserMessage(raw);
     pushHistory('user', raw);
 
     // Clear and focus
@@ -824,8 +818,31 @@
     addBotBubble(CONFIG.welcomeMessage);
     addFileUploadUI();
     
-    // GPT frontend button was removed from the search controls.
-    // No runtime binding performed for `#gptNewBtn`.
+    // Bind GPT button here now that helpers (bindOnce, normalizeUserText, sendFromChatInput)
+    // and `elements` are initialized. Routes GPT queries into the Claude chatbot popup.
+    try {
+      const gptBtn = document.getElementById('gptNewBtn');
+      bindOnce(gptBtn, 'click', function (e) {
+        e.preventDefault();
+        if (e.stopImmediatePropagation) e.stopImmediatePropagation();
+        console.log('🤖 GPT button clicked - routing to OpenAI proxy');
+
+        const query = normalizeUserText(elements.searchInput.value);
+        elements.chatbotPopup.classList.add('active');
+        void SoundFX.playSuccess();
+
+        if (!query) {
+          elements.chatbotInput.focus();
+          return;
+        }
+
+        // Send directly to OpenAI proxy handler so responses are labeled and sourced correctly
+        void sendGptToChatbot(query);
+        elements.searchInput.value = '';
+      });
+    } catch (err) {
+      console.warn('Failed to bind GPT button in init:', err);
+    }
     console.log('✅ Chatbot initialized successfully');
   }
 

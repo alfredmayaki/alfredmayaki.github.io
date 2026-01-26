@@ -536,7 +536,93 @@ body {
   outline: none;
 }
 
-/* Visualizer styles removed: visualizer button and canvas were removed from search controls */
+/* Audio visualizer button specific tweaks (matches attach/search size and visual tone) */
+.visualizer-btn {
+  background: linear-gradient(90deg, rgba(61,78,233,0.06), rgba(255,255,255,0.02));
+  border: 1px solid rgba(255,255,255,0.03);
+  padding: 0;
+}
+
+.visualizer-btn {
+  /* Inline inside the search controls so it sits between attach and search buttons */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  box-sizing: border-box;
+  margin: 0;
+  position: relative;
+}
+.visualizer-btn svg { display:block; width:20px; height:20px; }
+.visualizer-icon { color: #ffffff; }
+.visualizer-btn { background: linear-gradient(90deg, rgba(61,78,233,0.08), rgba(255,255,255,0.02)); border: 1px solid rgba(255,255,255,0.04); }
+.visualizer-btn.active { box-shadow: 0 18px 54px rgba(61,78,233,0.36); /* keep elevated shadow but do not translate when active */ transform: none; }
+
+/* When active, keep the button visually elevated but prevent any translate movement on hover/focus/active */
+.visualizer-btn.active:hover,
+.visualizer-btn.active:focus,
+.visualizer-btn.active:active {
+  transform: none;
+}
+
+/* Hover / focus for visualizer to match other controls */
+.visualizer-btn:hover,
+.visualizer-btn:focus {
+  color: var(--text);
+  background: rgba(61,78,233,0.06);
+  box-shadow: var(--shadow-brand);
+  transform: translateY(-2px);
+  outline: none;
+}
+
+/* Visualizer icon bar animation */
+.visualizer-icon { display:block; color: #cfcfcf; }
+.visualizer-icon .bar { transform-origin: center bottom; transition: transform 220ms ease; }
+.visualizer-btn.active .visualizer-icon .bar { transition: transform 140ms linear; }
+.visualizer-icon .b1 { transform: scaleY(0.6); }
+.visualizer-icon .b2 { transform: scaleY(0.8); }
+.visualizer-icon .b3 { transform: scaleY(1); }
+.visualizer-icon .b4 { transform: scaleY(0.75); }
+.visualizer-icon .b5 { transform: scaleY(0.65); }
+
+/* pulsate keyframes for active state */
+@keyframes pulseBar {
+  0% { transform: scaleY(0.4); }
+  50% { transform: scaleY(1); }
+  100% { transform: scaleY(0.5); }
+}
+.visualizer-btn.active .visualizer-icon .bar { animation: pulseBar 700ms infinite ease-in-out; }
+.visualizer-btn.active .visualizer-icon .b2 { animation-duration: 620ms; }
+.visualizer-btn.active .visualizer-icon .b3 { animation-duration: 540ms; }
+.visualizer-btn.active .visualizer-icon .b4 { animation-duration: 700ms; }
+.visualizer-btn.active .visualizer-icon .b5 { animation-duration: 660ms; }
+
+/* small canvas for basic audio visualizer (hidden by default) */
+.visualizer-canvas {
+  border-radius: 8px;
+  background: linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  display: block;
+  width: 240px;         /* default visual width when space allows */
+  max-width: 100%;      /* never overflow parent on small screens */
+  height: 48px;         /* CSS height; actual canvas pixel size is set in JS for DPR */
+  box-sizing: border-box;
+  margin-left: 8px;
+}
+
+/* default placement: inline within controls (no fixed coordinates) */
+
+@media (max-width: 600px) {
+  /* on small screens, allow the canvas to expand to available width and sit under the controls */
+  .visualizer-btn { right: 0; bottom: 0; }
+  .visualizer-canvas {
+    width: calc(100% - 64px); /* leave room for buttons on the right */
+    max-width: none;
+    height: 56px;            /* slightly taller on touch devices */
+    margin: 6px 0 0 0;       /* place below controls when it wraps */
+    display: block;
+  }
+}
 
 /* Ensure the gold-border toggle is clearly visible and centered */
 #toggleGoldBorder {
@@ -1381,12 +1467,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const meta = document.createElement('div');
     meta.className = 'message-meta';
-    // Include a generic author label for user messages and a time-only meta for bots
-    if (role === 'user') {
-      meta.innerHTML = `<span class="message-author">You</span> ${formatTimeOnly(new Date())}`;
-    } else {
-      meta.textContent = formatTimeOnly(new Date());
-    }
+    meta.textContent = formatTimeOnly(new Date());
 
     inner.appendChild(bubble);
     row.appendChild(inner);
@@ -1467,7 +1548,27 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   // Click handler for GPT button delegates to centralized helper and records last target
-  // GPT button was removed from the search controls; no direct DOM binding is needed here.
+  document.addEventListener('DOMContentLoaded', function () {
+    const gptBtn = document.getElementById('gptNewBtn');
+    if (!gptBtn) return;
+    gptBtn.addEventListener('click', function (e) {
+      e.preventDefault();
+      const searchInput = document.getElementById('searchInput');
+      const prompt = (searchInput && searchInput.value) ? String(searchInput.value).trim() : '';
+      // mark that GPT was the last selected target so Enter can reuse it
+      window.__lastChatTarget = 'gpt';
+      // open GPT popup and send the prompt there
+      if (prompt) {
+        try { window.__sendPromptToGpt(prompt); } catch (err) { console.warn('GPT popup send failed', err); }
+      } else {
+        // just open popup if no prompt
+        const gptPopup = document.getElementById('gptPopup');
+        if (gptPopup) gptPopup.classList.add('active');
+      }
+      // clear marker after a short timeout so normal search behavior resumes
+      setTimeout(() => { if (window.__lastChatTarget === 'gpt') window.__lastChatTarget = null; }, 8000);
+    });
+  });
   
   // expose helpers for other scripts
   window.appendChatMessage = appendChatMessage;
@@ -1588,21 +1689,14 @@ document.addEventListener('DOMContentLoaded', function () {
     const meta = document.createElement('div');
     meta.className = 'message-meta';
 
-    // Show time-only (include seconds) in the message meta and include
-    // a generic author label for user messages.
+    // Show time-only (include seconds) in the message meta
     try {
       const timeFormatter = new Intl.DateTimeFormat(undefined, { hour: '2-digit', minute: '2-digit', second: '2-digit' });
       const time = timeFormatter.format(date);
-      if (role === 'user') {
-        meta.innerHTML = `<span class="message-author">You</span> ${time}`;
-      } else {
-        meta.textContent = time;
-      }
+      meta.textContent = time;
     } catch (err) {
       // Fallback: locale-aware time with seconds
-      const fallback = date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
-      if (role === 'user') meta.innerHTML = `<span class="message-author">You</span> ${fallback}`;
-      else meta.textContent = fallback;
+      meta.textContent = date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
     }
 
     inner.appendChild(avatar);
@@ -1747,8 +1841,7 @@ document.addEventListener('DOMContentLoaded', function () {
   </div>    
 
   <!-- GPT Responses Popup (separate from Claude chatbot) -->
-  <!-- GPT popup kept for programmatic use but GPT search button removed from controls -->
-  <div class="chatbot-popup" id="gptPopup" aria-hidden="true" role="dialog" aria-label="GPT Responses" style="right: 18px; bottom: 18px; display:none;">
+  <div class="chatbot-popup" id="gptPopup" aria-hidden="true" role="dialog" aria-label="GPT Responses" style="right: 18px; bottom: 18px;">
     <div class="chatbot-header" id="gptHeader">
       <h3>🤖 GPT Responses</h3>
       <div class="chatbot-header-buttons">
@@ -1813,9 +1906,10 @@ document.addEventListener('DOMContentLoaded', function () {
   ➕
 </button>
 
-  <!-- Record audio button removed (cleaned up) -->
+  <!-- Record audio button removed per request -->
 
-  <!-- visualizer canvas removed (feature disabled) -->
+  <!-- inline canvas for small visualizer; will be shown when visualizer is active -->
+  <canvas id="visualizerCanvas" class="visualizer-canvas" width="240" height="48" aria-hidden="true" style="display:none;">Your browser does not support canvas.</canvas>
   <!-- existing search button (moved into search controls) -->
   <!-- GPT button removed per request -->
 
@@ -2120,7 +2214,115 @@ document.addEventListener('DOMContentLoaded', function () {
   <script>
   <!-- Small inline OpenAI key modal + client script removed per revert request -->
 
-  <!-- Visualizer removed: feature cleaned up after UI simplification -->
+  <!-- Visualizer init: top-level wiring so it works without uploading files -->
+  <script>
+  (function () {
+    const visualizerBtn = document.getElementById('visualizerBtn');
+    const canvas = document.getElementById('visualizerCanvas');
+    if (!visualizerBtn) return;
+
+    // Toggle aria-pressed and active class
+    visualizerBtn.addEventListener('click', function (e) {
+      e.preventDefault();
+      const active = visualizerBtn.classList.toggle('active');
+      visualizerBtn.setAttribute('aria-pressed', String(active));
+    });
+
+    // Microphone visualizer wiring
+    let audioCtx = null;
+    let analyser = null;
+    let source = null;
+    let rafId = null;
+    let canvasResizeHandler = null;
+
+    function stopVisualizer() {
+      if (rafId) cancelAnimationFrame(rafId);
+      rafId = null;
+      try {
+        if (source && source.mediaStream) source.mediaStream.getTracks().forEach(t => t.stop());
+      } catch (e) { /* ignore */ }
+      try { if (audioCtx && audioCtx.state !== 'closed') audioCtx.close(); } catch (e) { /* ignore */ }
+      // remove resize listener
+      try { if (canvasResizeHandler) window.removeEventListener('resize', canvasResizeHandler); } catch (e) { /* ignore */ }
+      canvasResizeHandler = null;
+      // hide and clear canvas
+      if (canvas) {
+        const ctx = canvas.getContext && canvas.getContext('2d');
+        if (ctx) ctx.clearRect(0, 0, canvas.width, canvas.height);
+        canvas.style.display = 'none';
+      }
+      audioCtx = analyser = source = null;
+    }
+
+    function startVisualizer() {
+      if (!canvas) return;
+      if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) return;
+      canvas.style.display = 'block';
+
+      // helper to size canvas to its CSS size while accounting for devicePixelRatio
+      function resizeCanvasToDisplaySize(ctx) {
+        const dpr = window.devicePixelRatio || 1;
+        const rect = canvas.getBoundingClientRect();
+        const width = Math.max(1, Math.floor(rect.width * dpr));
+        const height = Math.max(1, Math.floor(rect.height * dpr));
+        if (canvas.width !== width || canvas.height !== height) {
+          canvas.width = width;
+          canvas.height = height;
+          // set transform so drawing operations use CSS pixels coordinates
+          ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        }
+      }
+
+      navigator.mediaDevices.getUserMedia({ audio: true }).then(stream => {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        analyser = audioCtx.createAnalyser();
+        analyser.fftSize = 256;
+        source = audioCtx.createMediaStreamSource(stream);
+        source.mediaStream = stream;
+        source.connect(analyser);
+
+        const bufferLength = analyser.frequencyBinCount;
+        const dataArray = new Uint8Array(bufferLength);
+        const ctx = canvas.getContext('2d');
+
+        // initial sizing
+        resizeCanvasToDisplaySize(ctx);
+
+        // keep canvas responsive on resize
+        canvasResizeHandler = () => resizeCanvasToDisplaySize(ctx);
+        window.addEventListener('resize', canvasResizeHandler);
+
+        function draw() {
+          rafId = requestAnimationFrame(draw);
+          analyser.getByteFrequencyData(dataArray);
+          // clear using CSS pixel size
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+          const barWidth = (canvas.width / bufferLength) * 1.5;
+          let x = 0;
+          for (let i = 0; i < bufferLength; i++) {
+            const v = dataArray[i] / 255;
+            const y = v * canvas.height;
+            ctx.fillStyle = 'rgba(61,78,233,0.9)';
+            ctx.fillRect(x, canvas.height - y, barWidth, y);
+            x += barWidth + 1;
+          }
+        }
+        draw();
+      }).catch(err => {
+        console.warn('Microphone access denied or not available:', err);
+        if (canvas) canvas.style.display = 'none';
+        visualizerBtn.classList.remove('active');
+        visualizerBtn.setAttribute('aria-pressed', 'false');
+      });
+    }
+
+    // Observe active class changes to start/stop the microphone visualizer
+    const mo = new MutationObserver(() => {
+      if (visualizerBtn.classList.contains('active')) startVisualizer(); else { if (canvas) canvas.style.display = 'none'; stopVisualizer(); }
+    });
+    mo.observe(visualizerBtn, { attributes: true, attributeFilter: ['class'] });
+  })();
+  </script>
 
   <!-- Chatbot Minimize/Restore Script -->
   <script>
@@ -2232,25 +2434,10 @@ document.addEventListener('DOMContentLoaded', function () {
               void window.__sendPromptToGpt(query);
             } else {
               // Ensure the main chatbot popup is opened and the user prompt is
-              // inserted as an actual user message BEFORE the backend is invoked.
+              // inserted as an actual user message before the backend reply.
+              // Prefer using the chat input + send button so the existing
+              // processQuery/addUserMessage flow runs consistently.
               window.__openChatbot && window.__openChatbot();
-
-              // Append user message visibly into the chatbot popup so the user
-              // sees their prompt prior to any backend reply. Use the shared
-              // helper when available; otherwise fall back to createMessageEl.
-              try {
-                if (window.appendChatMessage) {
-                  window.appendChatMessage('💬 ' + query, 'user', 'chatbotMessages');
-                } else {
-                  const messages = document.getElementById('chatbotMessages');
-                  if (messages && typeof createMessageEl === 'function') messages.appendChild(createMessageEl(query, 'user', new Date()));
-                }
-              } catch (e) { console.warn('Failed to append pre-send user message', e); }
-
-              // Tell the central send handler to skip adding a duplicate user
-              // message (we already inserted it above). The handler will still
-              // push the message into conversation history.
-              try { window.__skipNextAutoUserAdd = true; } catch (e) {}
 
               const chatInput = document.getElementById('chatbotInput');
               const chatSend = document.getElementById('chatSend');
@@ -2258,11 +2445,14 @@ document.addEventListener('DOMContentLoaded', function () {
               if (chatInput) chatInput.value = query;
 
               if (chatSend) {
-                // Trigger the existing send handler which will send to backend
+                // Trigger the existing send handler which will add the user
+                // message to the popup and then send to the configured backend.
                 chatSend.click();
               } else {
-                // If no send button exists, still ensure history is updated
-                try { if (typeof pushHistory === 'function') pushHistory('user', query); } catch (e) {}
+                // Fallback: append a visible user message immediately
+                if (window.appendChatMessage) {
+                  window.appendChatMessage('💬 ' + query, 'user', 'chatbotMessages');
+                }
               }
             }
           } catch (e) { /* ignore */ }
@@ -2716,15 +2906,9 @@ function createMessageEl(text, role, date = new Date()) {
   try {
     const timeFormatter = new Intl.DateTimeFormat(undefined, { hour: '2-digit', minute: '2-digit', second: '2-digit' });
     const time = timeFormatter.format(date);
-    if (role === 'user') {
-      meta.innerHTML = `<span class="message-author">You</span> ${time}`;
-    } else {
-      meta.textContent = time; // only show time
-    }
+    meta.textContent = time; // only show time
   } catch (err) {
-    const fallback = date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
-    if (role === 'user') meta.innerHTML = `<span class="message-author">You</span> ${fallback}`;
-    else meta.textContent = fallback;
+    meta.textContent = date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
   }
 
   inner.appendChild(avatar);
