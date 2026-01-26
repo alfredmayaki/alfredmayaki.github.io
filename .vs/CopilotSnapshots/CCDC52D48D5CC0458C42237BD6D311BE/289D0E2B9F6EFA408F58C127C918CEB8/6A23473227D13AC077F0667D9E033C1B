@@ -1,4 +1,4 @@
- 
+﻿ 
 const express = require('express');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
@@ -44,15 +44,6 @@ app.use(function (err, req, res, next) {
 // Simple health endpoint (registered after app is created)
 app.get('/health', (req, res) => {
   res.json({ status: 'ok', uptime: process.uptime(), time: new Date().toISOString() });
-});
-
-// Debug endpoint to check critical env/config (safe: does not return secrets)
-app.get('/debug/env', (req, res) => {
-  res.json({
-    openaiConfigured: !!process.env.OPENAI_API_KEY,
-    claudeConfigured: !!process.env.CLAUDE_API_KEY,
-    firebaseInitialized
-  });
 });
 
 // Serve static site (put msc-survey.html in ./public/)
