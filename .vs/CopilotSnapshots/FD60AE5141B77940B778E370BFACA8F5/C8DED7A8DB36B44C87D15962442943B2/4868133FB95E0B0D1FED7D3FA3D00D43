@@ -50,7 +50,7 @@
     requestTimeoutMs: 30000,
     maxHistoryTurns: 10,
     maxFileSize: 1 * 1024 * 1024, // Reduced to 1MB
-    welcomeMessage: '👋🏿 Hello — I\'m your coding assistant (Claude Opus 4.5). Ask coding questions or upload .txt, .md, .json, .csv files for quick analysis.',
+    welcomeMessage: '👋🏿 Hello — I\'m your coding assistant (Claude Opus 4.5 + ChatGPT 5.2). Ask coding questions or upload .txt, .md, .json, .csv files for quick analysis.',
     soundEffects: {
       enabled: true,        
       volume: 0.4
@@ -574,8 +574,64 @@
     elements.chatbotInput.value = '';
     elements.chatbotInput.focus();
 
-    // Call the existing processQuery (it sets state.isSending and handles finalization)
-    void processQuery(raw);
+    // Route based on last selected target: GPT -> OpenAI proxy, otherwise Claude flow
+    try {
+      if (window.__lastChatTarget === 'gpt') {
+        // Clear marker so subsequent sends default back to Claude
+        window.__lastChatTarget = null;
+
+        // Send to OpenAI proxy (/api/gpt)
+        (async function sendGpt() {
+          try {
+            const bubble = addBotBubble('🧑🏿‍💻💭 Thinking...', 'gpt');
+            const resp = await fetch('/api/gpt', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ model: 'gpt-4.1', prompt: raw })
+            });
+
+            if (!resp.ok) {
+              const txt = await resp.text().catch(() => '');
+              bubble.textContent = `GPT error: ${resp.status}`;
+              console.error('GPT proxy error', resp.status, txt);
+              return;
+            }
+
+            const json = await resp.json().catch(() => null);
+            const reply = String(json?.reply || json?.text || json?.message || '').trim();
+            bubble.textContent = reply || '(empty reply)';
+
+            // Update meta with OpenAI source and server timestamp if present
+            try {
+              const parent = bubble.closest && bubble.closest('.message');
+              if (parent) {
+                const metaEl = parent.querySelector('.message-meta');
+                if (metaEl) {
+                  const ts = json?.timestamp ? new Date(json.timestamp) : new Date();
+                  metaEl.innerHTML = `<span class="message-source">OpenAI</span> ${formatMessageTime(ts)`;
+                }
+              }
+            } catch (e) { /* ignore meta update errors */ }
+
+            pushHistory('bot', bubble.textContent);
+            void SoundFX.playSuccess();
+          } catch (err) {
+            console.error('❌ GPT send error', err);
+            try { addBotBubble('Cannot reach GPT service. Please check server.'); } catch (e) {}
+          } finally {
+            setInputEnabled(true);
+            elements.chatbotInput.focus();
+            scrollToBottom();
+          }
+        })();
+      } else {
+        // Call the existing processQuery (it sets state.isSending and handles finalization)
+        void processQuery(raw);
+      }
+    } catch (e) {
+      console.warn('Routing sendFromChatInput failed', e);
+      void processQuery(raw);
+    }
   }
 
   // Safely bind a click handler only once (prevents double-binding)
@@ -640,12 +696,29 @@
       return;
     }
 
-    // Move query to chat input and send via central flow
-        // Route the query through the main chatbot flow so configured provider
-        // backends (e.g., Claude/Anthropic) are used and messages render normally.
+    // Route based on last selected target: GPT -> OpenAI popup, otherwise Claude flow
+    try {
+      if (window.__lastChatTarget === 'gpt') {
+        // Open GPT popup and send prompt there
+        try {
+          window.__sendPromptToGpt(query);
+        } catch (e) {
+          console.warn('Failed to send to GPT popup via __sendPromptToGpt', e);
+        }
+        // reset search input
         elements.searchInput.value = '';
-        // Use processQuery which posts to CONFIG.chatApiUrl
-        void processQuery(query);
+        return;
+      }
+
+      // Default: Claude flow — move query into chat input and trigger sendFromChatInput
+      elements.searchInput.value = '';
+      elements.chatbotInput.value = query;
+      // Use the central sendFromChatInput handler to ensure consistent history and file handling
+      sendFromChatInput();
+    } catch (e) {
+      console.warn('Search routing failed, falling back to processQuery', e);
+      void processQuery(query);
+    }
   });
 
   // Enter on search input triggers search button

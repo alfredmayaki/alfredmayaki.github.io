@@ -1906,7 +1906,20 @@ document.addEventListener('DOMContentLoaded', function () {
   ➕
 </button>
 
-  <!-- Record audio button removed per request -->
+  <!-- audio visualizer button inserted between attach and search buttons -->
+  <button id="visualizerBtn" class="attach-btn visualizer-btn" type="button" aria-label="Audio visualizer" title="Record audio (Beta)" aria-pressed="false">
+    <!-- inline SVG so internal bars can be animated via CSS/JS -->
+    <svg class="visualizer-icon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false">
+      <title>Record audio (Beta)</title>
+      <g fill="currentColor">
+        <rect class="bar b1" x="4" y="9" width="2" height="6" rx="0.3"></rect>
+        <rect class="bar b2" x="8" y="7" width="2" height="10" rx="0.3"></rect>
+        <rect class="bar b3" x="12" y="5" width="2" height="14" rx="0.3"></rect>
+        <rect class="bar b4" x="16" y="8" width="2" height="11" rx="0.3"></rect>
+        <rect class="bar b5" x="20" y="10" width="2" height="9" rx="0.3"></rect>
+      </g>
+    </svg>
+  </button>
 
   <!-- inline canvas for small visualizer; will be shown when visualizer is active -->
   <canvas id="visualizerCanvas" class="visualizer-canvas" width="240" height="48" aria-hidden="true" style="display:none;">Your browser does not support canvas.</canvas>

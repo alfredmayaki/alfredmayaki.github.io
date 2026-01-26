@@ -1414,7 +1414,7 @@ body {
 
 /* ---------- Chatbot popup script ---------- */
 <script>
-document.addEventListener('DOMContentLoaded', function () {
+(function(){
   // GPT button integration: non-streaming proxy to server /api/gpt
   async function callServerGpt(prompt) {
     console.log('[gpt] callServerGpt called', { prompt: prompt && String(prompt).slice(0,80) });
@@ -1430,13 +1430,8 @@ document.addEventListener('DOMContentLoaded', function () {
         console.warn('[gpt] /api/gpt non-ok', resp.status, txt);
         throw new Error('network');
       }
-      let json = null;
-      try { json = await resp.json(); } catch (e) { json = null; console.warn('[gpt] failed to parse /api/gpt json', e); }
-      if (!json) json = {};
-      // Normalize reply/timestamp fields so callers can rely on them
-      json.reply = String(json.reply || json.text || json.message || '').trim();
-      if (!json.timestamp) json.timestamp = new Date().toISOString();
-      console.log('[gpt] /api/gpt response', { replyPreview: json.reply.slice(0,80), timestamp: json.timestamp });
+      const json = await resp.json();
+      console.log('[gpt] /api/gpt response', json && (json.reply || json.text));
       return json;
     } catch (err) {
       console.warn('[gpt] GPT proxy error', err);
@@ -1473,12 +1468,7 @@ document.addEventListener('DOMContentLoaded', function () {
     row.appendChild(inner);
     row.appendChild(meta);
     messages.appendChild(row);
-    try {
-      if (typeof messages.scrollTo === 'function') messages.scrollTo({ top: messages.scrollHeight, behavior: 'smooth' });
-      else messages.scrollTop = messages.scrollHeight;
-    } catch (e) {
-      try { messages.scrollTop = messages.scrollHeight; } catch (e) { /* ignore */ }
-    }
+    messages.scrollTo({ top: messages.scrollHeight, behavior: 'smooth' });
     return row;
   }
 
@@ -1486,30 +1476,16 @@ document.addEventListener('DOMContentLoaded', function () {
   window.__sendPromptToGpt = async function (prompt) {
     if (!prompt || !String(prompt).trim()) return;
     prompt = String(prompt).trim();
-    console.log('[gpt popup] __sendPromptToGpt start', { preview: prompt.slice(0,80) });
 
     // open GPT popup (separate read-only responses)
     const gptPopup = document.getElementById('gptPopup');
     if (gptPopup) {
       gptPopup.classList.add('active');
       gptPopup.classList.remove('minimized');
-      try { gptPopup.setAttribute('aria-hidden', 'false'); } catch (e) {}
     }
 
-    // append user message into GPT messages area (robust: create fallback if container missing)
-    const userRow = appendChatMessage('💬 ' + prompt, 'user', 'gptMessages');
-    if (!userRow) {
-      try {
-        const messages = document.getElementById('gptMessages');
-        if (messages) {
-          const row = document.createElement('div');
-          row.className = 'message user';
-          row.innerHTML = `<div class="message-row-inner"><div class="message-bubble">💬 ${escapeHtml(prompt)}</div></div><div class="message-meta">${formatTimeOnly(new Date())}</div>`;
-          messages.appendChild(row);
-          scrollToBottom();
-        }
-      } catch (e) { console.warn('[gpt popup] fallback user append failed', e); }
-    }
+    // append user message into GPT messages area
+    appendChatMessage('💬 ' + prompt, 'user', 'gptMessages');
 
     // disable button while request is in-flight and show typing placeholder
     const btn = document.getElementById('gptNewBtn');
@@ -1524,13 +1500,11 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // remove typing placeholder
-    try { if (typing && typing.remove) typing.remove(); } catch (err) { console.warn('[gpt popup] failed to remove typing placeholder', err); }
+    try { typing.remove(); } catch (err) { /* ignore */ }
 
     const reply = String(result?.reply || result?.text || result?.message || '(empty reply)');
     // If server returned timestamp or source, include them in the meta
     const row = appendChatMessage(reply, 'bot', 'gptMessages');
-    if (!row) console.warn('[gpt popup] failed to append reply to gptMessages container', { replyPreview: reply.slice(0,80) });
-    console.log('[gpt popup] reply appended', { preview: reply.slice(0,80) });
     try {
       const meta = row && row.querySelector && row.querySelector('.message-meta');
       if (meta) {
@@ -1541,11 +1515,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     if (btn) { btn.disabled = false; btn.removeAttribute('aria-busy'); btn.removeAttribute('aria-pressed'); }
   };
-
-  // small helper to escape text used inside innerHTML fallbacks
-  function escapeHtml(s) {
-    return String(s).replace(/[&<>\"]/g, function (c) { return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; });
-  }
 
   // Click handler for GPT button delegates to centralized helper and records last target
   document.addEventListener('DOMContentLoaded', function () {
@@ -1822,7 +1791,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // Expose a small helper on window for testing / programmatic send (optional)
   window.__chatSendMessage = sendMessage;
-});
+})();
 </script>
   <style>
     /* Hide avatar initials/icons inside the chatbot popup */
@@ -1906,12 +1875,28 @@ document.addEventListener('DOMContentLoaded', function () {
   ➕
 </button>
 
-  <!-- Record audio button removed per request -->
+  <!-- audio visualizer button inserted between attach and search buttons -->
+  <button id="visualizerBtn" class="attach-btn visualizer-btn" type="button" aria-label="Audio visualizer" title="Record audio (Beta)" aria-pressed="false">
+    <!-- inline SVG so internal bars can be animated via CSS/JS -->
+    <svg class="visualizer-icon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false">
+      <title>Record audio (Beta)</title>
+      <g fill="currentColor">
+        <rect class="bar b1" x="4" y="9" width="2" height="6" rx="0.3"></rect>
+        <rect class="bar b2" x="8" y="7" width="2" height="10" rx="0.3"></rect>
+        <rect class="bar b3" x="12" y="5" width="2" height="14" rx="0.3"></rect>
+        <rect class="bar b4" x="16" y="8" width="2" height="11" rx="0.3"></rect>
+        <rect class="bar b5" x="20" y="10" width="2" height="9" rx="0.3"></rect>
+      </g>
+    </svg>
+  </button>
 
   <!-- inline canvas for small visualizer; will be shown when visualizer is active -->
   <canvas id="visualizerCanvas" class="visualizer-canvas" width="240" height="48" aria-hidden="true" style="display:none;">Your browser does not support canvas.</canvas>
   <!-- existing search button (moved into search controls) -->
-  <!-- GPT button removed per request -->
+  <!-- GPT button (secured: proxies to server /api/gpt) -->
+  <button id="gptNewBtn" class="attach-btn gpt-btn" type="button" aria-label="Ask GPT" title="Ask GPT (Beta)">
+    GPT
+  </button>
 
   <button class="search-btn" id="searchBtn" aria-label="Search" title="Ask Claude Opus 4.5">
     <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
