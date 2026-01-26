@@ -497,13 +497,14 @@ body {
 }
 .search-bar::placeholder { color: var(--text-secondary); opacity:0.9; }
 
+/* make search button aesthetics match the dark search controls bar (black theme) */
 .search-btn {
   width: 48px;
   height: 48px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  background: transparent; /* made transparent to match request */
+  background: #000000; /* solid black to match the search bar theme */
   border: 1px solid rgba(255,255,255,0.04); /* subtle border like other controls */
   border-radius: 10px;
   cursor: pointer;
@@ -1844,17 +1845,17 @@ document.addEventListener('DOMContentLoaded', function () {
 
 <div id="particles-js" style="position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:-1;"></div>
 <div style="text-align:center;">
-  <h3 class="page-welcome" style="color: #FFFFFF;">Welcome To My Official Website</h3>
+  <h3 class="page-welcome" style="color: #FFFFFF;">A Chatbot for Backend Engineers</h3>
   <div class="page-subtitle">
     <img src="/tagline.png" alt="AM-Global tagline" class="tagline-image" />
   </div>
 </div>
         <div class="search-container" aria-label="Site search and document upload">
-  <input type="text" class="search-bar" id="searchInput" placeholder="Have a query? Ask away..." />
+  <input type="text" class="search-bar" id="searchInput" placeholder="Submit a query to the model..." />
 
   <div class="search-controls" role="group" aria-label="Search controls">
     <!-- hidden file input triggered by the paperclip label -->
-    <input id="docUploadInput" class="sr-only" type="file" accept=".json,.js,.md,.txt" multiple />
+    <input id="docUploadInput" class="sr-only" type="file" accept=".pdf,.doc,.docx,.txt" multiple />
 
 <button id="docUploadBtn" class="attach-btn" type="button" aria-label="Attach file (Beta)" title="Attach file (Beta)">
   ➕
