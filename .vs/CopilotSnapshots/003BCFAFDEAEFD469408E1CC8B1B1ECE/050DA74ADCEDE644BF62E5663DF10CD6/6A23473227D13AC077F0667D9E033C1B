@@ -1,4 +1,4 @@
- 
+﻿
 const express = require('express');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
@@ -23,7 +23,7 @@ app.use(express.json({ limit: '5mb' }));
 app.use(cookieParser());
 
 // Serve static site (put msc-survey.html in ./public/)
-app.use(express.static(path.join(__dirname, '/msc-survey.html')));
+app.use(express.static(path.join(__dirname, 'public')));
 
 // Create session cookie from client ID token (5 days)
 app.post('/sessionLogin', async (req, res) => {
@@ -174,72 +174,21 @@ app.post('/api/gpt', async (req, res) => {
 
     // Prefer chat completions for chat-capable models
     const isChatModel = String(usedModel).toLowerCase().includes('gpt') || String(usedModel).toLowerCase().includes('chat');
-    // If client requested a streamed response, proxy OpenAI's stream
-    const wantsStream = (req.query && req.query.stream) || (req.headers.accept && req.headers.accept.includes('text/event-stream'));
 
-    if (wantsStream) {
-      // Stream from OpenAI to client. Use chat completions endpoint for chat models
-      const openaiUrl = isChatModel ? 'https://api.openai.com/v1/chat/chat/completions' : 'https://api.openai.com/v1/completions';
-      const body = isChatModel
-        ? { model: usedModel, messages: [{ role: 'user', content: prompt }], temperature: 0.2, max_tokens: 800, stream: true }
-        : { model: usedModel, prompt, temperature: 0.2, max_tokens: 600, stream: true };
-
-      const upstream = await fetch(openaiUrl, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${OPENAI_API_KEY}`
-        },
-        body: JSON.stringify(body)
-      });
-
-      if (!upstream.ok) {
-        const text = await upstream.text().catch(() => '');
-        console.warn('OpenAI streaming proxy error', upstream.status, text);
-        return res.status(502).json({ error: 'OpenAI upstream error', details: text });
-      }
-
-      // Set headers for SSE-like streaming to browser
-      res.setHeader('Content-Type', 'text/event-stream');
-      res.setHeader('Cache-Control', 'no-cache');
-      res.setHeader('Connection', 'keep-alive');
-      res.flushHeaders && res.flushHeaders();
-
-      // Pipe upstream stream chunks directly to client
-      const upstreamBody = upstream.body;
-      if (!upstreamBody) {
-        res.write(`data: [DONE]\n\n`);
-        return res.end();
-      }
-
-      upstreamBody.on('data', (chunk) => {
-        try {
-          res.write(chunk);
-        } catch (e) {
-          // ignore write errors
-        }
-      });
-      upstreamBody.on('end', () => {
-        try { res.write(`\n`); } catch (e) {}
-        try { res.end(); } catch (e) {}
-      });
-      upstreamBody.on('error', (err) => {
-        console.error('Upstream stream error', err);
-        try { res.end(); } catch (e) {}
-      });
-
-      return; // response handled by streaming
-    }
-
-    // Non-streaming fallback (legacy behavior)
     if (isChatModel) {
-      const r = await fetch('https://api.openai.com/v1/chat/completions', {
+      // Use the Chat Completions endpoint for chat-capable models
+      const r = await fetch('https://api.openai.com/v1/completions', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${OPENAI_API_KEY}`
         },
-        body: JSON.stringify({ model: usedModel, messages: [{ role: 'user', content: prompt }], max_tokens: 800, temperature: 0.2 })
+        body: JSON.stringify({
+          model: usedModel,
+          messages: [{ role: 'user', content: prompt }],
+          max_tokens: 800,
+          temperature: 0.2
+        })
       });
 
       if (!r.ok) {
@@ -253,14 +202,19 @@ app.post('/api/gpt', async (req, res) => {
       return res.json({ reply, timestamp: new Date().toISOString(), raw: json });
     }
 
-    // Legacy completions
+    // Fallback to legacy completions endpoint
     const r = await fetch('https://api.openai.com/v1/completions', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${OPENAI_API_KEY}`
       },
-      body: JSON.stringify({ model: usedModel, prompt, max_tokens: 600, temperature: 0.2 })
+      body: JSON.stringify({
+        model: usedModel,
+        prompt,
+        max_tokens: 600,
+        temperature: 0.2
+      })
     });
 
     if (!r.ok) {

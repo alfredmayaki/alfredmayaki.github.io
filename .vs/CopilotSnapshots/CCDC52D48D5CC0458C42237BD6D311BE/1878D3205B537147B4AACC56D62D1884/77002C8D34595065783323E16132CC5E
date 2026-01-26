@@ -1614,7 +1614,10 @@ body {
   <canvas id="visualizerCanvas" class="visualizer-canvas" width="240" height="48" aria-hidden="true" style="display:none;">Your browser does not support canvas.</canvas>
 
   <!-- existing search button (moved into search controls) -->
-  
+  <!-- GPT completions button (calls GPT-4.1) -->
+  <button id="gptBtn" class="attach-btn gpt-btn" type="button" aria-label="Ask GPT-4.1" title="Ask GPT-4.1 (Beta)">
+    GPT
+  </button>
 
   <button class="search-btn" id="searchBtn" aria-label="Search" title="Ask Claude Opus 4.5">
     <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">

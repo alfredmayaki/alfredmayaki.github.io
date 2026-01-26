@@ -13,7 +13,342 @@
     // Google Analytics will be initialized after consent
   </script>
 
-  
+  <!-- GPT button wiring: waits for DOM, uses configurable endpoint and model placeholders -->
+  <script>
+  (function () {
+    // Configure these values for your deployment environment.
+    // - endpoint: backend route that proxies requests to OpenAI / other LLM provider (must be server-side)
+    // - model: choose a model available to your account (do not embed API keys here)
+    const GPT_CONFIG = {
+      endpoint: 'https://chatgptapp-16393aeb6f52.herokuapp.com/api/gpt', // Heroku app endpoint
+      model: 'gpt-4.1',            // <-- Replace with a supported model for your account
+    }
+
+/* Ensure no horizontal scroll inside messages area and all popup children use border-box */
+.chatbot-popup * { box-sizing: border-box; }
+.chatbot-messages { 
+  overflow-x: hidden;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+.chatbot-messages::-webkit-scrollbar { height: 0; }
+.chatbot-popup::-webkit-scrollbar { height: 0; }
+
+/* Prevent any child from causing horizontal overflow */
+.chatbot-popup, .chatbot-messages {
+  overflow-x: hidden !important;
+}
+.chatbot-popup, .chatbot-messages, .chatbot-messages * {
+  -ms-overflow-style: none; /* IE/Edge */
+  scrollbar-width: none; /* Firefox */
+}
+.chatbot-popup::-webkit-scrollbar, .chatbot-messages::-webkit-scrollbar, .chatbot-messages *::-webkit-scrollbar { display: none; height: 0; width: 0; }
+
+/* Allow flex children to shrink to avoid overflow caused by long content */
+.message, .message-row-inner, .message-bubble {
+  min-width: 0 !important;
+  max-width: 100% !important;
+}
+
+/* Ensure bubble never forces horizontal scroll by capping width and enabling wrapping */
+.message-bubble {
+  /* Allow wrapping and prevent single long tokens from forcing horizontal scroll */
+  white-space: normal !important; /* normal allows wrapping on long lines */
+  word-break: break-word !important;
+  overflow-wrap: break-word !important;
+  hyphens: auto !important;
+}
+
+/* Ensure images and avatars never exceed container width */
+.chatbot-popup img, .message-avatar, .avatar-img { max-width: 100% !important; height: auto !important; }
+
+    // Defer wiring until DOM is available
+    function initGptButton() {
+      const gptBtn = document.getElementById('gptBtn');
+      const searchInput = document.getElementById('searchInput');
+      const chatbotPopup = document.getElementById('chatbotPopup');
+      const messages = document.getElementById('chatbotMessages');
+
+      if (!gptBtn) return; // nothing to wire
+
+      function openChatAndFocus() {
+        if (!chatbotPopup) return;
+        chatbotPopup.classList.add('active');
+        chatbotPopup.classList.remove('minimized');
+        setTimeout(() => document.getElementById('chatbotInput')?.focus(), 200);
+      }
+
+      function scrollToBottom() {
+        if (!messages) return;
+        messages.scrollTo({ top: messages.scrollHeight, behavior: 'smooth' });
+      }
+
+      function appendMessage(text, role, timestamp) {
+        if (!messages) return null;
+        const row = document.createElement('div');
+        row.className = 'message ' + (role === 'user' ? 'user' : 'bot');
+
+        const inner = document.createElement('div');
+        inner.className = 'message-row-inner';
+
+        const avatar = document.createElement('div');
+        avatar.className = 'message-avatar';
+        avatar.textContent = role === 'user' ? 'You' : 'C';
+
+        const bubble = document.createElement('div');
+        bubble.className = 'message-bubble';
+        // Prepend chat emoji for user-originated prompts
+        bubble.textContent = (role === 'user') ? `💬 ${text}` : text;
+
+        // metadata / timestamp for message (show time only, no date)
+        const meta = document.createElement('div');
+        meta.className = 'message-meta';
+        try {
+          let timeText = '';
+          if (timestamp) {
+            // Prefer Date parsing, fall back to extracting time-like substring
+            const dt = (timestamp instanceof Date) ? timestamp : new Date(timestamp);
+            if (!isNaN(dt)) {
+              timeText = dt.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+            } else {
+              const m = String(timestamp).match(/\d{1,2}:\d{2}(?::\d{2})?/);
+              timeText = m ? m[0] : String(timestamp || '');
+            }
+          } else {
+            timeText = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+          }
+          meta.textContent = timeText;
+        } catch (e) {
+          meta.textContent = '';
+        }
+
+        inner.appendChild(avatar);
+        inner.appendChild(bubble);
+        row.appendChild(inner);
+        // Do not show date/meta for bot replies (OpenAI/Claude)
+        if (role !== 'bot') row.appendChild(meta);
+        messages.appendChild(row);
+        scrollToBottom();
+        return row;
+      }
+
+      function addTyping() { return appendMessage('...', 'bot'); }
+
+      gptBtn.addEventListener('click', async function (e) {
+        e.preventDefault();
+        // Debug log for click events
+        console.log('GPT button clicked');
+        // Always open the chat popup when GPT clicked so users can see the UI
+        openChatAndFocus();
+        const prompt = (searchInput && searchInput.value || '').trim();
+        // If prompt empty, focus the chat input and return (no request sent)
+        if (!prompt) { document.getElementById('chatbotInput')?.focus(); searchInput?.focus(); return; }
+
+        appendMessage(prompt, 'user');
+        // disable button during request to prevent double submits
+        gptBtn.disabled = true;
+        const typingRow = addTyping();
+
+        try {
+          // Attempt streaming response first. If streaming not available, fall back to JSON endpoints.
+          async function callGptStream(promptText, onChunk, onDone) {
+            const candidates = ['/api/gpt?stream=1', GPT_CONFIG.endpoint ? GPT_CONFIG.endpoint + '?stream=1' : null].filter(Boolean);
+            for (const url of candidates) {
+              try {
+                const r = await fetch(url, {
+                  method: 'POST',
+                  headers: { 'Content-Type': 'application/json', 'Accept': 'text/event-stream' },
+                  body: JSON.stringify({ model: GPT_CONFIG.model, prompt: promptText })
+                });
+                if (!r.ok) throw new Error('network');
+
+                // If the response has no body stream, return the parsed JSON so caller can fallback
+                if (!r.body || typeof r.body.getReader !== 'function') {
+                  const j = await r.json().catch(() => null);
+                  return { fallbackJson: j };
+                }
+
+                const reader = r.body.getReader();
+                const decoder = new TextDecoder();
+                let buffer = '';
+
+                while (true) {
+                  const { value, done } = await reader.read();
+                  if (value) buffer += decoder.decode(value, { stream: true });
+
+                  // Process complete SSE-style events separated by double newline
+                  let idx;
+                  while ((idx = buffer.indexOf('\n\n')) !== -1) {
+                    const event = buffer.slice(0, idx);
+                    buffer = buffer.slice(idx + 2);
+                    const lines = event.split(/\r?\n/);
+                    for (const line of lines) {
+                      if (!line) continue;
+                      if (line.startsWith('data:')) {
+                        const data = line.slice(5).trim();
+                        if (data === '[DONE]') {
+                          onDone && onDone();
+                          return { streamed: true };
+                        }
+                        try {
+                          const parsed = JSON.parse(data);
+                          // Extract text from known streaming shapes
+                          let chunkText = '';
+                          if (parsed.choices && Array.isArray(parsed.choices)) {
+                            for (const ch of parsed.choices) {
+                              if (ch.delta && ch.delta.content) chunkText += ch.delta.content;
+                              else if (ch.text) chunkText += ch.text;
+                              else if (ch.content) chunkText += ch.content;
+                            }
+                          } else if (typeof parsed === 'string') {
+                            chunkText = parsed;
+                          }
+                          if (chunkText) onChunk(chunkText);
+                        } catch (e) {
+                          // Non-JSON data, forward raw
+                          onChunk(data);
+                        }
+                      }
+                    }
+                  }
+
+                  if (done) break;
+                }
+
+                // Process any remaining buffer when stream ends
+                if (buffer.trim()) {
+                  const lines = buffer.split(/\r?\n/);
+                  for (const line of lines) {
+                    if (line.startsWith('data:')) {
+                      const data = line.slice(5).trim();
+                      if (data === '[DONE]') { onDone && onDone(); return { streamed: true }; }
+                      try {
+                        const parsed = JSON.parse(data);
+                        let chunkText = '';
+                        if (parsed.choices && Array.isArray(parsed.choices)) {
+                          for (const ch of parsed.choices) {
+                            if (ch.delta && ch.delta.content) chunkText += ch.delta.content;
+                            else if (ch.text) chunkText += ch.text;
+                          }
+                        }
+                        if (chunkText) onChunk(chunkText);
+                      } catch (e) {
+                        onChunk(data);
+                      }
+                    }
+                  }
+                }
+
+                onDone && onDone();
+                return { streamed: true };
+              } catch (e) {
+                console.warn('stream candidate failed', e, url);
+                // try next candidate
+                continue;
+              }
+            }
+            return { streamed: false };
+          }
+
+          // Non-streaming fallback for JSON endpoints
+          async function callGptFallback(promptText) {
+            const candidates = ['/api/gpt', GPT_CONFIG.endpoint].filter(Boolean);
+            let lastErr = null;
+            for (const url of candidates) {
+              try {
+                const r = await fetch(url, {
+                  method: 'POST',
+                  headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+                  body: JSON.stringify({ model: GPT_CONFIG.model, prompt: promptText })
+                });
+                if (!r.ok) throw new Error('network');
+                const j = await r.json();
+                return j;
+              } catch (e) {
+                lastErr = e;
+                // try next endpoint
+              }
+            }
+            throw lastErr || new Error('no-endpoint-available');
+          }
+
+          // Create a bot placeholder bubble and stream into it
+          const botRow = appendMessage('', 'bot');
+          const botBubble = botRow && botRow.querySelector && botRow.querySelector('.message-bubble');
+
+          // Remove typing indicator if present
+          try { typingRow.remove(); } catch (e) { /* ignore */ }
+
+          let accumulated = '';
+          let finished = false;
+
+          const result = await callGptStream(prompt, (chunk) => {
+            accumulated += chunk;
+            if (botBubble) botBubble.textContent = accumulated;
+            scrollToBottom();
+          }, () => {
+            finished = true;
+          });
+
+          if (result && result.fallbackJson) {
+            // Stream endpoint returned a JSON body instead — treat as normal JSON reply
+            const json = result.fallbackJson;
+            let reply = 'No reply';
+            if (json) {
+              if (typeof json.reply === 'string' && json.reply.trim()) reply = json.reply;
+              else if (typeof json.text === 'string' && json.text.trim()) reply = json.text;
+              else if (json.choices && json.choices[0]) {
+                const c0 = json.choices[0];
+                if (c0.message && c0.message.content) reply = c0.message.content;
+                else if (c0.text) reply = c0.text;
+              } else if (json.message && typeof json.message === 'string') reply = json.message;
+              else if (json.data && typeof json.data === 'string') reply = json.data;
+              else if (json.raw && typeof json.raw === 'string') reply = json.raw;
+            }
+            // Replace placeholder with full reply
+            if (botBubble) botBubble.textContent = reply;
+            scrollToBottom();
+          } else if (!result.streamed) {
+            // Streaming not supported by any candidate — fallback to synchronous JSON
+            try {
+              const json = await callGptFallback(prompt);
+              let reply = 'No reply';
+              if (json) {
+                if (typeof json.reply === 'string' && json.reply.trim()) reply = json.reply;
+                else if (typeof json.text === 'string' && json.text.trim()) reply = json.text;
+                else if (json.choices && json.choices[0]) {
+                  const c0 = json.choices[0];
+                  if (c0.message && c0.message.content) reply = c0.message.content;
+                  else if (c0.text) reply = c0.text;
+                } else if (json.message && typeof json.message === 'string') reply = json.message;
+                else if (json.data && typeof json.data === 'string') reply = json.data;
+                else if (json.raw && typeof json.raw === 'string') reply = json.raw;
+              }
+              if (botBubble) botBubble.textContent = reply;
+              scrollToBottom();
+            } catch (e) {
+              if (botBubble) botBubble.textContent = 'Simulated reply — GPT endpoint not reachable. Check server proxy and API keys.';
+              console.warn('GPT fallback failed', e);
+            }
+          }
+
+        } catch (err) {
+          try { typingRow.remove(); } catch (e) { /* ignore */ }
+          appendMessage('Simulated reply — GPT endpoint not reachable. Check server proxy and API keys.', 'bot');
+          console.warn('GPT request failed or endpoint not present:', err);
+        } finally {
+          try { gptBtn.disabled = false; } catch (e) { /* ignore */ }
+        }
+      });
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initGptButton);
+    } else {
+      initGptButton();
+    }
+  })();
+  </script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" />
 
   <!-- Strong, specific rules to ensure the chatbot popup never shows a horizontal scrollbar
@@ -1614,7 +1949,10 @@ body {
   <canvas id="visualizerCanvas" class="visualizer-canvas" width="240" height="48" aria-hidden="true" style="display:none;">Your browser does not support canvas.</canvas>
 
   <!-- existing search button (moved into search controls) -->
-  
+  <!-- GPT completions button (calls GPT-4.1) -->
+  <button id="gptBtn" class="attach-btn gpt-btn" type="button" aria-label="Ask GPT-4.1" title="Ask GPT-4.1 (Beta)">
+    GPT
+  </button>
 
   <button class="search-btn" id="searchBtn" aria-label="Search" title="Ask Claude Opus 4.5">
     <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
