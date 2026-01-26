@@ -1473,13 +1473,6 @@ body {
     if (!prompt || !String(prompt).trim()) return;
     prompt = String(prompt).trim();
 
-    // Prefer using the page-level global helper if present (index.js may expose
-    // its own handler). Otherwise fallback to the local callServerGpt which uses
-    // the site's chat endpoint.
-    if (window && typeof window.__sendPromptToGpt === 'function' && window !== this) {
-      try { return await window.__sendPromptToGpt(prompt); } catch (e) { /* continue to fallback */ }
-    }
-
     // open GPT popup (separate read-only responses)
     const gptPopup = document.getElementById('gptPopup');
     if (gptPopup) {

@@ -641,11 +641,9 @@
     }
 
     // Move query to chat input and send via central flow
-        // Route the query through the main chatbot flow so configured provider
-        // backends (e.g., Claude/Anthropic) are used and messages render normally.
+        // Route the query to OpenAI proxy and render reply inside the Claude chatbot popup
         elements.searchInput.value = '';
-        // Use processQuery which posts to CONFIG.chatApiUrl
-        void processQuery(query);
+        void sendGptToChatbot(query);
   });
 
   // Enter on search input triggers search button

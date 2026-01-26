@@ -1418,20 +1418,17 @@ body {
   // GPT button integration: non-streaming proxy to server /api/gpt
   async function callServerGpt(prompt) {
     try {
-      // Use the site's generic chat endpoint so provider selection (Anthropic/Claude)
-      // and message rendering remains unchanged. This mirrors the payload used by
-      // the main chat UI (message, stream, history).
-      const resp = await fetch('https://alfredmayaki.me/chat', {
+      const resp = await fetch('/api/gpt', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ message: prompt, stream: false, history: [] })
+        body: JSON.stringify({ model: 'gpt-5.2', prompt })
       });
       if (!resp.ok) throw new Error('network');
       const json = await resp.json();
       return json;
     } catch (err) {
       console.warn('GPT proxy error', err);
-      return { reply: 'Simulated reply — chat endpoint not reachable.' };
+      return { reply: 'Simulated reply — GPT endpoint not reachable.' };
     }
   }
 
@@ -1472,13 +1469,6 @@ body {
   window.__sendPromptToGpt = async function (prompt) {
     if (!prompt || !String(prompt).trim()) return;
     prompt = String(prompt).trim();
-
-    // Prefer using the page-level global helper if present (index.js may expose
-    // its own handler). Otherwise fallback to the local callServerGpt which uses
-    // the site's chat endpoint.
-    if (window && typeof window.__sendPromptToGpt === 'function' && window !== this) {
-      try { return await window.__sendPromptToGpt(prompt); } catch (e) { /* continue to fallback */ }
-    }
 
     // open GPT popup (separate read-only responses)
     const gptPopup = document.getElementById('gptPopup');
