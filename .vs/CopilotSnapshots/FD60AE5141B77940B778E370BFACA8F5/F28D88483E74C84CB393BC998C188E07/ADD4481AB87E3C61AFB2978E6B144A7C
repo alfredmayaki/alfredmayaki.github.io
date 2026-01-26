@@ -37,12 +37,6 @@
     return;
   }
 
-  // Expose a global helper so inline scripts can route GPT requests through this
-  // centralized handler which ensures responses come from OpenAI and are labeled.
-  window.__sendPromptToGpt = function (prompt) {
-    return sendGptToChatbot(prompt);
-  };
-
   // Send a prompt to the server /api/gpt and render the reply inside the Claude chatbot popup
   async function sendGptToChatbot(prompt) {
     const text = normalizeUserText(prompt);
@@ -80,18 +74,6 @@
       const reply = String(json?.reply || json?.text || json?.message || '').trim();
       bubble.textContent = reply || '(empty reply)';
       pushHistory('bot', bubble.textContent);
-
-      // Update meta to show OpenAI source and server timestamp when available
-      try {
-        const parent = bubble.closest && bubble.closest('.message');
-        if (parent) {
-          const metaEl = parent.querySelector('.message-meta');
-          if (metaEl) {
-            const ts = json?.timestamp ? new Date(json.timestamp) : new Date();
-            metaEl.innerHTML = `<span class="message-source">OpenAI</span> ${formatMessageTime(ts)}`;
-          }
-        }
-      } catch (e) { /* ignore meta update errors */ }
       void SoundFX.playSuccess();
     } catch (err) {
       console.error('❌ GPT fetch error:', err);
@@ -110,7 +92,6 @@
   const CONFIG = {
     chatApiUrl: 'https://alfredmayaki.me/chat',
     maxMessageChars: 2000,
-    minGptChars: 5,
     requestTimeoutMs: 30000,
     maxHistoryTurns: 10,
     maxFileSize: 1 * 1024 * 1024, // Reduced to 1MB
@@ -402,8 +383,7 @@
     meta.className = 'message-meta';
     const badge = document.createElement('span');
     badge.className = 'message-source';
-    // Label the source explicitly so users can verify provider (OpenAI vs Claude)
-    badge.textContent = source === 'gpt' ? 'OpenAI' : 'Claude';
+    badge.textContent = source === 'gpt' ? 'GPT' : 'Claude';
     const timeText = document.createTextNode(' ' + formatMessageTime(new Date()));
     meta.appendChild(badge);
     meta.appendChild(timeText);
@@ -576,19 +556,6 @@
       const reply = String(data?.reply || '').trim();
       console.log('💬 Reply:', reply);
       bubble.textContent = reply || '(empty reply)';
-
-      // If server provided an authoritative timestamp, update the message meta to show
-      // the provider and server timestamp so users can verify source authenticity.
-      try {
-        const parent = bubble.closest && bubble.closest('.message');
-        if (parent) {
-          const metaEl = parent.querySelector('.message-meta');
-          if (metaEl) {
-            const ts = data?.timestamp ? new Date(data.timestamp) : new Date();
-            metaEl.innerHTML = `<span class="message-source">Claude</span> ${formatMessageTime(ts)}`;
-          }
-        }
-      } catch (e) { /* ignore meta update errors */ }
 
       pushHistory('bot', bubble.textContent);
       void SoundFX.playSuccess();
@@ -885,37 +852,6 @@
     console.log('🎬 Initializing chatbot');
     addBotBubble(CONFIG.welcomeMessage);
     addFileUploadUI();
-    // Ensure GPT button is disabled until the search input has adequate content
-    try {
-      const gptBtn = document.getElementById('gptNewBtn');
-      const si = elements.searchInput;
-      const min = Number(CONFIG.minGptChars || 5);
-      if (gptBtn && si) {
-        const update = () => {
-          const ok = String(si.value || '').trim().length >= min;
-          gptBtn.disabled = !ok;
-          gptBtn.setAttribute('aria-disabled', String(!ok));
-        };
-        // initialize
-        update();
-        si.addEventListener('input', update);
-        // also prevent click through from any inline handlers
-        gptBtn.addEventListener('click', (e) => {
-          const v = String(si.value || '').trim();
-          if (v.length < min) {
-            e.preventDefault();
-            e.stopImmediatePropagation && e.stopImmediatePropagation();
-            // brief visual cue
-            gptBtn.classList.add('disabled-flash');
-            setTimeout(() => gptBtn.classList.remove('disabled-flash'), 420);
-            return false;
-          }
-          return true;
-        }, { capture: true });
-      }
-    } catch (err) {
-      console.warn('Failed to wire GPT button enablement:', err);
-    }
     // Bind GPT button here now that helpers (bindOnce, normalizeUserText, sendFromChatInput)
     // and `elements` are initialized. Routes GPT queries into the Claude chatbot popup.
     try {
@@ -923,7 +859,7 @@
       bindOnce(gptBtn, 'click', function (e) {
         e.preventDefault();
         if (e.stopImmediatePropagation) e.stopImmediatePropagation();
-        console.log('🤖 GPT button clicked - routing to OpenAI proxy');
+        console.log('🤖 GPT button clicked - routing into Claude chatbot');
 
         const query = normalizeUserText(elements.searchInput.value);
         elements.chatbotPopup.classList.add('active');
@@ -934,9 +870,9 @@
           return;
         }
 
-        // Send directly to OpenAI proxy handler so responses are labeled and sourced correctly
-        void sendGptToChatbot(query);
+        elements.chatbotInput.value = query;
         elements.searchInput.value = '';
+        sendFromChatInput();
       });
     } catch (err) {
       console.warn('Failed to bind GPT button in init:', err);

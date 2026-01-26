@@ -12,11 +12,6 @@
   <script id="ga-script">
     // Google Analytics will be initialized after consent
   </script>
-  <style>
-    /* brief flash when GPT click is blocked */
-    .disabled-flash { animation: flash 420ms ease; }
-    @keyframes flash { 0% { transform: translateY(0); opacity: 1; } 50% { transform: translateY(-2px); opacity: 0.7; } 100% { transform: translateY(0); opacity: 1; } }
-  </style>
 
   
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" />
@@ -1517,9 +1512,7 @@ body {
       window.__lastChatTarget = 'gpt';
       // clear marker after a short timeout so normal search behavior resumes
       setTimeout(() => { if (window.__lastChatTarget === 'gpt') window.__lastChatTarget = null; }, 8000);
-      // Do not directly send here. Index.js handles routing to OpenAI to ensure replies
-      // are requested via the OpenAI proxy and labeled correctly. This prevents GPT
-      // clicks from being routed into the Claude pipeline.
+      void window.__sendPromptToGpt(prompt);
     });
   });
   

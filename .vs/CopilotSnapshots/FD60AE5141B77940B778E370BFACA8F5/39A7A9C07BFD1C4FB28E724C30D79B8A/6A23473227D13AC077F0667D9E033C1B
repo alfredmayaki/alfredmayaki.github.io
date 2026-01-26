@@ -1,4 +1,4 @@
- 
+﻿ 
 const express = require('express');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
@@ -320,5 +320,5 @@ app.post('/api/gpt', async (req, res) => {
 
 // Start server
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => console.log(`API server is listening on ${PORT}`));
+app.listen(PORT, () => console.log(`API server listening on ${PORT}`));
 

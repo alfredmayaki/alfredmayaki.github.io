@@ -12,11 +12,6 @@
   <script id="ga-script">
     // Google Analytics will be initialized after consent
   </script>
-  <style>
-    /* brief flash when GPT click is blocked */
-    .disabled-flash { animation: flash 420ms ease; }
-    @keyframes flash { 0% { transform: translateY(0); opacity: 1; } 50% { transform: translateY(-2px); opacity: 0.7; } 100% { transform: translateY(0); opacity: 1; } }
-  </style>
 
   
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" />
@@ -888,6 +883,28 @@ body {
 .bot-gpt .message-meta .message-source {
   background: #ff7b54;
   color: #fff;
+  padding: 0.12rem 0.45rem;
+  border-radius: 8px;
+  font-size: 0.72rem;
+  margin-right: 0.5rem;
+  font-weight: 700;
+}
+
+/* Styling for Claude messages */
+.bot-claude .message-meta .message-source {
+  background: linear-gradient(90deg, rgba(61,78,233,0.12), rgba(61,78,233,0.06));
+  color: #fff;
+  padding: 0.12rem 0.45rem;
+  border-radius: 8px;
+  font-size: 0.72rem;
+  margin-right: 0.5rem;
+  font-weight: 700;
+}
+
+/* Styling for OpenAI messages */
+.bot-gpt .message-meta .message-source {
+  background: linear-gradient(90deg, #ffc857, #ff7b54);
+  color: #1a1a1a;
   padding: 0.12rem 0.45rem;
   border-radius: 8px;
   font-size: 0.72rem;
