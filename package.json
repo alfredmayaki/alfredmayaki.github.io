@@ -24,13 +24,14 @@
     "admin": "^1.4.1",
     "cookie-parser": "^1.4.7",
     "cors": "^2.8.6",
-    "dotenv": "^16.6.1",
     "express": "^4.22.1",
     "express-rate-limit": "^6.7.0",
     "firebase-admin": "^13.6.0",
     "mammoth": "^1.11.0",
+    "multer": "^2.0.2",
     "node-fetch": "^2.7.0",
-    "openai": "^6.16.0"
+    "openai": "^6.16.0",
+    "pdf-parse": "^2.4.5"
   },
   "requires": true,
   "packages": {
@@ -46,5 +47,8 @@
         "firebase": "^10.14.0 || ^11.3.0 || ^12.0.0"
       }
     }
+  },
+  "devDependencies": {
+    "dotenv": "^17.2.3"
   }
 }

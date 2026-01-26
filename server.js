@@ -10,17 +10,41 @@ const mammoth = require('mammoth');
 const fetch = require('node-fetch');
 
 // REQUIRE: place your Firebase Admin service account JSON at ./serviceAccountKey.json
-const serviceAccount = require('./serviceAccountKey.json');
-
-admin.initializeApp({
-  credential: admin.credential.cert(serviceAccount)
-});
-
+// Load service account defensively so server can run even when file is missing.
+let firebaseInitialized = false;
+let serviceAccount = null;
+try {
+  serviceAccount = require('./serviceAccountKey.json');
+  admin.initializeApp({
+    credential: admin.credential.cert(serviceAccount)
+  });
+  firebaseInitialized = true;
+  console.log('[server] Firebase admin initialized');
+} catch (err) {
+  // Do not crash the server if the service account JSON is not present.
+  console.warn('[server] Firebase serviceAccountKey.json not found or failed to load. Firebase features will be disabled.');
+}
 const upload = multer({ storage: multer.memoryStorage() });
 const app = express();
 app.use(cors());
-app.use(express.json({ limit: '5mb' }));
+// Capture raw body for debugging when JSON parsing fails
+app.use(express.json({ limit: '5mb', verify: (req, res, buf) => { try { req.rawBody = buf.toString(); } catch (e) { req.rawBody = ''; } } }));
 app.use(cookieParser());
+
+// JSON parse error handler: return a helpful message including a raw body preview
+app.use(function (err, req, res, next) {
+  if (err && err instanceof SyntaxError && err.status === 400 && 'rawBody' in req) {
+    console.error('[server] JSON parse error:', err.message);
+    console.error('[server] raw request body preview:', String(req.rawBody).slice(0, 400));
+    return res.status(400).json({ error: 'Invalid JSON body', rawPreview: String(req.rawBody).slice(0, 400) });
+  }
+  next(err);
+});
+
+// Simple health endpoint (registered after app is created)
+app.get('/health', (req, res) => {
+  res.json({ status: 'ok', uptime: process.uptime(), time: new Date().toISOString() });
+});
 
 // Serve static site (put msc-survey.html in ./public/)
 app.use(express.static(path.join(__dirname, '/msc-survey.html')));
@@ -163,6 +187,13 @@ app.post('/api/gpt', async (req, res) => {
   const { model, prompt } = req.body || {};
   if (!prompt) return res.status(400).json({ error: 'prompt required' });
 
+  // Diagnostic logs to aid debugging when proxy appears to fail
+  try {
+    console.log('[api/gpt] incoming request', { model: model || null, promptPreview: (String(prompt).slice(0, 120)) });
+  } catch (e) {
+    console.warn('[api/gpt] failed to log request preview', e);
+  }
+
   const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
   if (!OPENAI_API_KEY) {
     // Fallback reply to keep client behaviour predictable when not configured
@@ -170,7 +201,7 @@ app.post('/api/gpt', async (req, res) => {
   }
 
   try {
-    const usedModel = model || 'gpt-4.1';
+    const usedModel = model || 'gpt-5.2';
 
     // Prefer chat completions for chat-capable models
     const isChatModel = String(usedModel).toLowerCase().includes('gpt') || String(usedModel).toLowerCase().includes('chat');

@@ -1396,6 +1396,154 @@ body {
 
 /* ---------- Chatbot popup script ---------- */
 <script>
+(function(){
+  // GPT button integration: non-streaming proxy to server /api/gpt
+  async function callServerGpt(prompt) {
+    try {
+      const resp = await fetch('/api/gpt', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ model: 'gpt-4.1', prompt })
+      });
+      if (!resp.ok) throw new Error('network');
+      const json = await resp.json();
+      return json;
+    } catch (err) {
+      console.warn('GPT proxy error', err);
+      return { reply: 'Simulated reply — GPT endpoint not reachable.' };
+    }
+  }
+
+  function formatTimeOnly(date) {
+    try {
+      return new Intl.DateTimeFormat(undefined, { hour: '2-digit', minute: '2-digit', second: '2-digit' }).format(date);
+    } catch (e) {
+      return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+    }
+  }
+
+  function appendChatMessage(text, role='bot', containerId = 'chatbotMessages') {
+    const messages = document.getElementById(containerId);
+    if (!messages) return null;
+    const row = document.createElement('div');
+    row.className = 'message ' + (role === 'user' ? 'user' : 'bot');
+
+    const inner = document.createElement('div');
+    inner.className = 'message-row-inner';
+
+    const bubble = document.createElement('div');
+    bubble.className = 'message-bubble';
+    bubble.textContent = text;
+
+    const meta = document.createElement('div');
+    meta.className = 'message-meta';
+    meta.textContent = formatTimeOnly(new Date());
+
+    inner.appendChild(bubble);
+    row.appendChild(inner);
+    row.appendChild(meta);
+    messages.appendChild(row);
+    messages.scrollTo({ top: messages.scrollHeight, behavior: 'smooth' });
+    return row;
+  }
+
+  document.getElementById('gptNewBtn')?.addEventListener('click', async function(e){
+    e.preventDefault();
+    const searchInput = document.getElementById('searchInput');
+    const prompt = (searchInput && searchInput.value || '').trim();
+    // open GPT popup (separate read-only responses)
+    const gptPopup = document.getElementById('gptPopup');
+    if (gptPopup) {
+      gptPopup.classList.add('active');
+      gptPopup.classList.remove('minimized');
+    }
+
+    if (!prompt) {
+      // nothing to send; focus main search input
+      searchInput?.focus();
+      return;
+    }
+    // append user message into GPT messages area
+    appendChatMessage('💬 ' + prompt, 'user', 'gptMessages');
+
+    // disable button while request is in-flight and show typing placeholder
+    const btn = document.getElementById('gptNewBtn');
+    if (btn) { btn.disabled = true; btn.setAttribute('aria-busy', 'true'); }
+    const typing = appendChatMessage('Thinking...', 'bot', 'gptMessages');
+
+    let result;
+    try {
+      result = await callServerGpt(prompt);
+    } catch (err) {
+      result = { reply: 'Simulated reply — GPT endpoint not reachable.' };
+    }
+
+    // remove typing placeholder
+    try { typing.remove(); } catch (err) { /* ignore */ }
+
+    const reply = String(result?.reply || result?.text || result?.message || '(empty reply)');
+    appendChatMessage(reply, 'bot', 'gptMessages');
+
+    if (btn) { btn.disabled = false; btn.removeAttribute('aria-busy'); }
+  });
+  
+  // expose helpers for other scripts
+  window.appendChatMessage = appendChatMessage;
+  window.__openChatbot = function () {
+    const chatbotPopup = document.getElementById('chatbotPopup');
+    if (chatbotPopup) {
+      chatbotPopup.classList.add('active');
+      chatbotPopup.classList.remove('minimized');
+      setTimeout(() => document.getElementById('chatbotInput')?.focus(), 120);
+    }
+  };
+
+  // append a clickable link for a search term inside the chat
+  window.appendChatLink = function (query, role = 'user') {
+    const messages = document.getElementById('chatbotMessages');
+    if (!messages) return null;
+    const row = document.createElement('div');
+    row.className = 'message ' + (role === 'user' ? 'user' : 'bot');
+
+    const inner = document.createElement('div');
+    inner.className = 'message-row-inner';
+
+    const bubble = document.createElement('div');
+    bubble.className = 'message-bubble';
+
+    const a = document.createElement('a');
+    a.href = '#';
+    a.textContent = query;
+    a.style.color = 'var(--brand)';
+    a.style.textDecoration = 'underline';
+    a.addEventListener('click', function (ev) {
+      ev.preventDefault();
+      // When clicked, populate the search input and retrigger trackSearch
+      const si = document.getElementById('searchInput');
+      if (si) si.value = query;
+      if (typeof trackSearch === 'function') trackSearch(query);
+      // Also focus the chat input for follow-up
+      const chatInput = document.getElementById('chatbotInput');
+      if (chatInput) chatInput.focus();
+    });
+
+    bubble.appendChild(a);
+
+    const meta = document.createElement('div');
+    meta.className = 'message-meta';
+    meta.textContent = formatTimeOnly(new Date());
+
+    inner.appendChild(bubble);
+    row.appendChild(inner);
+    row.appendChild(meta);
+    messages.appendChild(row);
+    messages.scrollTo({ top: messages.scrollHeight, behavior: 'smooth' });
+    return row;
+  };
+
+})();
+</script>
+<script>
 (function () {
   const input = document.getElementById('chatbotInput');
   const sendBtn = document.getElementById('chatSend');
@@ -1556,7 +1704,6 @@ body {
   window.__chatSendMessage = sendMessage;
 })();
 </script>
-  </style>
   <style>
     /* Hide avatar initials/icons inside the chatbot popup */
     .chatbot-popup .message-avatar { display: none !important; }
@@ -1572,7 +1719,51 @@ body {
     <a href="contact.html" role="menuitem">Contact</a>
     <a href="/blogs" role="menuitem" target="_blank" rel="noopener noreferrer">Blogs</a>
   </div>    
+
+  <!-- GPT Responses Popup (separate from Claude chatbot) -->
+  <div class="chatbot-popup" id="gptPopup" aria-hidden="true" role="dialog" aria-label="GPT Responses" style="right: 18px; bottom: 18px;">
+    <div class="chatbot-header" id="gptHeader">
+      <h3>🤖 GPT Responses</h3>
+      <div class="chatbot-header-buttons">
+        <button class="minimize-chat" id="minimizeGpt" title="Minimize" aria-label="Minimize GPT">−</button>
+        <button class="close-chat" id="closeGpt" title="Close" aria-label="Close GPT">&times;</button>
+      </div>
+    </div>
+    <div class="chatbot-messages" id="gptMessages" role="log" aria-live="polite"></div>
+    <!-- No input for GPT popup (read-only display of responses). -->
+  </div>
 </nav>
+
+<script>
+  (function () {
+    const gptPopup = document.getElementById('gptPopup');
+    const minimizeBtn = document.getElementById('minimizeGpt');
+    const closeBtn = document.getElementById('closeGpt');
+
+    if (!gptPopup) return;
+
+    if (minimizeBtn) {
+      minimizeBtn.addEventListener('click', function (e) {
+        e.stopPropagation();
+        gptPopup.classList.toggle('minimized');
+        if (gptPopup.classList.contains('minimized')) {
+          minimizeBtn.textContent = '□';
+          minimizeBtn.title = 'Restore';
+        } else {
+          minimizeBtn.textContent = '−';
+          minimizeBtn.title = 'Minimize';
+        }
+      });
+    }
+
+    if (closeBtn) {
+      closeBtn.addEventListener('click', function (e) {
+        e.stopPropagation();
+        gptPopup.classList.remove('active');
+      });
+    }
+  })();
+</script>
 
 <br>
 <br>
@@ -1612,9 +1803,11 @@ body {
 
   <!-- inline canvas for small visualizer; will be shown when visualizer is active -->
   <canvas id="visualizerCanvas" class="visualizer-canvas" width="240" height="48" aria-hidden="true" style="display:none;">Your browser does not support canvas.</canvas>
-
   <!-- existing search button (moved into search controls) -->
-  
+  <!-- GPT button (secured: proxies to server /api/gpt) -->
+  <button id="gptNewBtn" class="attach-btn gpt-btn" type="button" aria-label="Ask GPT" title="Ask GPT (Beta)">
+    GPT
+  </button>
 
   <button class="search-btn" id="searchBtn" aria-label="Search" title="Ask Claude Opus 4.5">
     <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
@@ -2131,6 +2324,8 @@ body {
           console.log('🔍 Search triggered:', query);
           trackSearch(query);
           console.log('✅ trackSearch() called');
+          // Also add a clickable link to the chat popup for quick follow-up
+          try { window.appendChatLink && window.appendChatLink(query, 'user'); window.__openChatbot && window.__openChatbot(); } catch (e) { /* ignore */ }
         }
       });
 
@@ -2141,6 +2336,7 @@ body {
             console.log('🔍 Search triggered (Enter):', query);
             trackSearch(query);
             console.log('✅ trackSearch() called');
+            try { window.appendChatLink && window.appendChatLink(query, 'user'); window.__openChatbot && window.__openChatbot(); } catch (e) { /* ignore */ }
           }
         }
       });

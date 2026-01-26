@@ -1,0 +1,568 @@
+commit ca898d32348c93af9fbbc81538505a1c1c062685
+Author:     Tatsuhiro Tsujikawa <tatsuhiro.t@gmail.com>
+AuthorDate: 2026-01-20
+Commit:     Tatsuhiro Tsujikawa <tatsuhiro.t@gmail.com>
+CommitDate: 2026-01-20
+
+    Bump package and library versions
+
+commit 63c18a1fb9648b08267fca051e270603d5c0147e
+Merge: 8ec6074f e000a154
+Author:     Tatsuhiro Tsujikawa <404610+tatsuhiro-t@users.noreply.github.com>
+AuthorDate: 2026-01-19
+Commit:     GitHub <noreply@github.com>
+CommitDate: 2026-01-19
+
+    Merge pull request #2003 from ngtcp2/client-only-initial-reclaim
+    
+    Only reclaim 2 packets for client Initials
+
+commit e000a15451a2bc98026dd125ff0095e1e626990a
+Author:     Tatsuhiro Tsujikawa <tatsuhiro.t@gmail.com>
+AuthorDate: 2026-01-19
+Commit:     Tatsuhiro Tsujikawa <tatsuhiro.t@gmail.com>
+CommitDate: 2026-01-19
+
+    Only reclaim 2 packets for client Initials
+    
+    Server Initial is usually small, and we do not split it.
+
+commit 8ec6074f09897a7728169423d2e9b472917ade51
+Merge: 18ccbafd f2fc69dd
+Author:     Tatsuhiro Tsujikawa <404610+tatsuhiro-t@users.noreply.github.com>
+AuthorDate: 2026-01-19
+Commit:     GitHub <noreply@github.com>
+CommitDate: 2026-01-19
+
+    Merge pull request #2002 from ngtcp2/bump-aws-lc
+    
+    Bump aws-lc to v1.66.2
+
+commit f2fc69dd0a9e1a66333196328f99cc023fe6df50
+Author:     Tatsuhiro Tsujikawa <tatsuhiro.t@gmail.com>
+AuthorDate: 2026-01-19
+Commit:     Tatsuhiro Tsujikawa <tatsuhiro.t@gmail.com>
+CommitDate: 2026-01-19
+
+    Bump aws-lc to v1.66.2
+
+commit 18ccbafdefac406e74498895f49e58c562ab8b7c
+Merge: b081742c 742b3b77
+Author:     Tatsuhiro Tsujikawa <404610+tatsuhiro-t@users.noreply.github.com>
+AuthorDate: 2026-01-19
+Commit:     GitHub <noreply@github.com>
+CommitDate: 2026-01-19
+
+    Merge pull request #2001 from ngtcp2/bump-boringssl
+    
+    Bump boringssl
+
+commit 742b3b77110c4c40d83374c8310694a9ea3f3b64
+Author:     Tatsuhiro Tsujikawa <tatsuhiro.t@gmail.com>
+AuthorDate: 2026-01-19
+Commit:     Tatsuhiro Tsujikawa <tatsuhiro.t@gmail.com>
+CommitDate: 2026-01-19
+
+    Bump boringssl
+
+commit b081742c2ea8b36b155698476850a933e37ead42
+Merge: f4d4dbb7 5aeba67d
+Author:     Tatsuhiro Tsujikawa <404610+tatsuhiro-t@users.noreply.github.com>
+AuthorDate: 2026-01-17
+Commit:     GitHub <noreply@github.com>
+CommitDate: 2026-01-17
+
+    Merge pull request #2000 from ngtcp2/initial-more-pkt-reclaim
+    
+    Reclaim extra packet for Initial on PTO
+
+commit 5aeba67dfaf189c36181db10d14dcab26d610185
+Author:     Tatsuhiro Tsujikawa <tatsuhiro.t@gmail.com>
+AuthorDate: 2026-01-17
+Commit:     Tatsuhiro Tsujikawa <tatsuhiro.t@gmail.com>
+CommitDate: 2026-01-17
+
+    Reclaim extra packet for Initial on PTO
+    
+    Reclaim extra packet for Initial on PTO to resend 2 complete Initial
+    packets.
+
+commit f4d4dbb7f307511b67fc31b70beb51ca8063b93d
+Merge: 02f5dbf8 f2ca3646
+Author:     Tatsuhiro Tsujikawa <404610+tatsuhiro-t@users.noreply.github.com>
+AuthorDate: 2026-01-17
+Commit:     GitHub <noreply@github.com>
+CommitDate: 2026-01-17
+
+    Merge pull request #1999 from ngtcp2/ksl-rename-root
+    
+    ksl: Rename head to root
+
+commit f2ca364605cc209e105805286c4ccace71a70a6a
+Author:     Tatsuhiro Tsujikawa <tatsuhiro.t@gmail.com>
+AuthorDate: 2026-01-17
+Commit:     Tatsuhiro Tsujikawa <tatsuhiro.t@gmail.com>
+CommitDate: 2026-01-17
+
+    ksl: Rename head to root
+
+commit 02f5dbf87b68f2d3ca18e58744a38f8419cf882a
+Merge: b1ec2833 e2446d43
+Author:     Tatsuhiro Tsujikawa <404610+tatsuhiro-t@users.noreply.github.com>
+AuthorDate: 2026-01-15
+Commit:     GitHub <noreply@github.com>
+CommitDate: 2026-01-15
+
+    Merge pull request #1998 from ngtcp2/ksl-remove-from-head
+    
+    ksl: Remove from head if it is leaf
+
+commit e2446d43a659d51e2cf9b1a247bbfe272da0cee1
+Author:     Tatsuhiro Tsujikawa <tatsuhiro.t@gmail.com>
+AuthorDate: 2026-01-15
+Commit:     Tatsuhiro Tsujikawa <tatsuhiro.t@gmail.com>
+CommitDate: 2026-01-15
+
+    ksl: Remove from head if it is leaf
+
+commit b1ec2833192644a8862f4a1e2ab3e147384c9995
+Merge: bf681a65 40369522
+Author:     Tatsuhiro Tsujikawa <404610+tatsuhiro-t@users.noreply.github.com>
+AuthorDate: 2026-01-14
+Commit:     GitHub <noreply@github.com>
+CommitDate: 2026-01-14
+
+    Merge pull request #1997 from ngtcp2/ksl-optimize-insert
+    
+    ksl: Avoid extra ksl->compar by copying the existing key on split
+
+commit 4036952241534a6c2fbbb2333e7ccfac0b37ecf8
+Author:     Tatsuhiro Tsujikawa <tatsuhiro.t@gmail.com>
+AuthorDate: 2026-01-14
+Commit:     Tatsuhiro Tsujikawa <tatsuhiro.t@gmail.com>
+CommitDate: 2026-01-14
+
+    ksl: Avoid extra ksl->compar by copying the existing key on split
+
+commit bf681a6500f9d1d446822df92d9faa9076c22daf
+Merge: f33e7d26 377c2e69
+Author:     Tatsuhiro Tsujikawa <404610+tatsuhiro-t@users.noreply.github.com>
+AuthorDate: 2026-01-13
+Commit:     GitHub <noreply@github.com>
+CommitDate: 2026-01-13
+
+    Merge pull request #1996 from ngtcp2/revert-1995-ksl-remove-dead-code
+    
+    Revert "ksl: Remove dead code"
+
+commit 377c2e69a57bbbaba0c2e90b4b96c2918babb523
+Author:     Tatsuhiro Tsujikawa <404610+tatsuhiro-t@users.noreply.github.com>
+AuthorDate: 2026-01-13
+Commit:     GitHub <noreply@github.com>
+CommitDate: 2026-01-13
+
+    Revert "ksl: Remove dead code"
+
+commit f33e7d26de8a0b0252c2a732d5acbd642de2e00e
+Merge: 145217db 60c472c2
+Author:     Tatsuhiro Tsujikawa <404610+tatsuhiro-t@users.noreply.github.com>
+AuthorDate: 2026-01-13
+Commit:     GitHub <noreply@github.com>
+CommitDate: 2026-01-13
+
+    Merge pull request #1995 from ngtcp2/ksl-remove-dead-code
+    
+    ksl: Remove dead code
+
+commit 60c472c21b33a10fa003a285df12d5ff445ed2bf
+Author:     Tatsuhiro Tsujikawa <tatsuhiro.t@gmail.com>
+AuthorDate: 2026-01-13
+Commit:     Tatsuhiro Tsujikawa <tatsuhiro.t@gmail.com>
+CommitDate: 2026-01-13
+
+    ksl: Remove dead code
+    
+    In this context, the key larger than the maximum key in the node is
+    already handled.  This is effectively unreachable.
+
+commit 145217dbef8c81850280d766fe04565556414491
+Merge: 36632819 a78aabfb
+Author:     Tatsuhiro Tsujikawa <404610+tatsuhiro-t@users.noreply.github.com>
+AuthorDate: 2026-01-10
+Commit:     GitHub <noreply@github.com>
+CommitDate: 2026-01-10
+
+    Merge pull request #1993 from ngtcp2/field-pack
+    
+    Rearrange field to make them pack better
+
+commit a78aabfbfdf81277f44e1c637bedb9ea42b36996
+Author:     Tatsuhiro Tsujikawa <tatsuhiro.t@gmail.com>
+AuthorDate: 2026-01-10
+Commit:     Tatsuhiro Tsujikawa <tatsuhiro.t@gmail.com>
+CommitDate: 2026-01-10
+
+    Rearrange field to make them pack better
+
+commit 36632819e12be35758e2b70e868a04b976bbfe1d
+Merge: da8e49dc e86180e7
+Author:     Tatsuhiro Tsujikawa <404610+tatsuhiro-t@users.noreply.github.com>
+AuthorDate: 2026-01-10
+Commit:     GitHub <noreply@github.com>
+CommitDate: 2026-01-10
+
+    Merge pull request #1992 from ngtcp2/designated-init
+    
+    Designated init
+
+commit e86180e78165c9cb9646b822f052ccea94cff915
+Author:     Tatsuhiro Tsujikawa <tatsuhiro.t@gmail.com>
+AuthorDate: 2026-01-10
+Commit:     Tatsuhiro Tsujikawa <tatsuhiro.t@gmail.com>
+CommitDate: 2026-01-10
+
+    Initialize early transport_params with the designated initializer
+
+commit bddc9131f8390f57510590c49adb78102bb9fb23
+Author:     Tatsuhiro Tsujikawa <tatsuhiro.t@gmail.com>
+AuthorDate: 2026-01-10
+Commit:     Tatsuhiro Tsujikawa <tatsuhiro.t@gmail.com>
+CommitDate: 2026-01-10
+
+    Initialize ngtcp2_vmsg with the designated initializer
+
+commit da8e49dc60372c10f2f6a5abb098f9113d2294e7
+Merge: 3acb4546 9c67137f
+Author:     Tatsuhiro Tsujikawa <404610+tatsuhiro-t@users.noreply.github.com>
+AuthorDate: 2026-01-10
+Commit:     GitHub <noreply@github.com>
+CommitDate: 2026-01-10
+
+    Merge pull request #1991 from ngtcp2/sim-eventcb
+    
+    examples: Add eventcb to Sim
+
+commit 9c67137f26803cbe83cf4363c7ce9d708d4ed470
+Author:     Tatsuhiro Tsujikawa <tatsuhiro.t@gmail.com>
+AuthorDate: 2026-01-10
+Commit:     Tatsuhiro Tsujikawa <tatsuhiro.t@gmail.com>
+CommitDate: 2026-01-10
+
+    examples: Add eventcb to Sim
+
+commit 3acb4546cc3312a088bb6fcb1ae5cdedd239ae2e
+Merge: 37fd98b5 8c4766a0
+Author:     Tatsuhiro Tsujikawa <404610+tatsuhiro-t@users.noreply.github.com>
+AuthorDate: 2026-01-10
+Commit:     GitHub <noreply@github.com>
+CommitDate: 2026-01-10
+
+    Merge pull request #1990 from ngtcp2/increase-glitch-ratelim
+    
+    Increase glitch ratelim as originally suggested by user
+
+commit 8c4766a09eb792a546414204550a77e59fc2d211
+Author:     Tatsuhiro Tsujikawa <tatsuhiro.t@gmail.com>
+AuthorDate: 2026-01-10
+Commit:     Tatsuhiro Tsujikawa <tatsuhiro.t@gmail.com>
+CommitDate: 2026-01-10
+
+    Increase glitch ratelim as originally suggested by user
+    
+    Increase glitch ratelim as originally suggested by user to make it
+    less restrictive.
+
+commit 37fd98b59beddbd3d95d234bf7bf82a9cf1466cc
+Merge: 329375be 81641001
+Author:     Tatsuhiro Tsujikawa <404610+tatsuhiro-t@users.noreply.github.com>
+AuthorDate: 2026-01-10
+Commit:     GitHub <noreply@github.com>
+CommitDate: 2026-01-10
+
+    Merge pull request #1989 from ngtcp2/simplify-return-value-check
+    
+    Simplify return value check
+
+commit 81641001d2272585523503e9c4014115adfa8b74
+Author:     Tatsuhiro Tsujikawa <tatsuhiro.t@gmail.com>
+AuthorDate: 2026-01-10
+Commit:     Tatsuhiro Tsujikawa <tatsuhiro.t@gmail.com>
+CommitDate: 2026-01-10
+
+    Simplify return value check
+
+commit 329375bef2909fa64cb880f8cb45af7cbc65b988
+Merge: 8f457308 4bea0005
+Author:     Tatsuhiro Tsujikawa <404610+tatsuhiro-t@users.noreply.github.com>
+AuthorDate: 2026-01-10
+Commit:     GitHub <noreply@github.com>
+CommitDate: 2026-01-10
+
+    Merge pull request #1988 from ngtcp2/raise-streamfrq-limit
+    
+    strm: Raise streamfrq limit to cope with large packet losses
+
+commit 4bea0005dd831b0af06fb9c2ea5ce903a01139b8
+Author:     Tatsuhiro Tsujikawa <tatsuhiro.t@gmail.com>
+AuthorDate: 2026-01-10
+Commit:     Tatsuhiro Tsujikawa <tatsuhiro.t@gmail.com>
+CommitDate: 2026-01-10
+
+    strm: Raise streamfrq limit to cope with large packet losses
+
+commit 8f457308522f4c92880468d91dbcfbc083ff7d8a
+Merge: 94b53528 3dad0ebc
+Author:     Tatsuhiro Tsujikawa <404610+tatsuhiro-t@users.noreply.github.com>
+AuthorDate: 2026-01-09
+Commit:     GitHub <noreply@github.com>
+CommitDate: 2026-01-09
+
+    Merge pull request #1987 from ngtcp2/ksl-adjust-degree
+    
+    ksl: Adjust NGTCP2_KSL_DEGR
+
+commit 3dad0ebcd6d7ce146b2d97860e4e9d1265bc171b
+Author:     Tatsuhiro Tsujikawa <tatsuhiro.t@gmail.com>
+AuthorDate: 2026-01-09
+Commit:     Tatsuhiro Tsujikawa <tatsuhiro.t@gmail.com>
+CommitDate: 2026-01-09
+
+    ksl: Adjust NGTCP2_KSL_DEGR
+    
+    Adjust NGTCP2_KSL_DEGR to match the number of nodes per block with
+    B-tree.  The previous value is borrowed from B-tree, and B-tree has
+    one-less keys than nodes.  No need to adjust the number of keys
+    because our data structure has the same number of keys and data.
+
+commit 94b53528605cdf076af64bd0032130906566ea48
+Merge: e299a099 cb7b5b60
+Author:     Tatsuhiro Tsujikawa <404610+tatsuhiro-t@users.noreply.github.com>
+AuthorDate: 2026-01-08
+Commit:     GitHub <noreply@github.com>
+CommitDate: 2026-01-08
+
+    Merge pull request #1986 from ngtcp2/ksl-it-remove-ksl
+    
+    Remove ksl from ngtcp2_ksl_it
+
+commit cb7b5b6050d5c6638aff04e164035410335d456e
+Author:     Tatsuhiro Tsujikawa <tatsuhiro.t@gmail.com>
+AuthorDate: 2026-01-08
+Commit:     Tatsuhiro Tsujikawa <tatsuhiro.t@gmail.com>
+CommitDate: 2026-01-08
+
+    Remove ksl from ngtcp2_ksl_it
+
+commit e299a09985c029585b948a5d9ef52a00d05ea483
+Merge: 89a6011d 6f9c4e66
+Author:     Tatsuhiro Tsujikawa <404610+tatsuhiro-t@users.noreply.github.com>
+AuthorDate: 2026-01-08
+Commit:     GitHub <noreply@github.com>
+CommitDate: 2026-01-08
+
+    Merge pull request #1985 from ngtcp2/update-doc
+    
+    Update doc
+
+commit 6f9c4e66469df7b42c12d4437a4dfde298d684db
+Author:     Tatsuhiro Tsujikawa <tatsuhiro.t@gmail.com>
+AuthorDate: 2026-01-08
+Commit:     Tatsuhiro Tsujikawa <tatsuhiro.t@gmail.com>
+CommitDate: 2026-01-08
+
+    Update doc
+
+commit 89a6011dd46b010e353d9df6fb9e244edb60a24f
+Merge: e449b881 9ed225d0
+Author:     Tatsuhiro Tsujikawa <404610+tatsuhiro-t@users.noreply.github.com>
+AuthorDate: 2026-01-08
+Commit:     GitHub <noreply@github.com>
+CommitDate: 2026-01-08
+
+    Merge pull request #1984 from ngtcp2/fix-sim-loss-test
+    
+    Fix sim test failure with loss
+
+commit 9ed225d0bf0052d0d22ad3050c73ec24de172231
+Author:     Tatsuhiro Tsujikawa <tatsuhiro.t@gmail.com>
+AuthorDate: 2026-01-07
+Commit:     Tatsuhiro Tsujikawa <tatsuhiro.t@gmail.com>
+CommitDate: 2026-01-07
+
+    Fix sim test failure with loss
+
+commit e449b8814420608002db77ff56e2721b7c89385c
+Merge: 60311bc0 ea9f90e4
+Author:     Tatsuhiro Tsujikawa <404610+tatsuhiro-t@users.noreply.github.com>
+AuthorDate: 2026-01-07
+Commit:     GitHub <noreply@github.com>
+CommitDate: 2026-01-07
+
+    Merge pull request #1983 from ngtcp2/strlen-lit
+    
+    Introduce ngtcp2_strlen_lit
+
+commit ea9f90e49b1878fc95423239f2ff7e5168081e16
+Author:     Tatsuhiro Tsujikawa <tatsuhiro.t@gmail.com>
+AuthorDate: 2026-01-07
+Commit:     Tatsuhiro Tsujikawa <tatsuhiro.t@gmail.com>
+CommitDate: 2026-01-07
+
+    Introduce ngtcp2_strlen_lit
+    
+    Replace strsize in tests with ngtcp2_strlen_lit.
+
+commit 60311bc0de165871d9e9f7b6a84f683877159a96
+Merge: a404f0b8 457df80d
+Author:     Tatsuhiro Tsujikawa <404610+tatsuhiro-t@users.noreply.github.com>
+AuthorDate: 2026-01-07
+Commit:     GitHub <noreply@github.com>
+CommitDate: 2026-01-07
+
+    Merge pull request #1982 from ngtcp2/path-challenge-datalen
+    
+    Use NGTCP2_PATH_CHALLENGE_DATALEN
+
+commit 457df80d5cc3621028f1de6c0c585413441bc91a
+Author:     Tatsuhiro Tsujikawa <tatsuhiro.t@gmail.com>
+AuthorDate: 2026-01-07
+Commit:     Tatsuhiro Tsujikawa <tatsuhiro.t@gmail.com>
+CommitDate: 2026-01-07
+
+    Use NGTCP2_PATH_CHALLENGE_DATALEN
+
+commit a404f0b84ea81bebce5e788d6bb75f7a629d0d11
+Merge: d64b4703 d1636820
+Author:     Tatsuhiro Tsujikawa <404610+tatsuhiro-t@users.noreply.github.com>
+AuthorDate: 2026-01-06
+Commit:     GitHub <noreply@github.com>
+CommitDate: 2026-01-06
+
+    Merge pull request #1980 from ngtcp2/doc-tls-integration
+    
+    doc: Update TLS integration document
+
+commit d1636820a886abbf5fbadcc1d120ac7df779fe01
+Author:     Tatsuhiro Tsujikawa <tatsuhiro.t@gmail.com>
+AuthorDate: 2026-01-06
+Commit:     Tatsuhiro Tsujikawa <tatsuhiro.t@gmail.com>
+CommitDate: 2026-01-06
+
+    doc: Update TLS integration document
+
+commit d64b47034a9fe34ce9b53a48c6b91edd35b67507
+Merge: 962e5652 5f5e3eeb
+Author:     Tatsuhiro Tsujikawa <404610+tatsuhiro-t@users.noreply.github.com>
+AuthorDate: 2026-01-06
+Commit:     GitHub <noreply@github.com>
+CommitDate: 2026-01-06
+
+    Merge pull request #1979 from ngtcp2/examples-avoid-strict-aliasing
+    
+    examples: Avoid strict aliasing violation
+
+commit 5f5e3eebad1955a3e09a451ee6e12a6d2601302b
+Author:     Tatsuhiro Tsujikawa <tatsuhiro.t@gmail.com>
+AuthorDate: 2026-01-06
+Commit:     Tatsuhiro Tsujikawa <tatsuhiro.t@gmail.com>
+CommitDate: 2026-01-06
+
+    examples: Avoid strict aliasing violation
+
+commit 962e56521dceefce5025921af1dab8ca5ebf8c6b
+Merge: e8c9ff7b 249bd378
+Author:     Tatsuhiro Tsujikawa <404610+tatsuhiro-t@users.noreply.github.com>
+AuthorDate: 2025-12-26
+Commit:     GitHub <noreply@github.com>
+CommitDate: 2025-12-26
+
+    Merge pull request #1977 from ngtcp2/optimize-frc
+    
+    Optimize ngtcp2_frame_chain creation
+
+commit 249bd378b7ba81478e2a640476236f74b211a1d1
+Author:     Tatsuhiro Tsujikawa <tatsuhiro.t@gmail.com>
+AuthorDate: 2025-12-26
+Commit:     Tatsuhiro Tsujikawa <tatsuhiro.t@gmail.com>
+CommitDate: 2025-12-26
+
+    Optimize ngtcp2_frame_chain creation
+    
+    Now that we can freely change stream.datacnt in ngtcp2_frame_chain,
+    lets optimize the code where we do some workaround for this previous
+    limitation.
+
+commit e8c9ff7b13f67ba50858351d597138291283b0e2
+Merge: c06e20d1 17d5b7a0
+Author:     Tatsuhiro Tsujikawa <404610+tatsuhiro-t@users.noreply.github.com>
+AuthorDate: 2025-12-26
+Commit:     GitHub <noreply@github.com>
+CommitDate: 2025-12-26
+
+    Merge pull request #1976 from ngtcp2/frc-flag
+    
+    frame_chain: Use a flag to determine the allocation type
+
+commit 17d5b7a045c856cc31d5c1094f13fb2705e1e913
+Author:     Tatsuhiro Tsujikawa <tatsuhiro.t@gmail.com>
+AuthorDate: 2025-12-26
+Commit:     Tatsuhiro Tsujikawa <tatsuhiro.t@gmail.com>
+CommitDate: 2025-12-26
+
+    frame_chain: Use a flag to determine the allocation type
+    
+    Previously, we use the size of frame data to determine whether
+    ngtcp2_frame_chain is allocated by ngtcp2_objalloc.  But this is
+    fragile and we already have couple of bugs that lead to potential
+    memory leak.  We also need to write additional code to create new
+    ngtcp2_frame_chain if the relevant field changes.
+    
+    In this commit, we introduced a flag to determine the allocation type
+    for ngtcp2_frame_chain to fix bugs and it also can bring more
+    optimization opportunities.
+
+commit c06e20d108bc10e8aad18f848b2a0a9f8fda1b36
+Merge: 6f78eea9 de9e11dd
+Author:     Tatsuhiro Tsujikawa <404610+tatsuhiro-t@users.noreply.github.com>
+AuthorDate: 2025-12-23
+Commit:     GitHub <noreply@github.com>
+CommitDate: 2025-12-23
+
+    Merge pull request #1975 from ngtcp2/bump-docker-debian
+    
+    docker: Bump debian to 13
+
+commit de9e11dd4d7d278f85ac2496f70a01e1280389c5
+Author:     Tatsuhiro Tsujikawa <tatsuhiro.t@gmail.com>
+AuthorDate: 2025-12-23
+Commit:     Tatsuhiro Tsujikawa <tatsuhiro.t@gmail.com>
+CommitDate: 2025-12-23
+
+    docker: Bump debian to 13
+
+commit 6f78eea935d6494532e1a3f6542f833aae852d27
+Merge: 1f165618 e5bb4632
+Author:     Tatsuhiro Tsujikawa <404610+tatsuhiro-t@users.noreply.github.com>
+AuthorDate: 2025-12-23
+Commit:     GitHub <noreply@github.com>
+CommitDate: 2025-12-23
+
+    Merge pull request #1974 from ngtcp2/refactor-dockerfile
+    
+     Refactor Dockerfile with heredoc
+
+commit e5bb46329d0dff431dc387eaae62cd1b8849bc9e
+Author:     Tatsuhiro Tsujikawa <tatsuhiro.t@gmail.com>
+AuthorDate: 2025-12-23
+Commit:     Tatsuhiro Tsujikawa <tatsuhiro.t@gmail.com>
+CommitDate: 2025-12-23
+
+    Refactor Dockerfile with heredoc
+
+commit 1f165618e5b8fbf9883956042c49ed583a8edec2
+Author:     Tatsuhiro Tsujikawa <tatsuhiro.t@gmail.com>
+AuthorDate: 2025-12-23
+Commit:     Tatsuhiro Tsujikawa <tatsuhiro.t@gmail.com>
+CommitDate: 2025-12-23
+
+    Bump package version
