@@ -210,7 +210,7 @@ app.post('/api/gpt', async (req, res) => {
 
     if (wantsStream) {
       // Stream from OpenAI to client. Use chat completions endpoint for chat models
-      const openaiUrl = isChatModel ? 'https://api.openai.com/v1/chat/chat/completions' : 'https://api.openai.com/v1/completions';
+      const openaiUrl = isChatModel ? 'https://api.openai.com/v1/chat/completions' : 'https://api.openai.com/v1/completions';
       const body = isChatModel
         ? { model: usedModel, messages: [{ role: 'user', content: prompt }], temperature: 0.2, max_tokens: 800, stream: true }
         : { model: usedModel, prompt, temperature: 0.2, max_tokens: 600, stream: true };

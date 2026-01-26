@@ -2332,33 +2332,19 @@ body {
           console.log('🔍 Search triggered:', query);
           trackSearch(query);
           console.log('✅ trackSearch() called');
-          // If GPT was last selected, send to GPT popup; otherwise add clickable chat link
-          try {
-            if (window.__lastChatTarget === 'gpt') {
-              void window.__sendPromptToGpt(query);
-            } else {
-              window.appendChatLink && window.appendChatLink(query, 'user');
-              window.__openChatbot && window.__openChatbot();
-            }
-          } catch (e) { /* ignore */ }
+          // Also add a clickable link to the chat popup for quick follow-up
+          try { window.appendChatLink && window.appendChatLink(query, 'user'); window.__openChatbot && window.__openChatbot(); } catch (e) { /* ignore */ }
         }
       });
 
       document.getElementById('searchInput')?.addEventListener('keypress', function(e) {
         if (e.key === 'Enter') {
           const query = this.value;
-            if (query) {
+          if (query) {
             console.log('🔍 Search triggered (Enter):', query);
             trackSearch(query);
             console.log('✅ trackSearch() called');
-            try {
-              if (window.__lastChatTarget === 'gpt') {
-                void window.__sendPromptToGpt(query);
-              } else {
-                window.appendChatLink && window.appendChatLink(query, 'user');
-                window.__openChatbot && window.__openChatbot();
-              }
-            } catch (e) { /* ignore */ }
+            try { window.appendChatLink && window.appendChatLink(query, 'user'); window.__openChatbot && window.__openChatbot(); } catch (e) { /* ignore */ }
           }
         }
       });
