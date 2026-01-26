@@ -27,35 +27,6 @@
     else console.log(`✅ Found element: ${key}`);
   });
 
-  // GPT button: route Ask GPT (Beta) into the same Claude chatbot popup
-  // This ensures GPT-originated queries appear in the Claude chat popup (`elements.chatbotMessages`).
-  try {
-    const gptBtn = document.getElementById('gptNewBtn');
-    bindOnce(gptBtn, 'click', function (e) {
-      e.preventDefault();
-      if (e.stopImmediatePropagation) e.stopImmediatePropagation();
-      console.log('🤖 GPT button clicked - routing into Claude chatbot');
-
-      const query = normalizeUserText(elements.searchInput.value);
-      // Open the existing chatbot popup (Claude)
-      elements.chatbotPopup.classList.add('active');
-      void SoundFX.playSuccess();
-
-      // If no query text, focus chat input and return
-      if (!query) {
-        elements.chatbotInput.focus();
-        return;
-      }
-
-      // Move the query into the chatbot input and send via central flow
-      elements.chatbotInput.value = query;
-      elements.searchInput.value = '';
-      sendFromChatInput();
-    });
-  } catch (err) {
-    console.warn('Failed to bind GPT button to chatbot flow:', err);
-  }
-
   // Early exit if critical elements are missing
   if (!elements.searchInput || !elements.searchBtn || !elements.chatbotPopup || 
       !elements.chatbotMessages || !elements.chatbotInput || !elements.closeChat) {
