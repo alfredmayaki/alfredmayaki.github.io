@@ -1484,19 +1484,15 @@ body {
   };
 
   // Click handler for GPT button delegates to centralized helper and records last target
-  document.addEventListener('DOMContentLoaded', function () {
-    const gptBtn = document.getElementById('gptNewBtn');
-    if (!gptBtn) return;
-    gptBtn.addEventListener('click', function (e) {
-      e.preventDefault();
-      const searchInput = document.getElementById('searchInput');
-      const prompt = (searchInput && searchInput.value) ? String(searchInput.value).trim() : '';
-      // mark that GPT was the last selected target so Enter can reuse it
-      window.__lastChatTarget = 'gpt';
-      // clear marker after a short timeout so normal search behavior resumes
-      setTimeout(() => { if (window.__lastChatTarget === 'gpt') window.__lastChatTarget = null; }, 8000);
-      void window.__sendPromptToGpt(prompt);
-    });
+  document.getElementById('gptNewBtn')?.addEventListener('click', function (e) {
+    e.preventDefault();
+    const searchInput = document.getElementById('searchInput');
+    const prompt = (searchInput && searchInput.value) ? String(searchInput.value).trim() : '';
+    // mark that GPT was the last selected target so Enter can reuse it
+    window.__lastChatTarget = 'gpt';
+    // clear marker after a short timeout so normal search behavior resumes
+    setTimeout(() => { if (window.__lastChatTarget === 'gpt') window.__lastChatTarget = null; }, 8000);
+    void window.__sendPromptToGpt(prompt);
   });
   
   // expose helpers for other scripts
