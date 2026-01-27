@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -259,8 +259,8 @@
       <h3>📑 Quick Navigation</h3>
       <ul>
         <li><a href="#introduction">Introduction</a></li>
-        <li><a href="#information-i-collect">Information I Collect</a></li>
-        <li><a href="#how-i-use">How I Use Your Information</a></li>
+        <li><a href="#information-we-collect">Information We Collect</a></li>
+        <li><a href="#how-we-use">How We Use Your Information</a></li>
         <li><a href="#data-storage">Data Storage & Security</a></li>
         <li><a href="#data-retention">Data Retention</a></li>
         <li><a href="#your-rights">Your Rights (GDPR)</a></li>
@@ -274,8 +274,8 @@
     <h2 id="introduction">1. Introduction</h2>
 
     <p>
-      Alfred Anate Bodurin Mayaki ("I", "me", "my") operates this website and the MSc Survey application 
-      ("the Application"). This Privacy Policy explains how I collect, use, disclose, and safeguard your information 
+      Alfred Anate Bodurin Mayaki ("the researcher", "the author") operates this website and the MSc Survey application 
+      ("the Application"). This Privacy Policy explains how Alfred Anate Bodurin Mayaki collects, uses, discloses, and safeguards your information 
       when you visit the website and use the survey application.
     </p>
 
@@ -289,11 +289,11 @@
       Your data will be used to understand experiences of neurodivergent individuals in recruitment processes.
     </div>
 
-    <!-- 2. Information I Collect -->
-    <h2 id="information-i-collect">2. Information I Collect</h2>
+    <!-- 2. Information We Collect -->
+    <h2 id="information-we-collect">2. Information We Collect</h2>
 
     <h3>2.1 Google OAuth Information</h3>
-    <p>When you sign in using Google, I collect:</p>
+    <p>When you sign in using Google, we collect:</p>
     <ul>
       <li><strong>✅Google Account ID</strong> (unique identifier)</li>
       <li><strong>❌Email Address</strong></li>
@@ -303,12 +303,12 @@
     </ul>
 
     <p>
-      I do NOT request or store your Google password. Google handles all authentication securely. 
-      I only receive a verification token confirming your identity.
+      The researcher does NOT request or store your Google password. Google handles all authentication securely. 
+      The researcher only receives a verification token confirming your identity.
     </p>
 
     <h3>2.2 Survey Responses</h3>
-    <p>When you submit the survey, I collect your responses to 7 questions about:</p>
+    <p>When you submit the survey, we collect your responses to 7 questions about:</p>
     <ul>
       <li>What attracts you to an organization</li>
       <li>How you perceive employer inclusivity</li>
@@ -328,7 +328,7 @@
     </ul>
 
     <div class="info-box">
-      <strong>What I DON'T Collect:</strong> I do NOT collect your IP address, location data, 
+      <strong>What We DON'T Collect:</strong> We do NOT collect your IP address, location data, 
       browsing history, or any personal information beyond what you explicitly provide through Google authentication and survey responses.
     </div>
 
@@ -345,22 +345,22 @@
 
     <h3>3.2 Duplicate Prevention</h3>
     <p>
-      I use your Google Account ID to ensure each person completes the survey only once. 
+      The researcher uses your Google Account ID to ensure each person completes the survey only once. 
       This prevents spam and helps maintain data quality for research purposes.
     </p>
 
     <h3>3.3 Technical Support</h3>
     <p>
-      I may use your information to troubleshoot technical issues, respond to support requests, 
+      The researcher may use your information to troubleshoot technical issues, respond to support requests, 
       and improve the survey application.
     </p>
 
-    <h3>3.4 What I DON'T Do</h3>
+    <h3>3.4 What the Researcher DOES NOT Do</h3>
     <ul>
-      <li>❌ I do NOT sell your data to third parties</li>
-      <li>❌ I do NOT use your data for marketing</li>
-      <li>❌ I do NOT share your data without permission (except as required by law)</li>
-      <li>❌ I do NOT use your data for profiling or automated decision-making</li>
+      <li>❌ The researcher does NOT sell your data to third parties</li>
+      <li>❌ The researcher does NOT use your data for marketing</li>
+      <li>❌ The researcher does NOT share your data without permission (except as required by law)</li>
+      <li>❌ The researcher does NOT use your data for profiling or automated decision-making</li>
     </ul>
 
     <!-- 4. Data Storage & Security -->
@@ -383,13 +383,13 @@
     <ul>
       <li><strong>HTTPS Encryption</strong> - All data in transit is encrypted</li>
       <li><strong>Encryption at Rest</strong> - Google servers encrypt data at rest</li>
-      <li><strong>Access Control</strong> - Only I (the author of this study) can access your data</li>
+      <li><strong>Access Control</strong> - Only the researcher (the author of this study) can access your data</li>
       <li><strong>OAuth 2.0</strong> - Industry-standard authentication protocol</li>
       <li><strong>No Passwords</strong> - We never store or see your Google password</li>
     </ul>
 
     <div class="highlight">
-      <strong>Security Commitment:</strong> I take data security seriously. All data is protected 
+      <strong>Security Commitment:</strong> The researcher takes data security seriously. All data is protected 
       using Google Cloud's enterprise-grade security infrastructure.
     </div>
 
@@ -419,7 +419,7 @@
     <h3>5.2 After Retention Period</h3>
     <p>
       Once the retention period expires, your data will be securely deleted or anonymized. 
-      If you request deletion earlier, I will comply (see Section 6 - Your Rights).
+      If you request deletion earlier, the researcher will comply (see Section 6 - Your Rights).
     </p>
 
     <!-- 6. Your Rights (GDPR) -->
@@ -431,8 +431,8 @@
 
     <h3>6.1 Right to Access</h3>
     <p>
-      You have the right to request a copy of all personal data I hold about you. 
-      I will provide this in a clear, portable format within 30 days.
+      You have the right to request a copy of all personal data the researcher holds about you. 
+      The researcher will provide this in a clear, portable format within 30 days.
     </p>
 
     <h3>6.2 Right to Correction</h3>
@@ -477,14 +477,14 @@
 
     <div class="info-box">
       <strong>How to Exercise Your Rights:</strong> Contact Alfred Mayaki at the email address 
-      in Section 9 (Contact Information) with your request. I will respond within 30 days.
+      in Section 9 (Contact Information) with your request. The researcher will respond within 30 days.
     </div>
 
     <!-- 7. Third-Party Services -->
     <h2 id="third-parties">7. Third-Party Services</h2>
 
     <h3>7.1 Google Services</h3>
-    <p>I use the following Google services:</p>
+    <p>The researcher uses the following Google services:</p>
     <ul>
       <li>
         <strong>Google Sign-In (OAuth 2.0)</strong> - Authentication and identity verification
@@ -512,7 +512,7 @@
 
     <h3>7.3 No Other Third Parties</h3>
     <p>
-      I do NOT share your data with any other third-party services, vendors, or marketing partners.
+      The researcher does NOT share your data with any other third-party services, vendors, or marketing partners.
     </p>
 
     <!-- 8. Cookies & Analytics -->
@@ -573,7 +573,7 @@
 
     <h3>Regulatory Complaints</h3>
     <p>
-      If you believe I have violated your rights, you can lodge a complaint with:
+      If you believe the researcher has violated your rights, you can lodge a complaint with:
     </p>
     <ul>
       <li><strong>UK:</strong> <a href="https://ico.org.uk/" target="_blank">Information Commissioner's Office (ICO)</a></li>
@@ -584,8 +584,8 @@
     <h2>10. Changes to This Privacy Policy</h2>
 
     <p>
-      I may update this Privacy Policy to reflect changes in practices, 
-      technology, legal requirements, or other factors. I will notify you of 
+      The researcher may update this Privacy Policy to reflect changes in practices, 
+      technology, legal requirements, or other factors. The researcher will notify you of 
       significant changes by updating the "Last Updated" date above.
     </p>
 
