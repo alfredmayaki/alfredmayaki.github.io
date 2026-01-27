@@ -1891,7 +1891,7 @@ document.addEventListener('DOMContentLoaded', function () {
   </div>
 </div>
         <div class="search-container" aria-label="Site search and document upload">
-  <input type="text" class="search-bar" id="searchInput" placeholder="Thinking..." />
+  <input type="text" class="search-bar" id="searchInput" placeholder="Enter your prompts here..." />
 
   <div class="search-controls" role="group" aria-label="Search controls">
     <!-- hidden file input triggered by the paperclip label -->
@@ -2043,48 +2043,33 @@ document.addEventListener('DOMContentLoaded', function () {
     try {
       function startTyped() {
         try {
-          // Prefer exact input by id to avoid selecting wrappers or other elements
-          const inputEl = document.getElementById('searchInput') || document.querySelector('.search-bar');
-          if (!inputEl) return;
-          if (inputEl.__typedInitialized) return;
-          inputEl.__typedInitialized = true;
-
-          // Use matchMedia for reliable viewport detection on mobile devices
-          const isNarrow = (typeof window !== 'undefined' && window.matchMedia) ? window.matchMedia('(max-width: 420px)').matches : (window.innerWidth <= 420);
-
-          const typedStrings = isNarrow ? [
-            'Deploy a Heroku app?',
-            'Use Activity To Go',
-            'Embed API keys via CLI',
-            'Can we defend against attacks using Cloudflare'
+          const searchEl = document.querySelector('.search-bar, #searchInput');
+          if (!searchEl) return;
+          // Avoid multiple instances
+          if (searchEl.__typedInitialized) return;
+          searchEl.__typedInitialized = true;
+          // Choose shorter placeholder strings on narrow viewports so text doesn't overflow
+          const typedStrings = (typeof window !== 'undefined' && window.innerWidth <= 420) ? [
+            "Deploy a Heroku app?",
+            "Use Activity To Go",
+            "Embed API keys via CLI",
+            "Defend againist attacks in Cloudflare"
           ] : [
             "How do I deploy a Heroku app?",
             "Explain how to use Heroku's Activity To Go extension",
             "How to embed API keys using Heroku CLI?",
-            'Can we defend against attacks using Cloudflare?'
+            "Can we defend againist attacks using Cloudflare?"
           ];
 
-          // Use the selector string so Typed internally queries the element and sets the placeholder attr reliably
-          const selector = '#searchInput';
-
-          const opts = {
+          new Typed(searchEl, {
             strings: typedStrings,
             typeSpeed: 50,
             backSpeed: 50,
             backDelay: 1500,
             loop: true,
             attr: 'placeholder',
-            bindInputFocusEvents: true,
-            showCursor: false
-          };
-
-          // Initialize Typed using the selector; guard against errors
-          try {
-            new Typed(selector, opts);
-          } catch (err) {
-            // Fallback: try with the DOM element directly
-            try { new Typed(inputEl, opts); } catch (err2) { console.warn('Typed initialization failed', err2); }
-          }
+            bindInputFocusEvents: true
+          });
         } catch (e) { console.warn('Typed placeholder start failed', e); }
       }
 
@@ -2092,11 +2077,8 @@ document.addEventListener('DOMContentLoaded', function () {
         startTyped();
       } else {
         const s = document.createElement('script');
-        s.async = true;
         s.src = 'https://cdn.jsdelivr.net/npm/typed.js@2.0.12';
-        s.onload = function () {
-          try { startTyped(); } catch (e) { console.warn('startTyped after load failed', e); }
-        };
+        s.onload = startTyped;
         s.onerror = function () { console.warn('Failed to load Typed.js'); };
         document.head.appendChild(s);
       }
