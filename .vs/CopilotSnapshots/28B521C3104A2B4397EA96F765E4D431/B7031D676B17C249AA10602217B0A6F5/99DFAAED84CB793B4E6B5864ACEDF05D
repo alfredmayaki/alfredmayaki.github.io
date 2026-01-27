@@ -1996,16 +1996,6 @@ document.addEventListener('DOMContentLoaded', function () {
   </div>
 </div>
 
-<!-- Site Subtitle with link here -->
-
-<!-- Holocaust Memorial Day commemoration centered under the search bar -->
-<div style="text-align:center; margin:0.75rem 0;">
-  <p style="color:#FFFFFF; margin:0; font-weight:600;">
-    Today is Holocaust Memorial Day. Lest we remember.
-    <a href="https://hmd.org.uk" target="_blank" rel="noopener noreferrer" style="color:#FFFFFF; text-decoration:underline; margin-left:0.35rem;">hmd.org.uk</a>
-  </p>
-</div>
-
 <br>
       <div class="dropdown-group" role="navigation" aria-label="Quick navigation and language selection">
   <style>
@@ -2119,6 +2109,12 @@ document.addEventListener('DOMContentLoaded', function () {
 </script>
     </div>
 
+<!-- Site Subtitle with link here -->
+
+<br>
+<center>
+<a href="http://hmd.org.uk/" target="_blank" rel="noopener noreferrer" style="color:var(--brand); text-decoration:underline>Today is Holocaust Memorial Day. Lest we forget.</a>
+<br>
 
     <!-- Footer re-applied inside landing container -->
     <div class="landing-container">
