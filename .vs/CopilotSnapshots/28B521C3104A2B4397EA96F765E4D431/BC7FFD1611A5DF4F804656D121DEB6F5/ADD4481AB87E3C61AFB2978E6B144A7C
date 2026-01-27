@@ -18,7 +18,6 @@
     chatbotMessages: document.getElementById('chatbotMessages'),
     chatbotInput: document.getElementById('chatbotInput'),
     closeChat: document.getElementById('closeChat'),
-    minimizeChat: document.getElementById('minimizeChat'),
     languageSelect: document.getElementById('languageSelect')
   };
 
@@ -31,10 +30,10 @@
   // NOTE: GPT button binding is registered during initialization (init)
   // to ensure DOM elements referenced via `elements` are available.
 
-  // Early exit if critical elements are missing (allow close/minimize to be optional)
+  // Early exit if critical elements are missing
   if (!elements.searchInput || !elements.searchBtn || !elements.chatbotPopup || 
-      !elements.chatbotMessages || !elements.chatbotInput) {
-    console.error('❌ Critical chatbot elements not found (search/chat core missing)');
+      !elements.chatbotMessages || !elements.chatbotInput || !elements.closeChat) {
+    console.error('❌ Critical chatbot elements not found');
     return;
   }
 
@@ -285,7 +284,6 @@
     console.log('💬 Opening chatbot');
     const query = elements.searchInput.value.trim();
     elements.chatbotPopup.classList.add('active');
-    try { elements.chatbotPopup.setAttribute('aria-hidden', 'false'); } catch (e) {}
     void SoundFX.playSuccess();
 
     if (!query) {
@@ -303,7 +301,6 @@
   function closeChatbot() {
     console.log('Closing chatbot');
     elements.chatbotPopup.classList.remove('active');
-    try { elements.chatbotPopup.setAttribute('aria-hidden', 'true'); } catch (e) {}
     void SoundFX.playClick();
   }
 
@@ -762,19 +759,6 @@
 
   // Close / cancel logic
   bindOnce(elements.closeChat, 'click', closeChatbot);
-  // Minimize / restore logic
-  bindOnce(elements.minimizeChat, 'click', function (e) {
-    if (!elements.chatbotPopup) return;
-    e.stopPropagation && e.stopPropagation();
-    elements.chatbotPopup.classList.toggle('minimized');
-    const isMin = elements.chatbotPopup.classList.contains('minimized');
-    try {
-      if (elements.minimizeChat) {
-        elements.minimizeChat.textContent = isMin ? '□' : '−';
-        elements.minimizeChat.title = isMin ? 'Restore' : 'Minimize';
-      }
-    } catch (err) { /* ignore */ }
-  });
 
   // Escape handling: cancel in-flight or close popup
   bindOnce(document, 'keydown', function (e) {

@@ -31,10 +31,10 @@
   // NOTE: GPT button binding is registered during initialization (init)
   // to ensure DOM elements referenced via `elements` are available.
 
-  // Early exit if critical elements are missing (allow close/minimize to be optional)
+  // Early exit if critical elements are missing
   if (!elements.searchInput || !elements.searchBtn || !elements.chatbotPopup || 
-      !elements.chatbotMessages || !elements.chatbotInput) {
-    console.error('❌ Critical chatbot elements not found (search/chat core missing)');
+      !elements.chatbotMessages || !elements.chatbotInput || !elements.closeChat) {
+    console.error('❌ Critical chatbot elements not found');
     return;
   }
 
