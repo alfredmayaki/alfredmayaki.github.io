@@ -2050,13 +2050,13 @@ document.addEventListener('DOMContentLoaded', function () {
           searchEl.__typedInitialized = true;
           // Choose shorter placeholder strings on narrow viewports so text doesn't overflow
           const typedStrings = (typeof window !== 'undefined' && window.innerWidth <= 420) ? [
-            "Deploy a Heroku app?",
+            "Deploying a HR tech app",
             "Use Activity To Go",
-            "Embed API keys via CLI"
+            "Set API keys via CLI"
           ] : [
-            "How do I deploy a Heroku app?",
-            "Explain how to use Heroku's Activity To Go extension",
-            "How to embed API keys using Heroku CLI?"
+            "How do I deploy a HR tech app?",
+            "Explain how to use the Activity To Go extension",
+            "How to set API keys using CLI?"
           ];
 
           new Typed(searchEl, {
