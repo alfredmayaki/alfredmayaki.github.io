@@ -450,8 +450,7 @@ body {
   padding: 0.45rem;
   /* base depth only; brand border and glow appear on hover */
   box-shadow: 0 8px 30px rgba(0,0,0,0.45);
-  /* Permanent deep-blue outer border */
-  border: 3px solid var(--brand);
+  border: 1px solid transparent;
   transition: box-shadow var(--transition-med), border-color var(--transition-med);
   position: relative; /* needed for the decorative sparkling border */
   overflow: visible;  /* allow the decorative border to show outside */
