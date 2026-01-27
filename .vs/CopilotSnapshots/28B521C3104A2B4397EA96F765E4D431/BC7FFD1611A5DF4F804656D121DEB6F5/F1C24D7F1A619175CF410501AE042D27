@@ -1,10 +1,10 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <title>Privacy Policy — Alfred Mayaki</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Privacy Policy for Alfred Mayaki's website and MSc Survey application. Learn how Alfred Anate Bodurin Mayaki collects, uses, and protects your data.">
+  <meta name="description" content="Privacy Policy for Alfred Mayaki's website and MSc Survey application. Learn how I collect, use, and protect your data.">
   <meta name="author" content="Alfred Anate Bodurin Mayaki">
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 
@@ -274,9 +274,9 @@
     <h2 id="introduction">1. Introduction</h2>
 
     <p>
-      Alfred Anate Bodurin Mayaki ("the researcher", "the author") operates this website and the MSc Survey application 
-      ("the Application"). This Privacy Policy explains how Alfred Anate Bodurin Mayaki collects, uses, discloses, and safeguards your information 
-      when you visit the website and use the survey application.
+      Alfred Anate Bodurin Mayaki ("I", "me", "my") operates this website and the MSc Survey application 
+      ("the Application"). This Privacy Policy explains how I collect, use, disclose, and safeguard your information 
+      when you visit my website and use the survey application.
     </p>
 
     <p>
@@ -303,8 +303,8 @@
     </ul>
 
     <p>
-      The researcher does NOT request or store your Google password. Google handles all authentication securely. 
-      The researcher only receives a verification token confirming your identity.
+      I do NOT request or store your Google password. Google handles all authentication securely. 
+      I only receive a verification token confirming your identity.
     </p>
 
     <h3>2.2 Survey Responses</h3>
@@ -333,7 +333,7 @@
     </div>
 
     <!-- 3. How We Use Your Information -->
-    <h2 id="how-we-use">3. How the Researcher Uses Your Information</h2>
+    <h2 id="how-we-use">3. How I Use Your Information</h2>
 
     <h3>3.1 Primary Uses (Research)</h3>
     <ul>
@@ -345,22 +345,22 @@
 
     <h3>3.2 Duplicate Prevention</h3>
     <p>
-      The researcher uses your Google Account ID to ensure each person completes the survey only once. 
+      I use your Google Account ID to ensure each person completes the survey only once. 
       This prevents spam and helps maintain data quality for research purposes.
     </p>
 
     <h3>3.3 Technical Support</h3>
     <p>
-      The researcher may use your information to troubleshoot technical issues, respond to support requests, 
+      I may use your information to troubleshoot technical issues, respond to support requests, 
       and improve the survey application.
     </p>
 
-    <h3>3.4 What the Researcher DOES NOT Do</h3>
+    <h3>3.4 What I DON'T Do</h3>
     <ul>
-      <li>❌ The researcher does NOT sell your data to third parties</li>
-      <li>❌ The researcher does NOT use your data for marketing</li>
-      <li>❌ The researcher does NOT share your data without permission (except as required by law)</li>
-      <li>❌ The researcher does NOT use your data for profiling or automated decision-making</li>
+      <li>❌ I do NOT sell your data to third parties</li>
+      <li>❌ I do NOT use your data for marketing</li>
+      <li>❌ I do NOT share your data without permission (except as required by law)</li>
+      <li>❌ I do NOT use your data for profiling or automated decision-making</li>
     </ul>
 
     <!-- 4. Data Storage & Security -->
@@ -389,7 +389,7 @@
     </ul>
 
     <div class="highlight">
-      <strong>Security Commitment:</strong> The researcher takes data security seriously. All data is protected 
+      <strong>Security Commitment:</strong> I take data security seriously. All data is protected 
       using Google Cloud's enterprise-grade security infrastructure.
     </div>
 
@@ -419,7 +419,7 @@
     <h3>5.2 After Retention Period</h3>
     <p>
       Once the retention period expires, your data will be securely deleted or anonymized. 
-      If you request deletion earlier, the researcher will comply (see Section 6 - Your Rights).
+      If you request deletion earlier, we will comply (see Section 6 - Your Rights).
     </p>
 
     <!-- 6. Your Rights (GDPR) -->
@@ -477,14 +477,14 @@
 
     <div class="info-box">
       <strong>How to Exercise Your Rights:</strong> Contact Alfred Mayaki at the email address 
-      in Section 9 (Contact Information) with your request. The researcher will respond within 30 days.
+      in Section 9 (Contact Information) with your request. I will respond within 30 days.
     </div>
 
     <!-- 7. Third-Party Services -->
     <h2 id="third-parties">7. Third-Party Services</h2>
 
     <h3>7.1 Google Services</h3>
-    <p>The researcher uses the following Google services:</p>
+    <p>I use the following Google services:</p>
     <ul>
       <li>
         <strong>Google Sign-In (OAuth 2.0)</strong> - Authentication and identity verification
@@ -512,7 +512,7 @@
 
     <h3>7.3 No Other Third Parties</h3>
     <p>
-      The researcher does NOT share your data with any other third-party services, vendors, or marketing partners.
+      I do NOT share your data with any other third-party services, vendors, or marketing partners.
     </p>
 
     <!-- 8. Cookies & Analytics -->
@@ -584,8 +584,8 @@
     <h2>10. Changes to This Privacy Policy</h2>
 
     <p>
-      The researcher may update this Privacy Policy to reflect changes in practices, 
-      technology, legal requirements, or other factors. The researcher will notify you of 
+      I may update this Privacy Policy to reflect changes in my practices, 
+      technology, legal requirements, or other factors. I will notify you of 
       significant changes by updating the "Last Updated" date above.
     </p>
 
