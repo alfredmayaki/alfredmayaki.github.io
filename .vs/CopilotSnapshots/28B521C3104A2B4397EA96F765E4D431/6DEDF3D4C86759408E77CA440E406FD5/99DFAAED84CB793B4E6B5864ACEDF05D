@@ -1885,9 +1885,7 @@ document.addEventListener('DOMContentLoaded', function () {
 <div style="text-align:center;">
   <h3 class="page-welcome" style="color: #FFFFFF;">Welcome To My Official Website</h3>
   <div class="page-subtitle">
-    <a href="about.html" aria-label="About page">
-      <img src="/tagline.png" alt="AM-Global tagline" class="tagline-image" />
-    </a>
+    <img src="/tagline.png" alt="AM-Global tagline" class="tagline-image" />
   </div>
 </div>
         <div class="search-container" aria-label="Site search and document upload">
