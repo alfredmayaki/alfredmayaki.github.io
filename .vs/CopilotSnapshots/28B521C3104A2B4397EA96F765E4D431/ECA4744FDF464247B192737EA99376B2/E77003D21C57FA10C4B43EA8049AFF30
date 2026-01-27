@@ -1891,7 +1891,7 @@ document.addEventListener('DOMContentLoaded', function () {
   </div>
 </div>
         <div class="search-container" aria-label="Site search and document upload">
-  <input type="text" class="search-bar" id="searchInput" placeholder="Thinking..." />
+  <input type="text" class="search-bar" id="searchInput" placeholder="Have a query? Ask away..." />
 
   <div class="search-controls" role="group" aria-label="Search controls">
     <!-- hidden file input triggered by the paperclip label -->
@@ -2036,46 +2036,6 @@ document.addEventListener('DOMContentLoaded', function () {
 </script>
   </div>
 </div>
-
-<!-- Initialize Typed.js animated placeholder for the search input -->
-<script>
-  (function initTypedPlaceholder() {
-    try {
-      function startTyped() {
-        try {
-          const searchEl = document.querySelector('.search-bar, #searchInput');
-          if (!searchEl) return;
-          // Avoid multiple instances
-          if (searchEl.__typedInitialized) return;
-          searchEl.__typedInitialized = true;
-          new Typed(searchEl, {
-            strings: [
-              "How do I deploy a Heroku app?",
-              "Explain how to use Heroku's Activity To Go extension?",
-              "How to embed API keys using Heroku CLI?"
-            ],
-            typeSpeed: 50,
-            backSpeed: 30,
-            backDelay: 1500,
-            loop: true,
-            attr: 'placeholder',
-            bindInputFocusEvents: true
-          });
-        } catch (e) { console.warn('Typed placeholder start failed', e); }
-      }
-
-      if (typeof Typed === 'function') {
-        startTyped();
-      } else {
-        const s = document.createElement('script');
-        s.src = 'https://cdn.jsdelivr.net/npm/typed.js@2.0.12';
-        s.onload = startTyped;
-        s.onerror = function () { console.warn('Failed to load Typed.js'); };
-        document.head.appendChild(s);
-      }
-    } catch (err) { console.warn('Typed placeholder init failed', err); }
-  })();
-</script>
 
 <!-- Site Subtitle with link here -->
 

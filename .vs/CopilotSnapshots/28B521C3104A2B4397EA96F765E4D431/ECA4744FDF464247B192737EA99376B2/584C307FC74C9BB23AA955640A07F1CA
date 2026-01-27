@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -605,7 +605,25 @@
         backDelay: 1500,
         loop: true
       });
-      // Note: search placeholder animation moved to index.html
+      // Animate search input placeholder if an input with class .search-bar exists
+      try {
+        const searchEl = document.querySelector('.search-bar, #searchInput');
+        if (searchEl) {
+          new Typed(searchEl, {
+            strings: [
+              "How do I deploy a Heroku app?",
+              "Explain how to use Heroku's Activity To Go extension",
+              "How to embed API keys using Heroku CLI"
+            ],
+            typeSpeed: 50,
+            backSpeed: 30,
+            backDelay: 1500,
+            loop: true,
+            attr: 'placeholder',
+            bindInputFocusEvents: true
+          });
+        }
+      } catch (e) { console.warn('Typed placeholder init failed', e); }
     });
   </script>
 </body>

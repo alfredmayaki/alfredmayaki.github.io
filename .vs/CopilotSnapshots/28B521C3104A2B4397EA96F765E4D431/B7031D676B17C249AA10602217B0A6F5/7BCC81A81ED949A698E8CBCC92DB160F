@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -605,7 +605,6 @@
         backDelay: 1500,
         loop: true
       });
-      // Note: search placeholder animation moved to index.html
     });
   </script>
 </body>
