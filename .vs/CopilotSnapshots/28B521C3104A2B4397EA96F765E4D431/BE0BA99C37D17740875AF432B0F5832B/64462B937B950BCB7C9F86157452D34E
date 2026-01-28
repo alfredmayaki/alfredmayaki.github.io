@@ -1496,7 +1496,19 @@ body {
 }
 
 /* Compact footer bar shown at the very bottom */
-
+.footer-bar {
+  position: sticky;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(20,20,20,0.9);
+  border-top: 1px solid rgba(255,255,255,0.03);
+  padding: 0.45rem 0.6rem;
+  z-index: 999;
+}
+.footer-bar-inner { display:flex; gap:0.6rem; justify-content:center; align-items:center; flex-wrap:wrap; }
+.footer-bar-inner a { color: var(--text-secondary); text-decoration:none; padding:0.25rem 0.5rem; font-size:0.92rem; }
+.footer-bar-inner a:hover, .footer-bar-inner a:focus { color: var(--text); text-decoration:underline; }
 
 /* Copyright centered */
 .footer-copyright {
@@ -2112,7 +2124,7 @@ document.addEventListener('DOMContentLoaded', function () {
   <div class="search-controls" role="group" aria-label="Search controls">
     <!-- hidden file input triggered by the paperclip label -->
     <input id="docUploadInput" class="sr-only" type="file" accept=".json,.js,.md,.txt" multiple />
- 
+
 <button id="docUploadBtn" class="attach-btn" type="button" aria-label="Attach file (Beta)" title="Attach file (Beta)">
   ➕
 </button>
@@ -2126,13 +2138,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
   </div>
 
-  
-
-  <script>
-  /* Lightweight, robust client-side upload UI wiring.
-     Keeps change handling available for other scripts that already listen to #docUploadInput.
-  */
-  (function () {
+<script>
+/* Lightweight, robust client-side upload UI wiring.
+   Keeps change handling available for other scripts that already listen to #docUploadInput.
+*/
+(function () {
   const fileInput = document.getElementById('docUploadInput');
   const uploadBtn = document.getElementById('docUploadBtn');
   const uploadList = document.getElementById('uploadList');
@@ -2442,21 +2452,25 @@ document.addEventListener('DOMContentLoaded', function () {
     </div> 
 <br>
 <br>
-    <footer class="site-footer" role="contentinfo">
-    <div class="footer-content">
-      <nav class="footer-links" aria-label="Footer links">
-        <a href="#" id="cookieSettingsLink">Cookie Settings</a>
-        <a href="privacy-policy.html">Privacy Policy</a>
-        <a href="terms-of-use.html">Terms of Use</a>
-        <a href="buymeacoffee.html">Buy Me a Coffee ☕</a>
-      </nav>
-
-      <p class="footer-copyright">
-        © 2026 <a href="about.html">Alfred Anate Bodurin Mayaki</a>. All rights reserved.
-      </p>
-      <p style="margin:0.4rem 0 0;"><small style="color:var(--text-secondary);">Powered with 💙 using GitHub</small></p>
+    <!-- Footer re-applied inside landing container -->
+    <div class="landing-container">
+      <footer class="site-footer" role="contentinfo" aria-label="Site footer">
+        <div class="footer-content">
+                    
+      </footer>
+      <!-- Soft separator and supervisory note (placed below footer) -->
+      <hr class="soft-sep" aria-hidden="true" />
+      <p style="text-align:center; font-size:0.85rem; color:var(--text-secondary); margin:0.6rem 0 0;">Supervised by Dr. Nicola Bowman, The Open University</p>
     </div>
-  </footer>
+
+    <!-- Footer bar: compact horizontal footer links shown at the bottom of the viewport -->
+    <div class="footer-bar" role="contentinfo" aria-label="Footer bar">
+      <div class="footer-bar-inner">
+        <a href="contact.html">Contact</a>
+        <a href="survey.html">Survey</a>
+      </div>
+    </div>
+  </div>
  
 <!-- Chatbot Popup -->
   <div class="chatbot-popup" id="chatbotPopup" aria-hidden="true" role="dialog" aria-label="Ask Claude Code">
