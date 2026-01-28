@@ -3,6 +3,26 @@
   "WorkspaceRootPath": "C:\\Users\\44746\\AppData\\Local\\Microsoft\\WindowsApps\\wget\\repo\\alfredmayaki.github.io\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\44746\\AppData\\Local\\Microsoft\\WindowsApps\\wget\\repo\\alfredmayaki.github.io\\server2.js||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:server2.js||{3B902123-F8A7-4915-9F01-361F908088D0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\44746\\AppData\\Local\\Microsoft\\WindowsApps\\wget\\repo\\alfredmayaki.github.io\\public\\search.html||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:public\\search.html||{3B902123-F8A7-4915-9F01-361F908088D0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\44746\\AppData\\Local\\Microsoft\\WindowsApps\\wget\\repo\\alfredmayaki.github.io\\server.js||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:server.js||{3B902123-F8A7-4915-9F01-361F908088D0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\44746\\AppData\\Local\\Microsoft\\WindowsApps\\wget\\repo\\alfredmayaki.github.io\\index.html||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:index.html||{3B902123-F8A7-4915-9F01-361F908088D0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\44746\\AppData\\Local\\Microsoft\\WindowsApps\\wget\\repo\\alfredmayaki.github.io\\index.js||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:index.js||{3B902123-F8A7-4915-9F01-361F908088D0}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\44746\\AppData\\Local\\Microsoft\\WindowsApps\\wget\\repo\\alfredmayaki.github.io\\Procfile||{8B382828-6202-11D1-8870-0000F87579D2}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Procfile||{8B382828-6202-11D1-8870-0000F87579D2}"
     },
@@ -15,27 +35,7 @@
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:public\\index.html||{3B902123-F8A7-4915-9F01-361F908088D0}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\44746\\AppData\\Local\\Microsoft\\WindowsApps\\wget\\repo\\alfredmayaki.github.io\\server.js||{3B902123-F8A7-4915-9F01-361F908088D0}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:server.js||{3B902123-F8A7-4915-9F01-361F908088D0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\44746\\AppData\\Local\\Microsoft\\WindowsApps\\wget\\repo\\alfredmayaki.github.io\\index.js||{3B902123-F8A7-4915-9F01-361F908088D0}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:index.js||{3B902123-F8A7-4915-9F01-361F908088D0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\44746\\AppData\\Local\\Microsoft\\WindowsApps\\wget\\repo\\alfredmayaki.github.io\\public\\search.html||{3B902123-F8A7-4915-9F01-361F908088D0}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:public\\search.html||{3B902123-F8A7-4915-9F01-361F908088D0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\44746\\AppData\\Local\\Microsoft\\WindowsApps\\wget\\repo\\alfredmayaki.github.io\\server2.js||{3B902123-F8A7-4915-9F01-361F908088D0}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:server2.js||{3B902123-F8A7-4915-9F01-361F908088D0}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\44746\\AppData\\Local\\Temp\\VisualStudio\\copilot-vs\\plan-c321b528-4a10-432b-97ea-96f765e4d431.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}|MarkdownSecurePreview"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\44746\\AppData\\Local\\Microsoft\\WindowsApps\\wget\\repo\\alfredmayaki.github.io\\index.html||{3B902123-F8A7-4915-9F01-361F908088D0}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:index.html||{3B902123-F8A7-4915-9F01-361F908088D0}"
     }
   ],
   "DocumentGroupContainers": [
@@ -45,7 +45,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 7,
           "Children": [
             {
               "$type": "Bookmark",
@@ -61,7 +61,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
+              "Title": "search.html",
+              "DocumentMoniker": "C:\\Users\\44746\\AppData\\Local\\Microsoft\\WindowsApps\\wget\\repo\\alfredmayaki.github.io\\public\\search.html",
+              "RelativeDocumentMoniker": "public\\search.html",
+              "ToolTip": "C:\\Users\\44746\\AppData\\Local\\Microsoft\\WindowsApps\\wget\\repo\\alfredmayaki.github.io\\public\\search.html",
+              "RelativeToolTip": "public\\search.html",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2026-01-28T14:25:16.924Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
               "Title": "Procfile",
               "DocumentMoniker": "C:\\Users\\44746\\AppData\\Local\\Microsoft\\WindowsApps\\wget\\repo\\alfredmayaki.github.io\\Procfile",
               "RelativeDocumentMoniker": "Procfile",
@@ -74,7 +87,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 6,
               "Title": "404.html",
               "DocumentMoniker": "C:\\Users\\44746\\AppData\\Local\\Microsoft\\WindowsApps\\wget\\repo\\alfredmayaki.github.io\\public\\404.html",
               "RelativeDocumentMoniker": "public\\404.html",
@@ -87,7 +100,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 7,
               "Title": "index.html",
               "DocumentMoniker": "C:\\Users\\44746\\AppData\\Local\\Microsoft\\WindowsApps\\wget\\repo\\alfredmayaki.github.io\\public\\index.html",
               "RelativeDocumentMoniker": "public\\index.html",
@@ -100,20 +113,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 0,
               "Title": "server2.js",
               "DocumentMoniker": "C:\\Users\\44746\\AppData\\Local\\Microsoft\\WindowsApps\\wget\\repo\\alfredmayaki.github.io\\server2.js",
               "RelativeDocumentMoniker": "server2.js",
               "ToolTip": "C:\\Users\\44746\\AppData\\Local\\Microsoft\\WindowsApps\\wget\\repo\\alfredmayaki.github.io\\server2.js",
               "RelativeToolTip": "server2.js",
-              "ViewState": "AgIAAM8AAAAAAAAAAAAAABUBAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAM8AAAAAAAAAAAAAAN8AAABAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
               "WhenOpened": "2026-01-28T13:42:55.606Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 2,
               "Title": "server.js",
               "DocumentMoniker": "C:\\Users\\44746\\AppData\\Local\\Microsoft\\WindowsApps\\wget\\repo\\alfredmayaki.github.io\\server.js",
               "RelativeDocumentMoniker": "server.js",
@@ -126,20 +139,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "search.html",
-              "DocumentMoniker": "C:\\Users\\44746\\AppData\\Local\\Microsoft\\WindowsApps\\wget\\repo\\alfredmayaki.github.io\\public\\search.html",
-              "RelativeDocumentMoniker": "public\\search.html",
-              "ToolTip": "C:\\Users\\44746\\AppData\\Local\\Microsoft\\WindowsApps\\wget\\repo\\alfredmayaki.github.io\\public\\search.html",
-              "RelativeToolTip": "public\\search.html",
-              "ViewState": "AgIAAEQAAAAAAAAAAAAewFMAAAAmAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
-              "WhenOpened": "2026-01-28T12:19:58.585Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 8,
               "Title": "plan-c321b528-4a10-432b-97ea-96f765e4d431.md [Preview]",
               "DocumentMoniker": "C:\\Users\\44746\\AppData\\Local\\Temp\\VisualStudio\\copilot-vs\\plan-c321b528-4a10-432b-97ea-96f765e4d431.md",
               "RelativeDocumentMoniker": "..\\..\\..\\..\\..\\Temp\\VisualStudio\\copilot-vs\\plan-c321b528-4a10-432b-97ea-96f765e4d431.md",
@@ -164,7 +164,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 3,
               "Title": "index.html",
               "DocumentMoniker": "C:\\Users\\44746\\AppData\\Local\\Microsoft\\WindowsApps\\wget\\repo\\alfredmayaki.github.io\\index.html",
               "RelativeDocumentMoniker": "index.html",
@@ -172,7 +172,8 @@
               "RelativeToolTip": "index.html",
               "ViewState": "AgIAAC8IAAAAAAAAAAAewD4IAAAqAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
-              "WhenOpened": "2026-01-27T15:15:22.494Z"
+              "WhenOpened": "2026-01-27T15:15:22.494Z",
+              "EditorCaption": ""
             }
           ]
         }
