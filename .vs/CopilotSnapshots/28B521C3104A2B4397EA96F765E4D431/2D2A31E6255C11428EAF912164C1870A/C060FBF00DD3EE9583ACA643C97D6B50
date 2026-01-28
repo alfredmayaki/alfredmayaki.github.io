@@ -2586,85 +2586,77 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     }
 
-      // Attach to search button and Enter key after DOM is ready and helpers are available
-      document.addEventListener('DOMContentLoaded', function () {
-        function appendPreSend(query) {
+      // Attach to search button and Enter key
+      document.getElementById('searchBtn')?.addEventListener('click', function() {
+        const query = document.getElementById('searchInput')?.value?.trim();
+        if (query) {
+          console.log('🔍 Search triggered:', query);
+          trackSearch(query);
+          console.log('✅ trackSearch() called');
           try {
-            if (typeof window.appendChatMessage === 'function') {
-              window.appendChatMessage('💬 ' + query, 'user', 'chatbotMessages');
+            if (window.__lastChatTarget === 'gpt') {
+              // GPT popup flow
+              void window.__sendPromptToGpt(query);
             } else {
-              // Safe DOM-only fallback (does not depend on other helpers)
-              const messages = document.getElementById('chatbotMessages');
-              if (messages) {
-                const row = document.createElement('div');
-                row.className = 'message user';
-                const inner = document.createElement('div'); inner.className = 'message-row-inner';
-                const bubble = document.createElement('div'); bubble.className = 'message-bubble';
-                bubble.textContent = '💬 ' + query;
-                inner.appendChild(bubble);
-                const meta = document.createElement('div'); meta.className = 'message-meta';
-                try { meta.textContent = new Date().toLocaleTimeString(); } catch (e) { meta.textContent = ''; }
-                row.appendChild(inner);
-                row.appendChild(meta);
-                messages.appendChild(row);
-                try { messages.scrollTo({ top: messages.scrollHeight, behavior: 'smooth' }); } catch (e) { messages.scrollTop = messages.scrollHeight; }
-              }
-            }
-          } catch (err) { console.warn('appendPreSend failed', err); }
-        }
-
-        const btn = document.getElementById('searchBtn');
-        const input = document.getElementById('searchInput');
-
-        if (btn) {
-          btn.addEventListener('click', function () {
-            const query = input?.value?.trim();
-            if (!query) return;
-            console.log('🔍 Search triggered:', query);
-            trackSearch(query);
-            console.log('✅ trackSearch() called');
-
-            try {
-              if (window.__lastChatTarget === 'gpt') {
-                void window.__sendPromptToGpt(query);
-                return;
-              }
-
+              // Ensure the main chatbot popup is opened and the user prompt is
+              // inserted as an actual user message BEFORE the backend is invoked.
               window.__openChatbot && window.__openChatbot();
-              appendPreSend(query);
+
+              // Append user message visibly into the chatbot popup so the user
+              // sees their prompt prior to any backend reply. Use the shared
+              // helper when available; otherwise fall back to createMessageEl.
+              try {
+                if (window.appendChatMessage) {
+                  window.appendChatMessage('💬 ' + query, 'user', 'chatbotMessages');
+                } else {
+                  const messages = document.getElementById('chatbotMessages');
+                  if (messages && typeof createMessageEl === 'function') messages.appendChild(createMessageEl(query, 'user', new Date()));
+                }
+              } catch (e) { console.warn('Failed to append pre-send user message', e); }
+
+              // Tell the central send handler to skip adding a duplicate user
+              // message (we already inserted it above). The handler will still
+              // push the message into conversation history.
               try { window.__skipNextAutoUserAdd = true; } catch (e) {}
 
               const chatInput = document.getElementById('chatbotInput');
               const chatSend = document.getElementById('chatSend');
+
               if (chatInput) chatInput.value = query;
-              if (chatSend) chatSend.click();
-              else { try { if (typeof pushHistory === 'function') pushHistory('user', query); } catch (e) {} }
-            } catch (e) { /* ignore */ }
-          });
+
+              if (chatSend) {
+                // Trigger the existing send handler which will send to backend
+                chatSend.click();
+              } else {
+                // If no send button exists, still ensure history is updated
+                try { if (typeof pushHistory === 'function') pushHistory('user', query); } catch (e) {}
+              }
+            }
+          } catch (e) { /* ignore */ }
         }
+      });
 
-        if (input) {
-          input.addEventListener('keypress', function (e) {
-            if (e.key === 'Enter') {
-              e.preventDefault();
-              const query = String(this.value || '').trim();
-              if (!query) return;
-              console.log('🔍 Search triggered (Enter):', query);
-              trackSearch(query);
-              console.log('✅ trackSearch() called');
-
-              try {
-                if (window.__lastChatTarget === 'gpt') { void window.__sendPromptToGpt(query); return; }
+      document.getElementById('searchInput')?.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          const query = this.value?.trim();
+          if (query) {
+            console.log('🔍 Search triggered (Enter):', query);
+            trackSearch(query);
+            console.log('✅ trackSearch() called');
+            try {
+              if (window.__lastChatTarget === 'gpt') {
+                void window.__sendPromptToGpt(query);
+              } else {
                 window.__openChatbot && window.__openChatbot();
-                appendPreSend(query);
-                try { window.__skipNextAutoUserAdd = true; } catch (e) {}
                 const chatInput = document.getElementById('chatbotInput');
                 const chatSend = document.getElementById('chatSend');
                 if (chatInput) chatInput.value = query;
                 if (chatSend) chatSend.click();
-              } catch (e) { /* ignore */ }
-            }
-          });
+                else if (window.appendChatMessage) window.appendChatMessage('💬 ' + query, 'user', 'chatbotMessages');
+              }
+            } catch (e) { /* ignore */ }
+          }
         }
       });
 
@@ -2673,7 +2665,7 @@ document.addEventListener('DOMContentLoaded', function () {
         console.log('=== SEARCH TRACKING DEBUG===');
         console.log('Firebase initialized:', firebaseInitialized);
         console.log('FirebaseSearchTracking exists:', typeof window.FirebaseSearchTracking !== 'undefined');
-        console.log('Recent searches (in-memory):', window._recentSearches || null);
+        console.log('LocalStorage searches:', localStorage.getItem('claudeSearches'));
         console.log('LocalStorage timestamps:', localStorage.getItem('claudeSearchTimestamps'));
         console.log('================================');
       }, 2000);

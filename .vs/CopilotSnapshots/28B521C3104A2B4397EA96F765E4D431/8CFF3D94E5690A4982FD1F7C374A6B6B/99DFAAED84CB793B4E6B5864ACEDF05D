@@ -12,6 +12,147 @@
   <script id="ga-script">
     // Google Analytics will be initialized after consent
   </script>
+  <!-- Autocomplete / Predictive Search for main search input -->
+  <style>
+    .autocomplete {
+      position: absolute;
+      top: calc(100% + 8px);
+      left: 0;
+      right: 0;
+      max-width: 650px;
+      margin: 0 auto;
+      background: var(--panel-2);
+      border: 1px solid rgba(255,255,255,0.04);
+      border-radius: 10px;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.6);
+      z-index: 2150000000;
+      max-height: 260px;
+      overflow-y: auto;
+      display: none;
+      padding: 4px 0;
+      box-sizing: border-box;
+    }
+    .autocomplete-item {
+      padding: 0.55rem 0.9rem;
+      color: var(--text);
+      cursor: pointer;
+      font-size: 0.95rem;
+      line-height: 1.2;
+    }
+    .autocomplete-item:hover,
+    .autocomplete-item.selected {
+      background: rgba(61,78,233,0.08);
+      color: var(--text);
+    }
+  </style>
+
+  <script>
+    (function () {
+      // run after DOM ready
+      function initAutocomplete() {
+        const input = document.getElementById('searchInput');
+        const searchContainer = document.querySelector('.search-container');
+        if (!input || !searchContainer) return;
+
+        const list = document.createElement('div');
+        list.className = 'autocomplete';
+        searchContainer.style.position = searchContainer.style.position || 'relative';
+        searchContainer.appendChild(list);
+
+        // Load stored suggestions (best-effort)
+        function loadStored() {
+          try {
+            const raw = localStorage.getItem('claudeSearches');
+            if (!raw) return [
+              "How do I deploy my GitHub web app?",
+              "Securely setting API keys via CLI",
+              "Where to backup my Llama 3 project?",
+              "Explain Heroku's Activity To Go extension."
+            ];
+            const parsed = JSON.parse(raw);
+            if (Array.isArray(parsed)) return parsed;
+            if (typeof raw === 'string') return raw.split(',').map(s => s.trim()).filter(Boolean);
+          } catch (e) { /* ignore */ }
+          return [];
+        }
+
+        let suggestions = loadStored();
+        let elems = [];
+        let selected = -1;
+
+        function hide() { list.style.display = 'none'; selected = -1; }
+        function show() { if (list.children.length) list.style.display = 'block'; }
+
+        function render(items) {
+          list.innerHTML = '';
+          elems = [];
+          if (!items || !items.length) { hide(); return; }
+          items.forEach((it) => {
+            const el = document.createElement('div');
+            el.className = 'autocomplete-item';
+            el.textContent = it;
+            el.addEventListener('mousedown', function (e) {
+              // mousedown used to avoid input blur before click
+              e.preventDefault();
+              input.value = it;
+              hide();
+              input.focus();
+            });
+            list.appendChild(el);
+            elems.push(el);
+          });
+          show();
+          selected = -1;
+        }
+
+        function updateSelection() {
+          elems.forEach((el, idx) => el.classList.toggle('selected', idx === selected));
+          if (selected >= 0) elems[selected].scrollIntoView({ block: 'nearest' });
+        }
+
+        input.addEventListener('input', function () {
+          const q = String(this.value || '').trim().toLowerCase();
+          if (!q) return hide();
+          const filtered = suggestions.filter(s => s.toLowerCase().includes(q));
+          render(filtered.slice(0, 8));
+        });
+
+        input.addEventListener('keydown', function (e) {
+          if (list.style.display === 'none') return;
+          if (e.key === 'ArrowDown') { e.preventDefault(); selected = Math.min(selected + 1, elems.length - 1); updateSelection(); }
+          else if (e.key === 'ArrowUp') { e.preventDefault(); selected = Math.max(selected - 1, 0); updateSelection(); }
+          else if (e.key === 'Enter') {
+            if (selected >= 0) { e.preventDefault(); elems[selected].dispatchEvent(new Event('mousedown')); }
+          } else if (e.key === 'Escape') { hide(); }
+        });
+
+        document.addEventListener('click', function (e) {
+          if (!e.target.closest('.search-container')) hide();
+        });
+
+        // commit query into suggestions when a search is performed
+        function commitQuery(q) {
+          if (!q) return;
+          try {
+            q = String(q).trim();
+            // dedupe and keep recent-first
+            suggestions = [q].concat(suggestions.filter(s => s !== q)).slice(0, 50);
+            localStorage.setItem('claudeSearches', JSON.stringify(suggestions));
+          } catch (e) { /* ignore */ }
+        }
+
+        const searchBtn = document.getElementById('searchBtn');
+        searchBtn?.addEventListener('click', function () {
+          const q = input.value?.trim(); if (q) commitQuery(q); hide();
+        });
+        input.addEventListener('keypress', function (e) {
+          if (e.key === 'Enter') { const q = input.value?.trim(); if (q) commitQuery(q); hide(); }
+        });
+      }
+
+      if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initAutocomplete); else initAutocomplete();
+    })();
+  </script>
   
 
   
@@ -2586,85 +2727,77 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     }
 
-      // Attach to search button and Enter key after DOM is ready and helpers are available
-      document.addEventListener('DOMContentLoaded', function () {
-        function appendPreSend(query) {
+      // Attach to search button and Enter key
+      document.getElementById('searchBtn')?.addEventListener('click', function() {
+        const query = document.getElementById('searchInput')?.value?.trim();
+        if (query) {
+          console.log('🔍 Search triggered:', query);
+          trackSearch(query);
+          console.log('✅ trackSearch() called');
           try {
-            if (typeof window.appendChatMessage === 'function') {
-              window.appendChatMessage('💬 ' + query, 'user', 'chatbotMessages');
+            if (window.__lastChatTarget === 'gpt') {
+              // GPT popup flow
+              void window.__sendPromptToGpt(query);
             } else {
-              // Safe DOM-only fallback (does not depend on other helpers)
-              const messages = document.getElementById('chatbotMessages');
-              if (messages) {
-                const row = document.createElement('div');
-                row.className = 'message user';
-                const inner = document.createElement('div'); inner.className = 'message-row-inner';
-                const bubble = document.createElement('div'); bubble.className = 'message-bubble';
-                bubble.textContent = '💬 ' + query;
-                inner.appendChild(bubble);
-                const meta = document.createElement('div'); meta.className = 'message-meta';
-                try { meta.textContent = new Date().toLocaleTimeString(); } catch (e) { meta.textContent = ''; }
-                row.appendChild(inner);
-                row.appendChild(meta);
-                messages.appendChild(row);
-                try { messages.scrollTo({ top: messages.scrollHeight, behavior: 'smooth' }); } catch (e) { messages.scrollTop = messages.scrollHeight; }
-              }
-            }
-          } catch (err) { console.warn('appendPreSend failed', err); }
-        }
-
-        const btn = document.getElementById('searchBtn');
-        const input = document.getElementById('searchInput');
-
-        if (btn) {
-          btn.addEventListener('click', function () {
-            const query = input?.value?.trim();
-            if (!query) return;
-            console.log('🔍 Search triggered:', query);
-            trackSearch(query);
-            console.log('✅ trackSearch() called');
-
-            try {
-              if (window.__lastChatTarget === 'gpt') {
-                void window.__sendPromptToGpt(query);
-                return;
-              }
-
+              // Ensure the main chatbot popup is opened and the user prompt is
+              // inserted as an actual user message BEFORE the backend is invoked.
               window.__openChatbot && window.__openChatbot();
-              appendPreSend(query);
+
+              // Append user message visibly into the chatbot popup so the user
+              // sees their prompt prior to any backend reply. Use the shared
+              // helper when available; otherwise fall back to createMessageEl.
+              try {
+                if (window.appendChatMessage) {
+                  window.appendChatMessage('💬 ' + query, 'user', 'chatbotMessages');
+                } else {
+                  const messages = document.getElementById('chatbotMessages');
+                  if (messages && typeof createMessageEl === 'function') messages.appendChild(createMessageEl(query, 'user', new Date()));
+                }
+              } catch (e) { console.warn('Failed to append pre-send user message', e); }
+
+              // Tell the central send handler to skip adding a duplicate user
+              // message (we already inserted it above). The handler will still
+              // push the message into conversation history.
               try { window.__skipNextAutoUserAdd = true; } catch (e) {}
 
               const chatInput = document.getElementById('chatbotInput');
               const chatSend = document.getElementById('chatSend');
+
               if (chatInput) chatInput.value = query;
-              if (chatSend) chatSend.click();
-              else { try { if (typeof pushHistory === 'function') pushHistory('user', query); } catch (e) {} }
-            } catch (e) { /* ignore */ }
-          });
+
+              if (chatSend) {
+                // Trigger the existing send handler which will send to backend
+                chatSend.click();
+              } else {
+                // If no send button exists, still ensure history is updated
+                try { if (typeof pushHistory === 'function') pushHistory('user', query); } catch (e) {}
+              }
+            }
+          } catch (e) { /* ignore */ }
         }
+      });
 
-        if (input) {
-          input.addEventListener('keypress', function (e) {
-            if (e.key === 'Enter') {
-              e.preventDefault();
-              const query = String(this.value || '').trim();
-              if (!query) return;
-              console.log('🔍 Search triggered (Enter):', query);
-              trackSearch(query);
-              console.log('✅ trackSearch() called');
-
-              try {
-                if (window.__lastChatTarget === 'gpt') { void window.__sendPromptToGpt(query); return; }
+      document.getElementById('searchInput')?.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          const query = this.value?.trim();
+          if (query) {
+            console.log('🔍 Search triggered (Enter):', query);
+            trackSearch(query);
+            console.log('✅ trackSearch() called');
+            try {
+              if (window.__lastChatTarget === 'gpt') {
+                void window.__sendPromptToGpt(query);
+              } else {
                 window.__openChatbot && window.__openChatbot();
-                appendPreSend(query);
-                try { window.__skipNextAutoUserAdd = true; } catch (e) {}
                 const chatInput = document.getElementById('chatbotInput');
                 const chatSend = document.getElementById('chatSend');
                 if (chatInput) chatInput.value = query;
                 if (chatSend) chatSend.click();
-              } catch (e) { /* ignore */ }
-            }
-          });
+                else if (window.appendChatMessage) window.appendChatMessage('💬 ' + query, 'user', 'chatbotMessages');
+              }
+            } catch (e) { /* ignore */ }
+          }
         }
       });
 
@@ -2673,7 +2806,7 @@ document.addEventListener('DOMContentLoaded', function () {
         console.log('=== SEARCH TRACKING DEBUG===');
         console.log('Firebase initialized:', firebaseInitialized);
         console.log('FirebaseSearchTracking exists:', typeof window.FirebaseSearchTracking !== 'undefined');
-        console.log('Recent searches (in-memory):', window._recentSearches || null);
+        console.log('LocalStorage searches:', localStorage.getItem('claudeSearches'));
         console.log('LocalStorage timestamps:', localStorage.getItem('claudeSearchTimestamps'));
         console.log('================================');
       }, 2000);

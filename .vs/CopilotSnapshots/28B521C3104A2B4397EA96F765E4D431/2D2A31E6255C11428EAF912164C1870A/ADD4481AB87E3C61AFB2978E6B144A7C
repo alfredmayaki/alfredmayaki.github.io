@@ -716,9 +716,6 @@
     // Move query to chat input and send via central flow
         // Route the query through the main chatbot flow so configured provider
         // backends (e.g., Claude/Anthropic) are used and messages render normally.
-        // Ensure the user's prompt is visible in the chatbot UI and history
-        try { addUserMessage(query); } catch (e) { console.warn('addUserMessage failed', e); }
-        try { pushHistory('user', query); } catch (e) { /* ignore */ }
         elements.searchInput.value = '';
         // Use processQuery which posts to CONFIG.chatApiUrl
         void processQuery(query);

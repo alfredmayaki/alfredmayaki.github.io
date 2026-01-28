@@ -12,6 +12,210 @@
   <script id="ga-script">
     // Google Analytics will be initialized after consent
   </script>
+  <!-- Autocomplete / Predictive Search for main search input -->
+  <style>
+    .autocomplete {
+      position: absolute;
+      top: calc(100% + 8px);
+      left: 0;
+      right: 0;
+      max-width: 650px;
+      margin: 0 auto;
+      background: var(--panel-2);
+      border: 1px solid rgba(255,255,255,0.04);
+      border-radius: 10px;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.6);
+      z-index: 2150000000;
+      max-height: 260px;
+      overflow-y: auto;
+      display: none;
+      padding: 4px 0;
+      box-sizing: border-box;
+    }
+    .autocomplete-item {
+      padding: 0.55rem 0.9rem;
+      color: var(--text);
+      cursor: pointer;
+      font-size: 0.95rem;
+      line-height: 1.2;
+    }
+    .autocomplete-item:hover,
+    .autocomplete-item.selected {
+      background: rgba(61,78,233,0.08);
+      color: var(--text);
+    }
+  </style>
+
+  <script>
+    (function () {
+      // Enhanced autocomplete: build a corpus from past searches and page content
+      function initAutocomplete() {
+        const input = document.getElementById('searchInput');
+        const searchContainer = document.querySelector('.search-container');
+        if (!input || !searchContainer) return;
+
+        const list = document.createElement('div');
+        list.className = 'autocomplete';
+        searchContainer.style.position = searchContainer.style.position || 'relative';
+        searchContainer.appendChild(list);
+
+        // Helpers
+        function normalize(s) { return String(s || '').trim(); }
+
+        // Load stored suggestions (recent searches) and seeded defaults
+        // Note: localStorage.claudeSearches removed per request. Use in-memory window._recentSearches.
+        function loadStored() {
+          try {
+            const arr = Array.isArray(window._recentSearches) ? window._recentSearches : [];
+            if (arr.length) return arr;
+          } catch (e) { /* ignore */ }
+          return [
+            "How do I deploy my GitHub web app?",
+            "Securely setting API keys via CLI",
+            "Where to backup my Llama 3 project?",
+            "Explain Heroku's Activity To Go extension."
+          ];
+        }
+
+        // Build a corpus from page content (anchors, headings, options, meta keywords)
+        function buildCorpus() {
+          const set = new Set(loadStored().map(normalize));
+
+          // meta keywords
+          const meta = document.querySelector('meta[name="keywords"]');
+          if (meta && meta.content) meta.content.split(',').map(s => s.trim()).forEach(s => s && set.add(s));
+
+          // anchors and nav items
+          document.querySelectorAll('a').forEach(a => {
+            const txt = normalize(a.textContent || a.getAttribute('title') || a.getAttribute('aria-label') || a.getAttribute('href'));
+            if (txt) set.add(txt);
+          });
+
+          // headings and paragraphs
+          document.querySelectorAll('h1,h2,h3,h4,h5,p,li').forEach(n => {
+            const t = normalize(n.textContent);
+            if (t && t.length < 120) set.add(t);
+          });
+
+          // select options
+          document.querySelectorAll('select option').forEach(o => { const t = normalize(o.textContent); if (t) set.add(t); });
+
+          // include typed placeholder suggestions (seed)
+          const seeds = [
+            "How do I deploy my GitHub web app?",
+            "Explain Heroku's Activity To Go extension.",
+            "How to securely set API keys via Heroku CLI?",
+            'Where to backup my Llama 3 project?'
+          ];
+          seeds.forEach(s => set.add(s));
+
+          return Array.from(set).filter(Boolean);
+        }
+
+        let corpus = buildCorpus();
+        let elems = [];
+        let selected = -1;
+
+        function hide() { list.style.display = 'none'; selected = -1; }
+        function show() { if (list.children.length) list.style.display = 'block'; }
+
+        function render(items) {
+          list.innerHTML = '';
+          elems = [];
+          if (!items || !items.length) { hide(); return; }
+          items.forEach((it) => {
+            const el = document.createElement('div');
+            el.className = 'autocomplete-item';
+            el.textContent = it;
+            el.addEventListener('mousedown', function (e) {
+              // mousedown used to avoid input blur before click
+              e.preventDefault();
+              input.value = it;
+              hide();
+              input.focus();
+            });
+            list.appendChild(el);
+            elems.push(el);
+          });
+          show();
+          selected = -1;
+        }
+
+        function updateSelection() {
+          elems.forEach((el, idx) => el.classList.toggle('selected', idx === selected));
+          if (selected >= 0) elems[selected].scrollIntoView({ block: 'nearest' });
+        }
+
+        // Prioritized search: prefix matches first, then contains, then word-start matches
+        function queryCorpus(q) {
+          q = q.toLowerCase();
+          const prefix = [];
+          const contains = [];
+          const wordstart = [];
+          for (const s of corpus) {
+            const low = s.toLowerCase();
+            if (low === q) continue; // skip exact equality
+            if (low.startsWith(q)) prefix.push(s);
+            else if (low.includes(q)) contains.push(s);
+            else {
+              // word start: any token starts with q
+              const toks = low.split(/\s+/);
+              if (toks.some(t => t.startsWith(q))) wordstart.push(s);
+            }
+          }
+          const results = prefix.concat(wordstart).concat(contains);
+          // dedupe and limit
+          const seen = new Set();
+          return results.filter(r => { if (seen.has(r)) return false; seen.add(r); return true; }).slice(0, 12);
+        }
+
+        input.addEventListener('input', function () {
+          const q = String(this.value || '').trim();
+          if (!q) return hide();
+          // refresh corpus occasionally (in case DOM changed or localStorage updated)
+          corpus = buildCorpus();
+          const results = queryCorpus(q);
+          render(results);
+        });
+
+        input.addEventListener('keydown', function (e) {
+          if (list.style.display === 'none') return;
+          if (e.key === 'ArrowDown') { e.preventDefault(); selected = Math.min(selected + 1, elems.length - 1); updateSelection(); }
+          else if (e.key === 'ArrowUp') { e.preventDefault(); selected = Math.max(selected - 1, 0); updateSelection(); }
+          else if (e.key === 'Enter') {
+            if (selected >= 0) { e.preventDefault(); elems[selected].dispatchEvent(new Event('mousedown')); }
+          } else if (e.key === 'Escape') { hide(); }
+        });
+
+        document.addEventListener('click', function (e) {
+          if (!e.target.closest('.search-container')) hide();
+        });
+
+        // commit query into suggestions when a search is performed
+        function commitQuery(q) {
+          if (!q) return;
+          try {
+            q = String(q).trim();
+            // update in-memory recent list (non-persistent)
+            window._recentSearches = window._recentSearches || [];
+            window._recentSearches = [q].concat(window._recentSearches.filter(s => s !== q)).slice(0, 200);
+            // also refresh corpus in-memory
+            corpus = buildCorpus();
+          } catch (e) { /* ignore */ }
+        }
+
+        const searchBtn = document.getElementById('searchBtn');
+        searchBtn?.addEventListener('click', function () {
+          const q = input.value?.trim(); if (q) commitQuery(q); hide();
+        });
+        input.addEventListener('keypress', function (e) {
+          if (e.key === 'Enter') { const q = input.value?.trim(); if (q) commitQuery(q); hide(); }
+        });
+      }
+
+      if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initAutocomplete); else initAutocomplete();
+    })();
+  </script>
   
 
   
@@ -19,76 +223,15 @@
        Exposes window.CHAT_DB_NAME, window.CHAT_DB_STORE and window.ChatDB
        Usage: await window.ChatDB.saveMessage({ role: 'user'|'bot', text: '...', timestamp: ISOString })
   -->
+  <!-- IndexedDB helper removed per request (no client-side persistent chat storage) -->
   <script>
-    window.CHAT_DB_NAME = 'alfred_chat_db_v1';
-    window.CHAT_DB_STORE = 'messages';
-
-    (function () {
-      const DB = window.CHAT_DB_NAME;
-      const STORE = window.CHAT_DB_STORE;
-
-      function openDB() {
-        return new Promise((resolve, reject) => {
-          try {
-            const req = indexedDB.open(DB, 1);
-            req.onupgradeneeded = function (e) {
-              const db = e.target.result;
-              if (!db.objectStoreNames.contains(STORE)) {
-                db.createObjectStore(STORE, { keyPath: 'id', autoIncrement: true });
-              }
-            };
-            req.onsuccess = function () { resolve(req.result); };
-            req.onerror = function () { reject(req.error || new Error('IndexedDB open error')); };
-          } catch (err) {
-            reject(err);
-          }
-        });
-      }
-
-      async function saveMessage(entry) {
-        const db = await openDB();
-        return new Promise((resolve, reject) => {
-          try {
-            const tx = db.transaction(STORE, 'readwrite');
-            tx.objectStore(STORE).add(entry);
-            tx.oncomplete = function () { db.close(); resolve(); };
-            tx.onerror = function () { db.close(); reject(tx.error || new Error('Transaction error')); };
-          } catch (err) { reject(err); }
-        });
-      }
-
-      async function getAllMessages() {
-        const db = await openDB();
-        return new Promise((resolve, reject) => {
-          try {
-            const tx = db.transaction(STORE, 'readonly');
-            const req = tx.objectStore(STORE).getAll();
-            req.onsuccess = function () { db.close(); resolve(req.result || []); };
-            req.onerror = function () { db.close(); reject(req.error || new Error('getAll error')); };
-          } catch (err) { reject(err); }
-        });
-      }
-
-      async function clearMessages() {
-        const db = await openDB();
-        return new Promise((resolve, reject) => {
-          try {
-            const tx = db.transaction(STORE, 'readwrite');
-            tx.objectStore(STORE).clear();
-            tx.oncomplete = function () { db.close(); resolve(); };
-            tx.onerror = function () { db.close(); reject(tx.error || new Error('clear error')); };
-          } catch (err) { reject(err); }
-        });
-      }
-
-      // Expose a minimal API for other scripts to use
-      window.ChatDB = {
-        openDB,
-        saveMessage,
-        getAllMessages,
-        clearMessages
-      };
-    })();
+    // Provide a no-op ChatDB API to avoid breaking references from other scripts.
+    window.ChatDB = {
+      openDB: async function () { return null; },
+      saveMessage: async function () { return; },
+      getAllMessages: async function () { return []; },
+      clearMessages: async function () { return; }
+    };
   </script>
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" />
@@ -2586,85 +2729,77 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     }
 
-      // Attach to search button and Enter key after DOM is ready and helpers are available
-      document.addEventListener('DOMContentLoaded', function () {
-        function appendPreSend(query) {
+      // Attach to search button and Enter key
+      document.getElementById('searchBtn')?.addEventListener('click', function() {
+        const query = document.getElementById('searchInput')?.value?.trim();
+        if (query) {
+          console.log('🔍 Search triggered:', query);
+          trackSearch(query);
+          console.log('✅ trackSearch() called');
           try {
-            if (typeof window.appendChatMessage === 'function') {
-              window.appendChatMessage('💬 ' + query, 'user', 'chatbotMessages');
+            if (window.__lastChatTarget === 'gpt') {
+              // GPT popup flow
+              void window.__sendPromptToGpt(query);
             } else {
-              // Safe DOM-only fallback (does not depend on other helpers)
-              const messages = document.getElementById('chatbotMessages');
-              if (messages) {
-                const row = document.createElement('div');
-                row.className = 'message user';
-                const inner = document.createElement('div'); inner.className = 'message-row-inner';
-                const bubble = document.createElement('div'); bubble.className = 'message-bubble';
-                bubble.textContent = '💬 ' + query;
-                inner.appendChild(bubble);
-                const meta = document.createElement('div'); meta.className = 'message-meta';
-                try { meta.textContent = new Date().toLocaleTimeString(); } catch (e) { meta.textContent = ''; }
-                row.appendChild(inner);
-                row.appendChild(meta);
-                messages.appendChild(row);
-                try { messages.scrollTo({ top: messages.scrollHeight, behavior: 'smooth' }); } catch (e) { messages.scrollTop = messages.scrollHeight; }
-              }
-            }
-          } catch (err) { console.warn('appendPreSend failed', err); }
-        }
-
-        const btn = document.getElementById('searchBtn');
-        const input = document.getElementById('searchInput');
-
-        if (btn) {
-          btn.addEventListener('click', function () {
-            const query = input?.value?.trim();
-            if (!query) return;
-            console.log('🔍 Search triggered:', query);
-            trackSearch(query);
-            console.log('✅ trackSearch() called');
-
-            try {
-              if (window.__lastChatTarget === 'gpt') {
-                void window.__sendPromptToGpt(query);
-                return;
-              }
-
+              // Ensure the main chatbot popup is opened and the user prompt is
+              // inserted as an actual user message BEFORE the backend is invoked.
               window.__openChatbot && window.__openChatbot();
-              appendPreSend(query);
+
+              // Append user message visibly into the chatbot popup so the user
+              // sees their prompt prior to any backend reply. Use the shared
+              // helper when available; otherwise fall back to createMessageEl.
+              try {
+                if (window.appendChatMessage) {
+                  window.appendChatMessage('💬 ' + query, 'user', 'chatbotMessages');
+                } else {
+                  const messages = document.getElementById('chatbotMessages');
+                  if (messages && typeof createMessageEl === 'function') messages.appendChild(createMessageEl(query, 'user', new Date()));
+                }
+              } catch (e) { console.warn('Failed to append pre-send user message', e); }
+
+              // Tell the central send handler to skip adding a duplicate user
+              // message (we already inserted it above). The handler will still
+              // push the message into conversation history.
               try { window.__skipNextAutoUserAdd = true; } catch (e) {}
 
               const chatInput = document.getElementById('chatbotInput');
               const chatSend = document.getElementById('chatSend');
+
               if (chatInput) chatInput.value = query;
-              if (chatSend) chatSend.click();
-              else { try { if (typeof pushHistory === 'function') pushHistory('user', query); } catch (e) {} }
-            } catch (e) { /* ignore */ }
-          });
+
+              if (chatSend) {
+                // Trigger the existing send handler which will send to backend
+                chatSend.click();
+              } else {
+                // If no send button exists, still ensure history is updated
+                try { if (typeof pushHistory === 'function') pushHistory('user', query); } catch (e) {}
+              }
+            }
+          } catch (e) { /* ignore */ }
         }
+      });
 
-        if (input) {
-          input.addEventListener('keypress', function (e) {
-            if (e.key === 'Enter') {
-              e.preventDefault();
-              const query = String(this.value || '').trim();
-              if (!query) return;
-              console.log('🔍 Search triggered (Enter):', query);
-              trackSearch(query);
-              console.log('✅ trackSearch() called');
-
-              try {
-                if (window.__lastChatTarget === 'gpt') { void window.__sendPromptToGpt(query); return; }
+      document.getElementById('searchInput')?.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          const query = this.value?.trim();
+          if (query) {
+            console.log('🔍 Search triggered (Enter):', query);
+            trackSearch(query);
+            console.log('✅ trackSearch() called');
+            try {
+              if (window.__lastChatTarget === 'gpt') {
+                void window.__sendPromptToGpt(query);
+              } else {
                 window.__openChatbot && window.__openChatbot();
-                appendPreSend(query);
-                try { window.__skipNextAutoUserAdd = true; } catch (e) {}
                 const chatInput = document.getElementById('chatbotInput');
                 const chatSend = document.getElementById('chatSend');
                 if (chatInput) chatInput.value = query;
                 if (chatSend) chatSend.click();
-              } catch (e) { /* ignore */ }
-            }
-          });
+                else if (window.appendChatMessage) window.appendChatMessage('💬 ' + query, 'user', 'chatbotMessages');
+              }
+            } catch (e) { /* ignore */ }
+          }
         }
       });
 
@@ -2673,7 +2808,7 @@ document.addEventListener('DOMContentLoaded', function () {
         console.log('=== SEARCH TRACKING DEBUG===');
         console.log('Firebase initialized:', firebaseInitialized);
         console.log('FirebaseSearchTracking exists:', typeof window.FirebaseSearchTracking !== 'undefined');
-        console.log('Recent searches (in-memory):', window._recentSearches || null);
+        console.log('LocalStorage searches:', localStorage.getItem('claudeSearches'));
         console.log('LocalStorage timestamps:', localStorage.getItem('claudeSearchTimestamps'));
         console.log('================================');
       }, 2000);

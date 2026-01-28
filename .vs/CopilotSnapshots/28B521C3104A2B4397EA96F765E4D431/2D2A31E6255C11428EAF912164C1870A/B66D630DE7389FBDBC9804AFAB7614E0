@@ -2673,7 +2673,7 @@ document.addEventListener('DOMContentLoaded', function () {
         console.log('=== SEARCH TRACKING DEBUG===');
         console.log('Firebase initialized:', firebaseInitialized);
         console.log('FirebaseSearchTracking exists:', typeof window.FirebaseSearchTracking !== 'undefined');
-        console.log('Recent searches (in-memory):', window._recentSearches || null);
+        console.log('LocalStorage searches:', localStorage.getItem('claudeSearches'));
         console.log('LocalStorage timestamps:', localStorage.getItem('claudeSearchTimestamps'));
         console.log('================================');
       }, 2000);
