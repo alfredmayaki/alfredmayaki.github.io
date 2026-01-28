@@ -1078,27 +1078,6 @@ body {
   padding: 0.7rem 0.95rem;
 }
 
-/* Chat send button animation on hover/focus */
-#chatSend, .chat-send-btn {
-  transition: transform var(--transition-fast), box-shadow var(--transition-fast), filter var(--transition-fast), background var(--transition-fast);
-  will-change: transform, box-shadow;
-  border-radius: 12px; /* ensure consistent rounding if inline styles differ */
-  -webkit-tap-highlight-color: transparent;
-}
-
-#chatSend:hover, .chat-send-btn:hover,
-#chatSend:focus, .chat-send-btn:focus {
-  transform: translateY(-3px) scale(1.03);
-  box-shadow: 0 12px 32px rgba(61,78,233,0.22);
-  filter: brightness(1.04);
-  outline: none;
-}
-
-#chatSend:active, .chat-send-btn:active {
-  transform: translateY(0) scale(0.995);
-  box-shadow: 0 6px 18px rgba(61,78,233,0.12);
-}
-
 /* If you have an upload control above the input, center it and keep it compact */
 .chatbot-popup .chatbot-input-area .file-upload-area {
   width: 100%;
