@@ -219,19 +219,33 @@
   width: 100%;
   height: auto;
   margin: 0.4rem auto 0;
-  /* remove all decorative padding, borders, shadows or animations */
-  padding: 0 !important;
-  border: none !important;
-  border-radius: 0 !important;
+  /* prepare hover border with 3px internal padding */
+  padding: 3px;
+  border-radius: 12px;
+  border: 3px solid transparent;
   position: relative;
-  overflow: visible !important;
-  box-shadow: none !important;
-  transform: none !important;
-  transition: none !important;
+  overflow: hidden; /* keep inner effects clipped inside the rounded border */
+  transition: border-color var(--transition-med) ease, box-shadow var(--transition-med) ease, transform 220ms ease;
+  /* subtle inner glow and vignette inside the border */
+  box-shadow: inset 0 14px 34px rgba(61,78,233,0.08), inset 0 -10px 22px rgba(0,0,0,0.28), 0 8px 24px rgba(0,0,0,0.08);
 }
 
 /* Decorative sparkling glow using pseudo-element so it doesn't affect layout */
-.page-subtitle .tagline-image::after { display: none !important; }
+.page-subtitle .tagline-image::after {
+  content: "";
+  position: absolute;
+  left: -8px;
+  top: -8px;
+  right: -8px;
+  bottom: -8px;
+  border-radius: 16px;
+  pointer-events: none;
+  opacity: 0;
+  mix-blend-mode: screen;
+  background: linear-gradient(90deg, rgba(61,78,233,0.00) 0%, rgba(61,78,233,0.45) 50%, rgba(61,78,233,0.00) 100%);
+  filter: blur(6px);
+  transition: opacity 220ms ease;
+}
 
 .page-subtitle .tagline-image:hover {
   border-color: var(--brand);
@@ -240,9 +254,28 @@
 }
 
 /* Inner sparkling overlay (clipped inside the rounded border) */
-.page-subtitle .tagline-image::before { display: none !important; }
+.page-subtitle .tagline-image::before {
+  content: "";
+  position: absolute;
+  inset: 6px; /* keep inside the border padding */
+  border-radius: 10px;
+  pointer-events: none;
+  mix-blend-mode: screen;
+  filter: blur(6px);
+  opacity: 0.0;
+  background:
+    radial-gradient(circle at 10% 20%, rgba(255,255,255,0.18) 0 2%, transparent 6%),
+    radial-gradient(circle at 80% 70%, rgba(255,255,255,0.12) 0 2%, transparent 6%),
+    linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.00));
+  animation: sparkleInner 3200ms linear infinite;
+}
 
-@keyframes sparkleInner { from { opacity: 0; } to { opacity: 0; } }
+@keyframes sparkleInner {
+  0% { opacity: 0; transform: translateX(-12%) translateY(0) scale(0.96); }
+  30% { opacity: 0.85; transform: translateX(28%) translateY(-6%) scale(1.02); }
+  60% { opacity: 0.28; transform: translateX(68%) translateY(6%) scale(0.98); }
+  100% { opacity: 0; transform: translateX(120%) translateY(0) scale(0.96); }
+}
 
 .page-subtitle .tagline-image:hover::after {
   opacity: 1;
