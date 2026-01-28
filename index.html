@@ -1504,7 +1504,7 @@ body {
 }
 
 .footer-links a {
-  color: var(--text-secondary);
+  color: #FFFFFF;
   text-decoration: none;
   padding: 0.25rem 0.6rem;
   font-size: 0.95rem;
@@ -1515,13 +1515,7 @@ body {
 
 /* subtle separators handled visually but keep layout centered */
 .footer-links a:not(:last-child)::after {
-  content: "•";
-  position: absolute;
-  right: 6px;
-  top: 50%;
-  transform: translateY(-50%);
-  color: rgba(255,255,255,0.06);
-  font-size: 0.9rem;
+  content: none; /* removed separators as requested */
 }
 
 /* Compact footer bar shown at the very bottom */
@@ -1530,7 +1524,7 @@ body {
 /* Copyright centered */
 .footer-copyright {
   margin: 0;
-  color: var(--text-muted);
+  color: #FFFFFF;
   font-size: 0. nine em;
   text-align: center;
   padding-top: 0.25rem;
@@ -2127,7 +2121,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 <div id="particles-js" style="position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:-1;"></div>
 <div style="text-align:center;">
-  <h3 class="page-welcome" style="color: #F300F3;">👋🏿 Welcome To My Official Website</h3>
+  <h3 class="page-welcome" style="color: #FFFFFF;">👋🏿 Welcome To My Official Website</h3>
   <div class="page-subtitle">
     <a href="about.html" aria-label="About page">
       <img src="/tagline.png" alt="AM-Global tagline" class="tagline-image" />
@@ -2481,7 +2475,7 @@ document.addEventListener('DOMContentLoaded', function () {
       </nav>
 
       <p class="footer-copyright">
-        © 2026 <a href="about.html">Alfred Anate Bodurin Mayaki</a>. All rights reserved.
+        © 2026 Alfred Anate Bodurin Mayaki. All rights reserved.
       </p>
       <p style="margin:0.4rem 0 0;"><small style="color:var(--text-secondary);">Powered with 💙 using GitHub</small></p>
     </div>
