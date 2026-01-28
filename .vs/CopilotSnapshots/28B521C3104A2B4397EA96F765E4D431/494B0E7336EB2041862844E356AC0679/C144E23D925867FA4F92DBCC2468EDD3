@@ -306,14 +306,6 @@ body {
   gap: 0.5rem;
   font-size: 0.98rem;
 }
-/* Ensure the brand anchor stays the default (not the blue brand color) in all link states */
-.top-nav .brand:link,
-.top-nav .brand:visited,
-.top-nav .brand:hover,
-.top-nav .brand:active {
-  color: var(--text);
-  text-decoration: none;
-}
 .top-nav .nav-links {
   display:flex;
   gap:0.5rem;
@@ -2106,7 +2098,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 <div id="particles-js" style="position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:-1;"></div>
 <div style="text-align:center;">
-  <h3 class="page-welcome" style="color: #0021f3;">👋🏿 Welcome To My Official Website</h3>
+  <h3 class="page-welcome" style="color: #FFFFFF;">Welcome To My Official Website</h3>
   <div class="page-subtitle">
     <a href="about.html" aria-label="About page">
       <img src="/tagline.png" alt="AM-Global tagline" class="tagline-image" />
