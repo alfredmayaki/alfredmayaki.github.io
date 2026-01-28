@@ -1,0 +1,209 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Search — AM-Global™</title>
+  <meta name="description" content="Search page with GPT popup" />
+
+  <style>
+:root{
+  --font-sans: "Segoe UI", system-ui, -apple-system, Arial, sans-serif;
+  --brand:#3d4ee9; --brand-hover:#5563f0; --panel:#161616; --panel-2:#141414; --surface:#2a2a2a; --text:#ffffff; --text-muted:#979797; --radius-md:14px;
+}
+html,body{height:100%;margin:0;background:#000;color:var(--text);font-family:var(--font-sans);}
+.container{max-width:980px;margin:2rem auto;padding:2rem;border-radius:var(--radius-md);background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));box-shadow:0 10px 30px rgba(0,0,0,0.6);}
+.search-container{max-width:720px;margin:1rem auto;display:flex;gap:0.5rem;align-items:center;padding:0.45rem;border-radius:12px;border:3px solid var(--brand);}
+.search-bar{flex:1;padding:0.9rem 1rem;border:none;border-radius:8px;background:transparent;color:var(--text);outline:none;font-size:1rem}
+.search-btn{width:48px;height:48px;border-radius:10px;border:1px solid rgba(255,255,255,0.04);background:transparent;cursor:pointer;color:#fff}
+
+/* GPT popup (simple, reused style) */
+.chatbot-popup{position:fixed;right:18px;bottom:18px;width:640px;max-width:calc(100vw - 36px);max-height:70vh;background:var(--panel);border-radius:14px;box-shadow:0 24px 64px rgba(0,0,0,0.6);display:none;flex-direction:column;overflow:hidden;z-index:10000}
+.chatbot-popup.active{display:flex}
+.chatbot-header{height:64px;padding:0.8rem;display:flex;align-items:center;justify-content:space-between;background:transparent;color:var(--text)}
+.chatbot-messages{flex:1;padding:0.9rem;overflow:auto;background:linear-gradient(180deg, rgba(255,255,255,0.01), transparent)}
+.chatbot-input-area{padding:0.8rem;background:var(--panel-2);display:flex;justify-content:center}
+.chatbot-input{width:70%;max-width:420px;padding:0.7rem;border-radius:14px;border:1px solid rgba(255,255,255,0.03);background:var(--surface);color:var(--text)}
+.message{display:flex;flex-direction:column;gap:0.25rem;margin-bottom:0.6rem}
+.message-row-inner{display:flex;align-items:flex-end;gap:0.6rem}
+.message.user .message-bubble{align-self:flex-end;background:linear-gradient(135deg,var(--brand),var(--brand-hover));color:#fff;padding:0.65rem 0.9rem;border-radius:12px 12px 6px 12px;max-width:80%}
+.message.bot .message-bubble{align-self:flex-start;background:var(--surface);color:var(--text);padding:0.65rem 0.9rem;border-radius:12px 12px 12px 6px;max-width:80%}
+.message-meta{font-size:0.78rem;color:rgba(255,255,255,0.55)}
+
+.btn-ghost{background:transparent;border:none;color:var(--text);cursor:pointer}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2 style="text-align:center;margin:0 0 1rem;">Search with GPT</h2>
+    <div class="search-container" role="search" aria-label="Site search">
+      <input id="searchInput" class="search-bar" placeholder="Ask a question or paste a prompt..." />
+      <button id="searchBtn" class="search-btn" title="Ask GPT">🔎</button>
+    </div>
+    <p style="color:var(--text-muted);text-align:center;margin-top:0.5rem;font-size:0.95rem">Your query will open the GPT popup and show the conversation.</p>
+  </div>
+
+  <!-- GPT popup -->
+  <div class="chatbot-popup" id="gptPopup" aria-hidden="true" role="dialog" aria-label="GPT Responses">
+    <div class="chatbot-header">
+      <div style="display:flex;gap:0.6rem;align-items:center"><strong>🤖 GPT</strong></div>
+      <div style="display:flex;gap:0.4rem;align-items:center">
+        <button id="minimizeGpt" class="btn-ghost" aria-label="Minimize">−</button>
+        <button id="closeGpt" class="btn-ghost" aria-label="Close">&times;</button>
+      </div>
+    </div>
+    <div class="chatbot-messages" id="gptMessages" role="log" aria-live="polite"></div>
+    <div class="chatbot-input-area">
+      <input id="gptInput" class="chatbot-input" placeholder="Type follow-up or press Enter to send..." aria-label="GPT input" />
+    </div>
+  </div>
+
+  <script>
+    // Minimal, defensive helper to append a message into the GPT popup
+    function formatTimeOnly(d){ try { return new Intl.DateTimeFormat(undefined,{hour:'2-digit',minute:'2-digit',second:'2-digit'}).format(d); } catch(e){ return d.toLocaleTimeString(); } }
+    function appendGptMessage(text, role='bot'){
+      const msgs = document.getElementById('gptMessages'); if(!msgs) return null;
+      const row = document.createElement('div'); row.className = 'message ' + (role==='user' ? 'user' : 'bot');
+      const inner = document.createElement('div'); inner.className = 'message-row-inner';
+      const bubble = document.createElement('div'); bubble.className = 'message-bubble'; bubble.textContent = text;
+      const meta = document.createElement('div'); meta.className = 'message-meta'; meta.textContent = (role==='user' ? ('You ' + formatTimeOnly(new Date())) : formatTimeOnly(new Date()));
+      inner.appendChild(bubble); row.appendChild(inner); row.appendChild(meta); msgs.appendChild(row); try{msgs.scrollTo({top:msgs.scrollHeight,behavior:'smooth'})}catch(e){msgs.scrollTop=msgs.scrollHeight}
+      return row;
+    }
+
+    // Call /api/gpt; expects a JSON response { reply, timestamp }
+    async function callServerGpt(prompt){
+      // Use the known working host for backend endpoints (absolute URLs)
+      const HOST = 'https://api.openai.com';
+      const endpoints = [
+        HOST + '/api/gpt',
+        HOST + '/api/openai',
+        HOST + '/v1/chat/completions',
+        HOST + '/openai/gpt',
+      ];
+      // Call the local server proxy provided by server2.js
+      // Use relative path so the page talks to the same origin that serves the site
+      const endpoints = [
+        '/api/gpt'
+      ];
+      let lastStatus = null;
+      let lastText = '';
+
+      for (const ep of endpoints) {
+        try {
+          // Try POST first
+          let resp = await fetch(ep, {
+            method: 'POST', headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ model: 'gpt-5.2', prompt })
+          });
+
+          // If POST not allowed, try GET fallback for this endpoint
+          if (resp && (resp.status === 501 || resp.status === 405)) {
+            try {
+              const url = ep + '?model=' + encodeURIComponent('gpt-5.2') + '&prompt=' + encodeURIComponent(prompt);
+              resp = await fetch(url, { method: 'GET', headers: { 'Accept': 'application/json,text/plain' } });
+            } catch (e) { resp = null; }
+          }
+
+          if (!resp) {
+            lastStatus = 'no-response'; lastText = '';
+            continue; // try next endpoint
+          }
+
+          lastStatus = resp.status;
+          let raw = await resp.text().catch(() => '');
+          lastText = raw;
+
+          if (!resp.ok) {
+            // Some servers (notably simple Heroku demos) respond with "Cannot POST /"
+            // when POST to root is unsupported. In that case attempt a GET fallback
+            // to the same URL with the prompt as a query parameter.
+            if (resp.status === 404 && /Cannot POST/i.test(raw)) {
+              try {
+                const url = ep + (ep.includes('?') ? '&' : '?') + 'prompt=' + encodeURIComponent(prompt);
+                const getResp = await fetch(url, { method: 'GET', headers: { 'Accept': 'application/json,text/plain' } });
+                lastStatus = getResp.status;
+                raw = await getResp.text().catch(() => '');
+                lastText = raw;
+                if (!getResp.ok) continue; // try next endpoint
+                // proceed to parse below using `raw`
+              } catch (e) {
+                continue; // try next endpoint
+              }
+            } else {
+              // try next endpoint
+              continue;
+            }
+          }
+
+          // resp is ok; try parse JSON, otherwise return raw body
+          try {
+            const json = raw ? JSON.parse(raw) : null;
+            if (json) return { reply: String(json?.reply || json?.text || json?.message || '').trim(), timestamp: json?.timestamp };
+          } catch (e) { /* not JSON */ }
+
+          return { reply: String(raw || '').trim() };
+        } catch (err) {
+          console.warn('GPT call to', ep, 'failed', err);
+          // continue to next endpoint
+        }
+      }
+
+      // All endpoints failed — produce a concise, user-friendly message
+      try {
+        // Special-case authentication errors (OpenAI) to avoid printing raw JSON with instructions
+        if (lastStatus === 401) {
+          try {
+            const parsed = lastText ? JSON.parse(lastText) : null;
+            const msg = parsed?.error?.message || String(lastText || '').trim();
+            if (/provide an API key|You didn't provide an API key/i.test(msg)) {
+              return { reply: 'Authentication error contacting GPT (401). The OpenAI API requires an API key and must not be called directly from client-side code. Configure a server-side proxy that adds an Authorization: Bearer API_KEY header, or run requests from a trusted backend.' };
+            }
+          } catch (e) { /* fall through to generic message */ }
+        }
+
+        let clean = String(lastText || '').trim();
+        // Strip HTML tags if present for clearer display
+        clean = clean.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
+        const hint = clean ? clean : 'No response body.';
+        return { reply: `Error contacting GPT: Server ${String(lastStatus || 'unknown')}: ${hint}` };
+      } catch (e) {
+        return { reply: 'Error contacting GPT: unknown error' };
+      }
+    }
+
+    // Open popup and focus input
+    function openGptPopup(){ const p = document.getElementById('gptPopup'); if(!p) return; p.classList.add('active'); p.setAttribute('aria-hidden','false'); setTimeout(()=>document.getElementById('gptInput').focus(),120); }
+    function closeGptPopup(){ const p=document.getElementById('gptPopup'); if(!p) return; p.classList.remove('active'); p.setAttribute('aria-hidden','true'); }
+
+    // Wire search button + Enter on search input
+    (function(){
+      const searchBtn = document.getElementById('searchBtn');
+      const searchInput = document.getElementById('searchInput');
+
+      async function sendQuery(query){
+        if(!query || !String(query).trim()) return;
+        openGptPopup();
+        // append user message immediately
+        appendGptMessage('💬 ' + query, 'user');
+        // typing placeholder
+        const typingRow = appendGptMessage('Thinking...', 'bot');
+        // call server
+        const result = await callServerGpt(query);
+        try{ typingRow.remove(); }catch(e){}
+        appendGptMessage(result.reply || '(empty reply)', 'bot');
+      }
+
+      searchBtn?.addEventListener('click', function(){ const q = searchInput.value?.trim(); if(!q) return; searchInput.value=''; void sendQuery(q); });
+      searchInput?.addEventListener('keypress', function(e){ if(e.key==='Enter'){ e.preventDefault(); const q=this.value?.trim(); if(!q) return; this.value=''; void sendQuery(q); } });
+
+      // popup controls
+      document.getElementById('closeGpt')?.addEventListener('click', closeGptPopup);
+      document.getElementById('minimizeGpt')?.addEventListener('click', function(){ const p=document.getElementById('gptPopup'); if(!p) return; p.classList.toggle('minimized'); });
+
+      // allow sending follow-up from popup input
+      document.getElementById('gptInput')?.addEventListener('keydown', function(e){ if(e.key==='Enter' && !e.shiftKey){ e.preventDefault(); const q=this.value?.trim(); if(!q) return; this.value=''; void sendQuery(q); } });
+    })();
+  </script>
+</body>
+</html>

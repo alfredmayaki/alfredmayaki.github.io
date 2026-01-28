@@ -4,10 +4,30 @@ const cookieParser = require('cookie-parser');
 const cors = require('cors');
 const admin = require('firebase-admin');
 const path = require('path');
+const fs = require('fs');
 const multer = require('multer');
 const pdfParse = require('pdf-parse');
 const mammoth = require('mammoth');
 const fetch = require('node-fetch');
+
+// Load environment variables from .env file
+// The fix is to make requests from a trusted server that attaches the Authorization: Bearer <API_KEY> header.
+// Load environment variables from .env file when present (safe: no-op if not used)
+try { require('dotenv').config(); } catch (e) { /* ignore if dotenv not installed */ }
+
+// Resolve OpenAI API key from several possible sources to help common deployment setups
+let GLOBAL_OPENAI_KEY = process.env.OPENAI_API_KEY || process.env.OPENAI_KEY || process.env.OPENAI || null;
+if (!GLOBAL_OPENAI_KEY) {
+  try {
+    const filePath = path.join(__dirname, 'OPENAI_API_KEY');
+    if (fs.existsSync(filePath)) {
+      GLOBAL_OPENAI_KEY = fs.readFileSync(filePath, 'utf8').trim();
+      if (!GLOBAL_OPENAI_KEY) GLOBAL_OPENAI_KEY = null;
+    }
+  } catch (e) {
+    GLOBAL_OPENAI_KEY = GLOBAL_OPENAI_KEY || null;
+  }
+}
 
 // REQUIRE: place your Firebase Admin service account JSON at ./serviceAccountKey.json
 // Load service account defensively so server can run even when file is missing.
@@ -203,10 +223,11 @@ app.post('/api/gpt', async (req, res) => {
     console.warn('[api/gpt] failed to log request preview', e);
   }
 
-  const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
+  const OPENAI_API_KEY = GLOBAL_OPENAI_KEY || process.env.OPENAI_API_KEY;
   if (!OPENAI_API_KEY) {
     // Fallback reply to keep client behaviour predictable when not configured
-    return res.json({ reply: 'Simulated reply: OpenAI integration not configured on this server.' });
+    // Return a clear guidance message instead of attempting to call OpenAI
+    return res.json({ reply: 'OpenAI integration not configured on this server. Set the OPENAI_API_KEY environment variable on the server to enable GPT proxying. Do NOT place API keys in client-side code.' });
   }
 
   try {
@@ -236,6 +257,10 @@ app.post('/api/gpt', async (req, res) => {
       if (!upstream.ok) {
         const text = await upstream.text().catch(() => '');
         console.warn('OpenAI streaming proxy error', upstream.status, text);
+        // Special-case authentication errors to avoid leaking raw OpenAI error bodies
+        if (upstream.status === 401) {
+          return res.status(502).json({ error: 'OpenAI authentication error', message: 'OpenAI upstream returned 401. Ensure OPENAI_API_KEY is configured on the server and do not call OpenAI directly from client-side code.' });
+        }
         return res.status(502).json({ error: 'OpenAI upstream error', details: text });
       }
 
@@ -283,8 +308,11 @@ app.post('/api/gpt', async (req, res) => {
       });
 
       if (!r.ok) {
-        const text = await r.text();
+        const text = await r.text().catch(() => '');
         console.warn('OpenAI chat proxy error', r.status, text);
+        if (r.status === 401) {
+          return res.status(502).json({ error: 'OpenAI authentication error', message: 'OpenAI returned 401. Ensure OPENAI_API_KEY is configured on the server and do not call the OpenAI API directly from browser clients.' });
+        }
         return res.status(502).json({ error: 'OpenAI upstream error', details: text });
       }
 
@@ -304,8 +332,11 @@ app.post('/api/gpt', async (req, res) => {
     });
 
     if (!r.ok) {
-      const text = await r.text();
+      const text = await r.text().catch(() => '');
       console.warn('OpenAI proxy error', r.status, text);
+      if (r.status === 401) {
+        return res.status(502).json({ error: 'OpenAI authentication error', message: 'OpenAI returned 401. Ensure OPENAI_API_KEY is configured on the server and do not call the OpenAI API from client-side code.' });
+      }
       return res.status(502).json({ error: 'OpenAI upstream error', details: text });
     }
 
