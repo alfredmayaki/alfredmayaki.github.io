@@ -907,8 +907,8 @@ body {
   height: 64px;
   width: 100%;
   box-sizing: border-box;
-  /* full-bleed header should match the landing ribbon color */
-  background: var(--footer-bg); /* use footer background variable for consistent ribbon */
+  /* full-bleed header should be solid black to match landing ribbon */
+  background: #000000; /* use solid black ribbon instead of brand gradient */
   border-top-left-radius: 14px;
   border-top-right-radius: 14px;
   box-shadow: 0 6px 18px rgba(61,78,233,0.12) inset;
@@ -925,38 +925,19 @@ body {
 }
 
 /* Header buttons */
-.minimize-chat, .close-chat, .clear-chat {
+.minimize-chat, .close-chat {
   width:36px; height:36px; border-radius:10px; border:none; background:transparent; color:var(--text);
   display:inline-flex; align-items:center; justify-content:center; font-size:18px;
 }
-.minimize-chat:hover, .close-chat:hover, .clear-chat:hover {
+.minimize-chat:hover, .close-chat:hover {
   background: rgba(255,255,255,0.06);
   border: 1px solid var(--brand);
   box-shadow: var(--shadow-brand);
 }
-.minimize-chat:focus, .close-chat:focus, .clear-chat:focus {
+.minimize-chat:focus, .close-chat:focus {
   outline: 3px solid rgba(61,78,233,0.18);
   border: 1px solid var(--brand);
 }
-
-/* Clear-chat (trash) specific styles: remove default white background and ensure icon is black
-   Add deep-blue 1px border on hover as requested. */
-.clear-chat {
-  /* smaller, simplified trash button */
-  width: 28px;
-  height: 28px;
-  padding: 4px;
-  background: #000000;
-  color: #ffffff;
-  border: none;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 8px;
-  font-size: 14px;
-}
-.clear-chat i { color: #ffffff; font-size: 14px; line-height: 1; }
-.clear-chat:hover { border: 1px solid var(--brand); }
 
 /* Messages & input */
 .chatbot-messages { flex:1; padding: 0.9rem 0.9rem 1rem; overflow-y: auto; overflow-x: hidden; background: linear-gradient(180deg, rgba(255,255,255,0.01), transparent); }
@@ -1399,8 +1380,8 @@ body {
   height: 64px;
   box-sizing: border-box;
   width: 100%;
-    /* full-bleed header should match the landing ribbon color */
-    background: var(--footer-bg); /* use footer background variable for consistent ribbon */
+    /* full-bleed header should be solid black to match landing ribbon */
+    background: #000000; /* use solid black ribbon instead of brand gradient */
     color: var(--text);
     border-top-left-radius: 14px;
     border-top-right-radius: 14px;
@@ -2017,66 +1998,63 @@ document.addEventListener('DOMContentLoaded', function () {
 </div>
 
 <script>
-  // Ensure modal bindings run after the DOM is ready so #clearChat exists
-  document.addEventListener('DOMContentLoaded', function () {
-    (function () {
-      const clearBtn = document.getElementById('clearChat');
-      const modal = document.getElementById('clearChatModal');
-      const btnCancel = document.getElementById('clearChatCancel');
-      const btnConfirm = document.getElementById('clearChatConfirm');
-      if (!clearBtn || !modal || !btnCancel || !btnConfirm) return;
+  (function () {
+    const clearBtn = document.getElementById('clearChat');
+    const modal = document.getElementById('clearChatModal');
+    const btnCancel = document.getElementById('clearChatCancel');
+    const btnConfirm = document.getElementById('clearChatConfirm');
+    if (!clearBtn || !modal || !btnCancel || !btnConfirm) return;
 
-      function showModal() {
-        modal.classList.add('show');
-        modal.setAttribute('aria-hidden', 'false');
-        // Move focus to confirm button for quick keyboard action
-        try { btnConfirm.focus(); } catch (e) {}
-      }
+    function showModal() {
+      modal.classList.add('show');
+      modal.setAttribute('aria-hidden', 'false');
+      // Move focus to confirm button for quick keyboard action
+      try { btnConfirm.focus(); } catch (e) {}
+    }
 
-      function hideModal() {
-        modal.classList.remove('show');
-        modal.setAttribute('aria-hidden', 'true');
-        try { clearBtn.focus(); } catch (e) {}
-      }
+    function hideModal() {
+      modal.classList.remove('show');
+      modal.setAttribute('aria-hidden', 'true');
+      try { clearBtn.focus(); } catch (e) {}
+    }
 
-      // Open modal on trash icon click
-      clearBtn.addEventListener('click', function (e) {
-        e.preventDefault();
-        e.stopPropagation();
-        showModal();
-      });
+    // Open modal on trash icon click
+    clearBtn.addEventListener('click', function (e) {
+      e.preventDefault();
+      e.stopPropagation();
+      showModal();
+    });
 
-      // Cancel handler
-      btnCancel.addEventListener('click', function (e) {
-        e.preventDefault();
-        hideModal();
-      });
+    // Cancel handler
+    btnCancel.addEventListener('click', function (e) {
+      e.preventDefault();
+      hideModal();
+    });
 
-      // Confirm handler -> call clearChatHistory and close modal
-      btnConfirm.addEventListener('click', function (e) {
-        e.preventDefault();
-        try {
-          if (window.clearChatHistory && typeof window.clearChatHistory === 'function') {
-            void window.clearChatHistory();
-          } else {
-            const msgs = document.getElementById('chatbotMessages');
-            if (msgs) msgs.innerHTML = '';
-          }
-        } catch (err) { console.warn('Clear chat handler failed', err); }
-        hideModal();
-      });
+    // Confirm handler -> call clearChatHistory and close modal
+    btnConfirm.addEventListener('click', function (e) {
+      e.preventDefault();
+      try {
+        if (window.clearChatHistory && typeof window.clearChatHistory === 'function') {
+          void window.clearChatHistory();
+        } else {
+          const msgs = document.getElementById('chatbotMessages');
+          if (msgs) msgs.innerHTML = '';
+        }
+      } catch (err) { console.warn('Clear chat handler failed', err); }
+      hideModal();
+    });
 
-      // Close on overlay click (but not when clicking dialog)
-      modal.addEventListener('click', function (e) {
-        if (e.target === modal) hideModal();
-      });
+    // Close on overlay click (but not when clicking dialog)
+    modal.addEventListener('click', function (e) {
+      if (e.target === modal) hideModal();
+    });
 
-      // Close on Escape
-      document.addEventListener('keydown', function (e) {
-        if (e.key === 'Escape' && modal.classList.contains('show')) hideModal();
-      });
-    })();
-  });
+    // Close on Escape
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && modal.classList.contains('show')) hideModal();
+    });
+  })();
 </script>
 
 <br>

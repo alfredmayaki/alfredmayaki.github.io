@@ -941,21 +941,8 @@ body {
 
 /* Clear-chat (trash) specific styles: remove default white background and ensure icon is black
    Add deep-blue 1px border on hover as requested. */
-.clear-chat {
-  /* smaller, simplified trash button */
-  width: 28px;
-  height: 28px;
-  padding: 4px;
-  background: #000000;
-  color: #ffffff;
-  border: none;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 8px;
-  font-size: 14px;
-}
-.clear-chat i { color: #ffffff; font-size: 14px; line-height: 1; }
+.clear-chat { background: #000000; color: #ffffff; border: none; padding: 6px; display:inline-flex; align-items:center; justify-content:center; border-radius:10px; }
+.clear-chat i { color: #ffffff; }
 .clear-chat:hover { border: 1px solid var(--brand); }
 
 /* Messages & input */
@@ -2017,66 +2004,63 @@ document.addEventListener('DOMContentLoaded', function () {
 </div>
 
 <script>
-  // Ensure modal bindings run after the DOM is ready so #clearChat exists
-  document.addEventListener('DOMContentLoaded', function () {
-    (function () {
-      const clearBtn = document.getElementById('clearChat');
-      const modal = document.getElementById('clearChatModal');
-      const btnCancel = document.getElementById('clearChatCancel');
-      const btnConfirm = document.getElementById('clearChatConfirm');
-      if (!clearBtn || !modal || !btnCancel || !btnConfirm) return;
+  (function () {
+    const clearBtn = document.getElementById('clearChat');
+    const modal = document.getElementById('clearChatModal');
+    const btnCancel = document.getElementById('clearChatCancel');
+    const btnConfirm = document.getElementById('clearChatConfirm');
+    if (!clearBtn || !modal || !btnCancel || !btnConfirm) return;
 
-      function showModal() {
-        modal.classList.add('show');
-        modal.setAttribute('aria-hidden', 'false');
-        // Move focus to confirm button for quick keyboard action
-        try { btnConfirm.focus(); } catch (e) {}
-      }
+    function showModal() {
+      modal.classList.add('show');
+      modal.setAttribute('aria-hidden', 'false');
+      // Move focus to confirm button for quick keyboard action
+      try { btnConfirm.focus(); } catch (e) {}
+    }
 
-      function hideModal() {
-        modal.classList.remove('show');
-        modal.setAttribute('aria-hidden', 'true');
-        try { clearBtn.focus(); } catch (e) {}
-      }
+    function hideModal() {
+      modal.classList.remove('show');
+      modal.setAttribute('aria-hidden', 'true');
+      try { clearBtn.focus(); } catch (e) {}
+    }
 
-      // Open modal on trash icon click
-      clearBtn.addEventListener('click', function (e) {
-        e.preventDefault();
-        e.stopPropagation();
-        showModal();
-      });
+    // Open modal on trash icon click
+    clearBtn.addEventListener('click', function (e) {
+      e.preventDefault();
+      e.stopPropagation();
+      showModal();
+    });
 
-      // Cancel handler
-      btnCancel.addEventListener('click', function (e) {
-        e.preventDefault();
-        hideModal();
-      });
+    // Cancel handler
+    btnCancel.addEventListener('click', function (e) {
+      e.preventDefault();
+      hideModal();
+    });
 
-      // Confirm handler -> call clearChatHistory and close modal
-      btnConfirm.addEventListener('click', function (e) {
-        e.preventDefault();
-        try {
-          if (window.clearChatHistory && typeof window.clearChatHistory === 'function') {
-            void window.clearChatHistory();
-          } else {
-            const msgs = document.getElementById('chatbotMessages');
-            if (msgs) msgs.innerHTML = '';
-          }
-        } catch (err) { console.warn('Clear chat handler failed', err); }
-        hideModal();
-      });
+    // Confirm handler -> call clearChatHistory and close modal
+    btnConfirm.addEventListener('click', function (e) {
+      e.preventDefault();
+      try {
+        if (window.clearChatHistory && typeof window.clearChatHistory === 'function') {
+          void window.clearChatHistory();
+        } else {
+          const msgs = document.getElementById('chatbotMessages');
+          if (msgs) msgs.innerHTML = '';
+        }
+      } catch (err) { console.warn('Clear chat handler failed', err); }
+      hideModal();
+    });
 
-      // Close on overlay click (but not when clicking dialog)
-      modal.addEventListener('click', function (e) {
-        if (e.target === modal) hideModal();
-      });
+    // Close on overlay click (but not when clicking dialog)
+    modal.addEventListener('click', function (e) {
+      if (e.target === modal) hideModal();
+    });
 
-      // Close on Escape
-      document.addEventListener('keydown', function (e) {
-        if (e.key === 'Escape' && modal.classList.contains('show')) hideModal();
-      });
-    })();
-  });
+    // Close on Escape
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && modal.classList.contains('show')) hideModal();
+    });
+  })();
 </script>
 
 <br>

@@ -916,30 +916,6 @@
     })();
 
     addFileUploadUI();
-    // Defensive: remove any accidental inline white backgrounds that may have been
-    // added by other templates or injected markup. Normalize them to transparent
-    // so the dark theme is preserved.
-    try {
-      const whites = new Set(['#FFFFFF', '#ffffff', '#FFF', '#fff', 'white', 'rgb(255, 255, 255)', 'rgb(255,255,255)']);
-      document.querySelectorAll('[style]').forEach(el => {
-        try {
-          const bg = (el.style.background || el.style.backgroundColor || '').trim();
-          if (!bg) return;
-          if (whites.has(bg)) {
-            el.style.background = 'transparent';
-            el.style.backgroundColor = 'transparent';
-          }
-        } catch (e) { /* ignore per-element errors */ }
-      });
-
-      // Ensure the clear-chat (trash) button uses transparent background and
-      // black icon for contrast; hover border is handled via CSS in index.html.
-      const clearBtn = document.getElementById('clearChat');
-      if (clearBtn) {
-        try { clearBtn.style.background = '#000000'; clearBtn.style.color = '#ffffff'; } catch (e) {}
-        try { const icon = clearBtn.querySelector('i'); if (icon) icon.style.color = '#ffffff'; } catch (e) {}
-      }
-    } catch (e) { console.warn('Failed sanitizing inline white backgrounds', e); }
     
     // GPT frontend button was removed from the search controls.
     // No runtime binding performed for `#gptNewBtn`.

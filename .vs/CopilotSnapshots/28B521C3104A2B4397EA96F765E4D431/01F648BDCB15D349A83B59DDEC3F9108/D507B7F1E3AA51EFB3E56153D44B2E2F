@@ -936,8 +936,8 @@
       // black icon for contrast; hover border is handled via CSS in index.html.
       const clearBtn = document.getElementById('clearChat');
       if (clearBtn) {
-        try { clearBtn.style.background = '#000000'; clearBtn.style.color = '#ffffff'; } catch (e) {}
-        try { const icon = clearBtn.querySelector('i'); if (icon) icon.style.color = '#ffffff'; } catch (e) {}
+        try { clearBtn.style.background = 'transparent'; } catch (e) {}
+        try { const icon = clearBtn.querySelector('i'); if (icon) icon.style.color = '#000000'; } catch (e) {}
       }
     } catch (e) { console.warn('Failed sanitizing inline white backgrounds', e); }
     

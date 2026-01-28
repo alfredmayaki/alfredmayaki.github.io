@@ -916,30 +916,6 @@
     })();
 
     addFileUploadUI();
-    // Defensive: remove any accidental inline white backgrounds that may have been
-    // added by other templates or injected markup. Normalize them to transparent
-    // so the dark theme is preserved.
-    try {
-      const whites = new Set(['#FFFFFF', '#ffffff', '#FFF', '#fff', 'white', 'rgb(255, 255, 255)', 'rgb(255,255,255)']);
-      document.querySelectorAll('[style]').forEach(el => {
-        try {
-          const bg = (el.style.background || el.style.backgroundColor || '').trim();
-          if (!bg) return;
-          if (whites.has(bg)) {
-            el.style.background = 'transparent';
-            el.style.backgroundColor = 'transparent';
-          }
-        } catch (e) { /* ignore per-element errors */ }
-      });
-
-      // Ensure the clear-chat (trash) button uses transparent background and
-      // black icon for contrast; hover border is handled via CSS in index.html.
-      const clearBtn = document.getElementById('clearChat');
-      if (clearBtn) {
-        try { clearBtn.style.background = '#000000'; clearBtn.style.color = '#ffffff'; } catch (e) {}
-        try { const icon = clearBtn.querySelector('i'); if (icon) icon.style.color = '#ffffff'; } catch (e) {}
-      }
-    } catch (e) { console.warn('Failed sanitizing inline white backgrounds', e); }
     
     // GPT frontend button was removed from the search controls.
     // No runtime binding performed for `#gptNewBtn`.
@@ -978,83 +954,6 @@
       console.log('✅ __openChatbot called');
     } catch (err) {
       console.warn('⚠️ __openChatbot failed', err);
-    }
-  };
-
-  // Expose helper to clear chat history (in-memory + IndexedDB + UI)
-  window.clearChatHistory = async function () {
-    // Prevent double-invocation
-    if (window.__clearChatInProgress) return;
-    window.__clearChatInProgress = true;
-    try {
-      // If a request is in-flight, cancel it
-      try {
-        if (state.inFlightAbort) {
-          try { state.inFlightAbort.abort('user_cleared'); } catch (e) { /* ignore */ }
-          state.inFlightAbort = null;
-        }
-      } catch (e) { /* ignore */ }
-
-      // clear in-memory conversation
-      state.conversationHistory = [];
-
-      // clear uploaded file state
-      state.uploadedFile = null;
-      try { delete window.__rawUploadedFile; } catch (e) {}
-      try { window.uploadedDocs = []; } catch (e) {}
-
-      // clear UI
-      try { elements.chatbotMessages && (elements.chatbotMessages.innerHTML = ''); } catch (e) { /* ignore */ }
-
-      // clear page-level file input if present
-      try {
-        if (elements.docUploadInput) {
-          elements.docUploadInput.value = '';
-        }
-        const fileNameSpan = document.getElementById('fileName');
-        if (fileNameSpan) fileNameSpan.style.display = 'none';
-      } catch (e) { /* ignore */ }
-
-      // clear persisted DB (IndexedDB)
-      if (window.ChatDB && typeof window.ChatDB.clearMessages === 'function') {
-        try {
-          await window.ChatDB.clearMessages();
-          console.log('✅ ChatDB cleared');
-        } catch (e) { console.warn('⚠️ ChatDB.clearMessages failed', e); }
-      }
-
-      // If the app wants to perform an external withdrawal action (e.g., inform server or revoke data),
-      // allow a hook to be registered as `window.onChatCleared` which may return a Promise.
-      try {
-        if (typeof window.onChatCleared === 'function') {
-          // call but don't block UI for too long; await if it returns a promise
-          const maybePromise = window.onChatCleared();
-          if (maybePromise && typeof maybePromise.then === 'function') {
-            // await but protect with a short timeout
-            const p = Promise.race([maybePromise, new Promise(res => setTimeout(res, 1500))]);
-            try { await p; } catch (e) { /* ignore */ }
-          }
-        }
-      } catch (e) { console.warn('onChatCleared hook failed', e); }
-
-      // Show a transient confirmation message in the chat UI (not persisted)
-      try {
-        addBotBubble('Chat cleared');
-        // play success sound as feedback
-        try { void SoundFX.playSuccess(); } catch (e) { /* ignore */ }
-      } catch (e) { /* ignore */ }
-
-      // Re-add welcome message after a short delay so UI is not empty and focus input
-      setTimeout(() => {
-        try { addBotBubble(CONFIG.welcomeMessage); } catch (e) { /* ignore */ }
-        try { elements.chatbotInput && elements.chatbotInput.focus(); } catch (e) {}
-      }, 900);
-
-      console.log('✅ Chat history cleared');
-    } catch (err) {
-      console.warn('⚠️ clearChatHistory failed', err);
-    } finally {
-      window.__clearChatInProgress = false;
     }
   };
 })();
