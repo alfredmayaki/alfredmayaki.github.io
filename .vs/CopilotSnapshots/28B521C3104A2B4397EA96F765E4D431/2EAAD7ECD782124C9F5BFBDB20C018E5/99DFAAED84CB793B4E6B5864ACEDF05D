@@ -900,7 +900,7 @@ body {
   opacity: 1;
 }
 .chatbot-popup:hover {
-  /* keep the hover shadow for emphasis but do not add a border to avoid layout shift */
+  border: 2px solid var(--brand);
   box-shadow: 0 24px 64px rgba(0,0,0,0.6), 0 10px 40px rgba(61,78,233,0.08);
 }
 
@@ -2501,7 +2501,7 @@ document.addEventListener('DOMContentLoaded', function () {
     </div>
     <div class="chatbot-messages" id="chatbotMessages" role="log" aria-live="polite"></div>
     <div class="chatbot-input-area">
-      <input type="text" class="chatbot-input" id="chatbotInput" placeholder="Enter any subsequent queries here..." aria-label="Chat input">
+      <input type="text" class="chatbot-input" id="chatbotInput" placeholder="Enter your subsequent queries here..." aria-label="Chat input">
     </div>
   </div>
 
