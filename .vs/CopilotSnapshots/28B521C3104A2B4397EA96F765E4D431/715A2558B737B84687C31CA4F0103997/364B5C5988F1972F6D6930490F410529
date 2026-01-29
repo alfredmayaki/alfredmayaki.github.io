@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -132,8 +132,7 @@
       border-radius: calc(var(--radius-md) - 4px);
       padding: 0.45rem;
       box-shadow: 0 8px 30px rgba(0,0,0,0.45);
-      /* start with no visible border; show the deep-blue border only on hover */
-      border: 3px solid transparent;
+      border: 3px solid var(--brand);
       transition: box-shadow var(--transition-med), border-color var(--transition-med);
       position: relative;
       overflow: visible;
@@ -150,18 +149,14 @@
       background: linear-gradient(90deg, rgba(61,78,233,0.00) 0%, rgba(61,78,233,0.40) 50%, rgba(61,78,233,0.00) 100%);
       background-size: 200% 100%;
       filter: blur(4px);
-      /* invisible by default; animated highlight appears only on hover */
-      opacity: 0;
+      opacity: 0.65;
       transition: opacity var(--transition-fast) ease;
       z-index: 0;
       mix-blend-mode: screen;
       animation: sparkleBorder 3500ms linear infinite;
     }
 
-    .search-container:hover::after { opacity: 0.65; }
-
-    /* Do not show the decorative glow on keyboard focus (hover-only requirement) */
-    .search-container:focus-within::after { opacity: 0; }
+    .search-container:focus-within::after { opacity: 1; }
 
     @keyframes sparkleBorder {
       0% { background-position: 0% 50%; }
