@@ -676,7 +676,7 @@
           const metaEl = parent.querySelector('.message-meta');
           if (metaEl) {
             const ts = data?.timestamp ? new Date(data.timestamp) : new Date();
-            metaEl.innerHTML = `<span class="message-source">Claude Opus 4.6</span> ${formatMessageTime(ts)}`;
+            metaEl.innerHTML = `<span class="message-source">Claude Opus 4.5</span> ${formatMessageTime(ts)}`;
           }
         }
       } catch (e) { /* ignore meta update errors */ }
