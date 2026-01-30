@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -2287,10 +2287,10 @@ document.addEventListener('DOMContentLoaded', function () {
           const isNarrow = (typeof window !== 'undefined' && window.matchMedia) ? window.matchMedia('(max-width: 420px)').matches : (window.innerWidth <= 420);
 
           const typedStrings = isNarrow ? [
-            'Listening.',     
+              'Listening.',     
 
           ] : [
-            'Listening..'
+             'Listening..'
       
           ];
 
