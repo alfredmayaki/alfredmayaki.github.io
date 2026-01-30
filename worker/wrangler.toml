@@ -2,9 +2,6 @@ name = "shy-sea-600a"
 main = "src/index.js"
 compatibility_date = "2026-01-09"
 workers_dev = true
-# Add one ai_models entry that maps binding "AI" to the Deepgram model used in the worker
-binding = "AI"
-model = "@cf/deepgram/aura-2-en"
 # If you use a gateway or custom configuration require additional fields in your Cloudflare dashboard.
 
 routes = [
