@@ -370,40 +370,19 @@
     const fileNameSpan = document.getElementById('fileName');
 
     uploadBtn.addEventListener('click', () => fileInput.click());
-    fileInput.addEventListener('change', async (e) => {
+
+    fileInput.addEventListener('change', (e) => {
       const file = e.target.files[0];
-      if (!file) return;
-
-      if (file.size > CONFIG.maxFileSize) {
-        alert('File too large! Maximum size is 1MB.');
-        fileInput.value = '';
-        return;
-      }
-
-      // Attach to state for non-image flows; images are sent to Anthropic immediately
-      state.uploadedFile = file;
-      fileNameSpan.textContent = `📄 ${file.name}`;
-      fileNameSpan.style.display = 'inline';
-      console.log('File selected:', file.name);
-
-      // If this is an image, send to anthropic image proxy automatically
-      try {
-        if (file.type && file.type.startsWith('image/')) {
-          // Open chatbot UI for results
-          elements.chatbotPopup.classList.add('active');
-          try { elements.chatbotPopup.setAttribute('aria-hidden', 'false'); } catch (e) {}
-          // Optionally focus chat input after sending
-          const res = await sendImageToAnthropic(file, 'Please analyze this image and summarise key observations.');
-          if (res?.reply) {
-            // reply already appended inside sendImageToAnthropic via addBotBubble
-          }
-          // clear page-level file input to avoid accidental reuse
+      if (file) {
+        if (file.size > CONFIG.maxFileSize) {
+          alert('File too large! Maximum size is 1MB.');
           fileInput.value = '';
-          state.uploadedFile = null;
-          if (fileNameSpan) fileNameSpan.style.display = 'none';
+          return;
         }
-      } catch (err) {
-        console.warn('Image send failed', err);
+        state.uploadedFile = file;
+        fileNameSpan.textContent = `📄 ${file.name}`;
+        fileNameSpan.style.display = 'inline';
+        console.log('File selected:', file.name);
       }
     });
   }
@@ -415,79 +394,6 @@
     return String(value || '')
       .replace(/\s+/g, ' ')
       .trim();
-  }
-
-  // Convert a File to a base64 string (data part only)
-  function fileToBase64(file) {
-    return new Promise((resolve, reject) => {
-      try {
-        const reader = new FileReader();
-        reader.onerror = () => reject(new Error('File read error'));
-        reader.onload = () => {
-          const result = String(reader.result || '');
-          const parts = result.split(',');
-          // parts[0] is data:<mime>;base64  parts[1] is payload
-          resolve({ dataUrl: result, base64: parts[1] || '', mime: file.type });
-        };
-        reader.readAsDataURL(file);
-      } catch (err) { reject(err); }
-    });
-  }
-
-  // Send an image file to the server proxy which forwards to Anthropic.
-  // Expects a JSON response with a `reply` field containing the model text.
-  async function sendImageToAnthropic(file, prompt = '') {
-    if (!file) throw new Error('No file provided');
-    if (!file.type || !file.type.startsWith('image/')) throw new Error('Not an image');
-
-    // Small UI feedback
-    try { addUserMessage(`Uploading image: ${file.name}`); } catch (e) { /* ignore */ }
-
-    let bubble = addBotBubble('Uploading image…');
-
-    try {
-      const { base64, mime } = await fileToBase64(file);
-
-      const controller = new AbortController();
-      const timeoutId = setTimeout(() => controller.abort('timeout'), CONFIG.requestTimeoutMs);
-
-      const payload = {
-        image_base64: base64,
-        mime,
-        filename: file.name,
-        prompt,
-        history: state.conversationHistory
-      };
-
-      const resp = await fetch('/api/anthropic-image', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload),
-        signal: controller.signal
-      }).catch((err) => { throw err; });
-
-      clearTimeout(timeoutId);
-
-      if (!resp.ok) {
-        const txt = await resp.text().catch(() => '');
-        bubble.textContent = `Server error: ${resp.status} ${txt}`;
-        return { error: bubble.textContent };
-      }
-
-      const data = await resp.json().catch(() => null);
-      const reply = String(data?.reply || data?.text || data?.message || '').trim();
-      bubble.textContent = reply || '(empty reply)';
-
-      // push history and play success sound
-      try { pushHistory('bot', bubble.textContent); } catch (e) {}
-      try { void SoundFX.playSuccess(); } catch (e) {}
-
-      return { reply };
-    } catch (err) {
-      console.warn('sendImageToAnthropic failed', err);
-      try { bubble.textContent = 'Image upload failed — ' + String(err?.message || err); } catch (e) {}
-      return { error: String(err?.message || err) };
-    }
   }
 
   function setInputEnabled(enabled) {
@@ -676,7 +582,7 @@
           const metaEl = parent.querySelector('.message-meta');
           if (metaEl) {
             const ts = data?.timestamp ? new Date(data.timestamp) : new Date();
-            metaEl.innerHTML = `<span class="message-source">Claude Opus 4.6</span> ${formatMessageTime(ts)}`;
+            metaEl.innerHTML = `<span class="message-source">Claude</span> ${formatMessageTime(ts)}`;
           }
         }
       } catch (e) { /* ignore meta update errors */ }

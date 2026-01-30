@@ -370,40 +370,19 @@
     const fileNameSpan = document.getElementById('fileName');
 
     uploadBtn.addEventListener('click', () => fileInput.click());
-    fileInput.addEventListener('change', async (e) => {
+
+    fileInput.addEventListener('change', (e) => {
       const file = e.target.files[0];
-      if (!file) return;
-
-      if (file.size > CONFIG.maxFileSize) {
-        alert('File too large! Maximum size is 1MB.');
-        fileInput.value = '';
-        return;
-      }
-
-      // Attach to state for non-image flows; images are sent to Anthropic immediately
-      state.uploadedFile = file;
-      fileNameSpan.textContent = `📄 ${file.name}`;
-      fileNameSpan.style.display = 'inline';
-      console.log('File selected:', file.name);
-
-      // If this is an image, send to anthropic image proxy automatically
-      try {
-        if (file.type && file.type.startsWith('image/')) {
-          // Open chatbot UI for results
-          elements.chatbotPopup.classList.add('active');
-          try { elements.chatbotPopup.setAttribute('aria-hidden', 'false'); } catch (e) {}
-          // Optionally focus chat input after sending
-          const res = await sendImageToAnthropic(file, 'Please analyze this image and summarise key observations.');
-          if (res?.reply) {
-            // reply already appended inside sendImageToAnthropic via addBotBubble
-          }
-          // clear page-level file input to avoid accidental reuse
+      if (file) {
+        if (file.size > CONFIG.maxFileSize) {
+          alert('File too large! Maximum size is 1MB.');
           fileInput.value = '';
-          state.uploadedFile = null;
-          if (fileNameSpan) fileNameSpan.style.display = 'none';
+          return;
         }
-      } catch (err) {
-        console.warn('Image send failed', err);
+        state.uploadedFile = file;
+        fileNameSpan.textContent = `📄 ${file.name}`;
+        fileNameSpan.style.display = 'inline';
+        console.log('File selected:', file.name);
       }
     });
   }
@@ -676,7 +655,7 @@
           const metaEl = parent.querySelector('.message-meta');
           if (metaEl) {
             const ts = data?.timestamp ? new Date(data.timestamp) : new Date();
-            metaEl.innerHTML = `<span class="message-source">Claude Opus 4.6</span> ${formatMessageTime(ts)}`;
+            metaEl.innerHTML = `<span class="message-source">Claude</span> ${formatMessageTime(ts)}`;
           }
         }
       } catch (e) { /* ignore meta update errors */ }
