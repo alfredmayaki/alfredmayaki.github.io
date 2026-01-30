@@ -2133,7 +2133,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   <div class="search-controls" role="group" aria-label="Search controls">
     <!-- hidden file input triggered by the paperclip label -->
-    <input id="docUploadInput" class="sr-only" type="file" accept=".txt,.md,.json,.csv,.log,.pdf,.docx" multiple />
+    <input id="docUploadInput" class="sr-only" type="file" accept=".txt,.md,.json,.csv,.log,.pdf,.docx,.jpeg,.png,.gif,.webp" multiple />
  
 <button id="docUploadBtn" class="attach-btn" type="button" aria-label="Attach file (Beta)" title="Attach file (Beta)">
   ➕
@@ -2285,7 +2285,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
           // Use matchMedia for reliable viewport detection on mobile devices
           const isNarrow = (typeof window !== 'undefined' && window.matchMedia) ? window.matchMedia('(max-width: 420px)').matches : (window.innerWidth <= 420);
-
+          // Content motivation for user prompts in the form of placeholder text and typedstrings
           const typedStrings = isNarrow ? [
             'Mahatma Gandhi?',
             'Today on January 30th?',
@@ -2293,7 +2293,7 @@ document.addEventListener('DOMContentLoaded', function () {
             'Why was Gandhi assassinated?',
             'Non-violence influence?',
             'School Day of Non-violence?'   
-
+            // Shorter prompts for narrow viewports
           ] : [
             'Who was the late Mahatma Gandhi?',
             'How did the life of Mahatma Gandhi influence Non-violence?',
@@ -2306,7 +2306,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
           // Use the selector string so Typed internally queries the element and sets the placeholder attr reliably
           const selector = 'searchInput';
-
+          // Speed and pace of the transitions for the placeholder typing effect
           const opts = {
             strings: typedStrings,
             typeSpeed: 20,
