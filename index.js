@@ -355,7 +355,7 @@
     const uploadArea = document.createElement('div');
     uploadArea.className = 'file-upload-area';
     uploadArea.innerHTML = `
-      <input type="file" id="fileUpload" accept=".txt,.md,.json,.csv,.jpg,.png,.log,.pdf,.docx" style="display: none;">
+      <input type="file" id="fileUpload" accept=".txt,.md,.json,.csv,.log,.pdf,.docx" style="display: none;">
       <button class="upload-btn" id="uploadBtn">
         ➕ Attach file (Beta)
       </button>
