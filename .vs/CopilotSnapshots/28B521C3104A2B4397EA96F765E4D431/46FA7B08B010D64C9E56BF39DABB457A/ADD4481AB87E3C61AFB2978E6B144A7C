@@ -355,7 +355,7 @@
     const uploadArea = document.createElement('div');
     uploadArea.className = 'file-upload-area';
     uploadArea.innerHTML = `
-      <input type="file" id="fileUpload" accept=".txt,.py,.md,.js,.json,.csv" style="display: none;">
+      <input type="file" id="fileUpload" accept=".txt,.md,.json,.csv,.log,.pdf,.docx,.jpeg,.png,.gif,.webp" style="display: none;">
       <button class="upload-btn" id="uploadBtn">
         ➕ Attach file (Beta)
       </button>
@@ -677,7 +677,7 @@
           if (metaEl) {
             const ts = data?.timestamp ? new Date(data.timestamp) : new Date();
             metaEl.innerHTML = `<span class="message-source">Claude Opus 4.6</span> ${formatMessageTime(ts)}`;
-          }
+          }// Name or reference provided by the model in the popup chat
         }
       } catch (e) { /* ignore meta update errors */ }
 

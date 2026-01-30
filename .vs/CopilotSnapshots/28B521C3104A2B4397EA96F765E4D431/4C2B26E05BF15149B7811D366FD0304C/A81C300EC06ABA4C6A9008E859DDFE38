@@ -46,11 +46,12 @@
   // CONFIGURATION
   // ========================================
   const CONFIG = {
-    chatApiUrl: 'https://alfredmayaki.me/chat',
+    // use server API proxy for Claude
+    chatApiUrl: '/api/claude',
     maxMessageChars: 2000,
     requestTimeoutMs: 30000,
     maxHistoryTurns: 10,
-    maxFileSize: 1 * 1024 * 1024, // Reduced to 1MB
+    maxFileSize: 3 * 5024 * 5024, // Reduced to 1MB
     welcomeMessage: '👋🏿 Hello — I\'m your virtual coding assistant (Claude Opus 4.5). Ask coding questions or upload text-based or image-based files for quick analysis.',
     soundEffects: {
       enabled: true,        
@@ -355,7 +356,7 @@
     const uploadArea = document.createElement('div');
     uploadArea.className = 'file-upload-area';
     uploadArea.innerHTML = `
-      <input type="file" id="fileUpload" accept=".txt,.py,.md,.js,.json,.csv" style="display: none;">
+      <input type="file" id="fileUpload" accept=".txt,.md,.json,.csv,.log,.pdf,.docx,.jpeg,.png,.gif,.webp" style="display: none;">
       <button class="upload-btn" id="uploadBtn">
         ➕ Attach file (Beta)
       </button>
@@ -418,53 +419,61 @@
   }
 
   // Convert a File to a base64 string (data part only)
-  function fileToBase64(file) {
-    return new Promise((resolve, reject) => {
-      try {
-        const reader = new FileReader();
-        reader.onerror = () => reject(new Error('File read error'));
-        reader.onload = () => {
-          const result = String(reader.result || '');
-          const parts = result.split(',');
-          // parts[0] is data:<mime>;base64  parts[1] is payload
-          resolve({ dataUrl: result, base64: parts[1] || '', mime: file.type });
-        };
-        reader.readAsDataURL(file);
-      } catch (err) { reject(err); }
-    });
-  }
-
-  // Send an image file to the server proxy which forwards to Anthropic.
-  // Expects a JSON response with a `reply` field containing the model text.
+  // Send an image file to the chat backend as multipart/form-data so the server
+  // can handle it with the proper Anthropic sdk/image flow. This avoids embedding
+  // large base64 blobs into prompt text which Claude cannot process reliably.
   async function sendImageToAnthropic(file, prompt = '') {
     if (!file) throw new Error('No file provided');
     if (!file.type || !file.type.startsWith('image/')) throw new Error('Not an image');
 
-    // Small UI feedback
-    try { addUserMessage(`Uploading image: ${file.name}`); } catch (e) { /* ignore */ }
+    try { addUserMessage(`📤 Uploading image: ${file.name}`); } catch (e) {}
+    const bubble = addBotBubble('Uploading image…');
 
-    let bubble = addBotBubble('Uploading image…');
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort('timeout'), CONFIG.requestTimeoutMs);
 
     try {
-      const { base64, mime } = await fileToBase64(file);
+      const form = new FormData();
+      form.append('file', file, file.name);
+      form.append('history', JSON.stringify(state.conversationHistory || []));
 
-      const controller = new AbortController();
-      const timeoutId = setTimeout(() => controller.abort('timeout'), CONFIG.requestTimeoutMs);
+      // If Tesseract is available, run client-side OCR to extract text so Claude
+      // can be given the extracted content (Claude can't natively read arbitrary
+      // image bytes sent as files in many configurations). We include the OCR
+      // result directly in the message so the backend will forward it to the model.
+      let finalMessage = prompt || `Please describe the image: ${file.name}`;
+      try {
+        if (window.Tesseract && typeof window.Tesseract.recognize === 'function') {
+          bubble.textContent = 'Extracting text from image…';
+          const worker = window.Tesseract.createWorker ? await window.Tesseract.createWorker() : null;
+          if (worker) {
+            await worker.load();
+            await worker.loadLanguage('eng');
+            await worker.initialize('eng');
+            const { data } = await worker.recognize(file);
+            const ocr = String(data?.text || '').trim();
+            if (ocr) {
+              finalMessage = finalMessage + '\n\n[EXTRACTED TEXT]\n' + ocr;
+            }
+            try { await worker.terminate(); } catch (e) {}
+          } else {
+            // fallback API if createWorker is not present
+            const { data } = await window.Tesseract.recognize(file, 'eng');
+            const ocr = String(data?.text || '').trim();
+            if (ocr) finalMessage = finalMessage + '\n\n[EXTRACTED TEXT]\n' + ocr;
+          }
+        }
+      } catch (ocrErr) {
+        console.warn('OCR failed or Tesseract not available', ocrErr);
+      }
 
-      const payload = {
-        image_base64: base64,
-        mime,
-        filename: file.name,
-        prompt,
-        history: state.conversationHistory
-      };
+      form.append('message', finalMessage);
 
-      const resp = await fetch('/api/anthropic-image', {
+      const resp = await fetch(CONFIG.chatApiUrl, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload),
+        body: form,
         signal: controller.signal
-      }).catch((err) => { throw err; });
+      });
 
       clearTimeout(timeoutId);
 
@@ -478,7 +487,6 @@
       const reply = String(data?.reply || data?.text || data?.message || '').trim();
       bubble.textContent = reply || '(empty reply)';
 
-      // push history and play success sound
       try { pushHistory('bot', bubble.textContent); } catch (e) {}
       try { void SoundFX.playSuccess(); } catch (e) {}
 
@@ -487,6 +495,8 @@
       console.warn('sendImageToAnthropic failed', err);
       try { bubble.textContent = 'Image upload failed — ' + String(err?.message || err); } catch (e) {}
       return { error: String(err?.message || err) };
+    } finally {
+      clearTimeout(timeoutId);
     }
   }
 
@@ -677,7 +687,7 @@
           if (metaEl) {
             const ts = data?.timestamp ? new Date(data.timestamp) : new Date();
             metaEl.innerHTML = `<span class="message-source">Claude Opus 4.6</span> ${formatMessageTime(ts)}`;
-          }
+          }// Name or reference provided by the model in the popup chat
         }
       } catch (e) { /* ignore meta update errors */ }
 
@@ -983,6 +993,24 @@
         }
 
         console.log('✅ Page uploader attached to chatbot state:', f.name);
+        // If image, send immediately using multipart to backend (server handles Anthropic image flow)
+        try {
+          if (f.type && f.type.startsWith('image/')) {
+            elements.chatbotPopup.classList.add('active');
+            try { elements.chatbotPopup.setAttribute('aria-hidden', 'false'); } catch (e) {}
+            // call image send flow; keep UI responsive
+            (async () => {
+              try {
+                const res = await sendImageToAnthropic(f, 'Please analyse the attached image and summarise.');
+                // clear page-level input after send
+                elements.docUploadInput.value = '';
+                state.uploadedFile = null;
+                if (fileNameSpan) fileNameSpan.style.display = 'none';
+              } catch (err) { console.warn('Auto-send image failed', err); }
+            })();
+          }
+        } catch (err) { console.warn('Auto image send handler error', err); }
+
 
         // Optionally open chatbot automatically so the user knows the document is ready
         // (keep this behavior optional/commented if you prefer manual open)

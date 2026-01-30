@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -2133,7 +2133,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   <div class="search-controls" role="group" aria-label="Search controls">
     <!-- hidden file input triggered by the paperclip label -->
-    <input id="docUploadInput" class="sr-only" type="file" accept="txt,.py,.md,.js,.json,.csv" multiple />
+    <input id="docUploadInput" class="sr-only" type="file" accept=".txt,.md,.json,.csv,.log,.pdf,.docx,.jpeg,.png,.gif,.webp" multiple />
  
 <button id="docUploadBtn" class="attach-btn" type="button" aria-label="Attach file (Beta)" title="Attach file (Beta)">
   ➕
@@ -2517,6 +2517,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
   <!-- External Scripts -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
+  <!-- Tesseract.js for client-side OCR of uploaded images (helps Claude read image content) -->
+  <script src="https://cdn.jsdelivr.net/npm/tesseract.js@2.1.5/dist/tesseract.min.js"></script>
   <script src="index.js"></script>
   <script src="search-tracker-api.js"></script>
   <script>

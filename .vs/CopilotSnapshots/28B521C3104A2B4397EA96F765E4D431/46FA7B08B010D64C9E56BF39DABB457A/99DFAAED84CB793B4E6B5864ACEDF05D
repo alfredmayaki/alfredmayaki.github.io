@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -2133,7 +2133,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   <div class="search-controls" role="group" aria-label="Search controls">
     <!-- hidden file input triggered by the paperclip label -->
-    <input id="docUploadInput" class="sr-only" type="file" accept="txt,.py,.md,.js,.json,.csv" multiple />
+    <input id="docUploadInput" class="sr-only" type="file" accept=".txt,.md,.json,.csv,.log,.pdf,.docx,.jpeg,.png,.gif,.webp" multiple />
  
 <button id="docUploadBtn" class="attach-btn" type="button" aria-label="Attach file (Beta)" title="Attach file (Beta)">
   ➕
