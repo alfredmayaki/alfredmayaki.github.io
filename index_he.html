@@ -1,474 +1,65 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
-
 <head>
   <meta charset="UTF-8">
-  <title>אלפרד אנאטה בודורין מאיאקי — האוניברסיטה הפתוחה והאגודה המלכותית לכלכלה (עברית)</title>
+  <title>Alfred A. B. Mayaki — פרופיל עברי</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="העמוד האישי של אלפרד אנאטה בודורין מאיאקי המציג את הפרופיל, הניסיון, ההשכלה, הכישורים, הפרסומים והפרויקטים שלו.">
-  <meta name="keywords" content="אלפרד מאיאקי, כלכלן עבודה, מדיניות סחר, האוניברסיטה הפתוחה, חוקר, פרסומים, פרויקטים">
+  <meta name="description" content="אלפרד אנאטה בודורין מאיאקי - כלכלן עבודה, חוקר מדיניות ציבורית.">
+  <meta name="keywords" content="אלפרד מאיאקי, כלכלן עבודה, ניהול משאבי אנוש">
   <meta name="author" content="Alfred Anate Bodurin Mayaki">
-  <meta name="robots" content="index, follow">
-  <link rel="canonical" href="https://alfredmayaki.me/">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/fontawesome.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/brands.min.css">
-  <style>
-    /* HTML background with universe.png */
-    html {
-      background: url("/universe.png") center / cover no-repeat fixed;
-      background-color: #161616;
-      min-height: 100vh;
-    }
-
-    body {
-      font-family: 'Segoe UI', 'Arial', sans-serif;
-      background: rgba(22, 22, 22, 0.92);
-      color: #979797;
-      line-height: 1.6;
-      font-size: 16px;
-      text-decoration: none;
-      text-align: right;
-      max-width: 990px;
-      margin: 2em auto;
-      padding: 2em;
-      border: 3px solid #464242;
-      border-radius: 18px;
-      box-shadow: 0 0 16px #a0a0a0;
-      min-height: auto;
-    }
-
-    h1 {
-      color: #979797;
-      font-size: 2em;
-      line-height: 1.3;
-      word-wrap: break-word;
-    }
-
-    h2,
-    h3 {
-      color: #979797;
-    }
-
-    .section {
-      margin-bottom: 2em;
-    }
-
-    .contact-info,
-    .section-content {
-      margin-right: 1em;
-    }
-
-    .project,
-    .job {
-      margin-bottom: 1em;
-    }
-
-    .date {
-      float: left;
-      color: #1a1919;
-    }
-
-    a {
-      color: #fff;
-      text-decoration: none;
-    }
-
-    a:hover {
-      text-decoration: underline;
-    }
-
-    .header-flex {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 2em;
-      flex-direction: row-reverse;
-    }
-
-    .header-content {
-      flex: 1;
-      min-width: 0;
-    }
-
-    .profile-photo {
-      width: 250px;
-      height: 250px;
-      object-fit: cover;
-      border-radius: 50%;
-      border: 5px solid #838383;
-      flex-shrink: 0;
-      background: #222;
-    }
-
-    /* Mobile optimization - matching index_it.html */
-    @media (max-width: 600px) {
-    }
-
-    @media (max-width: 400px) {
-    }
-
-
-
-
-
-
-
-    /* Profile Links Dropdown */
-    .profile-links-wrapper {
-      margin: 1.5em 0 0 0;
-      max-width: 400px;
-    }
-
-    .profile-links-select {
-      width: 100%;
-      max-width: 400px;
-      padding: 10px 14px 10px 36px;
-
-      background-color: #2a2a2a;
-      color: #ffffff;
-      color-scheme: dark;
-
-      border: 2px solid #464242;
-      border-radius: 14px;
-
-      font-family: 'Segoe UI', 'Arial', sans-serif;
-      font-size: 0.9em;
-      cursor: pointer;
-
-      -webkit-appearance: none;
-      -moz-appearance: none;
-      appearance: none;
-
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23ffffff' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
-      background-repeat: no-repeat;
-      background-position: left 14px center;
-      background-size: 12px;
-
-      transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
-    }
-
-    .profile-links-select:hover {
-      border-color: #3d4ee9;
-      background-color: rgba(61, 78, 233, 0.1);
-    }
-
-    .profile-links-select:focus {
-      outline: none;
-      border-color: #3d4ee9;
-      box-shadow: 0 0 0 4px rgba(61, 78, 233, 0.2);
-    }
-
-    .profile-links-select option {
-      background-color: #2a2a2a;
-      color: #ffffff;
-      padding: 0.5em;
-    }
-
-    /* Contact info styling */
-    .contact-info p {
-      display: flex;
-      align-items: center;
-      gap: 0.5em;
-      margin: 0.5em 0;
-      flex-direction: row-reverse;
-      justify-content: flex-end;
-    }
-
-    /* Footer styling */
-    footer {
-      margin-top: 2em;
-      padding-top: 1em;
-      border-top: 1px solid #464242;
-    }
-
-    footer p {
-      margin: 0.5em 0;
-    }
-
-    /* Tablet breakpoint */
-    @media (max-width: 900px) {
-      body {
-        margin: 1.5em;
-        padding: 1.5em;
-      }
-
-      .header-flex {
-        gap: 1.5em;
-      }
-
-      .profile-photo {
-        width: 200px;
-        height: 200px;
-      }
-
-      h1 {
-        font-size: 1.8em;
-      }
-
-      .profile-links-wrapper {
-        max-width: 350px;
-      }
-
-      .profile-links-select {
-        max-width: 350px;
-      }
-    }
-
-    /* Mobile breakpoint */
-    @media (max-width: 768px) {
-      body {
-        margin: 1em;
-        padding: 1.5em;
-        font-size: 15px;
-      }
-
-      .header-flex {
-        flex-direction: column;
-        align-items: center;
-        gap: 1.5em;
-        text-align: center;
-      }
-
-      .header-content {
-        width: 100%;
-      }
-
-      .profile-photo {
-        width: 180px;
-        height: 180px;
-        order: -1;
-      }
-
-      h1 {
-        font-size: 1.6em;
-      }
-
-      .contact-info {
-        margin-right: 0;
-      }
-
-      .section-content {
-        margin-right: 0.5em;
-      }
-
-      footer {
-        text-align: center;
-      }
-
-      .profile-links-wrapper {
-        max-width: 100%;
-      }
-
-      .profile-links-select {
-        max-width: 100%;
-      }
-    }
-
-    /* Small mobile breakpoint */
-    @media (max-width: 600px) {
-      body {
-        margin: 0.5em;
-        padding: 1em;
-        font-size: 14px;
-        border-width: 2px;
-      }
-
-      .profile-photo {
-        width: 150px;
-        height: 150px;
-        border-width: 3px;
-      }
-
-      h1 {
-        font-size: 1.4em;
-      }
-
-      .profile-links-select {
-        font-size: 0.85em;
-        padding: 9px 12px 9px 32px;
-      }
-
-      .contact-info p {
-        font-size: 0.95em;
-      }
-    }
-
-    /* Extra small devices */
-    @media (max-width: 400px) {
-      body {
-        margin: 0.25em;
-        padding: 0.75em;
-        border-radius: 12px;
-      }
-
-      h1 {
-        font-size: 1.2em;
-      }
-
-      .profile-photo {
-        width: 120px;
-        height: 120px;
-      }
-
-      .profile-links-select {
-        font-size: 0.8em;
-        padding: 8px 10px 8px 30px;
-      }
-    }
-
-    /* Landscape mode for mobile devices */
-    @media (max-width: 900px) and (orientation: landscape) {
-      .header-flex {
-        flex-direction: row-reverse;
-        align-items: center;
-      }
-
-      .profile-photo {
-        width: 150px;
-        height: 150px;
-        order: 0;
-      }
-
-      body {
-        padding: 1em;
-      }
-    }
-
-    /* Touch-friendly adjustments */
-    @media (hover: none) and (pointer: coarse) {
-      .profile-links-select {
-        min-height: 44px;
-      }
-
-      a,
-      button {
-        min-height: 44px;
-        display: inline-flex;
-        align-items: center;
-      }
-
-      select {
-        min-height: 44px;
-      }
-    }
-
-    /* Prevent text selection on profile photo */
-    .profile-photo {
-      user-select: none;
-      -webkit-user-select: none;
-      -moz-user-select: none;
-    }
-
-    /* Smooth scrolling */
-    html {
-      scroll-behavior: smooth;
-    }
-  </style>
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-CNF86BSG95"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() {
-      dataLayer.push(arguments);
-    }
-    gtag('js', new Date());
-    gtag('config', 'G-CNF86BSG95');
-  </script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-CNF86BSG95');</script>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Noto+Sans+Hebrew:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    :root{--js-yellow:#f7df1e;--js-orange:#ff9800;--js-green:#4ec9b0;--js-blue:#569cd6;--js-purple:#c586c0;--js-red:#f44747;--js-cyan:#9cdcfe;--js-string:#ce9178;--bg-dark:#0d1117;--bg-card:#161b22;--bg-elevated:#21262d;--border-color:#30363d;--text-primary:#e6edf3;--text-secondary:#8b949e;--glass-bg:rgba(22,27,34,0.85);--glass-border:rgba(255,255,255,0.1)}*{box-sizing:border-box}body{font-family:'Noto Sans Hebrew','Inter','Segoe UI',sans-serif;background:var(--bg-dark);color:var(--text-primary);margin:0;padding:1rem;display:flex;align-items:center;justify-content:center;min-height:100vh;overflow-x:hidden}body::before{content:'';position:fixed;top:0;left:0;right:0;bottom:0;background:radial-gradient(ellipse at 20% 20%,rgba(247,223,30,0.08) 0%,transparent 50%),radial-gradient(ellipse at 80% 80%,rgba(86,156,214,0.08) 0%,transparent 50%),radial-gradient(ellipse at 50% 50%,rgba(197,134,192,0.05) 0%,transparent 60%);z-index:-2;animation:gradientShift 15s ease-in-out infinite alternate}@keyframes gradientShift{0%{transform:scale(1) rotate(0deg)}100%{transform:scale(1.1) rotate(3deg)}}.phone-frame{position:relative;width:100%;max-width:420px;background:linear-gradient(145deg,#1a1a1a 0%,#0a0a0a 100%);border-radius:45px;padding:12px;box-shadow:0 0 0 2px #2a2a2a,0 25px 50px -12px rgba(0,0,0,0.8),0 0 100px rgba(247,223,30,0.1),inset 0 1px 0 rgba(255,255,255,0.1);animation:phoneFloat 6s ease-in-out infinite}@keyframes phoneFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}.phone-screen{background:var(--bg-card);border-radius:35px;overflow:hidden;position:relative}.dynamic-island{position:absolute;top:12px;left:50%;transform:translateX(-50%);width:120px;height:32px;background:#000;border-radius:20px;z-index:100;display:flex;align-items:center;justify-content:center;gap:8px;transition:all 0.3s cubic-bezier(0.4,0,0.2,1);cursor:pointer}.dynamic-island:hover{width:160px;background:linear-gradient(90deg,#000 0%,#1a1a1a 100%)}.dynamic-island .camera{width:10px;height:10px;background:radial-gradient(circle,#1a3a5c 0%,#0a1a2c 100%);border-radius:50%;border:2px solid #2a2a2a}.dynamic-island .indicator{width:6px;height:6px;background:var(--js-green);border-radius:50%;animation:pulse 2s infinite}@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.5;transform:scale(0.8)}}.status-bar{display:flex;justify-content:space-between;align-items:center;padding:14px 24px 8px;font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:600;color:var(--text-primary);direction:ltr}.status-bar .time{color:var(--js-yellow)}.status-bar .icons{display:flex;gap:6px;align-items:center}.status-bar .icons span{font-size:14px}.battery{display:flex;align-items:center;gap:2px}.battery-body{width:22px;height:10px;border:1.5px solid var(--js-green);border-radius:3px;padding:1px}.battery-level{height:100%;width:80%;background:var(--js-green);border-radius:1px}.battery-tip{width:2px;height:5px;background:var(--js-green);border-radius:0 1px 1px 0}.profile-container{text-align:center;padding:50px 20px 24px;min-height:600px;display:flex;flex-direction:column;background:linear-gradient(180deg,var(--bg-card) 0%,var(--bg-dark) 100%)}.code-comment{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--js-green);opacity:0.7;margin-bottom:4px;letter-spacing:0.5px;direction:ltr}.profile-photo{width:100px;height:100px;border-radius:24px;border:3px solid var(--js-yellow);margin:0 auto 1rem;object-fit:cover;box-shadow:0 0 20px rgba(247,223,30,0.3),0 8px 32px rgba(0,0,0,0.4);transition:transform 0.3s ease,box-shadow 0.3s ease}.profile-photo:hover{transform:scale(1.05) rotate(-2deg);box-shadow:0 0 30px rgba(247,223,30,0.5),0 12px 40px rgba(0,0,0,0.5)}h1{font-family:'JetBrains Mono',monospace;color:var(--text-primary);font-size:1.1rem;font-weight:700;margin:0 0 0.5rem 0;line-height:1.3;direction:ltr}h1 .keyword{color:var(--js-purple)}h1 .function{color:var(--js-yellow)}h1 .bracket{color:var(--js-cyan)}.verified-badge{display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;background:var(--js-blue);border-radius:50%;margin-right:6px;vertical-align:middle;font-size:10px;color:#fff}.tagline{font-family:'Noto Sans Hebrew','JetBrains Mono',monospace;font-size:0.7rem;color:var(--js-string);margin:0.3rem 0;opacity:0.9}.tagline::after{content:' //';color:var(--js-green)}.section-label{font-family:'JetBrains Mono',monospace;font-size:0.65rem;color:var(--js-blue);margin:1.5rem 0 0.75rem;text-transform:uppercase;letter-spacing:1px;direction:ltr}.section-label::before{content:'const ';color:var(--js-purple)}.section-label::after{content:' = [';color:var(--js-cyan)}.links-grid{display:flex;flex-direction:column;gap:8px;padding:0 12px;margin:0 auto;width:100%;max-width:320px}.link-btn{display:flex;align-items:center;gap:10px;background:var(--bg-elevated);border:1px solid var(--border-color);border-radius:12px;color:var(--text-primary);text-decoration:none;font-family:'Noto Sans Hebrew','Inter',sans-serif;font-size:0.75rem;font-weight:500;padding:12px 16px;transition:all 0.2s cubic-bezier(0.4,0,0.2,1);cursor:pointer;position:relative;overflow:hidden;flex-direction:row-reverse}.link-btn::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:linear-gradient(135deg,var(--js-yellow) 0%,var(--js-orange) 100%);opacity:0;transition:opacity 0.2s ease;border-radius:11px}.link-btn:hover::before{opacity:1}.link-btn:hover{transform:translateX(-4px);border-color:var(--js-yellow);box-shadow:0 4px 12px rgba(247,223,30,0.2)}.link-btn:hover span{color:#000}.link-btn i,.link-btn .icon{font-size:1rem;color:var(--js-cyan);position:relative;z-index:1;width:20px;text-align:center}.link-btn span{position:relative;z-index:1;transition:color 0.2s ease}.grid-close{font-family:'JetBrains Mono',monospace;font-size:0.65rem;color:var(--js-cyan);margin-top:0.75rem;direction:ltr}.contact-section{margin-top:1.5rem;padding:0 12px}.contact-item{display:flex;align-items:center;gap:8px;font-family:'JetBrains Mono',monospace;font-size:0.65rem;color:var(--text-secondary);margin:0.5rem 0;justify-content:center;flex-direction:row-reverse}.contact-item i{color:var(--js-cyan);width:16px}.contact-item a{color:var(--js-blue);text-decoration:none}.contact-item a:hover{color:var(--js-yellow)}.terminal-prompt{font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:var(--text-secondary);margin-top:1rem;direction:ltr}.terminal-prompt::before{content:'$ ';color:var(--js-green)}.cursor{display:inline-block;width:8px;height:14px;background:var(--js-yellow);margin-left:2px;animation:blink 1s step-end infinite;vertical-align:middle}@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}.app-footer{margin-top:auto;padding-top:1rem;border-top:1px solid var(--border-color);font-family:'Noto Sans Hebrew','JetBrains Mono',monospace;font-size:0.6rem;color:var(--text-secondary)}.app-footer p{margin:0.4rem 0}.app-footer a{color:var(--js-blue);text-decoration:none;transition:color 0.2s ease}.app-footer a:hover{color:var(--js-yellow)}.home-indicator{width:134px;height:5px;background:var(--text-secondary);border-radius:3px;margin:12px auto 8px;opacity:0.5}@media (max-width:480px){body{padding:0.5rem}.phone-frame{border-radius:0;padding:0;box-shadow:none;max-width:100%}.phone-screen{border-radius:0}.dynamic-island{width:100px;height:28px;top:8px}.profile-container{padding:45px 16px 20px;min-height:auto}}@media (min-width:768px){.phone-frame{max-width:440px}}@keyframes fadeIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}.phone-frame{animation:fadeIn 0.6s ease-out,phoneFloat 6s ease-in-out 0.6s infinite}@media (hover:none) and (pointer:coarse){.link-btn:active{transform:scale(0.98);transition:transform 0.1s ease}}
+  </style>
 </head>
-
 <body>
-
-  <!-- Particles.js background layer -->
   <div id="particles-js" style="position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:-1;"></div>
-
-  <audio id="typing-audio" src="typing.mp3" autoplay loop preload="auto"></audio>
-
-  <header>
-    <div class="header-flex">
-      <div class="header-content">
-        <h1>
-          אלפרד אנאטה בודורין מאיאקי
-          <span title="מאומת" style="display:inline-block;vertical-align:middle;margin-right:6px;">
-            <span style="display:inline-block;width:1.1em;height:1.1em;background:#3d4ee9;border-radius:50%;text-align:center;line-height:1.1em;color:#fff;font-size:1em;">
-              &#10003;
-            </span>
-          </span>
-        </h1>
-        <div style="margin: 1em 0;">
-          <span id="typed-text"></span>
-        </div>
-        
-        <!-- Profile Links Dropdown -->
-        <div class="profile-links-wrapper">
-          <select id="profileLinks" class="profile-links-select" aria-label="הפרופילים האקדמיים והמקצועיים שלי">
-            <option value="">🔗 קישורים מהירים לפרופילים שלי...</option>
-            <option value="https://sites.google.com/view/alfredmayaki/">📚 עמוד אקדמי של Google</option>
-            <option value="https://scholar.google.com/citations?user=QK1gWHoAAAAJ&hl=en">🎓 פרופיל Google Scholar</option>
-            <option value="https://orcid.org/0009-0006-3363-9603">🆔 פרופיל מחקר ORCID</option>
-            <option value="https://learn1.open.ac.uk/mod/oublog/view.php?u=zt476627">✍️ הבלוג שלי באוניברסיטה הפתוחה</option>
-            <option value="https://www.qeios.com/profile/102543">💻 פרופיל Qeios Research</option>
-          </select>
-        </div>
+  <div class="phone-frame">
+    <div class="phone-screen">
+      <div class="dynamic-island"><div class="camera"></div><div class="indicator"></div></div>
+      <div class="status-bar">
+        <span class="time" id="status-time">00:00</span>
+        <div class="icons"><span>📶</span><span>📡</span><div class="battery"><div class="battery-body"><div class="battery-level"></div></div><div class="battery-tip"></div></div></div>
       </div>
-      
-      <img src="s200_alfred.mayaki.jpg" alt="אלפרד מאיאקי" class="profile-photo">
+      <div class="profile-container">
+        <p class="code-comment">/* פרופיל מפתח */</p>
+        <img src="s200_alfred.mayaki.jpg" alt="Alfred Mayaki" class="profile-photo">
+        <h1><span class="keyword">const</span> <span class="function">Alfred</span> <span class="bracket">=</span> <span class="bracket">{</span><span class="verified-badge">✓</span></h1>
+        <p class="tagline">בית הספר לעסקים של האוניברסיטה הפתוחה</p>
+        <p class="tagline">האגודה הכלכלית המלכותית</p>
+        <p class="section-label">קישורים</p>
+        <div class="links-grid">
+          <a href="https://sites.google.com/view/alfredmayaki/" class="link-btn"><i class="fas fa-graduation-cap"></i><span>המסע האקדמי שלי</span></a>
+          <a href="https://scholar.google.com/citations?user=QK1gWHoAAAAJ&hl=en" class="link-btn"><i class="fas fa-book"></i><span>פרופיל Google Scholar</span></a>
+          <a href="https://orcid.org/0009-0006-3363-9603" class="link-btn"><i class="fab fa-orcid"></i><span>פרופיל מחקר ORCID</span></a>
+          <a href="https://www.researchgate.net/profile/alfred-mayaki" class="link-btn"><i class="fab fa-researchgate"></i><span>ResearchGate</span></a>
+          <a href="https://www.linkedin.com/in/alfredmayaki/" class="link-btn"><i class="fab fa-linkedin"></i><span>LinkedIn</span></a>
+        </div>
+        <p class="grid-close">];</p>
+        <p class="section-label">יצירת קשר</p>
+        <div class="contact-section">
+          <p class="contact-item"><i class="fas fa-envelope"></i><a href="mailto:alfred.mayaki@ou.ac.uk">alfred.mayaki@ou.ac.uk</a></p>
+          <p class="contact-item"><i class="fas fa-map-marker-alt"></i><span>לונדון, בריטניה</span></p>
+        </div>
+        <p class="grid-close">};</p>
+        <p class="terminal-prompt">profile.show()<span class="cursor"></span></p>
+        <footer class="app-footer">
+          <p>&copy; 2026 Alfred Mayaki <span style="color:var(--js-green);">// כל הזכויות שמורות</span></p>
+          <p><a href="index.html">🏠 בית</a> | <a href="contact.html">דווח על באג</a></p>
+          <p>עודכן לאחרונה: <span id="last-updated"></span></p>
+        </footer>
+      </div>
+      <div class="home-indicator"></div>
     </div>
-  </header>
-
-  <div class="contact-info">
-    <div class="section">
-    </div>
-    <p><i class="fas fa-map-marker-alt"></i> לונדון, אנגליה (בריטניה)</p>
-    <p><i class="fas fa-envelope"></i> <a href="mailto:alfred.mayaki@ou.ac.uk">alfred.mayaki@ou.ac.uk</a></p>
   </div>
-
-  <footer>
-    <p><i class="fas fa-phone"></i> טלפון: <a href="tel:+447940916731">+44 7940 916 731</a></p>
-    <p>&copy; 2026 אלפרד אנאטה בודורין מאיאקי. כל הזכויות שמורות.</p>
-    <a href="https://www.researchgate.net/profile/alfred-mayaki">ResearchGate</a> |
-    <a href="https://papers.ssrn.com/sol3/cf_dev/AbsByAuth.cfm?per_id=6803126">SSRN</a> |
-    <a href="https://www.linkedin.com/in/alfredmayaki/">LinkedIn</a>
-    <p>עודכן לאחרונה: <a id="repo-link" href="#" target="_blank" rel="noopener noreferrer"><span id="last-updated"></span></a>
-    </p>
-  </footer>
-
-  <script>
-    document.getElementById('last-updated').textContent =
-      new Date(document.lastModified).toLocaleDateString('he-IL');
-
-    (function () {
-      const owner = 'alfredmayaki';
-      const repo = `${owner}.github.io`;
-      const repoUrl = `https://github.com/${owner}/${repo}/tree/main`;
-
-      const repoLink = document.getElementById('repo-link');
-      if (repoLink) repoLink.href = repoUrl;
-    })();
-
-    // Handle profile links dropdown
-    const profileLinksSelect = document.getElementById('profileLinks');
-    if (profileLinksSelect) {
-      profileLinksSelect.addEventListener('change', function() {
-        const url = this.value;
-        if (url) {
-          // Try window.open first, fall back to location change if blocked
-          const newWindow = window.open(url, '_blank', 'noopener,noreferrer');
-          if (!newWindow || newWindow.closed || typeof newWindow.closed === 'undefined') {
-            window.location.href = url;
-          }
-          // Reset to placeholder
-          this.value = '';
-        }
-      });
-    }
-  </script>
-
-  <!-- Particles.js scripts -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
+  <script>particlesJS.load('particles-js','particles.json',function(){console.log('Particles.js loaded');});</script>
   <script>
-    particlesJS.load('particles-js', 'particles.json', function () {
-      console.log('callback - particles.js config loaded');
-    });
+    function updateTime(){const now=new Date();const hours=String(now.getHours()).padStart(2,'0');const minutes=String(now.getMinutes()).padStart(2,'0');document.getElementById('status-time').textContent=hours+':'+minutes;}updateTime();setInterval(updateTime,1000);
+    document.getElementById('last-updated').textContent=new Date(document.lastModified).toLocaleDateString('he-IL');
   </script>
-  </body>
+</body>
 </html>
