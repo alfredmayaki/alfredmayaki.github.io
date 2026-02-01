@@ -542,116 +542,80 @@
 <body>
 
   <div id="particles-js" style="position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:-1;"></div>
-
-  <!-- Phone Frame Container -->
-  <div class="phone-frame">
-    <div class="phone-screen">
-
-      <!-- Dynamic Island -->
-      <div class="dynamic-island">
-        <div class="camera"></div>
-        <div class="indicator"></div>
-      </div>
-
-      <!-- Status Bar -->
-      <div class="status-bar">
-        <span class="time" id="status-time">00:00</span>
-        <div class="icons">
-          <span>📶</span>
-          <span>📡</span>
-          <div class="battery">
-            <div class="battery-body">
-              <div class="battery-level"></div>
-            </div>
-            <div class="battery-tip"></div>
-          </div>
-        </div>
-      </div>
-
-      <!-- App Content -->
-      <div class="landing-container">
-        <p class="code-comment">/* Developer Profile */</p>
-        <img src="s200_alfred.mayaki.jpg" alt="Alfred Mayaki" class="profile-photo">
-
-        <h1>
-          <span class="keyword">const</span> <span class="function">Alfred</span> <span class="bracket">=</span> <span class="bracket">{</span>
-          <span class="verified-badge">✓</span>
-        </h1>
-
-        <p class="tagline">Open University Business School</p>
-        <p class="tagline">Royal Economic Society</p>
-
-        <p class="section-label">languages</p>
-
-        <div class="language-grid">
-          <a href="index_en.html" class="lang-btn" data-lang="en">
-            <span class="flag">🇬🇧</span>
-            <span>English</span>
-          </a>
-          <a href="index_fr.html" class="lang-btn" data-lang="fr">
-            <span class="flag">🇫🇷</span>
-            <span>Français</span>
-          </a>
-          <a href="index_de.html" class="lang-btn" data-lang="de">
-            <span class="flag">🇩🇪</span>
-            <span>Deutsch</span>
-          </a>
-          <a href="index_es.html" class="lang-btn" data-lang="es">
-            <span class="flag">🇪🇸</span>
-            <span>Español</span>
-          </a>
-          <a href="index_he.html" class="lang-btn" data-lang="he">
-            <span class="flag">🇮🇱</span>
-            <span>עברית</span>
-          </a>
-          <a href="index_it.html" class="lang-btn" data-lang="it">
-            <span class="flag">🇮🇹</span>
-            <span>Italiano</span>
-          </a>
-          <a href="index_jp.html" class="lang-btn" data-lang="ja">
-            <span class="flag">🇯🇵</span>
-            <span>日本語</span>
-          </a>
-          <a href="index_ksa.html" class="lang-btn" data-lang="ar">
-            <span class="flag">🇸🇦</span>
-            <span>العربية</span>
-          </a>
-          <a href="index_nl.html" class="lang-btn" data-lang="nl">
-            <span class="flag">🇳🇱</span>
-            <span>Nederlands</span>
-          </a>
-          <a href="index_ru.html" class="lang-btn" data-lang="ru">
-            <span class="flag">🇷🇺</span>
-            <span>Русский</span>
-          </a>
-          <a href="index_pt.html" class="lang-btn" data-lang="pt">
-            <span class="flag">🇵🇹</span>
-            <span>Português</span>
-          </a>
-          <a href="index_tr.html" class="lang-btn" data-lang="tr">
-            <span class="flag">🇹🇷</span>
-            <span>Türkçe</span>
-          </a>
-        </div>
-
-        <p class="grid-close">];</p>
-
-        <p class="terminal-prompt">select_language()<span class="cursor"></span></p>
-
-        <footer class="app-footer">
-          <p>&copy; 2026 Alfred Mayaki <span style="color: var(--js-green);">// All rights reserved</span></p>
-          <p>
-            <a href="https://www.researchgate.net/profile/alfred-mayaki">ResearchGate</a> |
-            <a href="https://www.linkedin.com/in/alfredmayaki/">LinkedIn</a> |
-            <a href="contact.html">Report Bug</a>
-          </p>
-        </footer>
-      </div>
-
-      <!-- Home Indicator -->
-      <div class="home-indicator"></div>
-
+  
+  <div class="landing-container">
+    <img src="s200_alfred.mayaki.jpg" alt="Alfred Mayaki" class="profile-photo">
+    <h1>
+      Alfred Anate Bodurin Mayaki
+      <span title="Verified" style="display:inline-block;vertical-align:middle;margin-left:6px;">
+        <span style="display:inline-block;width:1.1em;height:1.1em;background:#3d4ee9;border-radius:50%;text-align:center;line-height:1.1em;color:#fff;font-size:1em;">
+          &#10003;
+        </span>
+      </span>
+    </h1>
+    <br><b><p class="tagline">Open University Business School, The Open University</p> 
+    <p class="tagline">Royal Economic Society</p></b>
+    <br><p>Choose Site Language</p>
+    
+    <div class="language-grid">
+      <a href="index_en.html" class="lang-btn" data-lang="en">
+        <span class="flag">🇬🇧</span>
+        <span>English</span>
+      </a>
+      <a href="index_fr.html" class="lang-btn" data-lang="fr">
+        <span class="flag">🇫🇷</span>
+        <span>Français</span>
+      </a>
+      <a href="index_de.html" class="lang-btn" data-lang="de">
+        <span class="flag">🇩🇪</span>
+        <span>Deutsch</span>
+      </a>
+      <a href="index_es.html" class="lang-btn" data-lang="es">
+        <span class="flag">🇪🇸</span>
+        <span>Español</span>
+      </a>
+      <a href="index_he.html" class="lang-btn" data-lang="he">
+        <span class="flag">🇮🇱</span>
+        <span>עברית</span>
+      </a>
+      <a href="index_it.html" class="lang-btn" data-lang="it">
+        <span class="flag">🇮🇹</span>
+        <span>Italiano</span>
+      </a>
+      <a href="index_jp.html" class="lang-btn" data-lang="ja">
+        <span class="flag">🇯🇵</span>
+        <span>日本語</span>
+      </a>
+      <a href="index_ksa.html" class="lang-btn" data-lang="ar">
+        <span class="flag">🇸🇦</span>
+        <span>العربية</span>
+      </a>
+      <a href="index_nl.html" class="lang-btn" data-lang="nl">
+        <span class="flag">🇳🇱</span>
+        <span>Nederlands</span>
+      </a>
+      <a href="index_ru.html" class="lang-btn" data-lang="ru">
+        <span class="flag">🇷🇺</span>
+        <span>Русский</span>
+      </a>
+      <a href="index_pt.html" class="lang-btn" data-lang="pt">
+        <span class="flag">🇵🇹</span>
+        <span>Português</span>
+      </a>
+      <a href="index_tr.html" class="lang-btn" data-lang="tr">
+        <span class="flag">🇹🇷</span>
+        <span>Türkçe</span>
+      </a>
     </div>
+
+    <footer style="margin-top: 2em; padding-top: 1em; border-top: 1px solid #464242; text-align: center;">
+      <p style="margin: 0.5em 0;">&copy; 2026 Alfred Anate Bodurin Mayaki. All rights reserved.</p>
+      <p style="margin: 0.5em 0;">
+        <a href="https://www.researchgate.net/profile/alfred-mayaki" style="color: #fff;">ResearchGate</a> |
+        <a href="https://www.linkedin.com/in/alfredmayaki/" style="color: #fff;">LinkedIn</a> |
+        <a href="contact.html" style="color: #fff;">Report a Bug</a>
+      </p>
+    </footer>
   </div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
@@ -660,39 +624,29 @@
       console.log('Particles.js loaded');
     });
   </script>
-
+  
   <script>
-    // Update status bar time
-    function updateTime() {
-      const now = new Date();
-      const hours = String(now.getHours()).padStart(2, '0');
-      const minutes = String(now.getMinutes()).padStart(2, '0');
-      document.getElementById('status-time').textContent = `${hours}:${minutes}`;
-    }
-    updateTime();
-    setInterval(updateTime, 1000);
-
     // Auto-redirect based on geolocation (only on first visit)
     document.addEventListener('DOMContentLoaded', function() {
-
+      
       // Check if user has already been redirected or manually selected
       if (sessionStorage.getItem('lang_redirected')) {
         return;
       }
-
+      
       // Country to language mapping
       const countryToLanguage = {
         // English-speaking countries
         'GB': 'index_en.html', 'US': 'index_en.html', 'CA': 'index_en.html', 
         'AU': 'index_en.html', 'NZ': 'index_en.html', 'IE': 'index_en.html',
-
+        
         // French-speaking countries
         'FR': 'index_fr.html', 'BE': 'index_fr.html', 'CH': 'index_fr.html',
         'LU': 'index_fr.html', 'MC': 'index_fr.html',
-
+        
         // German-speaking countries
         'DE': 'index_de.html', 'AT': 'index_de.html',
-
+        
         // Spanish-speaking countries
         'ES': 'index_es.html', 'MX': 'index_es.html', 'AR': 'index_es.html',
         'CO': 'index_es.html', 'CL': 'index_es.html', 'PE': 'index_es.html',
@@ -701,48 +655,48 @@
         'HN': 'index_es.html', 'PY': 'index_es.html', 'SV': 'index_es.html',
         'NI': 'index_es.html', 'CR': 'index_es.html', 'PA': 'index_es.html',
         'UY': 'index_es.html',
-
+        
         // Hebrew
         'IL': 'index_he.html',
-
+        
         // Italian
         'IT': 'index_it.html',
-
+        
         // Japanese
         'JP': 'index_jp.html',
-
+        
         // Arabic-speaking countries
         'SA': 'index_ksa.html', 'AE': 'index_ksa.html', 'EG': 'index_ksa.html',
         'IQ': 'index_ksa.html', 'JO': 'index_ksa.html', 'KW': 'index_ksa.html',
         'LB': 'index_ksa.html', 'OM': 'index_ksa.html', 'QA': 'index_ksa.html',
         'SY': 'index_ksa.html', 'YE': 'index_ksa.html', 'BH': 'index_ksa.html',
-
+        
         // Dutch
         'NL': 'index_nl.html',
-
+        
         // Russian-speaking countries
         'RU': 'index_ru.html', 'BY': 'index_ru.html', 'KZ': 'index_ru.html',
         'UA': 'index_ru.html',
-
+        
         // Portuguese-speaking countries
         'PT': 'index_pt.html', 'BR': 'index_pt.html', 'AO': 'index_pt.html',
         'MZ': 'index_pt.html',
-
+        
         // Turkish
         'TR': 'index_tr.html'
       };
-
+      
       // Attempt geolocation redirect
       fetch('https://ipapi.co/json/')
         .then(response => response.json())
         .then(data => {
           const countryCode = (data.country_code || '').toUpperCase();
           const suggestedPage = countryToLanguage[countryCode];
-
+          
           if (suggestedPage && suggestedPage !== 'index_en.html') {
             const countryName = data.country_name || countryCode;
             const message = `We detected you're browsing from ${countryName}. Would you like to view the site in your local language?`;
-
+            
             if (confirm(message)) {
               sessionStorage.setItem('lang_redirected', '1');
               window.location.href = suggestedPage;
@@ -757,7 +711,7 @@
           // Silently fail - user can still manually select language
         });
     });
-
+    
     // Save language preference when user manually selects
     document.querySelectorAll('.lang-btn').forEach(btn => {
       btn.addEventListener('click', function() {
