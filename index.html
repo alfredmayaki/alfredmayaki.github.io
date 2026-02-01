@@ -2287,23 +2287,21 @@ document.addEventListener('DOMContentLoaded', function () {
           const isNarrow = (typeof window !== 'undefined' && window.matchMedia) ? window.matchMedia('(max-width: 420px)').matches : (window.innerWidth <= 420);
           // Content motivation for user prompts in the form of placeholder text and typedstrings
           const typedStrings = isNarrow ? [
-            'Art online short courses',
-            'What is quantum computing?',
-            'Mindfulness benefits',
-            'Improve emotional intelligence',
-            'Remote working tips',
-            'Future of AI?',
-            'How does blockchain work?'
+            'Why do women wear the Hijab?',
+            'Cultural identity and the Hijab?',
+            'Misconceptions about the Hijab?',
+            'Perception of the Hijab over time?',
+            'Role of the Hijab in societies?',
+            'Significance of the Hijab in Islam?'
 
             // Shorter prompts for narrow viewports
           ] : [
-            'Short course on the History of Art',
-            'Explain Quantum Computing in simple terms',
-            'Benefits of mindfulness meditation',
-            'How to improve emotional intelligence',
-            'Tips for effective remote working',
-            'What is the future of artificial intelligence?',
-            'How does blockchain technology work?'
+            'What is the Hijab and why do women wear it?',
+            'How does the Hijab relate to cultural identity?',
+            'What are common misconceptions about the Hijab?',
+            'How has the perception of the Hijab changed over time?',
+            'What role does the Hijab play in different societies?',
+            'Can you explain the significance of the Hijab in Islam?'
           ];
 
           // Use the selector string so Typed internally queries the element and sets the placeholder attr reliably
