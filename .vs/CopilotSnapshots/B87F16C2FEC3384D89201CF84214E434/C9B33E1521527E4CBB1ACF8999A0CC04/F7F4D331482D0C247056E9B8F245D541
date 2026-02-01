@@ -1,0 +1,294 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Альфред Анате Бодурин Майяки — Открытый университет и Королевское экономическое общество (Русский)</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Персональная страница Альфреда Анате Бодурина Майяки с профилем, опытом, образованием, навыками, публикациями и проектами.">
+  <meta name="keywords" content="Альфред Майяки, Экономист труда, Торговая политика, Открытый университет, Исследователь, Публикации, Проекты">
+  <meta name="author" content="Alfred Anate Bodurin Mayaki">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://alfredmayaki.me/">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/fontawesome.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/brands.min.css">
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #161616;
+      color: #979797;
+      line-height: 1.6;
+      font-size: 16px;
+      text-decoration: none;
+      text-align: left;
+      max-width: 990px;
+      margin: auto;
+      padding: 2em;
+      border: 3px solid #464242;
+      border-radius: 18px; 
+      box-shadow: 0 0 16px #a0a0a0;
+
+    }
+
+    h1, h2, h3 {
+      color: #979797;
+    }
+    .section {
+      margin-bottom: 2em;
+    }
+    .contact-info, .section-content {
+      margin-left: 1em;
+    }
+    .project, .job {
+      margin-bottom: 1em;
+    }
+    .date {
+      float: right;
+      color: #07c520;
+    }
+    a {
+      color: #fff;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    html {
+  background: #161616;
+}
+
+body {
+  background: #161616;
+  margin: auto;
+  padding: 2em;
+}
+  
+        
+
+    
+
+    
+    .back-home-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 10px 20px;
+      margin-bottom: 1.5em;
+      min-height: 44px;
+
+      background: #3d4ee9;
+      color: #ffffff !important;
+      border: 2px solid #3d4ee9;
+      border-radius: 999px;
+
+      font-family: 'Segoe UI', sans-serif;
+      font-size: 0.9em;
+      font-weight: 600;
+      text-decoration: none !important;
+      white-space: nowrap;
+
+      transition: all 0.2s ease;
+      cursor: pointer;
+    }
+
+    .back-home-btn:hover {
+      background: #5563f0;
+      border-color: #5563f0;
+      box-shadow: 0 4px 12px rgba(61, 78, 233, 0.4);
+      transform: translateY(-2px);
+      text-decoration: none !important;
+      color: #ffffff !important;
+    }
+
+    .back-home-btn:active {
+      transform: translateY(0);
+      box-shadow: 0 2px 8px rgba(61, 78, 233, 0.3);
+    }
+
+    
+  </style>
+  </head>
+  <head>
+  <style>
+    .header-flex {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .profile-photo {
+      width: 250px;
+      height: 250px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 5px solid #838383;
+      margin-left: 32px;
+      background: #222;
+    }
+
+    /* Back to Home Button */
+    .back-home-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 8px 16px;
+      margin-bottom: 1.5em;
+      min-height: 36px;
+
+      background: #3d4ee9;
+      color: #ffffff !important;
+      border: 2px solid #3d4ee9;
+      border-radius: 999px;
+
+      font-family: 'Segoe UI', sans-serif;
+      font-size: 0.85em;
+      font-weight: 600;
+      text-decoration: none !important;
+      white-space: nowrap;
+
+      transition: all 0.2s ease;
+      cursor: pointer;
+    }
+
+    .back-home-btn:hover {
+      background: #5563f0;
+      border-color: #5563f0;
+      box-shadow: 0 4px 12px rgba(61, 78, 233, 0.4);
+      transform: translateY(-2px);
+      text-decoration: none !important;
+      color: #ffffff !important;
+    }
+
+    .back-home-btn:active {
+      transform: translateY(0);
+      box-shadow: 0 2px 8px rgba(61, 78, 233, 0.3);
+    }
+
+    .back-home-btn i {
+      font-size: 0.85em;
+    }
+
+    /* Button container alignment */
+    .btn-container {
+      display: flex;
+      justify-content: flex-start;
+      margin-bottom: 1.3em;
+    }
+
+    /* Mobile optimization - matching index_it.html */
+    @media (max-width: 600px) {
+      .back-home-btn {
+        padding: 7px 14px;
+        font-size: 0.8em;
+        min-height: 38px;
+      }
+    }
+
+    @media (max-width: 400px) {
+      .back-home-btn {
+        padding: 6px 12px;
+        font-size: 0.75em;
+        min-height: 36px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .header-flex {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+<head>
+  <style>
+    .header-flex {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .profile-photo {
+      width: 200px;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 5px solid #838383;
+      margin-left: 32px;
+      background: #222;
+    }
+    @media (max-width: 600px) {
+      .header-flex {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .profile-photo {
+        margin: 16px 0 0 0;
+      }
+    }
+  </style>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-CNF86BSG95"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-CNF86BSG95');
+</script>
+</head>
+<body>
+
+    <!-- Back to Home Button -->
+  <div class="btn-container">
+    <a href="index.html" class="back-home-btn">
+      <i class="fas fa-arrow-left"></i>
+      Назад на главную
+    </a>
+  </div>
+<audio id="typing-audio" src="typing.mp3" autoplay loop preload="auto"></audio>
+  <header>
+    <div class="header-flex">
+      <div>
+        <h1>Альфред Анате Бодурин Майяки
+          <span title="Verified" style="display:inline-block;vertical-align:middle;margin-left:6px;">
+            <span style="display:inline-block;width:1.1em;height:1.1em;background:#3d4ee9;border-radius:50%;text-align:center;line-height:1.1em;color:#fff;font-size:1em;">
+              &#10003;
+            </span>
+          </span>
+        </h1>
+        <span id="typed-text"></span>
+        <strong><p>🔗 <a href="https://sites.google.com/view/alfredmayaki/"><b>Мой академический путь</b></a></p></strong>
+        <strong><p>🔗 <a href="https://scholar.google.com/citations?user=QK1gWHoAAAAJ&hl=en">Профиль в Google Scholar</a></p></strong>
+        <strong><p>🔗 <a href="https://orcid.org/0009-0006-3363-9603">Профиль исследований ORCID</a></p></strong>
+        <strong><p>🔗 <a href="https://learn1.open.ac.uk/mod/oublog/view.php?u=zt476627">Мой блог Open University</a></p></strong>
+        </div>
+      <img src="s200_alfred.mayaki.jpg" alt="Alfred Mayaki" class="profile-photo">
+    </div>
+    <p><i class="fas fa-envelope"></i> <a href="mailto:alfred.mayaki@ou.ac.uk">alfred.mayaki@ou.ac.uk</p>
+    <p><i class="fas fa-map-marker-alt"></i> Лондон, Великобритания</p>
+    <h2>Профиль</h2>
+  </div>
+<hr>
+  <footer>
+    <p>Контакт: <a href="mailto:alfred.mayaki@icloud.com">по электронной почте</a>
+      <p>Телефон: <a href="tel:+447940916731">+44 7940 916731</a></p>
+    <p>&copy; 2026 Альфред Анате Бодурин Майяки. Все права защищены.</p>
+    <p>Сделано с любовью</p>
+    <a href="https://www.researchgate.net/profile/alfred-mayaki">ResearchGate</a> |
+    <a href="https://papers.ssrn.com/sol3/cf_dev/AbsByAuth.cfm?per_id=6803126">SSRN</a> |
+    <a href="https://www.linkedin.com/in/alfredmayaki/">LinkedIn</a>
+    <p>Последнее обновление: <span id="last-updated"></span></p>
+  </footer>
+  <script>
+    document.getElementById('last-updated').textContent = new Date(document.lastModified).toLocaleDateString('ru-RU');
+  </script>
+<div id="particles-js" style="position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:-1;"></div>
+<script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+<script>
+  particlesJS.load('particles-js', 'particles.json', function() {
+    console.log('callback - particles.js config loaded');
+  });
+</script>
+<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+</body>
+</html>
