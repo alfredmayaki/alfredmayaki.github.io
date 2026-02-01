@@ -508,14 +508,11 @@
       profileLinksSelect.addEventListener('change', function() {
         const url = this.value;
         if (url) {
-          // Use programmatic anchor click for better mobile compatibility
-          const a = document.createElement('a');
-          a.href = url;
-          a.target = '_blank';
-          a.rel = 'noopener noreferrer';
-          document.body.appendChild(a);
-          a.click();
-          document.body.removeChild(a);
+          // Try window.open first, fall back to location change if blocked
+          const newWindow = window.open(url, '_blank', 'noopener,noreferrer');
+          if (!newWindow || newWindow.closed || typeof newWindow.closed === 'undefined') {
+            window.location.href = url;
+          }
           // Reset to placeholder
           this.value = '';
         }
