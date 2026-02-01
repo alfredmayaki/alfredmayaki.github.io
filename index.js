@@ -51,7 +51,7 @@
     requestTimeoutMs: 30000,
     maxHistoryTurns: 10,
     maxFileSize: 1 * 1024 * 1024, // Reduced to 1MB
-    welcomeMessage: '👋🏿 Hello — I\'m your virtual coding assistant (Claude Opus 4.5). Ask coding questions or upload text-based or image-based files for quick analysis.',
+    welcomeMessage: '👋🏿 Hello — I\'m your virtual coding assistant (built on Claude Opus 4.5). Ask coding questions or upload text-based files for quick analysis.',
     soundEffects: {
       enabled: true,        
       volume: 0.4
@@ -357,7 +357,7 @@
     uploadArea.innerHTML = `
       <input type="file" id="fileUpload" accept=".txt,.py,.md,.js,.json,.csv" style="display: none;">
       <button class="upload-btn" id="uploadBtn">
-        ➕ Attach file (Beta)
+        ➕ Upload file
       </button>
       <span id="fileName" style="display: none; margin-left: 10px; color: var(--text-muted); font-size: 0.9em;"></span>
     `;

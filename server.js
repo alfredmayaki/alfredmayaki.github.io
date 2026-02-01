@@ -1,4 +1,4 @@
- 
+const Bottleneck = require("bottleneck");
 const express = require('express');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
@@ -65,6 +65,26 @@ app.use(function (err, req, res, next) {
 app.get('/health', (req, res) => {
   res.json({ status: 'ok', uptime: process.uptime(), time: new Date().toISOString() });
 });
+
+// Example: Updating a Cloudflare Rate Limit Rule via API
+const updateRateLimit = async () => {
+  const response = await fetch('https://gateway.ai.cloudflare.com/v1/6905aedcfe714343bcf5a3d3f79af954/am-me/anthropic', {
+    method: 'PATCH',
+    headers: {
+      'Authorization': 'Bearer YOUR_CF_API_TOKEN',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      action: "block",
+      ratelimit: {
+        requests_per_period: 1000, // New Token/Request limit
+        period: 60                 // Per minute
+      }
+    })
+  });
+  const data = await response.json();
+  console.log(data);
+};
 
 // Debug endpoint to check critical env/config (safe: does not return secrets)
 app.get('/debug/env', (req, res) => {
