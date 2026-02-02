@@ -283,56 +283,6 @@
     }
   }
 
-  // ========================================
-  // DATE SEPARATOR LOGIC FOR CHAT HISTORY
-  // ========================================
-  let lastDateKey = null;
-
-  function getDateKey(date) {
-    return date.toISOString().split('T')[0]; // YYYY-MM-DD
-  }
-
-  function formatDateLabel(date) {
-    const today = new Date();
-    const yesterday = new Date(today);
-    yesterday.setDate(yesterday.getDate() - 1);
-
-    const dateKey = getDateKey(date);
-    const todayKey = getDateKey(today);
-    const yesterdayKey = getDateKey(yesterday);
-
-    if (dateKey === todayKey) {
-      return { label: 'Today', className: 'today' };
-    } else if (dateKey === yesterdayKey) {
-      return { label: 'Yesterday', className: 'yesterday' };
-    } else {
-      try {
-        const formatted = new Intl.DateTimeFormat(undefined, {
-          weekday: 'long',
-          day: 'numeric',
-          month: 'long',
-          year: 'numeric'
-        }).format(date);
-        return { label: formatted, className: '' };
-      } catch (e) {
-        return { label: date.toDateString(), className: '' };
-      }
-    }
-  }
-
-  function ensureDateSeparator(date) {
-    if (!elements.chatbotMessages) return;
-    const dateKey = getDateKey(date);
-    if (dateKey !== lastDateKey) {
-      lastDateKey = dateKey;
-      const { label, className } = formatDateLabel(date);
-      const sep = document.createElement('div');
-      sep.className = 'date-separator' + (className ? ' ' + className : '');
-      sep.innerHTML = '<span>' + label + '</span>';
-      elements.chatbotMessages.appendChild(sep);
-    }
-  }
-
   function openChatbot() {
     console.log('💬 Opening chatbot');
     const query = elements.searchInput.value.trim();
@@ -359,13 +309,7 @@
     void SoundFX.playClick();
   }
 
-  function addUserMessage(message, timestamp = null) {
-    if (!elements.chatbotMessages) return;
-    const msgDate = timestamp ? new Date(timestamp) : new Date();
-
-    // Insert date separator if date changed
-    ensureDateSeparator(msgDate);
-
+  function addUserMessage(message) {
     const messageDiv = document.createElement('div');
     messageDiv.className = 'message user';
     messageDiv.innerHTML = '<div class="message-bubble"></div>';
@@ -378,7 +322,7 @@
     // Add timestamp meta with author label
     const meta = document.createElement('div');
     meta.className = 'message-meta';
-    meta.innerHTML = `<span class="message-author">You</span> ${formatMessageTime(msgDate)}`;
+    meta.innerHTML = `<span class="message-author">You</span> ${formatMessageTime(new Date())}`;
     messageDiv.appendChild(meta);
 
     elements.chatbotMessages.appendChild(messageDiv);
@@ -386,13 +330,7 @@
   }
 
   // Add a bot message bubble. `source` can be 'claude' or 'gpt' to allow visual differentiation.
-  function addBotBubble(initialText, source = 'claude', timestamp = null) {
-    if (!elements.chatbotMessages) return null;
-    const msgDate = timestamp ? new Date(timestamp) : new Date();
-
-    // Insert date separator if date changed
-    ensureDateSeparator(msgDate);
-
+  function addBotBubble(initialText, source = 'claude') {
     const messageDiv = document.createElement('div');
     // include specific source class for styling
     messageDiv.className = 'message bot ' + (source === 'gpt' ? 'bot-gpt' : 'bot-claude');
@@ -403,7 +341,7 @@
     // Add timestamp meta (keep source labeling out of bubble; server-side flow sets labels in other flows)
     const meta = document.createElement('div');
     meta.className = 'message-meta';
-    meta.textContent = formatMessageTime(msgDate);
+    meta.textContent = formatMessageTime(new Date());
     messageDiv.appendChild(meta);
 
     elements.chatbotMessages.appendChild(messageDiv);
@@ -583,12 +521,7 @@
   // Render a saved history entry (preserves original timestamp)
   function renderHistoryEntry(entry) {
     try {
-      if (!elements.chatbotMessages) return;
       const ts = entry.timestamp ? new Date(entry.timestamp) : new Date();
-
-      // Insert date separator if date changed
-      ensureDateSeparator(ts);
-
       if (entry.role === 'user') {
         // create DOM similar to addUserMessage but preserve timestamp
         const messageDiv = document.createElement('div');
@@ -1163,9 +1096,6 @@
 
       // clear in-memory conversation
       state.conversationHistory = [];
-
-      // Reset date separator tracking so new messages get fresh date headers
-      lastDateKey = null;
 
       // clear uploaded file state
       state.uploadedFile = null;

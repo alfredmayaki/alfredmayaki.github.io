@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -1647,63 +1647,9 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   }
 
-  // Date separator tracking for appendChatMessage
-  let lastAppendDateKey = null;
-
-  function getDateKey(date) {
-    return date.toISOString().split('T')[0];
-  }
-
-  function formatDateLabel(date) {
-    const today = new Date();
-    const yesterday = new Date(today);
-    yesterday.setDate(yesterday.getDate() - 1);
-
-    const dateKey = getDateKey(date);
-    const todayKey = getDateKey(today);
-    const yesterdayKey = getDateKey(yesterday);
-
-    if (dateKey === todayKey) {
-      return { label: 'Today', className: 'today' };
-    } else if (dateKey === yesterdayKey) {
-      return { label: 'Yesterday', className: 'yesterday' };
-    } else {
-      try {
-        const formatted = new Intl.DateTimeFormat(undefined, {
-          weekday: 'long',
-          day: 'numeric',
-          month: 'long',
-          year: 'numeric'
-        }).format(date);
-        return { label: formatted, className: '' };
-      } catch (e) {
-        return { label: date.toDateString(), className: '' };
-      }
-    }
-  }
-
-  function ensureDateSeparatorForContainer(container, date) {
-    const dateKey = getDateKey(date);
-    if (dateKey !== lastAppendDateKey) {
-      lastAppendDateKey = dateKey;
-      const { label, className } = formatDateLabel(date);
-      const sep = document.createElement('div');
-      sep.className = 'date-separator' + (className ? ' ' + className : '');
-      sep.innerHTML = '<span>' + label + '</span>';
-      container.appendChild(sep);
-    }
-  }
-
-  function appendChatMessage(text, role='bot', containerId = 'chatbotMessages', timestamp = null) {
+  function appendChatMessage(text, role='bot', containerId = 'chatbotMessages') {
     const messages = document.getElementById(containerId);
     if (!messages) return null;
-
-    // Use provided timestamp or current time
-    const msgDate = timestamp ? new Date(timestamp) : new Date();
-
-    // Insert date separator if needed
-    ensureDateSeparatorForContainer(messages, msgDate);
-
     const row = document.createElement('div');
     row.className = 'message ' + (role === 'user' ? 'user' : 'bot');
 
@@ -1718,9 +1664,9 @@ document.addEventListener('DOMContentLoaded', function () {
     meta.className = 'message-meta';
     // Include a generic author label for user messages and a time-only meta for bots
     if (role === 'user') {
-      meta.innerHTML = `<span class="message-author">You</span> ${formatTimeOnly(msgDate)}`;
+      meta.innerHTML = `<span class="message-author">You</span> ${formatTimeOnly(new Date())}`;
     } else {
-      meta.textContent = formatTimeOnly(msgDate);
+      meta.textContent = formatTimeOnly(new Date());
     }
 
     inner.appendChild(bubble);

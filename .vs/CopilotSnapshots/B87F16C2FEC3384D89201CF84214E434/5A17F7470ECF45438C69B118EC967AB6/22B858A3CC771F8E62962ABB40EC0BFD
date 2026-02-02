@@ -583,12 +583,7 @@
   // Render a saved history entry (preserves original timestamp)
   function renderHistoryEntry(entry) {
     try {
-      if (!elements.chatbotMessages) return;
       const ts = entry.timestamp ? new Date(entry.timestamp) : new Date();
-
-      // Insert date separator if date changed
-      ensureDateSeparator(ts);
-
       if (entry.role === 'user') {
         // create DOM similar to addUserMessage but preserve timestamp
         const messageDiv = document.createElement('div');
@@ -1163,9 +1158,6 @@
 
       // clear in-memory conversation
       state.conversationHistory = [];
-
-      // Reset date separator tracking so new messages get fresh date headers
-      lastDateKey = null;
 
       // clear uploaded file state
       state.uploadedFile = null;

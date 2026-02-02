@@ -1164,9 +1164,6 @@
       // clear in-memory conversation
       state.conversationHistory = [];
 
-      // Reset date separator tracking so new messages get fresh date headers
-      lastDateKey = null;
-
       // clear uploaded file state
       state.uploadedFile = null;
       try { delete window.__rawUploadedFile; } catch (e) {}

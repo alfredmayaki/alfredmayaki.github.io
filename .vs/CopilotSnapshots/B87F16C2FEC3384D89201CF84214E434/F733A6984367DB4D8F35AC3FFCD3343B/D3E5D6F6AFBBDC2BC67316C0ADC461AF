@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -1532,51 +1532,6 @@ body {
 
 /* Chat messages: left = bot, right = user; cascading layout + subtle entrance animations */
 
-/* Date separator styling for chat history categorization */
-.date-separator, .year-separator {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.75rem;
-  margin: 1rem 0 0.75rem;
-  padding: 0.4rem 0;
-  font-size: 0.78rem;
-  font-weight: 600;
-  color: var(--text-secondary);
-  letter-spacing: 0.02em;
-  text-transform: uppercase;
-}
-
-.date-separator::before,
-.date-separator::after,
-.year-separator::before,
-.year-separator::after {
-  content: '';
-  flex: 1;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.12), transparent);
-}
-
-.date-separator span,
-.year-separator span {
-  background: var(--panel);
-  padding: 0.25rem 0.75rem;
-  border-radius: 12px;
-  border: 1px solid rgba(255,255,255,0.06);
-  white-space: nowrap;
-}
-
-/* Today/Yesterday special styling */
-.date-separator.today span {
-  background: rgba(61,78,233,0.15);
-  border-color: rgba(61,78,233,0.3);
-  color: var(--brand);
-}
-
-.date-separator.yesterday span {
-  background: rgba(255,255,255,0.04);
-}
-
 /* Ensure messages stack in a column with consistent gaps */
 .chatbot-messages {
   display: flex;
@@ -1584,6 +1539,7 @@ body {
   gap: 1.2rem; /* increased gap for clearer separation */
   padding: 0.9rem;
   box-sizing: border-box;
+
 }
 
 /* Add extra margin between user and bot bubbles */
@@ -1647,63 +1603,9 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   }
 
-  // Date separator tracking for appendChatMessage
-  let lastAppendDateKey = null;
-
-  function getDateKey(date) {
-    return date.toISOString().split('T')[0];
-  }
-
-  function formatDateLabel(date) {
-    const today = new Date();
-    const yesterday = new Date(today);
-    yesterday.setDate(yesterday.getDate() - 1);
-
-    const dateKey = getDateKey(date);
-    const todayKey = getDateKey(today);
-    const yesterdayKey = getDateKey(yesterday);
-
-    if (dateKey === todayKey) {
-      return { label: 'Today', className: 'today' };
-    } else if (dateKey === yesterdayKey) {
-      return { label: 'Yesterday', className: 'yesterday' };
-    } else {
-      try {
-        const formatted = new Intl.DateTimeFormat(undefined, {
-          weekday: 'long',
-          day: 'numeric',
-          month: 'long',
-          year: 'numeric'
-        }).format(date);
-        return { label: formatted, className: '' };
-      } catch (e) {
-        return { label: date.toDateString(), className: '' };
-      }
-    }
-  }
-
-  function ensureDateSeparatorForContainer(container, date) {
-    const dateKey = getDateKey(date);
-    if (dateKey !== lastAppendDateKey) {
-      lastAppendDateKey = dateKey;
-      const { label, className } = formatDateLabel(date);
-      const sep = document.createElement('div');
-      sep.className = 'date-separator' + (className ? ' ' + className : '');
-      sep.innerHTML = '<span>' + label + '</span>';
-      container.appendChild(sep);
-    }
-  }
-
-  function appendChatMessage(text, role='bot', containerId = 'chatbotMessages', timestamp = null) {
+  function appendChatMessage(text, role='bot', containerId = 'chatbotMessages') {
     const messages = document.getElementById(containerId);
     if (!messages) return null;
-
-    // Use provided timestamp or current time
-    const msgDate = timestamp ? new Date(timestamp) : new Date();
-
-    // Insert date separator if needed
-    ensureDateSeparatorForContainer(messages, msgDate);
-
     const row = document.createElement('div');
     row.className = 'message ' + (role === 'user' ? 'user' : 'bot');
 
@@ -1718,9 +1620,9 @@ document.addEventListener('DOMContentLoaded', function () {
     meta.className = 'message-meta';
     // Include a generic author label for user messages and a time-only meta for bots
     if (role === 'user') {
-      meta.innerHTML = `<span class="message-author">You</span> ${formatTimeOnly(msgDate)}`;
+      meta.innerHTML = `<span class="message-author">You</span> ${formatTimeOnly(new Date())}`;
     } else {
-      meta.textContent = formatTimeOnly(msgDate);
+      meta.textContent = formatTimeOnly(new Date());
     }
 
     inner.appendChild(bubble);
@@ -1865,61 +1767,18 @@ document.addEventListener('DOMContentLoaded', function () {
   const input = document.getElementById('chatbotInput');
   const sendBtn = document.getElementById('chatSend');
   const messages = document.getElementById('chatbotMessages');
-  let lastDateKey = null; // track YYYY-MM-DD to insert date separators
+  let lastYear = null;
   const CURRENT_YEAR = new Date().getFullYear();
 
-  // Helper to get a date key string (YYYY-MM-DD) for comparison
-  function getDateKey(date) {
-    return date.toISOString().split('T')[0];
-  }
-
-  // Helper to format date for display in separators
-  function formatDateLabel(date) {
-    const today = new Date();
-    const yesterday = new Date(today);
-    yesterday.setDate(yesterday.getDate() - 1);
-
-    const dateKey = getDateKey(date);
-    const todayKey = getDateKey(today);
-    const yesterdayKey = getDateKey(yesterday);
-
-    if (dateKey === todayKey) {
-      return { label: 'Today', className: 'today' };
-    } else if (dateKey === yesterdayKey) {
-      return { label: 'Yesterday', className: 'yesterday' };
-    } else {
-      // Format as "Monday, 3 February 2026"
-      try {
-        const formatted = new Intl.DateTimeFormat(undefined, {
-          weekday: 'long',
-          day: 'numeric',
-          month: 'long',
-          year: 'numeric'
-        }).format(date);
-        return { label: formatted, className: '' };
-      } catch (e) {
-        return { label: date.toDateString(), className: '' };
-      }
-    }
-  }
-
-  // Insert a date separator when the date changes between messages
-  function ensureDateSeparator(date) {
-    const dateKey = getDateKey(date);
-    if (dateKey !== lastDateKey) {
-      lastDateKey = dateKey;
-      const { label, className } = formatDateLabel(date);
+  function ensureYearSeparator(date) {
+    const year = date.getFullYear();
+    if (year !== lastYear) {
+      lastYear = year;
       const sep = document.createElement('div');
-      sep.className = 'date-separator' + (className ? ' ' + className : '');
-      sep.innerHTML = '<span>' + label + '</span>';
+      sep.className = 'year-separator';
+      sep.textContent = year + (year === CURRENT_YEAR ? ' (this year)' : '');
       messages.appendChild(sep);
     }
-  }
-
-  // Legacy year separator (kept for backward compatibility but now uses date separator)
-  function ensureYearSeparator(date) {
-    // Now handled by ensureDateSeparator which provides day-level granularity
-    ensureDateSeparator(date);
   }
 
   function createMessageEl(text, role, date = new Date()) {
