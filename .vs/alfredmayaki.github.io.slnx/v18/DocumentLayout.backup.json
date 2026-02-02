@@ -102,8 +102,22 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 6,
+          "SelectedChildIndex": 0,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "research.html",
+              "DocumentMoniker": "C:\\Users\\44746\\AppData\\Local\\Microsoft\\WindowsApps\\wget\\repo\\alfredmayaki.github.io\\research.html",
+              "RelativeDocumentMoniker": "research.html",
+              "ToolTip": "C:\\Users\\44746\\AppData\\Local\\Microsoft\\WindowsApps\\wget\\repo\\alfredmayaki.github.io\\research.html",
+              "RelativeToolTip": "research.html",
+              "ViewState": "AgIAAL8AAAAAAAAAAAAuwMUAAAAZAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2026-02-01T14:39:46.59Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
             {
               "$type": "Document",
               "DocumentIndex": 2,
@@ -114,8 +128,7 @@
               "RelativeToolTip": "ai.html",
               "ViewState": "AgIAACEJAAAAAAAAAAAvwC0JAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
-              "WhenOpened": "2026-02-02T00:19:15.337Z",
-              "IsPinned": true
+              "WhenOpened": "2026-02-02T00:19:15.337Z"
             },
             {
               "$type": "Bookmark",
@@ -153,19 +166,6 @@
               "ViewState": "AgIAAIQAAAAAAAAAAAAcwI4AAAAPAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
               "WhenOpened": "2026-02-01T17:47:13.385Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "research.html",
-              "DocumentMoniker": "C:\\Users\\44746\\AppData\\Local\\Microsoft\\WindowsApps\\wget\\repo\\alfredmayaki.github.io\\research.html",
-              "RelativeDocumentMoniker": "research.html",
-              "ToolTip": "C:\\Users\\44746\\AppData\\Local\\Microsoft\\WindowsApps\\wget\\repo\\alfredmayaki.github.io\\research.html",
-              "RelativeToolTip": "research.html",
-              "ViewState": "AgIAALwAAAAAAAAAAAAqwM0AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
-              "WhenOpened": "2026-02-01T14:39:46.59Z",
-              "EditorCaption": ""
             },
             {
               "$type": "Document",
