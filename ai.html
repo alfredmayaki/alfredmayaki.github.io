@@ -2428,11 +2428,25 @@ document.addEventListener('DOMContentLoaded', function () {
           const isNarrow = (typeof window !== 'undefined' && window.matchMedia) ? window.matchMedia('(max-width: 420px)').matches : (window.innerWidth <= 420);
           // Content motivation for user prompts in the form of placeholder text and typedstrings
           const typedStrings = isNarrow ? [
-            ''
+            'Improve patient care?',
+            'Boost patient engagement?',
+           'Holistic healthcare examples?',
+           'Effective healthcare communication?',
+           'Interdisciplinary collaboration benefits?',
+           'Address health disparities?',
+           'Innovative care models?',
+           'Technology in patient care?'
 
             // Shorter prompts for narrow viewports
           ] : [
-            ''
+             'Ways to observe people-centered care?',
+             'How to improve patient engagement?',
+             'Examples of holistic healthcare approaches?',
+             'Strategies for effective communication in healthcare?',
+             'Benefits of interdisciplinary collaboration in healthcare?',
+             'How to address health disparities in communities?',
+             'Innovative models of care delivery?',
+             'Role of technology in enhancing patient care?'
           ];
 
           // Use the selector string so Typed internally queries the element and sets the placeholder attr reliably
