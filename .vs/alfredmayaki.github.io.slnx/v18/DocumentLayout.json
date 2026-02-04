@@ -119,8 +119,7 @@
               "ViewState": "AgIAAMEAAAAAAAAAAAAuwMUAAACZAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
               "WhenOpened": "2026-02-01T14:39:46.59Z",
-              "IsPinned": true,
-              "EditorCaption": ""
+              "IsPinned": true
             },
             {
               "$type": "Document",
@@ -128,9 +127,9 @@
               "Title": "ai.html",
               "DocumentMoniker": "C:\\Users\\44746\\AppData\\Local\\Microsoft\\WindowsApps\\wget\\repo\\alfredmayaki.github.io\\ai.html",
               "RelativeDocumentMoniker": "ai.html",
-              "ToolTip": "C:\\Users\\44746\\AppData\\Local\\Microsoft\\WindowsApps\\wget\\repo\\alfredmayaki.github.io\\ai.html",
-              "RelativeToolTip": "ai.html",
-              "ViewState": "AgIAAKYJAAAAAAAAAAAgwMIJAAAGAAAAAAAAAA==",
+              "ToolTip": "C:\\Users\\44746\\AppData\\Local\\Microsoft\\WindowsApps\\wget\\repo\\alfredmayaki.github.io\\ai.html*",
+              "RelativeToolTip": "ai.html*",
+              "ViewState": "AgIAAIcJAAAAAAAAAAAewI4JAAAcAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
               "WhenOpened": "2026-02-02T00:19:15.337Z",
               "IsPinned": true,
