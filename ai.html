@@ -2428,27 +2428,11 @@ document.addEventListener('DOMContentLoaded', function () {
           const isNarrow = (typeof window !== 'undefined' && window.matchMedia) ? window.matchMedia('(max-width: 420px)').matches : (window.innerWidth <= 420);
           // Content motivation for user prompts in the form of placeholder text and typedstrings
           const typedStrings = isNarrow ? [
-            'Making Carrot cake?',
-            'Where are Carrot cakes popular?',
-            'Tips for moist Carrot cake?',
-            'History of Carrot cake?',
-            'Best frosting for Carrot cake?',
-            'Nutritional info of Carrot cake?'
-            'Where to buy Carrot cake?',
-            'Carrot cake recipe variations?',
-            'Common mistakes baking Carrot cake?'
+            ''
 
             // Shorter prompts for narrow viewports
           ] : [
-            'How does one make a Carrot cake?',
-            'Where in the world are Carrot cakes popular?',
-            'Baking tips for moist Carrot cake?',
-            'History of Carrot cake?',
-            'Best frosting for Carrot cake?',
-            'Nutritional info of Carrot cake
-            'Where can I buy Carrot cake?',
-            'Variations of Carrot cake recipes?',
-            'Common mistakes when baking Carrot cake?'
+            ''
           ];
 
           // Use the selector string so Typed internally queries the element and sets the placeholder attr reliably
