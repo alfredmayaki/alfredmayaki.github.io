@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -118,41 +118,6 @@
 
     .note { color: var(--text-secondary); font-size: 0.95rem; margin-top: 0.75rem; }
 
-    /* Featured dissertation section with deep blue border */
-    .featured-dissertation {
-      max-width: 920px;
-      margin: 1.25rem auto;
-      padding: 1.25rem;
-      border: 3px solid var(--brand);
-      border-radius: 12px;
-      background: rgba(61,78,233,0.04);
-      box-shadow: 0 8px 30px rgba(61,78,233,0.12);
-      transition: box-shadow var(--transition-med), border-color var(--transition-med);
-    }
-    .featured-dissertation:hover {
-      box-shadow: 0 12px 40px rgba(61,78,233,0.18);
-      border-color: var(--brand-hover);
-    }
-    .featured-dissertation .section-label {
-      color: var(--brand);
-      font-size: 0.85rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      margin-bottom: 0.75rem;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-    .featured-dissertation .pub-list {
-      margin: 0;
-    }
-    .featured-dissertation .pub-item {
-      background: transparent;
-      border: none;
-      padding: 0;
-    }
-
     .soft-separator { border:none; height:1px; margin:1.5rem 0; width:100%; background: linear-gradient(90deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02)); opacity:0.85; }
 
     /* Search container decorative deep-blue flashing border (parity with index.html) */
@@ -227,21 +192,18 @@
   <h1 class="page-title">Research — arXiv & SSRN</h1>
   <div class="page-subtitle"><h4>Selected SSRN working papers, conference proceedings and arXiv preprints (sourced from Google Scholar)</h4></div>
 
-    <!-- MSc dissertation entry — featured with deep blue border -->
-  <div class="featured-dissertation">
-    <div class="section-label">📄 Featured Dissertation</div>
-    <ul class="pub-list" aria-label="MSc dissertation">
-      <li class="pub-item">
-        <h3>Do SHRM Signalling Practices, Compared to Conventional Recruitment Approaches, Affect How Neurodiverse Applicants Perceive the Candidate Journey?</h3>
-        <div class="pub-meta">AAB Mayaki — Open University Business School (Latest version) — 2026</div>
-        <div class="pub-links">
-          <a href="/FBL-PhD-research-proposal.pdf" rel="noopener noreferrer" target="_blank">Read latest draft (PDF)</a>
-          <a href="references.html">References</a>
-        </div>
-        <div class="note">Author's MSc Dissertation — PDF hosted on this site. No external index entry available.</div>
-      </li>
-    </ul>
-  </div>
+    <!-- MSc dissertation entry — keep this INSIDE the ul so list-style is suppressed -->
+  <ul class="pub-list" aria-label="MSc dissertation">
+    <li class="pub-item">
+    <h3>Do SHRM Signalling Practices, Compared to Conventional Recruitment Approaches, Affect How Neurodiverse Applicants Perceive the Candidate Journey?</h3>
+    <div class="pub-meta">AAB Mayaki — Open University Business School (Latest version) — 2026</div>
+    <div class="pub-links">
+      <a href="/FBL-PhD-research-proposal.pdf" rel="noopener noreferrer" target="_blank">Read latest draft (PDF)</a>
+      <a href="references.html">References</a>
+    </div>
+    <div class="note">Author's MSc Dissertation — PDF hosted on this site. No external index entry available.</div>
+  </li>
+</ul>
 
   <main class="content" role="main" aria-labelledby="research-heading">
     <h2 id="research-heading" class="section-title">arXiv preprints</h2>
