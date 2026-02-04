@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -2276,6 +2276,7 @@ document.addEventListener('DOMContentLoaded', function () {
     <div class="chatbot-messages" id="gptMessages" role="log" aria-live="polite"></div>
     <!-- No input for GPT popup (read-only display of responses). -->
   </div>
+</nav>
 
 <script>
   (function () {

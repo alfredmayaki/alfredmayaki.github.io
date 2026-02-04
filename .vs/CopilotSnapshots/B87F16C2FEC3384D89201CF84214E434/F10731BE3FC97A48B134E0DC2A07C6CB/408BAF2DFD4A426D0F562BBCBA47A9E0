@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -49,18 +49,17 @@
       box-sizing: border-box;
     }
 
-    /* ---------- Top navigation with hamburger dropdown ---------- */
+    /* Top navigation (shared theme) */
     .top-nav {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 1rem;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:1rem;
       max-width: 980px;
-      margin: 0 auto 1.25rem;
+      margin: 0  auto 1.25rem;
       padding: 0.45rem 0.6rem;
       background: transparent;
       box-sizing: border-box;
-      position: relative;
     }
     .top-nav .brand {
       color: var(--text);
@@ -70,110 +69,23 @@
       align-items: center;
       gap: 0.5rem;
       font-size: 0.98rem;
-      z-index: 10;
     }
-    .top-nav .brand:link,
-    .top-nav .brand:visited,
-    .top-nav .brand:hover,
-    .top-nav .brand:active {
-      color: var(--text);
-      text-decoration: none;
-    }
-    /* Hamburger menu button */
-    .menu-toggle {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      width: 44px;
-      height: 44px;
-      padding: 0.5rem;
-      background: var(--surface);
-      border: 2px solid var(--border);
-      border-radius: 10px;
-      cursor: pointer;
-      transition: background var(--transition-fast), border-color var(--transition-fast), box-shadow var(--transition-fast);
-      z-index: 10;
-    }
-    .menu-toggle:hover,
-    .menu-toggle:focus {
-      background: rgba(61,78,233,0.08);
-      border-color: var(--brand);
-      box-shadow: 0 6px 20px rgba(61,78,233,0.12);
-      outline: none;
-    }
-    .menu-toggle .bar {
-      width: 20px;
-      height: 2px;
-      background: var(--text);
-      margin: 2px 0;
-      border-radius: 2px;
-      transition: transform var(--transition-fast), opacity var(--transition-fast);
-    }
-    .menu-toggle.open .bar:nth-child(1) { transform: translateY(6px) rotate(45deg); }
-    .menu-toggle.open .bar:nth-child(2) { opacity: 0; }
-    .menu-toggle.open .bar:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
-    /* Dropdown menu box */
-    .nav-dropdown {
-      position: absolute;
-      top: 100%;
-      right: 0;
-      min-width: 200px;
-      background: var(--panel);
-      border: 2px solid var(--brand);
-      border-radius: 12px;
-      padding: 0.5rem;
-      box-shadow: 0 12px 40px rgba(0,0,0,0.5), 0 6px 20px rgba(61,78,233,0.12);
-      opacity: 0;
-      visibility: hidden;
-      transform: translateY(-10px);
-      transition: opacity var(--transition-med), transform var(--transition-med), visibility var(--transition-med);
-      z-index: 100;
-      display: flex;
-      flex-direction: column;
-      gap: 0.25rem;
-    }
-    .nav-dropdown.open {
-      opacity: 1;
-      visibility: visible;
-      transform: translateY(8px);
-    }
-    .nav-dropdown a {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
+    .top-nav .nav-links { display:flex; gap:0.5rem; align-items:center; flex-wrap:wrap; }
+    .top-nav .nav-links a {
       color: var(--text-secondary);
       text-decoration: none;
-      padding: 0.65rem 0.9rem;
-      border-radius: 8px;
+      padding: 0.45rem 0.7rem;
+      border-radius: 10px;
       font-size: 0.95rem;
       transition: background var(--transition-fast), color var(--transition-fast), transform var(--transition-fast);
     }
-    .nav-dropdown a:hover,
-    .nav-dropdown a:focus {
-      background: rgba(61,78,233,0.12);
+    .top-nav .nav-links a:hover,
+    .top-nav .nav-links a:focus {
+      background: rgba(61,78,233,0.08);
       color: var(--text);
-      transform: translateX(4px);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(61,78,233,0.12);
       outline: none;
-    }
-    .nav-dropdown a[aria-current="page"] {
-      background: rgba(61,78,233,0.15);
-      color: var(--brand);
-      font-weight: 600;
-    }
-    .nav-dropdown .menu-label {
-      color: var(--text-muted);
-      font-size: 0.75rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      padding: 0.4rem 0.9rem 0.2rem;
-      border-bottom: 1px solid rgba(255,255,255,0.06);
-      margin-bottom: 0.25rem;
-    }
-    @media (max-width: 600px) {
-      .top-nav { padding: 0.4rem; }
-      .nav-dropdown { right: 0; left: 0; min-width: auto; margin: 0 0.4rem; }
     }
 
     .page-title { text-align:center; color:var(--text); font-size:1.25rem; font-weight:700; margin:0.75rem 0 0.6rem; }
@@ -301,56 +213,16 @@
   </style>
 </head>
 <body>
-  <!-- Top navigation with hamburger dropdown -->
+  <!-- Top navigation -->
   <nav class="top-nav" aria-label="Main navigation">
     <a href="ai.html" class="brand">🚀 AM-Global™</a>
-
-    <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="navDropdown">
-      <span class="bar"></span>
-      <span class="bar"></span>
-      <span class="bar"></span>
-    </button>
-
-    <div class="nav-dropdown" id="navDropdown" role="menu" aria-label="Site navigation">
-      <div class="menu-label">Navigation</div>
-      <a href="ai.html" role="menuitem">🏠 Home</a>
-      <a href="research.html" role="menuitem" aria-current="page">📚 Research</a>
-      <a href="projects.html" role="menuitem">💼 Projects</a>
-      <a href="contact.html" role="menuitem">📧 Contact</a>
-      <a href="/blogs" role="menuitem" target="_blank" rel="noopener noreferrer">📝 Blogs</a>
+    <div class="nav-links" role="menubar" aria-label="Primary links">
+      <a href="research.html" role="menuitem" aria-current="page">Research</a>
+      <a href="projects.html" role="menuitem">Projects</a>
+      <a href="contact.html" role="menuitem">Contact</a>
+      <a href="/blogs" role="menuitem" target="_blank" rel="noopener noreferrer">Blogs</a>
     </div>
   </nav>
-
-  <script>
-    // Hamburger menu toggle
-    (function() {
-      const menuToggle = document.getElementById('menuToggle');
-      const navDropdown = document.getElementById('navDropdown');
-      if (menuToggle && navDropdown) {
-        menuToggle.addEventListener('click', function(e) {
-          e.stopPropagation();
-          const isOpen = navDropdown.classList.toggle('open');
-          menuToggle.classList.toggle('open');
-          menuToggle.setAttribute('aria-expanded', isOpen);
-        });
-        document.addEventListener('click', function(e) {
-          if (!navDropdown.contains(e.target) && !menuToggle.contains(e.target)) {
-            navDropdown.classList.remove('open');
-            menuToggle.classList.remove('open');
-            menuToggle.setAttribute('aria-expanded', 'false');
-          }
-        });
-        document.addEventListener('keydown', function(e) {
-          if (e.key === 'Escape' && navDropdown.classList.contains('open')) {
-            navDropdown.classList.remove('open');
-            menuToggle.classList.remove('open');
-            menuToggle.setAttribute('aria-expanded', 'false');
-            menuToggle.focus();
-          }
-        });
-      }
-    })();
-  </script>
 
   <h1 class="page-title">Research — arXiv & SSRN</h1>
   <div class="page-subtitle"><h4>Selected SSRN working papers, conference proceedings and arXiv preprints (sourced from Google Scholar)</h4></div>

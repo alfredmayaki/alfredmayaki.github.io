@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -301,56 +301,16 @@
   </style>
 </head>
 <body>
-  <!-- Top navigation with hamburger dropdown -->
+  <!-- Top navigation -->
   <nav class="top-nav" aria-label="Main navigation">
     <a href="ai.html" class="brand">🚀 AM-Global™</a>
-
-    <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="navDropdown">
-      <span class="bar"></span>
-      <span class="bar"></span>
-      <span class="bar"></span>
-    </button>
-
-    <div class="nav-dropdown" id="navDropdown" role="menu" aria-label="Site navigation">
-      <div class="menu-label">Navigation</div>
-      <a href="ai.html" role="menuitem">🏠 Home</a>
-      <a href="research.html" role="menuitem" aria-current="page">📚 Research</a>
-      <a href="projects.html" role="menuitem">💼 Projects</a>
-      <a href="contact.html" role="menuitem">📧 Contact</a>
-      <a href="/blogs" role="menuitem" target="_blank" rel="noopener noreferrer">📝 Blogs</a>
+    <div class="nav-links" role="menubar" aria-label="Primary links">
+      <a href="research.html" role="menuitem" aria-current="page">Research</a>
+      <a href="projects.html" role="menuitem">Projects</a>
+      <a href="contact.html" role="menuitem">Contact</a>
+      <a href="/blogs" role="menuitem" target="_blank" rel="noopener noreferrer">Blogs</a>
     </div>
   </nav>
-
-  <script>
-    // Hamburger menu toggle
-    (function() {
-      const menuToggle = document.getElementById('menuToggle');
-      const navDropdown = document.getElementById('navDropdown');
-      if (menuToggle && navDropdown) {
-        menuToggle.addEventListener('click', function(e) {
-          e.stopPropagation();
-          const isOpen = navDropdown.classList.toggle('open');
-          menuToggle.classList.toggle('open');
-          menuToggle.setAttribute('aria-expanded', isOpen);
-        });
-        document.addEventListener('click', function(e) {
-          if (!navDropdown.contains(e.target) && !menuToggle.contains(e.target)) {
-            navDropdown.classList.remove('open');
-            menuToggle.classList.remove('open');
-            menuToggle.setAttribute('aria-expanded', 'false');
-          }
-        });
-        document.addEventListener('keydown', function(e) {
-          if (e.key === 'Escape' && navDropdown.classList.contains('open')) {
-            navDropdown.classList.remove('open');
-            menuToggle.classList.remove('open');
-            menuToggle.setAttribute('aria-expanded', 'false');
-            menuToggle.focus();
-          }
-        });
-      }
-    })();
-  </script>
 
   <h1 class="page-title">Research — arXiv & SSRN</h1>
   <div class="page-subtitle"><h4>Selected SSRN working papers, conference proceedings and arXiv preprints (sourced from Google Scholar)</h4></div>
