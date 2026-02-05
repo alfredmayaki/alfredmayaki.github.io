@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -631,53 +631,10 @@ body {
 
   <script>
     (function () {
-      // Unified popup handlers for GPT and main chatbot to avoid conflicting bindings
-      function setupPopup(popupId, minimizeId, closeId, headerId, inputId) {
-        var popup = document.getElementById(popupId);
-        if (!popup) return;
-        var minBtn = document.getElementById(minimizeId);
-        var closeBtn = document.getElementById(closeId);
-        var header = document.getElementById(headerId);
-
-        function updateMinBtn(isMin) {
-          if (!minBtn) return;
-          try {
-            minBtn.textContent = isMin ? '□' : '−';
-            minBtn.title = isMin ? 'Restore' : 'Minimize';
-            minBtn.setAttribute('aria-label', isMin ? 'Restore ' + popupId : 'Minimize ' + popupId);
-          } catch (e) {}
-        }
-
-        if (minBtn) minBtn.addEventListener('click', function (e) {
-          e.stopPropagation();
-          var isMin = popup.classList.toggle('minimized');
-          updateMinBtn(isMin);
-          // If restoring ensure popup is visible
-          if (!isMin && !popup.classList.contains('active')) {
-            popup.classList.add('active');
-            try { popup.setAttribute('aria-hidden', 'false'); } catch (e) {}
-          }
-        });
-
-        if (closeBtn) closeBtn.addEventListener('click', function (e) {
-          e.stopPropagation();
-          popup.classList.remove('active');
-          try { popup.setAttribute('aria-hidden', 'true'); } catch (e) {}
-        });
-
-        if (header) header.addEventListener('click', function (e) {
-          // Toggle restore when clicking header (but not on header buttons)
-          if (popup.classList.contains('minimized') && !e.target.closest('button')) {
-            var isMin = popup.classList.toggle('minimized');
-            updateMinBtn(isMin);
-            if (!isMin && inputId) {
-              try { var input = document.getElementById(inputId); if (input) setTimeout(function () { input.focus(); }, 100); } catch (e) {}
-            }
-          }
-        });
-      }
-
-      setupPopup('gptPopup', 'minimizeGpt', 'closeGpt', 'gptHeader', null);
+      var gptPopup = document.getElementById('gptPopup'), minimizeBtn = document.getElementById('minimizeGpt'), closeBtn = document.getElementById('closeGpt');
+      if (!gptPopup) return;
+      if (minimizeBtn) minimizeBtn.addEventListener('click', function(e) { e.stopPropagation(); gptPopup.classList.toggle('minimized'); minimizeBtn.textContent = gptPopup.classList.contains('minimized') ? '□' : '−'; minimizeBtn.title = gptPopup.classList.contains('minimized') ? 'Restore' : 'Minimize'; });
+      if (closeBtn) closeBtn.addEventListener('click', function(e) { e.stopPropagation(); gptPopup.classList.remove('active'); });
     })();
   </script>
 
@@ -796,7 +753,6 @@ body {
           <option value="msc-survey.html">📝 MSc in HRM Dissertation Survey</option>
           <option value="scraper.html">🔍 Dissertation Web Scraper</option>
           <option value="claude-code.html">🤖 Claude Code 4.5 Opus — Explainer</option>
-          <option value="claude-opus-4-6.html">📋 Claude Opus 4.6 — Fact Sheet</option>
         </optgroup>
         <optgroup label="Research & Profiles">
           <option value="https://www.qeios.com/profile/102543">💻 Qeios Research Profile</option>
@@ -863,7 +819,7 @@ body {
   <!-- Chatbot Popup -->
   <div class="chatbot-popup" id="chatbotPopup" aria-hidden="true" role="dialog" aria-label="Ask Claude Code">
     <div class="chatbot-header" id="chatbotHeader">
-      <h3>💬 Claude Opus 4.6 - Chat History</h3>
+      <h3>💬 Chat History</h3>
       <div class="chatbot-header-buttons">
         <button class="minimize-chat" id="minimizeChat" title="Minimize" aria-label="Minimize chatbot">−</button>
         <button class="clear-chat" id="clearChat" title="Clear chat history" aria-label="Clear chat history">
@@ -896,6 +852,20 @@ body {
   <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
   <script src="index.js"></script>
   <script src="search-tracker-api.js"></script>
+
+  <!-- Chatbot Minimize/Restore -->
+  <script>
+    (function() {
+      var chatbotPopup = document.getElementById('chatbotPopup'), minimizeBtn = document.getElementById('minimizeChat'), chatbotHeader = document.getElementById('chatbotHeader');
+      function toggleMinimize() {
+        chatbotPopup.classList.toggle('minimized');
+        if (chatbotPopup.classList.contains('minimized')) { minimizeBtn.textContent = '□'; minimizeBtn.title = 'Restore'; minimizeBtn.setAttribute('aria-label', 'Restore chatbot'); }
+        else { minimizeBtn.textContent = '−'; minimizeBtn.title = 'Minimize'; minimizeBtn.setAttribute('aria-label', 'Minimize chatbot'); var ci = document.getElementById('chatbotInput'); if (ci) setTimeout(function() { ci.focus(); }, 100); }
+      }
+      if (minimizeBtn) minimizeBtn.addEventListener('click', function(e) { e.stopPropagation(); toggleMinimize(); });
+      if (chatbotHeader) chatbotHeader.addEventListener('click', function(e) { if (chatbotPopup.classList.contains('minimized') && !e.target.closest('button')) toggleMinimize(); });
+    })();
+  </script>
 
   <!-- Firebase SDK -->
   <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
