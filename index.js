@@ -53,7 +53,7 @@
     requestTimeoutMs: 30000,
     maxHistoryTurns: 10,
     maxFileSize: 1 * 1024 * 1024, // Reduced to 1MB
-    welcomeMessage: '👋🏿 Hello — I\'m your virtual coding assistant (built on Claude Opus 4.5). Ask coding questions or upload text-based files for quick analysis.',
+    welcomeMessage: '👋🏿 Hello — I\'m your virtual coding assistant (built on Claude Opus 4.6). Ask coding questions or upload text-based files for quick analysis.',
     soundEffects: {
       enabled: true,        
       volume: 0.4
@@ -745,7 +745,7 @@
           const metaEl = parent.querySelector('.message-meta');
           if (metaEl) {
             const ts = data?.timestamp ? new Date(data.timestamp) : new Date();
-            metaEl.innerHTML = `<span class="message-source">Claude Opus 4.5</span> ${formatMessageTime(ts)}`;
+            metaEl.innerHTML = `<span class="message-source">Claude Opus 4.6</span> ${formatMessageTime(ts)}`;
           }
         }
       } catch (e) { /* ignore meta update errors */ }

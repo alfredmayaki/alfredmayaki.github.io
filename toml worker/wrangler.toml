@@ -9,7 +9,7 @@ routes = [
 ]
 
 [vars]
-AI_MODEL = "claude-opus-4-5-20251101"
+AI_MODEL = "claude-opus-4-6"
 AI_PROVIDER = "anthropic"
 
 # AI model bindings for Workers AI — add one binding per model you intend to call via env.AI.run(...)

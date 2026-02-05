@@ -20,7 +20,7 @@ function json(obj, status) {
 }
 
 function getAIModel(env) {
-  return String(env?.AI_MODEL || "claude-opus-4-5-20251101").trim();
+  return String(env?.AI_MODEL || "claude-opus-4-6").trim();
 }
 
 function getAIProvider(env) {

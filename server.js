@@ -187,7 +187,7 @@ app.post('/api/claude', async (req, res) => {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${apiKey}`
         },
-        body: JSON.stringify({ model: model || 'claude-opus-4.5', prompt })
+        body: JSON.stringify({ model: model || 'claude-opus-4-6', prompt })
       });
 
       if (r.ok) {

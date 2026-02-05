@@ -59,7 +59,7 @@ async function uploadAndPrompt(file) {
   const chatResp = await fetch('/chat', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ model: 'claude-opus-4.5', prompt })
+    body: JSON.stringify({ model: 'claude-opus-4-6', prompt })
   });
   const chatJson = await chatResp.json().catch(() => ({}));
   console.log('Claude reply', chatJson.reply || chatJson);
