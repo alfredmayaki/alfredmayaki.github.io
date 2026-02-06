@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -800,6 +800,7 @@ body {
         <option value="" selected disabled>🎬 Quick navigation…</option>
         <optgroup label="Site Navigation">
           <option value="msc-survey.html">📝 MSc in HRM Dissertation Survey</option>
+          <option value="scraper.html">🔍 Dissertation Web Scraper</option>
           <option value="claude-code.html">🤖 Claude Code 4.5 Opus — Explainer</option>
           <option value="claude-opus-4-6.html">📋 Claude Opus 4.6 — Fact Sheet</option>
         </optgroup>

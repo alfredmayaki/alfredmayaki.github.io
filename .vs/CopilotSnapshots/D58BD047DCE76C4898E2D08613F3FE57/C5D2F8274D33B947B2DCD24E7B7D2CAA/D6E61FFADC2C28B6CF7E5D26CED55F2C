@@ -503,111 +503,6 @@
                 min-height: 44px;
             }
         }
-
-        /* Toggle switch */
-        .toggle-row {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .toggle-switch {
-            position: relative;
-            width: 48px;
-            height: 26px;
-            flex-shrink: 0;
-        }
-
-        .toggle-switch input {
-            opacity: 0;
-            width: 0;
-            height: 0;
-            position: absolute;
-        }
-
-        .toggle-slider {
-            position: absolute;
-            inset: 0;
-            background: #ccc;
-            border-radius: 26px;
-            cursor: pointer;
-            transition: background 0.3s;
-        }
-
-        .toggle-slider::before {
-            content: '';
-            position: absolute;
-            width: 20px;
-            height: 20px;
-            left: 3px;
-            bottom: 3px;
-            background: #fff;
-            border-radius: 50%;
-            transition: transform 0.3s;
-        }
-
-        .toggle-switch input:checked + .toggle-slider {
-            background: #667eea;
-        }
-
-        .toggle-switch input:checked + .toggle-slider::before {
-            transform: translateX(22px);
-        }
-
-        .form-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-        }
-
-        @media (max-width: 600px) {
-            .form-row {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        .search-row {
-            display: flex;
-            gap: 10px;
-            margin-top: 10px;
-        }
-
-        .search-row input {
-            flex: 1;
-        }
-
-        .search-row button {
-            flex: 0 0 auto;
-            min-width: auto;
-            padding: 12px 20px;
-        }
-
-        #searchResults {
-            margin-top: 15px;
-        }
-
-        #searchResults .search-hit {
-            padding: 10px 14px;
-            border-left: 3px solid #667eea;
-            background: #f5f5ff;
-            margin-bottom: 8px;
-            border-radius: 0 6px 6px 0;
-            font-size: 14px;
-            line-height: 1.5;
-        }
-
-        #searchResults .search-hit .hit-url {
-            font-size: 12px;
-            color: #667eea;
-            margin-top: 4px;
-        }
-
-        #searchResults .search-hit .hit-category {
-            font-size: 11px;
-            color: #999;
-            text-transform: uppercase;
-            letter-spacing: 0.04em;
-        }
     </style>
 </head>
 <body>
@@ -662,51 +557,13 @@
                     <input type="number" id="maxDepth" value="2" min="1" max="5">
                 </div>
 
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="delay">Delay Between Requests (seconds):</label>
-                        <input type="number" id="delay" value="1" min="0.5" max="10" step="0.5">
-                    </div>
-                    <div class="form-group">
-                        <label for="retries">Max Retries Per Request:</label>
-                        <input type="number" id="retries" value="3" min="1" max="10">
-                    </div>
-                </div>
-
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="outputFormat">Output Format:</label>
-                        <select id="outputFormat">
-                            <option value="both" selected>JSON + CSV</option>
-                            <option value="json">JSON only</option>
-                            <option value="csv">CSV only</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="outputName">Output Filename (no extension):</label>
-                        <input type="text" id="outputName" value="ibrecruitment_data" placeholder="ibrecruitment_data">
-                    </div>
-                </div>
-
                 <div class="form-group">
-                    <label for="searchKeyword">Search Keyword (after scraping):</label>
-                    <input type="text" id="searchKeyword" value="recruitment" placeholder="recruitment">
-                </div>
-
-                <div class="form-group">
-                    <label>Respect robots.txt:</label>
-                    <div class="toggle-row">
-                        <label class="toggle-switch">
-                            <input type="checkbox" id="respectRobots" checked>
-                            <span class="toggle-slider"></span>
-                        </label>
-                        <span id="robotsLabel">Enabled — skips URLs blocked by robots.txt</span>
-                    </div>
+                    <label for="delay">Delay Between Requests (seconds):</label>
+                    <input type="number" id="delay" value="1" min="0.5" max="10" step="0.5">
                 </div>
 
                 <div class="button-group">
-                    <button class="btn-primary" onclick="generatePythonCommand()">Generate CLI Command</button>
-                    <button class="btn-primary" onclick="generatePythonAPI()">Generate Python API</button>
+                    <button class="btn-primary" onclick="generatePythonCommand()">Generate Python Command</button>
                     <button class="btn-secondary" onclick="generateConfigFile()">Download Config</button>
                 </div>
 
@@ -719,7 +576,7 @@
             <!-- Setup Guide Tab -->
             <div id="setup" class="tab-content">
                 <h2>🚀 Setup Instructions</h2>
-
+                
                 <div class="alert alert-success" style="margin-top: 20px;">
                     <strong>✓ Files Created:</strong> scraper.py is ready to use!
                 </div>
@@ -731,81 +588,41 @@
 
                 <h3 style="margin-top: 30px;">Step 2: Run the Scraper</h3>
                 <div class="code-block">
-                    <code># Default run (5 pages, depth 1, JSON + CSV output)
-python scraper.py
-
-# Custom run with CLI arguments
-python scraper.py --url https://example.com --pages 10 --depth 2 --format csv</code>
+                    <code>python scraper.py</code>
                 </div>
 
-                <h3 style="margin-top: 30px;">Step 3: CLI Arguments Reference</h3>
+                <h3 style="margin-top: 30px;">Step 3: Customize (Optional)</h3>
+                <p style="margin: 15px 0;">Edit the <code>main()</code> function in scraper.py to customize selectors and parameters:</p>
                 <div class="code-block">
-                    <code>--url       Base URL to scrape        (default: https://www.ibrecruitment.com/)
---pages     Max pages to crawl         (default: 5)
---depth     Max crawl depth            (default: 1)
---delay     Seconds between requests   (default: 1.0)
---retries   Max retries per request    (default: 3)
---format    json | csv | both          (default: both)
---output    Output filename (no ext)   (default: ibrecruitment_data)
---search    Keyword to search results  (default: recruitment)
---no-robots Ignore robots.txt          (flag)</code>
-                </div>
-
-                <h3 style="margin-top: 30px;">Step 4: Use as a Python Library (Optional)</h3>
-                <p style="margin: 15px 0;">Import <code>IBRecruitmentScraper</code> in your own scripts:</p>
-                <div class="code-block">
-                    <code>from scraper import IBRecruitmentScraper
-
-scraper = IBRecruitmentScraper(
-    base_url="https://www.ibrecruitment.com/",
-    respect_robots=True,
-    max_retries=3
-)
-
-custom_selectors = {
+                    <code>custom_selectors = {
     'headings': ['h1', 'h2', 'h3'],
     'jobs': ['.job-listing', '.vacancy'],
     'contact': ['footer', '.contact-info']
 }
 
-scraper.crawl(max_pages=10, max_depth=2, selectors=custom_selectors)
-scraper.save_to_json('results.json')
-scraper.save_to_csv('results.csv')
-
-stats = scraper.summary()
-print(stats)
-
-hits = scraper.search_content('recruitment')
-print(f"Found {len(hits)} matches")</code>
+scraper.crawl(max_pages=10, max_depth=2, selectors=custom_selectors)</code>
                 </div>
 
-                <h3 style="margin-top: 30px;">Features:</h3>
+                <h3 style="margin-top: 30px;">Features Available:</h3>
                 <ul style="margin: 15px 0 15px 30px; line-height: 2;">
                     <li>✓ Single page scraping</li>
                     <li>✓ Multi-page crawling with depth control</li>
                     <li>✓ Custom CSS selectors</li>
-                    <li>✓ Rate limiting to respect servers</li>
-                    <li>✓ robots.txt compliance</li>
-                    <li>✓ Retry with exponential backoff</li>
-                    <li>✓ JSON &amp; CSV export</li>
-                    <li>✓ Summary statistics</li>
-                    <li>✓ Content search</li>
-                    <li>✓ Structured logging</li>
-                    <li>✓ Full CLI with argparse</li>
+                    <li>✓ Rate limiting to respect server</li>
+                    <li>✓ JSON export</li>
+                    <li>✓ Content search functionality</li>
                 </ul>
             </div>
 
             <!-- Results Tab -->
             <div id="results" class="tab-content">
                 <h2>📊 View Scraped Results</h2>
-
+                
                 <div class="button-group" style="margin-top: 20px;">
                     <button class="btn-primary" onclick="loadResults()">Load Results (ibrecruitment_data.json)</button>
                     <button class="btn-secondary" onclick="document.getElementById('fileInput').click()">Upload JSON File</button>
-                    <button class="btn-secondary" onclick="document.getElementById('csvInput').click()">Upload CSV File</button>
                 </div>
                 <input type="file" id="fileInput" accept=".json" style="display: none;" onchange="handleFileUpload(event)">
-                <input type="file" id="csvInput" accept=".csv" style="display: none;" onchange="handleCSVUpload(event)">
 
                 <div id="statsContainer" style="display: none;">
                     <div class="stats">
@@ -818,23 +635,10 @@ print(f"Found {len(hits)} matches")</code>
                             <p>Content Items</p>
                         </div>
                         <div class="stat-card">
-                            <h4 id="totalCategories">0</h4>
-                            <p>Categories</p>
-                        </div>
-                        <div class="stat-card">
                             <h4 id="scrapedDate">-</h4>
                             <p>Last Scraped</p>
                         </div>
                     </div>
-                </div>
-
-                <div id="searchPanel" style="display: none;">
-                    <h3 style="margin-top: 20px;">🔎 Search Within Results</h3>
-                    <div class="search-row">
-                        <input type="text" id="resultsSearchInput" placeholder="Search scraped content…">
-                        <button class="btn-primary" onclick="searchLoadedResults()">Search</button>
-                    </div>
-                    <div id="searchResults"></div>
                 </div>
 
                 <div id="resultsOutput" class="output-box" style="display: none;">
@@ -846,275 +650,102 @@ print(f"Found {len(hits)} matches")</code>
     </div>
 
     <script>
-        // --- State ---
-        var _loadedData = null;
-
-        // --- Tabs ---
         function switchTab(tabName) {
-            document.querySelectorAll('.tab-content').forEach(function(c) { c.classList.remove('active'); });
-            document.querySelectorAll('.tab').forEach(function(t) { t.classList.remove('active'); });
+            // Hide all tabs
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+
+            // Show selected tab
             document.getElementById(tabName).classList.add('active');
             event.target.classList.add('active');
         }
 
-        // --- Robots toggle label ---
-        (function() {
-            var cb = document.getElementById('respectRobots');
-            var lbl = document.getElementById('robotsLabel');
-            if (cb && lbl) {
-                cb.addEventListener('change', function() {
-                    lbl.textContent = cb.checked
-                        ? 'Enabled \u2014 skips URLs blocked by robots.txt'
-                        : 'Disabled \u2014 robots.txt will be ignored';
-                });
-            }
-        })();
-
-        // --- Helpers ---
-        function _getFormValues() {
-            return {
-                url: document.getElementById('targetUrl').value,
-                maxPages: document.getElementById('maxPages').value,
-                maxDepth: document.getElementById('maxDepth').value,
-                delay: document.getElementById('delay').value,
-                retries: document.getElementById('retries').value,
-                format: document.getElementById('outputFormat').value,
-                output: document.getElementById('outputName').value || 'ibrecruitment_data',
-                search: document.getElementById('searchKeyword').value || 'recruitment',
-                selectors: document.getElementById('selectors').value,
-                robots: document.getElementById('respectRobots').checked
-            };
-        }
-
-        // --- Generate CLI command ---
         function generatePythonCommand() {
-            var v = _getFormValues();
-            var parts = ['python scraper.py'];
-            if (v.url !== 'https://www.ibrecruitment.com/') parts.push('--url "' + v.url + '"');
-            parts.push('--pages ' + v.maxPages);
-            parts.push('--depth ' + v.maxDepth);
-            parts.push('--delay ' + v.delay);
-            parts.push('--retries ' + v.retries);
-            parts.push('--format ' + v.format);
-            parts.push('--output ' + v.output);
-            if (v.search) parts.push('--search "' + v.search + '"');
-            if (!v.robots) parts.push('--no-robots');
+            const url = document.getElementById('targetUrl').value;
+            const maxPages = document.getElementById('maxPages').value;
+            const maxDepth = document.getElementById('maxDepth').value;
+            const delay = document.getElementById('delay').value;
+            const selectors = document.getElementById('selectors').value;
 
-            var command = '# CLI command\n' + parts.join(' \\\n    ');
-            document.getElementById('pythonCommand').textContent = command;
-            document.getElementById('commandOutput').style.display = 'block';
-        }
+            const command = `# Run the scraper with custom parameters
+python scraper.py
 
-        // --- Generate Python API snippet ---
-        function generatePythonAPI() {
-            var v = _getFormValues();
-            var command = '# Python API usage\n'
-                + 'from scraper import IBRecruitmentScraper\n\n'
-                + 'scraper = IBRecruitmentScraper(\n'
-                + '    base_url="' + v.url + '",\n'
-                + '    respect_robots=' + (v.robots ? 'True' : 'False') + ',\n'
-                + '    max_retries=' + v.retries + '\n'
-                + ')\n\n'
-                + 'selectors = ' + v.selectors + '\n\n'
-                + 'scraper.crawl(\n'
-                + '    max_pages=' + v.maxPages + ',\n'
-                + '    max_depth=' + v.maxDepth + ',\n'
-                + '    selectors=selectors,\n'
-                + '    delay=' + v.delay + '\n'
-                + ')\n\n';
+# Or use it programmatically:
+from scraper import IBRecruitmentScraper
 
-            if (v.format === 'json' || v.format === 'both')
-                command += 'scraper.save_to_json("' + v.output + '.json")\n';
-            if (v.format === 'csv' || v.format === 'both')
-                command += 'scraper.save_to_csv("' + v.output + '.csv")\n';
+scraper = IBRecruitmentScraper("${url}")
+selectors = ${selectors}
 
-            command += '\n# Summary statistics\n'
-                + 'stats = scraper.summary()\n'
-                + 'print(stats)\n\n'
-                + '# Search content\n'
-                + 'hits = scraper.search_content("' + v.search + '")\n'
-                + 'print(f"Found {len(hits)} matches")';
+scraper.crawl(max_pages=${maxPages}, max_depth=${maxDepth}, selectors=selectors, delay=${delay})
+scraper.save_to_json('ibrecruitment_data.json')`;
 
             document.getElementById('pythonCommand').textContent = command;
             document.getElementById('commandOutput').style.display = 'block';
         }
 
-        // --- Download config ---
         function generateConfigFile() {
-            var v = _getFormValues();
-            var config = {
-                target_url: v.url,
-                max_pages: parseInt(v.maxPages),
-                max_depth: parseInt(v.maxDepth),
-                delay: parseFloat(v.delay),
-                max_retries: parseInt(v.retries),
-                output_format: v.format,
-                output_name: v.output,
-                search_keyword: v.search,
-                respect_robots: v.robots,
-                selectors: JSON.parse(v.selectors)
+            const config = {
+                target_url: document.getElementById('targetUrl').value,
+                max_pages: parseInt(document.getElementById('maxPages').value),
+                max_depth: parseInt(document.getElementById('maxDepth').value),
+                delay: parseFloat(document.getElementById('delay').value),
+                selectors: JSON.parse(document.getElementById('selectors').value)
             };
 
-            var blob = new Blob([JSON.stringify(config, null, 2)], { type: 'application/json' });
-            var url = URL.createObjectURL(blob);
-            var a = document.createElement('a');
+            const blob = new Blob([JSON.stringify(config, null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
             a.href = url;
             a.download = 'scraper_config.json';
             a.click();
             URL.revokeObjectURL(url);
         }
 
-        // --- Results: load prompt ---
         function loadResults() {
-            alert('Upload ibrecruitment_data.json or .csv using the buttons above.');
+            // Simulate loading - in production, you'd fetch the actual JSON file
+            alert('Please upload the ibrecruitment_data.json file using the "Upload JSON File" button');
         }
 
-        // --- Results: JSON upload ---
         function handleFileUpload(event) {
-            var file = event.target.files[0];
-            if (!file) return;
-            var reader = new FileReader();
-            reader.onload = function(e) {
-                try {
-                    var data = JSON.parse(e.target.result);
-                    _loadedData = data;
-                    displayResults(data);
-                } catch (err) {
-                    alert('Error parsing JSON: ' + err.message);
-                }
-            };
-            reader.readAsText(file);
-        }
-
-        // --- Results: CSV upload ---
-        function handleCSVUpload(event) {
-            var file = event.target.files[0];
-            if (!file) return;
-            var reader = new FileReader();
-            reader.onload = function(e) {
-                try {
-                    var rows = parseCSV(e.target.result);
-                    var data = csvRowsToScraperFormat(rows);
-                    _loadedData = data;
-                    displayResults(data);
-                } catch (err) {
-                    alert('Error parsing CSV: ' + err.message);
-                }
-            };
-            reader.readAsText(file);
-        }
-
-        function parseCSV(text) {
-            var lines = text.split('\n').filter(function(l) { return l.trim(); });
-            if (!lines.length) return [];
-            var headers = lines[0].split(',').map(function(h) { return h.trim().replace(/^"|"$/g, ''); });
-            var rows = [];
-            for (var i = 1; i < lines.length; i++) {
-                var vals = lines[i].split(',').map(function(v) { return v.trim().replace(/^"|"$/g, ''); });
-                var obj = {};
-                headers.forEach(function(h, idx) { obj[h] = vals[idx] || ''; });
-                rows.push(obj);
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    try {
+                        const data = JSON.parse(e.target.result);
+                        displayResults(data);
+                    } catch (error) {
+                        alert('Error parsing JSON file: ' + error.message);
+                    }
+                };
+                reader.readAsText(file);
             }
-            return rows;
         }
 
-        function csvRowsToScraperFormat(rows) {
-            var pages = {};
-            rows.forEach(function(r) {
-                var key = r.url || 'unknown';
-                if (!pages[key]) {
-                    pages[key] = { url: key, title: r.title || '', timestamp: r.timestamp || '', content: {} };
-                }
-                var cat = r.category || 'content';
-                if (!pages[key].content[cat]) pages[key].content[cat] = [];
-                pages[key].content[cat].push({ text: r.text || '', html: null });
-            });
-            var data = Object.values(pages);
-            return {
-                scraper: 'IBRecruitment Scraper (CSV import)',
-                base_url: data.length ? data[0].url : '',
-                scraped_at: data.length ? data[0].timestamp : new Date().toISOString(),
-                total_pages: data.length,
-                data: data
-            };
-        }
-
-        // --- Display results + stats ---
         function displayResults(data) {
             document.getElementById('totalPages').textContent = data.total_pages || 0;
-
-            var totalContent = 0;
-            var categories = {};
+            
+            let totalContent = 0;
             if (data.data) {
-                data.data.forEach(function(page) {
-                    Object.keys(page.content || {}).forEach(function(cat) {
-                        var items = page.content[cat];
+                data.data.forEach(page => {
+                    Object.values(page.content || {}).forEach(items => {
                         totalContent += items.length;
-                        categories[cat] = (categories[cat] || 0) + items.length;
                     });
                 });
             }
             document.getElementById('totalContent').textContent = totalContent;
-            document.getElementById('totalCategories').textContent = Object.keys(categories).length;
-
-            var date = data.scraped_at ? new Date(data.scraped_at).toLocaleDateString() : '-';
+            
+            const date = data.scraped_at ? new Date(data.scraped_at).toLocaleDateString() : '-';
             document.getElementById('scrapedDate').textContent = date;
-
+            
             document.getElementById('resultsData').textContent = JSON.stringify(data, null, 2);
             document.getElementById('statsContainer').style.display = 'block';
             document.getElementById('resultsOutput').style.display = 'block';
-            document.getElementById('searchPanel').style.display = 'block';
         }
-
-        // --- Search within loaded results ---
-        function searchLoadedResults() {
-            var keyword = (document.getElementById('resultsSearchInput').value || '').trim().toLowerCase();
-            var container = document.getElementById('searchResults');
-            container.innerHTML = '';
-            if (!keyword || !_loadedData || !_loadedData.data) {
-                container.innerHTML = '<p style="color:#999;">No results.</p>';
-                return;
-            }
-            var hits = [];
-            _loadedData.data.forEach(function(page) {
-                Object.keys(page.content || {}).forEach(function(cat) {
-                    page.content[cat].forEach(function(item) {
-                        if (item.text && item.text.toLowerCase().indexOf(keyword) !== -1) {
-                            hits.push({ url: page.url, category: cat, text: item.text });
-                        }
-                    });
-                });
-            });
-            if (!hits.length) {
-                container.innerHTML = '<p style="color:#999;">No matches for "' + keyword + '".</p>';
-                return;
-            }
-            hits.slice(0, 50).forEach(function(h) {
-                var div = document.createElement('div');
-                div.className = 'search-hit';
-                div.innerHTML = '<div class="hit-category">' + h.category + '</div>'
-                    + '<div>' + escapeHtml(h.text.substring(0, 300)) + (h.text.length > 300 ? '…' : '') + '</div>'
-                    + '<div class="hit-url">' + escapeHtml(h.url) + '</div>';
-                container.appendChild(div);
-            });
-            if (hits.length > 50) {
-                container.insertAdjacentHTML('beforeend', '<p style="color:#667eea;">Showing 50 of ' + hits.length + ' matches.</p>');
-            }
-        }
-
-        function escapeHtml(s) {
-            var d = document.createElement('div');
-            d.textContent = s;
-            return d.innerHTML;
-        }
-
-        // Enter key in search input
-        (function() {
-            var inp = document.getElementById('resultsSearchInput');
-            if (inp) inp.addEventListener('keydown', function(e) {
-                if (e.key === 'Enter') { e.preventDefault(); searchLoadedResults(); }
-            });
-        })();
     </script>
 </body>
 </html>
