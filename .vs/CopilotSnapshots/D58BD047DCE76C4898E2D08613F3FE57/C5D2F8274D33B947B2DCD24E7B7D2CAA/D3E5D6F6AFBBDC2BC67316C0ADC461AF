@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -220,10 +220,10 @@ body {
 .main-content { width: 100%; display: grid; grid-template-rows: auto 1fr auto; gap: 2em; }
 
 /* Search bar */
-.search-container { width: 100%; max-width: 650px; margin: 2em auto; display: flex; gap: 0.5rem; align-items: center; background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); border-radius: calc(var(--radius-md) - 4px); padding: 3px; box-shadow: 0 8px 30px rgba(0,0,0,0.45); border: 3px solid #1a3a8a; transition: box-shadow var(--transition-med), border-color var(--transition-med); position: relative; overflow: visible; }
-.search-container:hover { border-color: #2451b3; box-shadow: 0 8px 30px rgba(0,0,0,0.45), 0 14px 48px rgba(26,58,138,0.40); }
-.search-container:focus-within { box-shadow: 0 14px 48px rgba(26,58,138,0.40), 0 0 22px rgba(26,58,138,0.18), 0 2px 12px rgba(26,58,138,0.10); outline: 2px solid rgba(26,58,138,0.06); }
-.search-container::after { content: ""; position: absolute; left: 0; top: 0; right: 0; bottom: 0; border-radius: calc(var(--radius-md) - 4px); pointer-events: none; opacity: 0.65 !important; box-shadow: 0 6px 30px rgba(26,58,138,0.03); background: linear-gradient(90deg, rgba(26,58,138,0.0) 0%, rgba(26,58,138,0.40) 40%, rgba(26,58,138,0.0) 80%); background-size: 200% 100%; mix-blend-mode: screen; z-index: 0; animation: sparkleBorder 3500ms linear infinite; }
+.search-container { width: 100%; max-width: 650px; margin: 2em auto; display: flex; gap: 0.5rem; align-items: center; background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); border-radius: calc(var(--radius-md) - 4px); padding: 3px; box-shadow: 0 8px 30px rgba(0,0,0,0.45); border: 3px solid #d4af37; transition: box-shadow var(--transition-med), border-color var(--transition-med); position: relative; overflow: visible; }
+.search-container:hover { border-color: #e6c347; box-shadow: 0 8px 30px rgba(0,0,0,0.45), 0 14px 48px rgba(212,175,55,0.40); }
+.search-container:focus-within { box-shadow: 0 14px 48px rgba(212,175,55,0.40), 0 0 22px rgba(212,175,55,0.18), 0 2px 12px rgba(212,175,55,0.10); outline: 2px solid rgba(212,175,55,0.06); }
+.search-container::after { content: ""; position: absolute; left: 0; top: 0; right: 0; bottom: 0; border-radius: calc(var(--radius-md) - 4px); pointer-events: none; opacity: 0.65 !important; box-shadow: 0 6px 30px rgba(212,175,55,0.03); background: linear-gradient(90deg, rgba(212,175,55,0.0) 0%, rgba(212,175,55,0.40) 40%, rgba(212,175,55,0.0) 80%); background-size: 200% 100%; mix-blend-mode: screen; z-index: 0; animation: sparkleBorder 3500ms linear infinite; }
 
 @keyframes sparkleBorder {
   0% { background-position: 0% 50%; filter: saturate(1) hue-rotate(0deg); }
