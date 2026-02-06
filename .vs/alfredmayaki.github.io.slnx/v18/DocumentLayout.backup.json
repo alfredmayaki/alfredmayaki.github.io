@@ -133,6 +133,10 @@
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\44746\\AppData\\Local\\Microsoft\\WindowsApps\\wget\\repo\\alfredmayaki.github.io\\national-chopstick-day.html||{3B902123-F8A7-4915-9F01-361F908088D0}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:national-chopstick-day.html||{3B902123-F8A7-4915-9F01-361F908088D0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\44746\\AppData\\Local\\Microsoft\\WindowsApps\\wget\\repo\\alfredmayaki.github.io\\take-your-child-to-the-library-day.html||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:take-your-child-to-the-library-day.html||{3B902123-F8A7-4915-9F01-361F908088D0}"
     }
   ],
   "DocumentGroupContainers": [
@@ -142,7 +146,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Bookmark",
@@ -158,6 +162,19 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 33,
+              "Title": "take-your-child-to-the-library-day.html",
+              "DocumentMoniker": "C:\\Users\\44746\\AppData\\Local\\Microsoft\\WindowsApps\\wget\\repo\\alfredmayaki.github.io\\take-your-child-to-the-library-day.html",
+              "RelativeDocumentMoniker": "take-your-child-to-the-library-day.html",
+              "ToolTip": "C:\\Users\\44746\\AppData\\Local\\Microsoft\\WindowsApps\\wget\\repo\\alfredmayaki.github.io\\take-your-child-to-the-library-day.html",
+              "RelativeToolTip": "take-your-child-to-the-library-day.html",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAJ0CAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2026-02-06T01:08:51.516Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 1,
               "Title": "claude-opus-4-6.html",
               "DocumentMoniker": "C:\\Users\\44746\\AppData\\Local\\Microsoft\\WindowsApps\\wget\\repo\\alfredmayaki.github.io\\claude-opus-4-6.html",
@@ -166,8 +183,7 @@
               "RelativeToolTip": "claude-opus-4-6.html",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAMEAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
-              "WhenOpened": "2026-02-05T21:47:33.01Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-05T21:47:33.01Z"
             },
             {
               "$type": "Document",
@@ -177,7 +193,7 @@
               "RelativeDocumentMoniker": "ai.html",
               "ToolTip": "C:\\Users\\44746\\AppData\\Local\\Microsoft\\WindowsApps\\wget\\repo\\alfredmayaki.github.io\\ai.html",
               "RelativeToolTip": "ai.html",
-              "ViewState": "AgIAAMICAAAAAAAAAAAkwMkCAABAAAAAAAAAAA==",
+              "ViewState": "AgIAAA8DAAAAAAAAAAAAAAYDAAAZAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
               "WhenOpened": "2026-02-05T20:58:33.954Z",
               "EditorCaption": ""
@@ -192,8 +208,7 @@
               "RelativeToolTip": "toml worker\\wrangler.toml",
               "ViewState": "AgIAAAUAAAAAAAAAAAAlwAsAAAAbAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2026-02-05T18:30:56.232Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-05T18:30:56.232Z"
             },
             {
               "$type": "Document",
@@ -409,8 +424,7 @@
               "RelativeToolTip": "privacy-policy.html",
               "ViewState": "AgIAAOcAAAAAAAAAAAAuwPAAAAAPAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
-              "WhenOpened": "2026-02-01T14:28:53.59Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-01T14:28:53.59Z"
             },
             {
               "$type": "Document",

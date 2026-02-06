@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Take Your Child to the Library Day — First Saturday of February | AM-Global™</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Celebrate Take Your Child to the Library Day on the first Saturday of February. Discover why libraries matter, how to observe the day, and fun facts about public libraries worldwide.">
+  <meta name="keywords" content="Take Your Child to the Library Day, library, reading, children, literacy, public libraries, February">
+  <meta name="author" content="Alfred Anate Bodurin Mayaki">
+  <link rel="canonical" href="https://alfredmayaki.me/take-your-child-to-the-library-day.html">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-CNF86BSG95"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-CNF86BSG95');</script>
+
+  <style>
+    :root {
+      --font-sans: "Segoe UI", system-ui, -apple-system, Arial, sans-serif;
+      --bg-dark: #0d1117;
+      --bg-card: #161b22;
+      --bg-elevated: #21262d;
+      --panel: #161616;
+      --surface: #2a2a2a;
+      --text: #ffffff;
+      --text-muted: #979797;
+      --text-secondary: #b0b0b0;
+      --border: #464242;
+      --brand: #3d4ee9;
+      --brand-hover: #5563f0;
+      --library-blue: #2563eb;
+      --library-amber: #d97706;
+      --radius-md: 14px;
+      --radius-lg: 18px;
+      --shadow-pop: 0 10px 30px rgba(0,0,0,0.6);
+      --transition-fast: 180ms;
+      --transition-med: 300ms;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html {
+      background: var(--bg-dark);
+      min-height: 100vh;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font-sans);
+      background: var(--bg-dark);
+      color: var(--text);
+      line-height: 1.7;
+      font-size: 16px;
+      max-width: 900px;
+      margin: 2em auto;
+      padding: 2em;
+      border: 3px solid var(--border);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-pop);
+    }
+
+    /* Navigation */
+    .top-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .top-nav .brand {
+      color: var(--text);
+      font-weight: 700;
+      text-decoration: none;
+      font-size: 1rem;
+    }
+
+    .back-link {
+      color: var(--brand);
+      text-decoration: none;
+      font-size: 0.95rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: color var(--transition-fast);
+    }
+
+    .back-link:hover {
+      color: var(--brand-hover);
+    }
+
+    /* Hero Section */
+    .hero {
+      text-align: center;
+      padding: 2rem 1rem 2.5rem;
+      background: linear-gradient(135deg, rgba(37,99,235,0.15) 0%, rgba(217,119,6,0.1) 100%);
+      border-radius: var(--radius-lg);
+      margin-bottom: 2rem;
+      border: 1px solid rgba(37,99,235,0.2);
+    }
+
+    .hero-emoji {
+      font-size: 4rem;
+      margin-bottom: 1rem;
+      display: block;
+      animation: bounce 2s ease-in-out infinite;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    .hero h1 {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 0.5rem;
+    }
+
+    .hero .date {
+      font-size: 1.2rem;
+      color: var(--library-amber);
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    .hero p {
+      color: var(--text-secondary);
+      max-width: 600px;
+      margin: 0 auto;
+      font-size: 1.05rem;
+    }
+
+    /* Section Styling */
+    .section {
+      margin-bottom: 2.5rem;
+    }
+
+    .section h2 {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1.3rem;
+      color: var(--library-amber);
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .section h2::before {
+      content: '//';
+      color: var(--text-muted);
+      font-weight: 400;
+    }
+
+    /* Fact Cards */
+    .fact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.25rem;
+    }
+
+    .fact-card {
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 1.25rem;
+      transition: transform var(--transition-fast), box-shadow var(--transition-fast), border-color var(--transition-fast);
+    }
+
+    .fact-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 32px rgba(37,99,235,0.15);
+      border-color: var(--library-blue);
+    }
+
+    .fact-card .icon {
+      font-size: 2rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .fact-card h3 {
+      font-size: 1.05rem;
+      color: var(--text);
+      margin-bottom: 0.5rem;
+    }
+
+    .fact-card p {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    /* Stats Banner */
+    .stats-banner {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 1rem;
+      background: linear-gradient(90deg, var(--library-blue), var(--library-amber));
+      border-radius: var(--radius-md);
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+
+    .stat-item {
+      color: #fff;
+    }
+
+    .stat-item .number {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1.8rem;
+      font-weight: 700;
+      display: block;
+    }
+
+    .stat-item .label {
+      font-size: 0.85rem;
+      opacity: 0.9;
+    }
+
+    /* Links Section */
+    .links-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .link-btn {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      color: var(--text);
+      text-decoration: none;
+      padding: 1rem 1.25rem;
+      transition: all var(--transition-fast);
+    }
+
+    .link-btn:hover {
+      transform: translateX(6px);
+      border-color: var(--brand);
+      background: rgba(61,78,233,0.08);
+      box-shadow: 0 4px 16px rgba(61,78,233,0.15);
+    }
+
+    .link-btn i {
+      font-size: 1.2rem;
+      color: var(--brand);
+      width: 24px;
+      text-align: center;
+    }
+
+    .link-btn .link-text {
+      flex: 1;
+    }
+
+    .link-btn .link-title {
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+
+    .link-btn .link-desc {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+
+    .link-btn .external-icon {
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+
+    /* How to Celebrate */
+    .celebrate-list {
+      list-style: none;
+      padding: 0;
+    }
+
+    .celebrate-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      padding: 1rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+    }
+
+    .celebrate-list li:last-child {
+      border-bottom: none;
+    }
+
+    .celebrate-list .step-num {
+      background: var(--library-blue);
+      color: #fff;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.85rem;
+      flex-shrink: 0;
+    }
+
+    .celebrate-list .step-content h4 {
+      font-size: 1rem;
+      color: var(--text);
+      margin-bottom: 0.25rem;
+    }
+
+    .celebrate-list .step-content p {
+      color: var(--text-secondary);
+      font-size: 0.92rem;
+    }
+
+    /* Activity Ideas Grid */
+    .activity-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+    }
+
+    .activity-card {
+      background: var(--surface);
+      border-radius: 12px;
+      padding: 1.25rem;
+      text-align: center;
+      border: 1px solid transparent;
+      transition: border-color var(--transition-fast);
+    }
+
+    .activity-card:hover {
+      border-color: var(--library-blue);
+    }
+
+    .activity-card .flag {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .activity-card h4 {
+      color: var(--text);
+      font-size: 1rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .activity-card p {
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      line-height: 1.5;
+    }
+
+    /* Footer */
+    .page-footer {
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+
+    .page-footer a {
+      color: var(--brand);
+      text-decoration: none;
+    }
+
+    .page-footer a:hover {
+      text-decoration: underline;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-bottom: 1rem;
+      flex-wrap: wrap;
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      body {
+        margin: 1rem;
+        padding: 1.25rem;
+      }
+
+      .hero h1 {
+        font-size: 1.5rem;
+      }
+
+      .hero-emoji {
+        font-size: 3rem;
+      }
+
+      .stat-item .number {
+        font-size: 1.4rem;
+      }
+
+      .fact-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="top-nav">
+    <a href="index.html" class="brand">🚀 AM-Global™</a>
+    <a href="ai.html" class="back-link"><i class="fas fa-arrow-left"></i> Back to Home</a>
+  </nav>
+
+  <!-- Hero Section -->
+  <header class="hero">
+    <span class="hero-emoji">📚</span>
+    <h1>Take Your Child to the Library Day</h1>
+    <p class="date">📅 First Saturday of February</p>
+    <p>A nationwide celebration encouraging families to visit their local library, discover the joy of reading, and explore the free resources that public libraries offer to every community.</p>
+  </header>
+
+  <!-- Quick Stats -->
+  <div class="stats-banner">
+    <div class="stat-item">
+      <span class="number">116,000+</span>
+      <span class="label">US Public Libraries</span>
+    </div>
+    <div class="stat-item">
+      <span class="number">1.3B</span>
+      <span class="label">Annual Library Visits (US)</span>
+    </div>
+    <div class="stat-item">
+      <span class="number">2011</span>
+      <span class="label">Year Founded</span>
+    </div>
+    <div class="stat-item">
+      <span class="number">50</span>
+      <span class="label">US States Participating</span>
+    </div>
+  </div>
+
+  <!-- About the Day -->
+  <section class="section">
+    <h2>About the Day</h2>
+    <div class="fact-grid">
+      <div class="fact-card">
+        <div class="icon">💡</div>
+        <h3>Origins</h3>
+        <p>Take Your Child to the Library Day was created in 2011 by Nadine Lipman of the Waterford (Connecticut) Public Library. What started as a local initiative quickly grew into a nationwide movement embraced by libraries across all 50 states.</p>
+      </div>
+      <div class="fact-card">
+        <div class="icon">🎯</div>
+        <h3>Purpose</h3>
+        <p>The day exists to remind families that libraries are free, welcoming community hubs offering far more than books — from story-times and maker-spaces to homework help, Wi-Fi access, and family-friendly events.</p>
+      </div>
+      <div class="fact-card">
+        <div class="icon">📖</div>
+        <h3>Early Literacy</h3>
+        <p>Research shows that children who are read to from an early age develop stronger language skills, longer attention spans, and a lifelong love of reading. Libraries provide the perfect environment to foster these habits.</p>
+      </div>
+      <div class="fact-card">
+        <div class="icon">🤝</div>
+        <h3>Community Impact</h3>
+        <p>Public libraries are among the most trusted institutions in any community. They serve as equalisers — giving every child, regardless of background, access to knowledge, technology, and creative programmes.</p>
+      </div>
+      <div class="fact-card">
+        <div class="icon">🌐</div>
+        <h3>Beyond Books</h3>
+        <p>Modern libraries offer 3D printers, recording studios, coding workshops, board-game nights, and seed libraries. Many also lend tools, musical instruments, toys, and even Wi-Fi hotspots for home use.</p>
+      </div>
+      <div class="fact-card">
+        <div class="icon">📊</div>
+        <h3>By the Numbers</h3>
+        <p>Americans visit public libraries more than 1.3 billion times a year — more than visits to movie theatres, theme parks, and major sporting events combined. Librarians answer nearly 6 million questions each week.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Fun Activities at the Library -->
+  <section class="section">
+    <h2>Fun Activities at the Library</h2>
+    <div class="activity-grid">
+      <div class="activity-card">
+        <div class="flag">📕</div>
+        <h4>Story-Time Sessions</h4>
+        <p>Interactive read-alouds for toddlers and pre-schoolers, often with songs, puppets, and crafts.</p>
+      </div>
+      <div class="activity-card">
+        <div class="flag">🎨</div>
+        <h4>Arts &amp; Crafts</h4>
+        <p>Many libraries host creative workshops — painting, origami, and seasonal craft sessions for all ages.</p>
+      </div>
+      <div class="activity-card">
+        <div class="flag">💻</div>
+        <h4>STEM &amp; Coding</h4>
+        <p>Robotics clubs, coding classes, and science experiments introduce children to technology early.</p>
+      </div>
+      <div class="activity-card">
+        <div class="flag">🎮</div>
+        <h4>Gaming &amp; Board Games</h4>
+        <p>Libraries stock board games, video-game consoles, and host game nights that bring families together.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- How to Celebrate -->
+  <section class="section">
+    <h2>How to Observe the Day</h2>
+    <ul class="celebrate-list">
+      <li>
+        <span class="step-num">1</span>
+        <div class="step-content">
+          <h4>Visit Your Local Library</h4>
+          <p>Take your child (or any young person in your life) to the nearest public library. Many host special events on this day with refreshments, giveaways, and guest readers.</p>
+        </div>
+      </li>
+      <li>
+        <span class="step-num">2</span>
+        <div class="step-content">
+          <h4>Get a Library Card</h4>
+          <p>If your child doesn't already have one, sign up for a free library card. It's one of the most empowering things you can give a young reader — their own passport to knowledge.</p>
+        </div>
+      </li>
+      <li>
+        <span class="step-num">3</span>
+        <div class="step-content">
+          <h4>Let Them Choose</h4>
+          <p>Allow children to browse freely and pick books that genuinely interest them — comics, graphic novels, fantasy, non-fiction, anything. Autonomy builds enthusiasm.</p>
+        </div>
+      </li>
+      <li>
+        <span class="step-num">4</span>
+        <div class="step-content">
+          <h4>Attend a Programme</h4>
+          <p>Check the library's events calendar for story-times, craft sessions, author visits, or STEM workshops happening that day.</p>
+        </div>
+      </li>
+      <li>
+        <span class="step-num">5</span>
+        <div class="step-content">
+          <h4>Start a Reading Routine</h4>
+          <p>Use the day as a springboard — commit to a weekly library visit or a nightly read-aloud at bedtime. Consistency turns a single visit into a lifelong habit.</p>
+        </div>
+      </li>
+      <li>
+        <span class="step-num">6</span>
+        <div class="step-content">
+          <h4>Share on Social Media</h4>
+          <p>Post about your library visit using #TakeYourChildToTheLibraryDay to inspire other families and show support for your local library.</p>
+        </div>
+      </li>
+    </ul>
+  </section>
+
+  <!-- Why Libraries Matter -->
+  <section class="section">
+    <h2>Why Libraries Still Matter</h2>
+    <div class="fact-grid">
+      <div class="fact-card">
+        <div class="icon">⚖️</div>
+        <h3>Free &amp; Equal Access</h3>
+        <p>Libraries are one of the last truly free public spaces. Every person — regardless of income, age, or background — can walk in and access books, computers, and programmes at no cost.</p>
+      </div>
+      <div class="fact-card">
+        <div class="icon">🧠</div>
+        <h3>Academic Success</h3>
+        <p>Studies consistently show that children with access to libraries perform better in school. Regular library use correlates with improved reading scores, vocabulary growth, and critical thinking.</p>
+      </div>
+      <div class="fact-card">
+        <div class="icon">🛡️</div>
+        <h3>Safe Spaces</h3>
+        <p>Libraries provide a warm, safe, supervised environment for children after school. Many offer homework help, tutoring, and mentorship programmes run by trained staff.</p>
+      </div>
+      <div class="fact-card">
+        <div class="icon">🌱</div>
+        <h3>Digital Literacy</h3>
+        <p>Librarians teach children how to evaluate online information, use databases responsibly, and navigate technology — essential skills in the digital age.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Learn More Links -->
+  <section class="section">
+    <h2>Learn More</h2>
+    <div class="links-grid">
+      <a href="https://takeyourchildtothelibraryday.org/" target="_blank" rel="noopener noreferrer" class="link-btn">
+        <i class="fas fa-book-open"></i>
+        <div class="link-text">
+          <div class="link-title">Official Website — Take Your Child to the Library Day</div>
+          <div class="link-desc">Event information, resources for libraries, and promotional materials</div>
+        </div>
+        <i class="fas fa-external-link-alt external-icon"></i>
+      </a>
+      <a href="https://www.ala.org/" target="_blank" rel="noopener noreferrer" class="link-btn">
+        <i class="fas fa-landmark"></i>
+        <div class="link-text">
+          <div class="link-title">American Library Association (ALA)</div>
+          <div class="link-desc">The leading organisation advocating for libraries and literacy in the US</div>
+        </div>
+        <i class="fas fa-external-link-alt external-icon"></i>
+      </a>
+      <a href="https://www.readingrockets.org/" target="_blank" rel="noopener noreferrer" class="link-btn">
+        <i class="fas fa-rocket"></i>
+        <div class="link-text">
+          <div class="link-title">Reading Rockets — Literacy Resources</div>
+          <div class="link-desc">Research-backed strategies for helping children learn to read</div>
+        </div>
+        <i class="fas fa-external-link-alt external-icon"></i>
+      </a>
+      <a href="https://en.wikipedia.org/wiki/Public_library" target="_blank" rel="noopener noreferrer" class="link-btn">
+        <i class="fab fa-wikipedia-w"></i>
+        <div class="link-text">
+          <div class="link-title">Public Library — Wikipedia</div>
+          <div class="link-desc">History, global reach, and cultural significance of public libraries</div>
+        </div>
+        <i class="fas fa-external-link-alt external-icon"></i>
+      </a>
+      <a href="https://www.youtube.com/results?search_query=take+your+child+to+the+library+day" target="_blank" rel="noopener noreferrer" class="link-btn">
+        <i class="fab fa-youtube"></i>
+        <div class="link-text">
+          <div class="link-title">Videos — Take Your Child to the Library Day</div>
+          <div class="link-desc">Celebrations, read-alouds, and library tours from across the country</div>
+        </div>
+        <i class="fas fa-external-link-alt external-icon"></i>
+      </a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="page-footer">
+    <nav class="footer-links">
+      <a href="ai.html">🏠 Home</a>
+      <a href="research.html">📚 Research</a>
+      <a href="contact.html">📧 Contact</a>
+      <a href="privacy-policy.html">Privacy Policy</a>
+    </nav>
+    <p>© 2026 Alfred Anate Bodurin Mayaki. All rights reserved.</p>
+    <p style="margin-top: 0.5rem;">📚 Happy Take Your Child to the Library Day! 📚</p>
+  </footer>
+
+  <!-- Particles Background -->
+  <div id="particles-js" style="position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:-1;pointer-events:none;"></div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
+  <script>
+    if (typeof particlesJS !== 'undefined') {
+      particlesJS('particles-js', {
+        particles: {
+          number: { value: 30, density: { enable: true, value_area: 800 } },
+          color: { value: '#2563eb' },
+          shape: { type: 'circle' },
+          opacity: { value: 0.3, random: true },
+          size: { value: 3, random: true },
+          move: { enable: true, speed: 1, direction: 'none', random: true, out_mode: 'out' }
+        },
+        interactivity: {
+          detect_on: 'canvas',
+          events: { onhover: { enable: false }, onclick: { enable: false } }
+        },
+        retina_detect: true
+      });
+    }
+  </script>
+
+</body>
+</html>

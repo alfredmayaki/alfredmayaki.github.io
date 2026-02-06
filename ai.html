@@ -769,7 +769,13 @@ body {
           var inputEl = document.getElementById('searchInput');
           if (!inputEl || inputEl.__typedInitialized) return;
           inputEl.__typedInitialized = true;
-          var strings = ['National Chopstick Day','How to observe National Chopstick Day?','Creative uses for chopsticks?','Cultural significance of chopsticks?','Chopstick etiquette tips?','Unique chopstick designs around the world?','How are chopsticks made?','Fun facts about chopsticks?'];
+          var strings = ['How to observe National Chopstick Day?',
+                         'What are the best chopstick materials?',
+                         'How to properly use chopsticks?',
+                         'How are chopsticks made?',
+                         'What are the cultural significances of chopsticks?',
+                         'Creative uses of chopsticks?',
+                         'Chopstick etiquette around the world?'];
           var opts = { strings: strings, typeSpeed: 20, backSpeed: 15, backDelay: 1500, loop: true, attr: 'placeholder', bindInputFocusEvents: true, showCursor: false };
           try { new Typed('searchInput', opts); } catch (err) { try { new Typed(inputEl, opts); } catch (err2) {} }
         }
