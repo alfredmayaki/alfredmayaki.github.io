@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -714,7 +714,7 @@ body {
     <h3 class="page-welcome" style="color:#FFFFFF;"></h3>
     <div class="page-subtitle">
       <a href="/winter-olympics.html" aria-label="About page">
-        <img src="/tagline.png" alt="AM-Global tagline" class="tagline-image" />
+        <img src="/tagline.jpg" alt="AM-Global tagline" class="tagline-image" />
       </a>
     </div>
   </div>
@@ -782,7 +782,7 @@ body {
   <br>
   <div style="text-align:center; margin:0.75rem 0;">
     <p style="color:#FFFFFF; margin:0; font-weight:600;">
-     🏅 Today is<a href="/winter-olympics.html" target="_blank" rel="noopener noreferrer" style="color:#FFFFFF; text-decoration:underline; margin-left:0.35rem;">The Winter Olympic Games 2026 Opening Ceremony</a>
+      📚 Today is<a href="/winter-olympics.html" target="_blank" rel="noopener noreferrer" style="color:#FFFFFF; text-decoration:underline; margin-left:0.35rem;">Take Your Child To The Library Day</a>
     </p>
   </div>
   <br>
