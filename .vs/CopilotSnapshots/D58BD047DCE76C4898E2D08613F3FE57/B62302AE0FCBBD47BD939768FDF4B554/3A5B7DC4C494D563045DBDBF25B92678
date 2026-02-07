@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -178,7 +178,7 @@ body {
   transition: text-shadow var(--transition-med), color var(--transition-med);
 }
 .page-subtitle .tagline-image {
-  display: block; max-width: 650px; width: 100%; height: auto; margin: 0.4rem auto 0;
+  display: block; max-width: 720px; width: 100%; height: auto; margin: 0.4rem auto 0;
   padding: 0 !important; border: none !important; border-radius: 0 !important;
   position: relative; overflow: visible !important;
   box-shadow: none !important; transform: none !important; transition: none !important;
@@ -353,7 +353,7 @@ body {
   .nav-dropdown { right: 0; left: 0; min-width: auto; margin: 0 0.4rem; }
   body { margin: 1rem auto; padding: 1rem; max-width: calc(100% - 2rem); border-radius: 12px; }
   .page-subtitle { text-align: center; }
-  .page-subtitle .tagline-image { display: block; margin-left: auto; margin-right: auto; max-width: calc(100% - 32px); width: 100%; }
+  .page-subtitle .tagline-image { display: block; margin-left: auto; margin-right: auto; max-width: 320px; width: auto; }
   .search-container { display: flex !important; flex-direction: column; gap: 0.6rem; align-items: stretch; margin: 1rem 16px; padding: 0.6rem; width: auto; box-sizing: border-box; max-width: calc(100% - 32px); border-radius: 12px; }
   .search-bar { order: 0; width: 100%; min-width: 0; box-sizing: border-box; padding: 0.85rem 0.9rem; font-size: 1rem; }
   .search-controls { width: 100%; display: flex; justify-content: flex-end; align-items: center; gap: 0.10rem; }
@@ -782,7 +782,7 @@ body {
   <br>
   <div style="text-align:center; margin:0.75rem 0;">
     <p style="color:#FFFFFF; margin:0; font-weight:600;">
-     🏅 Today is<a href="/winter-olympics.html" target="_blank" rel="noopener noreferrer" style="color:#FFFFFF; text-decoration:underline; margin-left:0.35rem;">The Winter Olympic Games 2026 First Medal Event</a>
+     🏅 Today is<a href="/winter-olympics.html" target="_blank" rel="noopener noreferrer" style="color:#FFFFFF; text-decoration:underline; margin-left:0.35rem;">The Winter Olympic Games 2026 Opening Ceremony</a>
     </p>
   </div>
   <br>
