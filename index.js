@@ -658,7 +658,7 @@
     state.isSending = true;
     setInputEnabled(false);
 
-    const bubble = addBotBubble('🧑🏿‍💻💭 Thinking...');
+    const bubble = addBotBubble('Thinking...');
 
     const controller = new AbortController();
     state.inFlightAbort = controller;
