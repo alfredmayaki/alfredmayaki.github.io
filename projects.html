@@ -10,33 +10,31 @@
   <style>
     :root{
       --font-sans: "Segoe UI", system-ui, -apple-system, Arial, sans-serif;
-      --bg-overlay: rgba(22,22,22,0.92);
-      --panel: #161616;
-      --surface: #2a2a2a;
-      --text: #ffffff;
-      --text-muted: #979797;
-      --text-secondary: #b0b0b0;
-      --border: #464242;
+      --bg-overlay: rgba(255,255,255,0.92);
+      --panel: #f5f5f5;
+      --surface: #e8e8e8;
+      --text: #1a1a1a;
+      --text-muted: #666666;
+      --text-secondary: #4a4a4a;
+      --border: #d0d0d0;
       --brand: #3d4ee9;
       --brand-hover: #5563f0;
       --radius-md: 14px;
       --radius-lg: 18px;
-      --shadow-pop: 0 10px 30px rgba(0,0,0,0.6);
+      --shadow-pop: 0 10px 30px rgba(0,0,0,0.1);
       --transition-fast: 180ms;
       --transition-med: 300ms;
     }
 
     html {
-      /* Use unified opaque background to avoid background-image bleed */
-      background: var(--footer-bg, #000000);
+      background: #FFFFFF;
       min-height: 100vh;
       scroll-behavior: smooth;
     }
 
     body {
       font-family: var(--font-sans);
-      /* match opaque site background for consistent contrast */
-      background: var(--footer-bg, #000000);
+      background: #FFFFFF;
       color: var(--text-muted);
       line-height: 1.6;
       font-size: 16px;

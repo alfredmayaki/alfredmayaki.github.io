@@ -10,19 +10,19 @@
   <style>
     :root{
       --font-sans: "Segoe UI", system-ui, -apple-system, Arial, sans-serif;
-      --bg: #0f0f12;
-      --panel: #161616;
-      --surface: #2a2a2a;
-      --text: #ffffff;
-      --muted: #9b9b9b;
+      --bg: #FFFFFF;
+      --panel: #f5f5f5;
+      --surface: #e8e8e8;
+      --text: #1a1a1a;
+      --muted: #666666;
       --brand: #3d4ee9;
       --radius: 12px;
-      --shadow: 0 12px 36px rgba(0,0,0,0.6);
+      --shadow: 0 12px 36px rgba(0,0,0,0.1);
 
-      --bg-overlay: rgba(22,22,22,0.92);
-      --border: #464242;
+      --bg-overlay: rgba(255,255,255,0.92);
+      --border: #d0d0d0;
       --radius-lg: 18px;
-      --shadow-pop: 0 10px 30px rgba(0,0,0,0.6);
+      --shadow-pop: 0 10px 30px rgba(0,0,0,0.1);
     }
 
     html,body{
@@ -31,7 +31,7 @@
       display:flex;
       align-items:center;
       justify-content:center;
-      background: url("/universe.png") center / cover no-repeat fixed;
+      background: #FFFFFF;
       color:var(--muted);
       font-family:var(--font-sans);
       -webkit-font-smoothing:antialiased;
@@ -44,7 +44,7 @@
       margin: 0 auto;
       padding: 1.25rem;
       box-sizing: border-box;
-      background: #000000;
+      background: #FFFFFF;
       border: 3px solid var(--border);
       border-radius: var(--radius-lg);
       box-shadow: var(--shadow-pop);
@@ -56,15 +56,15 @@
     .page {
       width: 100%;
       padding: 1.5rem;
-      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      background: rgba(0,0,0,0.02);
       box-shadow: var(--shadow);
       box-sizing: border-box;
       border-radius: 12px;
-      border: 1px solid rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
     }
 
     header.site-header { display:flex;align-items:center;justify-content:space-between;gap:1rem;margin-bottom:1rem }
-    header h1 { margin:0;color:#fff;font-size:1.05rem }
+    header h1 { margin:0;color:var(--text);font-size:1.05rem }
     header p.tag { margin:0;color:var(--muted);font-size:0.9rem }
     main.article { background:transparent;border-radius:10px;padding:0 }
 
@@ -74,7 +74,7 @@
       gap:0.5rem;
       background: transparent;
       color: var(--text);
-      border: 1px solid rgba(255,255,255,0.06);
+      border: 1px solid var(--border);
       padding: 0.4rem 0.65rem;
       border-radius: 10px;
       text-decoration: none;
@@ -90,23 +90,23 @@
       outline: none;
     }
 
-    .intro { color:#fff;font-weight:600;margin:0 0 0.75rem 0; font-size:1rem }
-    .section { margin:1rem 0;padding:0.75rem;border-radius:12px;background:rgba(255,255,255,0.01); border:1px solid rgba(255,255,255,0.02) }
-    .section h2 { color:#fff;margin:0 0 0.5rem 0;font-size:1rem }
+    .intro { color:var(--text);font-weight:600;margin:0 0 0.75rem 0; font-size:1rem }
+    .section { margin:1rem 0;padding:0.75rem;border-radius:12px;background:rgba(0,0,0,0.02); border:1px solid var(--border) }
+    .section h2 { color:var(--text);margin:0 0 0.5rem 0;font-size:1rem }
     .section p { margin:0.45rem 0;color:var(--muted);line-height:1.6 }
 
     ul.clean { margin:0.45rem 0 0 1.15rem; color:var(--muted) }
     .compare { display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:0.75rem;margin-top:0.6rem }
-    .card { padding:0.75rem;border-radius:10px;background:linear-gradient(180deg, rgba(255,255,255,0.01), transparent); border:1px solid rgba(255,255,255,0.03) }
-    .card h3{margin:0 0 0.45rem 0;color:#fff;font-size:0.98rem}
+    .card { padding:0.75rem;border-radius:10px;background:rgba(0,0,0,0.02); border:1px solid var(--border) }
+    .card h3{margin:0 0 0.45rem 0;color:var(--text);font-size:0.98rem}
     .card p{margin:0;color:var(--muted);font-size:0.95rem}
 
     .fact-table { width:100%;border-collapse:collapse;margin-top:0.6rem;font-size:0.95rem }
-    .fact-table th, .fact-table td { text-align:left;padding:0.5rem 0.7rem;border-bottom:1px solid rgba(255,255,255,0.04) }
-    .fact-table th { color:#fff;font-weight:600;white-space:nowrap }
+    .fact-table th, .fact-table td { text-align:left;padding:0.5rem 0.7rem;border-bottom:1px solid var(--border) }
+    .fact-table th { color:var(--text);font-weight:600;white-space:nowrap }
     .fact-table td { color:var(--muted) }
 
-    footer.site-footer { margin-top:1.25rem;padding-top:0.9rem;border-top:1px solid rgba(255,255,255,0.02); color:var(--muted);font-size:0.9rem;display:flex;justify-content:space-between;align-items:center }
+    footer.site-footer { margin-top:1.25rem;padding-top:0.9rem;border-top:1px solid var(--border); color:var(--muted);font-size:0.9rem;display:flex;justify-content:space-between;align-items:center }
     footer .small { color:var(--muted) }
 
     @media (max-width:520px) {
