@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -146,13 +146,13 @@ body {
   color: var(--text-muted);
   line-height: 1.6;
   font-size: 16px;
-  max-width: 100%;
-  margin: 0;
+  max-width: 990px;
+  margin: 2em auto;
   padding: 2em;
-  border: none;
-  border-radius: 0;
-  box-shadow: none;
-  min-height: 100vh;
+  border: 3px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-pop);
+  min-height: auto;
 }
 
 .soft-sep {
@@ -190,8 +190,8 @@ body {
 .top-nav { display: flex; justify-content: space-between; align-items: center; gap: 1rem; max-width: 980px; margin: 0 auto 1.25rem; padding: 0.45rem 0.6rem; background: transparent; box-sizing: border-box; position: relative; }
 .top-nav .brand { color: var(--text); font-weight: 700; text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.98rem; z-index: 10; }
 .top-nav .brand:link, .top-nav .brand:visited, .top-nav .brand:hover, .top-nav .brand:active { color: var(--text); text-decoration: none; }
-.menu-toggle { display: flex; flex-direction: column; justify-content: center; align-items: center; width: 44px; height: 44px; padding: 0.5rem; background: #ffffff; border: 2px solid var(--border); border-radius: 10px; cursor: pointer; transition: background var(--transition-fast), border-color var(--transition-fast), box-shadow var(--transition-fast); z-index: 10; }
-.menu-toggle:hover, .menu-toggle:focus { background: #ffffff; border-color: var(--brand); box-shadow: var(--shadow-brand); outline: none; }
+.menu-toggle { display: flex; flex-direction: column; justify-content: center; align-items: center; width: 44px; height: 44px; padding: 0.5rem; background: var(--surface); border: 2px solid var(--border); border-radius: 10px; cursor: pointer; transition: background var(--transition-fast), border-color var(--transition-fast), box-shadow var(--transition-fast); z-index: 10; }
+.menu-toggle:hover, .menu-toggle:focus { background: rgba(61,78,233,0.08); border-color: var(--brand); box-shadow: var(--shadow-brand); outline: none; }
 .menu-toggle .bar { width: 20px; height: 2px; background: var(--text); margin: 2px 0; border-radius: 2px; transition: transform var(--transition-fast), opacity var(--transition-fast); }
 .menu-toggle.open .bar:nth-child(1) { transform: translateY(6px) rotate(45deg); }
 .menu-toggle.open .bar:nth-child(2) { opacity: 0; }
@@ -351,7 +351,7 @@ body {
 @media (max-width: 600px) {
   .top-nav { padding: 0.4rem; }
   .nav-dropdown { right: 0; left: 0; min-width: auto; margin: 0 0.4rem; }
-  body { margin: 0; padding: 1rem; max-width: 100%; border-radius: 0; }
+  body { margin: 1rem auto; padding: 1rem; max-width: calc(100% - 2rem); border-radius: 12px; }
   .page-subtitle { text-align: center; }
   .page-subtitle .tagline-image { display: block; margin-left: auto; margin-right: auto; max-width: calc(100% - 32px); width: 100%; }
   .search-container { display: flex !important; flex-direction: column; gap: 0.6rem; align-items: stretch; margin: 1rem 16px; padding: 0.6rem; width: auto; box-sizing: border-box; max-width: calc(100% - 32px); border-radius: 12px; }
@@ -592,7 +592,7 @@ body {
 </head>
 <body>
   <nav class="top-nav" aria-label="Main navigation">
-    <a href="index.html" class="brand"></a>
+    <a href="index.html" class="brand">🚀 AM-Global™</a>
     <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="navDropdown">
       <span class="bar"></span><span class="bar"></span><span class="bar"></span>
     </button>
