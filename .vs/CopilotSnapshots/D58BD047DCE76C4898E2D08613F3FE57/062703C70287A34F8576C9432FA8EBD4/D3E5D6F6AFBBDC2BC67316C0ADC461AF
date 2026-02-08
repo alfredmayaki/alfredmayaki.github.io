@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -911,6 +911,10 @@ body {
       <h3>💬 Chat History</h3>
       <div class="chatbot-header-buttons">
         <button class="minimize-chat" id="minimizeChat" title="Minimize" aria-label="Minimize chatbot">−</button>
+        <button class="clear-chat" id="clearChat" title="Clear chat history" aria-label="Clear chat history">
+          <span aria-hidden="true">🗑️</span>
+          <span class="visually-hidden">Clear chat history</span>
+        </button>
         <button class="close-chat" id="closeChat" title="Close" aria-label="Close chatbot">&times;</button>
       </div>
     </div>
