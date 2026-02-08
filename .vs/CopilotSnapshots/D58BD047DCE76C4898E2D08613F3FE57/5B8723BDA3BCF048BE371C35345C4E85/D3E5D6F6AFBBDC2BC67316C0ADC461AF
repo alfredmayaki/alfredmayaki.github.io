@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -709,8 +709,9 @@ body {
 
   <br><br>
 
+  <div id="background-image" style="position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:-1;background:url('/universe.png') center center / cover no-repeat;opacity:0.15;"></div>
   <div style="text-align:center;">
-    <h3 class="page-welcome" style="color:#1a1a1a;"></h3>
+    <h3 class="page-welcome" style="color:#FFFFFF;"></h3>
     <div class="page-subtitle">
       <a href="milano-cortina-day-2.html" aria-label="Milano-Cortina 2026 Day 2">
         <img src="/tagline.png" alt="AM-Global tagline" class="tagline-image" />
