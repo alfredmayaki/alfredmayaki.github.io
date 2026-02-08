@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -734,7 +734,7 @@ body {
     <h3 class="page-welcome" style="color:#FFFFFF;"></h3>
     <div class="page-subtitle">
       <a href="milano-cortina-day-3.html" aria-label="Milano-Cortina 2026 Day 2">
-        <img src="/tagline.gif" alt="AM-Global tagline" class="tagline-image" />
+        <img src="/tagline.png" alt="AM-Global tagline" class="tagline-image" />
       </a>
     </div>
   </div>
@@ -799,7 +799,7 @@ body {
   <br>
   <div style="text-align:center; margin:0.75rem 0;">
     <p style="color:#1a1a1a; margin:0; font-weight:600;">
-     🏅 Today is<a href="milano-cortina-day-3.html" target="_blank" rel="noopener noreferrer" style="color:#1a1a1a; text-decoration:underline; margin-left:0.35rem;">The Winter Olympic Games 2026 Third Day</a>
+     🏅 Today is<a href="milano-cortina-day-2.html" target="_blank" rel="noopener noreferrer" style="color:#1a1a1a; text-decoration:underline; margin-left:0.35rem;">The Winter Olympic Games 2026 Second Day</a>
     </p>
   </div>
   <br>

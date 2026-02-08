@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -734,7 +734,7 @@ body {
     <h3 class="page-welcome" style="color:#FFFFFF;"></h3>
     <div class="page-subtitle">
       <a href="milano-cortina-day-3.html" aria-label="Milano-Cortina 2026 Day 2">
-        <img src="/tagline.gif" alt="AM-Global tagline" class="tagline-image" />
+        <img src="/tagline.png" alt="AM-Global tagline" class="tagline-image" />
       </a>
     </div>
   </div>

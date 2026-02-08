@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -734,7 +734,7 @@ body {
     <h3 class="page-welcome" style="color:#FFFFFF;"></h3>
     <div class="page-subtitle">
       <a href="milano-cortina-day-3.html" aria-label="Milano-Cortina 2026 Day 2">
-        <img src="/tagline.gif" alt="AM-Global tagline" class="tagline-image" />
+        <img src="/tagline.png" alt="AM-Global tagline" class="tagline-image" />
       </a>
     </div>
   </div>
@@ -786,7 +786,7 @@ body {
           var inputEl = document.getElementById('searchInput');
           if (!inputEl || inputEl.__typedInitialized) return;
           inputEl.__typedInitialized = true;
-          var strings = ['Day 3: Women\'s Giant Slalom in Cortina','Day 3: Men\'s Moguls Final — Wallberg defends','Day 3: Women\'s Moguls Final — Jakara Anthony','Day 3: Snowboard Slopestyle Final — Su Yiming vs Parrot','Day 3: Biathlon Mixed Relay — France seek back-to-back gold','Day 3: Cross-Country Skiathlon — Klæbo headlines','Day 3: Short Track Mixed Team Relay in Milan','Day 3: Canada vs USA Women\'s Ice Hockey rivalry','Day 3: Luge Men\'s Singles — Fischnaller on home ice','Day 3: Ski Jumping Normal Hill Qualification'];
+          var strings = ['Winter Games in Milan and Cortina','Olympics 2026 highlights', 'Milan-Cortina 2026 updates', 'Winter sports news', 'Alpine skiing events', 'Figure skating schedule', 'Ice hockey teams', 'Snowboarding competitions', 'Cross-country skiing trails', 'Bobsleigh and luge info'];
           var opts = { strings: strings, typeSpeed: 20, backSpeed: 15, backDelay: 1500, loop: true, attr: 'placeholder', bindInputFocusEvents: true, showCursor: false };
           try { new Typed('searchInput', opts); } catch (err) { try { new Typed(inputEl, opts); } catch (err2) {} }
         }
@@ -799,7 +799,7 @@ body {
   <br>
   <div style="text-align:center; margin:0.75rem 0;">
     <p style="color:#1a1a1a; margin:0; font-weight:600;">
-     🏅 Today is<a href="milano-cortina-day-3.html" target="_blank" rel="noopener noreferrer" style="color:#1a1a1a; text-decoration:underline; margin-left:0.35rem;">The Winter Olympic Games 2026 Third Day</a>
+     🏅 Today is<a href="milano-cortina-day-2.html" target="_blank" rel="noopener noreferrer" style="color:#1a1a1a; text-decoration:underline; margin-left:0.35rem;">The Winter Olympic Games 2026 Second Day</a>
     </p>
   </div>
   <br>
