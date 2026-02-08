@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -176,36 +176,6 @@
       margin-top: 0.5rem;
     }
 
-    .event-favorites {
-      margin-top: 0.75rem;
-      padding: 0.65rem 0.85rem;
-      background: rgba(0, 129, 200, 0.06);
-      border-radius: 8px;
-      border-left: 3px solid var(--primary-blue);
-      font-size: 0.88rem;
-      line-height: 1.5;
-      color: var(--text-light);
-    }
-
-    .event-favorites strong {
-      color: var(--primary-blue);
-      font-weight: 700;
-      font-size: 0.8rem;
-      text-transform: uppercase;
-      letter-spacing: 0.03em;
-      display: block;
-      margin-bottom: 0.3rem;
-    }
-
-    .event-favorites .athlete {
-      display: inline;
-    }
-
-    .event-favorites .athlete-flag {
-      font-size: 0.85rem;
-      margin-right: 0.15rem;
-    }
-
     .highlights {
       background: linear-gradient(135deg, rgba(0, 129, 200, 0.1), rgba(238, 51, 78, 0.1));
       padding: 2rem;
@@ -352,13 +322,6 @@
           </div>
           <div class="event-venue">📍 Cortina d'Ampezzo - Tofana Course</div>
           <span class="medal-badge">🏅 MEDAL EVENT</span>
-          <div class="event-favorites">
-            <strong>⭐ Favourites & Contenders</strong>
-            <span class="athlete"><span class="athlete-flag">🇨🇭</span>Marco Odermatt (SUI) — dominant World Cup leader, gold favourite.</span>
-            <span class="athlete"><span class="athlete-flag">🇦🇹</span>Vincent Kriechmayr (AUT) — reigning world champion, consistent podium threat.</span>
-            <span class="athlete"><span class="athlete-flag">🇳🇴</span>Aleksander Aamodt Kilde (NOR) — former globe winner, comeback contender.</span>
-            <span class="athlete"><span class="athlete-flag">🇨🇭</span>Beat Feuz (SUI) — Cortina specialist with strong Tofana record.</span>
-          </div>
         </div>
 
         <div class="event-card">
@@ -370,12 +333,6 @@
             <div class="event-time">09:30</div>
           </div>
           <div class="event-venue">📍 Cortina d'Ampezzo - Tofana Course</div>
-          <div class="event-favorites">
-            <strong>⭐ Athletes to Watch</strong>
-            <span class="athlete"><span class="athlete-flag">🇮🇹</span>Sofia Goggia (ITA) — home crowd favourite, Olympic downhill champion.</span>
-            <span class="athlete"><span class="athlete-flag">🇨🇭</span>Lara Gut-Behrami (SUI) — overall World Cup champion, Cortina podium regular.</span>
-            <span class="athlete"><span class="athlete-flag">🇺🇸</span>Mikaela Shiffrin (USA) — all-time wins record holder, versatile threat.</span>
-          </div>
         </div>
       </div>
     </div>
@@ -395,12 +352,6 @@
             <div class="event-time">10:00</div>
           </div>
           <div class="event-venue">📍 Milan - Mediolanum Forum</div>
-          <div class="event-favorites">
-            <strong>⭐ Favourites & Contenders</strong>
-            <span class="athlete"><span class="athlete-flag">🇯🇵</span>Yuma Kagiyama (JPN) — 2022 Olympic silver, World Championship medallist.</span>
-            <span class="athlete"><span class="athlete-flag">🇺🇸</span>Ilia Malinin (USA) — quad axel pioneer, expected to lead Team USA.</span>
-            <span class="athlete"><span class="athlete-flag">🇫🇷</span>Adam Siao Him Fa (FRA) — European champion, rising force.</span>
-          </div>
         </div>
 
         <div class="event-card">
@@ -412,12 +363,6 @@
             <div class="event-time">14:30</div>
           </div>
           <div class="event-venue">📍 Milan - Mediolanum Forum</div>
-          <div class="event-favorites">
-            <strong>⭐ Favourites & Contenders</strong>
-            <span class="athlete"><span class="athlete-flag">🇮🇹</span>Charlène Guignard & Marco Fabbri (ITA) — home ice dance pair, World bronze medallists.</span>
-            <span class="athlete"><span class="athlete-flag">🇬🇧</span>Lilah Fear & Lewis Gibson (GBR) — Grand Prix medallists, dark horse contenders.</span>
-            <span class="athlete"><span class="athlete-flag">🇺🇸</span>Madison Chock & Evan Bates (USA) — World champions, gold favourites.</span>
-          </div>
         </div>
       </div>
     </div>
@@ -437,11 +382,6 @@
             <div class="event-time">12:00</div>
           </div>
           <div class="event-venue">📍 Milan - PalaItalia</div>
-          <div class="event-favorites">
-            <strong>⭐ Key Players</strong>
-            <span class="athlete"><span class="athlete-flag">🇨🇦</span>Connor McDavid — generational talent, captain of Team Canada.</span>
-            <span class="athlete"><span class="athlete-flag">🇨🇭</span>Nico Hischier — Swiss captain and two-way centre, NHL all-star.</span>
-          </div>
         </div>
 
         <div class="event-card">
@@ -453,11 +393,6 @@
             <div class="event-time">16:30</div>
           </div>
           <div class="event-venue">📍 Milan - PalaItalia</div>
-          <div class="event-favorites">
-            <strong>⭐ Key Players</strong>
-            <span class="athlete"><span class="athlete-flag">🇺🇸</span>Auston Matthews — elite goal scorer, Team USA centrepiece.</span>
-            <span class="athlete"><span class="athlete-flag">🇫🇮</span>Aleksander Barkov — Selke-winning centre, Finnish captain.</span>
-          </div>
         </div>
 
         <div class="event-card">
@@ -469,11 +404,6 @@
             <div class="event-time">20:00</div>
           </div>
           <div class="event-venue">📍 Milan - PalaItalia</div>
-          <div class="event-favorites">
-            <strong>⭐ Key Players</strong>
-            <span class="athlete"><span class="athlete-flag">🇸🇪</span>Mina Waxin — rising Swedish forward, SDHL standout.</span>
-            <span class="athlete"><span class="athlete-flag">🇯🇵</span>Akane Hosoyamada — veteran Japanese captain, IIHF tournament leader.</span>
-          </div>
         </div>
       </div>
     </div>
@@ -493,12 +423,6 @@
             <div class="event-time">10:30</div>
           </div>
           <div class="event-venue">📍 Livigno - Mottolino Fun Mountain</div>
-          <div class="event-favorites">
-            <strong>⭐ Favourites & Contenders</strong>
-            <span class="athlete"><span class="athlete-flag">🇸🇪</span>Walter Wallberg (SWE) — 2022 Olympic gold medallist, reigning champion.</span>
-            <span class="athlete"><span class="athlete-flag">🇯🇵</span>Ikuma Horishima (JPN) — multiple World Cup globe winner, consistently dominant.</span>
-            <span class="athlete"><span class="athlete-flag">🇫🇷</span>Benjamin Cavet (FRA) — World Championship medallist, podium regular.</span>
-          </div>
         </div>
 
         <div class="event-card">
@@ -510,12 +434,6 @@
             <div class="event-time">12:15</div>
           </div>
           <div class="event-venue">📍 Livigno - Mottolino Fun Mountain</div>
-          <div class="event-favorites">
-            <strong>⭐ Favourites & Contenders</strong>
-            <span class="athlete"><span class="athlete-flag">🇦🇺</span>Jakara Anthony (AUS) — 2022 Olympic champion, World Cup dominant force.</span>
-            <span class="athlete"><span class="athlete-flag">🇫🇷</span>Perrine Laffont (FRA) — 2018 Olympic gold, multi-globe winner.</span>
-            <span class="athlete"><span class="athlete-flag">🇯🇵</span>Anri Kawamura (JPN) — teenage prodigy, World Cup winner at 17.</span>
-          </div>
         </div>
       </div>
     </div>
@@ -536,12 +454,6 @@
           </div>
           <div class="event-venue">📍 Baselga di Piné - Ice Rink Piné</div>
           <span class="medal-badge">🏅 MEDAL EVENT</span>
-          <div class="event-favorites">
-            <strong>⭐ Favourites & Contenders</strong>
-            <span class="athlete"><span class="athlete-flag">🇳🇱</span>Irene Schouten (NED) — 2022 Olympic 3000m champion, distance queen.</span>
-            <span class="athlete"><span class="athlete-flag">🇨🇿</span>Martina Sáblíková (CZE) — legendary long-distance skater, multiple Olympic gold.</span>
-            <span class="athlete"><span class="athlete-flag">🇨🇦</span>Isabelle Weidemann (CAN) — 2022 Olympic 3000m silver, consistent threat.</span>
-          </div>
         </div>
 
         <div class="event-card">
@@ -553,12 +465,6 @@
             <div class="event-time">17:00</div>
           </div>
           <div class="event-venue">📍 Baselga di Piné - Ice Rink Piné</div>
-          <div class="event-favorites">
-            <strong>⭐ Favourites & Contenders</strong>
-            <span class="athlete"><span class="athlete-flag">🇳🇱</span>Patrick Roest (NED) — perennial World Cup podium, 2022 Olympic silver.</span>
-            <span class="athlete"><span class="athlete-flag">🇸🇪</span>Nils van der Poel (SWE) — 2022 Olympic 5000m champion and world record holder.</span>
-            <span class="athlete"><span class="athlete-flag">🇳🇴</span>Sander Eitrem (NOR) — emerging Norwegian talent, World Cup winner.</span>
-          </div>
         </div>
       </div>
     </div>
@@ -578,12 +484,6 @@
             <div class="event-time">11:00</div>
           </div>
           <div class="event-venue">📍 Livigno - Mottolino Fun Mountain</div>
-          <div class="event-favorites">
-            <strong>⭐ Favourites & Contenders</strong>
-            <span class="athlete"><span class="athlete-flag">🇨🇦</span>Mark McMorris (CAN) — three-time Olympic medallist, slopestyle legend.</span>
-            <span class="athlete"><span class="athlete-flag">🇨🇳</span>Su Yiming (CHN) — 2022 Olympic gold (Big Air), slopestyle silver.</span>
-            <span class="athlete"><span class="athlete-flag">🇺🇸</span>Dusty Henricksen (USA) — X Games dominant, rising Olympic contender.</span>
-          </div>
         </div>
 
         <div class="event-card">
@@ -595,12 +495,6 @@
             <div class="event-time">13:30</div>
           </div>
           <div class="event-venue">📍 Livigno - Mottolino Fun Mountain</div>
-          <div class="event-favorites">
-            <strong>⭐ Favourites & Contenders</strong>
-            <span class="athlete"><span class="athlete-flag">🇳🇿</span>Zoi Sadowski-Synnott (NZL) — 2022 Olympic slopestyle champion, X Games gold.</span>
-            <span class="athlete"><span class="athlete-flag">🇯🇵</span>Kokomo Murase (JPN) — World Championship gold, consistently on podium.</span>
-            <span class="athlete"><span class="athlete-flag">🇺🇸</span>Julia Marino (USA) — 2022 Olympic silver, technical innovator.</span>
-          </div>
         </div>
       </div>
     </div>
