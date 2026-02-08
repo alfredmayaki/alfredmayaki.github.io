@@ -73,9 +73,13 @@ cd worker
 npm install
 
 # Run local development server (port 8787)
+npm run dev
+# or
 npx wrangler dev
 
 # Deploy to Cloudflare
+npm run deploy
+# or
 npx wrangler deploy
 
 # View live logs
@@ -136,10 +140,10 @@ npx wrangler secret put ANTHROPIC_API_KEY
 
 ### Core Application Files
 - `index.html` - Main landing page with language selector and phone-style UI
-- `index.js` - Chatbot frontend logic (1229 lines, handles UI, API calls, history)
+- `index.js` - Chatbot frontend logic (1228 lines, handles UI, API calls, history)
 - `worker/src/index.js` - Cloudflare Worker API handler (349 lines)
 - `worker/wrangler.toml` - Worker deployment configuration
-- `server.js` - Optional Express backend (376 lines)
+- `server.js` - Optional Express backend (375 lines)
 
 ### Language Variants
 All follow same structure as `index.html` but with translated content:
@@ -147,9 +151,29 @@ All follow same structure as `index.html` but with translated content:
 - French: `index_fr.html`
 - German: `index_de.html`
 - Spanish: `index_es.html`
+- Italian: `index_it.html`
+- Portuguese: `index_pt.html`
+- Dutch: `index_nl.html`
+- Russian: `index_ru.html`
+- Turkish: `index_tr.html`
 - Arabic: `index_ksa.html`
 - Hebrew: `index_he.html`
-- (+ 9 more languages)
+- Chinese: `index_ch.html`
+- Japanese: `index_jp.html`
+- Welsh: `index_cy.html`
+- Swahili: `index_sw.html`
+- Yoruba: `index_yb.html`
+
+### Content Pages
+- `ai.html` - Dedicated AI chatbot page with full-screen interface
+- `about.html` - About/bio page
+- `research.html` - Research work and publications
+- `projects.html` - Project portfolio
+- `contact.html` - Contact information with social links
+- `references.html` - Professional references
+- `buymeacoffee.html` - Support/donation page
+- `milano-cortina-day-2.html` - Event coverage page
+- Other specialty pages: `claude-code.html`, `claude-opus-4-6.html`, `winter-olympics.html`, etc.
 
 ### Configuration Files
 - `package.json` - Node.js dependencies
@@ -157,6 +181,7 @@ All follow same structure as `index.html` but with translated content:
 - `firebase.json` - Firebase configuration (minimal remote config setup)
 - `.firebaserc` - Firebase project reference
 - `serviceAccountKey.json` - Firebase Admin credentials (not in repo, required for Firebase features)
+- `.github/copilot-instructions.md` - GitHub Copilot configuration with UI/UX preferences
 
 ## Important Implementation Details
 
@@ -303,6 +328,28 @@ curl -X POST http://localhost:8787/tts \
 - Log detailed errors to console for debugging
 - Use `catch(() => '')` or `catch(() => null)` to provide safe fallbacks
 
+## UI/UX Conventions
+
+From `.github/copilot-instructions.md`, key design preferences include:
+
+**Chat Interface:**
+- Bot messages align left, user messages align right with cascading offsets
+- Distinct rounded bubble styles with entrance animations
+- Input and upload controls rounded, centered, max-width 360px
+- Mobile-responsive: full-width inset (12px) with ~70vh max-height
+- Black skin tone emojis preferred in chat UI
+
+**Select/Dropdown Styling:**
+- Use native browser styling for `<select>` controls
+- Dark theme, rounded corners, custom caret SVG
+- Brand blue accent color on hover/focus
+- Larger font-size, padding, min-height on mobile
+- Horizontal centering, full-width on small screens
+
+**Icon Preferences:**
+- Font Awesome icons for social links (contact page)
+- "Report a bug" link in footer (instead of Discord invite)
+
 ## Security Considerations
 
 - **Never commit API keys** - Use Cloudflare secrets or environment variables
@@ -323,6 +370,27 @@ Before deploying changes:
 5. **Test production** - Open site and send a chat message
 6. **Monitor logs**: `cd worker && npx wrangler tail`
 7. **Check analytics** (Google Analytics ID: G-CNF86BSG95)
+
+### Optional: Heroku Deployment (Node.js Backend)
+
+If deploying the optional Node.js backend to Heroku:
+
+```bash
+# Create Heroku app
+heroku create your-app-name
+
+# Set environment variables
+heroku config:set OPENAI_API_KEY=sk-...
+heroku config:set CLAUDE_API_KEY=sk-ant-...
+
+# Deploy
+git push heroku main
+
+# View logs
+heroku logs --tail
+```
+
+Note: The Procfile is already configured with `web: node server.js`
 
 ## Dependencies & Updates
 
