@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -806,7 +806,7 @@ body {
 
   <div style="text-align:center; margin:0.75rem auto;">
     <a href="milano-cortina-day-2.html" aria-label="Milano-Cortina 2026 Winter Olympics">
-      <img src="milano-cortina-winter-olympics-2026.png" alt="Milano-Cortina 2026 Winter Olympics" style="max-width:320px; width:100%; height:auto; border-radius:14px; display:inline-block;" />
+      <img src="milano-cortina-winter-olympics-2026.jpg" alt="Milano-Cortina 2026 Winter Olympics" style="max-width:320px; width:100%; height:auto; border-radius:14px; display:inline-block;" />
     </a>
   </div>
 
