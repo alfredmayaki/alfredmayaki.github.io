@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -396,8 +396,6 @@ body {
   .search-controls { gap: 0.35rem; flex-wrap: wrap; justify-content: flex-end; }
   .search-controls .attach-btn, .search-controls .search-btn { width: 44px; height: 44px; }
   .chatbot-popup .chatbot-input-area .chatbot-input, .chatbot-popup .chatbot-input-area .file-upload-area { max-width: calc(100% - 24px); }
-  .search-bar { font-size: 0.88rem; }
-  .search-bar::placeholder { font-size: 0.85rem; }
 }
   </style>
 
@@ -788,7 +786,7 @@ body {
           var inputEl = document.getElementById('searchInput');
           if (!inputEl || inputEl.__typedInitialized) return;
           inputEl.__typedInitialized = true;
-          var strings = ['Women\'s Giant Slalom ⛷️','Moguls Final — Wallberg defends 🎿','Moguls Final — Jakara Anthony 🎿','Slopestyle Final — Su Yiming 🏂','Biathlon Mixed Relay 🎯','Skiathlon — Klæbo headlines 🏔️','Short Track Relay in Milan ⛸️','Canada vs USA Hockey 🏒','Luge — Fischnaller 🛷','Ski Jumping Qualification 🦅'];
+          var strings = ['Day 3: Women\'s Giant Slalom in Cortina','Day 3: Men\'s Moguls Final — Wallberg defends','Day 3: Women\'s Moguls Final — Jakara Anthony','Day 3: Snowboard Slopestyle Final — Su Yiming vs Parrot','Day 3: Biathlon Mixed Relay — France seek back-to-back gold','Day 3: Cross-Country Skiathlon — Klæbo headlines','Day 3: Short Track Mixed Team Relay in Milan','Day 3: Canada vs USA Women\'s Ice Hockey rivalry','Day 3: Luge Men\'s Singles — Fischnaller on home ice','Day 3: Ski Jumping Normal Hill Qualification'];
           var opts = { strings: strings, typeSpeed: 20, backSpeed: 15, backDelay: 1500, loop: true, attr: 'placeholder', bindInputFocusEvents: true, showCursor: false };
           try { new Typed('searchInput', opts); } catch (err) { try { new Typed(inputEl, opts); } catch (err2) {} }
         }
