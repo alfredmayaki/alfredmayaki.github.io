@@ -3,12 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\44746\\AppData\\Local\\Microsoft\\WindowsApps\\wget\\repo\\alfredmayaki.github.io\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\44746\\AppData\\Local\\Microsoft\\WindowsApps\\wget\\repo\\alfredmayaki.github.io\\milano-cortina-day-3.html||{3B902123-F8A7-4915-9F01-361F908088D0}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:milano-cortina-day-3.html||{3B902123-F8A7-4915-9F01-361F908088D0}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\44746\\AppData\\Local\\Microsoft\\WindowsApps\\wget\\repo\\alfredmayaki.github.io\\ai.html||{3B902123-F8A7-4915-9F01-361F908088D0}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:ai.html||{3B902123-F8A7-4915-9F01-361F908088D0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\44746\\AppData\\Local\\Microsoft\\WindowsApps\\wget\\repo\\alfredmayaki.github.io\\milano-cortina-day-3.html||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:milano-cortina-day-3.html||{3B902123-F8A7-4915-9F01-361F908088D0}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\44746\\AppData\\Local\\Microsoft\\WindowsApps\\wget\\repo\\alfredmayaki.github.io\\claude-opus-4-6.html||{3B902123-F8A7-4915-9F01-361F908088D0}",
@@ -157,7 +157,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 9,
           "Children": [
             {
               "$type": "Bookmark",
@@ -173,7 +173,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "milano-cortina-day-3.html",
               "DocumentMoniker": "C:\\Users\\44746\\AppData\\Local\\Microsoft\\WindowsApps\\wget\\repo\\alfredmayaki.github.io\\milano-cortina-day-3.html",
               "RelativeDocumentMoniker": "milano-cortina-day-3.html",
@@ -181,8 +181,7 @@
               "RelativeToolTip": "milano-cortina-day-3.html",
               "ViewState": "AgIAAK4BAAAAAAAAAAAYwLUBAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
-              "WhenOpened": "2026-02-08T23:20:22.816Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-08T23:20:22.816Z"
             },
             {
               "$type": "Document",
@@ -194,8 +193,7 @@
               "RelativeToolTip": "claude-opus-4-6.html",
               "ViewState": "AgIAAF0AAAAAAAAAAAAtwAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
-              "WhenOpened": "2026-02-08T18:30:39.162Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-08T18:30:39.162Z"
             },
             {
               "$type": "Document",
@@ -219,8 +217,7 @@
               "RelativeToolTip": "milano-cortina-day-2.html",
               "ViewState": "AgIAAN4CAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
-              "WhenOpened": "2026-02-08T05:15:29.294Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-08T05:15:29.294Z"
             },
             {
               "$type": "Document",
@@ -232,8 +229,7 @@
               "RelativeToolTip": "winter-olympics.html",
               "ViewState": "AgIAABIAAAAAAAAAAAAYwB0EAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
-              "WhenOpened": "2026-02-06T23:29:51.755Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-06T23:29:51.755Z"
             },
             {
               "$type": "Document",
@@ -245,18 +241,17 @@
               "RelativeToolTip": "take-your-child-to-the-library-day.html",
               "ViewState": "AgIAABIAAAAAAAAAAAAYwJ0CAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
-              "WhenOpened": "2026-02-06T01:08:51.516Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-06T01:08:51.516Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "ai.html",
               "DocumentMoniker": "C:\\Users\\44746\\AppData\\Local\\Microsoft\\WindowsApps\\wget\\repo\\alfredmayaki.github.io\\ai.html",
               "RelativeDocumentMoniker": "ai.html",
               "ToolTip": "C:\\Users\\44746\\AppData\\Local\\Microsoft\\WindowsApps\\wget\\repo\\alfredmayaki.github.io\\ai.html",
               "RelativeToolTip": "ai.html",
-              "ViewState": "AgIAACEDAAAAAAAAAAAYwCoDAAAIAAAAAAAAAA==",
+              "ViewState": "AgIAACMDAAAAAAAAAAAYwCoDAAA3AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
               "WhenOpened": "2026-02-05T20:58:33.954Z",
               "EditorCaption": ""
@@ -343,8 +338,7 @@
               "RelativeToolTip": "national-chopstick-day.html",
               "ViewState": "AgIAABIAAAAAAAAAAAAYwIMCAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
-              "WhenOpened": "2026-02-05T14:11:30.701Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-05T14:11:30.701Z"
             },
             {
               "$type": "Document",
@@ -356,8 +350,7 @@
               "RelativeToolTip": "about.html",
               "ViewState": "AgIAABIAAAAAAAAAAABBwAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
-              "WhenOpened": "2026-02-05T10:14:34.514Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-05T10:14:34.514Z"
             },
             {
               "$type": "Document",
@@ -369,8 +362,7 @@
               "RelativeToolTip": "research.html",
               "ViewState": "AgIAABIAAAAAAAAAAABBwGwBAAAyAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
-              "WhenOpened": "2026-02-01T14:39:46.59Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-01T14:39:46.59Z"
             },
             {
               "$type": "Document",
@@ -394,8 +386,7 @@
               "RelativeToolTip": "projects.html",
               "ViewState": "AgIAABIAAAAAAAAAAABBwOQAAAAPAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
-              "WhenOpened": "2026-02-01T17:47:13.385Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-01T17:47:13.385Z"
             },
             {
               "$type": "Document",
@@ -407,8 +398,7 @@
               "RelativeToolTip": "contact.html",
               "ViewState": "AgIAABUAAAAAAAAAAABBwH4BAAAPAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
-              "WhenOpened": "2026-02-01T14:39:04.572Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-01T14:39:04.572Z"
             },
             {
               "$type": "Document",
@@ -420,8 +410,7 @@
               "RelativeToolTip": "claude-code.html",
               "ViewState": "AgIAADYAAAAAAAAAAAAYwIYAAAArAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
-              "WhenOpened": "2026-02-01T14:38:32.629Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-01T14:38:32.629Z"
             },
             {
               "$type": "Document",
@@ -433,8 +422,7 @@
               "RelativeToolTip": "buymeacoffee.html",
               "ViewState": "AgIAAAgAAAAAAAAAAAAtwBQBAAAgAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
-              "WhenOpened": "2026-02-01T14:38:00.576Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-01T14:38:00.576Z"
             },
             {
               "$type": "Document",
@@ -458,8 +446,7 @@
               "RelativeToolTip": "msc-survey.html",
               "ViewState": "AgIAAAsAAAAAAAAAAAAtwEYBAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
-              "WhenOpened": "2026-02-01T14:29:57.159Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-01T14:29:57.159Z"
             },
             {
               "$type": "Document",
@@ -471,8 +458,7 @@
               "RelativeToolTip": "terms-of-use.html",
               "ViewState": "AgIAAEYAAAAAAAAAAAAYwCIAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
-              "WhenOpened": "2026-02-01T14:29:31.631Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-01T14:29:31.631Z"
             },
             {
               "$type": "Document",
@@ -484,8 +470,7 @@
               "RelativeToolTip": "privacy-policy.html",
               "ViewState": "AgIAAEUAAAAAAAAAAAAYwPAAAAAPAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
-              "WhenOpened": "2026-02-01T14:28:53.59Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-01T14:28:53.59Z"
             },
             {
               "$type": "Document",
@@ -497,8 +482,7 @@
               "RelativeToolTip": "index_en.html",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAACgAAAAOAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
-              "WhenOpened": "2026-02-01T14:17:30.989Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-01T14:17:30.989Z"
             },
             {
               "$type": "Document",

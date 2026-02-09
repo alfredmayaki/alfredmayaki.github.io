@@ -2,8 +2,9 @@
   "ExpandedNodes": [
     "",
     "\\extensions",
-    "\\public"
+    "\\public",
+    "\\worker\\src"
   ],
-  "SelectedNode": "\\scraper.html",
+  "SelectedNode": "\\July GC Meetings.pdf",
   "PreviewInSolutionExplorer": false
 }
