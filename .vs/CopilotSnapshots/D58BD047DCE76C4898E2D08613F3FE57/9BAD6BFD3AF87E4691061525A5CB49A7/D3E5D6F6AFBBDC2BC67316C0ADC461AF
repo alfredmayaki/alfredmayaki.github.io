@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -812,30 +812,29 @@ body {
     </a>
   </div>
 
-      <div class="dropdown-group" role="navigation" aria-label="Language selection">
-        <div class="select-wrap">
-          <label class="visually-hidden" for="languageSelect">Select a language</label>
-          <select id="languageSelect" class="language-select" aria-label="Select a world language">
-            <option value="" selected disabled>🌍 Select a world language…</option>
-            <option value="index_en.html" lang="en">🇬🇧 English</option>
-            <option value="index_cy.html" lang="cy">🇬🇧 Cymraeg</option>
-            <option value="index_ch.html" lang="zh">🇨🇳 中文（语言）</option>
-            <option value="index_fr.html" lang="fr">🇫🇷 Français</option>
-            <option value="index_de.html" lang="de">🇩🇪 Deutsch</option>
-            <option value="index_es.html" lang="es">🇪🇸 Español</option>
-            <option value="index_he.html" lang="he">🇮🇱 עברית</option>
-            <option value="index_it.html" lang="it">🇮🇹 Italiano</option>
-            <option value="index_jp.html" lang="ja">🇯🇵 日本語</option>
-            <option value="index_ksa.html" lang="ar">🇸🇦 العربية</option>
-            <option value="index_nl.html" lang="nl">🇳🇱 Nederlands</option>
-            <option value="index_ru.html" lang="ru">🇷🇺 Русский</option>
-            <option value="index_pt.html" lang="pt">🇵🇹 Português</option>
-            <option value="index_sw.html" lang="sv">🇸🇪 Svenska</option>
-            <option value="index_tr.html" lang="tr">🇹🇷 Türkçe</option>
-            <option value="index_yb.html" lang="yo">🇳🇬 Yorùbá</option>
-          </select>
-        </div>
-      </div>
+      <div class="select-wrap">
+      <label class="visually-hidden" for="languageSelect">Select a language</label>
+      <select id="languageSelect" class="language-select" aria-label="Select a world language">
+        <option value="" selected disabled>🌍 Select a world language…</option>
+        <option value="index_en.html" lang="en">🇬🇧 English</option>
+        <option value="index_cy.html" lang="cy">🇬🇧 Cymraeg</option>
+        <option value="index_ch.html" lang="zh">🇨🇳 中文（语言）</option>
+        <option value="index_fr.html" lang="fr">🇫🇷 Français</option>
+        <option value="index_de.html" lang="de">🇩🇪 Deutsch</option>
+        <option value="index_es.html" lang="es">🇪🇸 Español</option>
+        <option value="index_he.html" lang="he">🇮🇱 עברית</option>
+        <option value="index_it.html" lang="it">🇮🇹 Italiano</option>
+        <option value="index_jp.html" lang="ja">🇯🇵 日本語</option>
+        <option value="index_ksa.html" lang="ar">🇸🇦 العربية</option>
+        <option value="index_nl.html" lang="nl">🇳🇱 Nederlands</option>
+        <option value="index_ru.html" lang="ru">🇷🇺 Русский</option>
+        <option value="index_pt.html" lang="pt">🇵🇹 Português</option>
+        <option value="index_sw.html" lang="sv">🇸🇪 Svenska</option>
+        <option value="index_tr.html" lang="tr">🇹🇷 Türkçe</option>
+        <option value="index_yb.html" lang="yo">🇳🇬 Yorùbá</option>
+      </select>
+    </div>
+  </div>
 
   <!-- Unified navigation handler -->
   <script>
