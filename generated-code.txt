@@ -1,0 +1,173 @@
+/*  Note: The data file produced will be at the individual level and cover all ages, irrespective of the variables requested. 
+ In this current version of the tool, it is not possible to select variables by wave - though you may edit the code below to do so. */
+
+/****************************************************************************************
+* Sample Code for your request:  38f109e62e2d4e40b44fd0cd9abc865b       *
+*****************************************************************************************/
+clear all
+set more off
+
+// Replace "where" with the filepath of the working folder (where any temporary files created by this programme will be stored)   eg:  c:\ukhls\temp
+cd "where" 
+
+// Replace "where" with the folderpath where the data has been downloaded and unzipped   eg:   c:\ukhls_data\UKDA-6614-stata\stata\stata13_se\ukhls
+global ukhls "where\UKDA-6614-stata\stata\stata13_se\ukhls"
+
+// Replace "where" with the filepath of the folder where you want to store the final dataset produced by this programme.  eg:  c:\ukhls\results
+global outputpath "where"
+
+// The file produced by this programme will be named as below. If you want to change the name do it here.
+local outputfilename "UKHLS_long_hij"
+
+// By default the data will be extracted from the waves whose letter prefixes are written below, and merged. If you want to a different selection of waves, make the change here
+local allWaves = "h i j"
+
+// These variables from the indall files will be included. These include some key variables as determined by us PLUS any variables requested by you. 
+local indallvars "age_dv country ethn_dv gor_dv hhsize hidp mastat_dv nchild_dv pidp pno psnen01_lw psnen01_xw psnen91_lw psnen91_xw psnen99_lw psnen99_xw psneng2_lw psneng2_xw psnenub_lw psnenub_xw psnenui_lw psnenui_xw psnenus_lw psnenus_xw psu racel_dv sex_dv strata urban_dv"
+
+// These variables from the indresp files will be included. These include some key variables as determined by us PLUS any variables requested by you. 
+local indvars "age_dv country depenth1 depenth4 ethn_dv gor_dv hhsize hhtype_dv hidp ind5mus_lw ind5mus_xw indbd91_lw indbdub_lw indin01_lw indin01_xw indin91_lw indin91_xw indin99_lw indin99_xw inding2_lw inding2_xw indinub_lw indinub_xw indinui_lw indinui_xw indinus_lw indinus_xw indns91_lw indnsub_lw indpxg2_xw indpxub_lw indpxub_xw indpxui_lw indpxui_xw indpxus_lw indpxus_xw indscg2_xw indscub_lw indscub_xw indscui_lw indscui_xw indscus_lw indscus_xw jbstat jwbs1_dv jwbs2_dv mastat_dv nchild_dv pidp pno psu racel_dv sex_dv strata tenure_dv ukborn urban_dv"
+
+// These variables from the child files will be included. These include some key variables as determined by us PLUS any variables requested by you. 
+local chvars "age_dv chddvg2_xw chddvub_lw chddvub_xw chddvui_lw chddvui_xw country gor_dv hhsize hidp pidp pno psnen01_lw psnen91_lw psneng2_lw psneng2_xw psnenub_lw psnenub_xw psnenui_lw psnenui_xw psnenus_lw psnenus_xw psu sex_dv strata urban_dv"
+
+// These variables from the hhresp files will be included. These include some key variables as determined by us PLUS any variables requested by you. 
+local hhvars "country fihhmnnet1_dv gor_dv hhden01_xw hhden91_xw hhden99_xw hhdeng2_xw hhdenub_xw hhdenui_xw hhdenus_xw hhsize hhtype_dv hidp ieqmoecd_dv nkids_dv psu strata tenure_dv urban_dv"
+
+// These variables from the youth files will be included. These include some key variables as determined by us PLUS any variables requested by you. 
+local youthvars "age_dv country ethn_dv gor_dv hidp pidp pno psu racel_dv sex_dv strata urban_dv ythscg2_xw ythscub_xw ythscui_xw ythscus_xw"
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// Anything below this line should not be changed! Any changes to the selection of variables and waves, and location of folders, should be made above. //
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+// this program returns all variable names with the wave prefix
+program define getVars, rclass
+    version 14.0
+	if ("`1'" != "") {
+		local wavemyvars = " `1'"
+		local wavemyvars = subinstr("`wavemyvars'"," "," `2'_",.)
+		local wavemyvars = substr("`wavemyvars'",2,.)
+	}
+	else local wavemyvars = ""
+	return local fixedVars "`wavemyvars'"
+end
+
+// this program to returns  which variables exist in this wave
+program define getExistingVars, rclass
+    version 14.0
+	local all = ""
+	foreach var in `1' {
+		capture confirm variable `var'
+		if !_rc {
+			local all = "`all' `var'"
+		}
+	}
+	return local existingVars "`all'"
+end  
+
+//loop through each wave
+foreach wave in `allWaves' {
+	// find the wave number
+	local waveno=strpos("abcdefghijklmnopqrstuvwxyz","`wave'")
+
+	// find the wave household vars
+	getVars "`hhvars'" `wave'
+	local wavehhvars = "`r(fixedVars)'"
+	
+	// find the wave individual vars
+	getVars "`indvars'" `wave'
+	local waveindvars = "`r(fixedVars)'"
+	
+	// find the wave all individual vars
+	getVars "`indallvars'" `wave'
+	local waveindallvars = "`r(fixedVars)'"
+	
+	// find the wave child vars
+	getVars "`chvars'" `wave'
+	local wavechvars = "`r(fixedVars)'"
+	
+	// find the wave youth vars
+	getVars "`youthvars'" `wave'
+	local waveyouthvars = "`r(fixedVars)'"
+	
+	// open the the household level file with the required variables
+	use "$ukhls/`wave'_hhresp", clear
+	getExistingVars "`wave'_hidp `wavehhvars'"
+	keep `r(existingVars)'
+	
+	// if only household variables are required, skip this part and return all households
+	if ("`indvars'" != "" || "`chvars'" != "" || "`youthvars'" != "") {
+		// if any individual variable is required, first  merge INDALL keeping the pipd (and possibly some default variables?), so that other files can merge on it.
+		merge 1:m `wave'_hidp using "$ukhls/`wave'_indall"
+		drop _merge
+		// drop loose households with no individuals
+		drop if (pidp == .)
+		
+		// keep only variables that were requested and exist in this wave
+		getExistingVars "pidp `wave'_hidp `wavehhvars' `waveindallvars'"
+		keep `r(existingVars)'
+		
+		// add any requested individual variables
+		if ("`indvars'" != "") {
+			merge 1:1 pidp using "$ukhls/`wave'_indresp"
+			drop _merge
+			// keep only variables that were requested and exist in this wave
+			getExistingVars "pidp `wave'_hidp `wavehhvars' `waveindvars' `waveyouthvars' `wavechvars' `waveindallvars'"
+			keep `r(existingVars)'
+		}
+		// add any requested youth variables
+		if ("`waveyouthvars'" != "") {
+			merge 1:1 pidp using "$ukhls/`wave'_youth"
+			drop _merge
+			// keep only variables that were requested and exist in this wave
+			getExistingVars "pidp `wave'_hidp `wavehhvars' `waveindvars' `waveyouthvars' `wavechvars' `waveindallvars'"
+			keep `r(existingVars)'
+		}
+		// add any requested child variables
+		if ("`wavechvars'" != "") {
+			merge 1:1 pidp using "$ukhls/`wave'_child"
+			drop _merge
+			// keep only variables that were requested and exist in this wave
+			getExistingVars "pidp `wave'_hidp `wavehhvars' `waveindvars' `waveyouthvars' `wavechvars' `waveindallvars'"
+			keep `r(existingVars)'
+		}
+	}
+
+	// create a wave variable
+	gen wavename=`waveno'
+
+	// drop the wave prefix from all variables
+	rename `wave'_* *
+
+	// save the file that was created
+	save temp_`wave', replace
+	
+}
+
+// open the file for the first wave (wave a_)
+local firstWave = substr("`allWaves'", 1, 1)
+use temp_`firstWave', clear
+
+// loop through the remaining waves appending them in the long format
+local remainingWaves = substr("`allWaves'", 3, .)
+
+foreach w in `remainingWaves' {
+	// append the files for the second wave onwards
+	append using temp_`w'
+}
+
+// check how many observations are available from each wave
+tab wavename
+
+// move pidp to the beginning of the file
+order pidp, first
+
+// save the long file
+save "$outputpath/`outputfilename'", replace
+
+// erase temporary files
+foreach w in `allWaves' {
+	erase temp_`w'.dta
+}
