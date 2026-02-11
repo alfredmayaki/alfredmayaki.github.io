@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -741,19 +741,7 @@ body {
           var inputEl = document.getElementById('searchInput');
           if (!inputEl || inputEl.__typedInitialized) return;
           inputEl.__typedInitialized = true;
-          var isMobile = window.innerWidth <= 600;
-          var strings = isMobile ? [
-            'Men\'s Super-G ⛷️',
-            'Nordic Combined 🎿',
-            'Biathlon Women\'s 15km 🎯',
-            'Luge Women\'s Final 🛷',
-            'Women\'s 1000m Skating ⛸️',
-            'Aerials Qualification 🎿',
-            'USA vs Czech Rep. 🏒',
-            'Canada vs Finland 🏒',
-            'USA vs Sweden 🏒',
-            'Day 5 — Feb 11 🏅'
-          ] : [
+          var strings = [
             'Men\'s Super-G — Odermatt on the Stelvio ⛷️',
             'Nordic Combined NH/10km — Riiber vs Geiger 🎿',
             'Biathlon Women\'s 15km Individual — Julia Simon 🎯',
