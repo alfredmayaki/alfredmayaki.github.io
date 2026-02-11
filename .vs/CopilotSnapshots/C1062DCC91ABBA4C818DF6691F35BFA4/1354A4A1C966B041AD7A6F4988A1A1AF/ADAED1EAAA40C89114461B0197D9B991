@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -741,23 +741,8 @@ body {
           var inputEl = document.getElementById('searchInput');
           if (!inputEl || inputEl.__typedInitialized) return;
           inputEl.__typedInitialized = true;
-          var strings = [
-            'Men\'s Super-G — Odermatt on the Stelvio ⛷️',
-            'Nordic Combined NH/10km — Riiber vs Geiger 🎿',
-            'Biathlon Women\'s 15km Individual — Julia Simon 🎯',
-            'Luge Women\'s Final — Geisenberger\'s 4th gold bid 🛷',
-            'Speed Skating Women\'s 1000m — Takagi vs Leerdam ⛸️',
-            'Aerials Qualification — Qi Guangpu 🎿',
-            'USA vs Czech Republic Hockey 🏒',
-            'Canada vs Finland Hockey 🏒',
-            'USA vs Sweden Women\'s Hockey 🏒',
-            'Day 5 — Wednesday, February 11 🏅'
-          ];
-          var opts = {
-            strings: strings, typeSpeed: 20, backSpeed: 15,
-            backDelay: 1500, loop: true, attr: 'placeholder',
-            bindInputFocusEvents: true, showCursor: false
-          };
+          var strings = ['Men\'s Super-G — Odermatt on the Stelvio ⛷️','Nordic Combined NH/10km — Riiber vs Geiger 🎿','Biathlon Women\'s 15km Individual — Julia Simon 🎯','Luge Women\'s Final — Geisenberger\'s 4th gold bid 🛷','Speed Skating Women\'s 1000m — Takagi vs Leerdam ⛸️','Aerials Qualification — Qi Guangpu 🎿','USA vs Czech Republic Hockey 🏒','Canada vs Finland Hockey 🏒','USA vs Sweden Women\'s Hockey 🏒','Day 5 — Wednesday, February 11 🏅'];
+          var opts = { strings: strings, typeSpeed: 20, backSpeed: 15, backDelay: 1500, loop: true, attr: 'placeholder', bindInputFocusEvents: true, showCursor: false };
           try { new Typed('searchInput', opts); } catch (err) { try { new Typed(inputEl, opts); } catch (err2) {} }
         }
         if (typeof Typed === 'function') startTyped();
