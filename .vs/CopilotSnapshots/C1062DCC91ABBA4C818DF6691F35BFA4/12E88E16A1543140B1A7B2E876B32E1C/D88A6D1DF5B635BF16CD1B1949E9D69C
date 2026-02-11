@@ -1,11 +1,11 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Milano-Cortina 2026 - Day 2 Fact Sheet | Winter Olympics</title>
-  <meta name="description" content="Complete fact sheet for Day 2 of the Milano-Cortina 2026 Winter Olympic Games — moguls finals, giant slalom, biathlon mixed relay, short track, and cross-country skiathlon.">
-  <meta name="keywords" content="Milano-Cortina 2026, Winter Olympics Day 2, Olympic schedule, February 8 2026">
+  <title>Milano-Cortina 2026 - Day 4 Fact Sheet | Winter Olympics</title>
+  <meta name="description" content="Complete fact sheet for Day 4 of the Milano-Cortina 2026 Winter Olympic Games — women's downhill, women's ski jumping, luge, biathlon individual, and short track finals.">
+  Olympic schedule, February 10 2026
   <style>
     :root {
       --primary-blue: #0081C8;
@@ -292,9 +292,9 @@
 
     <div class="day-nav">
       <a href="milan-cortina-day-1.html">📅 Day 1</a>
-      <a href="milan-cortina-day-2.html" class="current">📅 Day 2</a>
+      <a href="milan-cortina-day-2.html">📅 Day 2</a>
       <a href="milan-cortina-day-3.html">📅 Day 3</a>
-      <a href="milan-cortina-day-4.html">📅 Day 4</a>
+      <a href="milan-cortina-day-4.html" class="current">📅 Day 4</a>
       <a href="milan-cortina-day-5.html">📅 Day 5</a>
     </div>
 
@@ -302,86 +302,27 @@
       <div class="olympics-rings">🔵 ⚫ 🔴 🟡 🟢</div>
       <h1>Milano-Cortina 2026</h1>
       <p class="subtitle">XXV Olympic Winter Games</p>
-      Day 2 — Sunday, February 8, 2026
+      Day 4 — Tuesday, February 10, 2026
     </header>
 
     <div class="intro">
-      <h3 style="color: var(--gold); margin-bottom: 1rem;">🎿 Day 2 Overview</h3>
-      <p>Day 2 delivers the first moguls medals, women's giant slalom action, the exciting biathlon mixed relay, short track heats, and the cross-country skiathlon. Medal events across multiple disciplines ensure a packed schedule in Milan, Cortina, and Anterselva.</p>
+      <h3 style="color: var(--gold); margin-bottom: 1rem;">🎿 Day 4 Overview</h3>
+      <p>Day 4 features the marquee women's downhill, women's ski jumping on the normal hill, luge women's runs, biathlon men's individual, and the first short track speed skating finals. Multiple medal events make this one of the biggest days of the Games.</p>
     </div>
 
     <div class="highlights">
-      <h3>⭐ Day 2 Highlights</h3>
+      <h3>⭐ Day 4 Highlights</h3>
       <ul>
-        <li>Freestyle Skiing Men's &amp; Women's Moguls Finals — first freestyle medals</li>
-        <li>Women's Giant Slalom Run 1 on the Tofana course</li>
-        <li>Biathlon Mixed Relay medal event in Anterselva</li>
-        <li>Short Track Speed Skating heats at Mediolanum Forum</li>
-        <li>Cross-Country Skiathlon opens distance racing in Tesero</li>
+        <li>Women's Downhill on home snow at Cortina — Sofia Goggia's golden shot</li>
+        <li>Women's Ski Jumping Normal Hill medal event at Predazzo</li>
+        <li>Luge Women's Singles Runs 1 &amp; 2 at Cesana</li>
+        <li>Biathlon Men's 20km Individual in Anterselva</li>
+        <li>Short Track 1000m &amp; 500m Finals at Mediolanum Forum</li>
       </ul>
     </div>
 
     <!-- ============================================ -->
-    <!--  FREESTYLE SKIING — MOGULS FINALS            -->
-    <!-- ============================================ -->
-    <div class="event-section">
-      <div class="section-header">
-        <span class="section-icon">🎿</span>
-        <h2>Freestyle Skiing</h2>
-      </div>
-      <div class="event-grid">
-        <div class="event-card medal-event">
-          <div class="event-header">
-            <div>
-              <div class="event-title">Men's Moguls — Final</div>
-              <div class="event-discipline">Freestyle Skiing</div>
-            </div>
-            <div class="event-time">12:30</div>
-          </div>
-          <div class="event-venue">📍 Livigno — Mottolino Fun Mountain</div>
-          <span class="medal-badge">🏅 MEDAL EVENT</span>
-          <div class="event-favorites">
-            <strong>⭐ Favourites &amp; Contenders</strong>
-            <span class="athlete"><span class="athlete-flag">🇸🇪</span>Walter Wallberg (SWE) — defending Olympic champion, Beijing 2022 gold.</span>
-            <span class="athlete"><span class="athlete-flag">🇯🇵</span>Ikuma Horishima (JPN) — multi-globe winner, World Cup dominant force.</span>
-            <span class="athlete"><span class="athlete-flag">🇫🇷</span>Benjamin Cavet (FRA) — World Championship medallist, podium regular.</span>
-            <span class="athlete"><span class="athlete-flag">🇨🇦</span>Mikaël Kingsbury (CAN) — all-time great, 2018 Olympic champion, 2022 silver.</span>
-          </div>
-          <div class="event-records">
-            <strong>📊 Records — Men's Moguls</strong>
-            <div class="record-row"><span class="record-label">Olympic Best:</span> Walter Wallberg (SWE) — 83.23 (Beijing 2022 Final)</div>
-            <div class="record-row"><span class="record-label">World Cup Best:</span> Ikuma Horishima (JPN) — 86.23 (2024 Deer Valley)</div>
-            <div class="record-note">Moguls scoring is judge-based (turns, air, speed); scores are not directly comparable across venues.</div>
-          </div>
-        </div>
-
-        <div class="event-card medal-event">
-          <div class="event-header">
-            <div>
-              <div class="event-title">Women's Moguls — Final</div>
-              <div class="event-discipline">Freestyle Skiing</div>
-            </div>
-            <div class="event-time">14:00</div>
-          </div>
-          <div class="event-venue">📍 Livigno — Mottolino Fun Mountain</div>
-          <span class="medal-badge">🏅 MEDAL EVENT</span>
-          <div class="event-favorites">
-            <strong>⭐ Favourites &amp; Contenders</strong>
-            <span class="athlete"><span class="athlete-flag">🇦🇺</span>Jakara Anthony (AUS) — defending champion, World Cup dominant.</span>
-            <span class="athlete"><span class="athlete-flag">🇫🇷</span>Perrine Laffont (FRA) — 2018 Olympic gold, multi-globe winner.</span>
-            <span class="athlete"><span class="athlete-flag">🇯🇵</span>Anri Kawamura (JPN) — teenage prodigy, World Cup winner at 17.</span>
-          </div>
-          <div class="event-records">
-            <strong>📊 Records — Women's Moguls</strong>
-            <div class="record-row"><span class="record-label">Olympic Best:</span> Jakara Anthony (AUS) — 83.09 (Beijing 2022 Final)</div>
-            <div class="record-row"><span class="record-label">World Cup Best:</span> Perrine Laffont (FRA) — 84.83 (2023 Ruka)</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- ============================================ -->
-    <!--  ALPINE SKIING — GS                         -->
+    <!--  ALPINE SKIING — WOMEN'S DOWNHILL            -->
     <!-- ============================================ -->
     <div class="event-section">
       <div class="section-header">
@@ -389,49 +330,134 @@
         <h2>Alpine Skiing</h2>
       </div>
       <div class="event-grid">
-        <div class="event-card">
+        <div class="event-card medal-event">
           <div class="event-header">
             <div>
-              <div class="event-title">Women's Giant Slalom — Run 1</div>
+              <div class="event-title">Women's Downhill</div>
               <div class="event-discipline">Alpine Skiing</div>
             </div>
-            <div class="event-time">10:00</div>
+            <div class="event-time">11:00</div>
           </div>
           <div class="event-venue">📍 Cortina d'Ampezzo — Tofana Course</div>
+          <span class="medal-badge">🏅 MEDAL EVENT</span>
           <div class="event-favorites">
             <strong>⭐ Favourites &amp; Contenders</strong>
-            <span class="athlete"><span class="athlete-flag">🇺🇸</span>Mikaela Shiffrin (USA) — all-time wins record holder, GS World Cup champion.</span>
-            <span class="athlete"><span class="athlete-flag">🇮🇹</span>Federica Brignone (ITA) — home favourite, 2020 GS globe winner.</span>
-            <span class="athlete"><span class="athlete-flag">🇨🇭</span>Lara Gut-Behrami (SUI) — overall World Cup champion, GS threat.</span>
-            <span class="athlete"><span class="athlete-flag">🇸🇪</span>Sara Hector (SWE) — 2022 Olympic GS champion.</span>
+            <span class="athlete"><span class="athlete-flag">🇮🇹</span>Sofia Goggia (ITA) — home crowd favourite, 2018 Olympic downhill champion.</span>
+            <span class="athlete"><span class="athlete-flag">🇨🇭</span>Lara Gut-Behrami (SUI) — overall World Cup champion, Cortina podium regular.</span>
+            <span class="athlete"><span class="athlete-flag">🇦🇹</span>Cornelia Hütter (AUT) — World Cup downhill leader, blistering form.</span>
+            <span class="athlete"><span class="athlete-flag">🇺🇸</span>Mikaela Shiffrin (USA) — all-time wins record holder, speed event contender.</span>
           </div>
           <div class="event-records">
-            <strong>📊 Records — Women's Giant Slalom</strong>
-            <div class="record-row"><span class="record-label">Olympic Champion:</span> Sara Hector (SWE) — Beijing 2022</div>
-            <div class="record-note">GS times depend on course setting, snow, and weather — no universal time record.</div>
+            <strong>📊 Records — Women's Downhill</strong>
+            <div class="record-row"><span class="record-label">Olympic Champion:</span> Corinne Suter (SUI) — 1:31.87 (Beijing 2022)</div>
+            <div class="record-note">Course-specific — Cortina's Tofana is a classic venue; Sofia Goggia won World Championship downhill here in 2021.</div>
           </div>
         </div>
 
         <div class="event-card">
           <div class="event-header">
             <div>
-              <div class="event-title">Women's Downhill — Training Run 2</div>
+              <div class="event-title">Women's Giant Slalom — Run 2</div>
               <div class="event-discipline">Alpine Skiing</div>
             </div>
-            <div class="event-time">09:00</div>
+            <div class="event-time">13:30</div>
           </div>
           <div class="event-venue">📍 Cortina d'Ampezzo — Tofana Course</div>
+          <span class="medal-badge">🏅 MEDAL EVENT</span>
           <div class="event-favorites">
-            <strong>⭐ Athletes to Watch</strong>
-            <span class="athlete"><span class="athlete-flag">🇮🇹</span>Sofia Goggia (ITA) — home crowd favourite, Olympic downhill champion.</span>
-            <span class="athlete"><span class="athlete-flag">🇦🇹</span>Cornelia Hütter (AUT) — World Cup downhill leader, blistering form.</span>
+            <strong>⭐ Run 2 Contenders</strong>
+            <span class="athlete">Top 30 from Run 1 qualify. Podium battle between Shiffrin, Brignone, Gut-Behrami, and Hector.</span>
           </div>
         </div>
       </div>
     </div>
 
     <!-- ============================================ -->
-    <!--  BIATHLON — MIXED RELAY                      -->
+    <!--  SKI JUMPING — WOMEN'S NORMAL HILL           -->
+    <!-- ============================================ -->
+    <div class="event-section">
+      <div class="section-header">
+        <span class="section-icon">🦅</span>
+        <h2>Ski Jumping</h2>
+      </div>
+      <div class="event-grid">
+        <div class="event-card medal-event">
+          <div class="event-header">
+            <div>
+              <div class="event-title">Women's Normal Hill Individual</div>
+              <div class="event-discipline">Ski Jumping</div>
+            </div>
+            <div class="event-time">16:30</div>
+          </div>
+          <div class="event-venue">📍 Predazzo — Trampolino</div>
+          <span class="medal-badge">🏅 MEDAL EVENT</span>
+          <div class="event-favorites">
+            <strong>⭐ Favourites &amp; Contenders</strong>
+            <span class="athlete"><span class="athlete-flag">🇸🇮</span>Nika Prevc (SLO) — World Cup leader, teenage sensation.</span>
+            <span class="athlete"><span class="athlete-flag">🇳🇴</span>Maren Lundby (NOR) — 2018 Olympic champion, return from injury.</span>
+            <span class="athlete"><span class="athlete-flag">🇯🇵</span>Sara Takanashi (JPN) — all-time World Cup wins leader, Olympic medal quest.</span>
+            <span class="athlete"><span class="athlete-flag">🇩🇪</span>Katharina Althaus (GER) — two-time Olympic silver, consistent threat.</span>
+          </div>
+          <div class="event-records">
+            <strong>📊 Records — Women's Normal Hill</strong>
+            <div class="record-row"><span class="record-label">Olympic Champion:</span> Urša Bogataj (SLO) — 239.0 pts (Beijing 2022)</div>
+            <div class="record-note">Slovenia dominated in Beijing (gold &amp; bronze); Predazzo's hill profile may suit different styles.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================================ -->
+    <!--  LUGE — WOMEN'S                              -->
+    <!-- ============================================ -->
+    <div class="event-section">
+      <div class="section-header">
+        <span class="section-icon">🛷</span>
+        <h2>Luge</h2>
+      </div>
+      <div class="event-grid">
+        <div class="event-card">
+          <div class="event-header">
+            <div>
+              <div class="event-title">Women's Singles — Runs 1 &amp; 2</div>
+              <div class="event-discipline">Luge</div>
+            </div>
+            <div class="event-time">18:00</div>
+          </div>
+          <div class="event-venue">📍 Cesana — Pariol Sliding Centre</div>
+          <div class="event-favorites">
+            <strong>⭐ Favourites &amp; Contenders</strong>
+            <span class="athlete"><span class="athlete-flag">🇩🇪</span>Natalie Geisenberger (GER) — three-time Olympic champion, all-time great.</span>
+            <span class="athlete"><span class="athlete-flag">🇩🇪</span>Julia Taubitz (GER) — World Cup overall winner, explosive slider.</span>
+            <span class="athlete"><span class="athlete-flag">🇦🇹</span>Madeleine Egle (AUT) — World Cup medallist, sprint specialist.</span>
+          </div>
+          <div class="event-records">
+            <strong>📊 Records — Women's Luge</strong>
+            <div class="record-row"><span class="record-label">Olympic Record:</span> Natalie Geisenberger (GER) — combined 3:53.454 (Beijing 2022)</div>
+            <div class="record-note">Germany have swept women's luge medals at the last two Olympics; track familiarity at Cesana will be key.</div>
+          </div>
+        </div>
+
+        <div class="event-card medal-event">
+          <div class="event-header">
+            <div>
+              <div class="event-title">Men's Singles — Runs 3 &amp; 4 (Final)</div>
+              <div class="event-discipline">Luge</div>
+            </div>
+            <div class="event-time">20:00</div>
+          </div>
+          <div class="event-venue">📍 Cesana — Pariol Sliding Centre</div>
+          <span class="medal-badge">🏅 MEDAL EVENT</span>
+          <div class="event-favorites">
+            <strong>⭐ Final Contenders</strong>
+            <span class="athlete">Top sliders from Runs 1–2 on Day 3 return for the decisive final runs.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================================ -->
+    <!--  BIATHLON — MEN'S INDIVIDUAL                 -->
     <!-- ============================================ -->
     <div class="event-section">
       <div class="section-header">
@@ -442,7 +468,7 @@
         <div class="event-card medal-event">
           <div class="event-header">
             <div>
-              <div class="event-title">Mixed Relay</div>
+              <div class="event-title">Men's 20km Individual</div>
               <div class="event-discipline">Biathlon</div>
             </div>
             <div class="event-time">14:30</div>
@@ -451,22 +477,22 @@
           <span class="medal-badge">🏅 MEDAL EVENT</span>
           <div class="event-favorites">
             <strong>⭐ Favourites &amp; Contenders</strong>
-            <span class="athlete"><span class="athlete-flag">🇫🇷</span>France — led by Quentin Fillon Maillet &amp; Julia Simon, World Cup relay powerhouse.</span>
-            <span class="athlete"><span class="athlete-flag">🇳🇴</span>Norway — Johannes Thingnes Bø anchoring; relay gold favourites.</span>
-            <span class="athlete"><span class="athlete-flag">🇸🇪</span>Sweden — Sebastian Samuelsson &amp; Hanna Öberg, Beijing 2022 relay medallists.</span>
-            <span class="athlete"><span class="athlete-flag">🇩🇪</span>Germany — deep squad with Denise Herrmann-Wick; consistent relay medal contenders.</span>
+            <span class="athlete"><span class="athlete-flag">🇳🇴</span>Johannes Thingnes Bø (NOR) — most decorated active biathlete, 2022 Olympic individual champion.</span>
+            <span class="athlete"><span class="athlete-flag">🇫🇷</span>Quentin Fillon Maillet (FRA) — 2022 Olympic 20km gold, all-round talent.</span>
+            <span class="athlete"><span class="athlete-flag">🇸🇪</span>Sebastian Samuelsson (SWE) — Olympic silver medallist, Anterselva specialist.</span>
+            <span class="athlete"><span class="athlete-flag">🇩🇪</span>Philipp Nawrath (GER) — World Cup winner, home-crowd energy at altitude.</span>
           </div>
           <div class="event-records">
-            <strong>📊 Records — Mixed Relay</strong>
-            <div class="record-row"><span class="record-label">Olympic Champions:</span> France (Pyeongchang 2018), France (Beijing 2022)</div>
-            <div class="record-note">France have won the last two Olympic mixed relays; relay records are time-based but depend heavily on shooting accuracy and conditions.</div>
+            <strong>📊 Records — Men's 20km Individual</strong>
+            <div class="record-row"><span class="record-label">Olympic Champion:</span> Quentin Fillon Maillet (FRA) — 48:47.4 (Beijing 2022)</div>
+            <div class="record-note">The 20km individual penalises each missed shot with 1 minute; shooting accuracy is paramount. Anterselva's altitude (1,600 m) adds difficulty.</div>
           </div>
         </div>
       </div>
     </div>
 
     <!-- ============================================ -->
-    <!--  SHORT TRACK SPEED SKATING                   -->
+    <!--  SHORT TRACK — FINALS                        -->
     <!-- ============================================ -->
     <div class="event-section">
       <div class="section-header">
@@ -474,104 +500,49 @@
         <h2>Short Track Speed Skating</h2>
       </div>
       <div class="event-grid">
-        <div class="event-card">
+        <div class="event-card medal-event">
           <div class="event-header">
             <div>
-              <div class="event-title">Men's 1000m — Heats</div>
-              <div class="event-discipline">Short Track Speed Skating</div>
-            </div>
-            <div class="event-time">18:00</div>
-          </div>
-          <div class="event-venue">📍 Milan — Mediolanum Forum</div>
-          <div class="event-favorites">
-            <strong>⭐ Favourites &amp; Contenders</strong>
-            <span class="athlete"><span class="athlete-flag">🇰🇷</span>Hwang Dae-heon (KOR) — 2022 Olympic 1500m champion, versatile threat.</span>
-            <span class="athlete"><span class="athlete-flag">🇨🇳</span>Ren Ziwei (CHN) — 2022 Olympic 1000m gold, defending champion.</span>
-            <span class="athlete"><span class="athlete-flag">🇭🇺</span>Shaoang Liu (HUN) — 2022 Olympic 500m gold, explosive sprinter.</span>
-          </div>
-          <div class="event-records">
-            <strong>📊 Records — Men's 1000m</strong>
-            <div class="record-row"><span class="record-label">World Record:</span> Shaoang Liu (HUN) — 1:20.499 (2023 Dordrecht)</div>
-            <div class="record-row"><span class="record-label">Olympic Record:</span> Ren Ziwei (CHN) — 1:26.768 (Beijing 2022 Final)</div>
-            <div class="record-note">Short track records vary by rink conditions and race tactics; heats often slower than finals.</div>
-          </div>
-        </div>
-
-        <div class="event-card">
-          <div class="event-header">
-            <div>
-              <div class="event-title">Women's 500m — Heats</div>
+              <div class="event-title">Men's 1000m — Final</div>
               <div class="event-discipline">Short Track Speed Skating</div>
             </div>
             <div class="event-time">19:00</div>
           </div>
           <div class="event-venue">📍 Milan — Mediolanum Forum</div>
+          <span class="medal-badge">🏅 MEDAL EVENT</span>
           <div class="event-favorites">
             <strong>⭐ Favourites &amp; Contenders</strong>
-            <span class="athlete"><span class="athlete-flag">🇳🇱</span>Suzanne Schulting (NED) — multi-Olympic medallist, 500m World Cup leader.</span>
-            <span class="athlete"><span class="athlete-flag">🇮🇹</span>Arianna Fontana (ITA) — all-time Olympic short track medal leader, home crowd favourite.</span>
-            <span class="athlete"><span class="athlete-flag">🇰🇷</span>Choi Min-jeong (KOR) — Olympic champion, versatile across distances.</span>
+            <span class="athlete"><span class="athlete-flag">🇰🇷</span>Hwang Dae-heon (KOR) — explosive versatile racer, 2022 Olympic 1500m champion.</span>
+            <span class="athlete"><span class="athlete-flag">🇨🇳</span>Ren Ziwei (CHN) — defending 1000m Olympic champion.</span>
+            <span class="athlete"><span class="athlete-flag">🇭🇺</span>Shaoang Liu (HUN) — world record holder, 2022 Olympic 500m gold.</span>
+          </div>
+          <div class="event-records">
+            <strong>📊 Records — Men's 1000m</strong>
+            <div class="record-row"><span class="record-label">World Record:</span> Shaoang Liu (HUN) — 1:20.499 (2023 Dordrecht)</div>
+            <div class="record-row"><span class="record-label">Olympic Record:</span> Ren Ziwei (CHN) — 1:26.768 (Beijing 2022)</div>
+          </div>
+        </div>
+
+        <div class="event-card medal-event">
+          <div class="event-header">
+            <div>
+              <div class="event-title">Women's 500m — Final</div>
+              <div class="event-discipline">Short Track Speed Skating</div>
+            </div>
+            <div class="event-time">20:00</div>
+          </div>
+          <div class="event-venue">📍 Milan — Mediolanum Forum</div>
+          <span class="medal-badge">🏅 MEDAL EVENT</span>
+          <div class="event-favorites">
+            <strong>⭐ Favourites &amp; Contenders</strong>
+            <span class="athlete"><span class="athlete-flag">🇮🇹</span>Arianna Fontana (ITA) — most decorated Olympic short tracker, home ice hero.</span>
+            <span class="athlete"><span class="athlete-flag">🇳🇱</span>Suzanne Schulting (NED) — multi-Olympic medallist, explosive sprinter.</span>
+            <span class="athlete"><span class="athlete-flag">🇰🇷</span>Choi Min-jeong (KOR) — Olympic champion, tactical racer.</span>
           </div>
           <div class="event-records">
             <strong>📊 Records — Women's 500m</strong>
             <div class="record-row"><span class="record-label">World Record:</span> Kim Boutin (CAN) — 41.936 (2022 Salt Lake City)</div>
             <div class="record-row"><span class="record-label">Olympic Record:</span> Arianna Fontana (ITA) — 42.488 (Beijing 2022)</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- ============================================ -->
-    <!--  CROSS-COUNTRY SKIING                        -->
-    <!-- ============================================ -->
-    <div class="event-section">
-      <div class="section-header">
-        <span class="section-icon">🎿</span>
-        <h2>Cross-Country Skiing</h2>
-      </div>
-      <div class="event-grid">
-        <div class="event-card medal-event">
-          <div class="event-header">
-            <div>
-              <div class="event-title">Men's 30km Skiathlon</div>
-              <div class="event-discipline">Cross-Country Skiing</div>
-            </div>
-            <div class="event-time">11:00</div>
-          </div>
-          <div class="event-venue">📍 Tesero — Stadio del Fondo</div>
-          <span class="medal-badge">🏅 MEDAL EVENT</span>
-          <div class="event-favorites">
-            <strong>⭐ Favourites &amp; Contenders</strong>
-            <span class="athlete"><span class="athlete-flag">🇳🇴</span>Johannes Høsflot Klæbo (NOR) — multi-Olympic gold, dominant force in Nordic skiing.</span>
-            <span class="athlete"><span class="athlete-flag">🇷🇺</span>Alexander Bolshunov (AIN) — Beijing 2022 skiathlon champion, if eligible.</span>
-            <span class="athlete"><span class="athlete-flag">🇫🇮</span>Iivo Niskanen (FIN) — Olympic champion, distance racing specialist.</span>
-          </div>
-          <div class="event-records">
-            <strong>📊 Records — Men's Skiathlon</strong>
-            <div class="record-row"><span class="record-label">Olympic Champion:</span> Alexander Bolshunov (ROC) — 1:16:09.8 (Beijing 2022)</div>
-            <div class="record-note">Skiathlon times depend on snow, altitude, and wax; not comparable across Games.</div>
-          </div>
-        </div>
-
-        <div class="event-card medal-event">
-          <div class="event-header">
-            <div>
-              <div class="event-title">Women's 15km Skiathlon</div>
-              <div class="event-discipline">Cross-Country Skiing</div>
-            </div>
-            <div class="event-time">13:30</div>
-          </div>
-          <div class="event-venue">📍 Tesero — Stadio del Fondo</div>
-          <span class="medal-badge">🏅 MEDAL EVENT</span>
-          <div class="event-favorites">
-            <strong>⭐ Favourites &amp; Contenders</strong>
-            <span class="athlete"><span class="athlete-flag">🇳🇴</span>Therese Johaug (NOR) — all-time great, Beijing 2022 skiathlon champion.</span>
-            <span class="athlete"><span class="athlete-flag">🇸🇪</span>Frida Karlsson (SWE) — World Championship medallist, closing speed specialist.</span>
-            <span class="athlete"><span class="athlete-flag">🇺🇸</span>Jessie Diggins (USA) — Olympic gold &amp; silver medallist, versatile racer.</span>
-          </div>
-          <div class="event-records">
-            <strong>📊 Records — Women's Skiathlon</strong>
-            <div class="record-row"><span class="record-label">Olympic Champion:</span> Therese Johaug (NOR) — 44:13.7 (Beijing 2022)</div>
           </div>
         </div>
       </div>
@@ -590,15 +561,15 @@
           <div class="event-header">
             <div>
               <div class="event-title">Men's Preliminary Round</div>
-              <div class="event-discipline">Sweden vs Czech Republic</div>
+              <div class="event-discipline">Russia (AIN) vs Sweden</div>
             </div>
             <div class="event-time">12:00</div>
           </div>
           <div class="event-venue">📍 Milan — PalaItalia</div>
           <div class="event-favorites">
             <strong>⭐ Key Players</strong>
-            <span class="athlete"><span class="athlete-flag">🇸🇪</span>William Nylander — elite two-way forward, top NHL scorer.</span>
-            <span class="athlete"><span class="athlete-flag">🇨🇿</span>David Pastrňák — explosive scorer, Czech national team talisman.</span>
+            <span class="athlete"><span class="athlete-flag">🇸🇪</span>William Nylander — elite two-way forward.</span>
+            <span class="athlete">AIN roster TBD pending IOC eligibility decisions.</span>
           </div>
         </div>
 
@@ -606,45 +577,45 @@
           <div class="event-header">
             <div>
               <div class="event-title">Women's Preliminary Round</div>
-              <div class="event-discipline">Canada vs USA</div>
+              <div class="event-discipline">Finland vs Czech Republic</div>
             </div>
-            <div class="event-time">20:30</div>
+            <div class="event-time">16:30</div>
           </div>
           <div class="event-venue">📍 Milan — PalaItalia</div>
           <div class="event-favorites">
             <strong>⭐ Key Players</strong>
-            <span class="athlete"><span class="athlete-flag">🇨🇦</span>Marie-Philip Poulin — "Captain Clutch," three-time Olympic gold medallist.</span>
-            <span class="athlete"><span class="athlete-flag">🇺🇸</span>Hilary Knight — all-time IIHF scoring leader, Team USA veteran.</span>
+            <span class="athlete"><span class="athlete-flag">🇫🇮</span>Petra Nieminen — Finnish scoring leader, IIHF tournament standout.</span>
+            <span class="athlete"><span class="athlete-flag">🇨🇿</span>Alena Mills — Czech captain, growing hockey nation representative.</span>
           </div>
         </div>
       </div>
     </div>
 
     <!-- ============================================ -->
-    <!--  DAY 2 VENUES                                -->
+    <!--  DAY 4 VENUES                                -->
     <!-- ============================================ -->
     <div class="venues-info">
-      <h3 style="color: var(--gold); margin-bottom: 1rem;">🏟️ Day 2 Competition Venues</h3>
+      <h3 style="color: var(--gold); margin-bottom: 1rem;">🏟️ Day 4 Competition Venues</h3>
       <div class="venue-list">
         <div class="venue-item">
-          <div class="venue-name">📍 Livigno — Mottolino</div>
-          <p style="color: var(--text-muted); font-size: 0.9rem;">Freestyle Skiing Moguls Finals</p>
+          <div class="venue-name">📍 Cortina d'Ampezzo — Tofana</div>
+          <p style="color: var(--text-muted); font-size: 0.9rem;">Alpine Skiing (Women's Downhill &amp; GS Run 2)</p>
         </div>
         <div class="venue-item">
-          <div class="venue-name">📍 Cortina d'Ampezzo — Tofana</div>
-          <p style="color: var(--text-muted); font-size: 0.9rem;">Alpine Skiing (GS &amp; DH Training)</p>
+          <div class="venue-name">📍 Predazzo — Trampolino</div>
+          <p style="color: var(--text-muted); font-size: 0.9rem;">Ski Jumping Women's Normal Hill</p>
+        </div>
+        <div class="venue-item">
+          <div class="venue-name">📍 Cesana — Pariol</div>
+          <p style="color: var(--text-muted); font-size: 0.9rem;">Luge (Women's Runs 1–2 &amp; Men's Final)</p>
         </div>
         <div class="venue-item">
           <div class="venue-name">📍 Anterselva — Südtirol Arena</div>
-          <p style="color: var(--text-muted); font-size: 0.9rem;">Biathlon Mixed Relay</p>
+          <p style="color: var(--text-muted); font-size: 0.9rem;">Biathlon Men's 20km Individual</p>
         </div>
         <div class="venue-item">
           <div class="venue-name">📍 Milan — Mediolanum Forum</div>
-          <p style="color: var(--text-muted); font-size: 0.9rem;">Short Track Speed Skating</p>
-        </div>
-        <div class="venue-item">
-          <div class="venue-name">📍 Tesero — Stadio del Fondo</div>
-          <p style="color: var(--text-muted); font-size: 0.9rem;">Cross-Country Skiathlon</p>
+          <p style="color: var(--text-muted); font-size: 0.9rem;">Short Track Speed Skating Finals</p>
         </div>
         <div class="venue-item">
           <div class="venue-name">📍 Milan — PalaItalia</div>
@@ -657,11 +628,11 @@
       <p>Milano-Cortina 2026 — XXV Olympic Winter Games</p>
       <p style="margin-top: 0.5rem;">🔵 ⚫ 🔴 🟡 🟢</p>
       <p style="margin-top: 0.75rem; font-size: 0.9rem;">
-        <a href="milan-cortina-day-1.html" style="color: var(--primary-blue); text-decoration: none;">← Day 1</a>
+        <a href="milan-cortina-day-3.html" style="color: var(--primary-blue); text-decoration: none;">← Day 3</a>
         &nbsp; · &nbsp;
         <a href="ai.html" style="color: var(--primary-blue); text-decoration: none;">🏠 AM-Global™</a>
         &nbsp; · &nbsp;
-        <a href="milan-cortina-day-3.html" style="color: var(--primary-blue); text-decoration: none;">Day 3 →</a>
+        <a href="milan-cortina-day-5.html" style="color: var(--primary-blue); text-decoration: none;">Day 5 →</a>
       </p>
     </footer>
   </div>
