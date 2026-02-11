@@ -3,16 +3,39 @@
   "WorkspaceRootPath": "C:\\Users\\44746\\AppData\\Local\\Microsoft\\WindowsApps\\wget\\repo\\alfredmayaki.github.io\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\44746\\AppData\\Local\\Microsoft\\WindowsApps\\wget\\repo\\alfredmayaki.github.io\\research.html||{3B902123-F8A7-4915-9F01-361F908088D0}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:research.html||{3B902123-F8A7-4915-9F01-361F908088D0}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\44746\\AppData\\Local\\Microsoft\\WindowsApps\\wget\\repo\\alfredmayaki.github.io\\winter-games.html||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:winter-games.html||{3B902123-F8A7-4915-9F01-361F908088D0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\44746\\AppData\\Local\\Microsoft\\WindowsApps\\wget\\repo\\alfredmayaki.github.io\\winter-olympics.html||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:winter-olympics.html||{3B902123-F8A7-4915-9F01-361F908088D0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\44746\\AppData\\Local\\Microsoft\\WindowsApps\\wget\\repo\\alfredmayaki.github.io\\milan-cortina-day-2.html||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:milan-cortina-day-2.html||{3B902123-F8A7-4915-9F01-361F908088D0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\44746\\AppData\\Local\\Microsoft\\WindowsApps\\wget\\repo\\alfredmayaki.github.io\\milan-cortina-day-3.html||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:milan-cortina-day-3.html||{3B902123-F8A7-4915-9F01-361F908088D0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\44746\\AppData\\Local\\Microsoft\\WindowsApps\\wget\\repo\\alfredmayaki.github.io\\milan-cortina-day-1.html||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:milan-cortina-day-1.html||{3B902123-F8A7-4915-9F01-361F908088D0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\44746\\AppData\\Local\\Microsoft\\WindowsApps\\wget\\repo\\alfredmayaki.github.io\\milan-cortina-day-4.html||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:milan-cortina-day-4.html||{3B902123-F8A7-4915-9F01-361F908088D0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\44746\\AppData\\Local\\Microsoft\\WindowsApps\\wget\\repo\\alfredmayaki.github.io\\milan-cortina-day-5.html||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:milan-cortina-day-5.html||{3B902123-F8A7-4915-9F01-361F908088D0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\44746\\AppData\\Local\\Temp\\VisualStudio\\copilot-vs\\plan-cc2d06c1-ab91-4cba-818d-f6691f35bfa4.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}|MarkdownSecurePreview"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\44746\\AppData\\Local\\Microsoft\\WindowsApps\\wget\\repo\\alfredmayaki.github.io\\scraper.py||{3B902123-F8A7-4915-9F01-361F908088D0}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:scraper.py||{3B902123-F8A7-4915-9F01-361F908088D0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\44746\\AppData\\Local\\Microsoft\\WindowsApps\\wget\\repo\\alfredmayaki.github.io\\ai.html||{3B902123-F8A7-4915-9F01-361F908088D0}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:ai.html||{3B902123-F8A7-4915-9F01-361F908088D0}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\44746\\AppData\\Local\\Microsoft\\WindowsApps\\wget\\repo\\alfredmayaki.github.io\\take-your-child-to-the-library-day.html||{3B902123-F8A7-4915-9F01-361F908088D0}",
@@ -48,10 +71,6 @@
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\44746\\AppData\\Local\\Temp\\VisualStudio\\copilot-vs\\plan-47d08bd5-e7dc-486c-98e2-d08613f3fe57.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}|MarkdownSecurePreview"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\44746\\AppData\\Local\\Microsoft\\WindowsApps\\wget\\repo\\alfredmayaki.github.io\\winter-olympics.html||{3B902123-F8A7-4915-9F01-361F908088D0}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:winter-olympics.html||{3B902123-F8A7-4915-9F01-361F908088D0}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\44746\\AppData\\Local\\Microsoft\\WindowsApps\\wget\\repo\\alfredmayaki.github.io\\national-chopstick-day.html||{3B902123-F8A7-4915-9F01-361F908088D0}",
@@ -172,6 +191,10 @@
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\44746\\AppData\\Local\\Microsoft\\WindowsApps\\wget\\repo\\alfredmayaki.github.io\\milano-cortina-day-4.html||{3B902123-F8A7-4915-9F01-361F908088D0}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:milano-cortina-day-4.html||{3B902123-F8A7-4915-9F01-361F908088D0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\44746\\AppData\\Local\\Microsoft\\WindowsApps\\wget\\repo\\alfredmayaki.github.io\\milano-cortina-day-1.html||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:milano-cortina-day-1.html||{3B902123-F8A7-4915-9F01-361F908088D0}"
     }
   ],
   "DocumentGroupContainers": [
@@ -181,7 +204,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 7,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Bookmark",
@@ -198,6 +221,122 @@
             {
               "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "winter-olympics.html",
+              "DocumentMoniker": "C:\\Users\\44746\\AppData\\Local\\Microsoft\\WindowsApps\\wget\\repo\\alfredmayaki.github.io\\winter-olympics.html",
+              "RelativeDocumentMoniker": "winter-olympics.html",
+              "ToolTip": "C:\\Users\\44746\\AppData\\Local\\Microsoft\\WindowsApps\\wget\\repo\\alfredmayaki.github.io\\winter-olympics.html",
+              "RelativeToolTip": "winter-olympics.html",
+              "ViewState": "AgIAABIAAAAAAAAAAAAYwB0EAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2026-02-06T23:29:51.755Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "winter-games.html",
+              "DocumentMoniker": "C:\\Users\\44746\\AppData\\Local\\Microsoft\\WindowsApps\\wget\\repo\\alfredmayaki.github.io\\winter-games.html",
+              "RelativeDocumentMoniker": "winter-games.html",
+              "ToolTip": "C:\\Users\\44746\\AppData\\Local\\Microsoft\\WindowsApps\\wget\\repo\\alfredmayaki.github.io\\winter-games.html",
+              "RelativeToolTip": "winter-games.html",
+              "ViewState": "AgIAAOICAAAAAAAAAAAgwPcCAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2026-02-05T20:58:33.954Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "milan-cortina-day-2.html",
+              "DocumentMoniker": "C:\\Users\\44746\\AppData\\Local\\Microsoft\\WindowsApps\\wget\\repo\\alfredmayaki.github.io\\milan-cortina-day-2.html",
+              "RelativeDocumentMoniker": "milan-cortina-day-2.html",
+              "ToolTip": "C:\\Users\\44746\\AppData\\Local\\Microsoft\\WindowsApps\\wget\\repo\\alfredmayaki.github.io\\milan-cortina-day-2.html",
+              "RelativeToolTip": "milan-cortina-day-2.html",
+              "ViewState": "AgIAABUBAAAAAAAAAAAgwJ0CAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2026-02-11T03:29:24.654Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "milan-cortina-day-3.html",
+              "DocumentMoniker": "C:\\Users\\44746\\AppData\\Local\\Microsoft\\WindowsApps\\wget\\repo\\alfredmayaki.github.io\\milan-cortina-day-3.html",
+              "RelativeDocumentMoniker": "milan-cortina-day-3.html",
+              "ToolTip": "C:\\Users\\44746\\AppData\\Local\\Microsoft\\WindowsApps\\wget\\repo\\alfredmayaki.github.io\\milan-cortina-day-3.html",
+              "RelativeToolTip": "milan-cortina-day-3.html",
+              "ViewState": "AgIAABUBAAAAAAAAAAAgwHACAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2026-02-11T03:31:17.924Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "milan-cortina-day-1.html",
+              "DocumentMoniker": "C:\\Users\\44746\\AppData\\Local\\Microsoft\\WindowsApps\\wget\\repo\\alfredmayaki.github.io\\milan-cortina-day-1.html",
+              "RelativeDocumentMoniker": "milan-cortina-day-1.html",
+              "ToolTip": "C:\\Users\\44746\\AppData\\Local\\Microsoft\\WindowsApps\\wget\\repo\\alfredmayaki.github.io\\milan-cortina-day-1.html",
+              "RelativeToolTip": "milan-cortina-day-1.html",
+              "ViewState": "AgIAACMBAAAAAAAAAAAgwM8CAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2026-02-11T03:27:26.074Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "milan-cortina-day-4.html",
+              "DocumentMoniker": "C:\\Users\\44746\\AppData\\Local\\Microsoft\\WindowsApps\\wget\\repo\\alfredmayaki.github.io\\milan-cortina-day-4.html",
+              "RelativeDocumentMoniker": "milan-cortina-day-4.html",
+              "ToolTip": "C:\\Users\\44746\\AppData\\Local\\Microsoft\\WindowsApps\\wget\\repo\\alfredmayaki.github.io\\milan-cortina-day-4.html",
+              "RelativeToolTip": "milan-cortina-day-4.html",
+              "ViewState": "AgIAABUBAAAAAAAAAAAgwIACAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2026-02-11T03:33:10.637Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "milan-cortina-day-5.html",
+              "DocumentMoniker": "C:\\Users\\44746\\AppData\\Local\\Microsoft\\WindowsApps\\wget\\repo\\alfredmayaki.github.io\\milan-cortina-day-5.html",
+              "RelativeDocumentMoniker": "milan-cortina-day-5.html",
+              "ToolTip": "C:\\Users\\44746\\AppData\\Local\\Microsoft\\WindowsApps\\wget\\repo\\alfredmayaki.github.io\\milan-cortina-day-5.html",
+              "RelativeToolTip": "milan-cortina-day-5.html",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2026-02-11T03:35:06.753Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "plan-cc2d06c1-ab91-4cba-818d-f6691f35bfa4.md [Preview]",
+              "DocumentMoniker": "C:\\Users\\44746\\AppData\\Local\\Temp\\VisualStudio\\copilot-vs\\plan-cc2d06c1-ab91-4cba-818d-f6691f35bfa4.md",
+              "RelativeDocumentMoniker": "..\\..\\..\\..\\..\\Temp\\VisualStudio\\copilot-vs\\plan-cc2d06c1-ab91-4cba-818d-f6691f35bfa4.md",
+              "ToolTip": "C:\\Users\\44746\\AppData\\Local\\Temp\\VisualStudio\\copilot-vs\\plan-cc2d06c1-ab91-4cba-818d-f6691f35bfa4.md [Preview]",
+              "RelativeToolTip": "..\\..\\..\\..\\..\\Temp\\VisualStudio\\copilot-vs\\plan-cc2d06c1-ab91-4cba-818d-f6691f35bfa4.md [Preview]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001818|",
+              "WhenOpened": "2026-02-11T02:55:30.622Z",
+              "EditorCaption": " [Preview]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 48,
+              "Title": "milano-cortina-day-1.html",
+              "DocumentMoniker": "C:\\Users\\44746\\AppData\\Local\\Microsoft\\WindowsApps\\wget\\repo\\alfredmayaki.github.io\\milano-cortina-day-1.html",
+              "RelativeDocumentMoniker": "milano-cortina-day-1.html",
+              "ToolTip": "C:\\Users\\44746\\AppData\\Local\\Microsoft\\WindowsApps\\wget\\repo\\alfredmayaki.github.io\\milano-cortina-day-1.html",
+              "RelativeToolTip": "milano-cortina-day-1.html",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2026-02-11T03:25:13.628Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
               "Title": "scraper.py",
               "DocumentMoniker": "C:\\Users\\44746\\AppData\\Local\\Microsoft\\WindowsApps\\wget\\repo\\alfredmayaki.github.io\\scraper.py",
               "RelativeDocumentMoniker": "scraper.py",
@@ -210,19 +349,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 40,
-              "Title": "index_yb.html",
-              "DocumentMoniker": "C:\\Users\\44746\\AppData\\Local\\Microsoft\\WindowsApps\\wget\\repo\\alfredmayaki.github.io\\index_yb.html",
-              "RelativeDocumentMoniker": "index_yb.html",
-              "ToolTip": "C:\\Users\\44746\\AppData\\Local\\Microsoft\\WindowsApps\\wget\\repo\\alfredmayaki.github.io\\index_yb.html",
-              "RelativeToolTip": "index_yb.html",
-              "ViewState": "AgIAAI4BAAAAAAAAAABBwAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
-              "WhenOpened": "2026-02-09T08:04:45.03Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 39,
+              "DocumentIndex": 44,
               "Title": "index_sw.html",
               "DocumentMoniker": "C:\\Users\\44746\\AppData\\Local\\Microsoft\\WindowsApps\\wget\\repo\\alfredmayaki.github.io\\index_sw.html",
               "RelativeDocumentMoniker": "index_sw.html",
@@ -234,32 +361,19 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "ai.html",
-              "DocumentMoniker": "C:\\Users\\44746\\AppData\\Local\\Microsoft\\WindowsApps\\wget\\repo\\alfredmayaki.github.io\\ai.html",
-              "RelativeDocumentMoniker": "ai.html",
-              "ToolTip": "C:\\Users\\44746\\AppData\\Local\\Microsoft\\WindowsApps\\wget\\repo\\alfredmayaki.github.io\\ai.html",
-              "RelativeToolTip": "ai.html",
-              "ViewState": "AgIAAO8CAAAAAAAAAAAowPkCAAApAAAAAAAAAA==",
+              "DocumentIndex": 45,
+              "Title": "index_yb.html",
+              "DocumentMoniker": "C:\\Users\\44746\\AppData\\Local\\Microsoft\\WindowsApps\\wget\\repo\\alfredmayaki.github.io\\index_yb.html",
+              "RelativeDocumentMoniker": "index_yb.html",
+              "ToolTip": "C:\\Users\\44746\\AppData\\Local\\Microsoft\\WindowsApps\\wget\\repo\\alfredmayaki.github.io\\index_yb.html",
+              "RelativeToolTip": "index_yb.html",
+              "ViewState": "AgIAAI4BAAAAAAAAAABBwAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
-              "WhenOpened": "2026-02-05T20:58:33.954Z"
+              "WhenOpened": "2026-02-09T08:04:45.03Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "research.html",
-              "DocumentMoniker": "C:\\Users\\44746\\AppData\\Local\\Microsoft\\WindowsApps\\wget\\repo\\alfredmayaki.github.io\\research.html",
-              "RelativeDocumentMoniker": "research.html",
-              "ToolTip": "C:\\Users\\44746\\AppData\\Local\\Microsoft\\WindowsApps\\wget\\repo\\alfredmayaki.github.io\\research.html",
-              "RelativeToolTip": "research.html",
-              "ViewState": "AgIAAFsBAAAAAAAAAAAewGgBAACWAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
-              "WhenOpened": "2026-02-01T14:39:46.59Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 41,
+              "DocumentIndex": 46,
               "Title": "index_ch.html",
               "DocumentMoniker": "C:\\Users\\44746\\AppData\\Local\\Microsoft\\WindowsApps\\wget\\repo\\alfredmayaki.github.io\\index_ch.html",
               "RelativeDocumentMoniker": "index_ch.html",
@@ -271,19 +385,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 42,
+              "DocumentIndex": 47,
               "Title": "milano-cortina-day-4.html",
               "DocumentMoniker": "C:\\Users\\44746\\AppData\\Local\\Microsoft\\WindowsApps\\wget\\repo\\alfredmayaki.github.io\\milano-cortina-day-4.html",
               "RelativeDocumentMoniker": "milano-cortina-day-4.html",
               "ToolTip": "C:\\Users\\44746\\AppData\\Local\\Microsoft\\WindowsApps\\wget\\repo\\alfredmayaki.github.io\\milano-cortina-day-4.html",
               "RelativeToolTip": "milano-cortina-day-4.html",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkEAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAYAAAAAAAAAAABBwAwEAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
-              "WhenOpened": "2026-02-10T00:24:44.393Z"
+              "WhenOpened": "2026-02-10T00:24:44.393Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 38,
+              "DocumentIndex": 43,
               "Title": "index_cy.html",
               "DocumentMoniker": "C:\\Users\\44746\\AppData\\Local\\Microsoft\\WindowsApps\\wget\\repo\\alfredmayaki.github.io\\index_cy.html",
               "RelativeDocumentMoniker": "index_cy.html",
@@ -295,19 +410,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 14,
               "Title": "milano-cortina-day-3.html",
               "DocumentMoniker": "C:\\Users\\44746\\AppData\\Local\\Microsoft\\WindowsApps\\wget\\repo\\alfredmayaki.github.io\\milano-cortina-day-3.html",
               "RelativeDocumentMoniker": "milano-cortina-day-3.html",
               "ToolTip": "C:\\Users\\44746\\AppData\\Local\\Microsoft\\WindowsApps\\wget\\repo\\alfredmayaki.github.io\\milano-cortina-day-3.html",
               "RelativeToolTip": "milano-cortina-day-3.html",
-              "ViewState": "AgIAAMoDAAAAAAAAAABBwLYBAAANAAAAAAAAAA==",
+              "ViewState": "AgIAAL0BAAAAAAAAAABBwLYBAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
-              "WhenOpened": "2026-02-08T23:20:22.816Z"
+              "WhenOpened": "2026-02-08T23:20:22.816Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 15,
               "Title": "claude-opus-4-6.html",
               "DocumentMoniker": "C:\\Users\\44746\\AppData\\Local\\Microsoft\\WindowsApps\\wget\\repo\\alfredmayaki.github.io\\claude-opus-4-6.html",
               "RelativeDocumentMoniker": "claude-opus-4-6.html",
@@ -319,7 +435,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 17,
               "Title": "plan-47d08bd5-e7dc-486c-98e2-d08613f3fe57.md [Preview]",
               "DocumentMoniker": "C:\\Users\\44746\\AppData\\Local\\Temp\\VisualStudio\\copilot-vs\\plan-47d08bd5-e7dc-486c-98e2-d08613f3fe57.md",
               "RelativeDocumentMoniker": "..\\..\\..\\..\\..\\Temp\\VisualStudio\\copilot-vs\\plan-47d08bd5-e7dc-486c-98e2-d08613f3fe57.md",
@@ -331,31 +447,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 23,
               "Title": "milano-cortina-day-2.html",
               "DocumentMoniker": "C:\\Users\\44746\\AppData\\Local\\Microsoft\\WindowsApps\\wget\\repo\\alfredmayaki.github.io\\milano-cortina-day-2.html",
               "RelativeDocumentMoniker": "milano-cortina-day-2.html",
               "ToolTip": "C:\\Users\\44746\\AppData\\Local\\Microsoft\\WindowsApps\\wget\\repo\\alfredmayaki.github.io\\milano-cortina-day-2.html",
               "RelativeToolTip": "milano-cortina-day-2.html",
-              "ViewState": "AgIAAN4CAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAYAAAAAAAAAAABBwAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
-              "WhenOpened": "2026-02-08T05:15:29.294Z"
+              "WhenOpened": "2026-02-08T05:15:29.294Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "winter-olympics.html",
-              "DocumentMoniker": "C:\\Users\\44746\\AppData\\Local\\Microsoft\\WindowsApps\\wget\\repo\\alfredmayaki.github.io\\winter-olympics.html",
-              "RelativeDocumentMoniker": "winter-olympics.html",
-              "ToolTip": "C:\\Users\\44746\\AppData\\Local\\Microsoft\\WindowsApps\\wget\\repo\\alfredmayaki.github.io\\winter-olympics.html",
-              "RelativeToolTip": "winter-olympics.html",
-              "ViewState": "AgIAABIAAAAAAAAAAAAYwB0EAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
-              "WhenOpened": "2026-02-06T23:29:51.755Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 9,
               "Title": "take-your-child-to-the-library-day.html",
               "DocumentMoniker": "C:\\Users\\44746\\AppData\\Local\\Microsoft\\WindowsApps\\wget\\repo\\alfredmayaki.github.io\\take-your-child-to-the-library-day.html",
               "RelativeDocumentMoniker": "take-your-child-to-the-library-day.html",
@@ -367,7 +472,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 25,
               "Title": "wrangler.toml",
               "DocumentMoniker": "C:\\Users\\44746\\AppData\\Local\\Microsoft\\WindowsApps\\wget\\repo\\alfredmayaki.github.io\\toml worker\\wrangler.toml",
               "RelativeDocumentMoniker": "toml worker\\wrangler.toml",
@@ -379,7 +484,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 21,
+              "DocumentIndex": 26,
               "Title": "index.js",
               "DocumentMoniker": "C:\\Users\\44746\\AppData\\Local\\Microsoft\\WindowsApps\\wget\\repo\\alfredmayaki.github.io\\worker\\src\\index.js",
               "RelativeDocumentMoniker": "worker\\src\\index.js",
@@ -391,7 +496,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 22,
+              "DocumentIndex": 27,
               "Title": "wrangler.toml",
               "DocumentMoniker": "C:\\Users\\44746\\AppData\\Local\\Microsoft\\WindowsApps\\wget\\repo\\alfredmayaki.github.io\\worker\\wrangler.toml",
               "RelativeDocumentMoniker": "worker\\wrangler.toml",
@@ -403,7 +508,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 23,
+              "DocumentIndex": 28,
               "Title": "server.js",
               "DocumentMoniker": "C:\\Users\\44746\\AppData\\Local\\Microsoft\\WindowsApps\\wget\\repo\\alfredmayaki.github.io\\server.js",
               "RelativeDocumentMoniker": "server.js",
@@ -415,7 +520,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 24,
+              "DocumentIndex": 29,
               "Title": "upload-client.js",
               "DocumentMoniker": "C:\\Users\\44746\\AppData\\Local\\Microsoft\\WindowsApps\\wget\\repo\\alfredmayaki.github.io\\upload-client.js",
               "RelativeDocumentMoniker": "upload-client.js",
@@ -427,7 +532,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 25,
+              "DocumentIndex": 30,
               "Title": "Procfile",
               "DocumentMoniker": "C:\\Users\\44746\\AppData\\Local\\Microsoft\\WindowsApps\\wget\\repo\\alfredmayaki.github.io\\Procfile",
               "RelativeDocumentMoniker": "Procfile",
@@ -439,7 +544,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 18,
               "Title": "national-chopstick-day.html",
               "DocumentMoniker": "C:\\Users\\44746\\AppData\\Local\\Microsoft\\WindowsApps\\wget\\repo\\alfredmayaki.github.io\\national-chopstick-day.html",
               "RelativeDocumentMoniker": "national-chopstick-day.html",
@@ -451,7 +556,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 34,
+              "DocumentIndex": 39,
               "Title": "about.html",
               "DocumentMoniker": "C:\\Users\\44746\\AppData\\Local\\Microsoft\\WindowsApps\\wget\\repo\\alfredmayaki.github.io\\about.html",
               "RelativeDocumentMoniker": "about.html",
@@ -463,7 +568,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 11,
               "Title": "index.html",
               "DocumentMoniker": "C:\\Users\\44746\\AppData\\Local\\Microsoft\\WindowsApps\\wget\\repo\\alfredmayaki.github.io\\index.html",
               "RelativeDocumentMoniker": "index.html",
@@ -475,7 +580,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 12,
               "Title": "projects.html",
               "DocumentMoniker": "C:\\Users\\44746\\AppData\\Local\\Microsoft\\WindowsApps\\wget\\repo\\alfredmayaki.github.io\\projects.html",
               "RelativeDocumentMoniker": "projects.html",
@@ -487,7 +592,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 10,
               "Title": "contact.html",
               "DocumentMoniker": "C:\\Users\\44746\\AppData\\Local\\Microsoft\\WindowsApps\\wget\\repo\\alfredmayaki.github.io\\contact.html",
               "RelativeDocumentMoniker": "contact.html",
@@ -499,7 +604,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 16,
               "Title": "claude-code.html",
               "DocumentMoniker": "C:\\Users\\44746\\AppData\\Local\\Microsoft\\WindowsApps\\wget\\repo\\alfredmayaki.github.io\\claude-code.html",
               "RelativeDocumentMoniker": "claude-code.html",
@@ -511,7 +616,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 19,
               "Title": "buymeacoffee.html",
               "DocumentMoniker": "C:\\Users\\44746\\AppData\\Local\\Microsoft\\WindowsApps\\wget\\repo\\alfredmayaki.github.io\\buymeacoffee.html",
               "RelativeDocumentMoniker": "buymeacoffee.html",
@@ -523,7 +628,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 24,
               "Title": "scraper.html",
               "DocumentMoniker": "C:\\Users\\44746\\AppData\\Local\\Microsoft\\WindowsApps\\wget\\repo\\alfredmayaki.github.io\\scraper.html",
               "RelativeDocumentMoniker": "scraper.html",
@@ -535,7 +640,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 20,
               "Title": "msc-survey.html",
               "DocumentMoniker": "C:\\Users\\44746\\AppData\\Local\\Microsoft\\WindowsApps\\wget\\repo\\alfredmayaki.github.io\\msc-survey.html",
               "RelativeDocumentMoniker": "msc-survey.html",
@@ -547,7 +652,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 22,
               "Title": "terms-of-use.html",
               "DocumentMoniker": "C:\\Users\\44746\\AppData\\Local\\Microsoft\\WindowsApps\\wget\\repo\\alfredmayaki.github.io\\terms-of-use.html",
               "RelativeDocumentMoniker": "terms-of-use.html",
@@ -559,7 +664,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 21,
               "Title": "privacy-policy.html",
               "DocumentMoniker": "C:\\Users\\44746\\AppData\\Local\\Microsoft\\WindowsApps\\wget\\repo\\alfredmayaki.github.io\\privacy-policy.html",
               "RelativeDocumentMoniker": "privacy-policy.html",
@@ -571,7 +676,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 13,
               "Title": "index_en.html",
               "DocumentMoniker": "C:\\Users\\44746\\AppData\\Local\\Microsoft\\WindowsApps\\wget\\repo\\alfredmayaki.github.io\\index_en.html",
               "RelativeDocumentMoniker": "index_en.html",
@@ -583,7 +688,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 33,
+              "DocumentIndex": 38,
               "Title": "index_ru.html",
               "DocumentMoniker": "C:\\Users\\44746\\AppData\\Local\\Microsoft\\WindowsApps\\wget\\repo\\alfredmayaki.github.io\\index_ru.html",
               "RelativeDocumentMoniker": "index_ru.html",
@@ -595,7 +700,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 32,
+              "DocumentIndex": 37,
               "Title": "index_he.html",
               "DocumentMoniker": "C:\\Users\\44746\\AppData\\Local\\Microsoft\\WindowsApps\\wget\\repo\\alfredmayaki.github.io\\index_he.html",
               "RelativeDocumentMoniker": "index_he.html",
@@ -607,7 +712,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 31,
+              "DocumentIndex": 36,
               "Title": "index_ksa.html",
               "DocumentMoniker": "C:\\Users\\44746\\AppData\\Local\\Microsoft\\WindowsApps\\wget\\repo\\alfredmayaki.github.io\\index_ksa.html",
               "RelativeDocumentMoniker": "index_ksa.html",
@@ -619,7 +724,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 30,
+              "DocumentIndex": 35,
               "Title": "index_nl.html",
               "DocumentMoniker": "C:\\Users\\44746\\AppData\\Local\\Microsoft\\WindowsApps\\wget\\repo\\alfredmayaki.github.io\\index_nl.html",
               "RelativeDocumentMoniker": "index_nl.html",
@@ -631,7 +736,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 29,
+              "DocumentIndex": 34,
               "Title": "index_jp.html",
               "DocumentMoniker": "C:\\Users\\44746\\AppData\\Local\\Microsoft\\WindowsApps\\wget\\repo\\alfredmayaki.github.io\\index_jp.html",
               "RelativeDocumentMoniker": "index_jp.html",
@@ -643,7 +748,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 28,
+              "DocumentIndex": 33,
               "Title": "index_tr.html",
               "DocumentMoniker": "C:\\Users\\44746\\AppData\\Local\\Microsoft\\WindowsApps\\wget\\repo\\alfredmayaki.github.io\\index_tr.html",
               "RelativeDocumentMoniker": "index_tr.html",
@@ -655,7 +760,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 27,
+              "DocumentIndex": 32,
               "Title": "index_pt.html",
               "DocumentMoniker": "C:\\Users\\44746\\AppData\\Local\\Microsoft\\WindowsApps\\wget\\repo\\alfredmayaki.github.io\\index_pt.html",
               "RelativeDocumentMoniker": "index_pt.html",
@@ -667,7 +772,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 26,
+              "DocumentIndex": 31,
               "Title": "index_it.html",
               "DocumentMoniker": "C:\\Users\\44746\\AppData\\Local\\Microsoft\\WindowsApps\\wget\\repo\\alfredmayaki.github.io\\index_it.html",
               "RelativeDocumentMoniker": "index_it.html",
@@ -679,7 +784,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 37,
+              "DocumentIndex": 42,
               "Title": "index_es.html",
               "DocumentMoniker": "C:\\Users\\44746\\AppData\\Local\\Microsoft\\WindowsApps\\wget\\repo\\alfredmayaki.github.io\\index_es.html",
               "RelativeDocumentMoniker": "index_es.html",
@@ -691,7 +796,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 36,
+              "DocumentIndex": 41,
               "Title": "index_de.html",
               "DocumentMoniker": "C:\\Users\\44746\\AppData\\Local\\Microsoft\\WindowsApps\\wget\\repo\\alfredmayaki.github.io\\index_de.html",
               "RelativeDocumentMoniker": "index_de.html",
@@ -703,7 +808,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 35,
+              "DocumentIndex": 40,
               "Title": "index_fr.html",
               "DocumentMoniker": "C:\\Users\\44746\\AppData\\Local\\Microsoft\\WindowsApps\\wget\\repo\\alfredmayaki.github.io\\index_fr.html",
               "RelativeDocumentMoniker": "index_fr.html",

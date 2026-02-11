@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -590,7 +590,7 @@
   <!-- Navigation -->
   <nav class="top-nav">
     <a href="index.html" class="brand">🚀 AM-Global™</a>
-    <a href="winter-games.html" class="back-link"><i class="fas fa-arrow-left"></i> Back to Home</a>
+    <a href="ai.html" class="back-link"><i class="fas fa-arrow-left"></i> Back to Home</a>
   </nav>
 
   <!-- Hero Section -->
@@ -1017,7 +1017,7 @@
   <!-- Footer -->
   <footer class="page-footer">
     <nav class="footer-links">
-      <a href="winter-games.html">🏠 Home</a>
+      <a href="ai.html">🏠 Home</a>
       <a href="research.html">📚 Research</a>
       <a href="contact.html">📧 Contact</a>
       <a href="privacy-policy.html">Privacy Policy</a>
