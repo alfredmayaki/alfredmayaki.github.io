@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -297,7 +297,6 @@
       <a href="milan-cortina-day-4.html">📅 Day 4</a>
       <a href="milan-cortina-day-5.html">📅 Day 5</a>
       <a href="milan-cortina-day-6.html" class="current">📅 Day 6</a>
-      <a href="milan-cortina-day-7.html">📅 Day 7</a>
     </div>
 
     <header>
@@ -687,8 +686,6 @@
         <a href="milan-cortina-day-5.html" style="color: var(--primary-blue); text-decoration: none;">← Day 5</a>
         &nbsp; · &nbsp;
         <a href="winter-games.html" style="color: var(--primary-blue); text-decoration: none;">🏠 AM-Global™</a>
-        &nbsp; · &nbsp;
-        <a href="milan-cortina-day-7.html" style="color: var(--primary-blue); text-decoration: none;">Day 7 →</a>
       </p>
     </footer>
   </div>
