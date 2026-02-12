@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>AM-Global™ AI — Alfred Mayaki</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="AM-Global™ AI — Artificial Intelligence tools, research, and resources by Alfred Anate Bodurin Mayaki.">
+  <meta name="keywords" content="Alfred Mayaki, AI, Artificial Intelligence, Machine Learning, LLM, Claude, GPT, Research">
+  <meta name="author" content="Alfred Anate Bodurin Mayaki">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" />
+  <style>
+    :root {
+      --js-yellow: #f7df1e;
+      --js-orange: #ff9800;
+      --js-green: #4ec9b0;
+      --js-blue: #569cd6;
+      --js-purple: #c586c0;
+      --js-red: #f44747;
+      --js-cyan: #9cdcfe;
+      --js-string: #ce9178;
+      --bg-dark: #0d1117;
+      --bg-card: #161b22;
+      --bg-elevated: #21262d;
+      --border-color: #30363d;
+      --text-primary: #e6edf3;
+      --text-secondary: #8b949e;
+      --glass-bg: rgba(22, 27, 34, 0.85);
+      --glass-border: rgba(255, 255, 255, 0.1);
+      --ai-accent: #7c3aed;
+      --ai-glow: rgba(124, 58, 237, 0.35);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', 'Segoe UI', sans-serif;
+      background: var(--bg-dark);
+      color: var(--text-primary);
+      margin: 0;
+      padding: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background:
+        radial-gradient(ellipse at 20% 20%, rgba(124, 58, 237, 0.10) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 80%, rgba(86, 156, 214, 0.08) 0%, transparent 50%),
+        radial-gradient(ellipse at 50% 50%, rgba(78, 201, 176, 0.05) 0%, transparent 60%);
+      z-index: -2;
+      animation: gradientShift 15s ease-in-out infinite alternate;
+    }
+
+    @keyframes gradientShift {
+      0% { transform: scale(1) rotate(0deg); }
+      100% { transform: scale(1.1) rotate(3deg); }
+    }
+
+    .phone-frame {
+      position: relative;
+      width: 100%;
+      max-width: 420px;
+      background: linear-gradient(145deg, #1a1a1a 0%, #0a0a0a 100%);
+      border-radius: 45px;
+      padding: 12px;
+      box-shadow:
+        0 0 0 2px #2a2a2a,
+        0 25px 50px -12px rgba(0, 0, 0, 0.8),
+        0 0 100px var(--ai-glow),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+      animation: fadeIn 0.6s ease-out, phoneFloat 6s ease-in-out 0.6s infinite;
+    }
+
+    @keyframes phoneFloat {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .phone-screen {
+      background: var(--bg-card);
+      border-radius: 35px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .dynamic-island {
+      position: absolute;
+      top: 12px; left: 50%;
+      transform: translateX(-50%);
+      width: 120px; height: 32px;
+      background: #000;
+      border-radius: 20px;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      cursor: pointer;
+    }
+
+    .dynamic-island:hover {
+      width: 160px;
+      background: linear-gradient(90deg, #000 0%, #1a1a1a 100%);
+    }
+
+    .dynamic-island .camera {
+      width: 10px; height: 10px;
+      background: radial-gradient(circle, #1a3a5c 0%, #0a1a2c 100%);
+      border-radius: 50%;
+      border: 2px solid #2a2a2a;
+    }
+
+    .dynamic-island .indicator {
+      width: 6px; height: 6px;
+      background: var(--ai-accent);
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(0.8); }
+    }
+
+    .status-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 14px 24px 8px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .status-bar .time { color: var(--ai-accent); }
+
+    .status-bar .icons {
+      display: flex;
+      gap: 6px;
+      align-items: center;
+    }
+
+    .status-bar .icons span { font-size: 14px; }
+
+    .battery { display: flex; align-items: center; gap: 2px; }
+    .battery-body { width: 22px; height: 10px; border: 1.5px solid var(--js-green); border-radius: 3px; padding: 1px; }
+    .battery-level { height: 100%; width: 80%; background: var(--js-green); border-radius: 1px; }
+    .battery-tip { width: 2px; height: 5px; background: var(--js-green); border-radius: 0 1px 1px 0; }
+
+    .app-content {
+      padding: 50px 20px 24px;
+      min-height: 600px;
+      display: flex;
+      flex-direction: column;
+      background: linear-gradient(180deg, var(--bg-card) 0%, var(--bg-dark) 100%);
+    }
+
+    .code-comment {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: var(--js-green);
+      opacity: 0.7;
+      margin-bottom: 8px;
+      letter-spacing: 0.5px;
+      text-align: center;
+    }
+
+    .hero-logo {
+      display: block;
+      width: 110px;
+      height: 110px;
+      margin: 0 auto 1.25rem;
+      border-radius: 24px;
+      border: 3px solid var(--ai-accent);
+      object-fit: cover;
+      box-shadow: 0 0 24px var(--ai-glow), 0 8px 32px rgba(0, 0, 0, 0.4);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .hero-logo:hover {
+      transform: scale(1.05) rotate(2deg);
+      box-shadow: 0 0 36px var(--ai-glow), 0 12px 40px rgba(0, 0, 0, 0.5);
+    }
+
+    h1 {
+      font-family: 'JetBrains Mono', monospace;
+      color: var(--text-primary);
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin: 0 0 0.5rem 0;
+      line-height: 1.3;
+      text-align: center;
+    }
+
+    h1 .keyword { color: var(--js-purple); }
+    h1 .function { color: var(--ai-accent); }
+    h1 .bracket { color: var(--js-cyan); }
+
+    .verified-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 18px; height: 18px;
+      background: var(--ai-accent);
+      border-radius: 50%;
+      margin-left: 6px;
+      vertical-align: middle;
+      font-size: 10px;
+      color: #fff;
+    }
+
+    .tagline {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--js-string);
+      margin: 0.3rem 0;
+      opacity: 0.9;
+      text-align: center;
+    }
+
+    .tagline::before {
+      content: '// ';
+      color: var(--js-green);
+    }
+
+    .ai-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin: 0.75rem auto;
+      padding: 6px 14px;
+      background: linear-gradient(135deg, rgba(124, 58, 237, 0.2), rgba(86, 156, 214, 0.15));
+      border: 1px solid rgba(124, 58, 237, 0.35);
+      border-radius: 20px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      color: var(--text-primary);
+      letter-spacing: 0.5px;
+      animation: badgePulse 3s ease-in-out infinite;
+    }
+
+    .ai-badge .dot {
+      width: 6px; height: 6px;
+      background: var(--js-green);
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes badgePulse {
+      0%, 100% { box-shadow: 0 0 12px rgba(124, 58, 237, 0.15); }
+      50% { box-shadow: 0 0 24px rgba(124, 58, 237, 0.3); }
+    }
+
+    .section-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      color: var(--js-blue);
+      margin: 1.2rem 0 0.5rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      text-align: center;
+    }
+
+    .section-label::before { content: 'const '; color: var(--js-purple); }
+    .section-label::after { content: ' = ['; color: var(--js-cyan); }
+
+    .links-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      padding: 0 12px;
+      margin: 0 auto;
+      width: 100%;
+      max-width: 320px;
+    }
+
+    .link-btn {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--bg-elevated);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      color: var(--text-primary);
+      text-decoration: none;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 500;
+      padding: 12px 16px;
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .link-btn::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: linear-gradient(135deg, var(--ai-accent) 0%, var(--js-blue) 100%);
+      opacity: 0;
+      transition: opacity 0.2s ease;
+      border-radius: 11px;
+    }
+
+    .link-btn:hover::before { opacity: 1; }
+
+    .link-btn:hover {
+      transform: translateX(4px);
+      border-color: var(--ai-accent);
+      box-shadow: 0 4px 12px var(--ai-glow);
+    }
+
+    .link-btn:hover span { color: #fff; }
+
+    .link-btn i, .link-btn .icon {
+      font-size: 1rem;
+      color: var(--js-cyan);
+      position: relative;
+      z-index: 1;
+      width: 20px;
+      text-align: center;
+    }
+
+    .link-btn span {
+      position: relative;
+      z-index: 1;
+      transition: color 0.2s ease;
+    }
+
+    .link-btn .link-badge {
+      margin-left: auto;
+      font-size: 0.6rem;
+      padding: 2px 8px;
+      border-radius: 8px;
+      background: rgba(124, 58, 237, 0.2);
+      color: var(--ai-accent);
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 600;
+      position: relative;
+      z-index: 1;
+    }
+
+    .link-btn:hover .link-badge { background: rgba(255, 255, 255, 0.2); color: #fff; }
+
+    .grid-close {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      color: var(--js-cyan);
+      margin-top: 0.75rem;
+      text-align: center;
+    }
+
+    .ai-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      padding: 0 12px;
+      margin: 0.5rem 0;
+    }
+
+    .stat-card {
+      background: var(--bg-elevated);
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      padding: 10px 8px;
+      text-align: center;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .stat-card:hover {
+      border-color: var(--ai-accent);
+      box-shadow: 0 0 16px rgba(124, 58, 237, 0.15);
+    }
+
+    .stat-value {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--ai-accent);
+      line-height: 1;
+    }
+
+    .stat-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.55rem;
+      color: var(--text-secondary);
+      margin-top: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .models-row {
+      display: flex;
+      gap: 6px;
+      justify-content: center;
+      flex-wrap: wrap;
+      padding: 0 12px;
+      margin: 0.5rem 0;
+    }
+
+    .model-chip {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.6rem;
+      padding: 4px 10px;
+      border-radius: 8px;
+      border: 1px solid var(--border-color);
+      background: var(--bg-elevated);
+      color: var(--text-secondary);
+      transition: all 0.2s ease;
+      cursor: default;
+    }
+
+    .model-chip:hover {
+      border-color: var(--ai-accent);
+      color: var(--text-primary);
+      background: rgba(124, 58, 237, 0.1);
+    }
+
+    .model-chip.active {
+      border-color: var(--js-green);
+      color: var(--js-green);
+      background: rgba(78, 201, 176, 0.1);
+    }
+
+    .terminal-prompt {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.6rem;
+      color: var(--text-secondary);
+      margin-top: 1rem;
+      text-align: center;
+    }
+
+    .terminal-prompt::before { content: '$ '; color: var(--js-green); }
+
+    .cursor {
+      display: inline-block;
+      width: 8px; height: 14px;
+      background: var(--ai-accent);
+      margin-left: 2px;
+      animation: blink 1s step-end infinite;
+      vertical-align: middle;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+
+    .app-footer {
+      margin-top: auto;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border-color);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.6rem;
+      color: var(--text-secondary);
+      text-align: center;
+    }
+
+    .app-footer p { margin: 0.4rem 0; }
+    .app-footer a { color: var(--js-blue); text-decoration: none; transition: color 0.2s ease; }
+    .app-footer a:hover { color: var(--ai-accent); }
+
+    .home-indicator {
+      width: 134px; height: 5px;
+      background: var(--text-secondary);
+      border-radius: 3px;
+      margin: 12px auto 8px;
+      opacity: 0.5;
+    }
+
+    @media (max-width: 480px) {
+      body { padding: 0.5rem; }
+      .phone-frame { border-radius: 0; padding: 0; box-shadow: none; max-width: 100%; }
+      .phone-screen { border-radius: 0; }
+      .dynamic-island { width: 100px; height: 28px; top: 8px; }
+      .app-content { padding: 45px 16px 20px; min-height: auto; }
+      .ai-stats { grid-template-columns: repeat(3, 1fr); gap: 6px; }
+    }
+
+    @media (min-width: 768px) {
+      .phone-frame { max-width: 440px; }
+    }
+
+    @media (hover: none) and (pointer: coarse) {
+      .link-btn:active { transform: scale(0.98); transition: transform 0.1s ease; }
+    }
+  </style>
+</head>
+<body>
+  <div id="particles-js" style="position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:-1;"></div>
+  <div class="phone-frame">
+    <div class="phone-screen">
+      <div class="dynamic-island">
+        <div class="camera"></div>
+        <div class="indicator"></div>
+      </div>
+      <div class="status-bar">
+        <span class="time" id="status-time">00:00</span>
+        <div class="icons">
+          <span>📶</span>
+          <span>📡</span>
+          <div class="battery">
+            <div class="battery-body"><div class="battery-level"></div></div>
+            <div class="battery-tip"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="app-content">
+        <p class="code-comment">/* AI Research & Tools */</p>
+
+        <a href="winter-games.html">
+          <img src="s200_alfred.mayaki.jpg" alt="Alfred Mayaki" class="hero-logo">
+        </a>
+
+        <h1>
+          <span class="keyword">class</span> <span class="function">AI</span> <span class="bracket">extends</span> <span class="bracket">{</span>
+          <span class="verified-badge">✓</span>
+        </h1>
+
+        <p class="tagline">Artificial Intelligence &amp; Machine Learning</p>
+        <p class="tagline">Research · Tools · Infrastructure</p>
+
+        <div class="ai-badge">
+          <span class="dot"></span>
+          AI SYSTEMS ONLINE
+        </div>
+
+        <div class="ai-stats">
+          <div class="stat-card">
+            <div class="stat-value">4</div>
+            <div class="stat-label">Models</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value">24/7</div>
+            <div class="stat-label">Uptime</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value">∞</div>
+            <div class="stat-label">Queries</div>
+          </div>
+        </div>
+
+        <div class="models-row">
+          <span class="model-chip active">Claude 4</span>
+          <span class="model-chip active">GPT-5</span>
+          <span class="model-chip">Gemini</span>
+          <span class="model-chip">LLaMA</span>
+        </div>
+
+        <p class="section-label">tools</p>
+        <div class="links-grid">
+          <a href="winter-games.html" class="link-btn">
+            <i class="fas fa-robot"></i>
+            <span>AI Chat Assistant</span>
+            <span class="link-badge">LIVE</span>
+          </a>
+          <a href="https://scholar.google.com/citations?user=QK1gWHoAAAAJ&hl=en" class="link-btn">
+            <i class="fas fa-brain"></i>
+            <span>AI Research Papers</span>
+          </a>
+          <a href="https://openreview.net/profile?id=~Alfred_Anate_Bodurin_Mayaki1" class="link-btn">
+            <i class="fas fa-file-alt"></i>
+            <span>OpenReview Profile</span>
+          </a>
+          <a href="https://github.com/alfredmayaki" class="link-btn">
+            <i class="fab fa-github"></i>
+            <span>GitHub Repositories</span>
+          </a>
+          <a href="index_en.html" class="link-btn">
+            <i class="fas fa-user"></i>
+            <span>Developer Profile</span>
+          </a>
+        </div>
+        <p class="grid-close">];</p>
+
+        <p class="section-label">stack</p>
+        <div class="links-grid">
+          <a href="https://www.anthropic.com/" class="link-btn" target="_blank" rel="noopener noreferrer">
+            <i class="fas fa-microchip"></i>
+            <span>Anthropic Claude</span>
+            <span class="link-badge">PRIMARY</span>
+          </a>
+          <a href="https://platform.openai.com/" class="link-btn" target="_blank" rel="noopener noreferrer">
+            <i class="fas fa-bolt"></i>
+            <span>OpenAI GPT</span>
+          </a>
+          <a href="https://firebase.google.com/" class="link-btn" target="_blank" rel="noopener noreferrer">
+            <i class="fas fa-database"></i>
+            <span>Firebase Backend</span>
+          </a>
+        </div>
+        <p class="grid-close">];</p>
+
+        <p class="terminal-prompt">ai.initialize()<span class="cursor"></span></p>
+
+        <footer class="app-footer">
+          <p>&copy; 2026 Alfred Anate Bodurin Mayaki <span style="color:var(--js-green);">// All rights reserved</span></p>
+          <p>
+            <a href="index.html">🏠 Home</a> |
+            <a href="winter-games.html">🏅 Olympics</a> |
+            <a href="contact.html">Report Bug</a>
+          </p>
+          <p>Last updated: <span id="last-updated"></span></p>
+        </footer>
+      </div>
+      <div class="home-indicator"></div>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
+  <script>
+    try { particlesJS.load('particles-js', 'particles.json', function() {}); } catch(e) {}
+  </script>
+  <script>
+    function updateTime() {
+      var now = new Date();
+      var hours = String(now.getHours()).padStart(2, '0');
+      var minutes = String(now.getMinutes()).padStart(2, '0');
+      document.getElementById('status-time').textContent = hours + ':' + minutes;
+    }
+    updateTime();
+    setInterval(updateTime, 1000);
+    document.getElementById('last-updated').textContent = new Date(document.lastModified).toLocaleDateString('en-GB');
+  </script>
+</body>
+</html>
