@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -743,27 +743,27 @@ body {
           inputEl.__typedInitialized = true;
           var isMobile = window.innerWidth <= 600;
           var strings = isMobile ? [
-            'Women\'s Downhill ⛷️',
-            'Short Track 1500m Final ⛸️',
-            'Ski Jumping Women\'s NH 🎿',
-            'Luge Women\'s Final 🛷',
-            'Snowboard Cross Finals 🏂',
-            'Speed Skating 1500m ⛸️',
-            'Moguls Qualification 🎿',
+            'Men\'s Downhill ⛷️',
+            'Biathlon Mixed Relay 🎯',
+            'Ski Jumping NH Final 🎿',
+            'Luge Men\'s Final 🛷',
+            'Short Track 1500m ⛸️',
             'Figure Skating Team ⛸️',
-            'USA vs Russia Hockey 🏒',
-            'Day 8 — Feb 14 🏅'
+            'Snowboard Cross Qual 🏂',
+            'Canada vs Sweden 🏒',
+            'USA vs Canada Women\'s 🏒',
+            'Day 7 — Feb 13 🏅'
           ] : [
-            'Women\'s Downhill — Goggia vs Gut-Behrami in Cortina ⛷️',
-            'Short Track Men\'s 1500m Final — Hwang defends gold ⛸️',
-            'Ski Jumping Women\'s Normal Hill — Althaus seeks gold 🎿',
-            'Luge Women\'s Singles Final — Geisenberger seeks 4th gold 🛷',
-            'Snowboard Cross Men\'s &amp; Women\'s Finals — Livigno 🏂',
-            'Speed Skating Men\'s 1500m — Dutch dominance in Milan ⛸️',
-            'Freestyle Moguls Qualification — Kingsbury &amp; Anthony 🎿',
-            'Figure Skating Team Event Final — Valentine\'s Day on ice ⛸️',
-            'USA vs Russia &amp; Sweden vs Finland Hockey 🏒',
-            'Day 8 — Saturday, February 14 ❤️🏅'
+            'Men\'s Downhill — Odermatt on the Stelvio in Bormio ⛷️',
+            'Biathlon Mixed Relay — France defend gold at Anterselva 🎯',
+            'Ski Jumping Men\'s Normal Hill Final — Kobayashi defends 🎿',
+            'Luge Men\'s Singles Final — Ludwig vs Loch at Cesana 🛷',
+            'Short Track Men\'s 1500m &amp; Women\'s 500m Heats ⛸️',
+            'Figure Skating Team Event — Free Skate in Milan ⛸️',
+            'Snowboard Cross Qualification — Livigno 🏂',
+            'Canada vs Sweden Men\'s Hockey 🏒',
+            'USA vs Canada Women\'s Hockey 🏒',
+            'Day 7 — Friday, February 13 🏅'
           ];
           var opts = {
             strings: strings, typeSpeed: 20, backSpeed: 15,
