@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -743,27 +743,27 @@ body {
           inputEl.__typedInitialized = true;
           var isMobile = window.innerWidth <= 600;
           var strings = isMobile ? [
-            'Men\'s Downhill ⛷️',
-            'Biathlon Mixed Relay 🎯',
-            'Ski Jumping NH Final 🎿',
-            'Luge Men\'s Final 🛷',
-            'Short Track 1500m ⛸️',
-            'Figure Skating Team ⛸️',
-            'Snowboard Cross Qual 🏂',
-            'Canada vs Sweden 🏒',
-            'USA vs Canada Women\'s 🏒',
-            'Day 7 — Feb 13 🏅'
+            'Women\'s Giant Slalom ⛷️',
+            'Biathlon Men\'s 20km 🎯',
+            'XC Men\'s 15km Classic 🎿',
+            'Aerials Finals 🎿',
+            'Short Track Mixed Relay ⛸️',
+            'Luge Men\'s Runs 1-2 🛷',
+            'Sweden vs Switzerland 🏒',
+            'Canada vs Finland 🏒',
+            'Mixed Doubles Curling 🥌',
+            'Day 6 — Feb 12 🏅'
           ] : [
-            'Men\'s Downhill — Odermatt on the Stelvio in Bormio ⛷️',
-            'Biathlon Mixed Relay — France defend gold at Anterselva 🎯',
-            'Ski Jumping Men\'s Normal Hill Final — Kobayashi defends 🎿',
-            'Luge Men\'s Singles Final — Ludwig vs Loch at Cesana 🛷',
-            'Short Track Men\'s 1500m &amp; Women\'s 500m Heats ⛸️',
-            'Figure Skating Team Event — Free Skate in Milan ⛸️',
-            'Snowboard Cross Qualification — Livigno 🏂',
-            'Canada vs Sweden Men\'s Hockey 🏒',
-            'USA vs Canada Women\'s Hockey 🏒',
-            'Day 7 — Friday, February 13 🏅'
+            'Women\'s Giant Slalom — Shiffrin vs Hector in Cortina ⛷️',
+            'Biathlon Men\'s 20km Individual — Bø defends gold 🎯',
+            'Cross-Country Men\'s 15km Classic — Klæbo vs Niskanen 🎿',
+            'Freestyle Aerials Finals — Qi Guangpu &amp; Xu Mengtao 🎿',
+            'Short Track Mixed Team Relay — Italy on home ice ⛸️',
+            'Luge Men\'s Singles Runs 1 &amp; 2 — Ludwig vs Loch 🛷',
+            'Sweden vs Switzerland Hockey 🏒',
+            'Canada vs Finland Women\'s Hockey 🏒',
+            'Mixed Doubles Curling — Italy defend gold 🥌',
+            'Day 6 — Thursday, February 12 🏅'
           ];
           var opts = {
             strings: strings, typeSpeed: 20, backSpeed: 15,
@@ -786,7 +786,7 @@ body {
 
   <div style="text-align:center; margin:0.75rem 0;">
     <p style="color:#1a1a1a; margin:0; font-weight:600;">
-     🏅 Today is<a href="milan-cortina-day-8.html" target="_blank" rel="noopener noreferrer" style="color:#1a1a1a; text-decoration:underline; margin-left:0.35rem;">The Winter Olympic Games 2026 Eighth Day</a>
+     🏅 Today is<a href="milan-cortina-day-7.html" target="_blank" rel="noopener noreferrer" style="color:#1a1a1a; text-decoration:underline; margin-left:0.35rem;">The Winter Olympic Games 2026 Seventh Day</a>
     </p>
   </div>
 
