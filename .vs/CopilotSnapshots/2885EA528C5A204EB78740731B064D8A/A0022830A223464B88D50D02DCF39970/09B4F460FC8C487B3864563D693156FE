@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -758,7 +758,7 @@ body {
             'Biathlon Men\'s 12.5km Pursuit — Bø chases gold in Anterselva 🎯',
             'Biathlon Women\'s 10km Pursuit — Braisaz-Bouchet leads France 🎯',
             'Men\'s Moguls Final — Wallberg defends, Kingsbury seeks gold 🎿',
-            'Luge Men\'s Singles Final — Ludwig and Loch at Cesana 🛷',
+            'Luge Men\'s Singles Final — Ludwig &amp; Loch at Cesana 🛷',
             'Short Track Women\'s 500m Final — Fontana on home ice ⛸️',
             'Ski Jumping Men\'s Normal Hill — Kobayashi defends at Predazzo 🎿',
             'Speed Skating Women\'s 5000m — Schouten dominates in Milan ⛸️',
