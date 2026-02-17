@@ -548,7 +548,7 @@
 
           <!-- Q1 -->
           <div class="card" style="animation-delay:.05s">
-            <label><span class="q-number">1</span>I am attracted by interview accomodation when applying for an opportunity.</label>
+            <label><span class="q-number">1</span>What attracts you to an organization?</label>
             <div class="likert-scale">
               <div class="likert-endpoints"><span>1 – Strongly Disagree</span><span>10 – Strongly Agree</span></div>
               <div class="likert-options">
@@ -568,7 +568,7 @@
 
           <!-- Q2 -->
           <div class="card" style="animation-delay:.1s">
-            <label><span class="q-number">2</span>I am increasingly aware of inclusive wording and the behaviours of recruiters.</label>
+            <label><span class="q-number">2</span>How do you perceive if a potential employer is inclusive during recruitment?</label>
             <div class="likert-scale">
               <div class="likert-endpoints"><span>1 – Strongly Disagree</span><span>10 – Strongly Agree</span></div>
               <div class="likert-options">
@@ -588,8 +588,7 @@
 
           <!-- Q3 (was Q2a) -->
           <div class="card" style="animation-delay:.15s">
-            <label><span class="q-number">3</span>These impact me in a positive way.
-			</label>
+            <label><span class="q-number">3</span>How does this impact you?</label>
             <div class="likert-scale">
               <div class="likert-endpoints"><span>1 – Strongly Disagree</span><span>10 – Strongly Agree</span></div>
               <div class="likert-options">
@@ -609,7 +608,7 @@
 
           <!-- Q4 (was Q3) -->
           <div class="card" style="animation-delay:.2s">
-            <label><span class="q-number">4</span>My experience of applying to my current organization was enjoyable.</label>
+            <label><span class="q-number">4</span>What was your experience of applying to your current organization?</label>
             <div class="likert-scale">
               <div class="likert-endpoints"><span>1 – Strongly Disagree</span><span>10 – Strongly Agree</span></div>
               <div class="likert-options">
@@ -629,7 +628,7 @@
 
           <!-- Q5 (was Q3a) -->
           <div class="card" style="animation-delay:.25s">
-            <label><span class="q-number">5</span>I have generally had other enjoyable experiences that have been similar.</label>
+            <label><span class="q-number">5</span>Do you have other experiences that have been the same, or different?</label>
             <div class="likert-scale">
               <div class="likert-endpoints"><span>1 – Strongly Disagree</span><span>10 – Strongly Agree</span></div>
               <div class="likert-options">
@@ -649,7 +648,7 @@
 
           <!-- Q6 (was Q4) -->
           <div class="card" style="animation-delay:.3s">
-            <label><span class="q-number">6</span>I am happy to disclose my neurodivergence during recruitment processes?</label>
+            <label><span class="q-number">6</span>Do you disclose your neurodivergence during recruitment?</label>
             <div class="likert-scale">
               <div class="likert-endpoints"><span>1 – Strongly Disagree</span><span>10 – Strongly Agree</span></div>
               <div class="likert-options">
@@ -669,7 +668,7 @@
 
           <!-- Q7 (was Q4a) -->
           <div class="card" style="animation-delay:.35s">
-            <label><span class="q-number">7</span>My experience of disclosure has been amicable.</label>
+            <label><span class="q-number">7</span>What has been your experience of disclosing or not disclosing?</label>
             <div class="likert-scale">
               <div class="likert-endpoints"><span>1 – Strongly Disagree</span><span>10 – Strongly Agree</span></div>
               <div class="likert-options">
@@ -689,7 +688,7 @@
 
           <!-- Q8 (was Q5) -->
           <div class="card" style="animation-delay:.4s">
-            <label><span class="q-number">8</span>My experience of adjustments made during recruitment have been reasonable.</label>
+            <label><span class="q-number">8</span>What has been your experience of adjustments during recruitment?</label>
             <div class="likert-scale">
               <div class="likert-endpoints"><span>1 – Strongly Disagree</span><span>10 – Strongly Agree</span></div>
               <div class="likert-options">
@@ -709,7 +708,7 @@
 
           <!-- Q9 (was Q6) -->
           <div class="card" style="animation-delay:.45s">
-            <label><span class="q-number">9</span>To perform my best during a job interview, I require a specific adjustment. (Please state the specific adjustment you require during interview in your last response)</label>
+            <label><span class="q-number">9</span>When you have been at your best during recruitment, that's like what?</label>
             <div class="likert-scale">
               <div class="likert-endpoints"><span>1 – Strongly Disagree</span><span>10 – Strongly Agree</span></div>
               <div class="likert-options">
@@ -729,7 +728,7 @@
 
           <!-- Q10 (was Q6a) -->
           <div class="card" style="animation-delay:.5s">
-            <label><span class="q-number">10</span>My organization helps me to perform my best.</label>
+            <label><span class="q-number">10</span>How did the organization help you do your best?</label>
             <div class="likert-scale">
               <div class="likert-endpoints"><span>1 – Strongly Disagree</span><span>10 – Strongly Agree</span></div>
               <div class="likert-options">
