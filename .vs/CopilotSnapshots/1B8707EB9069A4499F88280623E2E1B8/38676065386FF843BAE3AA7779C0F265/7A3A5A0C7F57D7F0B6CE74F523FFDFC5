@@ -778,7 +778,7 @@
 
           <!-- Q9 (was Q6) -->
           <div class="card" style="animation-delay:.45s">
-            <label><span class="q-number">9</span>To perform my best during a job interview, I require a specific adjustment. (Please state the specific adjustment you require in your last response)</label>
+            <label><span class="q-number">9</span>To perform my best during a job interview, I require a specific adjustment. (Please state the specific adjustment you require during interview in your last response)</label>
             <div class="likert-scale">
               <div class="likert-endpoints"><span>1 – Strongly Disagree</span><span>10 – Strongly Agree</span></div>
               <div class="likert-options">
