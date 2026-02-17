@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -743,27 +743,27 @@ body {
           inputEl.__typedInitialized = true;
           var isMobile = window.innerWidth <= 600;
           var strings = isMobile ? [
-            'Men\'s Giant Slalom ⛷️',
-            'Biathlon Women\'s 15km 🎯',
-            'Snowboard Halfpipe Finals 🏂',
-            'Skeleton Men\'s Final 💀',
-            'Luge Team Relay 🛷',
-            'Short Track Women\'s 1000m ⛸️',
-            'Speed Skating Women\'s 1000m ⛸️',
-            'XC Team Sprint Free 🎿',
-            'Ice Dance Rhythm Dance ⛸️',
-            'Day 11 — Feb 17 🏅'
+            'Men\'s Super-G — Bormio ⛷️',
+            'Biathlon Men\'s Pursuit 🎯',
+            'Biathlon Women\'s Pursuit 🎯',
+            'Men\'s Moguls Final 🎿',
+            'Luge Men\'s Final 🛷',
+            'Short Track Women\'s 500m ⛸️',
+            'Ski Jumping Men\'s NH 🎿',
+            'Speed Skating Women\'s 5000m ⛸️',
+            'Canada vs Finland Hockey 🏒',
+            'Day 9 — Feb 15 🏅'
           ] : [
-            'Men\'s Giant Slalom — Odermatt vs Kristoffersen on the Stelvio ⛷️',
-            'Biathlon Women\'s 15km Individual — Wierer on home turf at Anterselva 🎯',
-            'Snowboard Men\'s Halfpipe Final — Hirano defends at Livigno 🏂',
-            'Snowboard Women\'s Halfpipe Final — Chloe Kim seeks threepeat 🏂',
-            'Skeleton Men\'s Final — Grotheer vs Dukurs at Cesana 💀',
-            'Luge Team Relay — Germany seek four-peat at Pariol 🛷',
-            'Short Track Women\'s 1000m Final — Fontana on home ice ⛸️',
-            'Speed Skating Women\'s 1000m — Leerdam &amp; Bowe in Milan ⛸️',
-            'Cross-Country Team Sprint Free — Kl\xe6bo anchors Norway 🎿',
-            'Day 11 — Tuesday, February 17 🏅'
+            'Men\'s Super-G — Odermatt vs Kriechmayr on the Stelvio ⛷️',
+            'Biathlon Men\'s 12.5km Pursuit — Bø chases gold in Anterselva 🎯',
+            'Biathlon Women\'s 10km Pursuit — Braisaz-Bouchet leads France 🎯',
+            'Men\'s Moguls Final — Wallberg defends, Kingsbury seeks gold 🎿',
+            'Luge Men\'s Singles Final — Ludwig and Loch at Cesana 🛷',
+            'Short Track Women\'s 500m Final — Fontana on home ice ⛸️',
+            'Ski Jumping Men\'s Normal Hill — Kobayashi defends at Predazzo 🎿',
+            'Speed Skating Women\'s 5000m — Schouten dominates in Milan ⛸️',
+            'Mixed Doubles Curling Gold Medal Game — Italy defend 🥌',
+            'Day 9 — Sunday, February 15 🏅'
           ];
           var opts = {
             strings: strings, typeSpeed: 20, backSpeed: 15,
@@ -786,7 +786,7 @@ body {
 
   <div style="text-align:center; margin:0.75rem 0;">
     <p style="color:#1a1a1a; margin:0; font-weight:600;">
-     🏅 Today is<a href="milan-cortina-day-11.html" target="_blank" rel="noopener noreferrer" style="color:#1a1a1a; text-decoration:underline; margin-left:0.35rem;">The Winter Olympic Games 2026 Eleventh Day</a>
+     🏅 Today is<a href="milan-cortina-day-9.html" target="_blank" rel="noopener noreferrer" style="color:#1a1a1a; text-decoration:underline; margin-left:0.35rem;">The Winter Olympic Games 2026 Ninth Day</a>
     </p>
   </div>
 
