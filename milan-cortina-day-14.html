@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Milano-Cortina 2026 - Day 14 Fact Sheet | Winter Olympics</title>
+  <meta name="description" content="Complete fact sheet for Day 14 of the Milano-Cortina 2026 Winter Olympic Games — women's slalom, biathlon men's relay, figure skating women's free skate, bobsled two-woman, cross-country men's 50km mass start, speed skating men's 1000m, short track women's 3000m relay, freestyle aerials qualification.">
+  <meta name="keywords" content="Milano-Cortina 2026, Winter Olympics Day 14, Olympic schedule, February 20 2026">
+  <style>
+    :root {
+      --primary-blue: #0081C8;
+      --secondary-red: #EE334E;
+      --gold: #D4AF37;
+      --dark-bg: #FFFFFF;
+      --card-bg: #f5f5f5;
+      --text-light: #1a1a1a;
+      --text-muted: #666666;
+      --border: #d0d0d0;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background: var(--dark-bg);
+      color: var(--text-light);
+      line-height: 1.6;
+      padding: 2rem;
+    }
+
+    .container { max-width: 1200px; margin: 0 auto; }
+
+    header {
+      text-align: center;
+      padding: 2rem 0 3rem;
+      border-bottom: 3px solid var(--primary-blue);
+      margin-bottom: 3rem;
+    }
+
+    .olympics-rings { font-size: 2rem; letter-spacing: 0.5rem; margin-bottom: 1rem; }
+
+    h1 {
+      font-size: 2.5rem;
+      color: var(--gold);
+      margin-bottom: 0.5rem;
+      text-shadow: 0 2px 8px rgba(255, 215, 0, 0.3);
+    }
+
+    .subtitle { font-size: 1.2rem; color: var(--text-muted); margin-bottom: 1rem; }
+
+    .date-badge {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--primary-blue), var(--secondary-red));
+      padding: 0.75rem 1.5rem;
+      border-radius: 25px;
+      font-weight: 600;
+      color: #ffffff;
+      margin-top: 1rem;
+    }
+
+    .intro {
+      background: var(--card-bg);
+      padding: 2rem;
+      border-radius: 12px;
+      border-left: 4px solid var(--primary-blue);
+      margin-bottom: 3rem;
+    }
+
+    .event-section { margin-bottom: 3rem; }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 2px solid var(--border);
+    }
+
+    .section-icon { font-size: 2rem; }
+    h2 { color: var(--primary-blue); font-size: 1.8rem; }
+
+    .event-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .event-card {
+      background: var(--card-bg);
+      padding: 1.5rem;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .event-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 24px rgba(0, 129, 200, 0.2);
+      border-color: var(--primary-blue);
+    }
+
+    .event-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: start;
+      margin-bottom: 1rem;
+    }
+
+    .event-time {
+      background: var(--primary-blue);
+      padding: 0.4rem 0.8rem;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #ffffff;
+    }
+
+    .event-title { font-size: 1.2rem; font-weight: 600; margin-bottom: 0.5rem; color: var(--gold); }
+    .event-discipline { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 0.75rem; }
+
+    .event-venue {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .medal-event { border-left: 4px solid var(--gold); }
+
+    .medal-badge {
+      display: inline-block;
+      background: var(--gold);
+      color: #1a1a1a;
+      padding: 0.3rem 0.7rem;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      margin-top: 0.5rem;
+    }
+
+    .event-favorites {
+      margin-top: 0.75rem;
+      padding: 0.65rem 0.85rem;
+      background: rgba(0, 129, 200, 0.06);
+      border-radius: 8px;
+      border-left: 3px solid var(--primary-blue);
+      font-size: 0.88rem;
+      line-height: 1.5;
+      color: var(--text-light);
+    }
+
+    .event-favorites strong {
+      color: var(--primary-blue);
+      font-weight: 700;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      display: block;
+      margin-bottom: 0.3rem;
+    }
+
+    .event-favorites .athlete { display: inline; }
+    .event-favorites .athlete-flag { font-size: 0.85rem; margin-right: 0.15rem; }
+
+    .event-records {
+      margin-top: 0.6rem;
+      padding: 0.55rem 0.85rem;
+      background: rgba(212, 175, 55, 0.06);
+      border-radius: 8px;
+      border-left: 3px solid var(--gold);
+      font-size: 0.85rem;
+      line-height: 1.55;
+      color: var(--text-light);
+    }
+
+    .event-records strong {
+      color: var(--gold);
+      font-weight: 700;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      display: block;
+      margin-bottom: 0.25rem;
+    }
+
+    .event-records .record-row { display: flex; gap: 0.4rem; padding: 0.15rem 0; }
+
+    .event-records .record-label {
+      font-weight: 600;
+      color: var(--primary-blue);
+      white-space: nowrap;
+      min-width: 110px;
+    }
+
+    .event-records .record-note {
+      font-style: italic;
+      color: var(--text-muted);
+      font-size: 0.82rem;
+      margin-top: 0.2rem;
+    }
+
+    .highlights {
+      background: linear-gradient(135deg, rgba(0, 129, 200, 0.1), rgba(238, 51, 78, 0.1));
+      padding: 2rem;
+      border-radius: 12px;
+      margin-bottom: 3rem;
+    }
+
+    .highlights h3 { color: var(--gold); margin-bottom: 1rem; font-size: 1.5rem; }
+    .highlights ul { list-style: none; padding-left: 0; }
+
+    .highlights li { padding: 0.75rem 0; padding-left: 2rem; position: relative; }
+    .highlights li:before { content: "🏅"; position: absolute; left: 0; }
+
+    .venues-info {
+      background: var(--card-bg);
+      padding: 2rem;
+      border-radius: 12px;
+      margin-bottom: 3rem;
+    }
+
+    .venue-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+
+    .venue-item {
+      padding: 1rem;
+      background: rgba(0, 129, 200, 0.05);
+      border-radius: 8px;
+      border: 1px solid var(--border);
+    }
+
+    .venue-name { font-weight: 600; color: var(--primary-blue); margin-bottom: 0.5rem; }
+
+    .back-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.5rem;
+      background: var(--primary-blue);
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: 600;
+      transition: background 0.3s ease, transform 0.2s ease;
+      margin-bottom: 2rem;
+    }
+
+    .back-button:hover { background: var(--secondary-red); transform: translateX(-4px); }
+
+    .day-nav { display: flex; gap: 0.75rem; flex-wrap: wrap; margin-bottom: 2rem; }
+
+    .day-nav a {
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: all 0.2s ease;
+      border: 2px solid var(--border);
+      color: var(--text-light);
+    }
+
+    .day-nav a:hover { border-color: var(--primary-blue); color: var(--primary-blue); transform: translateY(-2px); }
+    .day-nav a.current { background: var(--primary-blue); border-color: var(--primary-blue); color: #ffffff; }
+
+    footer {
+      text-align: center;
+      padding: 2rem 0;
+      border-top: 2px solid var(--border);
+      margin-top: 3rem;
+      color: var(--text-muted);
+    }
+
+    @media (max-width: 768px) {
+      body { padding: 1rem; }
+      h1 { font-size: 2rem; }
+      .event-grid { grid-template-columns: 1fr; }
+      .venue-list { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a href="winter-games.html" class="back-button">← Back to Home</a>
+
+    <div class="day-nav">
+      <a href="milan-cortina-day-1.html">📅 Day 1</a>
+      <a href="milan-cortina-day-2.html">📅 Day 2</a>
+      <a href="milan-cortina-day-3.html">📅 Day 3</a>
+      <a href="milan-cortina-day-4.html">📅 Day 4</a>
+      <a href="milan-cortina-day-5.html">📅 Day 5</a>
+      <a href="milan-cortina-day-6.html">📅 Day 6</a>
+      <a href="milan-cortina-day-7.html">📅 Day 7</a>
+      <a href="milan-cortina-day-8.html">📅 Day 8</a>
+      <a href="milan-cortina-day-9.html">📅 Day 9</a>
+      <a href="milan-cortina-day-10.html">📅 Day 10</a>
+      <a href="milan-cortina-day-11.html">📅 Day 11</a>
+      <a href="milan-cortina-day-12.html">📅 Day 12</a>
+      <a href="milan-cortina-day-13.html">📅 Day 13</a>
+      <a href="milan-cortina-day-14.html" class="current">📅 Day 14</a>
+      <a href="milan-cortina-day-15.html">📅 Day 15</a>
+    </div>
+
+    <header>
+      <div class="olympics-rings">🔵 ⚫ 🔴 🟡 🟢</div>
+      <h1>Milano-Cortina 2026</h1>
+      <p class="subtitle">XXV Olympic Winter Games</p>
+      Day 14 — Friday, February 20, 2026
+    </header>
+
+    <div class="intro">
+      <h3 style="color: var(--gold); margin-bottom: 1rem;">🎿 Day 14 Overview</h3>
+      <p>Friday delivers one of the most anticipated days of the entire Games with eleven medal events. The women's slalom produces two breathtaking runs at Cortina, figure skating's women's free skate crowns the individual champion in Milan, the biathlon men's 4×7.5km relay brings national glory at Anterselva, the cross-country men's 50km mass start — the marathon of the snow — unfolds at Tesero, speed skating men's 1000m tests sprint power, bobsled two-woman begins its medal quest at Cesana, short track's women's 3000m relay delivers team drama, and freestyle skiing aerials qualification begins at Livigno. Curling gold medal matches and ice hockey quarterfinals raise the stakes.</p>
+    </div>
+
+    <div class="highlights">
+      <h3>⭐ Day 14 Highlights</h3>
+      <ul>
+        <li>Women's Slalom — two-run technical duel at Cortina's Olympia delle Tofane</li>
+        <li>Figure Skating Women's Free Skate — crowning the Olympic champion</li>
+        <li>Biathlon Men's 4×7.5km Relay — national pride at Anterselva</li>
+        <li>Cross-Country Men's 50km Mass Start Free — the ultimate endurance test</li>
+        <li>Speed Skating Men's 1000m — sprint power at Barentsburg Arena</li>
+        <li>Bobsled Two-Woman — Runs 1 &amp; 2 at Cesana</li>
+        <li>Short Track Women's 3000m Relay Final — team gold in Milan</li>
+        <li>Freestyle Skiing Aerials Qualification at Livigno</li>
+        <li>Curling — Gold Medal Matches at Cortina</li>
+        <li>Ice Hockey — Men's Quarterfinals</li>
+      </ul>
+    </div>
+
+    <!-- ============================================ -->
+    <!--  ALPINE SKIING — WOMEN'S SLALOM              -->
+    <!-- ============================================ -->
+    <div class="event-section">
+      <div class="section-header">
+        <span class="section-icon">⛷️</span>
+        <h2>Alpine Skiing</h2>
+      </div>
+      <div class="event-grid">
+        <div class="event-card medal-event">
+          <div class="event-header">
+            <div>
+              <div class="event-title">Women's Slalom</div>
+              <div class="event-discipline">Alpine Skiing — Run 1 &amp; Run 2</div>
+            </div>
+            <div class="event-time">10:00 / 13:30</div>
+          </div>
+          <div class="event-venue">📍 Cortina d'Ampezzo — Olympia delle Tofane</div>
+          <span class="medal-badge">🏅 MEDAL EVENT</span>
+          <div class="event-favorites">
+            <strong>⭐ Favourites &amp; Contenders</strong>
+            <span class="athlete"><span class="athlete-flag">🇺🇸</span>Mikaela Shiffrin (USA) — most World Cup wins in history, three-time Olympic medallist, the greatest slalom skier ever with 60+ World Cup slalom victories.</span>
+            <span class="athlete"><span class="athlete-flag">🇸🇰</span>Petra Vlhová (SVK) — 2022 Olympic slalom champion, Slovak national hero, fierce gate-attacking style.</span>
+            <span class="athlete"><span class="athlete-flag">🇩🇪</span>Lena Dürr (GER) — German slalom specialist, consistent World Cup podium finisher, aggressive second runs.</span>
+            <span class="athlete"><span class="athlete-flag">🇸🇪</span>Anna Swenn-Larsson (SWE) — Swedish precision, World Championship medallist.</span>
+            <span class="athlete"><span class="athlete-flag">🇨🇭</span>Wendy Holdener (SUI) — Swiss technical excellence, multiple combined and slalom medals.</span>
+          </div>
+          <div class="event-records">
+            <strong>📊 Records — Women's Slalom</strong>
+            <div class="record-row"><span class="record-label">Olympic Champion:</span> Petra Vlhová (SVK) — combined 1:44.98 (Beijing 2022)</div>
+            <div class="record-note">Vlhová's victory at Beijing denied Shiffrin a record-extending medal; Cortina's Tofane course is steep and icy — perfect for technical mastery. Shiffrin seeks Olympic slalom redemption after her DNF at Beijing.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================================ -->
+    <!--  FIGURE SKATING — WOMEN'S FREE SKATE         -->
+    <!-- ============================================ -->
+    <div class="event-section">
+      <div class="section-header">
+        <span class="section-icon">⛸️</span>
+        <h2>Figure Skating</h2>
+      </div>
+      <div class="event-grid">
+        <div class="event-card medal-event">
+          <div class="event-header">
+            <div>
+              <div class="event-title">Women's Singles — Free Skate</div>
+              <div class="event-discipline">Figure Skating</div>
+            </div>
+            <div class="event-time">17:00</div>
+          </div>
+          <div class="event-venue">📍 Milan — Milano Forum</div>
+          <span class="medal-badge">🏅 MEDAL EVENT</span>
+          <div class="event-favorites">
+            <strong>⭐ Favourites &amp; Contenders</strong>
+            <span class="athlete"><span class="athlete-flag">🇯🇵</span>Kaori Sakamoto (JPN) — back-to-back World Champion (2023, 2024), 2022 Olympic bronze, Japanese power and artistry, the woman to beat.</span>
+            <span class="athlete"><span class="athlete-flag">🇺🇸</span>Isabeau Levito (USA) — 2024 World silver, American rising star with quad capability and balletic presentation.</span>
+            <span class="athlete"><span class="athlete-flag">🇰🇷</span>Kim Ye-lim (KOR) — South Korean elegance, consistent under championship pressure.</span>
+            <span class="athlete"><span class="athlete-flag">🇧🇪</span>Loena Hendrickx (BEL) — Belgian trailblazer, 2023 World bronze, fierce competitor.</span>
+          </div>
+          <div class="event-records">
+            <strong>📊 Records — Women's Singles</strong>
+            <div class="record-row"><span class="record-label">Olympic Champion:</span> Anna Shcherbakova (ROC) — 255.95 total (Beijing 2022)</div>
+            <div class="record-note">The women's free skate is 4 minutes of artistry, athleticism, and nerve — the greatest show on ice. Sakamoto's combination of triple-triple jumps and mesmerising choreography makes her the overwhelming favourite.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================================ -->
+    <!--  BIATHLON — MEN'S 4×7.5km RELAY              -->
+    <!-- ============================================ -->
+    <div class="event-section">
+      <div class="section-header">
+        <span class="section-icon">🎯</span>
+        <h2>Biathlon</h2>
+      </div>
+      <div class="event-grid">
+        <div class="event-card medal-event">
+          <div class="event-header">
+            <div>
+              <div class="event-title">Men's 4×7.5km Relay</div>
+              <div class="event-discipline">Biathlon</div>
+            </div>
+            <div class="event-time">14:30</div>
+          </div>
+          <div class="event-venue">📍 Anterselva — Südtirol Arena</div>
+          <span class="medal-badge">🏅 MEDAL EVENT</span>
+          <div class="event-favorites">
+            <strong>⭐ Favourites &amp; Contenders</strong>
+            <span class="athlete"><span class="athlete-flag">🇳🇴</span>Norway — Bø, Lægreid, Christiansen, Dale — four-deep squad, Olympic relay dynasty.</span>
+            <span class="athlete"><span class="athlete-flag">🇫🇷</span>France — Fillon Maillet, Jacquelin, Fabien Claude, Émilien Claude — 2022 Olympic relay bronze, rising French depth.</span>
+            <span class="athlete"><span class="athlete-flag">🇩🇪</span>Germany — Doll, Nawrath, Kühn, Lesser — German shooting precision, always medal contenders.</span>
+            <span class="athlete"><span class="athlete-flag">🇸🇪</span>Sweden — Samuelsson anchors a strong Swedish quartet with World Cup relay pedigree.</span>
+          </div>
+          <div class="event-records">
+            <strong>📊 Records — Men's 4×7.5km Relay</strong>
+            <div class="record-row"><span class="record-label">Olympic Champions:</span> Norway — 1:19:50.2 (Beijing 2022)</div>
+            <div class="record-note">The men's relay is biathlon's ultimate team event — four athletes each ski 7.5km with two shooting stages. Norway have dominated this event, winning 8 of the last 10 Olympic relay golds. Anterselva's altitude adds an extra layer of suffering.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================================ -->
+    <!--  CROSS-COUNTRY — MEN'S 50km MASS START       -->
+    <!-- ============================================ -->
+    <div class="event-section">
+      <div class="section-header">
+        <span class="section-icon">🎿</span>
+        <h2>Cross-Country Skiing</h2>
+      </div>
+      <div class="event-grid">
+        <div class="event-card medal-event">
+          <div class="event-header">
+            <div>
+              <div class="event-title">Men's 50km Mass Start Free</div>
+              <div class="event-discipline">Cross-Country Skiing</div>
+            </div>
+            <div class="event-time">10:00</div>
+          </div>
+          <div class="event-venue">📍 Tesero — Lago di Tesero</div>
+          <span class="medal-badge">🏅 MEDAL EVENT</span>
+          <div class="event-favorites">
+            <strong>⭐ Favourites &amp; Contenders</strong>
+            <span class="athlete"><span class="athlete-flag">🇷🇺</span>Alexander Bolshunov (AIN) — if eligible; 2022 Olympic 30km/50km champion, Russian distance machine.</span>
+            <span class="athlete"><span class="athlete-flag">🇳🇴</span>Hans Christer Holund (NOR) — 2019 World 50km champion, Norwegian power over the longest distance.</span>
+            <span class="athlete"><span class="athlete-flag">🇳🇴</span>Simen Hegstad Krüger (NOR) — 2018 Olympic skiathlon gold, Norwegian distance versatility.</span>
+            <span class="athlete"><span class="athlete-flag">🇫🇮</span>Iivo Niskanen (FIN) — 2022 Olympic 15km classic gold, Finnish endurance and tactical intelligence.</span>
+          </div>
+          <div class="event-records">
+            <strong>📊 Records — Men's 50km Mass Start</strong>
+            <div class="record-row"><span class="record-label">Olympic Champion:</span> Alexander Bolshunov (ROC) — 1:11:32.7 (Beijing 2022, run as 30km)</div>
+            <div class="record-note">The 50km mass start is cross-country skiing's marathon — over two hours of relentless racing through the Trentino forests. It is traditionally the final cross-country event and one of the most gruelling tests in all of sport.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================================ -->
+    <!--  SPEED SKATING — MEN'S 1000m                 -->
+    <!-- ============================================ -->
+    <div class="event-section">
+      <div class="section-header">
+        <span class="section-icon">⛸️</span>
+        <h2>Speed Skating</h2>
+      </div>
+      <div class="event-grid">
+        <div class="event-card medal-event">
+          <div class="event-header">
+            <div>
+              <div class="event-title">Men's 1000m</div>
+              <div class="event-discipline">Speed Skating</div>
+            </div>
+            <div class="event-time">15:00</div>
+          </div>
+          <div class="event-venue">📍 Milan — Barentsburg Arena</div>
+          <span class="medal-badge">🏅 MEDAL EVENT</span>
+          <div class="event-favorites">
+            <strong>⭐ Favourites &amp; Contenders</strong>
+            <span class="athlete"><span class="athlete-flag">🇳🇱</span>Thomas Krol (NED) — 2022 Olympic 1000m champion, Dutch technical mastery on the 1000m distance.</span>
+            <span class="athlete"><span class="athlete-flag">🇰🇷</span>Kim Jun-ho (KOR) — emerging Korean sprint talent, World Cup podium regular.</span>
+            <span class="athlete"><span class="athlete-flag">🇨🇦</span>Laurent Dubreuil (CAN) — 2022 Olympic 500m silver, Canadian explosive speed across sprint distances.</span>
+            <span class="athlete"><span class="athlete-flag">🇳🇱</span>Kjeld Nuis (NED) — 2018 Olympic 1000m &amp; 1500m double champion, Dutch veteran seeking another medal.</span>
+          </div>
+          <div class="event-records">
+            <strong>📊 Records — Men's 1000m</strong>
+            <div class="record-row"><span class="record-label">Olympic Champion:</span> Thomas Krol (NED) — 1:07.92 (Beijing 2022)</div>
+            <div class="record-note">The men's 1000m demands the perfect balance of explosive 500m speed and 1500m endurance — two and a half laps of sustained power. The Netherlands have won 3 of the last 4 Olympic 1000m titles.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================================ -->
+    <!--  BOBSLED — TWO-WOMAN                         -->
+    <!-- ============================================ -->
+    <div class="event-section">
+      <div class="section-header">
+        <span class="section-icon">🛷</span>
+        <h2>Bobsled</h2>
+      </div>
+      <div class="event-grid">
+        <div class="event-card">
+          <div class="event-header">
+            <div>
+              <div class="event-title">Two-Woman — Runs 1 &amp; 2</div>
+              <div class="event-discipline">Bobsled</div>
+            </div>
+            <div class="event-time">19:30</div>
+          </div>
+          <div class="event-venue">📍 Cesana — Pariol Sliding Centre</div>
+          <div class="event-favorites">
+            <strong>⭐ Favourites &amp; Contenders</strong>
+            <span class="athlete"><span class="athlete-flag">🇩🇪</span>Laura Nolte (GER) — 2022 Olympic two-woman champion, German piloting precision.</span>
+            <span class="athlete"><span class="athlete-flag">🇺🇸</span>Elana Meyers Taylor (USA) — most decorated female bobsled athlete in Olympic history with 4 medals, American power.</span>
+            <span class="athlete"><span class="athlete-flag">🇨🇦</span>Christine de Bruin (CAN) — Canadian monobob bronze at Beijing, versatile pilot.</span>
+            <span class="athlete"><span class="athlete-flag">🇬🇧</span>Mica McNeill (GBR) — British bobsled pioneer, improving World Cup results.</span>
+          </div>
+          <div class="event-records">
+            <strong>📊 Records — Two-Woman Bobsled</strong>
+            <div class="record-row"><span class="record-label">Olympic Champion:</span> Laura Nolte &amp; Deborah Levi (GER) — combined 3:56.89 (Beijing 2022)</div>
+            <div class="record-note">The two-woman event features a pilot and a brakewoman reaching speeds over 130 km/h through Cesana's 19 curves. Germany have dominated women's bobsled, winning 3 of the last 4 Olympic gold medals.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================================ -->
+    <!--  SHORT TRACK — WOMEN'S 3000m RELAY           -->
+    <!-- ============================================ -->
+    <div class="event-section">
+      <div class="section-header">
+        <span class="section-icon">⛸️</span>
+        <h2>Short Track Speed Skating</h2>
+      </div>
+      <div class="event-grid">
+        <div class="event-card medal-event">
+          <div class="event-header">
+            <div>
+              <div class="event-title">Women's 3000m Relay — Final</div>
+              <div class="event-discipline">Short Track Speed Skating</div>
+            </div>
+            <div class="event-time">18:30</div>
+          </div>
+          <div class="event-venue">📍 Milan — PalaItalia Santa Giulia</div>
+          <span class="medal-badge">🏅 MEDAL EVENT</span>
+          <div class="event-favorites">
+            <strong>⭐ Favourites &amp; Contenders</strong>
+            <span class="athlete"><span class="athlete-flag">🇳🇱</span>Netherlands — Schulting leads a powerful Dutch relay squad with World Championship relay gold.</span>
+            <span class="athlete"><span class="athlete-flag">🇰🇷</span>South Korea — 2022 Olympic silver, traditional relay powerhouse, deep talent pool.</span>
+            <span class="athlete"><span class="athlete-flag">🇨🇳</span>China — 2022 Olympic bronze, Fan Kexin anchors, tactical relay racing.</span>
+            <span class="athlete"><span class="athlete-flag">🇮🇹</span>Italy — Fontana's experience plus home-crowd energy, dangerous outsiders.</span>
+          </div>
+          <div class="event-records">
+            <strong>📊 Records — Women's 3000m Relay</strong>
+            <div class="record-row"><span class="record-label">Olympic Champions:</span> Netherlands — 4:03.409 (Beijing 2022)</div>
+            <div class="record-note">The women's 3000m relay is 27 laps of coordinated chaos — four skaters per team, racing in a pack with relay pushes every few laps. PalaItalia will be deafening with Italian fans.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================================ -->
+    <!--  FREESTYLE SKIING — AERIALS QUALIFICATION    -->
+    <!-- ============================================ -->
+    <div class="event-section">
+      <div class="section-header">
+        <span class="section-icon">🎿</span>
+        <h2>Freestyle Skiing</h2>
+      </div>
+      <div class="event-grid">
+        <div class="event-card">
+          <div class="event-header">
+            <div>
+              <div class="event-title">Men's &amp; Women's Aerials — Qualification</div>
+              <div class="event-discipline">Freestyle Skiing</div>
+            </div>
+            <div class="event-time">11:00</div>
+          </div>
+          <div class="event-venue">📍 Livigno — Carosello 3000</div>
+          <div class="event-favorites">
+            <strong>⭐ Favourites &amp; Contenders</strong>
+            <span class="athlete"><span class="athlete-flag">🇨🇳</span>Xu Mengtao (CHN) — 2022 Olympic women's aerials champion, Chinese aerial legend.</span>
+            <span class="athlete"><span class="athlete-flag">🇺🇦</span>Oleksandr Abramenko (UKR) — 2018 Olympic men's aerials champion, Ukrainian courage.</span>
+            <span class="athlete"><span class="athlete-flag">🇨🇳</span>Qi Guangpu (CHN) — 2022 Olympic men's aerials champion, Chinese aerial dominance.</span>
+            <span class="athlete"><span class="athlete-flag">🇦🇺</span>Danielle Scott (AUS) — Australian aerial veteran, consistent podium threat.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================================ -->
+    <!--  CURLING — GOLD MEDAL MATCHES                -->
+    <!-- ============================================ -->
+    <div class="event-section">
+      <div class="section-header">
+        <span class="section-icon">🥌</span>
+        <h2>Curling</h2>
+      </div>
+      <div class="event-grid">
+        <div class="event-card medal-event">
+          <div class="event-header">
+            <div>
+              <div class="event-title">Men's &amp; Women's — Gold Medal Matches</div>
+              <div class="event-discipline">Curling</div>
+            </div>
+            <div class="event-time">14:00 / 20:00</div>
+          </div>
+          <div class="event-venue">📍 Cortina d'Ampezzo — Olympic Ice Hall</div>
+          <span class="medal-badge">🏅 MEDAL EVENT (×2)</span>
+          <div class="event-favorites">
+            <strong>⭐ Favourites &amp; Contenders</strong>
+            <span class="athlete"><span class="athlete-flag">🇸🇪</span>Sweden (Men) — Niklas Edin's team, the most decorated men's curling team in history, seeking another Olympic gold.</span>
+            <span class="athlete"><span class="athlete-flag">🇬🇧</span>Great Britain (Women) — Eve Muirhead's team, 2022 Olympic champions, Scottish precision.</span>
+            <span class="athlete"><span class="athlete-flag">🇨🇦</span>Canada — Brad Gushue (Men), perennial contender, Canadian curling royalty.</span>
+            <span class="athlete"><span class="athlete-flag">🇯🇵</span>Japan (Women) — 2022 Olympic silver, the "Garlic Girls" phenomenon continues.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================================ -->
+    <!--  ICE HOCKEY — QUARTERFINALS                  -->
+    <!-- ============================================ -->
+    <div class="event-section">
+      <div class="section-header">
+        <span class="section-icon">🏒</span>
+        <h2>Ice Hockey</h2>
+      </div>
+      <div class="event-grid">
+        <div class="event-card">
+          <div class="event-header">
+            <div>
+              <div class="event-title">Men's Quarterfinals</div>
+              <div class="event-discipline">Ice Hockey — Knockout Stage</div>
+            </div>
+            <div class="event-time">12:00 / 16:30 / 20:30</div>
+          </div>
+          <div class="event-venue">📍 Milan — PalaItalia Santa Giulia</div>
+          <div class="event-favorites">
+            <strong>⭐ Key Players</strong>
+            <span class="athlete"><span class="athlete-flag">🇨🇦</span>Connor McDavid — best player alive, Edmonton Oilers captain, seeking Olympic glory.</span>
+            <span class="athlete"><span class="athlete-flag">🇺🇸</span>Auston Matthews — Hart Trophy winner, American star power.</span>
+            <span class="athlete"><span class="athlete-flag">🇸🇪</span>Victor Hedman — elite Swedish defenceman, Stanley Cup champion.</span>
+            <span class="athlete"><span class="athlete-flag">🇫🇮</span>Aleksander Barkov — Finnish captain, Selke Trophy winner.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================================ -->
+    <!--  DAY 14 VENUES                               -->
+    <!-- ============================================ -->
+    <div class="venues-info">
+      <h3 style="color: var(--gold); margin-bottom: 1rem;">🏟️ Day 14 Competition Venues</h3>
+      <div class="venue-list">
+        <div class="venue-item">
+          <div class="venue-name">📍 Cortina d'Ampezzo — Olympia delle Tofane</div>
+          <p style="color: var(--text-muted); font-size: 0.9rem;">Alpine Skiing (Women's Slalom)</p>
+        </div>
+        <div class="venue-item">
+          <div class="venue-name">📍 Milan — Milano Forum</div>
+          <p style="color: var(--text-muted); font-size: 0.9rem;">Figure Skating (Women's Free Skate)</p>
+        </div>
+        <div class="venue-item">
+          <div class="venue-name">📍 Anterselva — Südtirol Arena</div>
+          <p style="color: var(--text-muted); font-size: 0.9rem;">Biathlon (Men's 4×7.5km Relay)</p>
+        </div>
+        <div class="venue-item">
+          <div class="venue-name">📍 Tesero — Lago di Tesero</div>
+          <p style="color: var(--text-muted); font-size: 0.9rem;">Cross-Country Skiing (Men's 50km Mass Start)</p>
+        </div>
+        <div class="venue-item">
+          <div class="venue-name">📍 Milan — Barentsburg Arena</div>
+          <p style="color: var(--text-muted); font-size: 0.9rem;">Speed Skating (Men's 1000m)</p>
+        </div>
+        <div class="venue-item">
+          <div class="venue-name">📍 Cesana — Pariol Sliding Centre</div>
+          <p style="color: var(--text-muted); font-size: 0.9rem;">Bobsled (Two-Woman Runs 1 &amp; 2)</p>
+        </div>
+        <div class="venue-item">
+          <div class="venue-name">📍 Milan — PalaItalia Santa Giulia</div>
+          <p style="color: var(--text-muted); font-size: 0.9rem;">Short Track (Women's 3000m Relay) &amp; Ice Hockey Quarterfinals</p>
+        </div>
+        <div class="venue-item">
+          <div class="venue-name">📍 Livigno — Carosello 3000</div>
+          <p style="color: var(--text-muted); font-size: 0.9rem;">Freestyle Skiing (Aerials Qualification)</p>
+        </div>
+        <div class="venue-item">
+          <div class="venue-name">📍 Cortina — Olympic Ice Hall</div>
+          <p style="color: var(--text-muted); font-size: 0.9rem;">Curling Gold Medal Matches</p>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <p>Milano-Cortina 2026 — XXV Olympic Winter Games</p>
+      <p style="margin-top: 0.5rem;">🔵 ⚫ 🔴 🟡 🟢</p>
+      <p style="margin-top: 0.75rem; font-size: 0.9rem;">
+        <a href="milan-cortina-day-13.html" style="color: var(--primary-blue); text-decoration: none;">← Day 13</a>
+        &nbsp; · &nbsp;
+        <a href="winter-games.html" style="color: var(--primary-blue); text-decoration: none;">🏠 AM-Global™</a>
+        &nbsp; · &nbsp;
+        <a href="milan-cortina-day-15.html" style="color: var(--primary-blue); text-decoration: none;">Day 15 →</a>
+      </p>
+    </footer>
+  </div>
+</body>
+</html>

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -743,27 +743,27 @@ body {
           inputEl.__typedInitialized = true;
           var isMobile = window.innerWidth <= 600;
           var strings = isMobile ? [
-            'Women\'s Slalom ⛷️',
-            'Women\'s Free Skate ⛸️',
-            'Biathlon Men\'s Relay 🎯',
-            'XC Men\'s 50km Mass Start 🎿',
-            'Speed Skating Men\'s 1000m ⛸️',
-            'Bobsled Two-Woman 🛷',
-            'Short Track Women\'s Relay ⛸️',
-            'Curling Gold Medal 🥌',
-            'Ice Hockey Quarterfinals 🏒',
-            'Day 14 — Feb 20 🏅'
+            'Men\'s Slalom ⛷️',
+            'Biathlon Mixed Relay 🎯',
+            'Bobsled Two-Man Final 🛷',
+            'Slopestyle Men\'s Final 🎿',
+            'XC Men\'s 4×10km Relay 🎿',
+            'Speed Skating Women\'s 1500m ⛸️',
+            'Short Track Men\'s 500m ⛸️',
+            'Women\'s Short Programme ⛸️',
+            'Curling Semifinals 🥌',
+            'Day 13 — Feb 19 🏅'
           ] : [
-            'Women\'s Slalom — Shiffrin vs Vlhová on the Tofane ⛷️',
-            'Figure Skating Women\'s Free Skate — Sakamoto seeks Olympic gold ⛸️',
-            'Biathlon Men\'s 4×7.5km Relay — Norway\'s relay dynasty at Anterselva 🎯',
-            'Cross-Country Men\'s 50km Mass Start — the marathon on skis at Tesero 🎿',
-            'Speed Skating Men\'s 1000m — Krol defends at Barentsburg Arena ⛸️',
-            'Bobsled Two-Woman Runs 1 &amp; 2 — Nolte vs Meyers Taylor at Cesana 🛷',
-            'Short Track Women\'s 3000m Relay Final — team gold in Milan ⛸️',
-            'Curling Gold Medal Matches — Edin &amp; Muirhead seek glory at Cortina 🥌',
-            'Ice Hockey Men\'s Quarterfinals — knockout stage begins 🏒',
-            'Day 14 — Friday, February 20 🏅'
+            'Men\'s Slalom — Noël vs Kristoffersen on the Stelvio ⛷️',
+            'Biathlon Mixed Relay 4×6km — Norway vs France at Anterselva 🎯',
+            'Bobsled Two-Man Final — Friedrich seeks three-peat at Cesana 🛷',
+            'Freestyle Skiing Men\'s Slopestyle Final — Hall defends at Livigno 🎿',
+            'Cross-Country Men\'s 4×10km Relay — Norway vs Russia at Tesero 🎿',
+            'Speed Skating Women\'s 1500m — the metric mile at Barentsburg ⛸️',
+            'Short Track Men\'s 500m Final — explosive sprint in Milan ⛸️',
+            'Figure Skating Women\'s Short Programme — Sakamoto leads at Milano Forum ⛸️',
+            'Curling Semifinals — medal contenders clash at Cortina 🥌',
+            'Day 13 — Thursday, February 19 🏅'
           ];
           var opts = {
             strings: strings, typeSpeed: 20, backSpeed: 15,
@@ -786,7 +786,7 @@ body {
 
   <div style="text-align:center; margin:0.75rem 0;">
     <p style="color:#1a1a1a; margin:0; font-weight:600;">
-     🏅 Today is<a href="milan-cortina-day-14.html" target="_blank" rel="noopener noreferrer" style="color:#1a1a1a; text-decoration:underline; margin-left:0.35rem;">The Winter Olympic Games 2026 Fourteenth Day</a>
+     🏅 Today is<a href="milan-cortina-day-13.html" target="_blank" rel="noopener noreferrer" style="color:#1a1a1a; text-decoration:underline; margin-left:0.35rem;">The Winter Olympic Games 2026 Thirteenth Day</a>
     </p>
   </div>
 
