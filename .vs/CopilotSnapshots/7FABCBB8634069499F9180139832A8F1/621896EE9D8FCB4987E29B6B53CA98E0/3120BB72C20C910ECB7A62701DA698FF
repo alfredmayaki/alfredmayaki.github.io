@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -743,27 +743,19 @@ body {
           inputEl.__typedInitialized = true;
           var isMobile = window.innerWidth <= 600;
           var strings = isMobile ? [
-            'Alpine Team Event ⛷️',
-            'Biathlon Women\'s Mass Start 🎯',
-            'XC Women\'s 30km Mass Start 🎿',
-            'Bobsled Two-Woman Final 🛷',
-            'Bobsled Four-Man Runs 1 & 2 🛷',
-            'Freestyle Aerials Finals 🎿',
-            'Short Track Men\'s 5000m Relay ⛸️',
-            'Speed Skating Mass Start ⛸️',
-            'Ice Hockey Semifinals 🏒',
-            'Day 15 — Feb 21 🏅'
+            'XC Men\'s 50km Mass Start 🎿',
+            'Bobsled Four-Man Final 🛷',
+            'Ice Hockey Women\'s Gold 🏒',
+            'Ice Hockey Men\'s Gold 🏒',
+            'Closing Ceremony 🎆',
+            'Day 16 — Feb 22 🏅'
           ] : [
-            'Alpine Mixed Team Parallel — head-to-head knockout in Cortina ⛷️',
-            'Biathlon Women\'s 12.5km Mass Start — Wierer\'s farewell at Anterselva 🎯',
-            'Cross-Country Women\'s 30km Mass Start Free — the marathon on skis at Tesero 🎿',
-            'Bobsled Two-Woman Final Runs 3 &amp; 4 — Nolte vs Meyers Taylor at Cesana 🛷',
-            'Bobsled Four-Man Runs 1 &amp; 2 — Friedrich seeks three-peat at Cesana 🛷',
-            'Freestyle Men\'s &amp; Women\'s Aerials Finals — triple twists under Livigno lights 🎿',
-            'Short Track Men\'s 5000m Relay Final — team gold in Milan ⛸️',
-            'Speed Skating Men\'s &amp; Women\'s Mass Start — tactical gold at Barentsburg Arena ⛸️',
-            'Ice Hockey Men\'s &amp; Women\'s Semifinals — knockout stage 🏒',
-            'Day 15 — Saturday, February 21 🏅'
+            'Cross-Country Men\'s 50km Mass Start Free — the ultimate endurance test at Tesero 🎿',
+            'Bobsled Four-Man Final Runs 3 &amp; 4 — Friedrich seeks historic three-peat at Cesana 🛷',
+            'Ice Hockey Women\'s Gold Medal Game — Canada vs USA at PalaItalia 🏒',
+            'Ice Hockey Men\'s Gold Medal Game — the final event before the Closing Ceremony 🏒',
+            'Closing Ceremony at Stadio San Siro — farewell to Milano-Cortina 2026 🎆',
+            'Day 16 — Sunday, February 22 🏅'
           ];
           var opts = {
             strings: strings, typeSpeed: 20, backSpeed: 15,
@@ -786,7 +778,7 @@ body {
 
   <div style="text-align:center; margin:0.75rem 0;">
     <p style="color:#1a1a1a; margin:0; font-weight:600;">
-     🏅 Today is<a href="milan-cortina-day-15.html" target="_blank" rel="noopener noreferrer" style="color:#1a1a1a; text-decoration:underline; margin-left:0.35rem;">The Winter Olympic Games 2026 Fifteenth Day</a>
+     🏅 Today is<a href="milan-cortina-day-16.html" target="_blank" rel="noopener noreferrer" style="color:#1a1a1a; text-decoration:underline; margin-left:0.35rem;">The Winter Olympic Games 2026 Sixteenth Day</a>
     </p>
   </div>
 
