@@ -638,16 +638,15 @@
 
         <p class="terminal-prompt">select_language()<span class="cursor"></span></p>
 
-           <footer class="app-footer">
-            <p>&copy; 2026 Alfred Anate Bodurin Mayaki <span style="color: var(--js-green);">// All rights reserved</span></p>
-               <p>
-                 <a href="https://www.researchgate.net/profile/alfred-mayaki">ResearchGate</a> |
-        <a href="https://www.linkedin.com/in/alfredmayaki/">LinkedIn</a> |
-          <a href="southwark.html">Southwark</a> |
-              <a href="calendar.html">Calendar</a> |
-             <a href="contact.html">Report Bug</a>
-               </p>
-             </footer>
+        <footer class="app-footer">
+          <p>&copy; 2026 Alfred Anate Bodurin Mayaki <span style="color: var(--js-green);">// All rights reserved</span></p>
+          <p>
+            <a href="https://www.researchgate.net/profile/alfred-mayaki">ResearchGate</a> |
+            <a href="https://www.linkedin.com/in/alfredmayaki/">LinkedIn</a> |
+            <a href="southwark.html">Southwark</a> |
+            <a href="contact.html">Report Bug</a>
+          </p>
+        </footer>
       </div>
 
       <!-- Home Indicator -->
