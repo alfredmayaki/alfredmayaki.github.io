@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -49,7 +49,7 @@
         <p class="terminal-prompt">profile.show()<span class="cursor"></span></p>
         <footer class="app-footer">
           <p>&copy; 2026 Alfred Anate Bodurin Mayaki <span style="color:var(--js-green);">// All rights reserved</span></p>
-        <p><a href="index.html">🏠 Home</a> | <a href="research.html">Research</a> | <a href="contact.html">Report Bug</a></p>
+          <p><a href="index.html">🏠 Home</a> | <a href="contact.html">Report Bug</a></p>
           <p>Last updated: <span id="last-updated"></span></p>
         </footer>
       </div>
