@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -743,27 +743,27 @@ body {
           inputEl.__typedInitialized = true;
           var isMobile = window.innerWidth <= 600;
           var strings = isMobile ? [
-            'Alpine Team Event ⛷️',
-            'Biathlon Women\'s Mass Start 🎯',
-            'XC Women\'s 30km Mass Start 🎿',
-            'Bobsled Two-Woman Final 🛷',
-            'Bobsled Four-Man Runs 1 & 2 🛷',
-            'Freestyle Aerials Finals 🎿',
-            'Short Track Men\'s 5000m Relay ⛸️',
-            'Speed Skating Mass Start ⛸️',
-            'Ice Hockey Semifinals 🏒',
-            'Day 15 — Feb 21 🏅'
+            'Women\'s Slalom ⛷️',
+            'Women\'s Free Skate ⛸️',
+            'Biathlon Men\'s Relay 🎯',
+            'XC Men\'s 50km Mass Start 🎿',
+            'Speed Skating Men\'s 1000m ⛸️',
+            'Bobsled Two-Woman 🛷',
+            'Short Track Women\'s Relay ⛸️',
+            'Curling Gold Medal 🥌',
+            'Ice Hockey Quarterfinals 🏒',
+            'Day 14 — Feb 20 🏅'
           ] : [
-            'Alpine Mixed Team Parallel — head-to-head knockout in Cortina ⛷️',
-            'Biathlon Women\'s 12.5km Mass Start — Wierer\'s farewell at Anterselva 🎯',
-            'Cross-Country Women\'s 30km Mass Start Free — the marathon on skis at Tesero 🎿',
-            'Bobsled Two-Woman Final Runs 3 &amp; 4 — Nolte vs Meyers Taylor at Cesana 🛷',
-            'Bobsled Four-Man Runs 1 &amp; 2 — Friedrich seeks three-peat at Cesana 🛷',
-            'Freestyle Men\'s &amp; Women\'s Aerials Finals — triple twists under Livigno lights 🎿',
-            'Short Track Men\'s 5000m Relay Final — team gold in Milan ⛸️',
-            'Speed Skating Men\'s &amp; Women\'s Mass Start — tactical gold at Barentsburg Arena ⛸️',
-            'Ice Hockey Men\'s &amp; Women\'s Semifinals — knockout stage 🏒',
-            'Day 15 — Saturday, February 21 🏅'
+            'Women\'s Slalom — Shiffrin vs Vlhová on the Tofane ⛷️',
+            'Figure Skating Women\'s Free Skate — Sakamoto seeks Olympic gold ⛸️',
+            'Biathlon Men\'s 4×7.5km Relay — Norway\'s relay dynasty at Anterselva 🎯',
+            'Cross-Country Men\'s 50km Mass Start — the marathon on skis at Tesero 🎿',
+            'Speed Skating Men\'s 1000m — Krol defends at Barentsburg Arena ⛸️',
+            'Bobsled Two-Woman Runs 1 &amp; 2 — Nolte vs Meyers Taylor at Cesana 🛷',
+            'Short Track Women\'s 3000m Relay Final — team gold in Milan ⛸️',
+            'Curling Gold Medal Matches — Edin &amp; Muirhead seek glory at Cortina 🥌',
+            'Ice Hockey Men\'s Quarterfinals — knockout stage begins 🏒',
+            'Day 14 — Friday, February 20 🏅'
           ];
           var opts = {
             strings: strings, typeSpeed: 20, backSpeed: 15,
@@ -786,7 +786,7 @@ body {
 
   <div style="text-align:center; margin:0.75rem 0;">
     <p style="color:#1a1a1a; margin:0; font-weight:600;">
-     🏅 Today is<a href="milan-cortina-day-15.html" target="_blank" rel="noopener noreferrer" style="color:#1a1a1a; text-decoration:underline; margin-left:0.35rem;">The Winter Olympic Games 2026 Fifteenth Day</a>
+     🏅 Today is<a href="milan-cortina-day-14.html" target="_blank" rel="noopener noreferrer" style="color:#1a1a1a; text-decoration:underline; margin-left:0.35rem;">The Winter Olympic Games 2026 Fourteenth Day</a>
     </p>
   </div>
 
