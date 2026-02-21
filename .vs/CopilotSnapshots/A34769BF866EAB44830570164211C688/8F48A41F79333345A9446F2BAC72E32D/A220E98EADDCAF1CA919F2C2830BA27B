@@ -39,7 +39,7 @@
     <div class="status-bar"><span class="time" id="status-time">00:00</span><div class="icons"><span>📶</span><span>📡</span><div class="battery"><div class="battery-body"><div class="battery-level"></div></div><div class="battery-tip"></div></div></div></div>
     <div class="app-content">
       <p class="code-comment">/* Southwark Services Factsheet */</p>
-      <a href="/index_en.html"><img src="s200_alfred.mayaki.jpg" alt="Alfred Mayaki" class="hero-logo"></a>
+      <a href="ai.html"><img src="s200_alfred.mayaki.jpg" alt="Alfred Mayaki" class="hero-logo"></a>
       <h1><span class="kw">class</span> <span class="fn">Southwark</span> <span class="br">extends Borough {</span><span class="vb">✓</span></h1>
       <p class="tagline">London Borough of Southwark — Local Services</p>
 
@@ -110,7 +110,7 @@
       <p class="tp">southwark.getServices()<span class="cur"></span></p>
       <footer class="af">
         <p>&copy; 2026 Alfred Anate Bodurin Mayaki <span style="color:var(--js-green);">// All rights reserved</span></p>
-        <p><a href="/index.html">🏠 Home</a> | <a href="research.html">Research</a> | <a href="contact.html">Contact</a></p>
+        <p><a href="ai.html">🏠 Home</a> | <a href="research.html">Research</a> | <a href="contact.html">Contact</a></p>
         <p>Last updated: <span id="last-updated"></span></p>
       </footer>
     </div>

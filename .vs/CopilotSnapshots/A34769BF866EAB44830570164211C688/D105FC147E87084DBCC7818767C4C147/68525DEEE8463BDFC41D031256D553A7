@@ -110,7 +110,7 @@
       <p class="tp">southwark.getServices()<span class="cur"></span></p>
       <footer class="af">
         <p>&copy; 2026 Alfred Anate Bodurin Mayaki <span style="color:var(--js-green);">// All rights reserved</span></p>
-        <p><a href="/index.html">🏠 Home</a> | <a href="research.html">Research</a> | <a href="contact.html">Contact</a></p>
+        <p><a href="/index_en.html">🏠 Home</a> | <a href="research.html">Research</a> | <a href="contact.html">Contact</a></p>
         <p>Last updated: <span id="last-updated"></span></p>
       </footer>
     </div>

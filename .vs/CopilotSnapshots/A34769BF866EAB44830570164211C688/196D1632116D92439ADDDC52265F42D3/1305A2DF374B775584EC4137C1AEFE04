@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -274,7 +274,7 @@
     <div class="content-wrapper">
       <!-- Back to Home Button -->
       <div class="btn-container">
-        <a href="index_en.html" class="back-home-btn">
+        <a href="ai.html" class="back-home-btn">
           <i class="fas fa-arrow-left"></i>
           Back to Home
         </a>
