@@ -392,9 +392,9 @@
       // Footer link handlers
       document.getElementById('cookieSettingsLink').addEventListener('click', function(e) {
         e.preventDefault();
-        document.cookie = 'cookie_consent=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
-        location.reload();
+        if (window.__resetCookieConsent) { window.__resetCookieConsent(); } else { location.reload(); }
       });
     </script>
+    <script src="/cookie-consent.js"></script>
 </body>
 </html>
