@@ -498,8 +498,6 @@ body::before {
   <script src="claude-head.js"></script>
 </head>
 <body>
-  <div id="particles-js" style="position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:-1;"></div>
-
   <!-- GPT Responses Popup (outside phone frame) -->
   <div class="chatbot-popup" id="gptPopup" aria-hidden="true" role="dialog" aria-label="GPT Responses" style="right:18px;bottom:18px;display:none;">
     <div class="chatbot-header" id="gptHeader">
@@ -694,8 +692,7 @@ body::before {
   </div>
 
   <!-- External Scripts -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
-  <script>particlesJS.load('particles-js','particles.json',function(){console.log('Particles.js loaded');});</script>
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script> -->
   <script src="index.js"></script>
   <script src="search-tracker-api.js"></script>
 
