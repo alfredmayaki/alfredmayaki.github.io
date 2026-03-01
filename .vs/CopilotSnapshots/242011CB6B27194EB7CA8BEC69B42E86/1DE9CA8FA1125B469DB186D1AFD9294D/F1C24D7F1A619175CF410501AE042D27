@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -238,7 +238,7 @@
 <body>
   <!-- Header -->
   <div class="header">
-    <a href="claude.html" class="back-btn">
+    <a href="index.html" class="back-btn">
       <i class="fas fa-arrow-left"></i>
       Back to Home
     </a>
