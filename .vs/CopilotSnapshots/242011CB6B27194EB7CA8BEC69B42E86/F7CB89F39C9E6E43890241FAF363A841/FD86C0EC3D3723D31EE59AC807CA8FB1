@@ -1,4 +1,4 @@
-// Theme background — particles.js
+﻿// Theme background — particles.js
 (function () {
   var el = document.getElementById('particles-js');
   if (!el) return;
@@ -116,7 +116,7 @@ document.addEventListener('DOMContentLoaded', function () {
         'Make a query...'
       ];
       var opts = {
-        strings: strings, typeSpeed: 60, backSpeed: 15,
+        strings: strings, typeSpeed: 20, backSpeed: 15,
         backDelay: 1500, loop: true, attr: 'placeholder',
         bindInputFocusEvents: true, showCursor: false
       };

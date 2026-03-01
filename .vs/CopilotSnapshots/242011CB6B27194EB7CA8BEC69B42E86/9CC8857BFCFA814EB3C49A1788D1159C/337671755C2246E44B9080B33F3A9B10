@@ -1,18 +1,4 @@
-// Theme background — particles.js
-(function () {
-  var el = document.getElementById('particles-js');
-  if (!el) return;
-  function init() {
-    if (typeof particlesJS === 'undefined' || typeof particlesJS.load !== 'function') return;
-    particlesJS.load('particles-js', 'particles.json', function () {
-      console.log('Particles.js loaded');
-    });
-  }
-  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
-  else init();
-})();
-
-// Unified popup handlers for GPT and main chatbot
+﻿// Unified popup handlers for GPT and main chatbot
 (function () {
   function setupPopup(popupId, minimizeId, closeId, headerId, inputId) {
     var popup = document.getElementById(popupId);
@@ -107,16 +93,30 @@ document.addEventListener('DOMContentLoaded', function () {
       inputEl.__typedInitialized = true;
       var isMobile = window.innerWidth <= 600;
       var strings = isMobile ? [
-        'Listening...',
-        'Enter query here...',
-        'Make a query...'
+        'Women\'s Giant Slalom ⛷️',
+        'Biathlon Men\'s 20km 🎯',
+        'Ice Dance Free Dance ⛸️',
+        'Skeleton Women\'s Final 💀',
+        'Mixed Team Relay ⛸️',
+        'XC Women\'s 4×5km Relay 🎿',
+        'Speed Skating Men\'s 5000m ⛸️',
+        'Slopestyle Women\'s Final 🎿',
+        'Bobsled Two-Man Runs 1-2 🛷',
+        'Day 12 — Feb 18 🏅'
       ] : [
-        'Listening...',
-        'Enter query here...',
-        'Make a query...'
+        'Women\'s Giant Slalom — Shiffrin vs Brignone on the Tofane ⛷️',
+        'Biathlon Men\'s 20km Individual — Bø vs Fillon Maillet at Anterselva 🎯',
+        'Figure Skating Ice Dance Free Dance — crowning Olympic champions ⛸️',
+        'Skeleton Women\'s Final — Neise defends at Cesana 💀',
+        'Short Track Mixed Team Relay Final — chaotic multi-format gold ⛸️',
+        'Cross-Country Women\'s 4×5km Relay — Sweden vs Norway at Tesero 🎿',
+        'Speed Skating Men\'s 5000m — van der Poel returns? ⛸️',
+        'Freestyle Skiing Women\'s Slopestyle Final — Eileen Gu at Livigno 🎿',
+        'Bobsled Two-Man Runs 1 & 2 — Friedrich starts title defence 🛷',
+        'Day 12 — Wednesday, February 18 🏅'
       ];
       var opts = {
-        strings: strings, typeSpeed: 60, backSpeed: 15,
+        strings: strings, typeSpeed: 20, backSpeed: 15,
         backDelay: 1500, loop: true, attr: 'placeholder',
         bindInputFocusEvents: true, showCursor: false
       };
