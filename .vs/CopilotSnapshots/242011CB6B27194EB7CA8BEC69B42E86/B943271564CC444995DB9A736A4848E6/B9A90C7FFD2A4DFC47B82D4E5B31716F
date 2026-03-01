@@ -346,7 +346,7 @@ body::before {
 .search-container:focus-within .search-bar, .search-container:hover .search-bar { background-position: 100% 50%; box-shadow: 0 10px 30px rgba(61,78,233,0.06), 0 4px 12px rgba(0,0,0,0.35); transform: translateY(-1px); }
 @media (prefers-reduced-motion: reduce) { .search-bar { transition: none !important; } .search-bar::placeholder { transition: none !important; } }
 
-.search-btn { width: 48px; height: 48px; display: inline-flex; align-items: center; justify-content: center; background: var(--bg-elevated); color: var(--text-muted); border: 1px solid var(--border); border-radius: 10px; cursor: pointer; transition: transform var(--transition-fast), background var(--transition-fast), box-shadow var(--transition-fast), color var(--transition-fast); box-sizing: border-box; }
+.search-btn { width: 48px; height: 48px; display: inline-flex; align-items: center; justify-content: center; background: var(--bg-elevated); color: var(--text-muted); border: 1px solid var(--border); border-radius: 10px;
 .search-btn:hover, .search-btn:focus { color: var(--text); background: rgba(61,78,233,0.06); box-shadow: var(--shadow-brand); transform: translateY(-2px); outline: none; }
 .search-btn svg { width: 20px; height: 20px; fill: currentColor; }
 
@@ -355,7 +355,7 @@ body::before {
 .openai-quick-result { display: none; max-width: 650px; margin: 0.6rem auto 0; padding: 0.85rem; background: var(--panel-2); color: var(--text); border-radius: 12px; border: 1px solid rgba(255,255,255,0.03); box-sizing: border-box; font-size: 0.95rem; white-space: pre-wrap; }
 .gpt-prompt-panel { max-width: 650px; margin: 0.6rem auto 0; padding: 0.6rem; background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.02)); border-radius: 12px; border: 1px solid rgba(255,255,255,0.03); }
 
-.attach-btn { display: inline-flex; align-items: center; justify-content: center; width: 48px; height: 48px; padding: 0; border-radius: 10px; background: var(--bg-elevated); color: var(--text-muted); border: 1px solid var(--border); cursor: pointer; font-size: 20px; font-weight: 600; line-height: 1; transition: transform var(--transition-fast), background var(--transition-fast), box-shadow var(--transition-fast), color var(--transition-fast); box-sizing: border-box; }
+.attach-btn { display: inline-flex; align-items: center; justify-content: center; width: 48px; height: 48px; padding: 0; border-radius: 10px; background: var(--bg-elevated); color: var(--text-muted); border: 1px solid var(--border);
 .attach-btn:hover, .attach-btn:focus { color: var(--text); background: rgba(61,78,233,0.06); box-shadow: var(--shadow-brand); transform: translateY(-2px); outline: none; }
 
 .search-controls { display: flex; gap: 0.35rem; align-items: center; justify-content: flex-end; flex: 0 0 auto; z-index: 2; flex-wrap: nowrap; }
