@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -30,7 +30,6 @@
         <p class="tagline">Royal Economic Society</p>
         <p class="section-label">links</p>
         <div class="links-grid">
-          <a href="claude.html" class="link-btn"><i class="fas fa-comment-dots"></i><span>Claude Chat</span></a>
           <a href="https://sites.google.com/view/alfredmayaki/" class="link-btn"><i class="fas fa-graduation-cap"></i><span>My Academic Journey</span></a>
           <a href="https://scholar.google.com/citations?user=QK1gWHoAAAAJ&hl=en" class="link-btn"><i class="fas fa-book"></i><span>Google Scholar Profile</span></a>
           <a href="https://orcid.org/0009-0006-3363-9603" class="link-btn"><i class="fab fa-orcid"></i><span>ORCID Research Profile</span></a>
