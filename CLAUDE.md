@@ -6,17 +6,17 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 Personal portfolio website (alfredmayaki.github.io) with an integrated AI chatbot powered by Claude Opus 4.6. Multilingual support (16 language variants), professional profile, research work, and interactive AI assistant.
 
-**Tech Stack:** HTML5/CSS3/JS (ES5) frontend on GitHub Pages, Cloudflare Workers API proxy (`worker/src/index.js`), optional Node.js/Express backend (`server.js`), Firebase Admin SDK, IndexedDB for client-side chat persistence, particles.js for visual effects.
+**Tech Stack:** HTML5/CSS3/JS (ES5) frontend on GitHub Pages, Cloudflare Workers API proxy (`worker/src/index.js`), optional Node.js/Express backend (`server.js`), Firebase Admin SDK, IndexedDB for client-side chat persistence, particles.js for visual effects. No build step; no bundler. Root JS is CommonJS (`server.js`), worker JS is ES modules.
 
 ## Architecture
 
 ### Three-Tier System
 
-1. **Static Frontend (GitHub Pages)** - `index.html` (main landing page with phone-frame UI), `index.js` (chatbot logic), language variants (`index_en.html`, `index_fr.html`, etc.), content pages (`ai.html`, `about.html`, `research.html`, `projects.html`, `contact.html`). No build step; CSS is inline in HTML files using a dark theme with code-inspired color palette.
+1. **Static Frontend (GitHub Pages)** - `index.html` (main landing page with phone-frame UI), `index.js` (chatbot logic), 16 language variants (`index_en.html`, `index_fr.html`, `index_de.html`, etc.), content pages (`about.html`, `research.html`, `projects.html`, `contact.html`, `ai.html`, `calendar.html`, `msc-survey.html`, etc.). CSS is inline in HTML files using a dark theme with code-inspired color palette. Auto language redirect via IP geolocation (ipapi.co), once per session.
 
 2. **Cloudflare Worker Proxy (`worker/src/index.js`)** - Deployed at `alfredmayaki.me/chat`. Routes chat to Anthropic Claude API. Handles file uploads (PDF, DOCX, TXT, CSV, JSON) with 1MB limit. TTS endpoint at `/tts` using Cloudflare AI binding (Deepgram Aura-2). Configured via `worker/wrangler.toml`.
 
-3. **Optional Node.js Backend (`server.js`)** - Express server with `/api/claude`, `/api/gpt`, `/api/upload` endpoints and Firebase session management. Production traffic uses Cloudflare Workers, not this server.
+3. **Optional Node.js Backend (`server.js`)** - Express server with `/api/claude`, `/api/gpt`, `/api/upload`, `/sessionLogin` endpoints, Firebase session management, and Bottleneck rate limiting. Production traffic uses Cloudflare Workers, not this server. Uses `pdf-parse` and `mammoth` for server-side file extraction.
 
 ### Chat Flow
 
@@ -27,6 +27,8 @@ index.js (processQuery) → POST alfredmayaki.me/chat → worker/src/index.js (c
 - Conversation history stored in-memory (`state.conversationHistory`), persisted to IndexedDB via `ChatDB`
 - History limited to `CONFIG.maxHistoryTurns * 2` messages, sent with each request
 - File uploads: stored in `state.uploadedFile`, sent as FormData, worker extracts text and injects as document context
+- Web Audio API sound effects system (`SoundFX`): click, hover, scroll (throttled 150ms), success sounds with configurable volume
+- Date separators (Today/Yesterday/Date) and timestamps in chat history
 
 ## Development Commands
 
@@ -37,7 +39,7 @@ cd worker
 npm install
 npm run dev          # Local dev server on port 8787 (wrangler dev)
 npm run deploy       # Deploy to Cloudflare (wrangler deploy)
-npm test             # Run tests (vitest)
+npm test             # Run tests (vitest) — note: vitest config may be missing
 npx wrangler tail    # View live production logs
 ```
 
@@ -104,7 +106,6 @@ Central `state` object with `isSending`, `inFlightAbort`, `conversationHistory`,
 
 ## UI/UX Preferences
 
-From `.github/copilot-instructions.md`:
 - iOS-inspired phone frame with dynamic island, status bar (live time, battery, signal), floating animation
 - Bot messages left-aligned, user messages right-aligned with cascading bubble offsets
 - Rounded animated chat bubbles; input/upload controls rounded, centered, max-width 360px
@@ -113,8 +114,7 @@ From `.github/copilot-instructions.md`:
 - Black skin tone emojis in chat UI
 - Font Awesome icons for social links on contact page
 - "Report a bug" link in footer (not Discord invite)
-- Web Audio API sound effects (click, hover, scroll, success) with configurable volume
-- Auto language redirect via IP geolocation (ipapi.co), once per session
+- Navigation menu (`navigationSelect`) and language menu (`languageSelect`) share the same CSS theme; both navigate via `window.location.href`
 
 ## Deployment
 
@@ -134,3 +134,9 @@ Common issues:
 - **"ANTHROPIC_API_KEY is not set"**: Run `cd worker && npx wrangler secret put ANTHROPIC_API_KEY`
 - **Empty chat on refresh**: IndexedDB not initialized or blocked by privacy mode
 - **File upload fails**: Exceeds 1MB limit, unsupported type, or complex PDF/DOCX extraction failure
+
+## Notes
+
+- `.gitignore` excludes `node_modules/`, `.env`, `.vs/`, `serviceAccountKey.json`, and `*.log`
+- Root `package.json` has no build or lint scripts; `npm test` at root just echoes an error
+- The `curl-8.18.0_2-win64-mingw/` directory in the repo is a vendored curl binary, not part of the application
