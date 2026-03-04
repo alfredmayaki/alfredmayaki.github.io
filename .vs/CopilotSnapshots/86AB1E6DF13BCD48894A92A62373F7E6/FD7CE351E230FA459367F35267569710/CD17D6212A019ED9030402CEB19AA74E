@@ -7,7 +7,7 @@
   <meta name="description" content="Contact Alfred Anate Bodurin Mayaki — enquiries, collaborations and community work.">
   <meta name="author" content="Alfred Anate Bodurin Mayaki">
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" />
   <style>
     :root{--js-green:#4ec9b0;--js-blue:#569cd6;--js-purple:#c586c0;--js-cyan:#9cdcfe;--js-string:#ce9178;--bg-dark:#0d1117;--bg-card:#161b22;--bg-elevated:#21262d;--border-color:#30363d;--text-primary:#e6edf3;--text-secondary:#8b949e;--ai-accent:#7c3aed;--ai-glow:rgba(124,58,237,0.35)}
     *{box-sizing:border-box;margin:0;padding:0}body{font-family:'Inter','Segoe UI',sans-serif;background:var(--bg-dark);color:var(--text-primary);margin:0;padding:1rem;display:flex;align-items:center;justify-content:center;min-height:100vh;overflow-x:hidden}
