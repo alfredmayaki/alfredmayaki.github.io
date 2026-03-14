@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -8,9 +8,6 @@
   <meta name="author" content="Alfred Anate Bodurin Mayaki">
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" />
-  <script type="module" src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js"></script>
-  <script type="module" src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js"></script>
-  <script type="module" src="/firebase-config.js"></script>
   <style>
     :root{--js-green:#4ec9b0;--js-blue:#569cd6;--js-purple:#c586c0;--js-cyan:#9cdcfe;--js-string:#ce9178;--bg-dark:#0d1117;--bg-card:#161b22;--bg-elevated:#21262d;--border-color:#30363d;--text-primary:#e6edf3;--text-secondary:#8b949e;--ai-accent:#7c3aed;--ai-glow:rgba(124,58,237,0.35)}
     *{box-sizing:border-box;margin:0;padding:0}
@@ -57,6 +54,17 @@
       <a href="/index_en.html"><img src="s200_alfred.mayaki.jpg" alt="Alfred Mayaki" class="hero-logo"></a>
       <h1><span class="kw">class</span> <span class="fn">Research</span> <span class="br">extends</span> <span class="br">{</span><span class="vb">✓</span></h1>
       <p class="tagline">arXiv · SSRN · Google Scholar</p>
+
+      <p class="sl">dissertation</p>
+      <div class="lg">
+        <div class="cc feat">
+          <div class="cb">📄 Featured Dissertation</div>
+          <h3>Do SHRM Signalling Practices, Compared to Conventional HRM Approaches, Affect How Diverse Workers Perceive the Employee Journey? Investigating the “Microeconomics of Inclusion” with Survey Evidence</h3>
+          <p class="meta">AAB Mayaki — Open University Business School — 2026</p>
+          <div class="cl"><a href="/FBL-MSc-research-dissertation.pdf" target="_blank" rel="noopener noreferrer" class="cla">Read PDF →</a><a href="references.html" class="cla">References →</a></div>
+        </div>
+      </div>
+      <p class="gc">];</p>
 
       <p class="sl">arxiv</p>
       <div class="lg">
