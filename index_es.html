@@ -62,7 +62,7 @@
       100% { transform: scale(1.1) rotate(3deg); }
     }
 
-    .phone-frame {
+    .academic-frame {
       position: relative;
       width: 100%;
       max-width: 420px;
@@ -74,22 +74,22 @@
         0 25px 50px -12px rgba(0, 0, 0, 0.8),
         0 0 100px rgba(247, 223, 30, 0.1),
         inset 0 1px 0 rgba(255, 255, 255, 0.1);
-      animation: phoneFloat 6s ease-in-out infinite;
+      animation: panelFloat 6s ease-in-out infinite;
     }
 
-    @keyframes phoneFloat {
+    @keyframes panelFloat {
       0%, 100% { transform: translateY(0); }
       50% { transform: translateY(-8px); }
     }
 
-    .phone-screen {
+    .academic-screen {
       background: var(--bg-card);
       border-radius: 35px;
       overflow: hidden;
       position: relative;
     }
 
-    .dynamic-island {
+    .top-banner {
       position: absolute;
       top: 12px;
       left: 50%;
@@ -107,12 +107,12 @@
       cursor: pointer;
     }
 
-    .dynamic-island:hover {
+    .top-banner:hover {
       width: 160px;
       background: linear-gradient(90deg, #000 0%, #1a1a1a 100%);
     }
 
-    .dynamic-island .camera {
+    .top-banner .camera {
       width: 10px;
       height: 10px;
       background: radial-gradient(circle, #1a3a5c 0%, #0a1a2c 100%);
@@ -120,7 +120,7 @@
       border: 2px solid #2a2a2a;
     }
 
-    .dynamic-island .indicator {
+    .top-banner .indicator {
       width: 6px;
       height: 6px;
       background: var(--js-green);
@@ -133,7 +133,7 @@
       50% { opacity: 0.5; transform: scale(0.8); }
     }
 
-    .status-bar {
+    .info-strip {
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -144,23 +144,23 @@
       color: var(--text-primary);
     }
 
-    .status-bar .time { color: var(--js-yellow); }
+    .info-strip .time { color: var(--js-yellow); }
 
-    .status-bar .icons {
+    .info-strip .icons {
       display: flex;
       gap: 6px;
       align-items: center;
     }
 
-    .status-bar .icons span { font-size: 14px; }
+    .info-strip .icons span { font-size: 14px; }
 
-    .battery {
+    .power-chip {
       display: flex;
       align-items: center;
       gap: 2px;
     }
 
-    .battery-body {
+    .power-chip-body {
       width: 22px;
       height: 10px;
       border: 1.5px solid var(--js-green);
@@ -168,14 +168,14 @@
       padding: 1px;
     }
 
-    .battery-level {
+    .power-chip-level {
       height: 100%;
       width: 80%;
       background: var(--js-green);
       border-radius: 1px;
     }
 
-    .battery-tip {
+    .power-chip-tip {
       width: 2px;
       height: 5px;
       background: var(--js-green);
@@ -385,7 +385,7 @@
 
     .app-footer a:hover { color: var(--js-yellow); }
 
-    .home-indicator {
+    .page-marker {
       width: 134px;
       height: 5px;
       background: var(--text-secondary);
@@ -424,14 +424,14 @@
 
     @media (max-width: 480px) {
       body { padding: 0.5rem; }
-      .phone-frame {
+      .academic-frame {
         border-radius: 0;
         padding: 0;
         box-shadow: none;
         max-width: 100%;
       }
-      .phone-screen { border-radius: 0; }
-      .dynamic-island {
+      .academic-screen { border-radius: 0; }
+      .top-banner {
         width: 100px;
         height: 28px;
         top: 8px;
@@ -443,7 +443,7 @@
     }
 
     @media (min-width: 768px) {
-      .phone-frame { max-width: 440px; }
+      .academic-frame { max-width: 440px; }
     }
 
     @keyframes fadeIn {
@@ -451,8 +451,8 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    .phone-frame {
-      animation: fadeIn 0.6s ease-out, phoneFloat 6s ease-in-out 0.6s infinite;
+    .academic-frame {
+      animation: fadeIn 0.6s ease-out, panelFloat 6s ease-in-out 0.6s infinite;
     }
 
     @media (hover: none) and (pointer: coarse) {
@@ -468,36 +468,32 @@
   </style>
   <style id="academic-layout-override">
     body{padding:2rem 1rem!important;align-items:flex-start!important}
-    .phone-frame{max-width:980px!important;border-radius:20px!important;padding:1px!important;background:linear-gradient(180deg,rgba(22,27,34,.96),rgba(13,17,23,.96))!important;box-shadow:0 0 0 1px var(--border-color),0 24px 60px rgba(0,0,0,.45),0 0 60px rgba(124,58,237,.12)!important}
-    .phone-screen{border-radius:20px!important}
-    .dynamic-island,.status-bar,.hi,.home-indicator{display:none!important}
+    .academic-frame{max-width:980px!important;border-radius:20px!important;padding:1px!important;background:linear-gradient(180deg,rgba(22,27,34,.96),rgba(13,17,23,.96))!important;box-shadow:0 0 0 1px var(--border-color),0 24px 60px rgba(0,0,0,.45),0 0 60px rgba(124,58,237,.12)!important}
+    .academic-screen{border-radius:20px!important}
+    .top-banner,.info-strip,.hi,.page-marker{display:none!important}
     .app-content,.profile-container{padding:30px 28px 24px!important;min-height:unset!important}
     .sl,.section-label,.gc,.grid-close{text-align:left!important}
     .lg,.links-grid{padding:0!important;max-width:none!important}
-    @media(max-width:768px){body{padding:1rem .75rem!important}.phone-frame{max-width:100%!important}.app-content,.profile-container{padding:22px 16px 18px!important}}
+    @media(max-width:768px){body{padding:1rem .75rem!important}.academic-frame{max-width:100%!important}.app-content,.profile-container{padding:22px 16px 18px!important}}
   </style>
 </head>
 
 <body>
-  <div id="particles-js" style="position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:-1;"></div>
 
-  <div class="phone-frame">
-    <div class="phone-screen">
-      <div class="dynamic-island">
+  <div class="academic-frame">
+    <div class="academic-screen">
         <div class="camera"></div>
         <div class="indicator"></div>
       </div>
-
-      <div class="status-bar">
         <span class="time" id="status-time">00:00</span>
         <div class="icons">
           <span>📶</span>
           <span>📡</span>
-          <div class="battery">
-            <div class="battery-body">
-              <div class="battery-level"></div>
+          <div class="power-chip">
+            <div class="power-chip-body">
+              <div class="power-chip-level"></div>
             </div>
-            <div class="battery-tip"></div>
+            <div class="power-chip-tip"></div>
           </div>
         </div>
       </div>
@@ -549,8 +545,6 @@
           </p>
         </footer>
       </div>
-
-      <div class="home-indicator"></div>
     </div>
   </div>
 
@@ -559,7 +553,7 @@
       const now = new Date();
       const hours = String(now.getHours()).padStart(2, '0');
       const minutes = String(now.getMinutes()).padStart(2, '0');
-      document.getElementById('status-time').textContent = `${hours}:${minutes}`;
+      document.getElementById('status-time')?.textContent = `${hours}:${minutes}`;
     }
     updateTime();
     setInterval(updateTime, 1000);
@@ -577,14 +571,6 @@
         }
       });
     }
-  </script>
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
-  <script>
-    particlesJS.load('particles-js', 'particles.json', function() {
-      console.log('Particles.js loaded');
-    });
-  </script>
-<script src="/cookie-consent.js"></script>
+  </script>`r`n<script src="/cookie-consent.js"></script>
 </body>
 </html>

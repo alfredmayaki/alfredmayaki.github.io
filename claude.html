@@ -1,8 +1,8 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Alfred Anate Bodurin Mayaki — Official Website</title>
+  <title>Alfred Anate Bodurin Mayaki � Official Website</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Alfred Anate Bodurin Mayaki - Labour Economist, Public Policy Researcher, and Human Resource Business Partner. Personal website with multilingual support." />
   <meta name="keywords" content="Alfred Mayaki, Labour Economist, Human Resource Management, Multilingual, Portfolio" />
@@ -189,7 +189,7 @@ body::before {
 }
 
 /* Phone Frame */
-.phone-frame {
+.academic-frame {
   position: relative;
   width: 100%;
   max-width: 420px;
@@ -197,9 +197,9 @@ body::before {
   border-radius: 45px;
   padding: 12px;
   box-shadow: 0 0 0 2px #2a2a2a, 0 25px 50px -12px rgba(0,0,0,0.8), 0 0 100px rgba(247,223,30,0.1), inset 0 1px 0 rgba(255,255,255,0.1);
-  animation: fadeIn 0.6s ease-out, phoneFloat 6s ease-in-out 0.6s infinite;
+  animation: fadeIn 0.6s ease-out, panelFloat 6s ease-in-out 0.6s infinite;
 }
-@keyframes phoneFloat {
+@keyframes panelFloat {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-8px); }
 }
@@ -207,39 +207,39 @@ body::before {
   from { opacity: 0; transform: translateY(20px); }
   to { opacity: 1; transform: translateY(0); }
 }
-.phone-screen {
+.academic-screen {
   background: var(--bg-card);
   border-radius: 35px;
   overflow: hidden;
   position: relative;
 }
-.dynamic-island {
+.top-banner {
   position: absolute; top: 12px; left: 50%; transform: translateX(-50%);
   width: 120px; height: 32px; background: #000; border-radius: 20px; z-index: 100;
   display: flex; align-items: center; justify-content: center; gap: 8px;
   transition: all 0.3s cubic-bezier(0.4,0,0.2,1); cursor: pointer;
 }
-.dynamic-island:hover { width: 160px; background: linear-gradient(90deg, #000 0%, #1a1a1a 100%); }
-.dynamic-island .camera { width: 10px; height: 10px; background: radial-gradient(circle, #1a3a5c, #0a1a2c); border-radius: 50%; border: 2px solid #2a2a2a; }
-.dynamic-island .indicator { width: 6px; height: 6px; background: var(--js-green); border-radius: 50%; animation: pulse 2s infinite; }
+.top-banner:hover { width: 160px; background: linear-gradient(90deg, #000 0%, #1a1a1a 100%); }
+.top-banner .camera { width: 10px; height: 10px; background: radial-gradient(circle, #1a3a5c, #0a1a2c); border-radius: 50%; border: 2px solid #2a2a2a; }
+.top-banner .indicator { width: 6px; height: 6px; background: var(--js-green); border-radius: 50%; animation: pulse 2s infinite; }
 @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(0.8)} }
-.status-bar {
+.info-strip {
   display: flex; justify-content: space-between; align-items: center;
   padding: 14px 24px 8px; font-family: var(--font-mono); font-size: 12px; font-weight: 600; color: var(--text);
 }
-.status-bar .time { color: var(--js-yellow); }
-.status-bar .icons { display: flex; gap: 6px; align-items: center; }
-.status-bar .icons span { font-size: 14px; }
-.battery { display: flex; align-items: center; gap: 2px; }
-.battery-body { width: 22px; height: 10px; border: 1.5px solid var(--js-green); border-radius: 3px; padding: 1px; }
-.battery-level { height: 100%; width: 80%; background: var(--js-green); border-radius: 1px; }
-.battery-tip { width: 2px; height: 5px; background: var(--js-green); border-radius: 0 1px 1px 0; }
-.phone-app-content {
+.info-strip .time { color: var(--js-yellow); }
+.info-strip .icons { display: flex; gap: 6px; align-items: center; }
+.info-strip .icons span { font-size: 14px; }
+.power-chip { display: flex; align-items: center; gap: 2px; }
+.power-chip-body { width: 22px; height: 10px; border: 1.5px solid var(--js-green); border-radius: 3px; padding: 1px; }
+.power-chip-level { height: 100%; width: 80%; background: var(--js-green); border-radius: 1px; }
+.power-chip-tip { width: 2px; height: 5px; background: var(--js-green); border-radius: 0 1px 1px 0; }
+.academic-content {
   text-align: center; padding: 10px 16px 20px;
   display: flex; flex-direction: column;
   background: linear-gradient(180deg, var(--bg-card) 0%, var(--bg-dark) 100%);
 }
-.home-indicator { width: 134px; height: 5px; background: var(--text-secondary); border-radius: 3px; margin: 12px auto 8px; opacity: 0.5; }
+.page-marker { width: 134px; height: 5px; background: var(--text-secondary); border-radius: 3px; margin: 12px auto 8px; opacity: 0.5; }
 .code-comment { font-family: var(--font-mono); font-size: 11px; color: var(--js-green); opacity: 0.7; margin-bottom: 4px; letter-spacing: 0.5px; }
 .terminal-prompt { font-family: var(--font-mono); font-size: 0.6rem; color: var(--text-secondary); margin-top: 0.75rem; }
 .terminal-prompt::before { content: '$ '; color: var(--js-green); }
@@ -459,10 +459,10 @@ body::before {
 @media (max-width: 800px) { .message-bubble { max-width: calc(100% - 72px); } }
 @media (max-width: 480px) {
   body { padding: 0.5rem; }
-  .phone-frame { border-radius: 0; padding: 0; box-shadow: none; max-width: 100%; }
-  .phone-screen { border-radius: 0; }
-  .dynamic-island { width: 100px; height: 28px; top: 8px; }
-  .phone-app-content { padding: 8px 12px 16px; }
+  .academic-frame { border-radius: 0; padding: 0; box-shadow: none; max-width: 100%; }
+  .academic-screen { border-radius: 0; }
+  .top-banner { width: 100px; height: 28px; top: 8px; }
+  .academic-content { padding: 8px 12px 16px; }
   .top-nav { padding: 0.4rem; }
   .nav-dropdown { right: 0; left: 0; min-width: auto; margin: 0 0.4rem; }
   .search-container { display: flex !important; flex-direction: column; gap: 0.6rem; align-items: stretch; margin: 0.5rem 0; padding: 0.6rem; width: 100%; box-sizing: border-box; max-width: 100%; border-radius: 12px; }
@@ -487,31 +487,30 @@ body::before {
   .search-bar { font-size: 0.88rem; }
   .search-bar::placeholder { font-size: 0.85rem; }
 }
-@media (min-width: 768px) { .phone-frame { max-width: 440px; } }
+@media (min-width: 768px) { .academic-frame { max-width: 440px; } }
 @media (hover: none) and (pointer: coarse) {
   .search-btn:active, .attach-btn:active { transform: scale(0.95); transition: transform 0.1s ease; }
 }
 
   <style id="academic-layout-override">
     body{padding:2rem 1rem!important;align-items:flex-start!important}
-    .phone-frame{max-width:980px!important;border-radius:20px!important;padding:1px!important;background:linear-gradient(180deg,rgba(22,27,34,.96),rgba(13,17,23,.96))!important;box-shadow:0 0 0 1px var(--border-color),0 24px 60px rgba(0,0,0,.45),0 0 60px rgba(124,58,237,.12)!important}
-    .phone-screen{border-radius:20px!important}
-    .dynamic-island,.status-bar,.hi,.home-indicator{display:none!important}
+    .academic-frame{max-width:980px!important;border-radius:20px!important;padding:1px!important;background:linear-gradient(180deg,rgba(22,27,34,.96),rgba(13,17,23,.96))!important;box-shadow:0 0 0 1px var(--border-color),0 24px 60px rgba(0,0,0,.45),0 0 60px rgba(124,58,237,.12)!important}
+    .academic-screen{border-radius:20px!important}
+    .top-banner,.info-strip,.hi,.page-marker{display:none!important}
     .app-content,.profile-container{padding:30px 28px 24px!important;min-height:unset!important}
     .sl,.section-label,.gc,.grid-close{text-align:left!important}
     .lg,.links-grid{padding:0!important;max-width:none!important}
-    @media(max-width:768px){body{padding:1rem .75rem!important}.phone-frame{max-width:100%!important}.app-content,.profile-container{padding:22px 16px 18px!important}}
+    @media(max-width:768px){body{padding:1rem .75rem!important}.academic-frame{max-width:100%!important}.app-content,.profile-container{padding:22px 16px 18px!important}}
   </style>
 </head>
 <body>
-  <div id="particles-js" style="position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:-1;"></div>
 
   <!-- GPT Responses Popup (outside phone frame) -->
   <div class="chatbot-popup" id="gptPopup" aria-hidden="true" role="dialog" aria-label="GPT Responses" style="right:18px;bottom:18px;display:none;">
     <div class="chatbot-header" id="gptHeader">
-      <h3>🤖 GPT Responses</h3>
+      <h3>?? GPT Responses</h3>
       <div class="chatbot-header-buttons">
-        <button class="minimize-chat" id="minimizeGpt" title="Minimize" aria-label="Minimize GPT">−</button>
+        <button class="minimize-chat" id="minimizeGpt" title="Minimize" aria-label="Minimize GPT">-</button>
         <button class="close-chat" id="closeGpt" title="Close" aria-label="Close GPT">&#215;</button>
       </div>
     </div>
@@ -531,30 +530,28 @@ body::before {
   </div>
 
   <!-- Phone Frame -->
-  <div class="phone-frame">
-    <div class="phone-screen">
+  <div class="academic-frame">
+    <div class="academic-screen">
 
       <!-- Dynamic Island -->
-      <div class="dynamic-island">
         <div class="camera"></div>
         <div class="indicator"></div>
       </div>
 
       <!-- Status Bar -->
-      <div class="status-bar">
         <span class="time" id="status-time">00:00</span>
         <div class="icons">
-          <span>📶</span>
-          <span>📡</span>
-          <div class="battery">
-            <div class="battery-body"><div class="battery-level"></div></div>
-            <div class="battery-tip"></div>
+          <span>??</span>
+          <span>??</span>
+          <div class="power-chip">
+            <div class="power-chip-body"><div class="power-chip-level"></div></div>
+            <div class="power-chip-tip"></div>
           </div>
         </div>
       </div>
 
       <!-- App Content -->
-      <div class="phone-app-content">
+      <div class="academic-content">
         <p class="code-comment">/* Claude Chat */</p>
 
         <div style="text-align:center; margin:0.5rem auto;">
@@ -576,9 +573,9 @@ body::before {
     <input type="text" class="search-bar" id="searchInput" placeholder="Listening..." />
     <div class="search-controls" role="group" aria-label="Search controls">
       <input id="docUploadInput" class="sr-only" type="file" accept=".txt,.py,.md,.js,.json,.csv" multiple="multiple" />
-      <button id="docUploadBtn" class="attach-btn" type="button" aria-label="Upload file" title="Upload file">➕</button>
+      <button id="docUploadBtn" class="attach-btn" type="button" aria-label="Upload file" title="Upload file">?</button>
       <button class="search-btn" id="searchBtn" aria-label="Search" title="Ask Claude Opus 4.6">
-        <span style="font-size: 20px;">🔍</span>
+        <span style="font-size: 20px;">??</span>
       </button>
     </div>
 
@@ -595,7 +592,7 @@ body::before {
         if (!files.length) return;
         for (var i = 0; i < files.length; i++) {
           var f = files[i], result = null;
-          try { if (typeof pushChatMessage === 'function') pushChatMessage('Uploading ' + f.name + '…', 'user'); } catch (err) {}
+          try { if (typeof pushChatMessage === 'function') pushChatMessage('Uploading ' + f.name + '�', 'user'); } catch (err) {}
           try { if (typeof extractFile === 'function') result = await extractFile(f); else result = { name: f.name, text: '', filename: f.name, source: 'client-fallback' }; } catch (err) { result = { name: f.name, text: '', filename: f.name, source: 'client-error' }; }
           try { window.uploadedDocs = window.uploadedDocs || []; window.uploadedDocs.push(result); } catch (err) {}
           try { if (typeof pushChatMessage === 'function') pushChatMessage('Document received: ' + f.name, 'bot'); } catch (err) {}
@@ -617,23 +614,23 @@ body::before {
         <div class="select-wrap">
           <label class="visually-hidden" for="languageSelect">Select a language</label>
           <select id="languageSelect" class="language-select" aria-label="Select a world language">
-            <option value="" selected="selected" disabled="disabled">🌍 Select a world language…</option>
-            <option value="index_en.html" lang="en">🇬🇧 English</option>
-            <option value="index_cy.html" lang="cy">🇬🇧 Cymraeg</option>
-            <option value="index_ch.html" lang="zh">🇨🇳 中文（语言）</option>
-            <option value="index_fr.html" lang="fr">🇫🇷 Français</option>
-            <option value="index_de.html" lang="de">🇩🇪 Deutsch</option>
-            <option value="index_es.html" lang="es">🇪🇸 Español</option>
-            <option value="index_he.html" lang="he">🇮🇱 עברית</option>
-            <option value="index_it.html" lang="it">🇮🇹 Italiano</option>
-            <option value="index_jp.html" lang="ja">🇯🇵 日本語</option>
-            <option value="index_ksa.html" lang="ar">🇸🇦 العربية</option>
-            <option value="index_nl.html" lang="nl">🇳🇱 Nederlands</option>
-            <option value="index_ru.html" lang="ru">🇷🇺 Русский</option>
-            <option value="index_pt.html" lang="pt">🇵🇹 Português</option>
-            <option value="index_sw.html" lang="sv">🇸🇪 Svenska</option>
-            <option value="index_tr.html" lang="tr">🇹🇷 Türkçe</option>
-            <option value="index_yb.html" lang="yo">🇳🇬 Yorùbá</option>
+            <option value="" selected="selected" disabled="disabled">?? Select a world language�</option>
+            <option value="index_en.html" lang="en">???? English</option>
+            <option value="index_cy.html" lang="cy">???? Cymraeg</option>
+            <option value="index_ch.html" lang="zh">???? ??(??)</option>
+            <option value="index_fr.html" lang="fr">???? Fran�ais</option>
+            <option value="index_de.html" lang="de">???? Deutsch</option>
+            <option value="index_es.html" lang="es">???? Espa�ol</option>
+            <option value="index_he.html" lang="he">???? ?????</option>
+            <option value="index_it.html" lang="it">???? Italiano</option>
+            <option value="index_jp.html" lang="ja">???? ???</option>
+            <option value="index_ksa.html" lang="ar">???? ???????</option>
+            <option value="index_nl.html" lang="nl">???? Nederlands</option>
+            <option value="index_ru.html" lang="ru">???? ???????</option>
+            <option value="index_pt.html" lang="pt">???? Portugu�s</option>
+            <option value="index_sw.html" lang="sv">???? Svenska</option>
+            <option value="index_tr.html" lang="tr">???? T�rk�e</option>
+            <option value="index_yb.html" lang="yo">???? Yor�b�</option>
           </select>
         </div>
       </div>
@@ -654,29 +651,27 @@ body::before {
         <p class="terminal-prompt">ask_claude()<span class="cursor-blink"></span></p>
 
         <footer class="app-footer" style="margin-top:auto; padding-top:0.75rem; border-top:1px solid var(--border); font-family:var(--font-mono); font-size:0.6rem; color:var(--text-secondary); text-align:center;">
-          <p style="margin:0.4rem 0;">© 2026 Alfred Anate Bodurin Mayaki <span style="color:var(--js-green);">// All rights reserved</span></p>
+          <p style="margin:0.4rem 0;">� 2026 Alfred Anate Bodurin Mayaki <span style="color:var(--js-green);">// All rights reserved</span></p>
           <p style="margin:0.4rem 0;">
             <a href="#" id="cookieSettingsLink" style="color:var(--js-blue); text-decoration:none;">Cookie Settings</a> |
             <a href="privacy-policy.html" style="color:var(--js-blue); text-decoration:none;">Privacy</a> |
             <a href="terms-of-use.html" style="color:var(--js-blue); text-decoration:none;">Terms</a> |
-            <a href="contact.html" style="color:var(--js-blue); text-decoration:none;">🐛 Report Bug</a>
+            <a href="contact.html" style="color:var(--js-blue); text-decoration:none;">?? Report Bug</a>
           </p>
         </footer>
 
-      </div><!-- end .phone-app-content -->
+      </div><!-- end .academic-content -->
 
       <!-- Home Indicator -->
-      <div class="home-indicator"></div>
-
-    </div><!-- end .phone-screen -->
-  </div><!-- end .phone-frame -->
+    </div><!-- end .academic-screen -->
+  </div><!-- end .academic-frame -->
 
   <!-- Chatbot Popup (outside phone frame) -->
   <div class="chatbot-popup" id="chatbotPopup" aria-hidden="true" role="dialog" aria-label="Ask Claude Code">
     <div class="chatbot-header" id="chatbotHeader">
-      <h3>💬 Chat History</h3>
+      <h3>?? Chat History</h3>
       <div class="chatbot-header-buttons">
-        <button class="minimize-chat" id="minimizeChat" title="Minimize" aria-label="Minimize chatbot">−</button>
+        <button class="minimize-chat" id="minimizeChat" title="Minimize" aria-label="Minimize chatbot">-</button>
         <button class="close-chat" id="closeChat" title="Close" aria-label="Close chatbot">&#215;</button>
       </div>
     </div>
@@ -690,7 +685,7 @@ body::before {
   <div class="cookie-banner" id="cookieBanner">
     <div class="cookie-content">
       <div class="cookie-text">
-        🍪 AM-Global™ uses cookies to enhance your experience and analyze site traffic. AM-Global™ uses Google Analytics to understand how visitors interact with our site. By clicking "Accept", you consent to our use of cookies. <a href="#" id="learnMore">Learn more</a>
+        ?? AM-Global� uses cookies to enhance your experience and analyze site traffic. AM-Global� uses Google Analytics to understand how visitors interact with our site. By clicking "Accept", you consent to our use of cookies. <a href="#" id="learnMore">Learn more</a>
       </div>
       <div class="cookie-buttons">
         <button class="cookie-btn" id="rejectCookies">Decline</button>
@@ -700,7 +695,6 @@ body::before {
   </div>
 
   <!-- External Scripts -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
   <script src="claude-body.js"></script>
   <script src="index.js"></script>
   <script src="search-tracker-api.js"></script>
@@ -719,7 +713,7 @@ body::before {
     async function trackSearch(query) {
       if (!query || query.trim().length === 0) return;
       var result = await SearchTrackerAPI.trackSearch(query);
-      if (result.success) console.log('✅ Search tracked:', result.source);
+      if (result.success) console.log('? Search tracked:', result.source);
       if (firebaseInitialized && window.FirebaseSearchTracking) {
         var stopWords = ['the','a','an','and','or','but','in','on','at','to','for','of','with','is','was','are','be','have','has','what','when','where','why','how','can','could','would','should','will'];
         var words = query.toLowerCase().replace(/[^\w\s]/g, ' ').split(/\s+/).filter(function(w) { return w.length > 2 && !stopWords.includes(w); });
@@ -731,13 +725,13 @@ body::before {
     document.addEventListener('DOMContentLoaded', function () {
       function appendPreSend(query) {
         try {
-          if (typeof window.appendChatMessage === 'function') window.appendChatMessage('💬 ' + query, 'user', 'chatbotMessages');
+          if (typeof window.appendChatMessage === 'function') window.appendChatMessage('?? ' + query, 'user', 'chatbotMessages');
           else {
             var messages = document.getElementById('chatbotMessages');
             if (messages) {
               var row = document.createElement('div'); row.className = 'message user';
               var inner = document.createElement('div'); inner.className = 'message-row-inner';
-              var bubble = document.createElement('div'); bubble.className = 'message-bubble'; bubble.textContent = '💬 ' + query;
+              var bubble = document.createElement('div'); bubble.className = 'message-bubble'; bubble.textContent = '?? ' + query;
               inner.appendChild(bubble);
               var meta = document.createElement('div'); meta.className = 'message-meta';
               try { meta.textContent = new Date().toLocaleTimeString(); } catch (e) {}
@@ -803,7 +797,7 @@ body::before {
       else if (!consent) { var b = document.getElementById('cookieBanner'); if (b) b.classList.add('show'); }
       var ac = document.getElementById('acceptCookies'); if (ac) ac.addEventListener('click', function() { setCookie(COOKIE_NAME, 'accepted', COOKIE_EXPIRY_DAYS); initGA(); hideBanner(); });
       var rc = document.getElementById('rejectCookies'); if (rc) rc.addEventListener('click', function() { setCookie(COOKIE_NAME, 'rejected', COOKIE_EXPIRY_DAYS); hideBanner(); });
-      var lm = document.getElementById('learnMore'); if (lm) lm.addEventListener('click', function(e) { e.preventDefault(); alert('Cookie Policy\n\nWe use Google Analytics to:\n• Understand how visitors use our website\n• Improve user experience\n• Analyze site traffic and performance\n\nYou can change your preferences at any time by clearing your browser cookies and refreshing the page.'); });
+      var lm = document.getElementById('learnMore'); if (lm) lm.addEventListener('click', function(e) { e.preventDefault(); alert('Cookie Policy\n\nWe use Google Analytics to:\n� Understand how visitors use our website\n� Improve user experience\n� Analyze site traffic and performance\n\nYou can change your preferences at any time by clearing your browser cookies and refreshing the page.'); });
       var st = document.createElement('style'); st.textContent = '@keyframes slideDown { from { transform: translateY(0); } to { transform: translateY(100%); } }'; document.head.appendChild(st);
     });
     //]]>
@@ -827,7 +821,7 @@ body::before {
       function nowISO() { return new Date().toISOString(); }
       function fmt(iso) { try { return new Date(iso).toLocaleString([], { hour:'2-digit', minute:'2-digit', day:'numeric', month:'short', year:'numeric' }); } catch(e) { return iso; } }
       function sKey(k) { return PFX + k; }
-      function badge(a, k) { if (!a) return; var s = a.querySelector('.menu-ts'); if (!s) { s = document.createElement('span'); s.className = 'menu-ts'; a.appendChild(s); } var v = localStorage.getItem(sKey(k)); s.textContent = v ? fmt(v) : '—'; s.title = v || ''; }
+      function badge(a, k) { if (!a) return; var s = a.querySelector('.menu-ts'); if (!s) { s = document.createElement('span'); s.className = 'menu-ts'; a.appendChild(s); } var v = localStorage.getItem(sKey(k)); s.textContent = v ? fmt(v) : '�'; s.title = v || ''; }
       function record(k) { var ts = nowISO(); localStorage.setItem(sKey(k), ts); document.querySelectorAll(NAV_SEL).forEach(function(a) { var h = a.getAttribute('href') || a.textContent.trim(); if (h === k) badge(a, k); }); SEL_IDS.forEach(function(id) { var s = document.getElementById(id); if (s && s.value === k) s.setAttribute('data-last-activated', ts); }); }
       function init() {
         document.querySelectorAll(NAV_SEL).forEach(function(a) { var h = a.getAttribute('href') || a.textContent.trim(); badge(a, h); a.addEventListener('click', function() { try { record(h); } catch(e) {} }); });

@@ -17,10 +17,10 @@
     body{font-family:'Inter','Segoe UI',sans-serif;background:var(--bg-dark);color:var(--text-primary);margin:0;padding:2rem 1rem;display:flex;align-items:flex-start;justify-content:center;min-height:100vh;overflow-x:hidden}
     body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse at 20% 20%,rgba(124,58,237,.10) 0%,transparent 50%),radial-gradient(ellipse at 80% 80%,rgba(86,156,214,.08) 0%,transparent 50%),radial-gradient(ellipse at 50% 50%,rgba(78,201,176,.05) 0%,transparent 60%);z-index:-2;animation:gShift 15s ease-in-out infinite alternate}
     @keyframes gShift{0%{transform:scale(1) rotate(0)}100%{transform:scale(1.1) rotate(3deg)}}
-    .phone-frame{position:relative;width:100%;max-width:980px;background:linear-gradient(180deg,rgba(22,27,34,.96),rgba(13,17,23,.96));border-radius:20px;padding=1px;box-shadow:0 0 0 1px var(--border-color),0 24px 60px rgba(0,0,0,.45),0 0 60px rgba(124,58,237,.12);animation:fadeIn .6s ease-out}
+    .academic-frame{position:relative;width:100%;max-width:980px;background:linear-gradient(180deg,rgba(22,27,34,.96),rgba(13,17,23,.96));border-radius:20px;padding=1px;box-shadow:0 0 0 1px var(--border-color),0 24px 60px rgba(0,0,0,.45),0 0 60px rgba(124,58,237,.12);animation:fadeIn .6s ease-out}
     @keyframes fadeIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
-    .phone-screen{background:var(--bg-card);border-radius:20px;overflow:hidden;position:relative}
-    .dynamic-island,.status-bar,.hi{display:none}
+    .academic-screen{background:var(--bg-card);border-radius:20px;overflow:hidden;position:relative}
+    .top-banner,.info-strip,.hi{display:none}
     .app-content{padding:30px 28px 24px;min-height:unset;display:flex;flex-direction:column;background:linear-gradient(180deg,var(--bg-card),var(--bg-dark))}
     .code-comment{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--js-green);opacity:.7;margin-bottom:8px;letter-spacing:.5px;text-align:center}
     .hero-logo{display:block;width:80px;height:80px;margin:0 auto 1rem;border-radius:20px;border:3px solid var(--ai-accent);object-fit:cover;box-shadow:0 0 24px var(--ai-glow),0 8px 32px rgba(0,0,0,.4);transition:transform .3s,box-shadow .3s}.hero-logo:hover{transform:scale(1.05) rotate(2deg);box-shadow:0 0 36px var(--ai-glow),0 12px 40px rgba(0,0,0,.5)}
@@ -39,22 +39,21 @@
     .cb{font-family:'JetBrains Mono',monospace;font-size:.6rem;font-weight:700;color:var(--ai-accent);text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px}
     .cc h3{font-family:'Inter',sans-serif;font-size:.88rem;font-weight:600;color:var(--text-primary);margin:0 0 6px;line-height:1.45}.cc p{font-family:'Inter',sans-serif;font-size:.76rem;color:var(--text-secondary);line-height:1.6;margin:0 0 6px}.cc .meta{font-family:'JetBrains Mono',monospace;font-size:.62rem;color:var(--text-secondary);opacity:.8}
     .cl{display:flex;gap:12px;margin-top:8px;flex-wrap:wrap}.cla{font-family:'JetBrains Mono',monospace;font-size:.62rem;color:var(--ai-accent);text-decoration:none;transition:color .2s}.cla:hover{color:var(--js-cyan)}
-    @media(max-width:768px){body{padding:1rem .75rem}.phone-frame{max-width:100%}.app-content{padding:22px 16px 18px}}
+    @media(max-width:768px){body{padding:1rem .75rem}.academic-frame{max-width:100%}.app-content{padding:22px 16px 18px}}
     @media(hover:none)and(pointer:coarse){.lb:active{transform:scale(.98);transition:transform .1s}}
   </style>
   <style id="academic-layout-override">
     body{padding:2rem 1rem!important;align-items:flex-start!important}
-    .phone-frame{max-width:980px!important;border-radius:20px!important;padding:1px!important;background:linear-gradient(180deg,rgba(22,27,34,.96),rgba(13,17,23,.96))!important;box-shadow:0 0 0 1px var(--border-color),0 24px 60px rgba(0,0,0,.45),0 0 60px rgba(124,58,237,.12)!important}
-    .phone-screen{border-radius:20px!important}
-    .dynamic-island,.status-bar,.hi,.home-indicator{display:none!important}
+    .academic-frame{max-width:980px!important;border-radius:20px!important;padding:1px!important;background:linear-gradient(180deg,rgba(22,27,34,.96),rgba(13,17,23,.96))!important;box-shadow:0 0 0 1px var(--border-color),0 24px 60px rgba(0,0,0,.45),0 0 60px rgba(124,58,237,.12)!important}
+    .academic-screen{border-radius:20px!important}
+    .top-banner,.info-strip,.hi,.page-marker{display:none!important}
     .app-content,.profile-container{padding:30px 28px 24px!important;min-height:unset!important}
     .sl,.section-label,.gc,.grid-close{text-align:left!important}
     .lg,.links-grid{padding:0!important;max-width:none!important}
-    @media(max-width:768px){body{padding:1rem .75rem!important}.phone-frame{max-width:100%!important}.app-content,.profile-container{padding:22px 16px 18px!important}}
+    @media(max-width:768px){body{padding:1rem .75rem!important}.academic-frame{max-width:100%!important}.app-content,.profile-container{padding:22px 16px 18px!important}}
   </style>
 </head><body>
-  <div id="particles-js" style="position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:-1;"></div>
-  <div class="phone-frame"><div class="phone-screen">
+  <div class="academic-frame"><div class="academic-screen">
     <div class="app-content">
       <p class="code-comment">/* Research &amp; Publications */</p>
       <a href="/index_en.html"><img src="s200_alfred.mayaki.jpg" alt="Alfred Mayaki" class="hero-logo"></a>
@@ -91,8 +90,6 @@
       </footer>
     </div>
   </div></div>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
-  <script>try{particlesJS.load('particles-js','particles.json',function(){})}catch(e){}</script>
   <script>var t=document.getElementById('status-time');function updateTime(){if(!t)return;var n=new Date();t.textContent=String(n.getHours()).padStart(2,'0')+':'+String(n.getMinutes()).padStart(2,'0')}updateTime();setInterval(updateTime,1e3);document.getElementById('last-updated').textContent=new Date(document.lastModified).toLocaleDateString('en-GB');</script>
   <script src="/cookie-consent.js"></script>
 </body>
