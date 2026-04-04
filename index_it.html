@@ -466,6 +466,16 @@
 
     html { scroll-behavior: smooth; }
   </style>
+  <style id="academic-layout-override">
+    body{padding:2rem 1rem!important;align-items:flex-start!important}
+    .phone-frame{max-width:980px!important;border-radius:20px!important;padding:1px!important;background:linear-gradient(180deg,rgba(22,27,34,.96),rgba(13,17,23,.96))!important;box-shadow:0 0 0 1px var(--border-color),0 24px 60px rgba(0,0,0,.45),0 0 60px rgba(124,58,237,.12)!important}
+    .phone-screen{border-radius:20px!important}
+    .dynamic-island,.status-bar,.hi,.home-indicator{display:none!important}
+    .app-content,.profile-container{padding:30px 28px 24px!important;min-height:unset!important}
+    .sl,.section-label,.gc,.grid-close{text-align:left!important}
+    .lg,.links-grid{padding:0!important;max-width:none!important}
+    @media(max-width:768px){body{padding:1rem .75rem!important}.phone-frame{max-width:100%!important}.app-content,.profile-container{padding:22px 16px 18px!important}}
+  </style>
 </head>
 
 <body>
