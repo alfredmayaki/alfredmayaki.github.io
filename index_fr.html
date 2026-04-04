@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="fr">
 
 <head>
@@ -89,7 +89,7 @@
       position: relative;
     }
 
-    .top-banner {
+    .header-accent {
       position: absolute;
       top: 12px;
       left: 50%;
@@ -107,12 +107,12 @@
       cursor: pointer;
     }
 
-    .top-banner:hover {
+    .header-accent:hover {
       width: 160px;
       background: linear-gradient(90deg, #000 0%, #1a1a1a 100%);
     }
 
-    .top-banner .camera {
+    .header-accent .camera {
       width: 10px;
       height: 10px;
       background: radial-gradient(circle, #1a3a5c 0%, #0a1a2c 100%);
@@ -120,7 +120,7 @@
       border: 2px solid #2a2a2a;
     }
 
-    .top-banner .indicator {
+    .header-accent .indicator {
       width: 6px;
       height: 6px;
       background: var(--js-green);
@@ -133,7 +133,7 @@
       50% { opacity: 0.5; transform: scale(0.8); }
     }
 
-    .info-strip {
+    .page-meta {
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -144,23 +144,23 @@
       color: var(--text-primary);
     }
 
-    .info-strip .time { color: var(--js-yellow); }
+    .page-meta .time { color: var(--js-yellow); }
 
-    .info-strip .icons {
+    .page-meta .icons {
       display: flex;
       gap: 6px;
       align-items: center;
     }
 
-    .info-strip .icons span { font-size: 14px; }
+    .page-meta .icons span { font-size: 14px; }
 
-    .power-chip {
+    .level-indicator {
       display: flex;
       align-items: center;
       gap: 2px;
     }
 
-    .power-chip-body {
+    .level-indicator-body {
       width: 22px;
       height: 10px;
       border: 1.5px solid var(--js-green);
@@ -168,14 +168,14 @@
       padding: 1px;
     }
 
-    .power-chip-level {
+    .level-indicator-level {
       height: 100%;
       width: 80%;
       background: var(--js-green);
       border-radius: 1px;
     }
 
-    .power-chip-tip {
+    .level-indicator-tip {
       width: 2px;
       height: 5px;
       background: var(--js-green);
@@ -385,7 +385,7 @@
 
     .app-footer a:hover { color: var(--js-yellow); }
 
-    .page-marker {
+    .footer-accent {
       width: 134px;
       height: 5px;
       background: var(--text-secondary);
@@ -431,7 +431,7 @@
         max-width: 100%;
       }
       .academic-screen { border-radius: 0; }
-      .top-banner {
+      .header-accent {
         width: 100px;
         height: 28px;
         top: 8px;
@@ -470,7 +470,7 @@
     body{padding:2rem 1rem!important;align-items:flex-start!important}
     .academic-frame{max-width:980px!important;border-radius:20px!important;padding:1px!important;background:linear-gradient(180deg,rgba(22,27,34,.96),rgba(13,17,23,.96))!important;box-shadow:0 0 0 1px var(--border-color),0 24px 60px rgba(0,0,0,.45),0 0 60px rgba(124,58,237,.12)!important}
     .academic-screen{border-radius:20px!important}
-    .top-banner,.info-strip,.hi,.page-marker{display:none!important}
+    .header-accent,.page-meta,.hi,.footer-accent{display:none!important}
     .app-content,.profile-container{padding:30px 28px 24px!important;min-height:unset!important}
     .sl,.section-label,.gc,.grid-close{text-align:left!important}
     .lg,.links-grid{padding:0!important;max-width:none!important}
@@ -484,16 +484,7 @@
     <div class="academic-screen">
         <div class="camera"></div>
         <div class="indicator"></div>
-      </div>
-        <span class="time" id="status-time">00:00</span>
-        <div class="icons">
-          <span>📶</span>
-          <span>📡</span>
-          <div class="power-chip">
-            <div class="power-chip-body">
-              <div class="power-chip-level"></div>
-            </div>
-            <div class="power-chip-tip"></div>
+      </div>`r`n            <div class="level-indicator-tip"></div>
           </div>
         </div>
       </div>

@@ -350,10 +350,10 @@ body::before {
 @media (max-width: 800px) { .message-bubble { max-width: calc(100% - 72px); } }
 @media (max-width: 480px) {
   body { padding: 0.5rem; }
-  .academic-frame { border-radius: 0; padding: 0; box-shadow: none; max-width: 100%; }
-  .academic-screen { border-radius: 0; }
+  .phone-frame { border-radius: 0; padding: 0; box-shadow: none; max-width: 100%; }
+  .phone-screen { border-radius: 0; }
   .dynamic-island { width: 100px; height: 28px; top: 8px; }
-  .academic-app-content { padding: 8px 12px 16px; }
+  .phone-app-content { padding: 8px 12px 16px; }
   .top-nav { padding: 0.4rem; }
   .nav-dropdown { right: 0; left: 0; min-width: auto; margin: 0 0.4rem; }
   .search-container { display: flex !important; flex-direction: column; gap: 0.6rem; align-items: stretch; margin: 0.5rem 0; padding: 0.6rem; width: 100%; box-sizing: border-box; max-width: 100%; border-radius: 12px; }
@@ -378,20 +378,20 @@ body::before {
   .search-bar { font-size: 0.88rem; }
   .search-bar::placeholder { font-size: 0.85rem; }
 }
-@media (min-width: 768px) { .academic-frame { max-width: 440px; } }
+@media (min-width: 768px) { .phone-frame { max-width: 440px; } }
 @media (hover: none) and (pointer: coarse) {
   .search-btn:active, .attach-btn:active { transform: scale(0.95); transition: transform 0.1s ease; }
 }
 
   <style id="academic-layout-override">
     body{padding:2rem 1rem!important;align-items:flex-start!important}
-    .academic-frame{max-width:980px!important;border-radius:20px!important;padding:1px!important;background:linear-gradient(180deg,rgba(22,27,34,.96),rgba(13,17,23,.96))!important;box-shadow:0 0 0 1px var(--border-color),0 24px 60px rgba(0,0,0,.45),0 0 60px rgba(124,58,237,.12)!important}
-    .academic-screen{border-radius:20px!important}
+    .phone-frame{max-width:980px!important;border-radius:20px!important;padding:1px!important;background:linear-gradient(180deg,rgba(22,27,34,.96),rgba(13,17,23,.96))!important;box-shadow:0 0 0 1px var(--border-color),0 24px 60px rgba(0,0,0,.45),0 0 60px rgba(124,58,237,.12)!important}
+    .phone-screen{border-radius:20px!important}
     .dynamic-island,.status-bar,.hi,.home-indicator{display:none!important}
     .app-content,.profile-container{padding:30px 28px 24px!important;min-height:unset!important}
     .sl,.section-label,.gc,.grid-close{text-align:left!important}
     .lg,.links-grid{padding:0!important;max-width:none!important}
-    @media(max-width:768px){body{padding:1rem .75rem!important}.academic-frame{max-width:100%!important}.app-content,.profile-container{padding:22px 16px 18px!important}}
+    @media(max-width:768px){body{padding:1rem .75rem!important}.phone-frame{max-width:100%!important}.app-content,.profile-container{padding:22px 16px 18px!important}}
   </style>
 </head>
 <body>

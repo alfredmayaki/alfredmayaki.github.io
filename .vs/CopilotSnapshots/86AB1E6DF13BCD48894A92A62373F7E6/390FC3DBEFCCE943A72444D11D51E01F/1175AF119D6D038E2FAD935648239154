@@ -350,10 +350,10 @@ body::before {
 @media (max-width: 800px) { .message-bubble { max-width: calc(100% - 72px); } }
 @media (max-width: 480px) {
   body { padding: 0.5rem; }
-  .academic-frame { border-radius: 0; padding: 0; box-shadow: none; max-width: 100%; }
-  .academic-screen { border-radius: 0; }
+  .phone-frame { border-radius: 0; padding: 0; box-shadow: none; max-width: 100%; }
+  .phone-screen { border-radius: 0; }
   .dynamic-island { width: 100px; height: 28px; top: 8px; }
-  .academic-app-content { padding: 8px 12px 16px; }
+  .phone-app-content { padding: 8px 12px 16px; }
   .top-nav { padding: 0.4rem; }
   .nav-dropdown { right: 0; left: 0; min-width: auto; margin: 0 0.4rem; }
   .search-container { display: flex !important; flex-direction: column; gap: 0.6rem; align-items: stretch; margin: 0.5rem 0; padding: 0.6rem; width: 100%; box-sizing: border-box; max-width: 100%; border-radius: 12px; }
@@ -378,20 +378,20 @@ body::before {
   .search-bar { font-size: 0.88rem; }
   .search-bar::placeholder { font-size: 0.85rem; }
 }
-@media (min-width: 768px) { .academic-frame { max-width: 440px; } }
+@media (min-width: 768px) { .phone-frame { max-width: 440px; } }
 @media (hover: none) and (pointer: coarse) {
   .search-btn:active, .attach-btn:active { transform: scale(0.95); transition: transform 0.1s ease; }
 }
 
   <style id="academic-layout-override">
     body{padding:2rem 1rem!important;align-items:flex-start!important}
-    .academic-frame{max-width:980px!important;border-radius:20px!important;padding:1px!important;background:linear-gradient(180deg,rgba(22,27,34,.96),rgba(13,17,23,.96))!important;box-shadow:0 0 0 1px var(--border-color),0 24px 60px rgba(0,0,0,.45),0 0 60px rgba(124,58,237,.12)!important}
-    .academic-screen{border-radius:20px!important}
+    .phone-frame{max-width:980px!important;border-radius:20px!important;padding:1px!important;background:linear-gradient(180deg,rgba(22,27,34,.96),rgba(13,17,23,.96))!important;box-shadow:0 0 0 1px var(--border-color),0 24px 60px rgba(0,0,0,.45),0 0 60px rgba(124,58,237,.12)!important}
+    .phone-screen{border-radius:20px!important}
     .dynamic-island,.status-bar,.hi,.home-indicator{display:none!important}
     .app-content,.profile-container{padding:30px 28px 24px!important;min-height:unset!important}
     .sl,.section-label,.gc,.grid-close{text-align:left!important}
     .lg,.links-grid{padding:0!important;max-width:none!important}
-    @media(max-width:768px){body{padding:1rem .75rem!important}.academic-frame{max-width:100%!important}.app-content,.profile-container{padding:22px 16px 18px!important}}
+    @media(max-width:768px){body{padding:1rem .75rem!important}.phone-frame{max-width:100%!important}.app-content,.profile-container{padding:22px 16px 18px!important}}
   </style>
 </head>
 <body>
@@ -673,6 +673,42 @@ body::before {
       var st = document.createElement('style'); st.textContent = '@keyframes slideDown { from { transform: translateY(0); } to { transform: translateY(100%); } }'; document.head.appendChild(st);
     });
     //]]>
+  </script>
+
+  <!-- WebAudio tick + menu timestamps -->
+  <script>
+  //<![CDATA[
+  document.addEventListener('DOMContentLoaded', function () {
+    var selects = [document.getElementById('navigationSelect'), document.getElementById('languageSelect')].filter(Boolean);
+    if (!selects.length) return;
+    var AudioCtx = window.AudioContext || window.webkitAudioContext, audioCtx = AudioCtx ? new AudioCtx() : null, userInteracted = false;
+    function enableSound() { userInteracted = true; if (audioCtx && audioCtx.state === 'suspended') audioCtx.resume(); window.removeEventListener('pointerdown', enableSound); window.removeEventListener('keydown', enableSound); }
+    window.addEventListener('pointerdown', enableSound, { once: true }); window.addEventListener('keydown', enableSound, { once: true });
+    function playTick() { if (!audioCtx || !userInteracted) return; var now = audioCtx.currentTime, o = audioCtx.createOscillator(), g = audioCtx.createGain(); o.type = 'sine'; o.frequency.setValueAtTime(1100, now); g.gain.setValueAtTime(0.0001, now); o.connect(g); g.connect(audioCtx.destination); o.start(now); g.gain.exponentialRampToValueAtTime(0.06, now + 0.01); g.gain.exponentialRampToValueAtTime(0.0001, now + 0.12); o.stop(now + 0.14); }
+    selects.forEach(function(sel) { var li = sel.selectedIndex; sel.addEventListener('change', function() { playTick(); li = sel.selectedIndex; }); sel.addEventListener('keydown', function(e) { if (['ArrowUp','ArrowDown','PageUp','PageDown','Home','End'].includes(e.key)) setTimeout(function() { if (sel.selectedIndex !== li) { playTick(); li = sel.selectedIndex; } }, 60); }); });
+
+    // Menu timestamp tracking
+    (function () {
+      var NAV_SEL = '.top-nav .nav-links a', SEL_IDS = ['navigationSelect','languageSelect'], PFX = 'menu_ts_';
+      function nowISO() { return new Date().toISOString(); }
+      function fmt(iso) { try { return new Date(iso).toLocaleString([], { hour:'2-digit', minute:'2-digit', day:'numeric', month:'short', year:'numeric' }); } catch(e) { return iso; } }
+      function sKey(k) { return PFX + k; }
+      function badge(a, k) { if (!a) return; var s = a.querySelector('.menu-ts'); if (!s) { s = document.createElement('span'); s.className = 'menu-ts'; a.appendChild(s); } var v = localStorage.getItem(sKey(k)); s.textContent = v ? fmt(v) : '—'; s.title = v || ''; }
+      function record(k) { var ts = nowISO(); localStorage.setItem(sKey(k), ts); document.querySelectorAll(NAV_SEL).forEach(function(a) { var h = a.getAttribute('href') || a.textContent.trim(); if (h === k) badge(a, k); }); SEL_IDS.forEach(function(id) { var s = document.getElementById(id); if (s && s.value === k) s.setAttribute('data-last-activated', ts); }); }
+      function init() {
+        document.querySelectorAll(NAV_SEL).forEach(function(a) { var h = a.getAttribute('href') || a.textContent.trim(); badge(a, h); a.addEventListener('click', function() { try { record(h); } catch(e) {} }); });
+        SEL_IDS.forEach(function(id) { var s = document.getElementById(id); if (!s) return; s.addEventListener('change', function() { var v = String(s.value || '').trim(); if (v) record(v); }); });
+      }
+      if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else init();
+      window.__recordMenuTimestamp = record;
+    })();
+  });
+  //]]>
+  </script>
+
+  <!-- Status bar clock -->
+  <script>
+    function updateTime(){var now=new Date();var h=String(now.getHours()).padStart(2,'0');var m=String(now.getMinutes()).padStart(2,'0');var el=document.getElementById('status-time');if(el)el.textContent=h+':'+m;}updateTime();setInterval(updateTime,1000);
   </script>
 
 </body>
