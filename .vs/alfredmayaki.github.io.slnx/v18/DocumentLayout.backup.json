@@ -3,12 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\44746\\AppData\\Local\\Microsoft\\WindowsApps\\wget\\repo\\alfredmayaki.github.io\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\44746\\AppData\\Local\\Microsoft\\WindowsApps\\wget\\repo\\alfredmayaki.github.io\\southwark.html||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:southwark.html||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\44746\\AppData\\Local\\Microsoft\\WindowsApps\\wget\\repo\\alfredmayaki.github.io\\research.html||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:research.html||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\44746\\AppData\\Local\\Microsoft\\WindowsApps\\wget\\repo\\alfredmayaki.github.io\\southwark.html||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:southwark.html||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\44746\\AppData\\Local\\Microsoft\\WindowsApps\\wget\\repo\\alfredmayaki.github.io\\projects.html||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
@@ -81,10 +81,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\44746\\AppData\\Local\\Microsoft\\WindowsApps\\wget\\repo\\alfredmayaki.github.io\\index_he.html||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:index_he.html||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\44746\\AppData\\Local\\Microsoft\\WindowsApps\\wget\\repo\\alfredmayaki.github.io\\index_nl.html||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:index_nl.html||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
     }
   ],
   "DocumentGroupContainers": [
@@ -94,7 +90,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 164,
-          "SelectedChildIndex": 6,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Bookmark",
@@ -118,8 +114,7 @@
               "RelativeToolTip": "index_de.html",
               "ViewState": "AgIAADYCAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
-              "WhenOpened": "2026-02-21T20:31:52.72Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-21T20:31:52.72Z"
             },
             {
               "$type": "Document",
@@ -131,12 +126,11 @@
               "RelativeToolTip": "projects.html",
               "ViewState": "AgIAAGMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
-              "WhenOpened": "2026-02-21T09:15:14.576Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-21T09:15:14.576Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "research.html",
               "DocumentMoniker": "C:\\Users\\44746\\AppData\\Local\\Microsoft\\WindowsApps\\wget\\repo\\alfredmayaki.github.io\\research.html",
               "RelativeDocumentMoniker": "research.html",
@@ -149,7 +143,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "southwark.html",
               "DocumentMoniker": "C:\\Users\\44746\\AppData\\Local\\Microsoft\\WindowsApps\\wget\\repo\\alfredmayaki.github.io\\southwark.html",
               "RelativeDocumentMoniker": "southwark.html",
@@ -170,8 +164,7 @@
               "RelativeToolTip": "index.html",
               "ViewState": "AgIAAO4CAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
-              "WhenOpened": "2026-02-21T13:00:25.991Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-21T13:00:25.991Z"
             },
             {
               "$type": "Document",
@@ -183,8 +176,7 @@
               "RelativeToolTip": "contact.html",
               "ViewState": "AgIAAGIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
-              "WhenOpened": "2026-02-21T09:15:15.106Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-21T09:15:15.106Z"
             },
             {
               "$type": "Document",
@@ -196,8 +188,7 @@
               "RelativeToolTip": "claude.html",
               "ViewState": "AgIAAJECAAAAAAAAAAAQwAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
-              "WhenOpened": "2026-04-04T19:52:59.421Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-04T19:52:59.421Z"
             },
             {
               "$type": "Document",
@@ -209,8 +200,7 @@
               "RelativeToolTip": "calendar.html",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
-              "WhenOpened": "2026-02-21T20:23:29.359Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-21T20:23:29.359Z"
             },
             {
               "$type": "Document",
@@ -222,8 +212,7 @@
               "RelativeToolTip": "about.html",
               "ViewState": "AgIAAFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
-              "WhenOpened": "2026-02-21T09:15:13.212Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-21T09:15:13.212Z"
             },
             {
               "$type": "Document",
@@ -235,8 +224,7 @@
               "RelativeToolTip": "index_fr.html",
               "ViewState": "AgIAADYCAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
-              "WhenOpened": "2026-04-04T19:53:03.66Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-04T19:53:03.66Z"
             },
             {
               "$type": "Document",
@@ -248,8 +236,7 @@
               "RelativeToolTip": "index_es.html",
               "ViewState": "AgIAADYCAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
-              "WhenOpened": "2026-04-04T19:53:03.149Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-04T19:53:03.149Z"
             },
             {
               "$type": "Document",
@@ -261,8 +248,7 @@
               "RelativeToolTip": "index_en.html",
               "ViewState": "AgIAAEIAAAAAAAAAAAAAACQAAACPAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
-              "WhenOpened": "2026-02-21T21:02:15.764Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-21T21:02:15.764Z"
             },
             {
               "$type": "Document",
@@ -274,8 +260,7 @@
               "RelativeToolTip": "claude-body.js",
               "ViewState": "AgIAAGAAAAAAAAAAAAAQwHYAAAAmAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
-              "WhenOpened": "2026-03-01T13:40:03.638Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-01T13:40:03.638Z"
             },
             {
               "$type": "Document",
@@ -287,8 +272,7 @@
               "RelativeToolTip": "index_he.html",
               "ViewState": "AgIAAD8AAAAAAAAAAABRwAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
-              "WhenOpened": "2026-04-04T19:53:04.199Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-04T19:53:04.199Z"
             },
             {
               "$type": "Document",
@@ -366,7 +350,7 @@
         },
         {
           "DockedWidth": 164,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": -1,
           "Children": [
             {
               "$type": "Bookmark",
@@ -375,23 +359,6 @@
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{1c64b9c2-e352-428e-a56d-0ace190b99a6}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 20,
-              "Title": "index_nl.html",
-              "DocumentMoniker": "C:\\Users\\44746\\AppData\\Local\\Microsoft\\WindowsApps\\wget\\repo\\alfredmayaki.github.io\\index_nl.html",
-              "RelativeDocumentMoniker": "index_nl.html",
-              "ToolTip": "C:\\Users\\44746\\AppData\\Local\\Microsoft\\WindowsApps\\wget\\repo\\alfredmayaki.github.io\\index_nl.html",
-              "RelativeToolTip": "index_nl.html",
-              "ViewState": "AgIAABkAAAAAAAAAAMBdwAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
-              "WhenOpened": "2026-04-04T19:55:26.173Z",
-              "EditorCaption": ""
             }
           ]
         },
