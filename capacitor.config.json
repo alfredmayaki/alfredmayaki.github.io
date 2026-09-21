@@ -1,9 +1,0 @@
-{
-  "appId": "com.alfredmayaki.portfolio",
-  "appName": "Alfred Mayaki",
-  "webDir": ".",
-  "bundledWebRuntime": false,
-  "ios": {
-    "contentInset": "always"
-  }
-}
