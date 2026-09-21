@@ -1,0 +1,2530 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Alfred Anate Bodurin Mayaki — Official Website</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Alfred Anate Bodurin Mayaki - Labour Economist, Public Policy Researcher, and Human Resource Business Partner. Personal website with multilingual support.">
+  <meta name="keywords" content="Alfred Mayaki, Labour Economist, Human Resource Management, Multilingual, Portfolio">
+  <meta name="author" content="Alfred Anate Bodurin Mayaki">
+
+  <!-- Google Analytics - Only loads if consent given -->
+  <script id="ga-script">
+    // Google Analytics will be initialized after consent
+  </script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" />
+
+  <!-- ChatGPT / external API config removed (abandoned) -->
+
+  <style>
+:root {
+  --font-sans: "Segoe UI", system-ui, -apple-system, Arial, sans-serif;
+  --bg-overlay: rgba(22, 22, 22, 0.92);
+  --footer-bg: #000000; /* unified footer / landing background */
+  --panel: #161616;
+  --panel-2: #141414;
+  --surface: #2a2a2a;
+  --text: #ffffff;
+  --text-muted: #979797;
+  --text-secondary: #b0b0b0;
+  --text-secondary: #b0b0b0;
+  --border: #464242;
+  --border-soft: rgba(255, 255, 255, 0.06);
+  --brand: #3d4ee9;
+  --brand-hover: #5563f0;
+  --radius-md: 14px;
+  --radius-lg: 18px;
+  --radius-pill: 999px;
+  --shadow-pop: 0 10px 30px rgba(0,0,0,0.6);
+  /* intensified brand shadow for focused states */
+  --shadow-brand: 0 14px 48px rgba(61,78,233,0.40);
+  --transition-fast: 180ms;
+  --transition-med: 300ms;
+}
+
+/* Soft horizontal separator used below the footer for supervisory note */
+.soft-sep {
+  border: 0;
+  height: 2px; /* slightly thicker so it's clearly visible */
+  background: linear-gradient(90deg, rgba(255,255,255,0.06), rgba(255,255,255,0.14), rgba(255,255,255,0.06));
+  margin: 0.8rem auto 0.4rem;
+  max-width: 720px;
+  opacity: 1; /* fully visible */
+}
+
+/* Intro header (title + image) */
+.site-intro {
+  display: flex;
+  gap: 0.9rem;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  margin: 0 0 1.25rem;
+  padding: 0.4rem 0.6rem;
+}
+.site-intro img {
+  width: 110px;
+  height: 110px;
+  border-radius: 999px;
+  object-fit: cover;
+  border: 3px solid rgba(255,255,255,0.06);
+  box-shadow: 0 8px 24px rgba(61,78,233,0.08);
+}
+.site-intro h1 {
+  margin: 0;
+  font-size: 1.15rem;
+  color: var(--text);
+  font-weight: 700;
+  line-height: 1.1;
+}
+.site-intro p {
+  margin: 0.35rem 0 0;
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+}
+
+/* Prominent glowing heading above the search area */
+.page-welcome {
+  color: var(--text);
+  font-size: 1.6rem;
+  font-weight: 700;
+  line-height: 1.05;
+  text-shadow:
+    0 2px 6px rgba(61,78,233,0.36),
+    0 6px 20px rgba(61,78,233,0.18),
+    0 0 28px rgba(212,175,55,0.06);
+  transition: text-shadow var(--transition-med), color var(--transition-med);
+}
+
+/* Tagline image (responsive) */
+.page-subtitle .tagline-image {
+  display: inline-block;
+  max-width: 720px;
+  width: 100%;
+  height: auto;
+  margin: 0.4rem auto 0;
+}
+
+/* Page container (index_en look) */
+html {
+  /* Use a solid background to ensure opacity and avoid the page background image showing through */
+  background: var(--footer-bg);
+  min-height: 100vh;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  /* solid opaque background matching footer/landing */
+  background: var(--footer-bg);
+  color: var(--text-muted);
+  line-height: 1.6;
+  font-size: 16px;
+  max-width: 990px;
+  margin: 2em auto;
+  padding: 2em;
+  border: 3px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-pop);
+  min-height: auto;
+}
+
+/* ---------- Top navigation (new) ---------- */
+.top-nav {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:1rem;
+  max-width: 980px;
+  margin: 0  auto 1.25rem;
+  padding: 0.45rem 0.6rem;
+  background: transparent;
+  box-sizing: border-box;
+}
+.top-nav .brand {
+  color: var(--text);
+  font-weight: 700;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.98rem;
+}
+.top-nav .nav-links {
+  display:flex;
+  gap:0.5rem;
+  align-items:center;
+  flex-wrap:wrap;
+}
+.top-nav .nav-links a {
+  color: var(--text-secondary);
+  text-decoration: none;
+  padding: 0.45rem 0.7rem;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  transition: background var(--transition-fast), color var(--transition-fast), transform var(--transition-fast);
+}
+.top-nav .nav-links a:hover,
+.top-nav .nav-links a:focus {
+  background: rgba(61,78,233,0.08);
+  color: var(--text);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-brand);
+  outline: none;
+}
+@media (max-width: 600px) {
+  .top-nav { flex-direction: column; align-items: flex-start; gap: 0.6rem; padding: 0.4rem; }
+  .top-nav .nav-links { width: 100%; justify-content: space-between; }
+
+  .top-nav .brand {
+    order: 1;
+    margin-bottom: 0.5rem;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+}
+
+/* Add into your existing <style> block (near other @media rules). These rules realign the search controls, shrink touch targets, reduce page padding, and ensure the centered report button sits above the chatbot on narrow screens. */
+@media (max-width: 600px) {
+  /* Make the page less crowded on small screens */
+  body {
+    margin: 1rem auto;
+    padding: 1rem;
+    max-width: calc(100% - 2rem);
+    border-radius: 12px;
+  }
+
+  .search-container {
+    display: flex !important;
+    flex-direction: column;
+    gap: 0.6rem;
+    align-items: stretch;
+    width: calc(100% - 2rem);
+    max-width: none;
+    margin: 1rem auto;
+    padding: 0.6rem;
+  }
+
+  .search-bar {
+    order: 0;
+    width: 100%;
+    padding: 0.85rem 0.9rem;
+    font-size: 1rem;
+  }
+
+  /* Keep attach + search controls on a single row but aligned to the right */
+  .search-controls {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+
+  /* Make the paperclip label behave like a button for keyboard users */
+  label[for="docUploadInput"].attach-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Ensure chatbot popup fits comfortably on small viewports */
+  .chatbot-popup {
+    right: 12px !important;
+    left: 12px !important;
+    bottom: 12px !important;
+    width: auto !important;
+    max-width: none !important;
+    max-height: 70vh !important;
+    border-radius: 12px !important;
+  }
+
+  .chatbot-popup.minimized {
+    width: calc(100vw - 24px) !important;
+    max-height: 64px !important;
+  }
+}
+
+/* Mobile: ensure search bar and controls fit with side gaps */
+@media (max-width: 600px) {
+  .search-container {
+    margin: 1rem 16px;         /* 16px gap left/right from viewport edge */
+    padding: 0.6rem;          /* internal padding so controls don't touch edges */
+    width: auto;
+    box-sizing: border-box;
+    max-width: calc(100% - 32px);
+    border-radius: 12px;
+  }
+
+  .search-bar {
+    width: 100%;
+    min-width: 0;             /* allow flex shrink */
+    box-sizing: border-box;
+  }
+
+  .search-controls {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end; /* keep buttons aligned and inside padded area */
+    gap: 0.10rem;
+  }
+
+  .attach-btn,
+  .search-btn {
+    flex: 0 0 48px;
+    width: 48px;
+    height: 48px;
+    padding: 0;
+  }
+}
+
+/* ---------- Cookie banner (smooth slide) ---------- */
+.cookie-banner {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 9999;
+  background: var(--panel);
+  border-top: 2px solid var(--border);
+  box-shadow: 0 -8px 30px rgba(0,0,0,0.6);
+  padding: 1.1rem 1.25rem;
+  transform: translateY(110%);
+  opacity: 0;
+  pointer-events: none;
+  transition: transform var(--transition-med) ease, opacity var(--transition-med) ease;
+  display: flex;
+  justify-content: center;
+}
+.cookie-banner.show {
+  transform: translateY(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Cookie content layout */
+.cookie-content {
+  width: 100%;
+  max-width: 1100px;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.cookie-text {
+  color: var(--text);
+  line-height: 1.4;
+  max-width: calc(100% - 260px);
+}
+.cookie-text a { color: var(--brand); text-decoration: underline; }
+
+/* Cookie buttons */
+.cookie-buttons {
+  display: flex;
+  gap: 0.6rem;
+}
+.cookie-btn {
+  padding: 0.6rem 1rem;
+  color: var(--text);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform var(--transition-fast), background var(--transition-fast), box-shadow var(--transition-fast);
+}
+.cookie-btn.accept {
+  background: var(--brand);
+  border-color: var(--brand);
+  font-weight: 600;
+}
+.cookie-btn:hover { transform: translateY(-2px); }
+.cookie-btn:focus { outline: 3px solid rgba(61,78,233,0.18); }
+
+/* ---------- Landing / general (kept) ---------- */
+.landing-container { width:100%; max-width:1024px; margin:0 auto; padding:0; background: var(--footer-bg) !important; background-image: none !important; opacity: 1 !important; color: var(--text, #ffffff); }
+.main-content { width:100%; display:flex; flex-direction:column; align-items:center; justify-content:center;
+  display: grid;
+  grid-template-rows: auto 1fr auto; /* Header, main, footer */
+  gap: 2em;
+}
+
+/* ---------- Make landing containers jet black ---------- */
+.landing-container {
+  /* solid jet black background; remove any background image showing through */
+  background-color: var(--footer-bg) !important;
+  background-image: none !important;
+  opacity: 1 !important;
+  color: var(--text, #ffffff);
+}
+
+/* ---------- Search bar (integrated and smooth) ---------- */
+.search-container {
+  width: 100%;
+  max-width: 650px;
+  margin: 2em auto;
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  border-radius: calc(var(--radius-md) - 4px);
+  padding: 0.45rem;
+  /* keep the base depth and also show the brand glow permanently */
+  box-shadow: 0 8px 30px rgba(0,0,0,0.45),
+              var(--shadow-brand),
+              0 0 32px rgba(61,78,233,0.28),
+              0 4px 20px rgba(61,78,233,0.18);
+  border: 1px solid rgba(255,255,255,0.03);
+  transition: box-shadow var(--transition-med);
+  position: relative; /* needed for the decorative sparkling border */
+  overflow: visible;  /* allow the decorative border to show outside */
+}
+
+/* Gold border removed — decorative border and animation intentionally omitted */
+
+/* stronger, slightly more intense blue glow when focused */
+.search-container:focus-within {
+  box-shadow:
+    var(--shadow-brand),
+    0 0 22px rgba(61,78,233,0.18),
+    0 2px 12px rgba(61,78,233,0.10);
+  outline: 2px solid rgba(61,78,233,0.06);
+  transition: box-shadow var(--transition-med), outline var(--transition-med);
+}
+
+.search-bar {
+  flex: 1;
+  padding: 0.9rem 1rem;
+  color: var(--text);
+  background: transparent;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  outline: none;
+  caret-color: var(--brand);
+  min-width: 0;              /* allow input to shrink inside flex container */
+  box-sizing: border-box;
+}
+.search-bar::placeholder { color: var(--text-secondary); opacity:0.9; }
+
+/* make search button shadow match the stronger focus glow */
+.search-btn {
+  width: 48px;
+  height: 48px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--brand);
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast), background var(--transition-fast);
+  box-shadow: 0 12px 36px rgba(61,78,233,0.26);
+}
+.search-btn:hover {
+  transform: translateY(-2px);
+  background: var(--brand-hover);
+  box-shadow: 0 18px 54px rgba(61,78,233,0.36);
+}
+.search-btn svg { width:20px; height:20px; fill: #fff; }
+
+/* Quick OpenAI result area */
+.ai-quick-btn {
+  display: inline-block;
+  margin: 0.6rem auto 0;
+  padding: 0.55rem 1rem;
+  background: var(--brand);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 0.95rem;
+  box-shadow: 0 8px 24px rgba(61,78,233,0.12);
+}
+.ai-quick-btn:hover { background: var(--brand-hover); transform: translateY(-1px); }
+.openai-quick-result {
+  display: none;
+  max-width: 650px;
+  margin: 0.6rem auto 0;
+  padding: 0.85rem;
+  background: var(--panel-2);
+  color: var(--text);
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.03);
+  box-sizing: border-box;
+  font-size: 0.95rem;
+  white-space: pre-wrap;
+}
+
+/* upload / attach button (paperclip) to sit beside the search button */
+.attach-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px; /* match .search-btn size */
+  height: 48px; /* match .search-btn size */
+  padding: 0;
+  border-radius: 10px;
+  background: rgba(255,255,255,0.02);
+  color: #cfcfcf;          /* light grey */
+  border: 1px solid rgba(255,255,255,0.03);
+  cursor: pointer;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1;
+  transition: transform var(--transition-fast), background var(--transition-fast), box-shadow var(--transition-fast), color var(--transition-fast);
+  box-sizing: border-box;
+}
+.attach-btn:hover,
+.attach-btn:focus {
+  color: var(--text);
+  background: rgba(61,78,233,0.06);
+  box-shadow: var(--shadow-brand);
+  transform: translateY(-2px);
+  outline: none;
+}
+
+/* Audio visualizer button specific tweaks (matches attach/search size and visual tone) */
+.visualizer-btn {
+  background: linear-gradient(90deg, rgba(61,78,233,0.06), rgba(255,255,255,0.02));
+  border: 1px solid rgba(255,255,255,0.03);
+  padding: 0;
+}
+
+.visualizer-btn {
+  /* Inline inside the search controls so it sits between attach and search buttons */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  box-sizing: border-box;
+  margin: 0;
+  position: relative;
+}
+.visualizer-btn svg { display:block; width:20px; height:20px; }
+.visualizer-icon { color: #ffffff; }
+.visualizer-btn { background: linear-gradient(90deg, rgba(61,78,233,0.08), rgba(255,255,255,0.02)); border: 1px solid rgba(255,255,255,0.04); }
+.visualizer-btn.active { box-shadow: 0 18px 54px rgba(61,78,233,0.36); /* keep elevated shadow but do not translate when active */ transform: none; }
+
+/* When active, keep the button visually elevated but prevent any translate movement on hover/focus/active */
+.visualizer-btn.active:hover,
+.visualizer-btn.active:focus,
+.visualizer-btn.active:active {
+  transform: none;
+}
+
+/* Hover / focus for visualizer to match other controls */
+.visualizer-btn:hover,
+.visualizer-btn:focus {
+  color: var(--text);
+  background: rgba(61,78,233,0.06);
+  box-shadow: var(--shadow-brand);
+  transform: translateY(-2px);
+  outline: none;
+}
+
+/* Visualizer icon bar animation */
+.visualizer-icon { display:block; color: #cfcfcf; }
+.visualizer-icon .bar { transform-origin: center bottom; transition: transform 220ms ease; }
+.visualizer-btn.active .visualizer-icon .bar { transition: transform 140ms linear; }
+.visualizer-icon .b1 { transform: scaleY(0.6); }
+.visualizer-icon .b2 { transform: scaleY(0.8); }
+.visualizer-icon .b3 { transform: scaleY(1); }
+.visualizer-icon .b4 { transform: scaleY(0.75); }
+.visualizer-icon .b5 { transform: scaleY(0.65); }
+
+/* pulsate keyframes for active state */
+@keyframes pulseBar {
+  0% { transform: scaleY(0.4); }
+  50% { transform: scaleY(1); }
+  100% { transform: scaleY(0.5); }
+}
+.visualizer-btn.active .visualizer-icon .bar { animation: pulseBar 700ms infinite ease-in-out; }
+.visualizer-btn.active .visualizer-icon .b2 { animation-duration: 620ms; }
+.visualizer-btn.active .visualizer-icon .b3 { animation-duration: 540ms; }
+.visualizer-btn.active .visualizer-icon .b4 { animation-duration: 700ms; }
+.visualizer-btn.active .visualizer-icon .b5 { animation-duration: 660ms; }
+
+/* small canvas for basic audio visualizer (hidden by default) */
+.visualizer-canvas {
+  border-radius: 8px;
+  background: linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  display: block;
+  width: 240px;         /* default visual width when space allows */
+  max-width: 100%;      /* never overflow parent on small screens */
+  height: 48px;         /* CSS height; actual canvas pixel size is set in JS for DPR */
+  box-sizing: border-box;
+  margin-left: 8px;
+}
+
+/* default placement: inline within controls (no fixed coordinates) */
+
+@media (max-width: 600px) {
+  /* on small screens, allow the canvas to expand to available width and sit under the controls */
+  .visualizer-btn { right: 0; bottom: 0; }
+  .visualizer-canvas {
+    width: calc(100% - 64px); /* leave room for buttons on the right */
+    max-width: none;
+    height: 56px;            /* slightly taller on touch devices */
+    margin: 6px 0 0 0;       /* place below controls when it wraps */
+    display: block;
+  }
+}
+
+/* Ensure the gold-border toggle is clearly visible and centered */
+#toggleGoldBorder {
+  display: inline-block;
+  margin: 0 auto;
+  background: var(--brand);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  padding: 0.55rem 0.95rem;
+  font-size: 0.98rem;
+  cursor: pointer;
+  box-shadow: 0 8px 24px rgba(61,78,233,0.12);
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast), background var(--transition-fast);
+  position: relative;
+  z-index: 5; /* ensure on top of nearby decorations */
+}
+#toggleGoldBorder:hover { transform: translateY(-2px); background: var(--brand-hover); }
+
+/* ensure the search controls align nicely on small widths */
+    .search-controls {
+      display: inline-flex;
+      gap: 0.10rem;
+  align-items: center;
+  flex: 0 0 auto;
+  z-index: 2;
+  flex-wrap: wrap; /* allow controls to wrap on narrow viewports */
+}
+
+/* ---------- DROPLIST: adopt index_en theme (profile-links-select) ---------- */
+/* Use the same visual styling as index_en.html's .profile-links-select */
+.dropdown-group { display:flex; gap:0.75rem; justify-content:center; align-items:center; flex-wrap:wrap; margin:1.25rem auto 0; }
+.dropdown-group .select-wrap { min-width:220px; max-width:400px; width:100%; display:flex; justify-content:center; }
+
+.navigation-select,
+.language-select {
+  width: 100%;
+  max-width: 400px;
+  padding: 10px 36px 10px 14px;
+  background-color: #2a2a2a;
+  color: #ffffff;
+  color-scheme: dark;
+  border: 2px solid var(--border);
+  border-radius: 14px;
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  cursor: pointer;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23ffffff' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  background-size: 12px;
+  transition: border-color var(--transition-med), box-shadow var(--transition-med), background-color var(--transition-med), transform var(--transition-fast);
+  box-sizing: border-box;
+}
+
+/* Make optgroup labels and their options use dark theme to match the selects */
+.navigation-select optgroup,
+.language-select optgroup {
+  background-color: #2a2a2a; /* dark surface */
+  color: #ffffff;            /* readable text */
+}
+
+/* Ensure options inside optgroups inherit the same dark appearance where supported */
+.navigation-select optgroup option,
+.language-select optgroup option {
+  background-color: #2a2a2a;
+  color: #ffffff;
+}
+
+/* Hover / focus using same accent as index_en */
+.navigation-select:hover,
+.language-select:hover {
+  border-color: var(--brand);
+  background-color: rgba(61,78,233,0.06);
+}
+.navigation-select:focus,
+.language-select:focus {
+  outline: none;
+  border-color: var(--brand);
+  box-shadow: 0 0 0 6px rgba(61,78,233,0.12);
+}
+
+/* Keep options dark so drop-down feels cohesive where supported */
+.navigation-select option,
+.language-select option {
+  background-color: #2a2a2a;
+  color: #ffffff;
+  padding: 0.5em;
+}
+
+/* Preserve native rendering of options where browser ignores styling */
+@media (max-width: 600px) {
+  .dropdown-group .select-wrap { flex: 1 1 100%; max-width: 100%; }
+  .navigation-select,
+  .language-select { max-width: 100%; font-size: 0.95rem; padding: 10px 32px 10px 12px; }
+}
+
+/* ---------- Chatbot popup (smooth open, minimize) ---------- */
+.chatbot-popup {
+  display: none;
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  width: min(480px, calc(100vw - 36px));
+  max-height: 620px;
+  background: var(--panel);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 14px;
+  box-shadow: 0 18px 60px rgba(0,0,0,0.6);
+  z-index: 2147483647;
+  overflow: hidden;
+  transform: translateY(12px) scale(0.98);
+  opacity: 0;
+  transition: transform var(--transition-med) ease, opacity var(--transition-med) ease, max-height var(--transition-med) ease;
+}
+.chatbot-popup.active {
+  display: flex;
+  flex-direction: column;
+  transform: translateY(0) scale(1);
+  opacity: 1;
+}
+
+/* Minimized shows only header gracefully */
+.chatbot-popup.minimized {
+  max-height: 58px !important;
+  width: 300px !important;
+  transition: max-height var(--transition-med) ease, width var(--transition-med) ease, transform var(--transition-med) ease;
+}
+.chatbot-popup.minimized .chatbot-messages,
+.chatbot-popup.minimized .chatbot-input-area { display: none !important; }
+
+/* Header */
+.chatbot-header {
+  position: relative;
+  z-index: 2;
+  padding: 0.85rem 0.9rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: var(--text);
+  height: 64px;
+  width: 100%;
+  box-sizing: border-box;
+  /* full-bleed gradient */
+  background: linear-gradient(90deg, var(--brand), var(--brand-hover));
+  border-top-left-radius: 14px;
+  border-top-right-radius: 14px;
+  box-shadow: 0 6px 18px rgba(61,78,233,0.12) inset;
+  cursor: default;
+}
+.chatbot-header h3 {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+  /* move title inward from the left for better visual balance */
+  padding-left: 12px;
+  /* keep it vertically centered */
+  line-height: 1;
+}
+
+/* Header buttons */
+.minimize-chat, .close-chat {
+  width:36px; height:36px; border-radius:10px; border:none; background:transparent; color:var(--text);
+  display:inline-flex; align-items:center; justify-content:center; font-size:18px;
+}
+.minimize-chat:hover, .close-chat:hover { background: rgba(255,255,255,0.06); }
+.minimize-chat:focus, .close-chat:focus { outline: 3px solid rgba(61,78,233,0.18); }
+
+/* Messages & input */
+.chatbot-messages { flex:1; padding: 0.9rem 0.9rem 1rem; overflow:auto; background: linear-gradient(180deg, rgba(255,255,255,0.01), transparent); }
+.message-bubble { max-width:100%; padding:0.65rem 0.9rem; background:var(--surface); border-radius:12px; border:1px solid rgba(255,255,255,0.03); color:var(--text); }
+.message.user .message-bubble { 
+  align-self: flex-end;
+  padding: 0.65rem 0.9rem;
+  max-width: 100%;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  line-height: 1.35;
+  box-sizing: border-box;
+  background: linear-gradient(90deg, var(--brand), var(--brand-hover));
+  color: #fff;
+  border-color: rgba(255,255,255,0.08);
+  border-radius: 12px 12px 6px 12px;
+  animation-name: slideInLeft;
+  animation-duration: 260ms;
+  animation-timing-function: cubic-bezier(.2,.9,.2,1);
+  box-shadow: 0 8px 28px rgba(61,78,233,0.12);
+
+}
+
+@keyframes slideInLeft {
+  from { transform: translateX(-20px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+.message.bot .message-bubble {
+  animation: slideInLeft 260ms cubic-bezier(.2,.9,.2,1);
+}
+
+/* Remove the decorative ::after tail added previously */
+.message.user .message-bubble::after {
+  display: none;
+}
+
+/* Restore compact metadata/timestamp styling for right-side bubbles */
+.message.user .message-meta {
+  text-align: left;
+  align-self: flex-end;
+  color: rgba(255,255,255,0.45);
+  font-size: 0.78rem;
+  margin-top: 0.25rem;
+}
+
+
+/* Input */
+.chatbot-input-area { padding: 0.8rem; background: var(--panel-2); border-top: 1px solid rgba(255,255,255,0.02); }
+.chatbot-input {
+  width: 100%;
+  padding: 0.75rem 0.95rem;
+  border-radius: 14px;            /* increase rounding */
+  border: 1px solid rgba(255,255,255,0.03);
+  background: var(--surface);
+  color: var(--text);
+  transition: box-shadow var(--transition-fast), border-color var(--transition-fast);
+}
+
+/* stronger focus state to match theme */
+.chatbot-input:focus {
+  border-color: var(--brand);
+  box-shadow: 0 6px 18px rgba(61,78,233,0.12);
+  outline: none;
+}
+
+/* Chatbot input: constrain width and center inside popup */
+.chatbot-popup .chatbot-input-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* center the inner controls */
+  gap: 0.6rem;
+  padding: 0.8rem;
+  box-sizing: border-box;
+}
+
+/* Limit input width so it doesn't overflow the popup, remain rounded and responsive */
+.chatbot-popup .chatbot-input-area .chatbot-input {
+  width: 70%;
+  max-width: 360px;      /* target width that fits the popup */
+  box-sizing: border-box;
+  margin: 0;             /* centered by parent flex alignment */
+  border-radius: 14px;   /* softer corners (already set, repeated for specificity) */
+  padding: 0.7rem 0.95rem;
+}
+
+/* If you have an upload control above the input, center it and keep it compact */
+.chatbot-popup .chatbot-input-area .file-upload-area {
+  width: 100%;
+  max-width: 360px;
+  box-sizing: border-box;
+  margin: 0;
+  justify-content: center; /* center upload controls */
+}
+
+/* Ensure small screens still use available width */
+@media (max-width: 420px) {
+  .chatbot-popup .chatbot-input-area .chatbot-input,
+  .chatbot-popup .chatbot-input-area .file-upload-area {
+    max-width: calc(100% - 24px);
+  }
+}
+
+/* If you add an upload area inside the chatbot, style it here */
+.file-upload-area {
+  display: flex;
+  gap: 0.6rem;
+  align-items: center;
+  padding: 0.6rem;
+  background: var(--panel-2);
+  border-top: 1px solid rgba(255,255,255,0.02);
+  border-bottom: 1px solid rgba(255,255,255,0.02);
+}
+
+/* Upload button: more rounded, cohesive with theme */
+.upload-btn {
+  padding: 0.5rem 0.9rem;
+  background: var(--surface);
+  color: var(--text);
+  border: 1px solid rgba(255,255,255,0.04);
+  border-radius: 12px;            /* less square */
+  cursor: pointer;
+  font-size: 0.95rem;
+  transition: background var(--transition-fast), box-shadow var(--transition-fast), transform var(--transition-fast);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.upload-btn:hover {
+  background: linear-gradient(90deg, var(--brand), var(--brand-hover));
+  box-shadow: 0 6px 18px rgba(61,78,233,0.12);
+  transform: translateY(-2px);
+}
+.upload-btn:focus {
+  outline: 3px solid rgba(61,78,233,0.18);
+  outline-offset: 2px;
+}
+
+/* Responsive tweaks */
+@media (max-width: 600px) {
+  .cookie-content { gap:0.5rem; }
+  .cookie-text { max-width: 100%; }
+
+  /* Make the main welcome heading pure white */
+.page-welcome {
+  color: #FFFFFF;
+}
+
+  /* Make the chatbot popup inset on mobile with safer margins and a controlled max-height */
+  .chatbot-popup {
+    right: 12px !important;
+    left: 12px !important;
+    bottom: 12px !important;
+    width: auto !important;
+    max-width: none !important;
+    max-height: 70vh !important;          /* limit height to viewport fraction */
+    border-radius: 12px !important;
+  }
+
+  .chatbot-popup.active {
+    /* allow the popup to expand within the 70vh limit */
+    height: auto !important;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Increase header tappable area and adjust spacing */
+  .chatbot-header {
+    height: 56px !important;
+    padding: 0.6rem 0.75rem !important;
+  }
+  .chatbot-header h3 { font-size: 0.98rem; padding-left: 10px; }
+
+  /* Larger, touch-friendly header buttons */
+  .minimize-chat, .close-chat {
+    width:44px; height:44px; font-size:20px;
+  }
+  .chatbot-header-buttons { gap:0.5rem; }
+
+  /* Constrain messages area to available space and make it scrollable */
+  .chatbot-messages {
+    max-height: calc(70vh - 56px - 72px); /* viewport limit minus header & input area estimate */
+    overflow-y: auto;
+    padding: 0.8rem;
+  }
+
+  /* Make input and upload controls full-width on mobile */
+  .chatbot-popup .chatbot-input-area .chatbot-input,
+  .chatbot-popup .chatbot-input-area .file-upload-area {
+    max-width: 100% !important;
+    width: 100% !important;
+  }
+
+  /* Slightly increase bubble max width for mobile */
+  .message-bubble { max-width: 70%; }
+
+  /* When minimized on mobile ensure header still visible and compact */
+  .chatbot-popup.minimized {
+    max-height: 64px !important;
+    width: calc(100vw - 24px) !important;
+  }
+}
+
+/* ==========================================================================
+   CHATBOT MESSAGE BUBBLES – CLEAR DISTINCTION BETWEEN USER & BOT
+   ========================================================================== */
+
+/* Common base for all message rows */
+.chatbot-messages {
+  display: flex;
+  flex-direction: column;
+  gap: 1.4rem;          /* increased gap for better readability */
+  padding: 1rem 0.9rem;
+}
+
+/* Base bubble style */
+.message-bubble {
+  padding: 0.75rem 1rem;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,0.06);
+  font-size: 1rem;
+  line-height: 1.45;
+  max-width: 82%;
+  word-wrap: break-word;
+  white-space: pre-wrap;
+}
+
+/* === BOT (Claude) messages – LEFT aligned, dark background === */
+.message.bot {
+  align-items: flex-start;
+}
+
+.message.bot .message-bubble {
+  background: var(--surface);           /* #2a2a2a – dark gray */
+  color: var(--text);                   /* white-ish */
+  border-radius: 14px 14px 14px 4px;    /* softer corner on left-bottom */
+  box-shadow: 0 2px 12px rgba(0,0,0,0.25);
+}
+
+/* === USER messages – RIGHT aligned, brand blue gradient === */
+.message.user {
+  justify-content: flex-end;
+  margin: 10px;
+}
+
+.message.user .message-bubble {
+  background: linear-gradient(135deg, var(--brand), var(--brand-hover));
+  color: #ffffff;
+  border-radius: 14px 14px 4px 14px;   /* rounded on left side, sharp on right-bottom */
+  border-color: rgba(61,78,233,0.4);
+  box-shadow: 0 6px 24px rgba(61,78,233,0.28);
+}
+
+.message.user .message-bubble {
+  background: linear-gradient(135deg, var(--brand), var(--brand-hover));
+  color: #ffffff;
+  border-radius: 14px 14px 4px 14px;    /* softer corner on right-bottom */
+  border-color: rgba(61,78,233,0.4);
+  box-shadow: 0 6px 24px rgba(61,78,233,0.28);
+}
+
+/* Metadata / timestamp – smaller and more subtle */
+.message-meta {
+  margin-top: 0.4rem;
+  font-size: 0.78rem;
+  color: rgba(255,255,255,0.55);
+  letter-spacing: 0.01em;
+}
+
+.message.bot .message-meta {
+  text-align: left;
+}
+
+.message.user .message-meta {
+  text-align: right;
+}
+
+/* Optional: small avatar/initials (very clean look) */
+.message-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--surface);
+  color: var(--brand);
+  font-weight: 700;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: right;
+  justify-content: right;
+  flex-shrink: 0;
+  margin-top: 0.3rem;
+  border: 1px solid rgba(61,78,233,0.3);
+}
+
+.message.bot .message-row-inner {
+  display: flex;
+  gap: 0.8rem;
+  align-items: flex-end;
+}
+
+.message.user .message-row-inner {
+  display: flex;
+  gap: 0.8rem;
+  align-items: flex-end;
+  flex-direction: row-reverse;
+}
+
+/* ==========================================================================
+   Optional: Add avatar wrapper in HTML structure (recommended)
+   ========================================================================== */
+
+/* ===== Overrides: precise footer + full-bleed chatbot header ===== */
+
+/* Make chatbot header visually bleed to popup edges and sit above content */
+.chatbot-popup {
+  /* keep transforms/opacity from earlier for smooth show/hide */
+  border: none;                       /* remove visible border so header can bleed */
+  background: transparent;            /* background handled by inner areas */
+  box-shadow: 0 24px 64px rgba(0,0,0,0.6);
+}
+
+/* Create a full-bleed header that covers the popup top including rounded corners */
+.chatbot-header {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.85rem 0.9rem;
+  height: 64px;
+  box-sizing: border-box;
+  width: 100%;
+  /* full-bleed gradient */
+  background: linear-gradient(90deg, var(--brand), var(--brand-hover));
+  color: var(--text);
+  border-top-left-radius: 14px;
+  border-top-right-radius: 14px;
+  box-shadow: 0 6px 18px rgba(61,78,233,0.12) inset;
+}
+
+/* Ensure the popup body sits visually below the header */
+.chatbot-popup .chatbot-messages,
+.chatbot-popup .chatbot-input-area {
+  background: var(--panel); /* darker body under the header */
+  border-bottom-left-radius: 14px;
+  border-bottom-right-radius: 14px;
+  margin-top: 0; /* header is outside the content flow visually */
+  z-index: 1;
+}
+
+/* Keep content visible under header with comfortable spacing */
+.chatbot-messages { padding: 0.9rem 0.9rem 1rem; }
+.chatbot-input-area { padding: 0.8rem; }
+
+/* When minimized, header still shows rounded corners correctly */
+.chatbot-popup.minimized { max-height: 64px !important; width: 320px !important; }
+.chatbot-popup.minimized .chatbot-header { height: 58px;}
+
+/* Improve header buttons layout */
+.chatbot-header-buttons { display:flex; gap:0.4rem; align-items:center; }
+.minimize-chat, .close-chat {
+  width:36px; height:36px; border-radius:10px; border:none; background:transparent; color:var(--text);
+  display:inline-flex; align-items:center; justify-content:center; font-size:18px;
+}
+.minimize-chat:focus, .close-chat:focus { outline: 3px solid rgba(61,78,233,0.18); }
+
+.site-footer {
+  padding: 1.25rem 0;
+  margin-top: 2.5rem;
+  text-align: center; /* center everything inside footer */
+  /* Footer should be visually integrated with the landing container's background.
+     The landing container holds the authoritative background (var(--footer-bg)). */
+  background: transparent;
+  color: var(--text);
+}
+
+.footer-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* vertical center */
+  justify-content: center;
+  gap: 0.65rem;
+  text-align: center;
+}
+
+.footer-links {
+  display: inline-flex;
+  gap: 0.5rem;
+  align-items: center;
+  justify-content: center; /* ensure links centered horizontally */
+  flex-wrap: wrap;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.footer-links a {
+  color: var(--text-secondary);
+  text-decoration: none;
+  padding: 0.25rem 0.6rem;
+  font-size: 0.95rem;
+  display: inline-block;
+  transition: color var(--transition-med), transform var(--transition-fast);
+  position: relative;
+}
+
+/* subtle separators handled visually but keep layout centered */
+.footer-links a:not(:last-child)::after {
+  content: "•";
+  position: absolute;
+  right: 6px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: rgba(255,255,255,0.06);
+  font-size: 0.9rem;
+}
+
+/* Copyright centered */
+.footer-copyright {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 0. nine em;
+  text-align: center;
+  padding-top: 0.25rem;
+}
+
+/* Chat messages: left = bot, right = user; cascading layout + subtle entrance animations */
+
+/* Ensure messages stack in a column with consistent gaps */
+.chatbot-messages {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem; /* increased gap for clearer separation */
+  padding: 0.9rem;
+  box-sizing: border-box;
+
+}
+
+/* Add extra margin between user and bot bubbles */
+.message.user {
+  align-items: flex-end;
+  margin-bottom: 0.2rem;
+}
+.message.bot {
+  align-items: flex-start;
+  margin-top: 0.2rem;
+}
+
+/* Timestamp styling for clarity */
+.message-meta {
+  display: block;
+  margin-top: 6px;
+  font-size: 0.78rem;
+  color: rgba(255,255,255,0.6);
+  text-align: right;
+  opacity: 0.95;
+  letter-spacing: 0.01em;
+}
+
+/* ---------- Chatbot popup script ---------- */
+<script>
+(function () {
+  const input = document.getElementById('chatbotInput');
+  const sendBtn = document.getElementById('chatSend');
+  const messages = document.getElementById('chatbotMessages');
+  let lastYear = null;
+  const CURRENT_YEAR = new Date().getFullYear();
+
+  function ensureYearSeparator(date) {
+    const year = date.getFullYear();
+    if (year !== lastYear) {
+      lastYear = year;
+      const sep = document.createElement('div');
+      sep.className = 'year-separator';
+      sep.textContent = year + (year === CURRENT_YEAR ? ' (this year)' : '');
+      messages.appendChild(sep);
+    }
+  }
+
+  function createMessageEl(text, role, date = new Date()) {
+    ensureYearSeparator(date);
+
+    const row = document.createElement('div');
+    row.className = 'message ' + (role === 'user' ? 'user' : 'bot');
+
+    // New wrapper for avatar + bubble alignment
+    const inner = document.createElement('div');
+    inner.className = 'message-row-inner';
+
+    // Avatar
+    const avatar = document.createElement('div');
+    avatar.className = 'message-avatar';
+    avatar.textContent = role === 'user' ? 'You' : 'C';   // C for Claude
+
+    // Bubble container
+    const bubble = document.createElement('div');
+    bubble.className = 'message-bubble';
+    bubble.textContent = text;
+
+    const meta = document.createElement('div');
+    meta.className = 'message-meta';
+
+    // Robust time + short date formatting using Intl.DateTimeFormat (works across locales)
+    try {
+      const timeFormatter = new Intl.DateTimeFormat(undefined, { hour: '2-digit', minute: '2-digit' });
+      const dateFormatter = new Intl.DateTimeFormat(undefined, { month: 'short', day: 'numeric' });
+      const time = timeFormatter.format(date);
+      const shortDate = dateFormatter.format(date);
+      meta.textContent = `${time} • ${shortDate}`;
+    } catch (err) {
+      // Fallback
+      const time = date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+      const shortDate = date.toLocaleDateString([], { month: 'short', day: 'numeric' });
+      meta.textContent = `${time} • ${shortDate}`;
+    }
+
+    inner.appendChild(avatar);
+    inner.appendChild(bubble);
+    row.appendChild(inner);
+    row.appendChild(meta);
+
+    return row;
+  }
+
+  function scrollToBottom() {
+    if (!messages) return;
+    messages.scrollTo({ top: messages.scrollHeight, behavior: 'smooth' });
+  }
+
+  async function sendMessage() {
+    if (!input) return;
+    const text = input.value?.trim();
+    if (!text) return;
+
+    const now = new Date();
+
+    // Append user message
+    messages.appendChild(createMessageEl(text, 'user', now));
+    input.value = '';
+    input.focus();
+    scrollToBottom();
+
+    // Show temporary bot "typing" indicator
+    const typingRow = createMessageEl('...', 'bot', new Date());
+    typingRow.querySelector('.message-bubble').classList.add('typing');
+    messages.appendChild(typingRow);
+    scrollToBottom();
+
+    // Attempt to send to backend API, fallback to simulated reply
+    try {
+      // Replace /api/chat with your real endpoint if available
+      const resp = await fetch('/api/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ message: text })
+      });
+
+      if (!resp.ok) throw new Error('network');
+
+      const json = await resp.json();
+      const botText = (json && (json.reply || json.message || json.text)) || 'No reply';
+      typingRow.remove();
+      messages.appendChild(createMessageEl(botText, 'bot', new Date()));
+      scrollToBottom();
+    } catch (err) {
+      // fallback simulated reply
+      setTimeout(() => {
+        typingRow.remove();
+        messages.appendChild(createMessageEl('Simulated reply — backend not configured.', 'bot', new Date()));
+        scrollToBottom();
+      }, 700);
+    }
+  }
+
+  // Bind events
+  sendBtn?.addEventListener('click', (e) => {
+    e.preventDefault();
+    sendMessage();
+  });
+
+  input?.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      sendMessage();
+    }
+  });
+
+  // Minimalist send button handler
+  const chatSendBtn = document.getElementById('chatSend');
+  chatSendBtn?.addEventListener('click', function (e) {
+    e.preventDefault();
+    const msg = normalizeUserText(document.getElementById('chatbotInput').value);
+    if (!msg) return;
+    addUserMessage(msg);
+    pushHistory('user', msg);
+    void processQuery(msg);
+    document.getElementById('chatbotInput').value = '';
+    document.getElementById('chatbotInput').focus();
+  });
+
+  // Expose a small helper on window for testing / programmatic send (optional)
+  window.__chatSendMessage = sendMessage;
+})();
+</script>
+  </style>
+</head>
+<body>
+  <!-- Top navigation (new) -->
+  <nav class="top-nav" aria-label="Main navigation">
+  <a href="index.html" class="brand">🚀 AM-Global™</a>
+  <div class="nav-links" role="menubar" aria-label="Primary links">
+    <a href="about.html" role="menuitem">About</a>
+    <a href="research.html" role="menuitem">Research</a>
+    <a href="projects.html" role="menuitem">Projects</a>
+    <a href="contact.html" role="menuitem">Contact</a>
+  </div>    
+</nav>
+
+<br>
+<br>
+
+<div id="particles-js" style="position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:-1;"></div>
+<div style="text-align:center;">
+  <h1 class="page-welcome" style="color: #FFFFFF;">Welcome to 🚀 AM-Global™</h1>
+  <div class="page-subtitle">
+    <img src="/tagline.png" alt="AM-Global tagline" class="tagline-image" />
+  </div>
+</div>
+        <div class="search-container" aria-label="Site search and document upload">
+  <input type="text" class="search-bar" id="searchInput" placeholder="Begin your conversation here" />
+
+  <div class="search-controls" role="group" aria-label="Search controls">
+    <!-- hidden file input triggered by the paperclip label -->
+    <input id="docUploadInput" class="sr-only" type="file" accept=".pdf,.doc,.docx,.txt" multiple />
+
+<button id="docUploadBtn" class="attach-btn" type="button" aria-label="Attach file (Beta)" title="Attach file (Beta)">
+  ➕
+</button>
+
+  </div>
+
+  <!-- Quick OpenAI button and result display -->
+  <div style="text-align:center;">
+    <button id="openAiQuickBtn" class="ai-quick-btn" type="button" aria-label="Ask OpenAI">Ask OpenAI</button>
+    <div id="openAiQuickResult" class="openai-quick-result" aria-live="polite"></div>
+  </div>
+
+    <!-- Open Results button removed (ChatGPT/results flow abandoned) -->
+
+<!-- audio visualizer button inserted between attach and search buttons -->
+<button id="visualizerBtn" class="attach-btn visualizer-btn" type="button" aria-label="Audio visualizer" title="Record audio clip" aria-pressed="false">
+  <!-- inline SVG so internal bars can be animated via CSS/JS -->
+  <svg class="visualizer-icon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false">
+    <title>Record audio</title>
+    <g fill="currentColor">
+      <rect class="bar b1" x="4" y="9" width="2" height="6" rx="0.3"></rect>
+      <rect class="bar b2" x="8" y="7" width="2" height="10" rx="0.3"></rect>
+      <rect class="bar b3" x="12" y="5" width="2" height="14" rx="0.3"></rect>
+      <rect class="bar b4" x="16" y="8" width="2" height="11" rx="0.3"></rect>
+      <rect class="bar b5" x="20" y="10" width="2" height="9" rx="0.3"></rect>
+    </g>
+  </svg>
+</button>
+<!-- inline canvas for small visualizer; will be shown when visualizer is active -->
+<canvas id="visualizerCanvas" class="visualizer-canvas" width="240" height="48" aria-hidden="true" style="display:none;">Your browser does not support canvas.</canvas>
+
+<div id="uploadList" class="upload-list" aria-live="polite" aria-atomic="true"></div>
+
+    <!-- existing search button (moved into search controls) -->
+    <button class="search-btn" id="searchBtn" aria-label="Search" title="Search the site — press Enter to submit">
+      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+        <title>Search</title>
+        <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5s2.91 6.5 6.5 6.5c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" />
+      </svg>
+    </button>
+
+    </div>
+  </div>
+
+  <!-- Toggle removed: gold border feature intentionally removed -->
+
+<script>
+/* Lightweight, robust client-side upload UI wiring.
+   Keeps change handling available for other scripts that already listen to #docUploadInput.
+*/
+(function () {
+  const fileInput = document.getElementById('docUploadInput');
+  const uploadBtn = document.getElementById('docUploadBtn');
+  const uploadList = document.getElementById('uploadList');
+
+  if (!fileInput || !uploadBtn) return;
+
+  // Ensure global storage exists (defensive)
+  window.uploadedDocs = window.uploadedDocs || [];
+
+  // Open native picker on click / keyboard activation
+  uploadBtn.addEventListener('click', () => fileInput.click());
+  uploadBtn.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      fileInput.click();
+    }
+  });
+
+  // Lightweight, robust handler that tolerates missing helpers in production
+  fileInput.addEventListener('change', async (e) => {
+    const files = Array.from(e.target.files || []);
+    if (!files.length) return;
+
+    for (const f of files) {
+      // Try to show a quick UI hint only if helper exists
+      try {
+        if (typeof pushChatMessage === 'function') {
+          pushChatMessage(`Uploading ${f.name}…`, 'user');
+        }
+      } catch (err) {
+        console.warn('pushChatMessage not available:', err);
+      }
+
+      // Try to extract locally if helper exists, otherwise fall back to a minimal placeholder.
+      let result = null;
+      try {
+        if (typeof extractFile === 'function') {
+          result = await extractFile(f);
+        } else {
+          // Fallback: create a minimal result object so other code can rely on structure
+          result = { name: f.name, text: '', filename: f.name, source: 'client-fallback' };
+        }
+      } catch (err) {
+        console.warn('extractFile failed or not present:', err);
+        result = { name: f.name, text: '', filename: f.name, source: 'client-error' };
+      }
+
+      try {
+        // Ensure global list exists and push the extraction/result
+        window.uploadedDocs = window.uploadedDocs || [];
+        window.uploadedDocs.push(result);
+      } catch (err) {
+        console.warn('Failed to push to window.uploadedDocs:', err);
+      }
+
+      try {
+        if (typeof pushChatMessage === 'function') {
+          pushChatMessage(`Document received: ${f.name}`, 'bot');
+        }
+      } catch (err) {
+        /* ignore */
+      }
+
+      // Always attach the raw File to the chatbot state if the helper is available.
+      // This ensures the very next search will be sent with the file even if extraction helpers are missing.
+      try {
+        if (typeof window.__setUploadedFile === 'function') {
+          window.__setUploadedFile(f);   // set state.uploadedFile inside index.js
+        } else {
+          // As an additional defensive step, store the raw File locally so other scripts can pick it up.
+          window.__rawUploadedFile = f;
+          console.log('Note: __setUploadedFile not present; stored as __rawUploadedFile for later attachment.');
+        }
+      } catch (err) {
+        console.warn('Could not call __setUploadedFile:', err);
+      }
+
+      // Optionally open the chatbot so the user can continue there (if helper present)
+      try {
+        if (typeof window.__openChatbot === 'function') {
+          window.__openChatbot();
+        }
+    
+    // Visualizer init moved to top-level script so it is available immediately (not dependent on file uploads)
+      } catch (err) {
+        /* ignore */
+      }
+    }
+
+    // Update any upload list UI if function exists; don't throw if not present.
+    try {
+      if (typeof renderUploadList === 'function') {
+        renderUploadList();
+      } else if (document.getElementById('uploadList')) {
+        // Basic rendering fallback for immediate user feedback
+        const uploadList = document.getElementById('uploadList');
+        uploadList.innerHTML = '';
+        (window.uploadedDocs || []).forEach(d => {
+          const el = document.createElement('div');
+          el.className = 'upload-item';
+          el.innerHTML = `<div class="name">${d.filename || d.name}</div><div class="status">Ready</div>`;
+          uploadList.appendChild(el);
+        });
+      }
+    } catch (err) {
+      console.warn('renderUploadList failed or not present:', err);
+    }
+
+    // Clear selection so same file can be re-selected
+    e.target.value = '';
+  });
+})();
+</script>
+  </div>
+</div>
+
+<br>
+      <div class="dropdown-group" role="navigation" aria-label="Quick navigation and language selection">
+  <style>
+    /* small helper to keep labels accessible but hidden */
+    .visually-hidden {
+      position: absolute !important;
+      height: 1px; width: 1px;
+      overflow: hidden; clip: rect(1px, 1px, 1px, 1px);
+      white-space: nowrap; border: 0; padding: 0; margin: -1px;
+    }
+    .dropdown-group { display:flex; gap:0.75rem; justify-content:center; align-items:center; flex-wrap:wrap; margin:1.25rem auto 0; }
+    .dropdown-group .select-wrap { min-width:220px; max-width:320px; width:100%; }
+  </style>
+
+  <div class="select-wrap">
+    <label class="visually-hidden" for="navigationSelect">Quick navigation</label>
+    <select id="navigationSelect" class="navigation-select" aria-label="Quick navigation">
+      <option value="" selected disabled>🎬 Quick navigation…</option>
+
+      <optgroup label="Site">
+        <option value="msc-survey.html">📝 MSc in HRM Dissertation Survey</option>
+        <option value="scraper.html">🔍 Dissertation Web Scraper</option>
+        <option value="claude-code.html">🤖 Claude Code 4.5 Opus — Explainer</option>
+        </optgroup>
+
+      <optgroup label="Research & Profiles">
+        <option value="https://www.qeios.com/profile/102543">💻 Qeios Research Profile</option>
+        <option value="https://sites.google.com/view/alfredmayaki/useful-links?authuser=0">🔗 Useful Links</option>
+        </optgroup>
+
+      <optgroup label="Community & External">
+        <option value="projects.html">👥 BipolarUK Meetup — Central London</option>
+        <option value="https://www.oustudents.com/organisation/6211/">🤝 OU Student Association</option>
+      </optgroup>
+
+    </select>
+  </div>
+
+    <div class="select-wrap">
+    <label class="visually-hidden" for="languageSelect">Select a language</label>
+    <select id="languageSelect" class="language-select" aria-label="Select a world language">
+      <option value="" selected disabled>🌍 Select a world language…</option>
+
+      <option value="index_en.html" lang="en">🇬🇧 English</option>
+      <option value="index_cy.html" lang="cy">🇬🇧 Cymraeg</option>
+      <option value="index_ch.html" lang="zh">🇨🇳 中文（语言）</option>
+      <option value="index_fr.html" lang="fr">🇫🇷 Français</option>
+      <option value="index_de.html" lang="de">🇩🇪 Deutsch</option>
+      <option value="index_es.html" lang="es">🇪🇸 Español</option>
+      <option value="index_he.html" lang="he">🇮🇱 עברית</option>
+      <option value="index_it.html" lang="it">🇮🇹 Italiano</option>
+      <option value="index_jp.html" lang="ja">🇯🇵 日本語</option>
+      <option value="index_ksa.html" lang="ar">🇸🇦 العربية</option>
+      <option value="index_nl.html" lang="nl">🇳🇱 Nederlands</option>
+      <option value="index_ru.html" lang="ru">🇷🇺 Русский</option>
+      <option value="index_pt.html" lang="pt">🇵🇹 Português</option>
+      <option value="index_sw.html" lang="sv">🇸🇪 Svenska</option>
+      <option value="index_tr.html" lang="tr">🇹🇷 Türkçe</option>
+      <option value="index_yb.html" lang="yo">🇳🇬 Yorùbá</option>
+    </select>
+  </div>
+</div>
+
+<!-- Soft separator inserted here -->
+
+<script>
+  // Accessible, theme-consistent navigation for the two selects.
+  (function () {
+    const nav = document.getElementById('navigationSelect');
+    const lang = document.getElementById('languageSelect');
+    const chatbotPopup = document.getElementById('chatbotPopup');
+
+    function openChatAndFocus() {
+      if (!chatbotPopup) return;
+      chatbotPopup.classList.add('active');
+      chatbotPopup.classList.remove('minimized');
+      setTimeout(() => document.getElementById('chatbotInput')?.focus(), 200);
+    }
+
+    nav?.addEventListener('change', function () {
+      const target = (this.value || '').trim();
+      if (!target) return;
+      if (target === '#chatbot') {
+        openChatAndFocus();
+      } else if (target.startsWith('http')) {
+        window.open(target, '_blank', 'noopener,noreferrer');
+      } else {
+        // local internal navigation
+        window.location.href = target;
+      }
+      // Reset to placeholder for quick reuse
+      this.selectedIndex = 0;
+    });
+
+    lang?.addEventListener('change', function () {
+      const target = (this.value || '').trim();
+      if (!target) return;
+      // If you prefer to open language pages in same tab (keeps theme), use location.href
+      window.location.href = target;
+    });
+
+    // keyboard: allow Enter on selects for accessibility (some browsers already handle)
+    [nav, lang].forEach(s => {
+      s?.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+          s.dispatchEvent(new Event('change', { bubbles: true }));
+        }
+      });
+    });
+  })();
+</script>
+    </div>
+
+<br>
+
+    <!-- Footer re-applied inside landing container -->
+    <div class="landing-container">
+      <footer class="site-footer" role="contentinfo" aria-label="Site footer">
+        <div class="footer-content">
+          <nav class="footer-links" aria-label="Footer links">
+            <a href="#" class="footer-link" id="cookieSettingsLink">Cookie Settings</a>
+            <a href="privacy-policy.html" class="footer-link">Privacy Policy</a>
+            <a href="terms-of-use.html" class="footer-link">Terms of Use</a>
+            <a href="buymeacoffee.html" class="footer-link">Buy Me a Coffee ☕</a>
+          </nav>
+
+          <div style="text-align:center; font-size:0.95rem; color:var(--text-muted)">
+            <div>© 2026 Alfred Anate Bodurin Mayaki. All rights reserved.</div>
+          </div>
+        </div>
+      </footer>
+      <!-- Soft separator and supervisory note (placed below footer) -->
+      <hr class="soft-sep" aria-hidden="true" />
+      <p style="text-align:center; font-size:0.85rem; color:var(--text-secondary); margin:0.6rem 0 0;">Supervised by Dr. Nicola Bowman, The Open University</p>
+    </div>
+  </div>
+ 
+<!-- Chatbot Popup -->
+  <div class="chatbot-popup" id="chatbotPopup" aria-hidden="true" role="dialog" aria-label="Ask Claude Code">
+    <div class="chatbot-header" id="chatbotHeader">
+      <h3>🔍 Ask Claude Code</h3>
+      <div class="chatbot-header-buttons">
+        <button class="minimize-chat" id="minimizeChat" title="Minimize" aria-label="Minimize chatbot">−</button>
+        <button class="close-chat" id="closeChat" title="Close" aria-label="Close chatbot">&times;</button>
+      </div>
+    </div>
+    <div class="chatbot-messages" id="chatbotMessages" role="log" aria-live="polite"></div>
+    <div class="chatbot-input-area">
+      <input type="text" class="chatbot-input" id="chatbotInput" placeholder="Type all subsequent messages here..." aria-label="Chat input">
+    </div>
+  </div>
+
+  <!-- Cookie Consent Banner -->
+  <div class="cookie-banner" id="cookieBanner">
+    <div class="cookie-content">
+      <div class="cookie-text">
+        🍪 AM-Global™ uses cookies to enhance your experience and analyze site traffic. AM-Global™ uses Google Analytics to understand how visitors interact with our site. By clicking "Accept", you consent to our use of cookies. <a href="#" id="learnMore">Learn more</a>
+      </div>
+      <div class="cookie-buttons">
+        <button class="cookie-btn" id="rejectCookies">Decline</button>
+        <button class="cookie-btn accept" id="acceptCookies">Accept</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- External Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
+  <script src="index.js"></script>
+
+  <!-- Visualizer init: top-level wiring so it works without uploading files -->
+  <script>
+  (function () {
+    const visualizerBtn = document.getElementById('visualizerBtn');
+    const canvas = document.getElementById('visualizerCanvas');
+    if (!visualizerBtn) return;
+
+    // Toggle aria-pressed and active class
+    visualizerBtn.addEventListener('click', function (e) {
+      e.preventDefault();
+      const active = visualizerBtn.classList.toggle('active');
+      visualizerBtn.setAttribute('aria-pressed', String(active));
+    });
+
+    // Microphone visualizer wiring
+    let audioCtx = null;
+    let analyser = null;
+    let source = null;
+    let rafId = null;
+    let canvasResizeHandler = null;
+
+    function stopVisualizer() {
+      if (rafId) cancelAnimationFrame(rafId);
+      rafId = null;
+      try {
+        if (source && source.mediaStream) source.mediaStream.getTracks().forEach(t => t.stop());
+      } catch (e) { /* ignore */ }
+      try { if (audioCtx && audioCtx.state !== 'closed') audioCtx.close(); } catch (e) { /* ignore */ }
+      // remove resize listener
+      try { if (canvasResizeHandler) window.removeEventListener('resize', canvasResizeHandler); } catch (e) { /* ignore */ }
+      canvasResizeHandler = null;
+      // hide and clear canvas
+      if (canvas) {
+        const ctx = canvas.getContext && canvas.getContext('2d');
+        if (ctx) ctx.clearRect(0, 0, canvas.width, canvas.height);
+        canvas.style.display = 'none';
+      }
+      audioCtx = analyser = source = null;
+    }
+
+    function startVisualizer() {
+      if (!canvas) return;
+      if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) return;
+      canvas.style.display = 'block';
+
+      // helper to size canvas to its CSS size while accounting for devicePixelRatio
+      function resizeCanvasToDisplaySize(ctx) {
+        const dpr = window.devicePixelRatio || 1;
+        const rect = canvas.getBoundingClientRect();
+        const width = Math.max(1, Math.floor(rect.width * dpr));
+        const height = Math.max(1, Math.floor(rect.height * dpr));
+        if (canvas.width !== width || canvas.height !== height) {
+          canvas.width = width;
+          canvas.height = height;
+          // set transform so drawing operations use CSS pixels coordinates
+          ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        }
+      }
+
+      navigator.mediaDevices.getUserMedia({ audio: true }).then(stream => {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        analyser = audioCtx.createAnalyser();
+        analyser.fftSize = 256;
+        source = audioCtx.createMediaStreamSource(stream);
+        source.mediaStream = stream;
+        source.connect(analyser);
+
+        const bufferLength = analyser.frequencyBinCount;
+        const dataArray = new Uint8Array(bufferLength);
+        const ctx = canvas.getContext('2d');
+
+        // initial sizing
+        resizeCanvasToDisplaySize(ctx);
+
+        // keep canvas responsive on resize
+        canvasResizeHandler = () => resizeCanvasToDisplaySize(ctx);
+        window.addEventListener('resize', canvasResizeHandler);
+
+        function draw() {
+          rafId = requestAnimationFrame(draw);
+          analyser.getByteFrequencyData(dataArray);
+          // clear using CSS pixel size
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+          const barWidth = (canvas.width / bufferLength) * 1.5;
+          let x = 0;
+          for (let i = 0; i < bufferLength; i++) {
+            const v = dataArray[i] / 255;
+            const y = v * canvas.height;
+            ctx.fillStyle = 'rgba(61,78,233,0.9)';
+            ctx.fillRect(x, canvas.height - y, barWidth, y);
+            x += barWidth + 1;
+          }
+        }
+        draw();
+      }).catch(err => {
+        console.warn('Microphone access denied or not available:', err);
+        if (canvas) canvas.style.display = 'none';
+        visualizerBtn.classList.remove('active');
+        visualizerBtn.setAttribute('aria-pressed', 'false');
+      });
+    }
+
+    // Observe active class changes to start/stop the microphone visualizer
+    const mo = new MutationObserver(() => {
+      if (visualizerBtn.classList.contains('active')) startVisualizer(); else { if (canvas) canvas.style.display = 'none'; stopVisualizer(); }
+    });
+    mo.observe(visualizerBtn, { attributes: true, attributeFilter: ['class'] });
+  })();
+  </script>
+
+  <!-- Chatbot Minimize/Restore Script -->
+  <script>
+    (function() {
+      const chatbotPopup = document.getElementById('chatbotPopup');
+      const minimizeBtn = document.getElementById('minimizeChat');
+      const chatbotHeader = document.getElementById('chatbotHeader');
+      const closeBtn = document.getElementById('closeChat');
+
+      // Minimize/Restore toggle
+      function toggleMinimize() {
+        chatbotPopup.classList.toggle('minimized');
+
+        // Update button text
+        if (chatbotPopup.classList.contains('minimized')) {
+          minimizeBtn.textContent = '□';
+          minimizeBtn.title = 'Restore';
+          minimizeBtn.setAttribute('aria-label', 'Restore chatbot');
+        } else {
+          minimizeBtn.textContent = '−';
+          minimizeBtn.title = 'Minimize';
+          minimizeBtn.setAttribute('aria-label', 'Minimize chatbot');
+
+          // Focus input when restored
+          const chatInput = document.getElementById('chatbotInput');
+          if (chatInput) {
+            setTimeout(() => chatInput.focus(), 100);
+          }
+        }
+      }
+
+      // Click minimize button
+      if (minimizeBtn) {
+        minimizeBtn.addEventListener('click', function(e) {
+          e.stopPropagation();
+          toggleMinimize();
+        });
+      }
+
+      // Click header to restore when minimized
+      if (chatbotHeader) {
+        chatbotHeader.addEventListener('click', function(e) {
+          // Only restore if minimized and not clicking buttons
+          if (chatbotPopup.classList.contains('minimized') && 
+              !e.target.closest('button')) {
+            toggleMinimize();
+          }
+        });
+      }
+    })();
+  </script>
+
+  <!-- Firebase SDK (for site-wide search tracking) -->
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
+  <script src="firebase-config.js"></script>
+
+  <!-- Search Tracking Script -->
+  <script>
+    // Initialize Firebase
+    let firebaseInitialized = false;
+    if (window.FirebaseSearchTracking) {
+      firebaseInitialized = window.FirebaseSearchTracking.initFirebase();
+    }
+
+    // Track search queries for tag cloud (now using API client)
+    async function trackSearch(query) {
+      if (!query || query.trim().length === 0) return;
+
+      console.log('🔍 Tracking search:', query);
+
+      // Use API client (handles localStorage + API sync)
+      const result = await SearchTrackerAPI.trackSearch(query);
+
+      if (result.success) {
+        console.log('✅ Search tracked:', result.source);
+      } else {
+        console.warn('⚠️ Search tracking failed:', result.error);
+      }
+
+      // Still track in Firebase if available (for backward compatibility)
+      if (firebaseInitialized && window.FirebaseSearchTracking) {
+        const stopWords = ['the', 'a', 'an', 'and', 'or', 'but', 'in', 'on', 'at', 'to', 'for', 'of', 'with', 'is', 'was', 'are', 'be', 'have', 'has', 'what', 'when', 'where', 'why', 'how', 'can', 'could', 'would', 'should', 'will'];
+        const words = query.toLowerCase()
+          .replace(/[^\w\s]/g, ' ')
+          .split(/\s+/)
+          .filter(word => word.length > 2 && !stopWords.includes(word));
+
+        const keywords = {};
+        words.forEach(word => {
+          keywords[word] = (keywords[word] || 0) + 1;
+        });
+
+        window.FirebaseSearchTracking.trackSearchFirebase(query.trim(), keywords)
+          .catch(error => console.warn('Firebase tracking failed:', error));
+      }
+    }
+
+      // Attach to search button and Enter key
+      document.getElementById('searchBtn')?.addEventListener('click', function() {
+        const query = document.getElementById('searchInput')?.value;
+        if (query) {
+          console.log('🔍 Search triggered:', query);
+          trackSearch(query);
+          console.log('✅ trackSearch() called');
+        }
+      });
+
+      document.getElementById('searchInput')?.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+          const query = this.value;
+          if (query) {
+            console.log('🔍 Search triggered (Enter):', query);
+            trackSearch(query);
+            console.log('✅ trackSearch() called');
+          }
+        }
+      });
+
+      // DEBUG: Check tracking status after 2 seconds
+      setTimeout(() => {
+        console.log('=== SEARCH TRACKING DEBUG===');
+        console.log('Firebase initialized:', firebaseInitialized);
+        console.log('FirebaseSearchTracking exists:', typeof window.FirebaseSearchTracking !== 'undefined');
+        console.log('LocalStorage searches:', localStorage.getItem('claudeSearches'));
+        console.log('LocalStorage timestamps:', localStorage.getItem('claudeSearchTimestamps'));
+        console.log('================================');
+      }, 2000);
+    </script>
+
+  <!-- Navigation Dropdown Script -->
+  <script>
+    // Gold border feature removed — toggle intentionally disabled
+
+    const navigationSelect = document.getElementById('navigationSelect');
+    navigationSelect.addEventListener('change', function () {
+      const target = String(navigationSelect.value || '').trim();
+      if (!target) return;
+
+      if (target === '#chatbot') {
+        const chatbotPopup = document.getElementById('chatbotPopup');
+        if (chatbotPopup) {
+          chatbotPopup.classList.add('active');
+          const chatInput = document.getElementById('chatbotInput');
+          if (chatInput) chatInput.focus();
+        }
+      } else if (target.startsWith('http')) {
+        window.open(target, '_blank', 'noopener,noreferrer');
+      } else {
+        window.location.href = target;
+      }
+
+      navigationSelect.value = '';
+    });
+
+    // Footer link handlers
+    document.getElementById('cookieSettingsLink').addEventListener('click', function(e) {
+      e.preventDefault();
+      document.cookie = 'cookie_consent=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+      location.reload();
+    });
+
+    document.getElementById('privacyPolicyLink').addEventListener('click', function(e) {
+      e.preventDefault();
+      alert('Privacy Policy\n\n' +
+        'Last updated: January 12, 2026\n\n' +
+        '1. Information We Collect\n' +
+        'We collect information you provide directly and automatically through cookies and analytics.\n\n' +
+        '2. How We Use Your Information\n' +
+        '• To provide and improve our services\n' +
+        '• To analyze site usage and trends\n' +
+        '• To communicate with you\n\n' +
+        '3. Cookies\n' +
+        'We use Google Analytics cookies to understand how visitors use our website.\n\n' +
+        '4. Your Rights\n' +
+        'You can manage cookie preferences and request data deletion.\n\n' +
+        '5. Contact\n' +
+        'For privacy inquiries, contact via the website.');
+    });
+
+    document.getElementById('termsOfUseLink').addEventListener('click', function(e) {
+      e.preventDefault();
+      alert('Terms of Use\n\n' +
+        'Last updated: January 12, 2026\n' +
+        '1. Acceptance of Terms\n' +
+        'By accessing this website, you agree to these terms.\n\n' +
+        '2. Use of Services\n' +
+        'This website is for informational and professional purposes.\n\n' +
+        '3. Intellectual Property\n' +
+        'All content is owned by Alfred A. B. Mayaki unless otherwise stated.\n\n' +
+        '4. AI Chatbot\n' +
+        'The chatbot is powered by Claude AI. Conversations may be processed by third-party AI services.\n\n' +
+        '5. Disclaimer\n' +
+        'Content is provided "as is" without warranties.\n\n' +
+        '6. Changes to Terms\n' +
+        'We reserve the right to modify these terms at any time.');
+    });
+  </script>
+  
+  <!-- Cookie Consent Script -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      'use strict';
+
+      const COOKIE_NAME = 'cookie_consent';
+      const COOKIE_EXPIRY_DAYS = 365;
+
+      function setCookie(name, value, days) {
+        const date = new Date();
+        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+        const expires = 'expires=' + date.toUTCString();
+        document.cookie = name + '=' + value + ';' + expires + ';path=/;SameSite=Strict';
+      }
+
+      function getCookie(name) {
+        const nameEQ = name + '=';
+        const ca = document.cookie.split(';');
+        for (let i = 0; i < ca.length; i++) {
+          let c = ca[i];
+          while (c.charAt(0) === ' ') c = c.substring(1, c.length);
+          if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
+        }
+        return null;
+      }
+
+      function initGoogleAnalytics() {
+        const script = document.createElement('script');
+        script.async = true;
+        script.src = 'https://www.googletagmanager.com/gtag/js?id=G-CNF86BSG95';
+        document.head.appendChild(script);
+
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-CNF86BSG95', {
+          'anonymize_ip': true,
+          'cookie_flags': 'SameSite=Strict;Secure'
+        });
+
+        console.log('✅ Google Analytics initialized');
+      }
+
+      function hideBanner() {
+        const banner = document.getElementById('cookieBanner');
+        if (banner) {
+          banner.style.animation = 'slideDown 0.4s ease-out';
+          setTimeout(() => {
+            banner.classList.remove('show');
+          }, 400);
+        }
+      }
+
+      function handleAccept() {
+        setCookie(COOKIE_NAME, 'accepted', COOKIE_EXPIRY_DAYS);
+        initGoogleAnalytics();
+        hideBanner();
+      }
+
+      function handleReject() {
+        setCookie(COOKIE_NAME, 'rejected', COOKIE_EXPIRY_DAYS);
+        hideBanner();
+      }
+
+      const consent = getCookie(COOKIE_NAME);
+      
+      if (consent === 'accepted') {
+        initGoogleAnalytics();
+      } else if (!consent) {
+        const banner = document.getElementById('cookieBanner');
+        if (banner) {
+          banner.classList.add('show');
+        }
+      }
+
+      document.getElementById('acceptCookies')?.addEventListener('click', handleAccept);
+      document.getElementById('rejectCookies')?.addEventListener('click', handleReject);
+      
+      document.getElementById('learnMore')?.addEventListener('click', function(e) {
+        e.preventDefault();
+        alert('Cookie Policy\n\nWe use Google Analytics to:\n• Understand how visitors use our website\n• Improve user experience\n• Analyze site traffic and performance\n\nYou can change your preferences at any time by clearing your browser cookies and refreshing the page.');
+      });
+
+      const style = document.createElement('style');
+      style.textContent = `
+        @keyframes slideDown {
+          from { transform: translateY(0); }
+          to { transform: translateY(100%); }
+        }
+      `;
+      document.head.appendChild(style);
+    });
+    </script    
+
+    <!-- Search Tracker API Client -->
+  <script src="search-tracker-api.js"></script>
+    <script>
+/* Small WebAudio "click" when moving between select items.
+   Plays only after a user gesture (to satisfy browser autoplay policies).
+*/
+document.addEventListener('DOMContentLoaded', function () {
+  const selects = [
+    document.getElementById('navigationSelect'),
+    document.getElementById('languageSelect')
+  ].filter(Boolean);
+
+  if (!selects.length) return;
+
+  // Create AudioContext once
+  const AudioCtx = window.AudioContext || window.webkitAudioContext;
+  const audioCtx = AudioCtx ? new AudioCtx() : null;
+  let userInteracted = false;
+
+  function enableSoundOnGesture() {
+    userInteracted = true;
+    if (audioCtx && audioCtx.state === 'suspended') audioCtx.resume();
+    window.removeEventListener('pointerdown', enableSoundOnGesture);
+    window.removeEventListener('keydown', enableSoundOnGesture);
+  }
+  window.addEventListener('pointerdown', enableSoundOnGesture, { once: true });
+  window.addEventListener('keydown', enableSoundOnGesture, { once: true });
+
+  function playTick() {
+    if (!audioCtx || !userInteracted) return;
+    const now = audioCtx.currentTime;
+    const o = audioCtx.createOscillator();
+    const g = audioCtx.createGain();
+    o.type = 'sine';
+    o.frequency.setValueAtTime(1100, now);
+    g.gain.setValueAtTime(0.0001, now);
+    o.connect(g);
+    g.connect(audioCtx.destination);
+    o.start(now);
+    g.gain.exponentialRampToValueAtTime(0.06, now + 0.01);
+    g.gain.exponentialRampToValueAtTime(0.0001, now + 0.12);
+    o.stop(now + 0.14);
+  }
+
+  // Attach handlers to each select:
+  selects.forEach((sel) => {
+    let lastIndex = sel.selectedIndex;
+
+    // Play on change
+    sel.addEventListener('change', () => {
+      playTick();
+      lastIndex = sel.selectedIndex;
+    });
+
+    // Play when using keyboard arrows (selection may change slightly after key event)
+    sel.addEventListener('keydown', (e) => {
+      if (['ArrowUp','ArrowDown','PageUp','PageDown','Home','End'].includes(e.key)) {
+        setTimeout(() => {
+          if (sel.selectedIndex !== lastIndex) {
+            playTick();
+            lastIndex = sel.selectedIndex;
+          }
+        }, 60);
+      }
+    });
+  });
+
+  /* Add near the end of the document, before the closing </body> */
+(function () {
+  const NAV_SELECTOR = '.top-nav .nav-links a';
+  const SELECT_IDS = ['navigationSelect', 'languageSelect'];
+  const STORAGE_PREFIX = 'menu_ts_';
+
+  function nowISO() { return new Date().toISOString(); }
+  function formatForDisplay(iso) {
+    try {
+      const d = new Date(iso);
+      return d.toLocaleString([], { hour: '2-digit', minute: '2-digit', day: 'numeric', month: 'short', year: 'numeric' });
+    } catch (e) {
+      return iso;
+    }
+  }
+
+  function storageKey(key) { return STORAGE_PREFIX + key; }
+
+  // Render a timestamp badge next to a menu element (anchor or select option)
+  function renderBadgeForAnchor(anchor, key) {
+    if (!anchor) return;
+    let span = anchor.querySelector('.menu-ts');
+    if (!span) {
+      span = document.createElement('span');
+      span.className = 'menu-ts';
+      anchor.appendChild(span);
+    }
+    const stored = localStorage.getItem(storageKey(key));
+    span.textContent = stored ? formatForDisplay(stored) : '—';
+    span.title = stored || '';
+  }
+
+  // Record timestamp for a key and update UI
+  function recordTimestamp(key) {
+    const ts = nowISO();
+    localStorage.setItem(storageKey(key), ts);
+
+    // update any matching anchors
+    document.querySelectorAll(NAV_SELECTOR).forEach(a => {
+      const href = a.getAttribute('href') || a.dataset.key || a.textContent.trim();
+      if (href === key) renderBadgeForAnchor(a, key);
+    });
+
+    // update selects display (if needed)
+    SELECT_IDS.forEach(id => {
+      const sel = document.getElementById(id);
+      if (!sel) return;
+      // show timestamp on the select's selected option (append small text to label via aria)
+      if (sel.value === key) {
+        sel.setAttribute('data-last-activated', ts);
+      }
+    });
+
+    console.log('Menu activated:', key, ts);
+  }
+
+  // Initialize: attach click listeners and render stored timestamps
+  function init() {
+    // Render existing timestamps for anchors
+    document.querySelectorAll(NAV_SELECTOR).forEach(a => {
+      const href = a.getAttribute('href') || a.dataset.key || a.textContent.trim();
+      renderBadgeForAnchor(a, href);
+
+      // On click, record timestamp (allow default navigation)
+      a.addEventListener('click', (e) => {
+        try { recordTimestamp(href); } catch (err) { /* ignore */ }
+        // do not prevent default (keeps navigation behavior)
+      });
+    });
+
+    // Hook selects (navigationSelect + languageSelect)
+    SELECT_IDS.forEach(id => {
+      const sel = document.getElementById(id);
+      if (!sel) return;
+
+      // Render timestamp next to the select (if previously activated)
+      const selectedKey = String(sel.value || '').trim();
+      if (selectedKey) {
+        const stored = localStorage.getItem(storageKey(selectedKey));
+        if (stored) sel.setAttribute('data-last-activated', stored);
+      }
+
+      sel.addEventListener('change', () => {
+        const val = String(sel.value || '').trim();
+        if (!val) return;
+        recordTimestamp(val);
+        // preserve existing navigation behavior in your code
+      });
+
+      // Optional: keyboard activation
+      sel.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+          const val = String(sel.value || '').trim();
+          if (val) recordTimestamp(val);
+        }
+      });
+    });
+
+    // Accessibility: on load, append a small accessible note for selects showing last activated time
+    // This will be kept in aria-label to expose to screen readers
+    document.querySelectorAll('select[id]').forEach(sel => {
+      const val = String(sel.value || '').trim();
+      if (!val) return;
+      const stored = localStorage.getItem(storageKey(val));
+      if (stored) {
+        const note = ` Last activated: ${formatForDisplay(stored)}.`;
+        const aria = sel.getAttribute('aria-label') || sel.id;
+        sel.setAttribute('aria-label', aria + note);
+      }
+    });
+  }
+
+  // Run on DOM ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+
+  // Expose helper for debugging
+  window.__recordMenuTimestamp = recordTimestamp;
+})();
+
+ /* Unified behaviour: make 'Quick navigation' act exactly like 'Select a world language'
+   - navigates in the same tab via location.href
+   - shared keyboard support (Enter)
+   - resets to placeholder after navigation
+*/
+(function () {
+  const nav = document.getElementById('navigationSelect');
+  const lang = document.getElementById('languageSelect');
+
+  const selects = [nav, lang].filter(Boolean);
+  if (!selects.length) return;
+
+  function handleSelectChange() {
+    const target = String(this.value || '').trim();
+    if (!target) return;
+    // Navigate in same tab for both selects
+    window.location.href = target;
+    // Reset to placeholder for quick reuse
+    this.value = '';
+  }
+
+  selects.forEach(s => {
+    s.addEventListener('change', handleSelectChange);
+    s.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        handleSelectChange.call(s, e);
+      }
+    });
+  });
+})();
+
+function createMessageEl(text, role, date = new Date()) {
+  ensureYearSeparator(date);
+
+  const row = document.createElement('div');
+  row.className = 'message ' + (role === 'user' ? 'user' : 'bot');
+
+  // New wrapper for avatar + bubble alignment
+  const inner = document.createElement('div');
+  inner.className = 'message-row-inner';
+
+  // Avatar
+  const avatar = document.createElement('div');
+  avatar.className = 'message-avatar';
+  avatar.textContent = role === 'user' ? 'You' : 'C';   // C for Claude
+
+  // Bubble container
+  const bubble = document.createElement('div');
+  bubble.className = 'message-bubble';
+  bubble.textContent = text;
+
+  const meta = document.createElement('div');
+  meta.className = 'message-meta';
+
+  // Robust time + short date formatting using Intl.DateTimeFormat (works across locales)
+  try {
+    const timeFormatter = new Intl.DateTimeFormat(undefined, { hour: '2-digit', minute: '2-digit' });
+    const dateFormatter = new Intl.DateTimeFormat(undefined, { month: 'short', day: 'numeric' });
+    const time = timeFormatter.format(date);
+    const shortDate = dateFormatter.format(date);
+    meta.textContent = `${time} • ${shortDate}`;
+  } catch (err) {
+    // Fallback
+    const time = date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    const shortDate = date.toLocaleDateString([], { month: 'short', day: 'numeric' });
+    meta.textContent = `${time} • ${shortDate}`;
+  }
+
+  inner.appendChild(avatar);
+  inner.appendChild(bubble);
+  row.appendChild(inner);
+  row.appendChild(meta);
+
+  return row;
+}
+
+/* Add this script near the end of the document (before </body>) to wire uploaded documents into the search prompt sent to Claude Opus 4.5 */
+<script>
+(function () {
+  const fileInput = document.getElementById('docUploadInput');
+  const uploadBtn = document.getElementById('docUploadBtn');
+
+  if (!fileInput || !uploadBtn) return;
+
+  // Open native picker on click / keyboard activation
+  uploadBtn.addEventListener('click', () => fileInput.click());
+  uploadBtn.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      fileInput.click();
+    }
+  });
+
+  // Optional: lightweight feedback when files chosen (keeps existing processing)
+  fileInput.addEventListener('change', async (e) => {
+    const files = Array.from(e.target.files || []);
+    if (!files.length) return;
+
+    for (const f of files) {
+      pushChatMessage(`Uploading ${f.name}…`, 'user');
+
+      const result = await extractFile(f);
+      window.uploadedDocs.push(result);
+      pushChatMessage(`Document received: ${f.name}`, 'bot');
+
+      // --- New: make chatbot flow know about the raw File so processQuery sends it as multipart ---
+      if (window.__setUploadedFile) {
+        window.__setUploadedFile(f);   // set state.uploadedFile inside index.js
+      }
+
+      // Optionally open the chatbot so user can continue in that UI
+      if (window.__openChatbot) {
+        window.__openChatbot();       // opens chatbot and focuses input
+      }
+    }
+
+    renderUploadList();
+    e.target.value = '';
+  });
+})();
+</script>
+  <!-- Open results script removed (ChatGPT/results flow abandoned) -->
+
+  <script>
+  (function () {
+    const btn = document.getElementById('openAiQuickBtn');
+    const input = document.getElementById('searchInput');
+    const out = document.getElementById('openAiQuickResult');
+
+    if (!btn || !input || !out) return;
+
+    async function askOpenAI(prompt) {
+      try {
+        const resp = await fetch('/api/chatgpt', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ message: prompt })
+        });
+
+        // Inspect Content-Type to avoid trying to parse HTML error pages as JSON
+        const ct = (resp.headers.get('content-type') || '').toLowerCase();
+        if (ct.includes('application/json')) {
+          const json = await resp.json();
+          return json;
+        }   
+
+        // For non-JSON responses provide a clear, user-friendly message instead of dumping raw HTML
+        const text = await resp.text();
+        if (resp.status === 501) {
+          return {
+            success: false,
+            error: 'OpenAI unavailable: host returns 501 (POST not supported). Run the included example server (node server-example.js) or deploy a backend that handles /api/chatgpt.'
+          };
+        }
+
+        return { success: false, error: text || `Unexpected response (status ${resp.status})` };
+      } catch (err) {
+        return { success: false, error: err.message };
+      }
+    }
+
+    btn.addEventListener('click', async function (e) {
+      e.preventDefault();
+      const q = String(input.value || input.placeholder || '').trim();
+      if (!q) return;
+
+      out.style.display = 'block';
+      out.textContent = '…thinking…';
+
+      const res = await askOpenAI(q);
+      if (res && res.success) {
+        out.textContent = res.text || (res.reply || 'No reply');
+      } else {
+        const errMsg = (res && (res.error || res.text)) || 'Please try later.';
+
+        // If common static-hosting / 501 case, show actionable buttons instead of raw error
+        const lowered = String(errMsg).toLowerCase();
+        if (lowered.includes('501') || lowered.includes('post not supported') || lowered.includes('static')) {
+          out.innerHTML = '';
+          const p = document.createElement('div');
+          p.textContent = 'OpenAI unavailable — ' + errMsg;
+          p.style.marginBottom = '0.5rem';
+          out.appendChild(p);
+
+          const btnWrap = document.createElement('div');
+          btnWrap.style.display = 'flex';
+          btnWrap.style.justifyContent = 'center';
+          btnWrap.style.gap = '0.5rem';
+
+          const extBtn = document.createElement('button');
+          extBtn.className = 'ai-quick-btn';
+          extBtn.textContent = 'Open external results';
+          extBtn.addEventListener('click', () => {
+            const url = 'https://blogs.alfredmayaki.me/?q=' + encodeURIComponent(q);
+            window.open(url, '_blank', 'noopener');
+          });
+
+          const instrBtn = document.createElement('button');
+          instrBtn.className = 'ai-quick-btn';
+          instrBtn.textContent = 'Show server instructions';
+          instrBtn.addEventListener('click', () => {
+            if (out.querySelector('.server-instr')) return;
+            const instr = document.createElement('pre');
+            instr.className = 'server-instr';
+            instr.style.marginTop = '0.6rem';
+            instr.style.whiteSpace = 'pre-wrap';
+            instr.style.textAlign = 'left';
+            instr.textContent = 'To enable Ask OpenAI locally:\n1) Copy .env.example -> .env and set OPENAI_API_KEY=your_key\n2) npm install && node server-example.js\n3) Open this site from http://localhost:3000 and retry.';
+            out.appendChild(instr);
+          });
+
+          btnWrap.appendChild(extBtn);
+          btnWrap.appendChild(instrBtn);
+          out.appendChild(btnWrap);
+        } else {
+          out.textContent = 'OpenAI unavailable — ' + errMsg;
+        }
+      }
+    });
+  })();
+  </script>
+
+  </body>
+  </html>

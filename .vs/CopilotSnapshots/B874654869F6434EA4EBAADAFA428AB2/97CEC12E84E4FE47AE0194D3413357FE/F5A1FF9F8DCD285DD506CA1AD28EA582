@@ -1,0 +1,5 @@
+﻿# Copilot Instructions
+
+## General Guidelines
+- Ensure visual consistency across the website.
+- Apply the same CSS styling and theme variables from `index.html` to `survey2.html`, maintaining the dark theme, spacing system, colors, and animations.

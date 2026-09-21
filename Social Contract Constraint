@@ -1,0 +1,60 @@
+# Load your dataset (assuming it is a CSV or Stata file)
+# If using Stata files (.dta), you will need: install.packages("haven")
+library(haven)
+
+# Replace 'path/to/your/data.dta' with your actual file location
+df_social <- read_dta("path/to/your/UKHLS_LOS_merged.dta")
+
+install.packages("tidyverse")
+install.packages("plm")
+install.packages("fixest")
+
+# Load necessary libraries
+library(tidyverse)
+library(plm)      # For Panel Data Models
+library(fixest)   # For High-Dimensional Fixed Effects
+
+# Mock setup: Assuming your merged dataset is named 'df_social'
+# Variables: 
+# pidp (Person ID), wave (Year/Wave), jbatt (Attraction), 
+# jwbs2_dv (Depression), health_cond (LOS Social Contract Proxy)
+
+df_cleaned <- df_social %>%
+  mutate(
+    # 1. Normalize Job Attraction (J)
+    J = as.numeric(jbatt),
+    
+    # 2. Rescale Depression (D) so 1 = High Wellbeing (Low Depression)
+    # Assuming original scale is 1-7 (7 being high depression)
+    D_inv = (8 - as.numeric(jwbs2_dv)),
+    
+    # 3. Social Contract Proxy (S) 
+    # If LOS health condition is binary (1=Condition, 0=None)
+    S = as.numeric(health_cond),
+    
+    # 4. Constructing the Efficiency Wage (W)
+    # W = 1 + (Wage * Profitability) / Productivity_Signal
+    W_eff = 1 + (monthly_wage * biz_profit) / productivity_signal
+  ) %>%
+  filter(!is.na(W_eff)) # Remove missing observations
+
+# Define the Panel Data structure
+p_df <- pdata.frame(df_cleaned, index = c("pidp", "wave"))
+
+# Model: Productivity ~ Wage + Mental Health + Social Contract + Job Attraction
+# This tests the 'Incentive Compatibility Constraint'
+fe_model <- feols(productivity_signal ~ W_eff + D_inv + S + J | pidp + wave, 
+                  data = p_df)
+
+# Summary of results
+summary(fe_model)
+
+ggplot(df_cleaned, aes(x = D_inv, y = productivity_signal, color = as.factor(S))) +
+  geom_smooth(method = "lm") +
+  labs(
+    title = "Productivity vs. Mental Wellbeing by Social Contract Status",
+    x = "Mental Wellbeing (1 - D)",
+    y = "Signalled Productivity (U*)",
+    color = "Health Condition (S)"
+  ) +
+  theme_minimal()

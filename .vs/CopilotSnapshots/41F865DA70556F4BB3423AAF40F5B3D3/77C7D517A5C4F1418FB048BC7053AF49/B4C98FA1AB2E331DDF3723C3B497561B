@@ -1,0 +1,344 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Support Alfred Mayaki — Buy Me a Coffee</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Support Alfred Anate Bodurin Mayaki - Labour Economist and Researcher">
+  <meta name="author" content="Alfred Anate Bodurin Mayaki">
+
+  <style>
+    :root {
+      --font-sans: "Segoe UI", system-ui, -apple-system, Arial, sans-serif;
+
+      --bg-overlay: rgba(22, 22, 22, 0.92);
+      --panel: #161616;
+      --panel-2: #141414;
+      --surface: #2a2a2a;
+
+      --text: #ffffff;
+      --text-muted: #979797;
+
+      --border: #464242;
+      --border-soft: rgba(255, 255, 255, 0.06);
+
+      --brand: #3d4ee9;
+      --brand-hover: #5563f0;
+
+      --radius-sm: 10px;
+      --radius-md: 14px;
+      --radius-lg: 16px;
+      --radius-pill: 999px;
+
+      --shadow-pop: 0 14px 40px rgba(0, 0, 0, 0.55);
+      --shadow-brand: 0 6px 16px rgba(61, 78, 233, 0.35);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      padding: 5px;
+
+      display: flex;
+      align-items: stretch;
+      justify-content: stretch;
+
+      font-family: var(--font-sans);
+      color: var(--text-muted);
+      background: url("/universe.png") center / cover no-repeat fixed;
+    }
+
+    .container {
+      width: 100%;
+      min-height: 100vh;
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      padding: 3em;
+      text-align: center;
+
+      background: var(--bg-overlay);
+      border: 3px solid var(--border);
+      animation: fadeIn 0.7s ease-in;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .content-wrapper {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      margin: 0 0 0.5em 0;
+      font-size: 2.5em;
+      color: var(--text);
+    }
+
+    .subtitle {
+      margin: 0 0 2em 0;
+      font-size: 1.2em;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    .info-box {
+      background: var(--surface);
+      border: 2px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 2em;
+      margin: 2em 0;
+      text-align: left;
+    }
+
+    .info-box h2 {
+      margin: 0 0 1em 0;
+      color: var(--text);
+      font-size: 1.5em;
+    }
+
+    .info-box p {
+      color: var(--text-muted);
+      line-height: 1.8;
+      margin: 0.8em 0;
+    }
+
+    .info-box ul {
+      color: var(--text-muted);
+      line-height: 1.8;
+      margin: 1em 0;
+      padding-left: 1.5em;
+    }
+
+    .info-box li {
+      margin: 0.5em 0;
+    }
+
+    /* Back to Home Button */
+    .back-home-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 8px 16px;
+      margin-bottom: 2em;
+      min-height: 36px;
+
+      background: #3d4ee9;
+      color: #ffffff !important;
+      border: 2px solid #3d4ee9;
+      border-radius: 999px;
+
+      font-family: 'Segoe UI', sans-serif;
+      font-size: 0.85em;
+      font-weight: 600;
+      text-decoration: none !important;
+      white-space: nowrap;
+
+      transition: all 0.2s ease;
+      cursor: pointer;
+    }
+
+    .back-home-btn:hover {
+      background: #5563f0;
+      border-color: #5563f0;
+      box-shadow: 0 4px 12px rgba(61, 78, 233, 0.4);
+      transform: translateY(-2px);
+      text-decoration: none !important;
+      color: #ffffff !important;
+    }
+
+    .back-home-btn:active {
+      transform: translateY(0);
+      box-shadow: 0 2px 8px rgba(61, 78, 233, 0.3);
+    }
+
+    .back-home-btn i {
+      font-size: 0.85em;
+    }
+
+    .footer {
+      margin-top: 3em;
+      padding-top: 2em;
+      border-top: 1px solid var(--border);
+      color: var(--text-muted);
+      font-size: 0.9em;
+    }
+
+    /* Mobile optimization */
+    @media (max-width: 600px) {
+      .container {
+        padding: 1.5em 1em;
+      }
+
+      h1 {
+        font-size: 1.8em;
+      }
+
+      .subtitle {
+        font-size: 1em;
+      }
+
+      .info-box {
+        padding: 1.5em;
+      }
+
+      .back-home-btn {
+        padding: 7px 14px;
+        font-size: 0.8em;
+        min-height: 38px;
+      }
+    }
+
+    @media (max-width: 400px) {
+      .container {
+        padding: 1em;
+      }
+
+      h1 {
+        font-size: 1.5em;
+      }
+
+      .info-box {
+        padding: 1.2em;
+      }
+
+      .back-home-btn {
+        padding: 6px 12px;
+        font-size: 0.75em;
+        min-height: 36px;
+      }
+    }
+  </style>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <div id="particles-js" style="position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:-1;"></div>
+
+  <div class="container">
+    <div class="content-wrapper">
+      <!-- Back to Home Button -->
+      <div class="btn-container">
+        <a href="index.html" class="back-home-btn">
+          <i class="fas fa-arrow-left"></i>
+          Back to Home
+        </a>
+      </div>
+
+      <h1>☕ Support My Work</h1>
+      <p class="subtitle">
+        If you find my research, projects, or tools helpful, consider buying me a coffee!<br>
+        Your support helps me continue creating valuable content and open-source projects.
+      </p>
+
+      <div class="info-box">
+        <h2>🎯 Why Support?</h2>
+        <p>Your contributions help me:</p>
+        <ul>
+          <li>📚 Continue research in labour economics and public policy</li>
+          <li>💻 Develop and maintain open-source tools and projects</li>
+          <li>📝 Create educational content and share knowledge</li>
+          <li>🌍 Contribute to the academic and development community</li>
+          <li>☕ Stay caffeinated during late-night coding sessions!</li>
+        </ul>
+      </div>
+
+      <div class="widget-container">
+        <!-- Buy Me a Coffee Widget will load here -->
+        <p style="color: var(--text-muted);">
+          Loading Buy Me a Coffee widget...<br>
+          <small>If the widget doesn't load, you can <a href="https://buymeacoffee.com/alfred6072" target="_blank" style="color: var(--brand);">visit my page directly</a>.</small>
+        </p>
+      </div>
+
+      <div class="info-box">
+        <h2>💝 Thank You!</h2>
+        <p>
+          Every coffee means a lot to me and motivates me to keep working on projects that benefit the community.
+          Whether it's $3 or more, your support is deeply appreciated! 🙏
+        </p>
+        <p>
+          <strong>Can't donate?</strong> No worries! You can also support by:
+        </p>
+        <ul>
+          <li>⭐ Starring my GitHub projects</li>
+          <li>📢 Sharing my work with others</li>
+          <li>💬 Providing feedback and suggestions</li>
+          <li>🤝 Collaborating on future projects</li>
+        </ul>
+      </div>
+
+      <div class="footer">
+        <p>© 2026 Alfred A. B. Mayaki. All rights reserved.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Particles.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
+
+  <!-- Buy Me a Coffee Widget -->
+  <script data-name="BMC-Widget" data-cfasync="false" src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js" data-id="alfred6072" data-description="Support me on Buy me a coffee!" data-message="" data-color="#5F7FFF" data-position="Right" data-x_margin="18" data-y_margin="18"></script>
+
+  <script>
+    // Initialize particles.js
+    if (typeof particlesJS !== 'undefined') {
+      particlesJS('particles-js', {
+        particles: {
+          number: { value: 80, density: { enable: true, value_area: 800 } },
+          color: { value: '#3d4ee9' },
+          shape: { type: 'circle' },
+          opacity: { value: 0.5, random: false },
+          size: { value: 3, random: true },
+          line_linked: {
+            enable: true,
+            distance: 150,
+            color: '#3d4ee9',
+            opacity: 0.4,
+            width: 1
+          },
+          move: { 
+            enable: true, 
+            speed: 2, 
+            direction: 'none', 
+            random: false, 
+            straight: false, 
+            out_mode: 'out', 
+            bounce: false 
+          }
+        },
+        interactivity: {
+          detect_on: 'canvas',
+          events: { 
+            onhover: { enable: true, mode: 'repulse' }, 
+            onclick: { enable: true, mode: 'push' }, 
+            resize: true 
+          },
+          modes: { 
+            repulse: { distance: 100, duration: 0.4 }, 
+            push: { particles_nb: 4 } 
+          }
+        },
+        retina_detect: true
+      });
+    }
+  </script>
+</body>
+</html>

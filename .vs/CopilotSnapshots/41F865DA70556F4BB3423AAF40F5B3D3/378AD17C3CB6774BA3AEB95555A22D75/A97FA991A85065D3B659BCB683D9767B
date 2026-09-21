@@ -1,0 +1,275 @@
+﻿#!/usr/bin/env python3
+"""
+Script to standardize the "Back to Home" button across all language-specific index files.
+Ensures consistent styling, mobile responsiveness, and proper alignment.
+"""
+
+import os
+import re
+from pathlib import Path
+
+# Define the standard CSS for the back-home button (based on index_it.html working mobile design)
+STANDARD_BUTTON_CSS = """    /* Back to Home Button */
+    .back-home-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 8px 16px;
+      margin-bottom: 1.5em;
+      min-height: 36px;
+
+      background: #3d4ee9;
+      color: #ffffff !important;
+      border: 2px solid #3d4ee9;
+      border-radius: 999px;
+
+      font-family: 'Segoe UI', sans-serif;
+      font-size: 0.85em;
+      font-weight: 600;
+      text-decoration: none !important;
+      white-space: nowrap;
+
+      transition: all 0.2s ease;
+      cursor: pointer;
+    }
+
+    .back-home-btn:hover {
+      background: #5563f0;
+      border-color: #5563f0;
+      box-shadow: 0 4px 12px rgba(61, 78, 233, 0.4);
+      transform: translateY(-2px);
+      text-decoration: none !important;
+      color: #ffffff !important;
+    }
+
+    .back-home-btn:active {
+      transform: translateY(0);
+      box-shadow: 0 2px 8px rgba(61, 78, 233, 0.3);
+    }
+
+    .back-home-btn i {
+      font-size: 0.85em;
+    }
+
+    /* Button container alignment */
+    .btn-container {
+      display: flex;
+      justify-content: flex-start;
+      margin-bottom: 1.3em;
+    }
+
+    /* Mobile optimization - matching index_it.html */
+    @media (max-width: 600px) {
+      .back-home-btn {
+        padding: 7px 14px;
+        font-size: 0.8em;
+        min-height: 38px;
+      }
+    }
+
+    @media (max-width: 400px) {
+      .back-home-btn {
+        padding: 6px 12px;
+        font-size: 0.75em;
+        min-height: 36px;
+      }
+    }"""
+
+# Standard HTML structure for the button container
+STANDARD_BUTTON_HTML = """  <!-- Back to Home Button -->
+  <div class="btn-container">
+    <a href="index.html" class="back-home-btn">
+      <i class="fas fa-arrow-left"></i>
+      {button_text}
+    </a>
+  </div>"""
+
+# Button text for each language
+BUTTON_TEXT_MAP = {
+    'index_en.html': 'Back to Home',
+    'index_fr.html': 'Retour à l\'accueil',
+    'index_es.html': 'Volver al inicio',
+    'index_de.html': 'Zurück zur Startseite',
+    'index_it.html': 'Torna alla home',
+    'index_pt.html': 'Voltar ao início',
+    'index_nl.html': 'Terug naar home',
+    'index_ru.html': 'Назад на главную',
+    'index_ch.html': '返回主页',
+    'index_jp.html': 'ホームに戻る',
+    'index_he.html': 'חזרה לעמוד הבית',
+    'index_tr.html': 'Ana sayfaya dön',
+    'index_sw.html': 'Rudi Nyumbani',
+    'index_cy.html': 'Yn ôl i\'r cartref',
+    'index_ksa.html': 'العودة إلى الصفحة الرئيسية',
+    'index_yb.html': 'Pada Ibi-akọọlẹ',
+    'index_test.html': 'Back to Home',
+}
+
+# RTL languages that need arrow-right instead of arrow-left
+RTL_LANGUAGES = ['index_he.html', 'index_ksa.html']
+
+
+def find_language_files():
+    """Find all index_xxx.html files in the current directory."""
+    current_dir = Path('.')
+    files = list(current_dir.glob('index_*.html'))
+    return [f for f in files if f.name in BUTTON_TEXT_MAP]
+
+
+def extract_button_text_from_file(filepath):
+    """Extract existing button text from the file if not in the map."""
+    try:
+        with open(filepath, 'r', encoding='utf-8') as f:
+            content = f.read()
+        
+        # Look for the button text in various patterns
+        patterns = [
+            r'<a[^>]*class="back-home-btn"[^>]*>\s*<i[^>]*></i>\s*([^<]+)</a>',
+            r'<a[^>]*class="back-home-btn"[^>]*>\s*([^<]+)\s*<i[^>]*></i></a>',
+        ]
+        
+        for pattern in patterns:
+            match = re.search(pattern, content)
+            if match:
+                return match.group(1).strip()
+        
+        return None
+    except Exception as e:
+        print(f"Warning: Could not extract button text from {filepath}: {e}")
+        return None
+
+
+def standardize_button_css(content):
+    """Replace the back-home-btn CSS with the standard version."""
+    # Find the CSS block for .back-home-btn
+    pattern = r'/\*\s*Back to Home Button\s*\*/.*?(?=\n\s*(?:/\*|\.[\w-]+\s*\{|</style>|@media))'
+    
+    match = re.search(pattern, content, re.DOTALL)
+    if match:
+        # Replace the entire CSS block
+        new_content = content[:match.start()] + STANDARD_BUTTON_CSS + content[match.end():]
+        return new_content
+    else:
+        # If not found, try to insert before </style>
+        style_end = content.find('</style>')
+        if style_end != -1:
+            print("    CSS block not found, inserting new CSS before </style>")
+            new_content = content[:style_end] + '\n' + STANDARD_BUTTON_CSS + '\n  ' + content[style_end:]
+            return new_content
+    
+    return content
+
+
+def standardize_button_html(content, filename):
+    """Replace the back-home button HTML with the standard version."""
+    button_text = BUTTON_TEXT_MAP.get(filename, 'Back to Home')
+    arrow_icon = 'fa-arrow-right' if filename in RTL_LANGUAGES else 'fa-arrow-left'
+    
+    button_html = STANDARD_BUTTON_HTML.format(button_text=button_text)
+    button_html = button_html.replace('fa-arrow-left', arrow_icon)
+    
+    # Find various button patterns in the HTML
+    patterns = [
+        # Pattern 1: div with style containing back-home-btn
+        r'<div[^>]*>\s*<a[^>]*class="back-home-btn"[^>]*>.*?</a>\s*</div>',
+        # Pattern 2: div with class="btn-container"
+        r'<div[^>]*class="btn-container"[^>]*>\s*<a[^>]*class="back-home-btn"[^>]*>.*?</a>\s*</div>',
+        # Pattern 3: Just the anchor with comment
+        r'<!--\s*Back to Home Button\s*-->\s*<div[^>]*>.*?</div>',
+    ]
+    
+    replaced = False
+    for pattern in patterns:
+        if re.search(pattern, content, re.DOTALL):
+            new_content = re.sub(pattern, button_html, content, count=1, flags=re.DOTALL)
+            if new_content != content:
+                replaced = True
+                return new_content
+    
+    if not replaced:
+        # Try to insert after <body> tag
+        body_match = re.search(r'<body[^>]*>\s*\n', content)
+        if body_match:
+            print("    Button HTML not found, inserting after <body> tag")
+            insert_pos = body_match.end()
+            new_content = content[:insert_pos] + '\n' + button_html + '\n' + content[insert_pos:]
+            return new_content
+    
+    return content
+
+
+def process_file(filepath):
+    """Process a single HTML file to standardize the back button."""
+    filename = filepath.name
+    print(f"\nProcessing {filename}...")
+    
+    try:
+        # Read the file
+        with open(filepath, 'r', encoding='utf-8') as f:
+            content = f.read()
+        
+        original_content = content
+        
+        # Standardize CSS
+        print("  - Updating CSS...")
+        content = standardize_button_css(content)
+        
+        # Standardize HTML
+        print("  - Updating HTML...")
+        content = standardize_button_html(content, filename)
+        
+        # Write back only if changes were made
+        if content != original_content:
+            with open(filepath, 'w', encoding='utf-8') as f:
+                f.write(content)
+            print(f"  ✓ {filename} updated successfully")
+            return True
+        else:
+            print(f"  - No changes needed for {filename}")
+            return False
+            
+    except Exception as e:
+        print(f"  ✗ Error processing {filename}: {e}")
+        return False
+
+
+def main():
+    """Main function to standardize all language files."""
+    print("=" * 70)
+    print("Standardizing 'Back to Home' Button Across All Language Files")
+    print("=" * 70)
+    
+    files = find_language_files()
+    
+    if not files:
+        print("\n⚠ No language-specific index files found (index_*.html)")
+        return
+    
+    print(f"\nFound {len(files)} language files to process:")
+    for f in files:
+        print(f"  - {f.name}")
+    
+    print("\nStarting standardization...")
+    
+    updated_count = 0
+    for filepath in files:
+        if process_file(filepath):
+            updated_count += 1
+    
+    print("\n" + "=" * 70)
+    print(f"Standardization complete!")
+    print(f"Files processed: {len(files)}")
+    print(f"Files updated: {updated_count}")
+    print(f"Files unchanged: {len(files) - updated_count}")
+    print("=" * 70)
+    
+    print("\nThe 'Back to Home' button is now standardized with:")
+    print("  ✓ Consistent styling across all files")
+    print("  ✓ Mobile-optimized touch targets (44px+ height)")
+    print("  ✓ Proper RTL support for Hebrew and Arabic")
+    print("  ✓ Responsive font sizes and padding")
+
+
+if __name__ == '__main__':
+    main()

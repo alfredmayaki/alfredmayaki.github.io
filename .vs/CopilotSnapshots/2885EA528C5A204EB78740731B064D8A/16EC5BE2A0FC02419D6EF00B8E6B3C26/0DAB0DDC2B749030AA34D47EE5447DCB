@@ -1,0 +1,394 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Milano-Cortina 2026 - Day 9 Fact Sheet | Winter Olympics</title>
+  <meta name="description" content="Complete fact sheet for Day 9 of the Milano-Cortina 2026 Winter Olympic Games — men's super-G, biathlon pursuits, men's moguls final, luge men's singles, ski jumping men's normal hill, short track women's 500m final, and speed skating women's 5000m.">
+  <meta name="keywords" content="Milano-Cortina 2026, Winter Olympics Day 9, Olympic schedule, February 15 2026">
+  <style>
+    :root {
+      --primary-blue: #0081C8;
+      --secondary-red: #EE334E;
+      --gold: #D4AF37;
+      --dark-bg: #FFFFFF;
+      --card-bg: #f5f5f5;
+      --text-light: #1a1a1a;
+      --text-muted: #666666;
+      --border: #d0d0d0;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background: var(--dark-bg);
+      color: var(--text-light);
+      line-height: 1.6;
+      padding: 2rem;
+    }
+
+    .container { max-width: 1200px; margin: 0 auto; }
+
+    header {
+      text-align: center;
+      padding: 2rem 0 3rem;
+      border-bottom: 3px solid var(--primary-blue);
+      margin-bottom: 3rem;
+    }
+
+    .olympics-rings { font-size: 2rem; letter-spacing: 0.5rem; margin-bottom: 1rem; }
+
+    h1 {
+      font-size: 2.5rem;
+      color: var(--gold);
+      margin-bottom: 0.5rem;
+      text-shadow: 0 2px 8px rgba(255, 215, 0, 0.3);
+    }
+
+    .subtitle { font-size: 1.2rem; color: var(--text-muted); margin-bottom: 1rem; }
+
+    .date-badge {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--primary-blue), var(--secondary-red));
+      padding: 0.75rem 1.5rem;
+      border-radius: 25px;
+      font-weight: 600;
+      color: #ffffff;
+      margin-top: 1rem;
+    }
+
+    .intro {
+      background: var(--card-bg);
+      padding: 2rem;
+      border-radius: 12px;
+      border-left: 4px solid var(--primary-blue);
+      margin-bottom: 3rem;
+    }
+
+    .event-section { margin-bottom: 3rem; }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 2px solid var(--border);
+    }
+
+    .section-icon { font-size: 2rem; }
+    h2 { color: var(--primary-blue); font-size: 1.8rem; }
+
+    .event-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .event-card {
+      background: var(--card-bg);
+      padding: 1.5rem;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .event-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 24px rgba(0, 129, 200, 0.2);
+      border-color: var(--primary-blue);
+    }
+
+    .event-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: start;
+      margin-bottom: 1rem;
+    }
+
+    .event-time {
+      background: var(--primary-blue);
+      padding: 0.4rem 0.8rem;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #ffffff;
+    }
+
+    .event-title { font-size: 1.2rem; font-weight: 600; margin-bottom: 0.5rem; color: var(--gold); }
+    .event-discipline { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 0.75rem; }
+
+    .event-venue {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .medal-event { border-left: 4px solid var(--gold); }
+
+    .medal-badge {
+      display: inline-block;
+      background: var(--gold);
+      color: #1a1a1a;
+      padding: 0.3rem 0.7rem;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      margin-top: 0.5rem;
+    }
+
+    .event-favorites {
+      margin-top: 0.75rem;
+      padding: 0.65rem 0.85rem;
+      background: rgba(0, 129, 200, 0.06);
+      border-radius: 8px;
+      border-left: 3px solid var(--primary-blue);
+      font-size: 0.88rem;
+      line-height: 1.5;
+      color: var(--text-light);
+    }
+
+    .event-favorites strong {
+      color: var(--primary-blue);
+      font-weight: 700;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      display: block;
+      margin-bottom: 0.3rem;
+    }
+
+    .event-favorites .athlete { display: inline; }
+    .event-favorites .athlete-flag { font-size: 0.85rem; margin-right: 0.15rem; }
+
+    .event-records {
+      margin-top: 0.6rem;
+      padding: 0.55rem 0.85rem;
+      background: rgba(212, 175, 55, 0.06);
+      border-radius: 8px;
+      border-left: 3px solid var(--gold);
+      font-size: 0.85rem;
+      line-height: 1.55;
+      color: var(--text-light);
+    }
+
+    .event-records strong {
+      color: var(--gold);
+      font-weight: 700;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      display: block;
+      margin-bottom: 0.25rem;
+    }
+
+    .event-records .record-row { display: flex; gap: 0.4rem; padding: 0.15rem 0; }
+
+    .event-records .record-label {
+      font-weight: 600;
+      color: var(--primary-blue);
+      white-space: nowrap;
+      min-width: 110px;
+    }
+
+    .event-records .record-note {
+      font-style: italic;
+      color: var(--text-muted);
+      font-size: 0.82rem;
+      margin-top: 0.2rem;
+    }
+
+    .highlights {
+      background: linear-gradient(135deg, rgba(0, 129, 200, 0.1), rgba(238, 51, 78, 0.1));
+      padding: 2rem;
+      border-radius: 12px;
+      margin-bottom: 3rem;
+    }
+
+    .highlights h3 { color: var(--gold); margin-bottom: 1rem; font-size: 1.5rem; }
+    .highlights ul { list-style: none; padding-left: 0; }
+
+    .highlights li { padding: 0.75rem 0; padding-left: 2rem; position: relative; }
+    .highlights li:before { content: "🏅"; position: absolute; left: 0; }
+
+    .venues-info {
+      background: var(--card-bg);
+      padding: 2rem;
+      border-radius: 12px;
+      margin-bottom: 3rem;
+    }
+
+    .venue-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+
+    .venue-item {
+      padding: 1rem;
+      background: rgba(0, 129, 200, 0.05);
+      border-radius: 8px;
+      border: 1px solid var(--border);
+    }
+
+    .venue-name { font-weight: 600; color: var(--primary-blue); margin-bottom: 0.5rem; }
+
+    .back-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.5rem;
+      background: var(--primary-blue);
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: 600;
+      transition: background 0.3s ease, transform 0.2s ease;
+      margin-bottom: 2rem;
+    }
+
+    .back-button:hover { background: var(--secondary-red); transform: translateX(-4px); }
+
+    .day-nav { display: flex; gap: 0.75rem; flex-wrap: wrap; margin-bottom: 2rem; }
+
+    .day-nav a {
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: all 0.2s ease;
+      border: 2px solid var(--border);
+      color: var(--text-light);
+    }
+
+    .day-nav a:hover { border-color: var(--primary-blue); color: var(--primary-blue); transform: translateY(-2px); }
+    .day-nav a.current { background: var(--primary-blue); border-color: var(--primary-blue); color: #ffffff; }
+
+    footer {
+      text-align: center;
+      padding: 2rem 0;
+      border-top: 2px solid var(--border);
+      margin-top: 3rem;
+      color: var(--text-muted);
+    }
+
+    @media (max-width: 768px) {
+      body { padding: 1rem; }
+      h1 { font-size: 2rem; }
+      .event-grid { grid-template-columns: 1fr; }
+      .venue-list { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a href="winter-games.html" class="back-button">← Back to Home</a>
+
+    <div class="day-nav">
+      <a href="milan-cortina-day-1.html">📅 Day 1</a>
+      <a href="milan-cortina-day-2.html">📅 Day 2</a>
+      <a href="milan-cortina-day-3.html">📅 Day 3</a>
+      <a href="milan-cortina-day-4.html">📅 Day 4</a>
+      <a href="milan-cortina-day-5.html">📅 Day 5</a>
+      <a href="milan-cortina-day-6.html">📅 Day 6</a>
+      <a href="milan-cortina-day-7.html">📅 Day 7</a>
+      <a href="milan-cortina-day-8.html">📅 Day 8</a>
+      <a href="milan-cortina-day-9.html" class="current">📅 Day 9</a>
+      <a href="milan-cortina-day-10.html">📅 Day 10</a>
+    </div>
+
+    <header>
+      <div class="olympics-rings">🔵 ⚫ 🔴 🟡 🟢</div>
+      <h1>Milano-Cortina 2026</h1>
+      <p class="subtitle">XXV Olympic Winter Games</p>
+      Day 9 — Sunday, February 15, 2026
+    </header>
+
+    <div class="intro">
+      <h3 style="color: var(--gold); margin-bottom: 1rem;">🎿 Day 9 Overview</h3>
+      <p>Sunday brings another full slate of finals and qualification rounds. Expect thrilling head-to-head battles across Nordic and sliding sports, including the men's alpine combined, women's sprint cross-country heats, mixed team snowboard cross, biathlon pursuits, and speed skating mass start action. Home favourites will once again chase the podium in front of passionate crowds.</p>
+    </div>
+
+    <div class="highlights">
+      <h3>⭐ Day 9 Highlights</h3>
+      <ul>
+        <li>Alpine Skiing — Men's Alpine Combined — medal event at Cortina</li>
+        <li>Biathlon — Pursuit races for men and women at Val Ridanna</li>
+        <li>Cross-Country Skiing — Women's Sprint — heats and finals at Lago di Tesero</li>
+        <li>Snowboard — Mixed Team Snowboard Cross — exciting country-vs-country showdown in Livigno</li>
+        <li>Speed Skating — Mass Start — tactical endurance races in Milan</li>
+        <li>Short Track — Relay events and quarterfinals at PalaItalia</li>
+      </ul>
+    </div>
+
+    <!-- Example event section -->
+    <div class="event-section">
+      <div class="section-header">
+        <span class="section-icon">⛷️</span>
+        <h2>Alpine Skiing</h2>
+      </div>
+      <div class="event-grid">
+        <div class="event-card medal-event">
+          <div class="event-header">
+            <div>
+              <div class="event-title">Men's Alpine Combined</div>
+              <div class="event-discipline">Alpine Skiing — Downhill & Slalom</div>
+            </div>
+            <div class="event-time">11:30</div>
+          </div>
+          <div class="event-venue">📍 Cortina d'Ampezzo — Olympia delle Tofane</div>
+          <span class="medal-badge">🏅 MEDAL EVENT</span>
+          <div class="event-favorites">
+            <strong>⭐ Favourites &amp; Contenders</strong>
+            <span class="athlete"><span class="athlete-flag">🇫🇷</span>Alexis Pinturault (FRA) — all-round alpine star.</span>
+            <span class="athlete"><span class="athlete-flag">🇨🇭</span>Marco Odermatt (SUI) — top speed and technical skill.</span>
+            <span class="athlete"><span class="athlete-flag">🇮🇹</span>Dominik Paris (ITA) — home crowd favourite for speed events.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="venues-info">
+      <h3 style="color: var(--gold); margin-bottom: 1rem;">🏟️ Day 9 Competition Venues</h3>
+      <div class="venue-list">
+        <div class="venue-item">
+          <div class="venue-name">📍 Cortina — Olympia delle Tofane</div>
+          <p style="color: var(--text-muted); font-size: 0.9rem;">Alpine Skiing (Men's Alpine Combined)</p>
+        </div>
+        <div class="venue-item">
+          <div class="venue-name">📍 Val Ridanna — Biathlon Centre</div>
+          <p style="color: var(--text-muted); font-size: 0.9rem;">Biathlon Pursuit Races</p>
+        </div>
+        <div class="venue-item">
+          <div class="venue-name">📍 Lago di Tesero</div>
+          <p style="color: var(--text-muted); font-size: 0.9rem;">Cross-Country Sprint</p>
+        </div>
+        <div class="venue-item">
+          <div class="venue-name">📍 Livigno — Mottolino</div>
+          <p style="color: var(--text-muted); font-size: 0.9rem;">Snowboard Cross & Mixed Team</p>
+        </div>
+        <div class="venue-item">
+          <div class="venue-name">📍 Milan — PalaItalia & Barentsburg Arena</div>
+          <p style="color: var(--text-muted); font-size: 0.9rem;">Short Track, Relay events, Speed Skating Mass Start</p>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <p>Milano-Cortina 2026 — XXV Olympic Winter Games</p>
+      <p style="margin-top: 0.5rem;">🔵 ⚫ 🔴 🟡 🟢</p>
+      <p style="margin-top: 0.75rem; font-size: 0.9rem;">
+        <a href="milan-cortina-day-8.html" style="color: var(--primary-blue); text-decoration: none;">← Day 8</a>
+        &nbsp; · &nbsp;
+        <a href="winter-games.html" style="color: var(--primary-blue); text-decoration: none;">🏠 AM-Global™</a>
+      </p>
+    </footer>
+  </div>
+</body>
+</html>

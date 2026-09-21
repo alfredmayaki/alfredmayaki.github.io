@@ -1,0 +1,274 @@
+﻿
+const express = require('express');
+const cookieParser = require('cookie-parser');
+const cors = require('cors');
+const admin = require('firebase-admin');
+const path = require('path');
+const multer = require('multer');
+const pdfParse = require('pdf-parse');
+const mammoth = require('mammoth');
+const fetch = require('node-fetch');
+
+// REQUIRE: place your Firebase Admin service account JSON at ./serviceAccountKey.json
+const serviceAccount = require('./serviceAccountKey.json');
+
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount)
+});
+
+const upload = multer({ storage: multer.memoryStorage() });
+const app = express();
+app.use(cors());
+app.use(express.json({ limit: '5mb' }));
+app.use(cookieParser());
+
+// Serve static site (put msc-survey.html in ./public/)
+app.use(express.static(path.join(__dirname, 'public')));
+
+// Create session cookie from client ID token (5 days)
+app.post('/sessionLogin', async (req, res) => {
+  const idToken = req.body?.idToken;
+  if (!idToken) return res.status(400).json({ error: 'Missing idToken' });
+
+  const expiresIn = 60 * 60 * 24 * 5 * 1000; // 5 days
+  try {
+    const sessionCookie = await admin
+      .auth()
+      .createSessionCookie(idToken, { expiresIn });
+
+    // Secure cookie settings for production (secure:true). On localhost secure:true requires HTTPS.
+    res.cookie('session', sessionCookie, {
+      maxAge: expiresIn,
+      httpOnly: true,
+      secure: false,   // set to true in production with HTTPS
+      sameSite: 'Strict'
+    });
+
+    return res.json({ success: true });
+  } catch (err) {
+    console.error('sessionLogin error', err);
+    return res.status(401).json({ error: 'Failed to create session' });
+  }
+});
+
+// POST /api/upload - accepts single file field 'file'
+// returns { filename, text } (extracted text or summary)
+app.post('/api/upload', upload.single('file'), async (req, res) => {
+  try {
+    const file = req.file;
+    if (!file) return res.status(400).json({ error: 'No file uploaded' });
+
+    const name = file.originalname || 'file';
+    const ext = path.extname(name).toLowerCase();
+    let text = '';
+
+    if (ext === '.pdf' || file.mimetype === 'application/pdf') {
+      const data = await pdfParse(file.buffer);
+      text = data.text || '';
+    } else if (ext === '.docx' || file.mimetype === 'application/vnd.openxmlformats-officedocument.wordprocessingml.document') {
+      const result = await mammoth.extractRawText({ buffer: file.buffer });
+      text = result.value || '';
+    } else if (file.mimetype.startsWith('text/') || ['.txt'].includes(ext)) {
+      text = file.buffer.toString('utf8');
+    } else {
+      // unknown type: return empty and let client decide
+      text = '';
+    }
+
+    // Truncate to reasonable size
+    const excerpt = (text || '').slice(0, 20000);
+
+    return res.json({ filename: name, text: excerpt, source: 'extracted' });
+  } catch (err) {
+    console.error('Upload error', err);
+    return res.status(500).json({ error: 'Extraction failed' });
+  }
+});
+
+// POST /api/claude - proxy to configured Claude endpoint (stub if not configured)
+// body: { model, prompt }
+// Set CLAUDE_API_URL and CLAUDE_API_KEY in environment to enable real proxy
+app.post('/api/claude', async (req, res) => {
+  const { model, prompt } = req.body || {};
+  if (!prompt) return res.status(400).json({ error: 'prompt required' });
+
+  const claudeUrl = process.env.CLAUDE_API_URL;
+  const apiKey = process.env.CLAUDE_API_KEY;
+
+  if (!claudeUrl || !apiKey) {
+    // Fallback simulated reply when not configured
+    return res.json({ reply: 'Simulated reply: Claude integration not configured on this server.' });
+  }
+
+  // Small retry/backoff to tolerate transient upstream overloads
+  const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+  const maxRetries = 2;
+  let attempt = 0;
+  let lastError = null;
+
+  while (attempt <= maxRetries) {
+    try {
+      const r = await fetch(claudeUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${apiKey}`
+        },
+        body: JSON.stringify({ model: model || 'claude-opus-4.5', prompt })
+      });
+
+      if (r.ok) {
+        const json = await r.json();
+        const reply = json.reply || json.output || json.text || JSON.stringify(json);
+        return res.json({ reply, timestamp: new Date().toISOString(), raw: json });
+      }
+
+      const bodyText = await r.text().catch(() => '');
+      lastError = `status=${r.status} body=${bodyText}`;
+      console.warn('Claude upstream non-ok response', lastError);
+
+      // Retry on transient server-side errors (including Anthropic 529 overloaded)
+      if ([429, 502, 503, 504, 529].includes(r.status) && attempt < maxRetries) {
+        attempt += 1;
+        const backoff = 250 * Math.pow(2, attempt); // exponential backoff
+        await sleep(backoff);
+        continue;
+      }
+
+      // Non-retriable or exhausted retries
+      break;
+    } catch (err) {
+      lastError = String(err);
+      console.warn('Claude proxy fetch error', err);
+      if (attempt < maxRetries) {
+        attempt += 1;
+        await sleep(300 * attempt);
+        continue;
+      }
+      break;
+    }
+  }
+
+  // Upstream failed after retries — return a friendly simulated reply instead of 500
+  console.error('Claude upstream failed after retries:', lastError);
+  return res.json({
+    reply: 'Simulated reply: Claude service temporarily unavailable (upstream overloaded). Please try again in a few moments.',
+    timestamp: new Date().toISOString(),
+    upstreamError: lastError
+  });
+});
+
+// POST /api/gpt - proxy to OpenAI completions (expects { model, prompt })
+app.post('/api/gpt', async (req, res) => {
+  const { model, prompt } = req.body || {};
+  if (!prompt) return res.status(400).json({ error: 'prompt required' });
+
+  const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
+  if (!OPENAI_API_KEY) {
+    // Fallback reply to keep client behaviour predictable when not configured
+    return res.json({ reply: 'Simulated reply: OpenAI integration not configured on this server.' });
+  }
+
+  try {
+    const usedModel = model || 'gpt-5.2';
+
+    // Prefer chat completions for chat-capable models
+    const isChatModel = String(usedModel).toLowerCase().includes('gpt') || String(usedModel).toLowerCase().includes('chat');
+
+    if (isChatModel) {
+      const r = await fetch('https://api.openai.com/v1/completions', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${OPENAI_API_KEY}`
+        },
+        body: JSON.stringify({
+          model: usedModel,
+          messages: [{ role: 'user', content: prompt }],
+          max_tokens: 800,
+          temperature: 0.2
+        })
+      });
+
+      if (!r.ok) {
+        const text = await r.text();
+        console.warn('OpenAI chat proxy error', r.status, text);
+        return res.status(502).json({ error: 'OpenAI upstream error', details: text });
+      }
+
+      const json = await r.json();
+      const reply = (json?.choices && json.choices[0] && (json.choices[0].message?.content || json.choices[0].text)) || json?.reply || '';
+      return res.json({ reply, timestamp: new Date().toISOString(), raw: json });
+    }
+
+    // Fallback to legacy completions endpoint
+    const r = await fetch('https://api.openai.com/v1/completions', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${OPENAI_API_KEY}`
+      },
+      body: JSON.stringify({
+        model: usedModel,
+        prompt,
+        max_tokens: 600,
+        temperature: 0.2
+      })
+    });
+
+    if (!r.ok) {
+      const text = await r.text();
+      console.warn('OpenAI proxy error', r.status, text);
+      return res.status(502).json({ error: 'OpenAI upstream error', details: text });
+    }
+
+    const json = await r.json();
+    const reply = (json?.choices && json.choices[0] && (json.choices[0].text || json.choices[0].message?.content)) || json?.reply || json?.text || '';
+    return res.json({ reply, timestamp: new Date().toISOString(), raw: json });
+  } catch (err) {
+    console.error('OpenAI proxy exception', err);
+    return res.status(500).json({ error: 'proxy failed' });
+  }
+});
+
+// Start server
+const PORT = process.env.PORT || 8000;
+app.listen(PORT, () => console.log(`API server listening on ${PORT}`));
+
+// Unified chat endpoint used by frontend (/chat)
+// Accepts JSON { message, history } or multipart/form-data with fields 'message' + optional file
+app.post('/chat', upload.single('file'), async (req, res) => {
+  try {
+    // message may be in JSON body or form-data
+    const message = (req.body && (req.body.message || req.body.prompt)) || '';
+
+    let extractedText = '';
+    if (req.file) {
+      const file = req.file;
+      const name = file.originalname || 'file';
+      const ext = path.extname(name).toLowerCase();
+
+      if (ext === '.pdf' || file.mimetype === 'application/pdf') {
+        const data = await pdfParse(file.buffer);
+        extractedText = data.text || '';
+      } else if (ext === '.docx' || file.mimetype === 'application/vnd.openxmlformats-officedocument.wordprocessingml.document') {
+        const result = await mammoth.extractRawText({ buffer: file.buffer });
+        extractedText = result.value || '';
+      } else if (file.mimetype && file.mimetype.startsWith('text')) {
+        extractedText = file.buffer.toString('utf8');
+      } else {
+        extractedText = '';
+      }
+    }
+
+    // Simple simulated reply — replace with LLM proxy as needed
+    const reply = extractedText
+      ? `Received message: "${String(message).slice(0,200)}". Extracted file text length: ${extractedText.length} chars.`
+      : `Received message: "${String(message).slice(0,200)}".`;
+
+    return res.json({ reply, timestamp: new Date().toISOString(), received: { message: message || null, file: req.file ? req.file.originalname : null } });
+  } catch (err) {
+    console.error('/chat handler error', err);
+    return res.status(500).json({ error: 'chat handling failed' });
+  }
+});

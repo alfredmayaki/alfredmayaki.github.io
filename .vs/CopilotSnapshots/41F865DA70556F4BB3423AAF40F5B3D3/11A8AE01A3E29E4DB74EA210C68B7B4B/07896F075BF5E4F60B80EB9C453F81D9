@@ -1,0 +1,250 @@
+﻿/**
+ * Search Tracker API Client
+ * Handles communication with Cloudflare Worker API
+ * Includes localStorage fallback for offline/privacy mode
+ */
+
+const SearchTrackerAPI = (function() {
+  'use strict';
+
+  // API Base URL - UPDATE THIS after deploying worker
+  // After running 'wrangler deploy', you'll get a workers.dev URL
+  // Replace this with your actual worker URL
+  const API_BASE_URL = 'https://search-tracker.alfred-mayaki.workers.dev';  // CHANGE THIS!
+
+  // Example after deployment:
+  // const API_BASE_URL = 'https://search-tracker.YOUR-SUBDOMAIN.workers.dev/api/search';
+
+  const TIMEOUT_MS = 10000;
+
+  // Generate or retrieve persistent user ID
+  function getUserId() {
+    let userId = localStorage.getItem('searchTracker_userId');
+    if (!userId) {
+      // Generate UUID v4
+      userId = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+        const r = Math.random() * 16 | 0;
+        const v = c === 'x' ? r : (r & 0x3 | 0x8);
+        return v.toString(16);
+      });
+      localStorage.setItem('searchTracker_userId', userId);
+      console.log('📝 Generated new user ID:', userId);
+    }
+    return userId;
+  }
+
+  // Extract keywords from query (same logic as before)
+  function extractKeywords(query) {
+    const stopWords = ['the', 'a', 'an', 'and', 'or', 'but', 'in', 'on', 'at', 'to', 'for', 'of', 'with', 'is', 'was', 'are', 'be', 'have', 'has', 'what', 'when', 'where', 'why', 'how', 'can', 'could', 'would', 'should', 'will'];
+    
+    const words = query.toLowerCase()
+      .replace(/[^\w\s]/g, ' ')
+      .split(/\s+/)
+      .filter(word => word.length > 2 && !stopWords.includes(word));
+    
+    return Array.from(new Set(words)); // Unique keywords
+  }
+
+  // Store search locally (always, for offline fallback)
+  function storeLocally(query, keywords) {
+    try {
+      // Update keyword counts
+      const searches = JSON.parse(localStorage.getItem('claudeSearches') || '{}');
+      keywords.forEach(word => {
+        searches[word] = (searches[word] || 0) + 1;
+      });
+      
+      // Store full query
+      const fullQuery = query.trim();
+      if (fullQuery.length <= 50) {
+        searches[`_query_${fullQuery}`] = (searches[`_query_${fullQuery}`] || 0) + 1;
+      }
+      
+      localStorage.setItem('claudeSearches', JSON.stringify(searches));
+
+      // Track timestamp
+      const timestamps = JSON.parse(localStorage.getItem('claudeSearchTimestamps') || '[]');
+      timestamps.push({ query: fullQuery, timestamp: Date.now() });
+      if (timestamps.length > 100) timestamps.shift();
+      localStorage.setItem('claudeSearchTimestamps', JSON.stringify(timestamps));
+
+      console.log('✅ Stored locally:', keywords.length, 'keywords');
+    } catch (error) {
+      console.warn('⚠️ localStorage failed:', error);
+    }
+  }
+
+  // Track search via API
+  async function trackSearch(query) {
+    if (!query || !query.trim()) return { success: false, error: 'Empty query' };
+
+    const keywords = extractKeywords(query);
+    const userId = getUserId();
+
+    // Always store locally first (instant + offline fallback)
+    storeLocally(query, keywords);
+
+    // Try to sync with API
+    try {
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), TIMEOUT_MS);
+
+      const response = await fetch(`${API_BASE_URL}/track`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ userId, query, keywords }),
+        signal: controller.signal
+      });
+
+      clearTimeout(timeoutId);
+
+      if (!response.ok) {
+        throw new Error(`API error: ${response.status}`);
+      }
+
+      const data = await response.json();
+      console.log('✅ Synced to API:', data);
+      return { success: true, data, source: 'api' };
+
+    } catch (error) {
+      console.warn('⚠️ API sync failed, using localStorage only:', error.message);
+      return { success: true, source: 'localStorage', error: error.message };
+    }
+  }
+
+  // Get user's cloud data from API (with localStorage fallback)
+  async function getUserCloud(limit = 50) {
+    const userId = getUserId();
+
+    try {
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), TIMEOUT_MS);
+
+      const response = await fetch(`${API_BASE_URL}/cloud?userId=${userId}&limit=${limit}`, {
+        signal: controller.signal
+      });
+
+      clearTimeout(timeoutId);
+
+      if (!response.ok) {
+        throw new Error(`API error: ${response.status}`);
+      }
+
+      const data = await response.json();
+      console.log('✅ Loaded from API:', data.uniqueWords, 'unique words');
+      return { success: true, data, source: 'api' };
+
+    } catch (error) {
+      console.warn('⚠️ API failed, falling back to localStorage:', error.message);
+      return getLocalCloud();
+    }
+  }
+
+  // Get cloud data from localStorage
+  function getLocalCloud() {
+    try {
+      const searches = JSON.parse(localStorage.getItem('claudeSearches') || '{}');
+      const timestamps = JSON.parse(localStorage.getItem('claudeSearchTimestamps') || '[]');
+
+      // Filter out query entries
+      const keywords = {};
+      Object.entries(searches).forEach(([key, value]) => {
+        if (!key.startsWith('_query_')) {
+          keywords[key] = value;
+        }
+      });
+
+      const recentSearches = timestamps.slice(-10).reverse().map(t => ({
+        query: t.query,
+        timestamp: t.timestamp
+      }));
+
+      return {
+        success: true,
+        data: {
+          keywords,
+          recentSearches,
+          totalSearches: timestamps.length,
+          uniqueWords: Object.keys(keywords).length
+        },
+        source: 'localStorage'
+      };
+    } catch (error) {
+      console.error('❌ localStorage read failed:', error);
+      return { success: false, error: error.message };
+    }
+  }
+
+  // Get global aggregated stats
+  async function getGlobalCloud(limit = 50) {
+    try {
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), TIMEOUT_MS);
+
+      const response = await fetch(`${API_BASE_URL}/global?limit=${limit}`, {
+        signal: controller.signal
+      });
+
+      clearTimeout(timeoutId);
+
+      if (!response.ok) {
+        throw new Error(`API error: ${response.status}`);
+      }
+
+      const data = await response.json();
+      console.log('✅ Loaded global data:', data.uniqueWords, 'unique words');
+      return { success: true, data, source: 'api' };
+
+    } catch (error) {
+      console.error('❌ Global data failed:', error);
+      return { success: false, error: error.message };
+    }
+  }
+
+  // Clear user data (both API and localStorage)
+  async function clearUserData() {
+    const userId = getUserId();
+
+    // Clear localStorage
+    try {
+      localStorage.removeItem('claudeSearches');
+      localStorage.removeItem('claudeSearchTimestamps');
+      console.log('✅ Cleared localStorage');
+    } catch (error) {
+      console.warn('⚠️ localStorage clear failed:', error);
+    }
+
+    // Clear API data
+    try {
+      const response = await fetch(`${API_BASE_URL}/clear?userId=${userId}`, {
+        method: 'DELETE'
+      });
+
+      if (!response.ok) {
+        throw new Error(`API error: ${response.status}`);
+      }
+
+      const data = await response.json();
+      console.log('✅ Cleared API data:', data);
+      return { success: true, data };
+
+    } catch (error) {
+      console.warn('⚠️ API clear failed:', error.message);
+      return { success: true, localOnly: true };
+    }
+  }
+
+  // Public API
+  return {
+    trackSearch,
+    getUserCloud,
+    getGlobalCloud,
+    clearUserData,
+    getUserId,
+    getLocalCloud // Export for testing
+  };
+})();
+
+// Make available globally
+window.SearchTrackerAPI = SearchTrackerAPI;
+console.log('✅ SearchTrackerAPI initialized');

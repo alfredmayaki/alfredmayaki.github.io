@@ -1,0 +1,254 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Projects — AM Global</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="Projects and community work by Alfred Anate Bodurin Mayaki — BipolarUK and Central London Meetup (Co-Facilitator)." />
+  <meta name="author" content="Alfred Anate Bodurin Mayaki" />
+
+  <style>
+    :root{
+      --font-sans: "Segoe UI", system-ui, -apple-system, Arial, sans-serif;
+      --bg-overlay: rgba(22,22,22,0.92);
+      --panel: #161616;
+      --surface: #2a2a2a;
+      --text: #ffffff;
+      --text-muted: #979797;
+      --text-secondary: #b0b0b0;
+      --border: #464242;
+      --brand: #3d4ee9;
+      --brand-hover: #5563f0;
+      --radius-md: 14px;
+      --radius-lg: 18px;
+      --shadow-pop: 0 10px 30px rgba(0,0,0,0.6);
+      --transition-fast: 180ms;
+      --transition-med: 300ms;
+    }
+
+    html {
+      /* Use unified opaque background to avoid background-image bleed */
+      background: var(--footer-bg, #000000);
+      min-height: 100vh;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font-sans);
+      /* match opaque site background for consistent contrast */
+      background: var(--footer-bg, #000000);
+      color: var(--text-muted);
+      line-height: 1.6;
+      font-size: 16px;
+      max-width: 990px;
+      margin: 2em auto;
+      padding: 2em;
+      border: 3px solid var(--border);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-pop);
+      box-sizing: border-box;
+    }
+
+    /* Top navigation (site-wide) */
+    .top-nav {
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:1rem;
+      max-width: 980px;
+      margin: 0  auto 1.25rem;
+      padding: 0.45rem 0.6rem;
+      background: transparent;
+      box-sizing: border-box;
+    }
+    .top-nav .brand {
+      color: var(--text);
+      font-weight: 700;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.98rem;
+    }
+    .top-nav .nav-links { display:flex; gap:0.5rem; align-items:center; flex-wrap:wrap; }
+    .top-nav .nav-links a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      padding: 0.45rem 0.7rem;
+      border-radius: 10px;
+      font-size: 0.95rem;
+      transition: background var(--transition-fast), color var(--transition-fast), transform var(--transition-fast);
+    }
+    .top-nav .nav-links a:hover,
+    .top-nav .nav-links a:focus {
+      background: rgba(61,78,233,0.08);
+      color: var(--text);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(61,78,233,0.12);
+      outline: none;
+    }
+
+    .page-title { text-align:center; color:var(--text); font-size:1.25rem; font-weight:700; margin:0.75rem 0 0.6rem; }
+    .page-subtitle { color:#9b9b9b; font-family:Arial,Helvetica,sans-serif; text-align:center; margin:0.25rem 0 1rem; font-weight:600; }
+
+    .content {
+      max-width: 920px;
+      margin: 1.25rem auto;
+      background: rgba(255,255,255,0.02);
+      border-radius: 12px;
+      padding: 1.25rem;
+      color: var(--text-secondary);
+      box-sizing: border-box;
+      border-left: 4px solid transparent;
+      transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+    }
+
+    .content:hover {
+      border-left-color: var(--brand);
+      box-shadow: 0 8px 24px rgba(61,78,233,0.06);
+    }
+
+    .section-title { color: var(--text); margin: 0.25rem 0 0.65rem; font-size: 1.02rem; font-weight: 700; }
+    .project-list { display: grid; gap: 1rem; list-style: none; padding: 0; margin: 0; }
+    .project {
+      background: linear-gradient(180deg, rgba(255,255,255,0.01), transparent);
+      border: 1px solid rgba(255,255,255,0.03);
+      padding: 0.9rem;
+      border-radius: 10px;
+      color: var(--text-secondary);
+    }
+    .project h3 { margin: 0 0 0.25rem 0; color: var(--text); font-size: 1rem; }
+    .meta { font-size: 0.92rem; color: var(--text-secondary); margin-bottom: 0.5rem; }
+    .project p { margin: 0.45rem 0; }
+    .project a { color: var(--brand); text-decoration: none; }
+    .project a:hover, .project a:focus { color: var(--brand-hover); text-decoration: underline; }
+
+    .soft-separator { border:none; height:1px; margin:1.5rem 0; width:100%; background: linear-gradient(90deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02)); opacity:0.85; }
+
+    /* Footer */
+    .site-footer { padding: 1.25rem 0; margin-top: 2.5rem; text-align:center; }
+    .footer-links { display:inline-flex; gap:0.5rem; align-items:center; justify-content:center; flex-wrap:wrap; padding:0; margin:0 0 0.6rem 0; list-style:none; }
+    .footer-links a { color: var(--text-muted); text-decoration:none; padding: 0.25rem 0.6rem; }
+    .footer-links a:hover { color: var(--text); transform: translateY(-4px); }
+    .footer-copyright { color: var(--text-muted); font-size: 0. nine em; margin:0; }
+
+    @media (max-width: 680px) {
+      .content { padding: 0.9rem; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Top navigation -->
+  <nav class="top-nav" aria-label="Main navigation">
+    <a href="index.html" class="brand">🚀 AM-Global™</a>
+    <div class="nav-links" role="menubar" aria-label="Primary links">
+      <a href="about.html" role="menuitem">About</a>
+      <a href="research.html" role="menuitem">Research</a>
+      <a href="projects.html" role="menuitem" aria-current="page">Projects</a>
+      <a href="contact.html" role="menuitem">Contact</a>
+      <a href="/blogs" role="menuitem" target="_blank" rel="noopener noreferrer">Blogs</a>
+    </div>
+  </nav>
+
+  <h1 class="page-title">Projects & Community Work</h1>
+  <div class="page-subtitle"><h4>Selected community and facilitation work — BipolarUK & Central London Meetup</h4></div>
+
+  <main class="content" role="main" aria-labelledby="projects-heading">
+    <h2 id="projects-heading" class="section-title">Overview</h2>
+    <p style="color:var(--text-secondary);margin:0 0 0.6rem 0;">
+      This page lists community-facing projects and facilitation roles that Alfred contributes to. If you'd like more detail or to collaborate, please use the contact page.
+    </p>
+
+    <h2 class="section-title">Community & Facilitation</h2>
+    <ul class="project-list" aria-label="Community projects">
+      <li class="project" id="bipolaruk">
+        <h3>BipolarUK — Support Group Engagement</h3>
+        <div class="meta">Role: Volunteer / Community Support — Central London chapter</div>
+        <p>
+          Alfred works closely with BipolarUK to support peer-led activities, provide confidential listening, and help coordinate local events that encourage community, recovery-focused conversations and practical peer support.
+        </p>
+        <p>
+          Official Central London BipolarUK support group page:
+          <a href="https://www.bipolaruk.org/get-support/find-a-support-group/central-london/" target="_blank" rel="noopener noreferrer">https://www.bipolaruk.org/get-support/find-a-support-group/central-london/</a>
+        </p>
+        <p>
+          If you are looking for immediate support or group details, follow the BipolarUK link above — it is the authoritative source for meeting times and resources.
+        </p>
+      </li>
+
+      <li class="project" id="meetup">
+        <h3>Central London BipolarUK Meetup — Co-Facilitator</h3>
+        <div class="meta">Role: Co‑Facilitator (Central London Meetup)</div>
+        <p>
+          Alfred is a co-facilitator of the Central London Meetup for people living with bipolar and their supporters. Responsibilities include planning meeting agendas, facilitating safe group discussions, liaising with venue partners, and ensuring accessibility for participants.
+        </p>
+        <p>
+          Meetup group page (private listing & upcoming events): <a href="https://www.meetup.com/central-london-bipolar-uk-meetup/" target="_blank" rel="noopener noreferrer">Central London BipolarUK Meetup</a>.
+        </p>
+        <p>
+          If you'd like to get involved as a participant or volunteer facilitator, please check upcoming events on the Meetup page or contact me via the site contact form.
+        </p>
+      </li>
+    </ul>
+
+    <hr class="soft-separator" aria-hidden="true">
+
+    <h2 class="section-title">Other project activity</h2>
+    <div class="project">
+      <h3>Student & Community Research Support</h3>
+      <div class="meta">Brief: Research assistance and survey tools</div>
+      <p>
+        Alfred supports student-led research projects by helping design surveys, run econometric regressions, and provide tooling (for example, lightweight scrapers and survey hosting guidance). Where possible, I promote open reproducibility and accessible dissemination of findings to community partners.
+      </p>
+      <p>
+        For collaboration enquiries, please use <a href="contact.html">the contact page</a>.
+      </p>
+    </div>
+
+    <div class="project" id="photovogue">
+      <h3>PhotoVogue — Featured Photographer </h3>
+      <div class="meta">Brief: PhotoVogue (Vogue) profile showcasing Alfred's photographic work</div>
+      <p>
+        Alfred maintains a photographer profile on PhotoVogue where selected images and project work are exhibited. PhotoVogue is Vogue's curated platform for emerging and established photographers — profiles provide visibility within the photography community and to a broader editorial audience.
+      </p>
+      <p>
+        View Alfred's PhotoVogue profile: 
+        <a href="https://www.vogue.com/photovogue/photographers/358472" target="_blank" rel="noopener noreferrer">https://www.vogue.com/photovogue/photographers/358472</a>
+      </p>
+      <p>
+        If you are interested in licensing or collaborations related to Alfred's photography, please use the <a href="contact.html">contact page</a>.
+      </p>
+    </div>
+
+    <p class="note" style="margin-top:0.9rem;color:var(--text-secondary);">
+      Note: links to external community pages open in a new tab. This page intentionally contains no images to keep page load fast and accessible.
+    </p>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="footer-content">
+      <nav class="footer-links" aria-label="Footer links">
+        <a href="#" id="cookieSettingsLink">Cookie Settings</a>
+        <a href="privacy-policy.html">Privacy Policy</a>
+        <a href="terms-of-use.html">Terms of Use</a>
+        <a href="buymeacoffee.html">Buy Me a Coffee ☕</a>
+      </nav>
+
+      <p class="footer-copyright">
+        © 2026 Alfred Anate Bodurin Mayaki. All rights reserved.
+      </p>
+      <p style="margin:0.4rem 0 0;"><small style="color:var(--text-secondary);">Powered with 💙 using GitHub</small></p>
+    </div>
+  </footer>
+
+  <script>
+    // Footer / cookie settings handler (parity with other pages)
+    document.getElementById('cookieSettingsLink')?.addEventListener('click', function(e){
+      e.preventDefault();
+      document.cookie = 'cookie_consent=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+      location.reload();
+    });
+  </script>
+</body>
+</html>

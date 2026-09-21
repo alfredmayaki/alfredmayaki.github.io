@@ -1,0 +1,17 @@
+﻿# Copilot Instructions
+
+## General Guidelines
+- First general instruction
+- Second general instruction
+- Commit changes using GitHub Desktop to ensure version control and collaboration efficiency. User has successfully committed changes to the repository using GitHub Desktop.
+
+## Navigation/Select Menu Behavior
+- Make the quick navigation menu (`navigationSelect`) behave identically to the language menu (`languageSelect`) — navigate in the same tab via `window.location.href`; remove special cases for '#chatbot' and opening external links in new tabs.
+
+## Chat UI Preferences
+- Align bot messages to the left and user messages to the right.
+- Use distinct bubble styles for bot and user messages, ensuring bubbles are rounded and animated.
+- Implement entrance animations for messages.
+- Ensure input and upload controls are rounded, centered, and have a maximum width of 360px.
+- Prefer native browser styling for `<select>` controls, avoiding custom select styles and styling for `<option>`. Use browser defaults to prevent inverse/native rendering issues. Maintain consistent caret styling, use `appearance: none` on selects, and apply accent-color (brand blue) for additional emphasis. User expects hover to show brand-blue without inverse colors. Reset selects to native browser styling by default, avoiding custom select styling for navigationSelect and languageSelect. User prefers droplist/select controls to be slightly larger (increased font-size, padding, min-height) and horizontally centered on the page; increase select font-size, padding, and min-height; center `.dropdown-group` on the page. On small screens, selects should become full-width.
+- Apply the dropdown/select visual theme from index_en.html (the `.profile-links-select` styling) to the droplists in index.html (navigationSelect and languageSelect), making selects dark, rounded, with custom caret SVG, hover and focus styles, and slightly larger max-width (≈400px).

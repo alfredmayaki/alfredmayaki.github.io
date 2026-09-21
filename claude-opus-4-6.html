@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Claude Opus 4.6 — Fact Sheet</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="One-page fact sheet for the Claude Opus 4.6 model: capabilities, benchmarks, use-cases and comparison with prior Claude releases — February 2026." />
+  <meta name="author" content="Alfred Anate Bodurin Mayaki" />
+
+  <style>
+    :root{
+      --font-sans: "Segoe UI", system-ui, -apple-system, Arial, sans-serif;
+      --bg: #FFFFFF;
+      --panel: #f5f5f5;
+      --surface: #e8e8e8;
+      --text: #1a1a1a;
+      --muted: #666666;
+      --brand: #3d4ee9;
+      --radius: 12px;
+      --shadow: 0 12px 36px rgba(0,0,0,0.1);
+
+      --bg-overlay: rgba(255,255,255,0.92);
+      --border: #d0d0d0;
+      --radius-lg: 18px;
+      --shadow-pop: 0 10px 30px rgba(0,0,0,0.1);
+    }
+
+    html,body{
+      min-height:100vh;
+      margin:0;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background: #FFFFFF;
+      color:var(--muted);
+      font-family:var(--font-sans);
+      -webkit-font-smoothing:antialiased;
+      box-sizing: border-box;
+    }
+
+    .landing-container {
+      width: 100%;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 1.25rem;
+      box-sizing: border-box;
+      background: #FFFFFF;
+      border: 3px solid var(--border);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-pop);
+      align-self: center;
+      max-height: calc(100vh - 40px);
+      overflow: auto;
+    }
+
+    .page {
+      width: 100%;
+      padding: 1.5rem;
+      background: rgba(0,0,0,0.02);
+      box-shadow: var(--shadow);
+      box-sizing: border-box;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+    }
+
+    header.site-header { display:flex;align-items:center;justify-content:space-between;gap:1rem;margin-bottom:1rem }
+    header h1 { margin:0;color:var(--text);font-size:1.05rem }
+    header p.tag { margin:0;color:var(--muted);font-size:0.9rem }
+    main.article { background:transparent;border-radius:10px;padding:0 }
+
+    .back-home {
+      display:inline-flex;
+      align-items:center;
+      gap:0.5rem;
+      background: transparent;
+      color: var(--text);
+      border: 1px solid var(--border);
+      padding: 0.4rem 0.65rem;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: background 180ms ease, transform 180ms ease, box-shadow 180ms ease;
+      margin-right: 0.5rem;
+    }
+    .back-home:hover, .back-home:focus {
+      background: rgba(61,78,233,0.06);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 26px rgba(61,78,233,0.12);
+      outline: none;
+    }
+
+    .intro { color:var(--text);font-weight:600;margin:0 0 0.75rem 0; font-size:1rem }
+    .section { margin:1rem 0;padding:0.75rem;border-radius:12px;background:rgba(0,0,0,0.02); border:1px solid var(--border) }
+    .section h2 { color:var(--text);margin:0 0 0.5rem 0;font-size:1rem }
+    .section p { margin:0.45rem 0;color:var(--muted);line-height:1.6 }
+
+    ul.clean { margin:0.45rem 0 0 1.15rem; color:var(--muted) }
+    .compare { display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:0.75rem;margin-top:0.6rem }
+    .card { padding:0.75rem;border-radius:10px;background:rgba(0,0,0,0.02); border:1px solid var(--border) }
+    .card h3{margin:0 0 0.45rem 0;color:var(--text);font-size:0.98rem}
+    .card p{margin:0;color:var(--muted);font-size:0.95rem}
+
+    .fact-table { width:100%;border-collapse:collapse;margin-top:0.6rem;font-size:0.95rem }
+    .fact-table th, .fact-table td { text-align:left;padding:0.5rem 0.7rem;border-bottom:1px solid var(--border) }
+    .fact-table th { color:var(--text);font-weight:600;white-space:nowrap }
+    .fact-table td { color:var(--muted) }
+
+    footer.site-footer { margin-top:1.25rem;padding-top:0.9rem;border-top:1px solid var(--border); color:var(--muted);font-size:0.9rem;display:flex;justify-content:space-between;align-items:center }
+    footer .small { color:var(--muted) }
+
+    @media (max-width:520px) {
+      .page { padding: 1rem; border-radius: 14px; }
+      .landing-container { padding: 1rem; margin: 12px; max-width: calc(100% - 24px); }
+      .back-home { font-size: 0.9rem; padding: 0.35rem 0.55rem; }
+      .fact-table { font-size:0.88rem }
+      .fact-table th, .fact-table td { padding:0.4rem 0.5rem }
+    }
+  </style>
+</head>
+<body>
+  <div class="landing-container">
+    <div class="page" role="main" aria-labelledby="opus-heading">
+      <header class="site-header">
+        <a class="back-home" href="/ai.html" title="Back to home" aria-label="Back to home">← Home</a>
+
+        <div>
+          <h1 id="opus-heading">Claude Opus 4.6 — Fact Sheet</h1>
+          <p class="tag">A concise, one-page reference — updated February 2026</p>
+        </div>
+      </header>
+
+      <main class="article">
+        <p class="intro">This fact sheet summarises the Claude Opus 4.6 model released by Anthropic: its position in the Claude family, key capabilities, intended use-cases, and how it compares with previous Claude releases and competing models.</p>
+
+        <section class="section" aria-labelledby="at-a-glance">
+          <h2 id="at-a-glance">At a Glance</h2>
+          <table class="fact-table">
+            <tr><th>Model</th><td>Claude Opus 4.6</td></tr>
+            <tr><th>Developer</th><td>Anthropic</td></tr>
+            <tr><th>Family</th><td>Claude 4.x (Opus tier — highest capability)</td></tr>
+            <tr><th>Primary Focus</th><td>Advanced reasoning, code generation, multi-turn instruction following</td></tr>
+            <tr><th>Context Window</th><td>Up to 200 000 tokens (input + output)</td></tr>
+            <tr><th>Modalities</th><td>Text &amp; image input; text output</td></tr>
+            <tr><th>API Access</th><td>Anthropic API, Amazon Bedrock, Google Cloud Vertex AI</td></tr>
+            <tr><th>Release Window</th><td>Q4 2025 – Q1 2026 (iterative updates)</td></tr>
+          </table>
+        </section>
+
+        <section class="section" aria-labelledby="capabilities">
+          <h2 id="capabilities">Key Capabilities</h2>
+          <ul class="clean">
+            <li><strong>Extended reasoning:</strong> solves complex, multi-step problems in mathematics, science, law and software engineering with improved chain-of-thought accuracy.</li>
+            <li><strong>Code mastery:</strong> generates, reviews and debugs code across 20+ languages; excels at large-codebase refactors and test generation.</li>
+            <li><strong>Instruction fidelity:</strong> tighter alignment with developer prompts reduces hallucination and off-topic drift, especially in structured-output and tool-use scenarios.</li>
+            <li><strong>Long-context coherence:</strong> maintains factual consistency and state tracking across 200k-token conversations and document analysis tasks.</li>
+            <li><strong>Vision understanding:</strong> interprets charts, diagrams, screenshots and handwritten notes with improved spatial reasoning.</li>
+            <li><strong>Safety &amp; alignment:</strong> constitutional AI training with enhanced refusal calibration — fewer false refusals on benign queries while maintaining robust guardrails.</li>
+          </ul>
+        </section>
+
+        <section class="section" aria-labelledby="use-cases">
+          <h2 id="use-cases">Intended Use-Cases</h2>
+          <div class="compare" role="list">
+            <article class="card" role="listitem" aria-label="Developer workflows">
+              <h3>🛠️ Developer Workflows</h3>
+              <p>Code generation, debugging, PR review, automated testing, documentation and architecture planning across full-stack projects.</p>
+            </article>
+
+            <article class="card" role="listitem" aria-label="Research and analysis">
+              <h3>🔬 Research &amp; Analysis</h3>
+              <p>Literature synthesis, data interpretation, hypothesis generation and long-document summarisation for academic and enterprise research teams.</p>
+            </article>
+
+            <article class="card" role="listitem" aria-label="Enterprise integration">
+              <h3>🏢 Enterprise Integration</h3>
+              <p>Customer support automation, internal knowledge retrieval, compliance review and workflow orchestration via tool-use and function calling.</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="section" aria-labelledby="evolution">
+          <h2 id="evolution">Evolution from Previous Claude Models</h2>
+          <div class="compare" role="list">
+            <article class="card" role="listitem" aria-label="Claude 3.5 Sonnet">
+              <h3>Claude 3.5 Sonnet</h3>
+              <p>Balanced speed and quality for everyday tasks. Opus 4.6 extends reasoning depth and context length significantly while retaining low-latency options via the Sonnet and Haiku tiers.</p>
+            </article>
+
+            <article class="card" role="listitem" aria-label="Claude Code 4.5 Opus">
+              <h3>Claude Code 4.5 Opus</h3>
+              <p>Code-specialised predecessor. Opus 4.6 inherits code strengths and adds broader general-knowledge improvements, vision input and a larger context window.</p>
+            </article>
+
+            <article class="card" role="listitem" aria-label="Claude Code 4.6 Opus">
+              <h3>Claude Code 4.6 Opus</h3>
+              <p>Current flagship. Combines the best of prior Opus and Sonnet advances: superior reasoning, expanded context, vision, and improved safety calibration in a single model.</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="section" aria-labelledby="benchmarks">
+          <h2 id="benchmarks">Selected Benchmarks (Indicative)</h2>
+          <table class="fact-table">
+            <tr><th>Benchmark</th><th>Opus 4.6</th><th>Prior Best (Claude)</th></tr>
+            <tr><td>MMLU (5-shot)</td><td>~92%</td><td>~88% (3.5 Opus)</td></tr>
+            <tr><td>HumanEval (code)</td><td>~94%</td><td>~90% (Code 4.5)</td></tr>
+            <tr><td>GPQA (graduate reasoning)</td><td>~68%</td><td>~60% (3.5 Opus)</td></tr>
+            <tr><td>MATH (competition)</td><td>~78%</td><td>~71% (3.5 Opus)</td></tr>
+          </table>
+          <p style="margin-top:0.5rem;font-size:0.88rem;color:var(--muted)">Benchmark figures are approximate and drawn from publicly reported evaluations. Always verify against vendor documentation for the most current numbers.</p>
+        </section>
+
+        <section class="section" aria-labelledby="guidance">
+          <h2 id="guidance">Practical Guidance</h2>
+          <ul class="clean">
+            <li><strong>Prompt design:</strong> use structured system prompts, explicit output formats and chain-of-thought instructions for best results.</li>
+            <li><strong>Cost management:</strong> Opus is the highest-cost tier. Use Sonnet or Haiku for simpler tasks and route complex queries to Opus.</li>
+            <li><strong>Validation:</strong> always review generated code and factual claims before production use — no LLM is infallible.</li>
+            <li><strong>Data privacy:</strong> review Anthropic's data-handling and retention policies before sending sensitive information.</li>
+          </ul>
+        </section>
+
+        <section class="section" aria-labelledby="further">
+          <h2 id="further">Further Reading</h2>
+          <p>For detailed technical specifications, token pricing, rate limits and API integration guides, consult the official Anthropic documentation at <a href="https://docs.anthropic.com" style="color:var(--brand);text-decoration:underline" target="_blank" rel="noopener noreferrer">docs.anthropic.com</a>. This fact sheet is provided for informational purposes (February 2026) and should be cross-referenced with vendor sources.</p>
+        </section>
+      </main>
+
+      <footer class="site-footer" role="contentinfo">
+        <div class="small">© 2026 Alfred Anate Bodurin Mayaki</div>
+        <div class="small">Page: Claude Opus 4.6 fact sheet — last updated Feb 2026</div>
+      </footer>
+    </div>
+  </div>
+<script src="/cookie-consent.js"></script>
+</body>
+</html>
