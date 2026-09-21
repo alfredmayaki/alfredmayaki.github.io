@@ -1,9 +1,0 @@
-
-{
-  "name": "CityMatch - Field Lens IQ",
-  "description": "High-performance Manchester City match center with AI-powered tactical commentary.",
-  "requestFramePermissions": [
-    "camera",
-    "microphone"
-  ]
-}
