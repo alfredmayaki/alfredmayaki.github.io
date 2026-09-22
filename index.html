@@ -3,251 +3,52 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="The academic profile of Alfred Anate Bodurin Mayaki: education, memberships and dissertation research.">
+  <meta name="description" content="Academic profile of Alfred Anate Bodurin Mayaki.">
   <title>Alfred Anate Bodurin Mayaki | Academic profile</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
   <style>
-    :root {
-      --ink: #17222a;
-      --muted: #63717b;
-      --paper: #f7f6f1;
-      --white: #fff;
-      --line: #dbe1df;
-      --teal: #0f6b68;
-      --teal-dark: #084e4d;
-      --coral: #e9795e;
-      --gold: #e2b75b;
-      --shadow: 0 20px 60px rgba(25, 54, 55, .10);
-    }
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body { margin: 0; background: var(--paper); color: var(--ink); font-family: "DM Sans", sans-serif; line-height: 1.65; }
-    a { color: inherit; }
-    .wrap { width: min(1120px, calc(100% - 40px)); margin: auto; }
-    header { padding: 24px 0; position: absolute; width: 100%; z-index: 2; color: rgba(255,255,255,.8); }
-    nav { display: flex; align-items: center; justify-content: space-between; gap: 24px; }
-    .brand { color: var(--white); font: 500 13px "DM Mono", monospace; letter-spacing: .08em; text-transform: uppercase; text-decoration: none; }
-    nav ul { display: flex; gap: 28px; list-style: none; margin: 0; padding: 0; font-size: 13px; }
-    nav a { text-decoration: none; }
-    nav a:hover { color: var(--white); }
-    .hero { min-height: 680px; display: flex; align-items: center; overflow: hidden; position: relative; color: var(--white); background: var(--teal-dark); }
-    .hero:before { content: ""; position: absolute; width: 760px; height: 760px; right: -180px; top: -250px; border-radius: 50%; background: radial-gradient(circle, rgba(226,183,91,.34), rgba(226,183,91,0) 68%); }
-    .hero:after { content: ""; position: absolute; inset: auto 0 0; height: 140px; background: linear-gradient(transparent, rgba(8,78,77,.55)); }
-    .hero .wrap { position: relative; z-index: 1; }
-    .eyebrow { color: var(--gold); font: 500 12px "DM Mono", monospace; letter-spacing: .16em; text-transform: uppercase; }
-    h1, h2, h3, p { margin-top: 0; }
-    h1 { max-width: 820px; margin: 18px 0 25px; font: 700 clamp(46px, 8vw, 88px)/.98 "Playfair Display", serif; letter-spacing: -.045em; }
-    .intro { max-width: 570px; color: rgba(255,255,255,.75); font-size: 18px; }
-    .hero-links { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 34px; }
-    .button { display: inline-flex; align-items: center; gap: 9px; padding: 12px 17px; border: 1px solid rgba(255,255,255,.32); border-radius: 2px; color: var(--white); font-size: 13px; text-decoration: none; transition: .2s ease; }
-    .button:hover { border-color: var(--gold); background: rgba(255,255,255,.1); transform: translateY(-2px); }
-    .button.primary { border-color: var(--coral); background: var(--coral); }
-    .section { padding: 105px 0; }
-    .section.alt { background: var(--white); }
-    .section-heading { display: flex; justify-content: space-between; align-items: end; gap: 30px; margin-bottom: 46px; }
-    h2 { margin-bottom: 10px; font: 600 clamp(34px, 4vw, 55px)/1.05 "Playfair Display", serif; letter-spacing: -.035em; }
-    .section-lead { max-width: 520px; margin: 0; color: var(--muted); }
-    .label { color: var(--teal); font: 500 11px "DM Mono", monospace; letter-spacing: .13em; text-transform: uppercase; }
-    .education-grid { display: grid; grid-template-columns: 1.12fr .88fr; gap: 70px; }
-    .timeline { position: relative; padding-left: 28px; border-left: 1px solid var(--line); }
-    .timeline-item { position: relative; padding: 0 0 37px 23px; }
-    .timeline-item:last-child { padding-bottom: 0; }
-    .timeline-item:before { content: ""; position: absolute; top: 7px; left: -34px; width: 12px; height: 12px; border: 3px solid var(--paper); border-radius: 50%; background: var(--coral); box-shadow: 0 0 0 1px var(--coral); }
-    .date { display: block; margin-bottom: 6px; color: var(--teal); font: 500 12px "DM Mono", monospace; }
-    .timeline h3 { margin-bottom: 5px; font-size: 20px; }
-    .timeline p { margin-bottom: 0; color: var(--muted); font-size: 14px; }
-    .credential { padding: 30px; background: var(--teal); color: var(--white); box-shadow: var(--shadow); }
-    .credential .label { color: var(--gold); }
-    .credential h3 { margin: 14px 0; font: 600 27px/1.15 "Playfair Display", serif; }
-    .credential p { color: rgba(255,255,255,.78); font-size: 14px; }
-    .credential ul { padding-left: 18px; margin: 22px 0 0; color: rgba(255,255,255,.8); font-size: 14px; }
-    .credential li + li { margin-top: 10px; }
-    .membership-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
-    .membership { min-height: 220px; display: flex; flex-direction: column; justify-content: space-between; padding: 30px; border: 1px solid var(--line); background: var(--paper); }
-    .membership .mark { width: 44px; height: 44px; display: grid; place-items: center; border-radius: 50%; background: var(--gold); color: var(--teal-dark); font: 700 19px "Playfair Display", serif; }
-    .membership h3 { margin: 28px 0 4px; font-size: 20px; }
-    .membership p { margin: 0; color: var(--muted); font-size: 14px; }
-    .thesis { background: #e7efed; }
-    .thesis-layout { display: grid; grid-template-columns: .72fr 1.28fr; gap: 70px; align-items: start; }
-    .thesis-title { margin: 12px 0 20px; font: 600 clamp(30px, 4vw, 50px)/1.08 "Playfair Display", serif; letter-spacing: -.03em; }
-    .thesis-copy { color: #42545a; font-size: 16px; }
-    .thesis-meta { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; margin-top: 35px; border: 1px solid #cbd9d6; background: #cbd9d6; }
-    .meta-item { padding: 18px; background: #e7efed; }
-    .meta-item strong { display: block; margin-top: 4px; font-size: 15px; }
-    .thesis-details { padding-top: 8px; }
-    .thesis-details h3 { margin: 0 0 14px; font: 600 25px "Playfair Display", serif; }
-    .thesis-details p { color: #42545a; }
-    .pill-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 27px; }
-    .pill { padding: 7px 11px; border-radius: 30px; background: var(--white); color: var(--teal-dark); font: 500 11px "DM Mono", monospace; }
-    .source-list { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
-    .source { padding: 20px; border-top: 2px solid var(--teal); background: var(--white); text-decoration: none; }
-    .source:hover { transform: translateY(-3px); box-shadow: var(--shadow); }
-    .source span { display: block; margin-bottom: 20px; color: var(--muted); font: 11px "DM Mono", monospace; text-transform: uppercase; }
-    .source strong { font-size: 14px; }
-    footer { padding: 35px 0; background: var(--ink); color: rgba(255,255,255,.6); font-size: 12px; }
-    footer .wrap { display: flex; justify-content: space-between; gap: 20px; }
-    footer a { color: var(--white); }
-    @media (max-width: 760px) {
-      nav ul { display: none; }
-      .hero { min-height: 620px; }
-      .section { padding: 72px 0; }
-      .section-heading, .education-grid, .thesis-layout { display: block; }
-      .section-heading { margin-bottom: 32px; }
-      .credential, .thesis-details { margin-top: 45px; }
-      .membership-grid, .source-list { grid-template-columns: 1fr; }
-      footer .wrap { display: block; }
-      footer p:last-child { margin-top: 12px; }
-    }
+    :root{--ink:#17222a;--muted:#63717b;--paper:#f7f6f1;--white:#fff;--line:#dbe1df;--teal:#0f6b68;--dark:#084e4d;--coral:#e9795e;--gold:#e2b75b;--shadow:0 20px 60px rgba(25,54,55,.1)}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.65 "DM Sans",sans-serif}a{color:inherit}.wrap{width:min(1120px,calc(100% - 40px));margin:auto}
+    header{padding:24px 0;position:absolute;width:100%;z-index:2;color:#fff}nav{display:flex;justify-content:space-between;gap:24px}nav ul{display:flex;gap:28px;list-style:none;margin:0;padding:0;font-size:13px}nav a,.brand{text-decoration:none}.brand,.label,.date,.source span,.pill{font-family:"DM Mono",monospace}.brand{font-size:13px;letter-spacing:.08em;text-transform:uppercase}
+    .hero{min-height:650px;display:flex;align-items:center;position:relative;overflow:hidden;color:#fff;background:var(--dark)}.hero:before{content:"";position:absolute;width:760px;height:760px;right:-180px;top:-250px;border-radius:50%;background:radial-gradient(circle,rgba(226,183,91,.34),transparent 68%)}.hero .wrap{position:relative;z-index:1}
+    .label{color:var(--teal);font-size:11px;letter-spacing:.13em;text-transform:uppercase}.hero .label{color:var(--gold)}h1,h2,h3{font-family:"Playfair Display",serif}h1{max-width:820px;margin:18px 0 25px;font-size:clamp(46px,8vw,88px);line-height:.98;letter-spacing:-.045em}.intro{max-width:570px;color:#ffffffbf;font-size:18px}.hero-links{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}.button{display:inline-block;padding:11px 16px;border:1px solid #ffffff52;color:#fff;text-decoration:none;font-size:13px}.button:hover{border-color:var(--gold)}.button.primary{border-color:var(--coral);background:var(--coral)}
+    .section{padding:100px 0}.section.alt{background:var(--white)}.section-heading{display:flex;justify-content:space-between;align-items:end;gap:30px;margin-bottom:45px}.section-heading h2{margin:10px 0;font-size:clamp(34px,4vw,55px);line-height:1.05}.section-lead{max-width:520px;color:var(--muted)}
+    .education-grid,.thesis-layout{display:grid;grid-template-columns:1.12fr .88fr;gap:70px}.timeline{padding-left:28px;border-left:1px solid var(--line)}.timeline-item{position:relative;padding:0 0 33px 23px}.timeline-item:before{content:"";position:absolute;top:7px;left:-34px;width:12px;height:12px;border:3px solid var(--paper);border-radius:50%;background:var(--coral);box-shadow:0 0 0 1px var(--coral)}.date{display:block;margin-bottom:6px;color:var(--teal);font-size:12px}.timeline h3{margin:0 0 5px;font:600 20px "DM Sans",sans-serif}.timeline p{margin:0;color:var(--muted);font-size:14px}.credential{padding:30px;background:var(--teal);color:#fff;box-shadow:var(--shadow)}.credential .label{color:var(--gold)}.credential h3{margin:14px 0;font-size:27px;line-height:1.15}.credential p,.credential li{color:#ffffffc7;font-size:14px}
+    .membership-grid,.publication-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}.membership,.publication{padding:28px;border:1px solid var(--line);background:var(--paper)}.membership{min-height:190px;display:flex;flex-direction:column;justify-content:space-between}.mark{width:44px;height:44px;display:grid;place-items:center;border-radius:50%;background:var(--gold);color:var(--dark);font:700 19px "Playfair Display",serif}.membership h3{margin:24px 0 4px;font:600 20px "DM Sans",sans-serif}.membership p,.publication p{margin:0;color:var(--muted);font-size:14px}
+    .publications{background:#e7efed}.publication{display:flex;flex-direction:column;min-height:235px;background:var(--white);box-shadow:0 8px 25px #42615d12}.publication .year{color:var(--teal);font:500 11px "DM Mono",monospace;letter-spacing:.1em}.publication h3{margin:12px 0 10px;font:600 21px/1.2 "Playfair Display",serif}.publication .link{margin-top:auto;padding-top:20px;color:var(--teal);font:500 12px "DM Mono",monospace;text-decoration:none}.publication .link:hover{text-decoration:underline}.scholar-note{margin-top:26px;color:#42545a;font-size:13px}
+    .thesis{background:#e7efed}.thesis-title{margin:12px 0 20px;font:600 clamp(30px,4vw,50px)/1.08 "Playfair Display",serif}.thesis-copy,.thesis-details p{color:#42545a}.thesis-meta{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;margin-top:35px;background:#cbd9d6}.meta-item{padding:18px;background:#e7efed}.meta-item strong{display:block;margin-top:4px;font-size:15px}.pill-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:27px}.pill{padding:7px 11px;border-radius:30px;background:#fff;color:var(--dark);font-size:11px}
+    .source-list{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.source{padding:20px;border-top:2px solid var(--teal);background:#fff;text-decoration:none}.source span{display:block;margin-bottom:20px;color:var(--muted);font-size:11px;text-transform:uppercase}.source strong{font-size:14px}footer{padding:35px 0;background:var(--ink);color:#ffffff99;font-size:12px}footer .wrap{display:flex;justify-content:space-between}footer a{color:#fff}
+    @media(max-width:760px){nav ul{display:none}.section{padding:70px 0}.section-heading,.education-grid,.thesis-layout{display:block}.credential,.thesis-details{margin-top:40px}.membership-grid,.publication-grid,.source-list{grid-template-columns:1fr}footer .wrap{display:block}}
   </style>
 </head>
 <body>
-  <header>
-    <div class="wrap">
-      <nav aria-label="Main navigation">
-        <a class="brand" href="#">AABM / profile</a>
-        <ul>
-          <li><a href="#education">Education</a></li>
-          <li><a href="#memberships">Memberships</a></li>
-          <li><a href="#thesis">Dissertation</a></li>
-          <li><a href="#sources">Sources</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
-
+  <header><div class="wrap"><nav aria-label="Main navigation"><a class="brand" href="#">AABM / profile</a><ul><li><a href="#education">Education</a></li><li><a href="#memberships">Memberships</a></li><li><a href="#publications">Publications</a></li><li><a href="#thesis">Dissertation</a></li><li><a href="#sources">Sources</a></li></ul></nav></div></header>
   <main>
-    <section class="hero">
-      <div class="wrap">
-        <div class="eyebrow">Economics · human resource management · public value</div>
-        <h1>Alfred Anate<br>Bodurin Mayaki</h1>
-        <p class="intro">An academic profile tracing a continuing education in economics, business and human resource management — and research into collective bargaining and social justice.</p>
-        <div class="hero-links">
-          <a class="button primary" href="#thesis">Explore the dissertation <span aria-hidden="true">↘</span></a>
-          <a class="button" href="https://orcid.org/0009-0006-3363-9603" target="_blank" rel="noopener">View ORCID <span aria-hidden="true">↗</span></a>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="education">
-      <div class="wrap">
-        <div class="section-heading">
-          <div><div class="label">01 / academic journey</div><h2>Education, in full.</h2></div>
-          <p class="section-lead">A public-profile timeline from primary education through postgraduate study. Dates and awards below.</p>
-        </div>
-        <div class="education-grid">
-          <div class="timeline">
-            <article class="timeline-item">
-              <span class="date">2023 — 2026</span>
-              <h3>MSc Human Resource Management (In View)</h3>
-              <p><strong>The Open University Business School</strong> · expected distinction. Dissertation research on public-sector design, industrial disputes and social justice.</p>
-            </article>
-            <article class="timeline-item">
-              <span class="date">2010 — 2013</span>
-              <h3>MSc (PgCert) Financial &amp; Business Economics</h3>
-              <p><strong>University of Essex</strong> · Department of Economics. Advanced microeconomics and macroeconomics among the recorded studies.</p>
-            </article>
-            <article class="timeline-item">
-              <span class="date">2006 — 2010</span>
-              <h3>BSc (Hons) Business Management</h3>
-              <p><strong>University of Essex Business School</strong> · First-class (1:1) result recorded.</p>
-            </article>
-            <article class="timeline-item">
-              <span class="date">Sixth form</span>
-              <h3>A-Level examinations</h3>
-              <p><strong>Christ the King Sixth Form College</strong> · 340 UCAS points: English Language (B), Sociology (A), Business Studies (A).</p>
-            </article>
-            <article class="timeline-item">
-              <span class="date">Secondary education</span>
-              <h3>GCSE examinations</h3>
-              <p><strong>Harris Academy at Peckham</strong> · English Literature, English Language, Mathematics, Science, Business Studies, ICT, Design &amp; Technology and Spanish.</p>
-            </article>
-            <article class="timeline-item">
-              <span class="date">Primary education</span>
-              <h3>KS2 SATs</h3>
-              <p><strong>Camelot Primary School</strong> · English (5), Mathematics (5) and Science (4). KS3 SATs followed at Harris Academy at Peckham.</p>
-            </article>
-          </div>
-          <aside class="credential">
-            <div class="label">Current research direction</div>
-            <h3>From markets to institutions.</h3>
-            <p>Mayaki’s academic work connects economics with the institutions that shape working life: unions, wages, public administration and social welfare.</p>
-            <ul>
-              <li>Economics and business foundations</li>
-              <li>Human resource management specialisation</li>
-              <li>Interdisciplinary research practice</li>
-            </ul>
-          </aside>
-        </div>
-      </div>
-    </section>
-
-    <section class="section alt" id="memberships">
-      <div class="wrap">
-        <div class="section-heading">
-          <div><div class="label">02 / professional community</div><h2>Memberships.</h2></div>
-          <p class="section-lead">Connections to the professional communities that support economic research and people practice.</p>
-        </div>
-        <div class="membership-grid">
-          <article class="membership">
-            <div class="mark">RE</div>
-            <div><h3>Royal Economic Society</h3><p>Student member · October 2024 — present</p></div>
-          </article>
-          <article class="membership">
-            <div class="mark">C</div>
-            <div><h3>Chartered Institute of Personnel and Development</h3><p>Student member · November 2023 — present</p></div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section thesis" id="thesis">
-      <div class="wrap thesis-layout">
-        <div>
-          <div class="label">03 / dissertation</div>
-          <h2 class="thesis-title">Collective Commonality &amp; Tactical Polyvalence</h2>
-          <p class="thesis-copy">How the Public Sector Can Design Itself to Mitigate Industrial Disputes and Optimise Social Justice</p>
-          <div class="thesis-meta">
-            <div class="meta-item"><span class="label">Institution</span><strong>The Open University</strong></div>
-            <div class="meta-item"><span class="label">Year</span><strong>2026</strong></div>
-            <div class="meta-item"><span class="label">Format</span><strong>Dissertation</strong></div>
-            <div class="meta-item"><span class="label">JEL</span><strong>J52 · J45 · C72</strong></div>
-          </div>
-          <div class="hero-links"><a class="button primary" href="https://ssrn.com/abstract=6996418" target="_blank" rel="noopener">Read on SSRN ↗</a><a class="button" style="color:var(--teal-dark);border-color:var(--teal)" href="https://philpapers.org/rec/MAYCCA-6" target="_blank" rel="noopener">PhilPapers record ↗</a></div>
-        </div>
-        <div class="thesis-details">
-          <h3>A study of bargaining, welfare and democratic participation.</h3>
-          <p>The dissertation brings together signalling theory and actor-network theory to examine collective bargaining in the public sector. It uses the British Social Attitudes Survey, Labour Force Survey and OECD/AIAS ICTWSS data, applying two-way fixed-effects regression to explore the relationship between union rights, wage growth and welfare expenditure.</p>
-          <p>Its central argument is that collective bargaining is not only an industrial-relations mechanism, but a democratic institution. The study recommends stronger union rights, particularly in OECD countries where freedom of association is constrained.</p>
-          <div class="pill-row" aria-label="Research keywords">
-            <span class="pill">Collective bargaining</span><span class="pill">Trade unions</span><span class="pill">Wages</span><span class="pill">Signalling theory</span><span class="pill">Actor-network theory</span><span class="pill">Panel data models</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="sources">
-      <div class="wrap">
-        <div class="section-heading">
-          <div><div class="label">04 / further reading</div><h2>Explore the record.</h2></div>
-          <p class="section-lead">This profile is a visual summary of publicly available records. Follow the original sources for the most current version.</p>
-        </div>
-        <div class="source-list">
-          <a class="source" href="https://sites.google.com/view/alfredmayaki/" target="_blank" rel="noopener"><span>Official profile</span><strong>Alfred Mayaki online profile ↗</strong></a>
-          <a class="source" href="https://sites.google.com/view/alfredmayaki/education" target="_blank" rel="noopener"><span>Education</span><strong>Full education record ↗</strong></a>
-          <a class="source" href="https://orcid.org/0009-0006-3363-9603" target="_blank" rel="noopener"><span>Research identity</span><strong>ORCID · 0009-0006-3363-9603 ↗</strong></a>
-          <a class="source" href="https://scholar.google.com/citations?user=QK1gWHoAAAAJ&hl=en" target="_blank" rel="noopener"><span>Scholarship</span><strong>Google Scholar profile ↗</strong></a>
-        </div>
-      </div>
-    </section>
+    <section class="hero"><div class="wrap"><div class="label">Economics · human resource management · public value</div><h1>Alfred Anate<br>Bodurin Mayaki</h1><p class="intro">An academic profile tracing a continuing education in economics, business and human resource management — and research into collective bargaining and social justice.</p><div class="hero-links"><a class="button primary" href="#publications">Explore research ↘</a><a class="button" href="https://orcid.org/0009-0006-3363-9603" target="_blank" rel="noopener">View ORCID ↗</a></div></div></section>
+    <section class="section" id="education"><div class="wrap"><div class="section-heading"><div><div class="label">01 / academic journey</div><h2>Education, in full.</h2></div><p class="section-lead">A public-profile timeline from primary education through postgraduate study.</p></div><div class="education-grid"><div class="timeline">
+      <article class="timeline-item"><span class="date">2023 — 2026</span><h3>MSc Human Resource Management</h3><p><strong>The Open University Business School</strong> · expected distinction. Dissertation research on public-sector design, industrial disputes and social justice.</p></article>
+      <article class="timeline-item"><span class="date">2010 — 2013</span><h3>MSc (PgCert) Financial &amp; Business Economics</h3><p><strong>University of Essex</strong> · Department of Economics.</p></article>
+      <article class="timeline-item"><span class="date">2006 — 2010</span><h3>BSc (Hons) Business Management</h3><p><strong>University of Essex Business School</strong> · First-class (1:1) result recorded in the public profile.</p></article>
+      <article class="timeline-item"><span class="date">Sixth form</span><h3>A-Level examinations</h3><p><strong>Christ the King Sixth Form College</strong> · 340 UCAS points: English Language (B), Sociology (A), Business Studies (A).</p></article>
+      <article class="timeline-item"><span class="date">Secondary education</span><h3>GCSE examinations</h3><p><strong>Harris Academy at Peckham</strong> · English Literature, English Language, Mathematics, Science, Business Studies, ICT, Design &amp; Technology and Spanish.</p></article>
+      <article class="timeline-item"><span class="date">Primary education</span><h3>KS2 SATs</h3><p><strong>Camelot Primary School</strong> · English (5), Mathematics (5) and Science (4).</p></article>
+    </div><aside class="credential"><div class="label">Current research direction</div><h3>From markets to institutions.</h3><p>Mayaki’s academic work connects economics with the institutions that shape working life: unions, wages, public administration and social welfare.</p></aside></div></div></section>
+    <section class="section alt" id="memberships"><div class="wrap"><div class="section-heading"><div><div class="label">02 / professional community</div><h2>Memberships.</h2></div><p class="section-lead">Connections to the professional communities that support economic research and people practice.</p></div><div class="membership-grid"><article class="membership"><div class="mark">RE</div><div><h3>Royal Economic Society</h3><p>Student member · October 2024 — present</p></div></article><article class="membership"><div class="mark">C</div><div><h3>Chartered Institute of Personnel and Development</h3><p>Student member · November 2023 — present</p></div></article></div></div></section>
+    <section class="section publications" id="publications"><div class="wrap"><div class="section-heading"><div><div class="label">03 / Google Scholar</div><h2>Research publications.</h2></div><p class="section-lead">Selected research publications and working papers listed under Alfred Mayaki’s public Google Scholar profile.</p></div><div class="publication-grid">
+      <article class="publication"><span class="year">2024 · arXiv:2406.18471</span><h3>Pareto-Nash Reversion Strategies: Three Period Dynamic Co-operative Signalling with Sticky Efficiency Wages</h3><p>A dynamic model exploring cooperation, signalling and efficiency wages.</p><a class="link" href="https://arxiv.org/abs/2406.18471" target="_blank" rel="noopener">View publication ↗</a></article>
+      <article class="publication"><span class="year">2025 · SSRN 5202615</span><h3>Pareto-Optimal Growth: Evidence from UK-US Simulated Trade, Productivity and Capital Expenditure</h3><p>Research on simulated trade, productivity and capital expenditure.</p><a class="link" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5202615" target="_blank" rel="noopener">View publication ↗</a></article>
+      <article class="publication"><span class="year">2025 · arXiv:2503.22825</span><h3>Pareto-Nash Allocations under Incomplete Information: A Model of Stable Optima</h3><p>A model of stable Pareto-Nash allocations under incomplete information.</p><a class="link" href="https://arxiv.org/abs/2503.22825" target="_blank" rel="noopener">View publication ↗</a></article>
+      <article class="publication"><span class="year">2026 · SSRN 6996418</span><h3>Collective Commonality and Tactical Polyvalence</h3><p>Public-sector design, industrial disputes and social justice.</p><a class="link" href="https://ssrn.com/abstract=6996418" target="_blank" rel="noopener">View publication ↗</a></article>
+      <article class="publication"><span class="year">2025 · SSRN 5617932</span><h3>Estimating the African Union’s SDG Production Frontier</h3><p>Conference proceeding from the 7th Congress of African Economists.</p><a class="link" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5617932" target="_blank" rel="noopener">View publication ↗</a></article>
+      <article class="publication"><span class="year">2025 · SSRN 5206224</span><h3>Regime-Switching Tariffs and Inflation Effects</h3><p>Evidence from cross-country asset prices.</p><a class="link" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5206224" target="_blank" rel="noopener">View publication ↗</a></article>
+      <article class="publication"><span class="year">2024 · SSRN 5382940</span><h3>An HR Perspective on the OSKAR Coaching Framework</h3><p>The forward-oriented solution approach, CBT and sporting recovery activity sessions.</p><a class="link" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5382940" target="_blank" rel="noopener">View publication ↗</a></article>
+      <article class="publication"><span class="year">2023 · SSRN 5419795</span><h3>A Critical Evaluation of Rules-Based Approaches</h3><p>From macrostability to macroprudential supervision, 1993–2023.</p><a class="link" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5419795" target="_blank" rel="noopener">View publication ↗</a></article>
+    </div><p class="scholar-note">Publication titles are presented from the public Google Scholar record. For the latest additions, citation counts and author details, visit the <a href="https://scholar.google.com/citations?user=QK1gWHoAAAAJ&amp;hl=en" target="_blank" rel="noopener">Google Scholar profile ↗</a>.</p></div></section>
+    <section class="section thesis" id="thesis"><div class="wrap thesis-layout"><div><div class="label">04 / dissertation</div><h2 class="thesis-title">Collective Commonality &amp; Tactical Polyvalence</h2><p class="thesis-copy">How the Public Sector Can Design Itself to Mitigate Industrial Disputes and Optimise Social Justice</p><div class="thesis-meta"><div class="meta-item"><span class="label">Institution</span><strong>The Open University</strong></div><div class="meta-item"><span class="label">Year</span><strong>2026</strong></div><div class="meta-item"><span class="label">Format</span><strong>Dissertation</strong></div><div class="meta-item"><span class="label">JEL</span><strong>J52 · J45 · C72</strong></div></div><div class="hero-links"><a class="button primary" href="https://ssrn.com/abstract=6996418" target="_blank" rel="noopener">Read on SSRN ↗</a></div></div><div class="thesis-details"><h3>A study of bargaining, welfare and democratic participation.</h3><p>The dissertation brings together signalling theory and actor-network theory to examine collective bargaining in the public sector. It uses the British Social Attitudes Survey, Labour Force Survey and OECD/AIAS ICTWSS data, applying two-way fixed-effects regression to explore the relationship between union rights, wage growth and welfare expenditure.</p><p>Its central argument is that collective bargaining is not only an industrial-relations mechanism, but a democratic institution.</p><div class="pill-row"><span class="pill">Collective bargaining</span><span class="pill">Trade unions</span><span class="pill">Wages</span><span class="pill">Panel data models</span></div></div></div></section>
+    <section class="section" id="sources"><div class="wrap"><div class="section-heading"><div><div class="label">05 / further reading</div><h2>Explore the record.</h2></div><p class="section-lead">Follow the original sources for the most current version of the academic record.</p></div><div class="source-list"><a class="source" href="https://sites.google.com/view/alfredmayaki/" target="_blank" rel="noopener"><span>Official profile</span><strong>Alfred Mayaki online profile ↗</strong></a><a class="source" href="https://sites.google.com/view/alfredmayaki/education" target="_blank" rel="noopener"><span>Education</span><strong>Full education record ↗</strong></a><a class="source" href="https://orcid.org/0009-0006-3363-9603" target="_blank" rel="noopener"><span>Research identity</span><strong>ORCID record ↗</strong></a><a class="source" href="https://scholar.google.com/citations?user=QK1gWHoAAAAJ&amp;hl=en" target="_blank" rel="noopener"><span>Scholarship</span><strong>Google Scholar profile ↗</strong></a></div></div></section>
   </main>
-
-  <footer>
-    <div class="wrap">
-      <p>© 2026 Alfred Anate Bodurin Mayaki · Academic profile</p>
-      <p>Built for the open web · <a href="#sources">View sources</a></p>
-    </div>
-  </footer>
+  <footer><div class="wrap"><p>© 2026 Alfred Anate Bodurin Mayaki · Academic profile</p><p>Built for the open web · <a href="#sources">View sources</a></p></div></footer>
 </body>
 </html>
