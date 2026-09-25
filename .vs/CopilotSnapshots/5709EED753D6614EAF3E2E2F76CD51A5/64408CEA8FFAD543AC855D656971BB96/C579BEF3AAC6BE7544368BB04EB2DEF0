@@ -1,4 +1,4 @@
-# Copilot Instructions
+﻿# Copilot Instructions
 
 ## General Guidelines
 - First general instruction
@@ -21,7 +21,7 @@
 - When wiring page-level file uploads to the chatbot, always attach uploads to chatbot state synchronously and use robust feature-detection. Initialize `window.uploadedDocs` if missing; guard calls to helper functions like `extractFile`, `pushChatMessage`, `renderUploadList`; prefer calling `window.__setUploadedFile` and `window.__openChatbot`.
 
 ## Contact Page Preferences
-- User prefers emboldened, uniformly styled Font Awesome icons for social links on the contact page while keeping the icon color unchanged.
+- User prefers Font Awesome icons for social links on the contact page.
 - Replace the Discord invite in the footer with a 'report a bug' link (linking to the contact page) instead of keeping the Discord icon; prefer a single 'report a bug' entry rather than duplicates.
 
 ## User Interaction Preferences
